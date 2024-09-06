@@ -1,0 +1,582 @@
+|0904_155526|cmd=cd /root/linux-next|
+|0904_155526|git log ecc768a84f0b8e631986f9ade3118fa37852fef0 check_result:commit ecc768a84f0b8e631986f9ade3118fa37852fef0|
+|0904_155526|git log 431c1646e1f86b949fa3685efc50b660a364c2b6 check_result:commit 431c1646e1f86b949fa3685efc50b660a364c2b6|
+|0904_155526|There was old bisect log:git bisect start
+# status: waiting for both good and bad commits
+# bad: [ecc768a84f0b8e631986f9ade3118fa37852fef0] Add linux-next specific files for 20240902
+git bisect bad ecc768a84f0b8e631986f9ade3118fa37852fef0
+# status: waiting for good commit(s), bad commit known
+# good: [431c1646e1f86b949fa3685efc50b660a364c2b6] Linux 6.11-rc6
+git bisect good 431c1646e1f86b949fa3685efc50b660a364c2b6
+# bad: [ef4c04432ff7e0b828a0fb78a49719740d5d35b3] Merge branch 'master' of git://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth-next.git
+git bisect bad ef4c04432ff7e0b828a0fb78a49719740d5d35b3
+# bad: [39a1f4f4601c391e666e1aa837987e8658ce779c] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/deller/parisc-linux.git
+git bisect bad 39a1f4f4601c391e666e1aa837987e8658ce779c
+# bad: [50339c513aa60323d6a155157184b09e0baa19a6] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+git bisect bad 50339c513aa60323d6a155157184b09e0baa19a6
+# bad: [d09c2981aaf6a430075f662fe23845401bb21b02] foo
+git bisect bad d09c2981aaf6a430075f662fe23845401bb21b02
+# good: [6b2c2ed58e34d88637017cf9e178489550607096] err.h: add ERR_PTR_PCPU(), PTR_ERR_PCPU() and IS_ERR_PCPU() macros
+git bisect good 6b2c2ed58e34d88637017cf9e178489550607096
+# bad: [3c8e392e62b916d57d3db484f8b905f56f79d1aa] mm/damon/core: replace per-quota regions priority histogram buffer usage with per-context one
+git bisect bad 3c8e392e62b916d57d3db484f8b905f56f79d1aa
+# bad: [3dc80ef932e2cbb5e4139a74e655d11f0807adad] mm: move may_expand_vm() check in mmap_region()
+git bisect bad 3dc80ef932e2cbb5e4139a74e655d11f0807adad
+# good: [f88d0d4cb57c1bdde3b9e0db9ed2e57baf9cfee8] mm: remove page_has_private()
+git bisect good f88d0d4cb57c1bdde3b9e0db9ed2e57baf9cfee8
+# good: [a1528ae29ef62b7fff89cb01c4f828dbfcf1c219] mm/vma: introduce abort_munmap_vmas()
+git bisect good a1528ae29ef62b7fff89cb01c4f828dbfcf1c219
+# good: [dbdb3b92034082379722de3296366bea4263988d] mm/vma: support vma == NULL in init_vma_munmap()
+git bisect good dbdb3b92034082379722de3296366bea4263988d
+# good: [da12f28f0b43c344a61027494fd02b2af73d5373] mm/mmap: avoid zeroing vma tree in mmap_region()
+git bisect good da12f28f0b43c344a61027494fd02b2af73d5373
+# bad: [f4704d4e07bb8d51d2d8888ecd1ad5d903f19445] mm/mmap: use PHYS_PFN in mmap_region()
+git bisect bad f4704d4e07bb8d51d2d8888ecd1ad5d903f19445
+# bad: [3483c95414f92248129371a1790921486b507e26] mm: change failure of MAP_FIXED to restoring the gap on failure
+git bisect bad 3483c95414f92248129371a1790921486b507e26
+# first bad commit: [3483c95414f92248129371a1790921486b507e26] mm: change failure of MAP_FIXED to restoring the gap on failure, will clean it|
+|0904_155526|cmd=git bisect reset|
+|0904_155529|cmd=git checkout -f ecc768a84f0b8e631986f9ade3118fa37852fef0|
+|0904_155529|cmd=cd /root/linux-next|
+|0904_155529||/var/www/html/bzimage/bzImage_ecc768a84f0b8e631986f9ade3118fa37852fef0| exist, no need make|
+|0904_155530|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0904_155550|Run /var/www/html/bzimage/bzImage_ecc768a84f0b8e631986f9ade3118fa37852fef0 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0904_155609|It takes 19 seconds to find login:test login: |
+|0904_155609|Boot 1 time: takes 19 seconds to boot up.|
+|0904_155609|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0904_155610|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0904_155612|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.cprog root@localhost:/root/repro.c|
+|0904_155613|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0904_155614|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0904_160054|/var/www/html/bzimage/bzImage_ecc768a84f0b8e631986f9ade3118fa37852fef0 contained soft_offline_page:[  300.683676]  soft_offline_page.part.0+0xc34/0xf40
+[  300.684094]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  300.684924]  soft_offline_page+0x97/0xc0
+[  300.696830]  #0: ffffffff87258a68 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40, FAIL|
+|0904_160054|Found time:300 in /var/www/html/bzimage/0904_155526_soft_offline_page/ecc768a84f0b8e631986f9ade3118fa37852fef0_dmesg.log|
+|0904_160054|Logic: |<=25: +25|25-100 +180|>100 +1800| Set TIME:2100|
+|0904_160054|-END- commit ecc768a84f0b8e631986f9ade3118fa37852fef0 FAIL bad|
+|0904_160054|cmd=rm -rf /var/www/html//syzkaller/2024_09_04/4dce3d627c6ff0d591092ba6c975711a7bbd433a|
+|0904_160054|cmd=mkdir -p /var/www/html//syzkaller/2024_09_04/4dce3d627c6ff0d591092ba6c975711a7bbd433a|
+|0904_160054|cmd=cp -rf /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.cprog /var/www/html//syzkaller/2024_09_04/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.c|
+|0904_160054|gcc -pthread /var/www/html//syzkaller/2024_09_04/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.c -o /var/www/html//syzkaller/2024_09_04/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro|
+|0904_160055|cmd=cp -rf /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/description /var/www/html//syzkaller/2024_09_04/4dce3d627c6ff0d591092ba6c975711a7bbd433a|
+|0904_160055|cp -rf /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/mount_* /var/www/html/bzimage/0904_155526_soft_offline_page/|
+|0904_160105|wget https://raw.githubusercontent.com/xupengfe/kconfig_diff/main/config-5.18rc4i_kvm -O /var/www/html/bzimage/0904_155526_soft_offline_page/kconfig_origin:5|
+|0904_160105|cmd=cd /root/linux-next|
+|0904_160105||/var/www/html/bzimage/bzImage_431c1646e1f86b949fa3685efc50b660a364c2b6| exist, no need make|
+|0904_160105|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0904_160114|Run /var/www/html/bzimage/bzImage_431c1646e1f86b949fa3685efc50b660a364c2b6 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0904_160135|It takes 21 seconds to find login:test login: |
+|0904_160136|Boot 1 time: takes 21 seconds to boot up.|
+|0904_160136|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0904_160137|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0904_160138|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.cprog root@localhost:/root/repro.c|
+|0904_160140|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0904_160140|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0904_163642|/var/www/html/bzimage/bzImage_431c1646e1f86b949fa3685efc50b660a364c2b6 didn't contain soft_offline_page: in dmesg, pass|
+|0904_163642|Start commit 431c1646e1f86b949fa3685efc50b660a364c2b6 PASS good|
+|0904_163642|cmd=git checkout -f ecc768a84f0b8e631986f9ade3118fa37852fef0|
+|0904_163643|cmd=git bisect start|
+|0904_163643|cmd=git bisect bad ecc768a84f0b8e631986f9ade3118fa37852fef0|
+|0904_163643|Bisect first start commit:431c1646e1f86b949fa3685efc50b660a364c2b6|
+|0904_163643|git bisect good 431c1646e1f86b949fa3685efc50b660a364c2b6|
+|0904_163646||/var/www/html/bzimage/bzImage_ef4c04432ff7e0b828a0fb78a49719740d5d35b3| exist, no need make|
+|0904_163646|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0904_163657|Run /var/www/html/bzimage/bzImage_ef4c04432ff7e0b828a0fb78a49719740d5d35b3 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0904_163717|It takes 20 seconds to find login:test login: |
+|0904_163717|Boot 1 time: takes 20 seconds to boot up.|
+|0904_163717|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0904_163719|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0904_163720|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.cprog root@localhost:/root/repro.c|
+|0904_163722|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0904_163722|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0904_171222|/var/www/html/bzimage/bzImage_ef4c04432ff7e0b828a0fb78a49719740d5d35b3 contained soft_offline_page:[  300.617969]  soft_offline_page.part.0+0xc34/0xf40
+[  300.618261]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  300.619211]  soft_offline_page+0x97/0xc0
+[  300.628026]  #0: ffffffff87258ae8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[  448.089605]  soft_offline_page.part.0+0xc34/0xf40
+[  448.090118]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  448.091261]  soft_offline_page+0x97/0xc0
+[  448.107466]  #0: ffffffff87258ae8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[  595.533243]  soft_offline_page.part.0+0xc34/0xf40
+[  595.533559]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  595.534229]  soft_offline_page+0x97/0xc0
+[  595.543598]  #0: ffffffff87258ae8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[  743.001078]  soft_offline_page.part.0+0xc34/0xf40
+[  743.001636]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  743.002832]  soft_offline_page+0x97/0xc0
+[  743.018768]  #0: ffffffff87258ae8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[  890.457578]  soft_offline_page.part.0+0xc34/0xf40
+[  890.458120]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  890.459381]  soft_offline_page+0x97/0xc0
+[  890.473436]  #0: ffffffff87258ae8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[ 1037.904974]  soft_offline_page.part.0+0xc34/0xf40
+[ 1037.905659]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1037.907170]  soft_offline_page+0x97/0xc0
+[ 1037.928370]  #0: ffffffff87258ae8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[ 1185.368556]  soft_offline_page.part.0+0xc34/0xf40
+[ 1185.369382]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1185.370759]  soft_offline_page+0x97/0xc0
+[ 1185.389580]  #0: ffffffff87258ae8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[ 1332.815893]  soft_offline_page.part.0+0xc34/0xf40
+[ 1332.816415]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1332.817570]  soft_offline_page+0x97/0xc0
+[ 1332.829261]  #0: ffffffff87258ae8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[ 1480.276067]  soft_offline_page.part.0+0xc34/0xf40
+[ 1480.276672]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1480.278043]  soft_offline_page+0x97/0xc0
+[ 1480.297025]  #0: ffffffff87258ae8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[ 1627.727000]  soft_offline_page.part.0+0xc34/0xf40
+[ 1627.727556]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1627.728839]  soft_offline_page+0x97/0xc0
+[ 1627.744800]  #0: ffffffff87258ae8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40, FAIL|
+|0904_171222|git bisect bad ef4c04432ff7e0b828a0fb78a49719740d5d35b3|
+|0904_171225||/var/www/html/bzimage/bzImage_39a1f4f4601c391e666e1aa837987e8658ce779c| exist, no need make|
+|0904_171225|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0904_171235|Run /var/www/html/bzimage/bzImage_39a1f4f4601c391e666e1aa837987e8658ce779c with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0904_171257|It takes 22 seconds to find login:test login: |
+|0904_171257|Boot 1 time: takes 22 seconds to boot up.|
+|0904_171257|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0904_171258|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0904_171300|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.cprog root@localhost:/root/repro.c|
+|0904_171301|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0904_171302|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0904_174803|/var/www/html/bzimage/bzImage_39a1f4f4601c391e666e1aa837987e8658ce779c didn't contain soft_offline_page: in dmesg, pass|
+|0904_174803|git bisect good 39a1f4f4601c391e666e1aa837987e8658ce779c|
+|0904_174805||/var/www/html/bzimage/bzImage_7c64a2c252d173f9637e2fa2aaba7e92eb419bc6| exist, no need make|
+|0904_174805|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0904_174815|Run /var/www/html/bzimage/bzImage_7c64a2c252d173f9637e2fa2aaba7e92eb419bc6 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0904_174836|It takes 20 seconds to find login:test login: |
+|0904_174836|Boot 1 time: takes 20 seconds to boot up.|
+|0904_174836|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0904_174837|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0904_174838|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.cprog root@localhost:/root/repro.c|
+|0904_174840|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0904_174840|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0904_182341|/var/www/html/bzimage/bzImage_7c64a2c252d173f9637e2fa2aaba7e92eb419bc6 contained soft_offline_page:[  300.673830]  soft_offline_page.part.0+0xc34/0xf40
+[  300.674356]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  300.675542]  soft_offline_page+0x97/0xc0
+[  300.688854]  #0: ffffffff87058c68 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[  448.122991]  soft_offline_page.part.0+0xc34/0xf40
+[  448.123211]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  448.123705]  soft_offline_page+0x97/0xc0
+[  448.130794]  #0: ffffffff87058c68 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[  595.575713]  soft_offline_page.part.0+0xc34/0xf40
+[  595.576213]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  595.577614]  soft_offline_page+0x97/0xc0
+[  595.593239]  #0: ffffffff87058c68 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[  743.029828]  soft_offline_page.part.0+0xc34/0xf40
+[  743.030134]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  743.030862]  soft_offline_page+0x97/0xc0
+[  743.040372]  #0: ffffffff87058c68 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[  890.499444]  soft_offline_page.part.0+0xc34/0xf40
+[  890.499975]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  890.501164]  soft_offline_page+0x97/0xc0
+[  890.517963]  #0: ffffffff87058c68 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[ 1037.945362]  soft_offline_page.part.0+0xc34/0xf40
+[ 1037.945872]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1037.947037]  soft_offline_page+0x97/0xc0
+[ 1037.957758]  #0: ffffffff87058c68 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[ 1185.401402]  soft_offline_page.part.0+0xc34/0xf40
+[ 1185.401849]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1185.402700]  soft_offline_page+0x97/0xc0
+[ 1185.412265]  #0: ffffffff87058c68 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[ 1332.856333]  soft_offline_page.part.0+0xc34/0xf40
+[ 1332.856836]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1332.858019]  soft_offline_page+0x97/0xc0
+[ 1332.869919]  #0: ffffffff87058c68 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[ 1480.316239]  soft_offline_page.part.0+0xc34/0xf40
+[ 1480.316751]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1480.317908]  soft_offline_page+0x97/0xc0
+[ 1480.329818]  #0: ffffffff87058c68 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40
+[ 1627.769505]  soft_offline_page.part.0+0xc34/0xf40
+[ 1627.770003]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1627.771152]  soft_offline_page+0x97/0xc0
+[ 1627.782986]  #0: ffffffff87058c68 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40, FAIL|
+|0904_182341|git bisect bad 7c64a2c252d173f9637e2fa2aaba7e92eb419bc6|
+|0904_182342||/var/www/html/bzimage/bzImage_baa54202d95b6426aaf581c0563430bab7a28306| exist, no need make|
+|0904_182342|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0904_182351|Run /var/www/html/bzimage/bzImage_baa54202d95b6426aaf581c0563430bab7a28306 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0904_182412|It takes 20 seconds to find login:test login: |
+|0904_182412|Boot 1 time: takes 20 seconds to boot up.|
+|0904_182412|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0904_182413|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0904_182415|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.cprog root@localhost:/root/repro.c|
+|0904_182416|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0904_182417|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0904_185917|/var/www/html/bzimage/bzImage_baa54202d95b6426aaf581c0563430bab7a28306 contained soft_offline_page:[  300.532650]  soft_offline_page.part.0+0xfd3/0x12d0
+[  300.533288]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  300.534584]  soft_offline_page+0x97/0xc0
+[  300.552041]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  447.992368]  soft_offline_page.part.0+0xfd3/0x12d0
+[  447.993481]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  447.995869]  soft_offline_page+0x97/0xc0
+[  448.011438]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  595.442778]  soft_offline_page.part.0+0xfd3/0x12d0
+[  595.443416]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  595.444812]  soft_offline_page+0x97/0xc0
+[  595.459083]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  742.906002]  soft_offline_page.part.0+0xfd3/0x12d0
+[  742.906557]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  742.907715]  soft_offline_page+0x97/0xc0
+[  742.924722]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  890.350285]  soft_offline_page.part.0+0xfd3/0x12d0
+[  890.350794]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  890.351911]  soft_offline_page+0x97/0xc0
+[  890.362270]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1037.815236]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1037.815824]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1037.817136]  soft_offline_page+0x97/0xc0
+[ 1037.831137]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1185.262212]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1185.262734]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1185.263832]  soft_offline_page+0x97/0xc0
+[ 1185.274958]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1332.719151]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1332.719738]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1332.720917]  soft_offline_page+0x97/0xc0
+[ 1332.735000]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1480.177407]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1480.177938]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1480.179127]  soft_offline_page+0x97/0xc0
+[ 1480.190218]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1627.634892]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1627.635404]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1627.636524]  soft_offline_page+0x97/0xc0
+[ 1627.653601]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0, FAIL|
+|0904_185917|git bisect bad baa54202d95b6426aaf581c0563430bab7a28306|
+|0904_185918||/var/www/html/bzimage/bzImage_55fa4624a05c07efa1a7256f99302a90518cfde5| exist, no need make|
+|0904_185918|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0904_185927|Run /var/www/html/bzimage/bzImage_55fa4624a05c07efa1a7256f99302a90518cfde5 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0904_185948|It takes 21 seconds to find login:test login: |
+|0904_185948|Boot 1 time: takes 21 seconds to boot up.|
+|0904_185948|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0904_185950|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0904_185951|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.cprog root@localhost:/root/repro.c|
+|0904_185953|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0904_185954|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0904_193455|/var/www/html/bzimage/bzImage_55fa4624a05c07efa1a7256f99302a90518cfde5 didn't contain soft_offline_page: in dmesg, pass|
+|0904_193455|git bisect good 55fa4624a05c07efa1a7256f99302a90518cfde5|
+|0904_193456||/var/www/html/bzimage/bzImage_df8a452922181f086ab8b42e48f9a5beccf895d0| exist, no need make|
+|0904_193456|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0904_193507|Run /var/www/html/bzimage/bzImage_df8a452922181f086ab8b42e48f9a5beccf895d0 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0904_193528|It takes 20 seconds to find login:test login: |
+|0904_193528|Boot 1 time: takes 20 seconds to boot up.|
+|0904_193528|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0904_193529|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0904_193530|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.cprog root@localhost:/root/repro.c|
+|0904_193532|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0904_193532|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0904_201034|/var/www/html/bzimage/bzImage_df8a452922181f086ab8b42e48f9a5beccf895d0 didn't contain soft_offline_page: in dmesg, pass|
+|0904_201034|git bisect good df8a452922181f086ab8b42e48f9a5beccf895d0|
+|0904_201035||/var/www/html/bzimage/bzImage_26d6dee3e208c5e5101395c1fdf6deefe539ad28| exist, no need make|
+|0904_201035|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0904_201045|Run /var/www/html/bzimage/bzImage_26d6dee3e208c5e5101395c1fdf6deefe539ad28 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0904_201106|It takes 21 seconds to find login:test login: |
+|0904_201106|Boot 1 time: takes 21 seconds to boot up.|
+|0904_201106|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0904_201107|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0904_201109|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.cprog root@localhost:/root/repro.c|
+|0904_201110|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0904_201111|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0904_204612|/var/www/html/bzimage/bzImage_26d6dee3e208c5e5101395c1fdf6deefe539ad28 didn't contain soft_offline_page: in dmesg, pass|
+|0904_204612|git bisect good 26d6dee3e208c5e5101395c1fdf6deefe539ad28|
+|0904_204613||/var/www/html/bzimage/bzImage_ded4660378eb32be42933fd62499afa175a3bbb2| exist, no need make|
+|0904_204613|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0904_204624|Run /var/www/html/bzimage/bzImage_ded4660378eb32be42933fd62499afa175a3bbb2 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0904_204645|It takes 21 seconds to find login:test login: |
+|0904_204645|Boot 1 time: takes 21 seconds to boot up.|
+|0904_204645|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0904_204646|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0904_204648|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.cprog root@localhost:/root/repro.c|
+|0904_204649|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0904_204650|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0904_212150|/var/www/html/bzimage/bzImage_ded4660378eb32be42933fd62499afa175a3bbb2 contained soft_offline_page:[  300.635897]  soft_offline_page.part.0+0xfd3/0x12d0
+[  300.636427]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  300.637494]  soft_offline_page+0x97/0xc0
+[  300.648707]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  448.088257]  soft_offline_page.part.0+0xfd3/0x12d0
+[  448.088510]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  448.089099]  soft_offline_page+0x97/0xc0
+[  448.096610]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  595.549915]  soft_offline_page.part.0+0xfd3/0x12d0
+[  595.550426]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  595.551554]  soft_offline_page+0x97/0xc0
+[  595.563013]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  743.000276]  soft_offline_page.part.0+0xfd3/0x12d0
+[  743.000499]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  743.001023]  soft_offline_page+0x97/0xc0
+[  743.008080]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  890.457901]  soft_offline_page.part.0+0xfd3/0x12d0
+[  890.458437]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  890.459589]  soft_offline_page+0x97/0xc0
+[  890.473804]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1037.913605]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1037.914084]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1037.915156]  soft_offline_page+0x97/0xc0
+[ 1037.925193]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1185.367879]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1185.368185]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1185.368858]  soft_offline_page+0x97/0xc0
+[ 1185.378917]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1332.837810]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1332.838353]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1332.839514]  soft_offline_page+0x97/0xc0
+[ 1332.855708]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1480.279658]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1480.279939]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1480.280559]  soft_offline_page+0x97/0xc0
+[ 1480.289551]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1627.737695]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1627.738193]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1627.739299]  soft_offline_page+0x97/0xc0
+[ 1627.756849]  #0: ffffffff870573e8 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0, FAIL|
+|0904_212150|git bisect bad ded4660378eb32be42933fd62499afa175a3bbb2|
+|0904_212151||/var/www/html/bzimage/bzImage_564b04ea483560ac7ba4cb6464254e21fac14a12| exist, no need make|
+|0904_212151|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0904_212201|Run /var/www/html/bzimage/bzImage_564b04ea483560ac7ba4cb6464254e21fac14a12 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0904_212222|It takes 21 seconds to find login:test login: |
+|0904_212222|Boot 1 time: takes 21 seconds to boot up.|
+|0904_212222|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0904_212223|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0904_212225|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.cprog root@localhost:/root/repro.c|
+|0904_212227|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0904_212227|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0904_215728|/var/www/html/bzimage/bzImage_564b04ea483560ac7ba4cb6464254e21fac14a12 didn't contain soft_offline_page: in dmesg, pass|
+|0904_215728|git bisect good 564b04ea483560ac7ba4cb6464254e21fac14a12|
+|0904_215730||/var/www/html/bzimage/bzImage_13c9f3c68405d90300ec3eb341d1378e831dd565| exist, no need make|
+|0904_215730|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0904_215740|Run /var/www/html/bzimage/bzImage_13c9f3c68405d90300ec3eb341d1378e831dd565 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0904_215758|It takes 18 seconds to find login:test login: |
+|0904_215758|Boot 1 time: takes 18 seconds to boot up.|
+|0904_215758|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0904_215800|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0904_215801|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.cprog root@localhost:/root/repro.c|
+|0904_215803|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0904_215803|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0904_223303|/var/www/html/bzimage/bzImage_13c9f3c68405d90300ec3eb341d1378e831dd565 contained soft_offline_page:[  300.602178]  soft_offline_page.part.0+0xfd3/0x12d0
+[  300.602835]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  300.604254]  soft_offline_page+0x97/0xc0
+[  300.624852]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  448.061422]  soft_offline_page.part.0+0xfd3/0x12d0
+[  448.062058]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  448.063286]  soft_offline_page+0x97/0xc0
+[  448.077062]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  595.519685]  soft_offline_page.part.0+0xfd3/0x12d0
+[  595.520252]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  595.521677]  soft_offline_page+0x97/0xc0
+[  595.537265]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  742.971761]  soft_offline_page.part.0+0xfd3/0x12d0
+[  742.972284]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  742.973442]  soft_offline_page+0x97/0xc0
+[  742.985763]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  890.432408]  soft_offline_page.part.0+0xfd3/0x12d0
+[  890.433004]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  890.434365]  soft_offline_page+0x97/0xc0
+[  890.448943]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1037.878640]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1037.879129]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1037.880211]  soft_offline_page+0x97/0xc0
+[ 1037.890449]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1185.340336]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1185.340901]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1185.341889]  soft_offline_page+0x97/0xc0
+[ 1185.352204]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1332.793666]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1332.794119]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1332.795097]  soft_offline_page+0x97/0xc0
+[ 1332.810600]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1480.258601]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1480.259172]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1480.260431]  soft_offline_page+0x97/0xc0
+[ 1480.274432]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1627.708977]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1627.709324]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1627.710118]  soft_offline_page+0x97/0xc0
+[ 1627.721209]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0, FAIL|
+|0904_223303|git bisect bad 13c9f3c68405d90300ec3eb341d1378e831dd565|
+|0904_223304||/var/www/html/bzimage/bzImage_7949d4e70aefd7033fbf824837b841a5d2ebe129| exist, no need make|
+|0904_223304|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0904_223315|Run /var/www/html/bzimage/bzImage_7949d4e70aefd7033fbf824837b841a5d2ebe129 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0904_223337|It takes 22 seconds to find login:test login: |
+|0904_223337|Boot 1 time: takes 22 seconds to boot up.|
+|0904_223337|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0904_223339|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0904_223340|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.cprog root@localhost:/root/repro.c|
+|0904_223342|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0904_223342|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0904_230844|/var/www/html/bzimage/bzImage_7949d4e70aefd7033fbf824837b841a5d2ebe129 didn't contain soft_offline_page: in dmesg, pass|
+|0904_230844|git bisect good 7949d4e70aefd7033fbf824837b841a5d2ebe129|
+|0904_230844||/var/www/html/bzimage/bzImage_e9f3b433acd0558a06e287f840b41add1d55df89| exist, no need make|
+|0904_230844|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0904_230855|Run /var/www/html/bzimage/bzImage_e9f3b433acd0558a06e287f840b41add1d55df89 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0904_230917|It takes 22 seconds to find login:test login: |
+|0904_230917|Boot 1 time: takes 22 seconds to boot up.|
+|0904_230917|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0904_230918|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0904_230920|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.cprog root@localhost:/root/repro.c|
+|0904_230921|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0904_230922|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0904_234422|/var/www/html/bzimage/bzImage_e9f3b433acd0558a06e287f840b41add1d55df89 contained soft_offline_page:[  300.854949]  soft_offline_page.part.0+0xfd3/0x12d0
+[  300.855211]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  300.855781]  soft_offline_page+0x97/0xc0
+[  300.864067]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  448.324439]  soft_offline_page.part.0+0xfd3/0x12d0
+[  448.325025]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  448.326295]  soft_offline_page+0x97/0xc0
+[  448.343695]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  595.769519]  soft_offline_page.part.0+0xfd3/0x12d0
+[  595.770012]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  595.771086]  soft_offline_page+0x97/0xc0
+[  595.781125]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  743.226073]  soft_offline_page.part.0+0xfd3/0x12d0
+[  743.226586]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  743.227716]  soft_offline_page+0x97/0xc0
+[  743.239127]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  890.681867]  soft_offline_page.part.0+0xfd3/0x12d0
+[  890.682402]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  890.683559]  soft_offline_page+0x97/0xc0
+[  890.694860]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1038.136605]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1038.137088]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1038.138135]  soft_offline_page+0x97/0xc0
+[ 1038.148920]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1185.605742]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1185.606237]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1185.607331]  soft_offline_page+0x97/0xc0
+[ 1185.621100]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1333.049113]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1333.049606]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1333.050690]  soft_offline_page+0x97/0xc0
+[ 1333.061343]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1480.517408]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1480.517992]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1480.519252]  soft_offline_page+0x97/0xc0
+[ 1480.536227]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1627.961884]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1627.962407]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1627.963503]  soft_offline_page+0x97/0xc0
+[ 1627.975378]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0, FAIL|
+|0904_234422|git bisect bad e9f3b433acd0558a06e287f840b41add1d55df89|
+|0904_234423||/var/www/html/bzimage/bzImage_fd031210c9ceb399db1dea001c6a5e98f3b4e2e7| exist, no need make|
+|0904_234423|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0904_234433|Run /var/www/html/bzimage/bzImage_fd031210c9ceb399db1dea001c6a5e98f3b4e2e7 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0904_234454|It takes 21 seconds to find login:test login: |
+|0904_234454|Boot 1 time: takes 21 seconds to boot up.|
+|0904_234454|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0904_234455|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0904_234457|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/4dce3d627c6ff0d591092ba6c975711a7bbd433a/repro.cprog root@localhost:/root/repro.c|
+|0904_234459|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0904_234459|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0905_001959|/var/www/html/bzimage/bzImage_fd031210c9ceb399db1dea001c6a5e98f3b4e2e7 contained soft_offline_page:[  300.666470]  soft_offline_page.part.0+0xfd3/0x12d0
+[  300.666985]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  300.668134]  soft_offline_page+0x97/0xc0
+[  300.682024]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  448.111743]  soft_offline_page.part.0+0xfd3/0x12d0
+[  448.112236]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  448.113307]  soft_offline_page+0x97/0xc0
+[  448.123274]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  595.571201]  soft_offline_page.part.0+0xfd3/0x12d0
+[  595.571707]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  595.572828]  soft_offline_page+0x97/0xc0
+[  595.587547]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  743.034425]  soft_offline_page.part.0+0xfd3/0x12d0
+[  743.034917]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  743.035992]  soft_offline_page+0x97/0xc0
+[  743.051514]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[  890.478416]  soft_offline_page.part.0+0xfd3/0x12d0
+[  890.478949]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[  890.480123]  soft_offline_page+0x97/0xc0
+[  890.490532]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1037.934618]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1037.935143]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1037.936268]  soft_offline_page+0x97/0xc0
+[ 1037.945157]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1185.394990]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1185.395453]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1185.396580]  soft_offline_page+0x97/0xc0
+[ 1185.412843]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1332.848502]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1332.849030]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1332.850209]  soft_offline_page+0x97/0xc0
+[ 1332.862185]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1480.313751]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1480.314290]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1480.315499]  soft_offline_page+0x97/0xc0
+[ 1480.332402]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0
+[ 1627.757907]  soft_offline_page.part.0+0xfd3/0x12d0
+[ 1627.758406]  ? __pfx_soft_offline_page.part.0+0x10/0x10
+[ 1627.759488]  soft_offline_page+0x97/0xc0
+[ 1627.770868]  #0: ffffffff87056a48 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xde/0x12d0, FAIL|
+|0905_001959|git bisect bad fd031210c9ceb399db1dea001c6a5e98f3b4e2e7|
+|0905_001959|Bisect PASS: find bad commit: fd031210c9ceb399db1dea001c6a5e98f3b4e2e7 is the first bad commit
+commit fd031210c9ceb399db1dea001c6a5e98f3b4e2e7
+Author: Luis Chamberlain <mcgrof@kernel.org>
+Date:   Thu Aug 22 15:50:12 2024 +0200
+
+    mm: split a folio in minimum folio order chunks
+    
+    split_folio() and split_folio_to_list() assume order 0, to support
+    minorder for non-anonymous folios, we must expand these to check the
+    folio mapping order and use that.
+    
+    Set new_order to be at least minimum folio order if it is set in
+    split_huge_page_to_list() so that we can maintain minimum folio order
+    requirement in the page cache.
+    
+    Update the debugfs write files used for testing to ensure the order
+    is respected as well. We simply enforce the min order when a file
+    mapping is used.
+    
+    Signed-off-by: Luis Chamberlain <mcgrof@kernel.org>
+    Signed-off-by: Pankaj Raghav <p.raghav@samsung.com>
+    Link: https://lore.kernel.org/r/20240822135018.1931258-5-kernel@pankajraghav.com
+    Tested-by: David Howells <dhowells@redhat.com>
+    Reviewed-by: Hannes Reinecke <hare@suse.de>
+    Reviewed-by: Zi Yan <ziy@nvidia.com>
+    Signed-off-by: Christian Brauner <brauner@kernel.org>
+
+ include/linux/huge_mm.h | 14 ++++++++----
+ mm/huge_memory.c        | 60 +++++++++++++++++++++++++++++++++++++++++++++----
+ 2 files changed, 66 insertions(+), 8 deletions(-)|
+|0905_001959|cmd=git bisect log >> /var/www/html/bzimage/bi.log|
+|0905_001959|cmd=git bisect log >> /var/www/html/bzimage/0904_155526_soft_offline_page/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [ecc768a84f0b8e631986f9ade3118fa37852fef0] Add linux-next specific files for 20240902
+git bisect bad ecc768a84f0b8e631986f9ade3118fa37852fef0
+# status: waiting for good commit(s), bad commit known
+# good: [431c1646e1f86b949fa3685efc50b660a364c2b6] Linux 6.11-rc6
+git bisect good 431c1646e1f86b949fa3685efc50b660a364c2b6
+# bad: [ef4c04432ff7e0b828a0fb78a49719740d5d35b3] Merge branch 'master' of git://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth-next.git
+git bisect bad ef4c04432ff7e0b828a0fb78a49719740d5d35b3
+# good: [39a1f4f4601c391e666e1aa837987e8658ce779c] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/deller/parisc-linux.git
+git bisect good 39a1f4f4601c391e666e1aa837987e8658ce779c
+# bad: [7c64a2c252d173f9637e2fa2aaba7e92eb419bc6] Merge branch 'master' of git://linuxtv.org/mchehab/media-next.git
+git bisect bad 7c64a2c252d173f9637e2fa2aaba7e92eb419bc6
+# bad: [baa54202d95b6426aaf581c0563430bab7a28306] Merge branch 'vfs.all' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs.git
+git bisect bad baa54202d95b6426aaf581c0563430bab7a28306
+# good: [55fa4624a05c07efa1a7256f99302a90518cfde5] Merge branch 'ksmbd-for-next' of https://github.com/smfrench/smb3-kernel.git
+git bisect good 55fa4624a05c07efa1a7256f99302a90518cfde5
+# good: [df8a452922181f086ab8b42e48f9a5beccf895d0] Merge branch 'vfs.folio' into vfs.all Signed-off-by: Christian Brauner <brauner@kernel.org>
+git bisect good df8a452922181f086ab8b42e48f9a5beccf895d0
+# good: [26d6dee3e208c5e5101395c1fdf6deefe539ad28] Merge branch 'master' of https://github.com/Paragon-Software-Group/linux-ntfs3.git
+git bisect good 26d6dee3e208c5e5101395c1fdf6deefe539ad28
+# bad: [ded4660378eb32be42933fd62499afa175a3bbb2] Merge branch 'vfs.blocksize' into vfs.all Signed-off-by: Christian Brauner <brauner@kernel.org>
+git bisect bad ded4660378eb32be42933fd62499afa175a3bbb2
+# good: [564b04ea483560ac7ba4cb6464254e21fac14a12] Merge branch 'vfs.idmap' into vfs.all Signed-off-by: Christian Brauner <brauner@kernel.org>
+git bisect good 564b04ea483560ac7ba4cb6464254e21fac14a12
+# bad: [13c9f3c68405d90300ec3eb341d1378e831dd565] xfs: use kvmalloc for xattr buffers
+git bisect bad 13c9f3c68405d90300ec3eb341d1378e831dd565
+# good: [7949d4e70aefd7033fbf824837b841a5d2ebe129] readahead: allocate folios with mapping_min_order in readahead
+git bisect good 7949d4e70aefd7033fbf824837b841a5d2ebe129
+# bad: [e9f3b433acd0558a06e287f840b41add1d55df89] filemap: cap PTE range to be created to allowed zero fill in folio_map_range()
+git bisect bad e9f3b433acd0558a06e287f840b41add1d55df89
+# bad: [fd031210c9ceb399db1dea001c6a5e98f3b4e2e7] mm: split a folio in minimum folio order chunks
+git bisect bad fd031210c9ceb399db1dea001c6a5e98f3b4e2e7
+# first bad commit: [fd031210c9ceb399db1dea001c6a5e98f3b4e2e7] mm: split a folio in minimum folio order chunks
+|0905_001959|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m ecc768a84f0b8e631986f9ade3118fa37852fef0 -b fd031210c9ceb399db1dea001c6a5e98f3b4e2e7 -d /var/www/html/bzimage -o /tmp/kernel -f /var/www/html/bzimage/bzImage_ecc768a84f0b8e631986f9ade3118fa37852fef0_fd031210c9ceb399db1dea001c6a5e98f3b4e2e7_revert|
+|0905_002039|1st base commit:431c1646e1f86b949fa3685efc50b660a364c2b6!|
+|0905_002039|FAIL|bzImage:/var/www/html/bzimage/bzImage_ecc768a84f0b8e631986f9ade3118fa37852fef0_fd031210c9ceb399db1dea001c6a5e98f3b4e2e7_revert does not exist:|
+|0905_002039|1st base commit:431c1646e1f86b949fa3685efc50b660a364c2b6!|
+|0905_002039|ISSUE:4dce3d627c6ff0d591092ba6c975711a7bbd433a  EMAIL status after check:Email_not_sent|

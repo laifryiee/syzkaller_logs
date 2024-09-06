@@ -1,0 +1,34 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [ecc768a84f0b8e631986f9ade3118fa37852fef0] Add linux-next specific files for 20240902
+git bisect bad ecc768a84f0b8e631986f9ade3118fa37852fef0
+# status: waiting for good commit(s), bad commit known
+# good: [431c1646e1f86b949fa3685efc50b660a364c2b6] Linux 6.11-rc6
+git bisect good 431c1646e1f86b949fa3685efc50b660a364c2b6
+# bad: [ef4c04432ff7e0b828a0fb78a49719740d5d35b3] Merge branch 'master' of git://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth-next.git
+git bisect bad ef4c04432ff7e0b828a0fb78a49719740d5d35b3
+# good: [39a1f4f4601c391e666e1aa837987e8658ce779c] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/deller/parisc-linux.git
+git bisect good 39a1f4f4601c391e666e1aa837987e8658ce779c
+# bad: [7c64a2c252d173f9637e2fa2aaba7e92eb419bc6] Merge branch 'master' of git://linuxtv.org/mchehab/media-next.git
+git bisect bad 7c64a2c252d173f9637e2fa2aaba7e92eb419bc6
+# bad: [baa54202d95b6426aaf581c0563430bab7a28306] Merge branch 'vfs.all' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs.git
+git bisect bad baa54202d95b6426aaf581c0563430bab7a28306
+# good: [55fa4624a05c07efa1a7256f99302a90518cfde5] Merge branch 'ksmbd-for-next' of https://github.com/smfrench/smb3-kernel.git
+git bisect good 55fa4624a05c07efa1a7256f99302a90518cfde5
+# good: [df8a452922181f086ab8b42e48f9a5beccf895d0] Merge branch 'vfs.folio' into vfs.all Signed-off-by: Christian Brauner <brauner@kernel.org>
+git bisect good df8a452922181f086ab8b42e48f9a5beccf895d0
+# good: [26d6dee3e208c5e5101395c1fdf6deefe539ad28] Merge branch 'master' of https://github.com/Paragon-Software-Group/linux-ntfs3.git
+git bisect good 26d6dee3e208c5e5101395c1fdf6deefe539ad28
+# bad: [ded4660378eb32be42933fd62499afa175a3bbb2] Merge branch 'vfs.blocksize' into vfs.all Signed-off-by: Christian Brauner <brauner@kernel.org>
+git bisect bad ded4660378eb32be42933fd62499afa175a3bbb2
+# good: [564b04ea483560ac7ba4cb6464254e21fac14a12] Merge branch 'vfs.idmap' into vfs.all Signed-off-by: Christian Brauner <brauner@kernel.org>
+git bisect good 564b04ea483560ac7ba4cb6464254e21fac14a12
+# bad: [13c9f3c68405d90300ec3eb341d1378e831dd565] xfs: use kvmalloc for xattr buffers
+git bisect bad 13c9f3c68405d90300ec3eb341d1378e831dd565
+# good: [7949d4e70aefd7033fbf824837b841a5d2ebe129] readahead: allocate folios with mapping_min_order in readahead
+git bisect good 7949d4e70aefd7033fbf824837b841a5d2ebe129
+# bad: [e9f3b433acd0558a06e287f840b41add1d55df89] filemap: cap PTE range to be created to allowed zero fill in folio_map_range()
+git bisect bad e9f3b433acd0558a06e287f840b41add1d55df89
+# bad: [fd031210c9ceb399db1dea001c6a5e98f3b4e2e7] mm: split a folio in minimum folio order chunks
+git bisect bad fd031210c9ceb399db1dea001c6a5e98f3b4e2e7
+# first bad commit: [fd031210c9ceb399db1dea001c6a5e98f3b4e2e7] mm: split a folio in minimum folio order chunks

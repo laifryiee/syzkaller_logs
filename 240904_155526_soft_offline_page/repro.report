@@ -1,0 +1,47 @@
+Soft offlining pfn 0x28f51 at process virtual address 0x20d51000
+INFO: task syz-executor863:757 blocked for more than 147 seconds.
+      Not tainted 6.11.0-rc6-next-20240902-ecc768a84f0b #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor863 state:D stack:0     pid:757   tgid:757   ppid:737    flags:0x00000006
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5311 [inline]
+ __schedule+0xbd7/0x31f0 kernel/sched/core.c:6677
+ __schedule_loop kernel/sched/core.c:6754 [inline]
+ schedule+0xf6/0x3f0 kernel/sched/core.c:6769
+ io_schedule+0xce/0x150 kernel/sched/core.c:7554
+ folio_wait_bit_common+0x3a0/0x8b0 mm/filemap.c:1309
+ __folio_lock+0x28/0x40 mm/filemap.c:1647
+ folio_lock include/linux/pagemap.h:1146 [inline]
+ soft_offline_in_use_page mm/memory-failure.c:2690 [inline]
+ soft_offline_page.part.0+0xc34/0xf40 mm/memory-failure.c:2822
+ soft_offline_page+0x97/0xc0 mm/memory-failure.c:2781
+ madvise_inject_error mm/madvise.c:1152 [inline]
+ do_madvise.part.0+0x1a45/0x2a30 mm/madvise.c:1440
+ do_madvise mm/madvise.c:1477 [inline]
+ __do_sys_madvise mm/madvise.c:1477 [inline]
+ __se_sys_madvise mm/madvise.c:1475 [inline]
+ __x64_sys_madvise+0x139/0x180 mm/madvise.c:1475
+ x64_sys_call+0x19a5/0x2140 arch/x86/include/generated/asm/syscalls_64.h:29
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fd5e1c3ee5d
+RSP: 002b:00007ffc53d1e348 EFLAGS: 00000246 ORIG_RAX: 000000000000001c
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fd5e1c3ee5d
+RDX: 0000000000000065 RSI: 0000000000003000 RDI: 0000000020d51000
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007fd5e1eed000
+ </TASK>
+
+Showing all locks held in the system:
+1 lock held by khungtaskd/33:
+ #0: ffffffff8705c500 (rcu_read_lock){....}-{1:2}, at: rcu_lock_acquire include/linux/rcupdate.h:337 [inline]
+ #0: ffffffff8705c500 (rcu_read_lock){....}-{1:2}, at: rcu_read_lock include/linux/rcupdate.h:849 [inline]
+ #0: ffffffff8705c500 (rcu_read_lock){....}-{1:2}, at: debug_show_all_locks+0x73/0x3c0 kernel/locking/lockdep.c:6720
+1 lock held by syz-executor863/757:
+ #0: ffffffff87258a68 (mf_mutex){+.+.}-{3:3}, at: soft_offline_page.part.0+0xda/0xf40 mm/memory-failure.c:2799
+
+=============================================
+
