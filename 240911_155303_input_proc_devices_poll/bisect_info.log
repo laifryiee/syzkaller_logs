@@ -1,0 +1,36 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [100cc857359b5d731407d1038f7e76cd0e871d94] Add linux-next specific files for 20240909
+git bisect bad 100cc857359b5d731407d1038f7e76cd0e871d94
+# status: waiting for good commit(s), bad commit known
+# good: [da3ea35007d0af457a0afc87e84fddaebc4e0b63] Linux 6.11-rc7
+git bisect good da3ea35007d0af457a0afc87e84fddaebc4e0b63
+# bad: [df20078b9706977cc3308740b56993cf27665f90] Merge branch 'main' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
+git bisect bad df20078b9706977cc3308740b56993cf27665f90
+# good: [98121c0ba6697f747ca5a5e9a8349d19d0d0e0c5] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/s390/linux.git
+git bisect good 98121c0ba6697f747ca5a5e9a8349d19d0d0e0c5
+# bad: [bb33b019e61fffd77cdd37199d09580546f261b2] Merge branch 'docs-next' of git://git.lwn.net/linux.git
+git bisect bad bb33b019e61fffd77cdd37199d09580546f261b2
+# good: [6da8713d63bf18ee54f8a18df4d2eb76109a4824] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/dlemoal/zonefs.git
+git bisect good 6da8713d63bf18ee54f8a18df4d2eb76109a4824
+# bad: [07f02657d07a5f3a4f5fecfa51e725b59998efa8] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git
+git bisect bad 07f02657d07a5f3a4f5fecfa51e725b59998efa8
+# bad: [a496ff4f90945525fb14aeb52ed9aae6cc69080c] Merge branch 'vfs.file' into vfs.all
+git bisect bad a496ff4f90945525fb14aeb52ed9aae6cc69080c
+# good: [b881f0a1855caa93050976c83910ee640cb81740] Merge branch 'vfs.folio' into vfs.all Signed-off-by: Christian Brauner <brauner@kernel.org>
+git bisect good b881f0a1855caa93050976c83910ee640cb81740
+# good: [42d7f6adfa3e166f20bb610ed87e1fa086b538c2] Merge branch 'vfs.xattr' into vfs.all Signed-off-by: Christian Brauner <brauner@kernel.org>
+git bisect good 42d7f6adfa3e166f20bb610ed87e1fa086b538c2
+# bad: [2331782821fc3006fae08a11054e80974d25533d] ubifs: store cookie in private data
+git bisect bad 2331782821fc3006fae08a11054e80974d25533d
+# good: [4f908ad3c64868effd9e358de53eca9956f8e91a] fs: add vfs_setpos_cookie()
+git bisect good 4f908ad3c64868effd9e358de53eca9956f8e91a
+# good: [146e0154be88ad287fd6e6f2d5a5fa54355262c3] ext4: store cookie in private data
+git bisect good 146e0154be88ad287fd6e6f2d5a5fa54355262c3
+# bad: [94f524e1b8200cb04845e800d1e62b11d55f9b9b] proc: store cookie in private data
+git bisect bad 94f524e1b8200cb04845e800d1e62b11d55f9b9b
+# bad: [e7e830d29f92edab393d9fff832636da4af79b0a] ocfs2: store cookie in private data
+git bisect bad e7e830d29f92edab393d9fff832636da4af79b0a
+# bad: [7c3d158418c2916ed13ec4ccd2f47997f36ebcac] input: remove f_version abuse
+git bisect bad 7c3d158418c2916ed13ec4ccd2f47997f36ebcac
+# first bad commit: [7c3d158418c2916ed13ec4ccd2f47997f36ebcac] input: remove f_version abuse

@@ -1,0 +1,1535 @@
+BUG: unable to handle page fault for address: ffff88800e0172a0
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#1] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 728 Comm: syz-executor170 Not tainted 6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e0172a0 CR3: 00000000134ea003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e0172a0
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e0172a0 CR3: 00000000134ea003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[728] exited with irqs disabled
+==================================================================
+BUG: KASAN: slab-out-of-bounds in __add_wait_queue include/linux/wait.h:175 [inline]
+BUG: KASAN: slab-out-of-bounds in add_wait_queue+0x1c6/0x2c0 kernel/sched/wait.c:23
+Read of size 4 at addr ffff88801970c9e8 by task syz-executor170/729
+
+CPU: 0 UID: 0 PID: 729 Comm: syz-executor170 Tainted: G      D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:377 [inline]
+ print_report+0xce/0x610 mm/kasan/report.c:488
+ kasan_report+0xcc/0x110 mm/kasan/report.c:601
+ __asan_report_load4_noabort+0x18/0x20 mm/kasan/report_generic.c:380
+ __add_wait_queue include/linux/wait.h:175 [inline]
+ add_wait_queue+0x1c6/0x2c0 kernel/sched/wait.c:23
+ __pollwait+0x27b/0x4c0 fs/select.c:231
+ poll_wait include/linux/poll.h:45 [inline]
+ input_proc_devices_poll+0x85/0x140 drivers/input/input.c:1086
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000ea2b RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+
+Allocated by task 726:
+ kasan_save_stack+0x2c/0x60 mm/kasan/common.c:47
+ kasan_save_track+0x18/0x40 mm/kasan/common.c:68
+ kasan_save_alloc_info+0x3c/0x50 mm/kasan/generic.c:565
+ unpoison_slab_object mm/kasan/common.c:319 [inline]
+ __kasan_slab_alloc+0x62/0x80 mm/kasan/common.c:345
+ kasan_slab_alloc include/linux/kasan.h:250 [inline]
+ slab_post_alloc_hook mm/slub.c:4082 [inline]
+ slab_alloc_node mm/slub.c:4131 [inline]
+ kmem_cache_alloc_node_noprof+0x12e/0x380 mm/slub.c:4183
+ alloc_task_struct_node kernel/fork.c:180 [inline]
+ dup_task_struct kernel/fork.c:1107 [inline]
+ copy_process+0x476/0x6a00 kernel/fork.c:2202
+ kernel_clone+0xfd/0x8b0 kernel/fork.c:2783
+ __do_sys_clone+0xe1/0x120 kernel/fork.c:2926
+ __se_sys_clone kernel/fork.c:2910 [inline]
+ __x64_sys_clone+0xc7/0x150 kernel/fork.c:2910
+ x64_sys_call+0x1ac3/0x2140 arch/x86/include/generated/asm/syscalls_64.h:57
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+Freed by task 708:
+ kasan_save_stack+0x2c/0x60 mm/kasan/common.c:47
+ kasan_save_track+0x18/0x40 mm/kasan/common.c:68
+ kasan_save_free_info+0x3f/0x60 mm/kasan/generic.c:579
+ poison_slab_object mm/kasan/common.c:247 [inline]
+ __kasan_slab_free+0x3d/0x60 mm/kasan/common.c:264
+ kasan_slab_free include/linux/kasan.h:233 [inline]
+ slab_free_hook mm/slub.c:2339 [inline]
+ slab_free mm/slub.c:4576 [inline]
+ kmem_cache_free+0x1aa/0x550 mm/slub.c:4678
+ free_task_struct kernel/fork.c:185 [inline]
+ free_task+0x12d/0x180 kernel/fork.c:614
+ __put_task_struct+0x23b/0x3d0 kernel/fork.c:982
+ put_task_struct include/linux/sched/task.h:144 [inline]
+ put_task_struct include/linux/sched/task.h:131 [inline]
+ delayed_put_task_struct+0x125/0x2c0 kernel/exit.c:228
+ rcu_do_batch kernel/rcu/tree.c:2567 [inline]
+ rcu_core+0x86c/0x1920 kernel/rcu/tree.c:2823
+ rcu_core_si+0x12/0x20 kernel/rcu/tree.c:2840
+ handle_softirqs+0x1c5/0x870 kernel/softirq.c:554
+ __do_softirq kernel/softirq.c:588 [inline]
+ invoke_softirq kernel/softirq.c:428 [inline]
+ __irq_exit_rcu+0xa9/0x120 kernel/softirq.c:637
+ irq_exit_rcu+0x12/0x30 kernel/softirq.c:649
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1037 [inline]
+ sysvec_apic_timer_interrupt+0xb4/0xd0 arch/x86/kernel/apic/apic.c:1037
+ asm_sysvec_apic_timer_interrupt+0x1f/0x30 arch/x86/include/asm/idtentry.h:702
+
+Last potentially related work creation:
+ kasan_save_stack+0x2c/0x60 mm/kasan/common.c:47
+ __kasan_record_aux_stack+0x93/0xb0 mm/kasan/generic.c:541
+ kasan_record_aux_stack_noalloc+0xf/0x20 mm/kasan/generic.c:551
+ __call_rcu_common.constprop.0+0x72/0x650 kernel/rcu/tree.c:3086
+ call_rcu+0x12/0x20 kernel/rcu/tree.c:3190
+ put_task_struct_rcu_user+0x8c/0xf0 kernel/exit.c:234
+ release_task+0xc50/0x1570 kernel/exit.c:283
+ wait_task_zombie kernel/exit.c:1250 [inline]
+ wait_consider_task+0x1a8f/0x3f80 kernel/exit.c:1477
+ do_wait_thread kernel/exit.c:1540 [inline]
+ __do_wait+0x1e0/0x880 kernel/exit.c:1658
+ do_wait+0x1da/0x540 kernel/exit.c:1692
+ kernel_wait4+0x179/0x290 kernel/exit.c:1851
+ __do_sys_wait4+0x14b/0x160 kernel/exit.c:1879
+ __se_sys_wait4 kernel/exit.c:1875 [inline]
+ __x64_sys_wait4+0x9f/0x100 kernel/exit.c:1875
+ x64_sys_call+0x1bf7/0x2140 arch/x86/include/generated/asm/syscalls_64.h:62
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+Second to last potentially related work creation:
+ kasan_save_stack+0x2c/0x60 mm/kasan/common.c:47
+ __kasan_record_aux_stack+0x93/0xb0 mm/kasan/generic.c:541
+ kasan_record_aux_stack+0x12/0x20 mm/kasan/generic.c:546
+ task_work_add+0x2b4/0x3b0 kernel/task_work.c:66
+ task_tick_mm_cid+0x11c/0x180 kernel/sched/core.c:10447
+ sched_tick+0x233/0x720 kernel/sched/core.c:5592
+ update_process_times+0x15b/0x1c0 kernel/time/timer.c:2524
+ tick_sched_handle kernel/time/tick-sched.c:276 [inline]
+ tick_nohz_handler+0x3ae/0x580 kernel/time/tick-sched.c:297
+ __run_hrtimer kernel/time/hrtimer.c:1691 [inline]
+ __hrtimer_run_queues+0x5d6/0xc30 kernel/time/hrtimer.c:1755
+ hrtimer_interrupt+0x324/0x7a0 kernel/time/hrtimer.c:1817
+ local_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1026 [inline]
+ __sysvec_apic_timer_interrupt+0x10b/0x410 arch/x86/kernel/apic/apic.c:1043
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1037 [inline]
+ sysvec_apic_timer_interrupt+0xaf/0xd0 arch/x86/kernel/apic/apic.c:1037
+ asm_sysvec_apic_timer_interrupt+0x1f/0x30 arch/x86/include/asm/idtentry.h:702
+
+The buggy address belongs to the object at ffff88801970a500
+ which belongs to the cache task_struct of size 9160
+The buggy address is located 288 bytes to the right of
+ allocated 9160-byte region [ffff88801970a500, ffff88801970c8c8)
+
+The buggy address belongs to the physical page:
+page: refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x19708
+head: order:3 mapcount:0 entire_mapcount:0 nr_pages_mapped:0 pincount:0
+memcg:ffff888014b75d81
+flags: 0xfffffc0000040(head|node=0|zone=1|lastcpupid=0x1fffff)
+page_type: f5(slab)
+raw: 000fffffc0000040 ffff88800d71c140 ffffea0000445400 dead000000000002
+raw: 0000000000000000 0000000000030003 00000001f5000000 ffff888014b75d81
+head: 000fffffc0000040 ffff88800d71c140 ffffea0000445400 dead000000000002
+head: 0000000000000000 0000000000030003 00000001f5000000 ffff888014b75d81
+head: 000fffffc0000003 ffffea000065c201 ffffffffffffffff 0000000000000000
+head: 0000000000000008 0000000000000000 00000000ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff88801970c880: fb fb fb fb fb fb fb fb fb fc fc fc fc fc fc fc
+ ffff88801970c900: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+>ffff88801970c980: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+                                                          ^
+ ffff88801970ca00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffff88801970ca80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+==================================================================
+BUG: unable to handle page fault for address: ffff88800e017d00
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#2] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 731 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888023b8f8a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801557a500 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888023b8f8c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e017d00
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017d00 CR3: 000000001172e002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000eb76 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e017d00
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017d00 CR3: 000000001172e002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[731] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e017900
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#3] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 732 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff88800e3df8a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801c2ea500 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff88800e3df8c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e017900
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017900 CR3: 0000000020ace004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000eba3 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e017900
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017900 CR3: 0000000020ace004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[732] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e0173a0
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#4] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 733 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff88801c0478a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801db60000 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff88801c0478c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e0173a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e0173a0 CR3: 000000001172e003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000ec76 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e0173a0
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e0173a0 CR3: 000000001172e003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[733] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e017b80
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#5] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 734 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff8880250cf8a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff8880100f8000 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff8880250cf8c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e017b80
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017b80 CR3: 00000000152c6005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000ed37 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e017b80
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017b80 CR3: 00000000152c6005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[734] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e017160
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#6] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 737 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff88801ef578a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801228ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff88801ef578c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e017160
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017160 CR3: 0000000010ef2002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000eeb3 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e017160
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017160 CR3: 0000000010ef2002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[737] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e017420
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#7] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 738 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff8880266378a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff888023bd4a00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff8880266378c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e017420
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017420 CR3: 0000000010ef2005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000eee2 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e017420
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017420 CR3: 0000000010ef2005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[738] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e017d40
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#8] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 739 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff88801556f8a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff888012288000 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff88801556f8c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e017d40
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017d40 CR3: 000000001c080006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000ef74 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e017d40
+BUG: unable to handle page fault for address: ffffebde00000008
+#PF: supervisor read access in kernel mode
+#PF: error_code(0x0000) - not-present page
+PGD 0 P4D 0 
+Oops: Oops: 0000 [#9] PREEMPT SMP KASAN NOPTI
+---[ end trace 0000000000000000 ]---
+CPU: 0 UID: 0 PID: 292 Comm: updatedb Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017d40 CR3: 000000001c080006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[739] exited with irqs disabled
+RIP: 0010:_compound_head include/linux/page-flags.h:242 [inline]
+RIP: 0010:virt_to_folio include/linux/mm.h:1280 [inline]
+RIP: 0010:virt_to_slab mm/kasan/../slab.h:206 [inline]
+RIP: 0010:qlink_to_cache mm/kasan/quarantine.c:131 [inline]
+RIP: 0010:qlist_free_all+0x9a/0x170 mm/kasan/quarantine.c:176
+Code: 80 48 01 c2 0f 82 e5 00 00 00 48 c7 c1 00 00 00 80 48 2b 0d 90 07 f6 04 48 01 ca 48 c1 ea 0c 48 c1 e2 06 48 03 15 6e 07 f6 04 <48> 8b 72 08 48 89 d1 40 f6 c6 01 0f 85 ab 00 00 00 66 90 31 d2 80
+RSP: 0018:ffff888011d4fbb8 EFLAGS: 00010286
+RAX: 0000000000000009 RBX: 0000000000000009 RCX: 0000777f80000000
+RDX: ffffebde00000000 RSI: 0000000000000001 RDI: ffffffff81c4511e
+RBP: ffff888011d4fbe8 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff87c95b87 R11: ffff88806c450301 R12: 0000000000000000
+R13: ffff888010019a00 R14: 0000000000000000 R15: ffff888010019a00
+FS:  00007fce24a33740(0000) GS:ffff88806c400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffebde00000008 CR3: 0000000014838002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ kasan_quarantine_reduce+0x193/0x1e0 mm/kasan/quarantine.c:286
+ __kasan_slab_alloc+0x52/0x80 mm/kasan/common.c:329
+ kasan_slab_alloc include/linux/kasan.h:250 [inline]
+ slab_post_alloc_hook mm/slub.c:4082 [inline]
+ slab_alloc_node mm/slub.c:4131 [inline]
+ kmem_cache_alloc_noprof+0x114/0x370 mm/slub.c:4138
+ getname_flags.part.0+0x54/0x570 fs/namei.c:139
+ getname_flags+0x9f/0xf0 include/linux/audit.h:322
+ vfs_fstatat+0xdf/0x180 fs/stat.c:378
+ __do_sys_newfstatat+0x9e/0x130 fs/stat.c:543
+ __se_sys_newfstatat fs/stat.c:537 [inline]
+ __x64_sys_newfstatat+0x9f/0x100 fs/stat.c:537
+ x64_sys_call+0x1803/0x2140 arch/x86/include/generated/asm/syscalls_64.h:263
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fce2493e12e
+Code: 48 89 f2 b9 00 01 00 00 48 89 fe bf 9c ff ff ff e9 07 00 00 00 0f 1f 80 00 00 00 00 f3 0f 1e fa 41 89 ca b8 06 01 00 00 0f 05 <3d> 00 f0 ff ff 77 0b 31 c0 c3 0f 1f 84 00 00 00 00 00 48 8b 15 b9
+RSP: 002b:00007ffea6015388 EFLAGS: 00000246 ORIG_RAX: 0000000000000106
+RAX: ffffffffffffffda RBX: 00007ffea60154b0 RCX: 00007fce2493e12e
+RDX: 00007ffea6015390 RSI: 0000559c22ccd03b RDI: 00000000ffffff9c
+RBP: 0000559c3019f399 R08: 0000000000000003 R09: 0000559c22cd04e0
+R10: 0000000000000100 R11: 0000000000000246 R12: 0000559c3019f399
+R13: 00007ffea6015680 R14: 0000000000000006 R15: 0000000064898614
+ </TASK>
+Modules linked in:
+CR2: ffffebde00000008
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007fce24a33740(0000) GS:ffff88806c400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffebde00000008 CR3: 0000000014838002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: updatedb[292] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e017220
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#10] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 740 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff88801ef078a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801228a500 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff88801ef078c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e017220
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017220 CR3: 0000000025010005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000f007 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e017220
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017220 CR3: 0000000025010005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[740] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e0177e0
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#11] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 743 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff88801542f8a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff888014b9a500 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff88801542f8c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e0177e0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e0177e0 CR3: 0000000021e9e002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000f10d RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e0177e0
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e0177e0 CR3: 0000000021e9e002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[743] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e0173e0
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#12] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 749 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff88801da6f8a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff888011164a00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff88801da6f8c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e0173e0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e0173e0 CR3: 0000000015524001 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000f2c3 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e0173e0
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e0173e0 CR3: 0000000015524001 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[749] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e017c60
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#13] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 750 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff8880251bf8a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88800fb4ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff8880251bf8c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e017c60
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017c60 CR3: 0000000015524002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000f2f3 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e017c60
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017c60 CR3: 0000000015524002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[750] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e017840
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#14] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 751 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff8880251b78a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801d908000 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff8880251b78c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e017840
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017840 CR3: 0000000015524004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000f387 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e017840
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017840 CR3: 0000000015524004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[751] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e0170e0
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#15] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 752 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff8880250678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801d90ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff8880250678c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e0170e0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e0170e0 CR3: 0000000015524005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000f403 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e0170e0
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e0170e0 CR3: 0000000015524005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[752] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e0171e0
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#16] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 753 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff8880251bf8a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff888013f92500 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff8880251bf8c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e0171e0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e0171e0 CR3: 0000000015524006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000f494 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e0171e0
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e0171e0 CR3: 0000000015524006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[753] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e017640
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#17] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 754 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888012ddf8a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff888011bd4a00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888012ddf8c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e017640
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017640 CR3: 000000001448a004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000f553 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e017640
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017640 CR3: 000000001448a004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[754] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e0179e0
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#18] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 755 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff88801ed778a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff888010a92500 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff88801ed778c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e0179e0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e0179e0 CR3: 0000000011bb6005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000f5d9 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e0179e0
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e0179e0 CR3: 0000000011bb6005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[755] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e0172e0
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#19] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 756 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff8880239478a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff888013624a00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff8880239478c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e0172e0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e0172e0 CR3: 0000000011bb6001 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+systemd-journald[147]: Data hash table of /run/log/journal/938775788448454bb5b34822d5730c41/system.journal has a fill level at 75.0 (5259 of 7011 items, 4038656 file size, 767 bytes per hash table item), suggesting rotation.
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000f66e RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e0172e0
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e0172e0 CR3: 0000000011bb6001 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[756] exited with irqs disabled
+BUG: unable to handle page fault for address: ffff88800e017340
+systemd-journald[147]: /run/log/journal/938775788448454bb5b34822d5730c41/system.journal: Journal header limits reached or header out-of-date, rotating.
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD d001067 P4D d001067 PUD d002067 PMD e1d9063 PTE 800000000e017121
+Oops: Oops: 0003 [#20] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 757 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888020baf8a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff888011a9ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888020baf8c8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000009 R11: 0000000000000000 R12: ffff88800e017340
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017340 CR3: 000000001eec0005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000f709 RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+CR2: ffff88800e017340
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffff88800e017340 CR3: 000000001eec0005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[757] exited with irqs disabled
+Oops: general protection fault, probably for non-canonical address 0xe3fffa2201b11232: 0000 [#21] PREEMPT SMP KASAN NOPTI
+KASAN: maybe wild-memory-access in range [0x1ffff1100d889190-0x1ffff1100d889197]
+CPU: 0 UID: 0 PID: 760 Comm: syz-executor170 Tainted: G    B D            6.11.0-rc7-next-20240909-100cc857359b-dirty #1
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:__add_wait_queue include/linux/wait.h:175 [inline]
+RIP: 0010:add_wait_queue+0xc3/0x2c0 kernel/sched/wait.c:23
+Code: f8 48 c1 e8 03 42 80 3c 28 00 0f 85 2e 01 00 00 48 8b 43 18 4c 89 e1 48 8d 58 e8 49 39 c6 74 20 49 89 c4 48 89 d8 48 c1 e8 03 <42> 0f b6 04 28 84 c0 74 08 3c 03 0f 8e de 00 00 00 f6 03 10 75 ba
+RSP: 0018:ffff888016e9f800 EFLAGS: 00010002
+RAX: 03fffe2201b11232 RBX: 1ffff1100d889192 RCX: ffff88801ed77b88
+RDX: ffff888016e9fb70 RSI: 0000000000000246 RDI: ffff88801ed77b88
+RBP: ffff888016e9f840 R08: 0000000000000000 R09: ffffed1002dd3eec
+R10: 0000000000000003 R11: 0000000000000000 R12: 1ffff1100d8891aa
+R13: dffffc0000000000 R14: ffffffff879e6340 R15: ffffffff879e6300
+FS:  00007f98cdf15600(0000) GS:ffff88806c400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020002440 CR3: 0000000019578005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __pollwait+0x27b/0x4c0 fs/select.c:231
+ poll_wait include/linux/poll.h:45 [inline]
+ input_proc_devices_poll+0x85/0x140 drivers/input/input.c:1086
+ pde_poll fs/proc/inode.c:358 [inline]
+ proc_reg_poll+0x210/0x2e0 fs/proc/inode.c:370
+ vfs_poll include/linux/poll.h:84 [inline]
+ do_pollfd fs/select.c:870 [inline]
+ do_poll fs/select.c:918 [inline]
+ do_sys_poll+0x521/0xdd0 fs/select.c:1013
+ __do_sys_poll fs/select.c:1078 [inline]
+ __se_sys_poll fs/select.c:1066 [inline]
+ __x64_sys_poll+0x1bf/0x560 fs/select.c:1066
+ x64_sys_call+0x1294/0x2140 arch/x86/include/generated/asm/syscalls_64.h:8
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98cdc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad9e10d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000007
+RAX: ffffffffffffffda RBX: 000000000000f89e RCX: 00007f98cdc3ee5d
+RDX: 0000000000000029 RSI: 0000000000000005 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000008000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f98cdf5c000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:input_proc_devices_poll+0xec/0x140 drivers/input/input.c:1088
+Code: 03 80 3c 02 00 75 42 49 8b 1c 24 4c 63 2d 0c 7a 37 08 45 31 f6 4c 89 ee 48 89 df e8 3e 4a d8 fc 4c 39 eb 74 0f e8 74 47 d8 fc <4d> 89 2c 24 41 be 41 00 00 00 e8 65 47 d8 fc 44 89 f0 5b 41 5c 41
+RSP: 0018:ffff888021e678a8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: cccccccccccccccc RCX: ffffffff848ead42
+RDX: ffff88801970ca00 RSI: ffffffff848ead4c RDI: 0000000000000006
+RBP: ffff888021e678c8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000009 R11: 0000000000000001 R12: ffff88800e0172a0
+R13: 0000000000000009 R14: 0000000000000000 R15: dffffc0000000001
+FS:  00007f98cdf15600(0000) GS:ffff88806c400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020002440 CR3: 0000000019578005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor170[760] exited with irqs disabled
+note: syz-executor170[760] exited with preempt_count 1
+----------------
+Code disassembly (best guess):
+   0:	03 80 3c 02 00 75    	add    0x7500023c(%rax),%eax
+   6:	42                   	rex.X
+   7:	49 8b 1c 24          	mov    (%r12),%rbx
+   b:	4c 63 2d 0c 7a 37 08 	movslq 0x8377a0c(%rip),%r13        # 0x8377a1e
+  12:	45 31 f6             	xor    %r14d,%r14d
+  15:	4c 89 ee             	mov    %r13,%rsi
+  18:	48 89 df             	mov    %rbx,%rdi
+  1b:	e8 3e 4a d8 fc       	callq  0xfcd84a5e
+  20:	4c 39 eb             	cmp    %r13,%rbx
+  23:	74 0f                	je     0x34
+  25:	e8 74 47 d8 fc       	callq  0xfcd8479e
+* 2a:	4d 89 2c 24          	mov    %r13,(%r12) <-- trapping instruction
+  2e:	41 be 41 00 00 00    	mov    $0x41,%r14d
+  34:	e8 65 47 d8 fc       	callq  0xfcd8479e
+  39:	44 89 f0             	mov    %r14d,%eax
+  3c:	5b                   	pop    %rbx
+  3d:	41 5c                	pop    %r12
+  3f:	41                   	rex.B
