@@ -1,0 +1,37 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [7083504315d64199a329de322fce989e1e10f4f7] Add linux-next specific files for 20240916
+git bisect bad 7083504315d64199a329de322fce989e1e10f4f7
+# status: waiting for good commit(s), bad commit known
+# good: [cbf79a8a2045ac1f1189bd85e4612dcecb1e12cf] Do not warn on mount with SMB3.1.1 POSIX/Linux extensions
+git bisect good cbf79a8a2045ac1f1189bd85e4612dcecb1e12cf
+# good: [2576bf49e626f09bcbdbf0672afe7ac14ff1e881] Merge branch 'main' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
+git bisect good 2576bf49e626f09bcbdbf0672afe7ac14ff1e881
+# bad: [7b93bb78a48e69c3f5d32061f6f5cdcc4a579dec] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git
+git bisect bad 7b93bb78a48e69c3f5d32061f6f5cdcc4a579dec
+# good: [cdb389a4c9bc2faea866b517afc3aa3faef46022] drm/xe/irq: Remove unneeded semicolon
+git bisect good cdb389a4c9bc2faea866b517afc3aa3faef46022
+# good: [b614d915a0e1145253a65cf5cf7eb2e5906bf9dd] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound.git
+git bisect good b614d915a0e1145253a65cf5cf7eb2e5906bf9dd
+# bad: [5feb5df9aa96a3681e5ba3ed1cac1b61aab1156d] Merge branch 'for-next' of git://git.kernel.dk/linux-block.git
+git bisect bad 5feb5df9aa96a3681e5ba3ed1cac1b61aab1156d
+# bad: [fac79319ea1c4059270f8cdfd22b50a5722c5682] Merge branch 'for-6.12/block' into for-next
+git bisect bad fac79319ea1c4059270f8cdfd22b50a5722c5682
+# good: [296dbc72d29085d5fc34430d0760423071e9e81d] nbd: correct the maximum value for discard sectors
+git bisect good 296dbc72d29085d5fc34430d0760423071e9e81d
+# good: [d4d7c03f7ee1d7f16b7b6e885b1e00968f72b93c] Merge tag 'nvme-6.12-2024-09-13' of git://git.infradead.org/nvme into for-6.12/block
+git bisect good d4d7c03f7ee1d7f16b7b6e885b1e00968f72b93c
+# good: [1802656ef8906cc949f58b64cb6d8d400326e163] io_uring: add GCOV_PROFILE_URING Kconfig option
+git bisect good 1802656ef8906cc949f58b64cb6d8d400326e163
+# bad: [6746ee4c3a189f8b60694f01e7e29bc5ff7972e0] io_uring/cmd: expose iowq to cmds
+git bisect bad 6746ee4c3a189f8b60694f01e7e29bc5ff7972e0
+# bad: [c0a9d496e0fece67db777bd48550376cf2960c47] io_uring/rw: treat -EOPNOTSUPP for IOCB_NOWAIT like -EAGAIN
+git bisect bad c0a9d496e0fece67db777bd48550376cf2960c47
+# good: [c9f9ce65c2436879779d39c6e65b95c74a206e49] io_uring: remove unused rsrc_put_fn
+git bisect good c9f9ce65c2436879779d39c6e65b95c74a206e49
+# bad: [f011c9cf04c06f16b24f583d313d3c012e589e50] io_uring/sqpoll: do not allow pinning outside of cpuset
+git bisect bad f011c9cf04c06f16b24f583d313d3c012e589e50
+# good: [0e0bcf07ec5b305ce7612385b06580dcbe5bc6a5] io_uring/eventfd: move refs to refcount_t
+git bisect good 0e0bcf07ec5b305ce7612385b06580dcbe5bc6a5
+# first bad commit: [f011c9cf04c06f16b24f583d313d3c012e589e50] io_uring/sqpoll: do not allow pinning outside of cpuset
+|0918_002000|Bisect successfully! 7083504315d64199a329de322fce989e1e10f4f7_f011c9cf04c06f16b24f583d313d3c012e589e50_revert bzimage passed!|
