@@ -1,0 +1,1429 @@
+|0922_114402|cmd=cd /root/linux-next|
+|0922_114402|git log 55bcd2e0d04c1171d382badef1def1fd04ef66c5 check_result:commit 55bcd2e0d04c1171d382badef1def1fd04ef66c5|
+|0922_114402|git log 98f7e32f20d28ec452afb208f9cffc08448a2652 check_result:commit 98f7e32f20d28ec452afb208f9cffc08448a2652|
+|0922_114402|cmd=git checkout -f 55bcd2e0d04c1171d382badef1def1fd04ef66c5|
+|0922_114402|cmd=cd /root/linux-next|
+|0922_114402||/var/www/html/bzimage/bzImage_55bcd2e0d04c1171d382badef1def1fd04ef66c5| exist, no need make|
+|0922_114402|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0922_114412|Run /var/www/html/bzimage/bzImage_55bcd2e0d04c1171d382badef1def1fd04ef66c5 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0922_114432|It takes 20 seconds to find login:test login: |
+|0922_114432|Boot 1 time: takes 20 seconds to boot up.|
+|0922_114432|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0922_114434|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0922_114435|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog root@localhost:/root/repro.c|
+|0922_114437|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0922_114437|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0922_114447|/var/www/html/bzimage/bzImage_55bcd2e0d04c1171d382badef1def1fd04ef66c5 contained fuse_request_end:[   31.578842] WARNING: CPU: 1 PID: 1186 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   31.586281] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   31.600521]  ? fuse_request_end+0x7d2/0x910
+[   31.601204]  ? fuse_request_end+0x7d2/0x910
+[   31.601564]  ? fuse_request_end+0x7d3/0x910
+[   31.602959]  ? fuse_request_end+0x192/0x910
+[   31.603301]  ? fuse_request_end+0x7d2/0x910
+[   31.603643]  ? fuse_request_end+0x7d2/0x910, FAIL|
+|0922_114447|Found time:31 in /var/www/html/bzimage/0922_114402_fuse_request_end/55bcd2e0d04c1171d382badef1def1fd04ef66c5_dmesg.log|
+|0922_114447|Logic: |<=25: +25|25-100 +180|>100 +1800| Set TIME:211|
+|0922_114447|-END- commit 55bcd2e0d04c1171d382badef1def1fd04ef66c5 FAIL bad|
+|0922_114447|cmd=rm -rf /var/www/html//syzkaller/2024_09_22/ab207309c9725be898d250b81a58b0149f981b5f|
+|0922_114447|cmd=mkdir -p /var/www/html//syzkaller/2024_09_22/ab207309c9725be898d250b81a58b0149f981b5f|
+|0922_114447|cmd=cp -rf /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog /var/www/html//syzkaller/2024_09_22/ab207309c9725be898d250b81a58b0149f981b5f/repro.c|
+|0922_114447|gcc -pthread /var/www/html//syzkaller/2024_09_22/ab207309c9725be898d250b81a58b0149f981b5f/repro.c -o /var/www/html//syzkaller/2024_09_22/ab207309c9725be898d250b81a58b0149f981b5f/repro|
+|0922_114447|cmd=cp -rf /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/description /var/www/html//syzkaller/2024_09_22/ab207309c9725be898d250b81a58b0149f981b5f|
+|0922_114447|cp -rf /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/mount_* /var/www/html/bzimage/0922_114402_fuse_request_end/|
+|0922_114450|wget https://raw.githubusercontent.com/xupengfe/kconfig_diff/main/config-5.18rc4i_kvm -O /var/www/html/bzimage/0922_114402_fuse_request_end/kconfig_origin:0|
+|0922_114450|cmd=cd /root/linux-next|
+|0922_114450||/var/www/html/bzimage/bzImage_98f7e32f20d28ec452afb208f9cffc08448a2652| exist, no need make|
+|0922_114450|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0922_114500|Run /var/www/html/bzimage/bzImage_98f7e32f20d28ec452afb208f9cffc08448a2652 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0922_114523|It takes 23 seconds to find login:test login: |
+|0922_114523|Boot 1 time: takes 23 seconds to boot up.|
+|0922_114523|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0922_114525|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0922_114526|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog root@localhost:/root/repro.c|
+|0922_114528|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0922_114528|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0922_114859|/var/www/html/bzimage/bzImage_98f7e32f20d28ec452afb208f9cffc08448a2652 didn't contain fuse_request_end: in dmesg, pass|
+|0922_114859|Start commit 98f7e32f20d28ec452afb208f9cffc08448a2652 PASS good|
+|0922_114859|cmd=git checkout -f 55bcd2e0d04c1171d382badef1def1fd04ef66c5|
+|0922_114900|cmd=git bisect start|
+|0922_114900|cmd=git bisect bad 55bcd2e0d04c1171d382badef1def1fd04ef66c5|
+|0922_114900|Bisect first start commit:98f7e32f20d28ec452afb208f9cffc08448a2652|
+|0922_114900|git bisect good 98f7e32f20d28ec452afb208f9cffc08448a2652|
+|0922_114903||/var/www/html/bzimage/bzImage_4d9c980a398f4aa447d52676bd5e532631c674aa| exist, no need make|
+|0922_114903|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0922_114912|Run /var/www/html/bzimage/bzImage_4d9c980a398f4aa447d52676bd5e532631c674aa with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0922_114928|It takes 16 seconds to find login:test login: |
+|0922_114929|Boot 1 time: takes 16 seconds to boot up.|
+|0922_114929|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0922_114930|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0922_114931|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog root@localhost:/root/repro.c|
+|0922_114932|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0922_114933|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0922_115304|/var/www/html/bzimage/bzImage_4d9c980a398f4aa447d52676bd5e532631c674aa didn't contain fuse_request_end: in dmesg, pass|
+|0922_115304|git bisect good 4d9c980a398f4aa447d52676bd5e532631c674aa|
+|0922_115306||/var/www/html/bzimage/bzImage_09bf8f1280412a096915cfdb563e6057befbe967| exist, no need make|
+|0922_115306|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0922_115317|Run /var/www/html/bzimage/bzImage_09bf8f1280412a096915cfdb563e6057befbe967 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0922_115335|It takes 18 seconds to find login:test login: |
+|0922_115335|Boot 1 time: takes 18 seconds to boot up.|
+|0922_115335|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0922_115336|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0922_115338|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog root@localhost:/root/repro.c|
+|0922_115339|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0922_115340|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0922_115711|/var/www/html/bzimage/bzImage_09bf8f1280412a096915cfdb563e6057befbe967 contained fuse_request_end:[   43.535280] WARNING: CPU: 1 PID: 2122 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   43.544293] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   43.560544]  ? fuse_request_end+0x7d2/0x910
+[   43.561418]  ? fuse_request_end+0x7d2/0x910
+[   43.561905]  ? fuse_request_end+0x7d3/0x910
+[   43.563722]  ? fuse_request_end+0x192/0x910
+[   43.564185]  ? fuse_request_end+0x7d2/0x910
+[   43.564649]  ? fuse_request_end+0x7d2/0x910
+[   57.999375] WARNING: CPU: 0 PID: 3082 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   58.003212] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   58.012244]  ? fuse_request_end+0x7d2/0x910
+[   58.012848]  ? fuse_request_end+0x7d2/0x910
+[   58.013165]  ? fuse_request_end+0x7d3/0x910
+[   58.014416]  ? fuse_request_end+0x192/0x910
+[   58.014734]  ? fuse_request_end+0x7d2/0x910
+[   58.015054]  ? fuse_request_end+0x7d2/0x910
+[   81.585110] WARNING: CPU: 1 PID: 4666 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   81.589693] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   81.599759]  ? fuse_request_end+0x7d2/0x910
+[   81.600302]  ? fuse_request_end+0x7d2/0x910
+[   81.600585]  ? fuse_request_end+0x7d3/0x910
+[   81.601674]  ? fuse_request_end+0x192/0x910
+[   81.601981]  ? fuse_request_end+0x7d2/0x910
+[   81.602267]  ? fuse_request_end+0x7d2/0x910
+[   82.518648] WARNING: CPU: 0 PID: 4726 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   82.528732] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   82.543882]  ? fuse_request_end+0x7d2/0x910
+[   82.544770]  ? fuse_request_end+0x7d2/0x910
+[   82.545240]  ? fuse_request_end+0x7d3/0x910
+[   82.547034]  ? fuse_request_end+0x192/0x910
+[   82.547484]  ? fuse_request_end+0x7d2/0x910
+[   82.547938]  ? fuse_request_end+0x7d2/0x910
+[  150.319087] WARNING: CPU: 0 PID: 9276 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  150.329157] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  150.344056]  ? fuse_request_end+0x7d2/0x910
+[  150.345026]  ? fuse_request_end+0x7d2/0x910
+[  150.345532]  ? fuse_request_end+0x7d3/0x910
+[  150.347581]  ? fuse_request_end+0x192/0x910
+[  150.348045]  ? fuse_request_end+0x7d2/0x910
+[  150.348509]  ? fuse_request_end+0x7d2/0x910
+[  160.286088] WARNING: CPU: 1 PID: 9942 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  160.289451] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  160.299488]  ? fuse_request_end+0x7d2/0x910
+[  160.300008]  ? fuse_request_end+0x7d2/0x910
+[  160.300280]  ? fuse_request_end+0x7d3/0x910
+[  160.301330]  ? fuse_request_end+0x192/0x910
+[  160.301601]  ? fuse_request_end+0x7d2/0x910
+[  160.301893]  ? fuse_request_end+0x7d2/0x910
+[  178.251307] WARNING: CPU: 0 PID: 11162 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  178.261428] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  178.270737]  ? fuse_request_end+0x7d2/0x910
+[  178.271157]  ? fuse_request_end+0x7d2/0x910
+[  178.271375]  ? fuse_request_end+0x7d3/0x910
+[  178.272216]  ? fuse_request_end+0x192/0x910
+[  178.272434]  ? fuse_request_end+0x7d2/0x910
+[  178.272654]  ? fuse_request_end+0x7d2/0x910
+[  220.116959] WARNING: CPU: 1 PID: 13998 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  220.120441] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  220.129696]  ? fuse_request_end+0x7d2/0x910
+[  220.130128]  ? fuse_request_end+0x7d2/0x910
+[  220.130339]  ? fuse_request_end+0x7d3/0x910
+[  220.131154]  ? fuse_request_end+0x192/0x910
+[  220.131365]  ? fuse_request_end+0x7d2/0x910
+[  220.131578]  ? fuse_request_end+0x7d2/0x910, FAIL|
+|0922_115711|git bisect bad 09bf8f1280412a096915cfdb563e6057befbe967|
+|0922_115713|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m c4d949669edccc9813b66b50bb3222e805744544 -d /var/www/html/bzimage -o /tmp/kernel|
+|0922_123835|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0922_123900|Run /var/www/html/bzimage/bzImage_c4d949669edccc9813b66b50bb3222e805744544 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0922_123917|It takes 16 seconds to find login:test login: |
+|0922_123917|Boot 1 time: takes 16 seconds to boot up.|
+|0922_123917|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0922_123918|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0922_123919|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog root@localhost:/root/repro.c|
+|0922_123920|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0922_123921|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0922_124252|/var/www/html/bzimage/bzImage_c4d949669edccc9813b66b50bb3222e805744544 contained fuse_request_end:[   26.970369] WARNING: CPU: 1 PID: 1186 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   26.974969] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   26.992329]  ? fuse_request_end+0x7d2/0x910
+[   26.993533]  ? fuse_request_end+0x7d2/0x910
+[   26.994178]  ? fuse_request_end+0x7d3/0x910
+[   26.996733]  ? fuse_request_end+0x192/0x910
+[   26.997376]  ? fuse_request_end+0x7d2/0x910
+[   26.998005]  ? fuse_request_end+0x7d2/0x910
+[   71.015929] WARNING: CPU: 1 PID: 4145 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   71.024528] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   71.038463]  ? fuse_request_end+0x7d2/0x910
+[   71.039299]  ? fuse_request_end+0x7d2/0x910
+[   71.039720]  ? fuse_request_end+0x7d3/0x910
+[   71.041334]  ? fuse_request_end+0x192/0x910
+[   71.041744]  ? fuse_request_end+0x7d2/0x910
+[   71.042156]  ? fuse_request_end+0x7d2/0x910
+[   75.020839] WARNING: CPU: 0 PID: 4409 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   75.024260] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   75.033404]  ? fuse_request_end+0x7d2/0x910
+[   75.033947]  ? fuse_request_end+0x7d2/0x910
+[   75.034232]  ? fuse_request_end+0x7d3/0x910
+[   75.035358]  ? fuse_request_end+0x192/0x910
+[   75.035644]  ? fuse_request_end+0x7d2/0x910
+[   75.035930]  ? fuse_request_end+0x7d2/0x910
+[  119.411951] WARNING: CPU: 1 PID: 7394 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  119.415524] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  119.425237]  ? fuse_request_end+0x7d2/0x910
+[  119.425767]  ? fuse_request_end+0x7d2/0x910
+[  119.426046]  ? fuse_request_end+0x7d3/0x910
+[  119.427145]  ? fuse_request_end+0x192/0x910
+[  119.427423]  ? fuse_request_end+0x7d2/0x910
+[  119.427701]  ? fuse_request_end+0x7d2/0x910
+[  132.929509] WARNING: CPU: 0 PID: 8295 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  132.935066] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  132.944054]  ? fuse_request_end+0x7d2/0x910
+[  132.944593]  ? fuse_request_end+0x7d2/0x910
+[  132.944874]  ? fuse_request_end+0x7d3/0x910
+[  132.945981]  ? fuse_request_end+0x192/0x910
+[  132.946272]  ? fuse_request_end+0x7d2/0x910
+[  132.946569]  ? fuse_request_end+0x7d2/0x910
+[  134.990392] WARNING: CPU: 0 PID: 8431 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  135.000413] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  135.015820]  ? fuse_request_end+0x7d2/0x910
+[  135.016825]  ? fuse_request_end+0x7d2/0x910
+[  135.017475]  ? fuse_request_end+0x7d3/0x910
+[  135.019522]  ? fuse_request_end+0x192/0x910
+[  135.020048]  ? fuse_request_end+0x7d2/0x910
+[  135.020524]  ? fuse_request_end+0x7d2/0x910
+[  153.474063] WARNING: CPU: 1 PID: 9663 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  153.480267] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  153.494561]  ? fuse_request_end+0x7d2/0x910
+[  153.495557]  ? fuse_request_end+0x7d2/0x910
+[  153.496055]  ? fuse_request_end+0x7d3/0x910
+[  153.497987]  ? fuse_request_end+0x192/0x910
+[  153.498484]  ? fuse_request_end+0x7d2/0x910
+[  153.499023]  ? fuse_request_end+0x7d2/0x910
+[  163.119270] WARNING: CPU: 1 PID: 10305 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  163.125058] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  163.141511]  ? fuse_request_end+0x7d2/0x910
+[  163.142649]  ? fuse_request_end+0x7d2/0x910
+[  163.143231]  ? fuse_request_end+0x7d3/0x910
+[  163.145483]  ? fuse_request_end+0x192/0x910
+[  163.146065]  ? fuse_request_end+0x7d2/0x910
+[  163.146686]  ? fuse_request_end+0x7d2/0x910
+[  169.976052] WARNING: CPU: 0 PID: 10761 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  169.984724] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  169.999099]  ? fuse_request_end+0x7d2/0x910
+[  169.999970]  ? fuse_request_end+0x7d2/0x910
+[  170.000425]  ? fuse_request_end+0x7d3/0x910
+[  170.002003]  ? fuse_request_end+0x192/0x910
+[  170.002404]  ? fuse_request_end+0x7d2/0x910
+[  170.002816]  ? fuse_request_end+0x7d2/0x910
+[  205.395185] WARNING: CPU: 1 PID: 13121 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  205.403329] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  205.418633]  ? fuse_request_end+0x7d2/0x910
+[  205.419656]  ? fuse_request_end+0x7d2/0x910
+[  205.420181]  ? fuse_request_end+0x7d3/0x910
+[  205.422217]  ? fuse_request_end+0x192/0x910
+[  205.422777]  ? fuse_request_end+0x7d2/0x910
+[  205.423305]  ? fuse_request_end+0x7d2/0x910
+[  212.628065] WARNING: CPU: 0 PID: 13601 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  212.632055] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  212.640382]  ? fuse_request_end+0x7d2/0x910
+[  212.640960]  ? fuse_request_end+0x7d2/0x910
+[  212.641272]  ? fuse_request_end+0x7d3/0x910
+[  212.642443]  ? fuse_request_end+0x192/0x910
+[  212.642768]  ? fuse_request_end+0x7d2/0x910
+[  212.643075]  ? fuse_request_end+0x7d2/0x910, FAIL|
+|0922_124252|git bisect bad c4d949669edccc9813b66b50bb3222e805744544|
+|0922_124253|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 588f8e5fdd402f1e3e7fabafd41d314df51e0b97 -d /var/www/html/bzimage -o /tmp/kernel|
+|0922_132330|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0922_132353|Run /var/www/html/bzimage/bzImage_588f8e5fdd402f1e3e7fabafd41d314df51e0b97 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0922_132409|It takes 15 seconds to find login:test login: |
+|0922_132409|Boot 1 time: takes 15 seconds to boot up.|
+|0922_132409|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0922_132410|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0922_132411|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog root@localhost:/root/repro.c|
+|0922_132413|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0922_132413|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0922_132744|/var/www/html/bzimage/bzImage_588f8e5fdd402f1e3e7fabafd41d314df51e0b97 contained fuse_request_end:[   38.202073] WARNING: CPU: 1 PID: 1963 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   38.206393] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   38.220536]  ? fuse_request_end+0x7d2/0x910
+[   38.221119]  ? fuse_request_end+0x7d2/0x910
+[   38.221462]  ? fuse_request_end+0x7d3/0x910
+[   38.222653]  ? fuse_request_end+0x192/0x910
+[   38.222969]  ? fuse_request_end+0x7d2/0x910
+[   38.223265]  ? fuse_request_end+0x7d2/0x910
+[   67.604587] WARNING: CPU: 0 PID: 3958 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   67.607215] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   67.615992]  ? fuse_request_end+0x7d2/0x910
+[   67.616611]  ? fuse_request_end+0x7d2/0x910
+[   67.616935]  ? fuse_request_end+0x7d3/0x910
+[   67.618211]  ? fuse_request_end+0x192/0x910
+[   67.618536]  ? fuse_request_end+0x7d2/0x910
+[   67.618866]  ? fuse_request_end+0x7d2/0x910
+[  128.687205] WARNING: CPU: 1 PID: 8071 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  128.695460] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  128.708994]  ? fuse_request_end+0x7d2/0x910
+[  128.709884]  ? fuse_request_end+0x7d2/0x910
+[  128.710333]  ? fuse_request_end+0x7d3/0x910
+[  128.712081]  ? fuse_request_end+0x192/0x910
+[  128.712492]  ? fuse_request_end+0x7d2/0x910
+[  128.712908]  ? fuse_request_end+0x7d2/0x910
+[  148.591759] WARNING: CPU: 0 PID: 9404 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  148.594772] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  148.603906]  ? fuse_request_end+0x7d2/0x910
+[  148.604523]  ? fuse_request_end+0x7d2/0x910
+[  148.604843]  ? fuse_request_end+0x7d3/0x910
+[  148.606113]  ? fuse_request_end+0x192/0x910
+[  148.606435]  ? fuse_request_end+0x7d2/0x910
+[  148.606761]  ? fuse_request_end+0x7d2/0x910
+[  168.814128] WARNING: CPU: 0 PID: 10765 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  168.821723] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  168.837372]  ? fuse_request_end+0x7d2/0x910
+[  168.838494]  ? fuse_request_end+0x7d2/0x910
+[  168.839076]  ? fuse_request_end+0x7d3/0x910
+[  168.841268]  ? fuse_request_end+0x192/0x910
+[  168.841870]  ? fuse_request_end+0x7d2/0x910
+[  168.842441]  ? fuse_request_end+0x7d2/0x910
+[  197.192947] WARNING: CPU: 1 PID: 12685 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  197.196765] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  197.206176]  ? fuse_request_end+0x7d2/0x910
+[  197.206602]  ? fuse_request_end+0x7d2/0x910
+[  197.206826]  ? fuse_request_end+0x7d3/0x910
+[  197.207721]  ? fuse_request_end+0x192/0x910
+[  197.207950]  ? fuse_request_end+0x7d2/0x910
+[  197.208182]  ? fuse_request_end+0x7d2/0x910
+[  198.940059] WARNING: CPU: 0 PID: 12801 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  198.943624] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  198.952360]  ? fuse_request_end+0x7d2/0x910
+[  198.952811]  ? fuse_request_end+0x7d2/0x910
+[  198.953045]  ? fuse_request_end+0x7d3/0x910
+[  198.953971]  ? fuse_request_end+0x192/0x910
+[  198.954193]  ? fuse_request_end+0x7d2/0x910
+[  198.954415]  ? fuse_request_end+0x7d2/0x910, FAIL|
+|0922_132744|git bisect bad 588f8e5fdd402f1e3e7fabafd41d314df51e0b97|
+|0922_132746|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m f0868c52d58c5c953862318dfd52d311d473e7fe -d /var/www/html/bzimage -o /tmp/kernel|
+|0922_140836|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0922_140900|Run /var/www/html/bzimage/bzImage_f0868c52d58c5c953862318dfd52d311d473e7fe with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0922_140918|It takes 18 seconds to find login:test login: |
+|0922_140918|Boot 1 time: takes 18 seconds to boot up.|
+|0922_140918|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0922_140919|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0922_140920|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog root@localhost:/root/repro.c|
+|0922_140922|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0922_140922|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0922_141253|/var/www/html/bzimage/bzImage_f0868c52d58c5c953862318dfd52d311d473e7fe contained fuse_request_end:[   26.739230] WARNING: CPU: 1 PID: 1004 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   26.741435] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   26.749869]  ? fuse_request_end+0x7d2/0x910
+[   26.750485]  ? fuse_request_end+0x7d2/0x910
+[   26.750806]  ? fuse_request_end+0x7d3/0x910
+[   26.752004]  ? fuse_request_end+0x192/0x910
+[   26.752314]  ? fuse_request_end+0x7d2/0x910
+[   26.752643]  ? fuse_request_end+0x7d2/0x910
+[  100.246333] WARNING: CPU: 0 PID: 5964 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  100.249626] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  100.258101]  ? fuse_request_end+0x7d2/0x910
+[  100.258614]  ? fuse_request_end+0x7d2/0x910
+[  100.258884]  ? fuse_request_end+0x7d3/0x910
+[  100.259904]  ? fuse_request_end+0x192/0x910
+[  100.260173]  ? fuse_request_end+0x7d2/0x910
+[  100.260445]  ? fuse_request_end+0x7d2/0x910
+[  110.221373] WARNING: CPU: 0 PID: 6628 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  110.224957] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  110.233371]  ? fuse_request_end+0x7d2/0x910
+[  110.233911]  ? fuse_request_end+0x7d2/0x910
+[  110.234218]  ? fuse_request_end+0x7d3/0x910
+[  110.235365]  ? fuse_request_end+0x192/0x910
+[  110.235650]  ? fuse_request_end+0x7d2/0x910
+[  110.235938]  ? fuse_request_end+0x7d2/0x910
+[  183.026978] WARNING: CPU: 1 PID: 11506 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  183.034319] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  183.046399]  ? fuse_request_end+0x7d2/0x910
+[  183.047177]  ? fuse_request_end+0x7d2/0x910
+[  183.047516]  ? fuse_request_end+0x7d3/0x910
+[  183.048762]  ? fuse_request_end+0x192/0x910
+[  183.049085]  ? fuse_request_end+0x7d2/0x910
+[  183.049394]  ? fuse_request_end+0x7d2/0x910
+[  208.171919] WARNING: CPU: 1 PID: 13178 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  208.180384] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  208.194411]  ? fuse_request_end+0x7d2/0x910
+[  208.195265]  ? fuse_request_end+0x7d2/0x910
+[  208.195713]  ? fuse_request_end+0x7d3/0x910
+[  208.197617]  ? fuse_request_end+0x192/0x910
+[  208.198155]  ? fuse_request_end+0x7d2/0x910
+[  208.198614]  ? fuse_request_end+0x7d2/0x910
+[  230.232725] WARNING: CPU: 0 PID: 14654 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  230.237489] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  230.250826]  ? fuse_request_end+0x7d2/0x910
+[  230.251694]  ? fuse_request_end+0x7d2/0x910
+[  230.252155]  ? fuse_request_end+0x7d3/0x910
+[  230.253899]  ? fuse_request_end+0x192/0x910
+[  230.254380]  ? fuse_request_end+0x7d2/0x910
+[  230.254845]  ? fuse_request_end+0x7d2/0x910, FAIL|
+|0922_141253|git bisect bad f0868c52d58c5c953862318dfd52d311d473e7fe|
+|0922_141255|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 3dcab35d9d3925064e08b14ee5d97de057913d1c -d /var/www/html/bzimage -o /tmp/kernel|
+|0922_145310|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0922_145333|Run /var/www/html/bzimage/bzImage_3dcab35d9d3925064e08b14ee5d97de057913d1c with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0922_145351|It takes 18 seconds to find login:test login: |
+|0922_145351|Boot 1 time: takes 18 seconds to boot up.|
+|0922_145351|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0922_145352|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0922_145354|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog root@localhost:/root/repro.c|
+|0922_145355|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0922_145355|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0922_145726|/var/www/html/bzimage/bzImage_3dcab35d9d3925064e08b14ee5d97de057913d1c didn't contain fuse_request_end: in dmesg, pass|
+|0922_145727|git bisect good 3dcab35d9d3925064e08b14ee5d97de057913d1c|
+|0922_145728|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 295aa4fdb837afb248f94f91e312008dbecf4578 -d /var/www/html/bzimage -o /tmp/kernel|
+|0922_153810|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0922_153837|Run /var/www/html/bzimage/bzImage_295aa4fdb837afb248f94f91e312008dbecf4578 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0922_153857|It takes 20 seconds to find login:test login: |
+|0922_153857|Boot 1 time: takes 20 seconds to boot up.|
+|0922_153857|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0922_153859|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0922_153900|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog root@localhost:/root/repro.c|
+|0922_153902|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0922_153903|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0922_154234|/var/www/html/bzimage/bzImage_295aa4fdb837afb248f94f91e312008dbecf4578 didn't contain fuse_request_end: in dmesg, pass|
+|0922_154234|git bisect good 295aa4fdb837afb248f94f91e312008dbecf4578|
+|0922_154237|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 2223fe652f759649ae1d520e47e5f06727c0acbd -d /var/www/html/bzimage -o /tmp/kernel|
+|0922_162241|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0922_162304|Run /var/www/html/bzimage/bzImage_2223fe652f759649ae1d520e47e5f06727c0acbd with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0922_162326|It takes 21 seconds to find login:test login: |
+|0922_162326|Boot 1 time: takes 21 seconds to boot up.|
+|0922_162326|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0922_162327|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0922_162328|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog root@localhost:/root/repro.c|
+|0922_162330|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0922_162330|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0922_162701|/var/www/html/bzimage/bzImage_2223fe652f759649ae1d520e47e5f06727c0acbd didn't contain fuse_request_end: in dmesg, pass|
+|0922_162701|git bisect good 2223fe652f759649ae1d520e47e5f06727c0acbd|
+|0922_162703|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 9dc504f244895def513a0f2982c909103d4ab345 -d /var/www/html/bzimage -o /tmp/kernel|
+|0922_170707|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0922_170728|Run /var/www/html/bzimage/bzImage_9dc504f244895def513a0f2982c909103d4ab345 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0922_170756|It takes 28 seconds to find login:test login: |
+|0922_170756|Boot 1 time: takes 28 seconds to boot up.|
+|0922_170756|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0922_170758|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0922_170800|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog root@localhost:/root/repro.c|
+|0922_170802|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0922_170802|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0922_171133|/var/www/html/bzimage/bzImage_9dc504f244895def513a0f2982c909103d4ab345 contained fuse_request_end:[   46.417538] WARNING: CPU: 0 PID: 1553 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   46.422371] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   46.436301]  ? fuse_request_end+0x7d2/0x910
+[   46.436957]  ? fuse_request_end+0x7d2/0x910
+[   46.438241]  ? fuse_request_end+0x192/0x910
+[   46.438581]  ? fuse_request_end+0x7d2/0x910
+[   46.438925]  ? fuse_request_end+0x7d2/0x910
+[   46.439258]  ? fuse_request_end+0x7d2/0x910
+[   52.444490] WARNING: CPU: 0 PID: 1948 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   52.450398] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   52.465872]  ? fuse_request_end+0x7d2/0x910
+[   52.466399]  ? fuse_request_end+0x7d2/0x910
+[   52.467496]  ? fuse_request_end+0x192/0x910
+[   52.467781]  ? fuse_request_end+0x7d2/0x910
+[   52.468063]  ? fuse_request_end+0x7d2/0x910
+[   52.468354]  ? fuse_request_end+0x7d2/0x910
+[   56.379024] WARNING: CPU: 1 PID: 2200 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   56.383868] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   56.400056]  ? fuse_request_end+0x7d2/0x910
+[   56.401221]  ? fuse_request_end+0x7d2/0x910
+[   56.403496]  ? fuse_request_end+0x192/0x910
+[   56.404081]  ? fuse_request_end+0x7d2/0x910
+[   56.404710]  ? fuse_request_end+0x7d2/0x910
+[   56.405308]  ? fuse_request_end+0x7d2/0x910
+[   83.769555] WARNING: CPU: 0 PID: 3992 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   83.773388] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   83.786378]  ? fuse_request_end+0x7d2/0x910
+[   83.787100]  ? fuse_request_end+0x7d2/0x910
+[   83.788500]  ? fuse_request_end+0x192/0x910
+[   83.788898]  ? fuse_request_end+0x7d2/0x910
+[   83.789269]  ? fuse_request_end+0x7d2/0x910
+[   83.789637]  ? fuse_request_end+0x7d2/0x910
+[   96.081219] WARNING: CPU: 1 PID: 4796 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   96.088646] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   96.104445]  ? fuse_request_end+0x7d2/0x910
+[   96.105372]  ? fuse_request_end+0x7d2/0x910
+[   96.107109]  ? fuse_request_end+0x192/0x910
+[   96.107546]  ? fuse_request_end+0x7d2/0x910
+[   96.107954]  ? fuse_request_end+0x7d2/0x910
+[   96.108359]  ? fuse_request_end+0x7d2/0x910
+[  125.460012] WARNING: CPU: 0 PID: 6741 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  125.470381] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  125.486360]  ? fuse_request_end+0x7d2/0x910
+[  125.487184]  ? fuse_request_end+0x7d2/0x910
+[  125.488375]  ? fuse_request_end+0x192/0x910
+[  125.488718]  ? fuse_request_end+0x7d2/0x910
+[  125.489031]  ? fuse_request_end+0x7d2/0x910
+[  125.489338]  ? fuse_request_end+0x7d2/0x910
+[  126.388886] WARNING: CPU: 0 PID: 6801 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  126.392513] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  126.402050]  ? fuse_request_end+0x7d2/0x910
+[  126.402535]  ? fuse_request_end+0x7d2/0x910
+[  126.403485]  ? fuse_request_end+0x192/0x910
+[  126.403729]  ? fuse_request_end+0x7d2/0x910
+[  126.403972]  ? fuse_request_end+0x7d2/0x910
+[  126.404216]  ? fuse_request_end+0x7d2/0x910
+[  141.377077] WARNING: CPU: 0 PID: 7806 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  141.380702] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  141.389189]  ? fuse_request_end+0x7d2/0x910
+[  141.389642]  ? fuse_request_end+0x7d2/0x910
+[  141.390560]  ? fuse_request_end+0x192/0x910
+[  141.390805]  ? fuse_request_end+0x7d2/0x910
+[  141.391044]  ? fuse_request_end+0x7d2/0x910
+[  141.391285]  ? fuse_request_end+0x7d2/0x910
+[  155.594785] WARNING: CPU: 1 PID: 8746 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  155.600583] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  155.613539]  ? fuse_request_end+0x7d2/0x910
+[  155.614047]  ? fuse_request_end+0x7d2/0x910
+[  155.615032]  ? fuse_request_end+0x192/0x910
+[  155.615308]  ? fuse_request_end+0x7d2/0x910
+[  155.615590]  ? fuse_request_end+0x7d2/0x910
+[  155.615870]  ? fuse_request_end+0x7d2/0x910
+[  157.060883] WARNING: CPU: 0 PID: 8842 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  157.063223] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  157.071322]  ? fuse_request_end+0x7d2/0x910
+[  157.071874]  ? fuse_request_end+0x7d2/0x910
+[  157.073037]  ? fuse_request_end+0x192/0x910
+[  157.073329]  ? fuse_request_end+0x7d2/0x910
+[  157.073624]  ? fuse_request_end+0x7d2/0x910
+[  157.073920]  ? fuse_request_end+0x7d2/0x910
+[  170.295853] WARNING: CPU: 1 PID: 9719 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  170.299335] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  170.308153]  ? fuse_request_end+0x7d2/0x910
+[  170.308652]  ? fuse_request_end+0x7d2/0x910
+[  170.309629]  ? fuse_request_end+0x192/0x910
+[  170.309883]  ? fuse_request_end+0x7d2/0x910
+[  170.310137]  ? fuse_request_end+0x7d2/0x910
+[  170.310391]  ? fuse_request_end+0x7d2/0x910
+[  176.253285] WARNING: CPU: 0 PID: 10111 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  176.263927] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  176.276969]  ? fuse_request_end+0x7d2/0x910
+[  176.277518]  ? fuse_request_end+0x7d2/0x910
+[  176.278653]  ? fuse_request_end+0x192/0x910
+[  176.278943]  ? fuse_request_end+0x7d2/0x910
+[  176.279239]  ? fuse_request_end+0x7d2/0x910
+[  176.279530]  ? fuse_request_end+0x7d2/0x910
+[  180.242112] WARNING: CPU: 0 PID: 10375 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  180.252283] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  180.263310]  ? fuse_request_end+0x7d2/0x910
+[  180.263824]  ? fuse_request_end+0x7d2/0x910
+[  180.264888]  ? fuse_request_end+0x192/0x910
+[  180.265158]  ? fuse_request_end+0x7d2/0x910
+[  180.265430]  ? fuse_request_end+0x7d2/0x910
+[  180.265702]  ? fuse_request_end+0x7d2/0x910
+[  180.995870] WARNING: CPU: 0 PID: 10423 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  180.999513] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  181.008764]  ? fuse_request_end+0x7d2/0x910
+[  181.009242]  ? fuse_request_end+0x7d2/0x910
+[  181.010202]  ? fuse_request_end+0x192/0x910
+[  181.010454]  ? fuse_request_end+0x7d2/0x910
+[  181.010705]  ? fuse_request_end+0x7d2/0x910
+[  181.010956]  ? fuse_request_end+0x7d2/0x910
+[  196.206923] WARNING: CPU: 1 PID: 11435 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  196.210966] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  196.222812]  ? fuse_request_end+0x7d2/0x910
+[  196.223339]  ? fuse_request_end+0x7d2/0x910
+[  196.224310]  ? fuse_request_end+0x192/0x910
+[  196.224560]  ? fuse_request_end+0x7d2/0x910
+[  196.224835]  ? fuse_request_end+0x7d2/0x910
+[  196.225089]  ? fuse_request_end+0x7d2/0x910
+[  226.260016] WARNING: CPU: 0 PID: 13439 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  226.263590] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  226.273710]  ? fuse_request_end+0x7d2/0x910
+[  226.274241]  ? fuse_request_end+0x7d2/0x910
+[  226.275335]  ? fuse_request_end+0x192/0x910
+[  226.275611]  ? fuse_request_end+0x7d2/0x910
+[  226.275892]  ? fuse_request_end+0x7d2/0x910
+[  226.276169]  ? fuse_request_end+0x7d2/0x910
+[  230.440029] WARNING: CPU: 1 PID: 13715 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  230.443549] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  230.454391]  ? fuse_request_end+0x7d2/0x910
+[  230.454941]  ? fuse_request_end+0x7d2/0x910
+[  230.455964]  ? fuse_request_end+0x192/0x910
+[  230.456207]  ? fuse_request_end+0x7d2/0x910
+[  230.456452]  ? fuse_request_end+0x7d2/0x910
+[  230.456758]  ? fuse_request_end+0x7d2/0x910, FAIL|
+|0922_171133|git bisect bad 9dc504f244895def513a0f2982c909103d4ab345|
+|0922_171134|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m aa16880d9f13c6490e80ad614402c8a6fe6f3efa -d /var/www/html/bzimage -o /tmp/kernel|
+|0922_175112|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0922_175135|Run /var/www/html/bzimage/bzImage_aa16880d9f13c6490e80ad614402c8a6fe6f3efa with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0922_175156|It takes 21 seconds to find login:test login: |
+|0922_175156|Boot 1 time: takes 21 seconds to boot up.|
+|0922_175156|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0922_175158|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0922_175159|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog root@localhost:/root/repro.c|
+|0922_175201|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0922_175201|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0922_175532|/var/www/html/bzimage/bzImage_aa16880d9f13c6490e80ad614402c8a6fe6f3efa contained fuse_request_end:[   26.885845] WARNING: CPU: 0 PID: 786 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   26.891495] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   26.910042]  ? fuse_request_end+0x7d2/0x910
+[   26.910906]  ? fuse_request_end+0x7d2/0x910
+[   26.912630]  ? fuse_request_end+0x192/0x910
+[   26.913065]  ? fuse_request_end+0x7d2/0x910
+[   26.913473]  ? fuse_request_end+0x7d2/0x910
+[   26.913860]  ? fuse_request_end+0x7d2/0x910
+[   34.736001] WARNING: CPU: 0 PID: 1314 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   34.738689] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   34.747520]  ? fuse_request_end+0x7d2/0x910
+[   34.748120]  ? fuse_request_end+0x7d2/0x910
+[   34.749364]  ? fuse_request_end+0x192/0x910
+[   34.749682]  ? fuse_request_end+0x7d2/0x910
+[   34.750030]  ? fuse_request_end+0x7d2/0x910
+[   34.750357]  ? fuse_request_end+0x7d2/0x910
+[   35.842324] WARNING: CPU: 1 PID: 1386 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   35.846986] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   35.855822]  ? fuse_request_end+0x7d2/0x910
+[   35.856439]  ? fuse_request_end+0x7d2/0x910
+[   35.857701]  ? fuse_request_end+0x192/0x910
+[   35.858048]  ? fuse_request_end+0x7d2/0x910
+[   35.858376]  ? fuse_request_end+0x7d2/0x910
+[   35.858700]  ? fuse_request_end+0x7d2/0x910
+[   50.324643] WARNING: CPU: 1 PID: 2342 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   50.333344] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   50.349942]  ? fuse_request_end+0x7d2/0x910
+[   50.351074]  ? fuse_request_end+0x7d2/0x910
+[   50.353402]  ? fuse_request_end+0x192/0x910
+[   50.354033]  ? fuse_request_end+0x7d2/0x910
+[   50.354633]  ? fuse_request_end+0x7d2/0x910
+[   50.355228]  ? fuse_request_end+0x7d2/0x910
+[   77.026955] WARNING: CPU: 1 PID: 4118 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[   77.030634] RIP: 0010:fuse_request_end+0x7d2/0x910
+[   77.039641]  ? fuse_request_end+0x7d2/0x910
+[   77.040030]  ? fuse_request_end+0x7d2/0x910
+[   77.040789]  ? fuse_request_end+0x192/0x910
+[   77.041183]  ? fuse_request_end+0x7d2/0x910
+[   77.041658]  ? fuse_request_end+0x7d2/0x910
+[   77.042332]  ? fuse_request_end+0x7d2/0x910
+[  107.213029] WARNING: CPU: 1 PID: 6158 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  107.216465] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  107.224754]  ? fuse_request_end+0x7d2/0x910
+[  107.225144]  ? fuse_request_end+0x7d2/0x910
+[  107.225925]  ? fuse_request_end+0x192/0x910
+[  107.226123]  ? fuse_request_end+0x7d2/0x910
+[  107.226321]  ? fuse_request_end+0x7d2/0x910
+[  107.226520]  ? fuse_request_end+0x7d2/0x910
+[  119.191601] WARNING: CPU: 0 PID: 6954 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  119.195084] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  119.204993]  ? fuse_request_end+0x7d2/0x910
+[  119.205448]  ? fuse_request_end+0x7d2/0x910
+[  119.206389]  ? fuse_request_end+0x192/0x910
+[  119.206627]  ? fuse_request_end+0x7d2/0x910
+[  119.206865]  ? fuse_request_end+0x7d2/0x910
+[  119.207104]  ? fuse_request_end+0x7d2/0x910
+[  133.771627] WARNING: CPU: 1 PID: 7930 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  133.775514] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  133.783836]  ? fuse_request_end+0x7d2/0x910
+[  133.784313]  ? fuse_request_end+0x7d2/0x910
+[  133.785286]  ? fuse_request_end+0x192/0x910
+[  133.785538]  ? fuse_request_end+0x7d2/0x910
+[  133.785806]  ? fuse_request_end+0x7d2/0x910
+[  133.786061]  ? fuse_request_end+0x7d2/0x910
+[  134.419645] WARNING: CPU: 0 PID: 7970 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  134.423080] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  134.434671]  ? fuse_request_end+0x7d2/0x910
+[  134.435261]  ? fuse_request_end+0x7d2/0x910
+[  134.436349]  ? fuse_request_end+0x192/0x910
+[  134.436611]  ? fuse_request_end+0x7d2/0x910
+[  134.436881]  ? fuse_request_end+0x7d2/0x910
+[  134.437152]  ? fuse_request_end+0x7d2/0x910
+[  134.690362] WARNING: CPU: 1 PID: 7986 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  134.701368] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  134.717830]  ? fuse_request_end+0x7d2/0x910
+[  134.718411]  ? fuse_request_end+0x7d2/0x910
+[  134.719542]  ? fuse_request_end+0x192/0x910
+[  134.719837]  ? fuse_request_end+0x7d2/0x910
+[  134.720134]  ? fuse_request_end+0x7d2/0x910
+[  134.720432]  ? fuse_request_end+0x7d2/0x910
+[  180.940983] WARNING: CPU: 1 PID: 11084 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  180.944381] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  180.949980]  ? fuse_request_end+0x7d2/0x910
+[  180.950348]  ? fuse_request_end+0x7d2/0x910
+[  180.951092]  ? fuse_request_end+0x192/0x910
+[  180.951287]  ? fuse_request_end+0x7d2/0x910
+[  180.951492]  ? fuse_request_end+0x7d2/0x910
+[  180.951693]  ? fuse_request_end+0x7d2/0x910
+[  189.039194] WARNING: CPU: 1 PID: 11624 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  189.049467] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  189.064878]  ? fuse_request_end+0x7d2/0x910
+[  189.065836]  ? fuse_request_end+0x7d2/0x910
+[  189.067614]  ? fuse_request_end+0x192/0x910
+[  189.068054]  ? fuse_request_end+0x7d2/0x910
+[  189.068506]  ? fuse_request_end+0x7d2/0x910
+[  189.068989]  ? fuse_request_end+0x7d2/0x910
+[  201.095231] WARNING: CPU: 0 PID: 12436 at fs/fuse/dev.c:373 fuse_request_end+0x7d2/0x910
+[  201.099204] RIP: 0010:fuse_request_end+0x7d2/0x910
+[  201.107326]  ? fuse_request_end+0x7d2/0x910
+[  201.107780]  ? fuse_request_end+0x7d2/0x910
+[  201.108716]  ? fuse_request_end+0x192/0x910
+[  201.108957]  ? fuse_request_end+0x7d2/0x910
+[  201.109193]  ? fuse_request_end+0x7d2/0x910
+[  201.109428]  ? fuse_request_end+0x7d2/0x910, FAIL|
+|0922_175532|git bisect bad aa16880d9f13c6490e80ad614402c8a6fe6f3efa|
+|0922_175533|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 9a8ebcf5e04e6cc9472bfcdd90b2aeef35a2f8f6 -d /var/www/html/bzimage -o /tmp/kernel|
+|0922_183608|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0922_183631|Run /var/www/html/bzimage/bzImage_9a8ebcf5e04e6cc9472bfcdd90b2aeef35a2f8f6 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0922_183655|It takes 24 seconds to find login:test login: |
+|0922_183655|Boot 1 time: takes 24 seconds to boot up.|
+|0922_183655|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0922_183657|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0922_183658|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog root@localhost:/root/repro.c|
+|0922_183700|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0922_183700|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0922_184031|/var/www/html/bzimage/bzImage_9a8ebcf5e04e6cc9472bfcdd90b2aeef35a2f8f6 contained fuse_request_end:[   40.291446] WARNING: CPU: 0 PID: 1447 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   40.294563] RIP: 0010:fuse_request_end+0x60f/0x770
+[   40.303396]  ? fuse_request_end+0x60f/0x770
+[   40.303918]  ? fuse_request_end+0x60f/0x770
+[   40.305011]  ? fuse_request_end+0x121/0x770
+[   40.305286]  ? fuse_request_end+0x60f/0x770
+[   40.305559]  ? fuse_request_end+0x60f/0x770
+[   44.964712] WARNING: CPU: 1 PID: 1755 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   44.970344] RIP: 0010:fuse_request_end+0x60f/0x770
+[   44.977779]  ? fuse_request_end+0x60f/0x770
+[   44.978298]  ? fuse_request_end+0x60f/0x770
+[   44.979348]  ? fuse_request_end+0x121/0x770
+[   44.979659]  ? fuse_request_end+0x60f/0x770
+[   44.979936]  ? fuse_request_end+0x60f/0x770
+[   46.266197] WARNING: CPU: 0 PID: 1839 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   46.268952] RIP: 0010:fuse_request_end+0x60f/0x770
+[   46.276917]  ? fuse_request_end+0x60f/0x770
+[   46.277451]  ? fuse_request_end+0x60f/0x770
+[   46.278510]  ? fuse_request_end+0x121/0x770
+[   46.278781]  ? fuse_request_end+0x60f/0x770
+[   46.279056]  ? fuse_request_end+0x60f/0x770
+[   59.210635] WARNING: CPU: 1 PID: 2698 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   59.214116] RIP: 0010:fuse_request_end+0x60f/0x770
+[   59.222763]  ? fuse_request_end+0x60f/0x770
+[   59.223307]  ? fuse_request_end+0x60f/0x770
+[   59.224427]  ? fuse_request_end+0x121/0x770
+[   59.224711]  ? fuse_request_end+0x60f/0x770
+[   59.224993]  ? fuse_request_end+0x60f/0x770
+[   62.382448] WARNING: CPU: 0 PID: 2906 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   62.391745] RIP: 0010:fuse_request_end+0x60f/0x770
+[   62.405420]  ? fuse_request_end+0x60f/0x770
+[   62.406250]  ? fuse_request_end+0x60f/0x770
+[   62.407923]  ? fuse_request_end+0x121/0x770
+[   62.408395]  ? fuse_request_end+0x60f/0x770
+[   62.408845]  ? fuse_request_end+0x60f/0x770
+[   77.934298] WARNING: CPU: 1 PID: 3934 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   77.942526] RIP: 0010:fuse_request_end+0x60f/0x770
+[   77.954284]  ? fuse_request_end+0x60f/0x770
+[   77.954861]  ? fuse_request_end+0x60f/0x770
+[   77.956015]  ? fuse_request_end+0x121/0x770
+[   77.956337]  ? fuse_request_end+0x60f/0x770
+[   77.956647]  ? fuse_request_end+0x60f/0x770
+[   83.513519] WARNING: CPU: 0 PID: 4302 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   83.518358] RIP: 0010:fuse_request_end+0x60f/0x770
+[   83.527116]  ? fuse_request_end+0x60f/0x770
+[   83.527711]  ? fuse_request_end+0x60f/0x770
+[   83.529084]  ? fuse_request_end+0x121/0x770
+[   83.529401]  ? fuse_request_end+0x60f/0x770
+[   83.529716]  ? fuse_request_end+0x60f/0x770
+[   83.902389] WARNING: CPU: 1 PID: 4326 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   83.905764] RIP: 0010:fuse_request_end+0x60f/0x770
+[   83.914485]  ? fuse_request_end+0x60f/0x770
+[   83.915008]  ? fuse_request_end+0x60f/0x770
+[   83.916087]  ? fuse_request_end+0x121/0x770
+[   83.916360]  ? fuse_request_end+0x60f/0x770
+[   83.916637]  ? fuse_request_end+0x60f/0x770
+[   93.087463] WARNING: CPU: 0 PID: 4938 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   93.090974] RIP: 0010:fuse_request_end+0x60f/0x770
+[   93.099590]  ? fuse_request_end+0x60f/0x770
+[   93.100137]  ? fuse_request_end+0x60f/0x770
+[   93.101182]  ? fuse_request_end+0x121/0x770
+[   93.101451]  ? fuse_request_end+0x60f/0x770
+[   93.101720]  ? fuse_request_end+0x60f/0x770
+[  103.893627] WARNING: CPU: 1 PID: 5654 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  103.896970] RIP: 0010:fuse_request_end+0x60f/0x770
+[  103.905040]  ? fuse_request_end+0x60f/0x770
+[  103.905541]  ? fuse_request_end+0x60f/0x770
+[  103.906546]  ? fuse_request_end+0x121/0x770
+[  103.906805]  ? fuse_request_end+0x60f/0x770
+[  103.907067]  ? fuse_request_end+0x60f/0x770
+[  104.845507] WARNING: CPU: 1 PID: 5714 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  104.848948] RIP: 0010:fuse_request_end+0x60f/0x770
+[  104.857533]  ? fuse_request_end+0x60f/0x770
+[  104.858064]  ? fuse_request_end+0x60f/0x770
+[  104.859130]  ? fuse_request_end+0x121/0x770
+[  104.859404]  ? fuse_request_end+0x60f/0x770
+[  104.859682]  ? fuse_request_end+0x60f/0x770
+[  131.199411] WARNING: CPU: 1 PID: 7462 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  131.207437] RIP: 0010:fuse_request_end+0x60f/0x770
+[  131.218520]  ? fuse_request_end+0x60f/0x770
+[  131.219099]  ? fuse_request_end+0x60f/0x770
+[  131.220357]  ? fuse_request_end+0x121/0x770
+[  131.221174]  ? fuse_request_end+0x60f/0x770
+[  131.222172]  ? fuse_request_end+0x60f/0x770
+[  139.385629] WARNING: CPU: 1 PID: 8003 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  139.393927] RIP: 0010:fuse_request_end+0x60f/0x770
+[  139.408394]  ? fuse_request_end+0x60f/0x770
+[  139.409211]  ? fuse_request_end+0x60f/0x770
+[  139.410787]  ? fuse_request_end+0x121/0x770
+[  139.411176]  ? fuse_request_end+0x60f/0x770
+[  139.411572]  ? fuse_request_end+0x60f/0x770
+[  155.025387] WARNING: CPU: 1 PID: 9039 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  155.028985] RIP: 0010:fuse_request_end+0x60f/0x770
+[  155.037540]  ? fuse_request_end+0x60f/0x770
+[  155.038058]  ? fuse_request_end+0x60f/0x770
+[  155.039107]  ? fuse_request_end+0x121/0x770
+[  155.039375]  ? fuse_request_end+0x60f/0x770
+[  155.039645]  ? fuse_request_end+0x60f/0x770
+[  157.402594] WARNING: CPU: 1 PID: 9195 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  157.405438] RIP: 0010:fuse_request_end+0x60f/0x770
+[  157.413616]  ? fuse_request_end+0x60f/0x770
+[  157.414146]  ? fuse_request_end+0x60f/0x770
+[  157.415205]  ? fuse_request_end+0x121/0x770
+[  157.415474]  ? fuse_request_end+0x60f/0x770
+[  157.415749]  ? fuse_request_end+0x60f/0x770
+[  160.141417] WARNING: CPU: 1 PID: 9375 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  160.145197] RIP: 0010:fuse_request_end+0x60f/0x770
+[  160.155681]  ? fuse_request_end+0x60f/0x770
+[  160.156244]  ? fuse_request_end+0x60f/0x770
+[  160.157356]  ? fuse_request_end+0x121/0x770
+[  160.157639]  ? fuse_request_end+0x60f/0x770
+[  160.157924]  ? fuse_request_end+0x60f/0x770
+[  162.998314] WARNING: CPU: 0 PID: 9564 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  163.002573] RIP: 0010:fuse_request_end+0x60f/0x770
+[  163.011028]  ? fuse_request_end+0x60f/0x770
+[  163.011525]  ? fuse_request_end+0x60f/0x770
+[  163.012649]  ? fuse_request_end+0x121/0x770
+[  163.012912]  ? fuse_request_end+0x60f/0x770
+[  163.013176]  ? fuse_request_end+0x60f/0x770
+[  170.520493] WARNING: CPU: 1 PID: 10064 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  170.529445] RIP: 0010:fuse_request_end+0x60f/0x770
+[  170.538298]  ? fuse_request_end+0x60f/0x770
+[  170.538860]  ? fuse_request_end+0x60f/0x770
+[  170.540000]  ? fuse_request_end+0x121/0x770
+[  170.540314]  ? fuse_request_end+0x60f/0x770
+[  170.540613]  ? fuse_request_end+0x60f/0x770
+[  194.307685] WARNING: CPU: 0 PID: 11636 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  194.312445] RIP: 0010:fuse_request_end+0x60f/0x770
+[  194.326107]  ? fuse_request_end+0x60f/0x770
+[  194.326788]  ? fuse_request_end+0x60f/0x770
+[  194.328172]  ? fuse_request_end+0x121/0x770
+[  194.328529]  ? fuse_request_end+0x60f/0x770
+[  194.329863]  ? fuse_request_end+0x60f/0x770
+[  199.540807] WARNING: CPU: 0 PID: 11977 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  199.553050] RIP: 0010:fuse_request_end+0x60f/0x770
+[  199.560655]  ? fuse_request_end+0x60f/0x770
+[  199.562106]  ? fuse_request_end+0x60f/0x770
+[  199.563184]  ? fuse_request_end+0x121/0x770
+[  199.563465]  ? fuse_request_end+0x60f/0x770
+[  199.563749]  ? fuse_request_end+0x60f/0x770
+[  201.698353] WARNING: CPU: 0 PID: 12117 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  201.701889] RIP: 0010:fuse_request_end+0x60f/0x770
+[  201.711365]  ? fuse_request_end+0x60f/0x770
+[  201.711889]  ? fuse_request_end+0x60f/0x770
+[  201.712956]  ? fuse_request_end+0x121/0x770
+[  201.713223]  ? fuse_request_end+0x60f/0x770
+[  201.713497]  ? fuse_request_end+0x60f/0x770
+[  208.074456] WARNING: CPU: 1 PID: 12537 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  208.078871] RIP: 0010:fuse_request_end+0x60f/0x770
+[  208.086763]  ? fuse_request_end+0x60f/0x770
+[  208.087322]  ? fuse_request_end+0x60f/0x770
+[  208.088473]  ? fuse_request_end+0x121/0x770
+[  208.088767]  ? fuse_request_end+0x60f/0x770
+[  208.089065]  ? fuse_request_end+0x60f/0x770
+[  208.342323] WARNING: CPU: 0 PID: 12553 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  208.345758] RIP: 0010:fuse_request_end+0x60f/0x770
+[  208.354461]  ? fuse_request_end+0x60f/0x770
+[  208.354967]  ? fuse_request_end+0x60f/0x770
+[  208.355988]  ? fuse_request_end+0x121/0x770
+[  208.356269]  ? fuse_request_end+0x60f/0x770
+[  208.356537]  ? fuse_request_end+0x60f/0x770
+[  236.694355] WARNING: CPU: 0 PID: 14441 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  236.697695] RIP: 0010:fuse_request_end+0x60f/0x770
+[  236.705538]  ? fuse_request_end+0x60f/0x770
+[  236.706054]  ? fuse_request_end+0x60f/0x770
+[  236.707099]  ? fuse_request_end+0x121/0x770
+[  236.707372]  ? fuse_request_end+0x60f/0x770
+[  236.707650]  ? fuse_request_end+0x60f/0x770, FAIL|
+|0922_184031|git bisect bad 9a8ebcf5e04e6cc9472bfcdd90b2aeef35a2f8f6|
+|0922_184032|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 509a6458b44f72bb6854854c89cf76e56f11c9f1 -d /var/www/html/bzimage -o /tmp/kernel|
+|0922_192120|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0922_192140|Run /var/www/html/bzimage/bzImage_509a6458b44f72bb6854854c89cf76e56f11c9f1 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0922_192201|It takes 21 seconds to find login:test login: |
+|0922_192201|Boot 1 time: takes 21 seconds to boot up.|
+|0922_192201|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0922_192202|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0922_192204|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog root@localhost:/root/repro.c|
+|0922_192205|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0922_192206|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0922_192537|/var/www/html/bzimage/bzImage_509a6458b44f72bb6854854c89cf76e56f11c9f1 contained fuse_request_end:[   26.056514] WARNING: CPU: 0 PID: 755 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   26.059737] RIP: 0010:fuse_request_end+0x60f/0x770
+[   26.068518]  ? fuse_request_end+0x60f/0x770
+[   26.069057]  ? fuse_request_end+0x60f/0x770
+[   26.070181]  ? fuse_request_end+0x121/0x770
+[   26.070466]  ? fuse_request_end+0x60f/0x770
+[   26.070753]  ? fuse_request_end+0x60f/0x770
+[   27.119330] WARNING: CPU: 1 PID: 823 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   27.122783] RIP: 0010:fuse_request_end+0x60f/0x770
+[   27.133806]  ? fuse_request_end+0x60f/0x770
+[   27.134399]  ? fuse_request_end+0x60f/0x770
+[   27.135451]  ? fuse_request_end+0x121/0x770
+[   27.135705]  ? fuse_request_end+0x60f/0x770
+[   27.135954]  ? fuse_request_end+0x60f/0x770
+[   27.995484] WARNING: CPU: 1 PID: 879 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   27.999044] RIP: 0010:fuse_request_end+0x60f/0x770
+[   28.008651]  ? fuse_request_end+0x60f/0x770
+[   28.009589]  ? fuse_request_end+0x60f/0x770
+[   28.010700]  ? fuse_request_end+0x121/0x770
+[   28.010974]  ? fuse_request_end+0x60f/0x770
+[   28.011246]  ? fuse_request_end+0x60f/0x770
+[   29.698376] WARNING: CPU: 1 PID: 991 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   29.701754] RIP: 0010:fuse_request_end+0x60f/0x770
+[   29.710397]  ? fuse_request_end+0x60f/0x770
+[   29.710933]  ? fuse_request_end+0x60f/0x770
+[   29.712017]  ? fuse_request_end+0x121/0x770
+[   29.712296]  ? fuse_request_end+0x60f/0x770
+[   29.712595]  ? fuse_request_end+0x60f/0x770
+[   31.654225] WARNING: CPU: 1 PID: 1119 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   31.656649] RIP: 0010:fuse_request_end+0x60f/0x770
+[   31.664843]  ? fuse_request_end+0x60f/0x770
+[   31.665422]  ? fuse_request_end+0x60f/0x770
+[   31.666608]  ? fuse_request_end+0x121/0x770
+[   31.666910]  ? fuse_request_end+0x60f/0x770
+[   31.667212]  ? fuse_request_end+0x60f/0x770
+[   32.703309] WARNING: CPU: 0 PID: 1187 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   32.706807] RIP: 0010:fuse_request_end+0x60f/0x770
+[   32.715532]  ? fuse_request_end+0x60f/0x770
+[   32.716071]  ? fuse_request_end+0x60f/0x770
+[   32.717173]  ? fuse_request_end+0x121/0x770
+[   32.717454]  ? fuse_request_end+0x60f/0x770
+[   32.717734]  ? fuse_request_end+0x60f/0x770
+[   66.955355] WARNING: CPU: 1 PID: 3454 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   66.958787] RIP: 0010:fuse_request_end+0x60f/0x770
+[   66.968611]  ? fuse_request_end+0x60f/0x770
+[   66.969236]  ? fuse_request_end+0x60f/0x770
+[   66.970368]  ? fuse_request_end+0x121/0x770
+[   66.970649]  ? fuse_request_end+0x60f/0x770
+[   66.970946]  ? fuse_request_end+0x60f/0x770
+[   68.679628] WARNING: CPU: 0 PID: 3566 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   68.683038] RIP: 0010:fuse_request_end+0x60f/0x770
+[   68.691468]  ? fuse_request_end+0x60f/0x770
+[   68.692045]  ? fuse_request_end+0x60f/0x770
+[   68.693218]  ? fuse_request_end+0x121/0x770
+[   68.693525]  ? fuse_request_end+0x60f/0x770
+[   68.693836]  ? fuse_request_end+0x60f/0x770
+[   87.464312] WARNING: CPU: 1 PID: 4814 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   87.467754] RIP: 0010:fuse_request_end+0x60f/0x770
+[   87.476746]  ? fuse_request_end+0x60f/0x770
+[   87.477286]  ? fuse_request_end+0x60f/0x770
+[   87.478391]  ? fuse_request_end+0x121/0x770
+[   87.478673]  ? fuse_request_end+0x60f/0x770
+[   87.478945]  ? fuse_request_end+0x60f/0x770
+[  110.400285] WARNING: CPU: 1 PID: 6331 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  110.403769] RIP: 0010:fuse_request_end+0x60f/0x770
+[  110.412721]  ? fuse_request_end+0x60f/0x770
+[  110.413242]  ? fuse_request_end+0x60f/0x770
+[  110.414326]  ? fuse_request_end+0x121/0x770
+[  110.414606]  ? fuse_request_end+0x60f/0x770
+[  110.414899]  ? fuse_request_end+0x60f/0x770
+[  131.403787] WARNING: CPU: 1 PID: 7727 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  131.407250] RIP: 0010:fuse_request_end+0x60f/0x770
+[  131.415941]  ? fuse_request_end+0x60f/0x770
+[  131.416464]  ? fuse_request_end+0x60f/0x770
+[  131.417521]  ? fuse_request_end+0x121/0x770
+[  131.417795]  ? fuse_request_end+0x60f/0x770
+[  131.418086]  ? fuse_request_end+0x60f/0x770
+[  140.399316] WARNING: CPU: 1 PID: 8324 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  140.407076] RIP: 0010:fuse_request_end+0x60f/0x770
+[  140.422434]  ? fuse_request_end+0x60f/0x770
+[  140.423489]  ? fuse_request_end+0x60f/0x770
+[  140.425590]  ? fuse_request_end+0x121/0x770
+[  140.426179]  ? fuse_request_end+0x60f/0x770
+[  140.426728]  ? fuse_request_end+0x60f/0x770
+[  155.673298] WARNING: CPU: 1 PID: 9332 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  155.676880] RIP: 0010:fuse_request_end+0x60f/0x770
+[  155.685887]  ? fuse_request_end+0x60f/0x770
+[  155.686467]  ? fuse_request_end+0x60f/0x770
+[  155.687565]  ? fuse_request_end+0x121/0x770
+[  155.687839]  ? fuse_request_end+0x60f/0x770
+[  155.688116]  ? fuse_request_end+0x60f/0x770
+[  156.947268] WARNING: CPU: 1 PID: 9416 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  156.950342] RIP: 0010:fuse_request_end+0x60f/0x770
+[  156.958162]  ? fuse_request_end+0x60f/0x770
+[  156.958692]  ? fuse_request_end+0x60f/0x770
+[  156.959762]  ? fuse_request_end+0x121/0x770
+[  156.960036]  ? fuse_request_end+0x60f/0x770
+[  156.960313]  ? fuse_request_end+0x60f/0x770
+[  183.778444] WARNING: CPU: 0 PID: 11198 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  183.781939] RIP: 0010:fuse_request_end+0x60f/0x770
+[  183.790445]  ? fuse_request_end+0x60f/0x770
+[  183.790978]  ? fuse_request_end+0x60f/0x770
+[  183.792052]  ? fuse_request_end+0x121/0x770
+[  183.792327]  ? fuse_request_end+0x60f/0x770
+[  183.792599]  ? fuse_request_end+0x60f/0x770
+[  188.156525] WARNING: CPU: 0 PID: 11482 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  188.161168] RIP: 0010:fuse_request_end+0x60f/0x770
+[  188.168888]  ? fuse_request_end+0x60f/0x770
+[  188.169398]  ? fuse_request_end+0x60f/0x770
+[  188.170475]  ? fuse_request_end+0x121/0x770
+[  188.170740]  ? fuse_request_end+0x60f/0x770
+[  188.171005]  ? fuse_request_end+0x60f/0x770
+[  190.941342] WARNING: CPU: 0 PID: 11666 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  190.944793] RIP: 0010:fuse_request_end+0x60f/0x770
+[  190.952908]  ? fuse_request_end+0x60f/0x770
+[  190.953327]  ? fuse_request_end+0x60f/0x770
+[  190.954156]  ? fuse_request_end+0x121/0x770
+[  190.954369]  ? fuse_request_end+0x60f/0x770
+[  190.954582]  ? fuse_request_end+0x60f/0x770
+[  200.012874] WARNING: CPU: 0 PID: 12266 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  200.023256] RIP: 0010:fuse_request_end+0x60f/0x770
+[  200.037741]  ? fuse_request_end+0x60f/0x770
+[  200.038642]  ? fuse_request_end+0x60f/0x770
+[  200.040349]  ? fuse_request_end+0x121/0x770
+[  200.040779]  ? fuse_request_end+0x60f/0x770
+[  200.041152]  ? fuse_request_end+0x60f/0x770
+[  205.805287] WARNING: CPU: 0 PID: 12647 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  205.808643] RIP: 0010:fuse_request_end+0x60f/0x770
+[  205.816515]  ? fuse_request_end+0x60f/0x770
+[  205.817056]  ? fuse_request_end+0x60f/0x770
+[  205.818164]  ? fuse_request_end+0x121/0x770
+[  205.818450]  ? fuse_request_end+0x60f/0x770
+[  205.818733]  ? fuse_request_end+0x60f/0x770
+[  210.217419] WARNING: CPU: 1 PID: 12935 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  210.221118] RIP: 0010:fuse_request_end+0x60f/0x770
+[  210.230760]  ? fuse_request_end+0x60f/0x770
+[  210.231270]  ? fuse_request_end+0x60f/0x770
+[  210.232330]  ? fuse_request_end+0x121/0x770
+[  210.232593]  ? fuse_request_end+0x60f/0x770
+[  210.232866]  ? fuse_request_end+0x60f/0x770
+[  227.560356] WARNING: CPU: 1 PID: 14079 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  227.563937] RIP: 0010:fuse_request_end+0x60f/0x770
+[  227.572390]  ? fuse_request_end+0x60f/0x770
+[  227.572931]  ? fuse_request_end+0x60f/0x770
+[  227.574039]  ? fuse_request_end+0x121/0x770
+[  227.574324]  ? fuse_request_end+0x60f/0x770
+[  227.574610]  ? fuse_request_end+0x60f/0x770
+[  229.066471] WARNING: CPU: 1 PID: 14175 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  229.077048] RIP: 0010:fuse_request_end+0x60f/0x770
+[  229.093253]  ? fuse_request_end+0x60f/0x770
+[  229.094344]  ? fuse_request_end+0x60f/0x770
+[  229.096401]  ? fuse_request_end+0x121/0x770
+[  229.096795]  ? fuse_request_end+0x60f/0x770
+[  229.097202]  ? fuse_request_end+0x60f/0x770
+[  229.177412] WARNING: CPU: 0 PID: 14179 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  229.181927] RIP: 0010:fuse_request_end+0x60f/0x770
+[  229.190700]  ? fuse_request_end+0x60f/0x770
+[  229.191313]  ? fuse_request_end+0x60f/0x770
+[  229.192536]  ? fuse_request_end+0x121/0x770
+[  229.192850]  ? fuse_request_end+0x60f/0x770
+[  229.193164]  ? fuse_request_end+0x60f/0x770, FAIL|
+|0922_192537|git bisect bad 509a6458b44f72bb6854854c89cf76e56f11c9f1|
+|0922_192538|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m ac5cffec53be0b0231b89470a357bd3a5814f599 -d /var/www/html/bzimage -o /tmp/kernel|
+|0922_200520|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0922_200546|Run /var/www/html/bzimage/bzImage_ac5cffec53be0b0231b89470a357bd3a5814f599 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0922_200608|It takes 22 seconds to find login:test login: |
+|0922_200608|Boot 1 time: takes 22 seconds to boot up.|
+|0922_200608|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0922_200610|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0922_200611|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog root@localhost:/root/repro.c|
+|0922_200613|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0922_200613|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0922_200944|/var/www/html/bzimage/bzImage_ac5cffec53be0b0231b89470a357bd3a5814f599 contained fuse_request_end:[   28.302280] WARNING: CPU: 0 PID: 779 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   28.312152] RIP: 0010:fuse_request_end+0x60f/0x770
+[   28.326831]  ? fuse_request_end+0x60f/0x770
+[   28.327586]  ? fuse_request_end+0x60f/0x770
+[   28.329051]  ? fuse_request_end+0x121/0x770
+[   28.329422]  ? fuse_request_end+0x60f/0x770
+[   28.329729]  ? fuse_request_end+0x60f/0x770
+[   28.895359] WARNING: CPU: 1 PID: 815 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   28.897707] RIP: 0010:fuse_request_end+0x60f/0x770
+[   28.906164]  ? fuse_request_end+0x60f/0x770
+[   28.906727]  ? fuse_request_end+0x60f/0x770
+[   28.907871]  ? fuse_request_end+0x121/0x770
+[   28.908165]  ? fuse_request_end+0x60f/0x770
+[   28.908479]  ? fuse_request_end+0x60f/0x770
+[   34.253256] WARNING: CPU: 0 PID: 1163 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   34.261341] RIP: 0010:fuse_request_end+0x60f/0x770
+[   34.277500]  ? fuse_request_end+0x60f/0x770
+[   34.278619]  ? fuse_request_end+0x60f/0x770
+[   34.280891]  ? fuse_request_end+0x121/0x770
+[   34.281474]  ? fuse_request_end+0x60f/0x770
+[   34.282056]  ? fuse_request_end+0x60f/0x770
+[   37.633830] WARNING: CPU: 1 PID: 1379 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   37.639023] RIP: 0010:fuse_request_end+0x60f/0x770
+[   37.652703]  ? fuse_request_end+0x60f/0x770
+[   37.653622]  ? fuse_request_end+0x60f/0x770
+[   37.654983]  ? fuse_request_end+0x121/0x770
+[   37.655326]  ? fuse_request_end+0x60f/0x770
+[   37.655686]  ? fuse_request_end+0x60f/0x770
+[   42.901223] WARNING: CPU: 0 PID: 1719 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   42.907842] RIP: 0010:fuse_request_end+0x60f/0x770
+[   42.922546]  ? fuse_request_end+0x60f/0x770
+[   42.923234]  ? fuse_request_end+0x60f/0x770
+[   42.924622]  ? fuse_request_end+0x121/0x770
+[   42.924981]  ? fuse_request_end+0x60f/0x770
+[   42.925341]  ? fuse_request_end+0x60f/0x770
+[   67.951500] WARNING: CPU: 0 PID: 3375 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   67.954102] RIP: 0010:fuse_request_end+0x60f/0x770
+[   67.962425]  ? fuse_request_end+0x60f/0x770
+[   67.962971]  ? fuse_request_end+0x60f/0x770
+[   67.964140]  ? fuse_request_end+0x121/0x770
+[   67.964464]  ? fuse_request_end+0x60f/0x770
+[   67.964773]  ? fuse_request_end+0x60f/0x770
+[   72.790011] WARNING: CPU: 1 PID: 3691 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   72.792597] RIP: 0010:fuse_request_end+0x60f/0x770
+[   72.800663]  ? fuse_request_end+0x60f/0x770
+[   72.801427]  ? fuse_request_end+0x60f/0x770
+[   72.802551]  ? fuse_request_end+0x121/0x770
+[   72.802840]  ? fuse_request_end+0x60f/0x770
+[   72.803127]  ? fuse_request_end+0x60f/0x770
+[   73.599253] WARNING: CPU: 1 PID: 3743 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   73.605505] RIP: 0010:fuse_request_end+0x60f/0x770
+[   73.617553]  ? fuse_request_end+0x60f/0x770
+[   73.618207]  ? fuse_request_end+0x60f/0x770
+[   73.619421]  ? fuse_request_end+0x121/0x770
+[   73.619734]  ? fuse_request_end+0x60f/0x770
+[   73.620049]  ? fuse_request_end+0x60f/0x770
+[   76.933750] WARNING: CPU: 1 PID: 3963 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   76.940196] RIP: 0010:fuse_request_end+0x60f/0x770
+[   76.949081]  ? fuse_request_end+0x60f/0x770
+[   76.949712]  ? fuse_request_end+0x60f/0x770
+[   76.951038]  ? fuse_request_end+0x121/0x770
+[   76.951367]  ? fuse_request_end+0x60f/0x770
+[   76.951701]  ? fuse_request_end+0x60f/0x770
+[   80.690761] WARNING: CPU: 1 PID: 4211 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   80.697930] RIP: 0010:fuse_request_end+0x60f/0x770
+[   80.706736]  ? fuse_request_end+0x60f/0x770
+[   80.707378]  ? fuse_request_end+0x60f/0x770
+[   80.708689]  ? fuse_request_end+0x121/0x770
+[   80.709020]  ? fuse_request_end+0x60f/0x770
+[   80.709343]  ? fuse_request_end+0x60f/0x770
+[   97.556841] WARNING: CPU: 1 PID: 5327 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   97.561921] RIP: 0010:fuse_request_end+0x60f/0x770
+[   97.576538]  ? fuse_request_end+0x60f/0x770
+[   97.577556]  ? fuse_request_end+0x60f/0x770
+[   97.579573]  ? fuse_request_end+0x121/0x770
+[   97.580091]  ? fuse_request_end+0x60f/0x770
+[   97.580666]  ? fuse_request_end+0x60f/0x770
+[  109.633382] WARNING: CPU: 0 PID: 6124 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  109.637126] RIP: 0010:fuse_request_end+0x60f/0x770
+[  109.646112]  ? fuse_request_end+0x60f/0x770
+[  109.646661]  ? fuse_request_end+0x60f/0x770
+[  109.647770]  ? fuse_request_end+0x121/0x770
+[  109.648056]  ? fuse_request_end+0x60f/0x770
+[  109.648343]  ? fuse_request_end+0x60f/0x770
+[  128.535606] WARNING: CPU: 0 PID: 7392 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  128.538821] RIP: 0010:fuse_request_end+0x60f/0x770
+[  128.544975]  ? fuse_request_end+0x60f/0x770
+[  128.545399]  ? fuse_request_end+0x60f/0x770
+[  128.546261]  ? fuse_request_end+0x121/0x770
+[  128.546485]  ? fuse_request_end+0x60f/0x770
+[  128.546711]  ? fuse_request_end+0x60f/0x770
+[  135.166603] WARNING: CPU: 1 PID: 7840 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  135.171658] RIP: 0010:fuse_request_end+0x60f/0x770
+[  135.177930]  ? fuse_request_end+0x60f/0x770
+[  135.178372]  ? fuse_request_end+0x60f/0x770
+[  135.179266]  ? fuse_request_end+0x121/0x770
+[  135.179495]  ? fuse_request_end+0x60f/0x770
+[  135.179723]  ? fuse_request_end+0x60f/0x770
+[  146.627606] WARNING: CPU: 1 PID: 8609 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  146.631010] RIP: 0010:fuse_request_end+0x60f/0x770
+[  146.639381]  ? fuse_request_end+0x60f/0x770
+[  146.639927]  ? fuse_request_end+0x60f/0x770
+[  146.641045]  ? fuse_request_end+0x121/0x770
+[  146.641328]  ? fuse_request_end+0x60f/0x770
+[  146.641629]  ? fuse_request_end+0x60f/0x770
+[  149.986770] WARNING: CPU: 0 PID: 8829 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  149.989432] RIP: 0010:fuse_request_end+0x60f/0x770
+[  149.997790]  ? fuse_request_end+0x60f/0x770
+[  149.998357]  ? fuse_request_end+0x60f/0x770
+[  149.999489]  ? fuse_request_end+0x121/0x770
+[  149.999783]  ? fuse_request_end+0x60f/0x770
+[  150.000077]  ? fuse_request_end+0x60f/0x770
+[  156.490679] WARNING: CPU: 1 PID: 9261 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  156.493343] RIP: 0010:fuse_request_end+0x60f/0x770
+[  156.501371]  ? fuse_request_end+0x60f/0x770
+[  156.501932]  ? fuse_request_end+0x60f/0x770
+[  156.503054]  ? fuse_request_end+0x121/0x770
+[  156.503350]  ? fuse_request_end+0x60f/0x770
+[  156.503641]  ? fuse_request_end+0x60f/0x770
+[  161.289628] WARNING: CPU: 1 PID: 9582 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  161.293122] RIP: 0010:fuse_request_end+0x60f/0x770
+[  161.301124]  ? fuse_request_end+0x60f/0x770
+[  161.301684]  ? fuse_request_end+0x60f/0x770
+[  161.302752]  ? fuse_request_end+0x121/0x770
+[  161.303024]  ? fuse_request_end+0x60f/0x770
+[  161.303298]  ? fuse_request_end+0x60f/0x770
+[  175.277703] WARNING: CPU: 0 PID: 10510 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  175.286759] RIP: 0010:fuse_request_end+0x60f/0x770
+[  175.303003]  ? fuse_request_end+0x60f/0x770
+[  175.303581]  ? fuse_request_end+0x60f/0x770
+[  175.304777]  ? fuse_request_end+0x121/0x770
+[  175.305081]  ? fuse_request_end+0x60f/0x770
+[  175.305386]  ? fuse_request_end+0x60f/0x770
+[  183.142749] WARNING: CPU: 0 PID: 11035 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  183.153195] RIP: 0010:fuse_request_end+0x60f/0x770
+[  183.168595]  ? fuse_request_end+0x60f/0x770
+[  183.169588]  ? fuse_request_end+0x60f/0x770
+[  183.171579]  ? fuse_request_end+0x121/0x770
+[  183.172095]  ? fuse_request_end+0x60f/0x770
+[  183.172671]  ? fuse_request_end+0x60f/0x770
+[  193.982636] WARNING: CPU: 0 PID: 11743 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  193.986360] RIP: 0010:fuse_request_end+0x60f/0x770
+[  193.995466]  ? fuse_request_end+0x60f/0x770
+[  193.995988]  ? fuse_request_end+0x60f/0x770
+[  193.997052]  ? fuse_request_end+0x121/0x770
+[  193.997318]  ? fuse_request_end+0x60f/0x770
+[  193.997589]  ? fuse_request_end+0x60f/0x770
+[  201.218735] WARNING: CPU: 0 PID: 12223 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  201.229778] RIP: 0010:fuse_request_end+0x60f/0x770
+[  201.237793]  ? fuse_request_end+0x60f/0x770
+[  201.238316]  ? fuse_request_end+0x60f/0x770
+[  201.239370]  ? fuse_request_end+0x121/0x770
+[  201.239643]  ? fuse_request_end+0x60f/0x770
+[  201.239919]  ? fuse_request_end+0x60f/0x770
+[  202.619484] WARNING: CPU: 0 PID: 12315 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  202.622258] RIP: 0010:fuse_request_end+0x60f/0x770
+[  202.629594]  ? fuse_request_end+0x60f/0x770
+[  202.630108]  ? fuse_request_end+0x60f/0x770
+[  202.631153]  ? fuse_request_end+0x121/0x770
+[  202.631418]  ? fuse_request_end+0x60f/0x770
+[  202.631685]  ? fuse_request_end+0x60f/0x770
+[  206.346570] WARNING: CPU: 0 PID: 12563 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  206.348986] RIP: 0010:fuse_request_end+0x60f/0x770
+[  206.356987]  ? fuse_request_end+0x60f/0x770
+[  206.357549]  ? fuse_request_end+0x60f/0x770
+[  206.358675]  ? fuse_request_end+0x121/0x770
+[  206.358966]  ? fuse_request_end+0x60f/0x770
+[  206.359258]  ? fuse_request_end+0x60f/0x770
+[  215.742659] WARNING: CPU: 0 PID: 13191 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  215.745976] RIP: 0010:fuse_request_end+0x60f/0x770
+[  215.753814]  ? fuse_request_end+0x60f/0x770
+[  215.754350]  ? fuse_request_end+0x60f/0x770
+[  215.755418]  ? fuse_request_end+0x121/0x770
+[  215.755693]  ? fuse_request_end+0x60f/0x770
+[  215.755969]  ? fuse_request_end+0x60f/0x770
+[  216.681715] WARNING: CPU: 1 PID: 13251 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  216.691999] RIP: 0010:fuse_request_end+0x60f/0x770
+[  216.707831]  ? fuse_request_end+0x60f/0x770
+[  216.708906]  ? fuse_request_end+0x60f/0x770
+[  216.710997]  ? fuse_request_end+0x121/0x770
+[  216.711519]  ? fuse_request_end+0x60f/0x770
+[  216.712054]  ? fuse_request_end+0x60f/0x770
+[  216.799607] WARNING: CPU: 1 PID: 13255 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  216.809232] RIP: 0010:fuse_request_end+0x60f/0x770
+[  216.821686]  ? fuse_request_end+0x60f/0x770
+[  216.822264]  ? fuse_request_end+0x60f/0x770
+[  216.823407]  ? fuse_request_end+0x121/0x770
+[  216.823702]  ? fuse_request_end+0x60f/0x770
+[  216.824050]  ? fuse_request_end+0x60f/0x770
+[  225.781869] WARNING: CPU: 1 PID: 13851 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  225.790593] RIP: 0010:fuse_request_end+0x60f/0x770
+[  225.800216]  ? fuse_request_end+0x60f/0x770
+[  225.800818]  ? fuse_request_end+0x60f/0x770
+[  225.802500]  ? fuse_request_end+0x121/0x770
+[  225.802776]  ? fuse_request_end+0x60f/0x770
+[  225.803053]  ? fuse_request_end+0x60f/0x770
+[  236.918856] WARNING: CPU: 0 PID: 14595 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  236.926346] RIP: 0010:fuse_request_end+0x60f/0x770
+[  236.940718]  ? fuse_request_end+0x60f/0x770
+[  236.941706]  ? fuse_request_end+0x60f/0x770
+[  236.943686]  ? fuse_request_end+0x121/0x770
+[  236.944198]  ? fuse_request_end+0x60f/0x770
+[  236.944746]  ? fuse_request_end+0x60f/0x770, FAIL|
+|0922_200944|git bisect bad ac5cffec53be0b0231b89470a357bd3a5814f599|
+|0922_200945|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 5de8acb41c86f1d335d165e0a350441ea3a1f480 -d /var/www/html/bzimage -o /tmp/kernel|
+|0922_204958|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0922_205026|Run /var/www/html/bzimage/bzImage_5de8acb41c86f1d335d165e0a350441ea3a1f480 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0922_205042|It takes 16 seconds to find login:test login: |
+|0922_205042|Boot 1 time: takes 16 seconds to boot up.|
+|0922_205042|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0922_205043|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0922_205044|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/ab207309c9725be898d250b81a58b0149f981b5f/repro.cprog root@localhost:/root/repro.c|
+|0922_205046|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0922_205046|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0922_205417|/var/www/html/bzimage/bzImage_5de8acb41c86f1d335d165e0a350441ea3a1f480 contained fuse_request_end:[   37.341690] WARNING: CPU: 0 PID: 1890 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   37.345415] RIP: 0010:fuse_request_end+0x60f/0x770
+[   37.355279]  ? fuse_request_end+0x60f/0x770
+[   37.355707]  ? fuse_request_end+0x60f/0x770
+[   37.356498]  ? fuse_request_end+0x121/0x770
+[   37.356704]  ? fuse_request_end+0x60f/0x770
+[   37.356902]  ? fuse_request_end+0x60f/0x770
+[   60.603512] WARNING: CPU: 0 PID: 3469 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   60.607495] RIP: 0010:fuse_request_end+0x60f/0x770
+[   60.617848]  ? fuse_request_end+0x60f/0x770
+[   60.618334]  ? fuse_request_end+0x60f/0x770
+[   60.619165]  ? fuse_request_end+0x121/0x770
+[   60.619382]  ? fuse_request_end+0x60f/0x770
+[   60.619592]  ? fuse_request_end+0x60f/0x770
+[   61.743620] WARNING: CPU: 1 PID: 3545 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   61.745366] RIP: 0010:fuse_request_end+0x60f/0x770
+[   61.750708]  ? fuse_request_end+0x60f/0x770
+[   61.751080]  ? fuse_request_end+0x60f/0x770
+[   61.751830]  ? fuse_request_end+0x121/0x770
+[   61.752026]  ? fuse_request_end+0x60f/0x770
+[   61.752220]  ? fuse_request_end+0x60f/0x770
+[   75.692584] WARNING: CPU: 0 PID: 4485 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   75.698638] RIP: 0010:fuse_request_end+0x60f/0x770
+[   75.709778]  ? fuse_request_end+0x60f/0x770
+[   75.710631]  ? fuse_request_end+0x60f/0x770
+[   75.711692]  ? fuse_request_end+0x121/0x770
+[   75.711972]  ? fuse_request_end+0x60f/0x770
+[   75.712247]  ? fuse_request_end+0x60f/0x770
+[   76.034316] WARNING: CPU: 0 PID: 4505 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   76.041090] RIP: 0010:fuse_request_end+0x60f/0x770
+[   76.053875]  ? fuse_request_end+0x60f/0x770
+[   76.054455]  ? fuse_request_end+0x60f/0x770
+[   76.055560]  ? fuse_request_end+0x121/0x770
+[   76.055841]  ? fuse_request_end+0x60f/0x770
+[   76.056136]  ? fuse_request_end+0x60f/0x770
+[   85.571512] WARNING: CPU: 1 PID: 5137 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[   85.574995] RIP: 0010:fuse_request_end+0x60f/0x770
+[   85.583824]  ? fuse_request_end+0x60f/0x770
+[   85.584275]  ? fuse_request_end+0x60f/0x770
+[   85.585175]  ? fuse_request_end+0x121/0x770
+[   85.585407]  ? fuse_request_end+0x60f/0x770
+[   85.585641]  ? fuse_request_end+0x60f/0x770
+[  146.069479] WARNING: CPU: 0 PID: 9219 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  146.072931] RIP: 0010:fuse_request_end+0x60f/0x770
+[  146.082531]  ? fuse_request_end+0x60f/0x770
+[  146.082953]  ? fuse_request_end+0x60f/0x770
+[  146.083785]  ? fuse_request_end+0x121/0x770
+[  146.083982]  ? fuse_request_end+0x60f/0x770
+[  146.084179]  ? fuse_request_end+0x60f/0x770
+[  162.409665] WARNING: CPU: 0 PID: 10324 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  162.413238] RIP: 0010:fuse_request_end+0x60f/0x770
+[  162.421260]  ? fuse_request_end+0x60f/0x770
+[  162.421640]  ? fuse_request_end+0x60f/0x770
+[  162.422430]  ? fuse_request_end+0x121/0x770
+[  162.422628]  ? fuse_request_end+0x60f/0x770
+[  162.422841]  ? fuse_request_end+0x60f/0x770
+[  164.970634] WARNING: CPU: 0 PID: 10496 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  164.974099] RIP: 0010:fuse_request_end+0x60f/0x770
+[  164.983212]  ? fuse_request_end+0x60f/0x770
+[  164.983602]  ? fuse_request_end+0x60f/0x770
+[  164.984984]  ? fuse_request_end+0x121/0x770
+[  164.985396]  ? fuse_request_end+0x60f/0x770
+[  164.985812]  ? fuse_request_end+0x60f/0x770
+[  169.981698] WARNING: CPU: 0 PID: 10832 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  169.985832] RIP: 0010:fuse_request_end+0x60f/0x770
+[  169.995398]  ? fuse_request_end+0x60f/0x770
+[  169.995833]  ? fuse_request_end+0x60f/0x770
+[  169.996615]  ? fuse_request_end+0x121/0x770
+[  169.996813]  ? fuse_request_end+0x60f/0x770
+[  169.997016]  ? fuse_request_end+0x60f/0x770
+[  190.239210] WARNING: CPU: 0 PID: 12192 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  190.242476] RIP: 0010:fuse_request_end+0x60f/0x770
+[  190.249738]  ? fuse_request_end+0x60f/0x770
+[  190.250213]  ? fuse_request_end+0x60f/0x770
+[  190.251130]  ? fuse_request_end+0x121/0x770
+[  190.251370]  ? fuse_request_end+0x60f/0x770
+[  190.251605]  ? fuse_request_end+0x60f/0x770
+[  190.686614] WARNING: CPU: 0 PID: 12220 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  190.690132] RIP: 0010:fuse_request_end+0x60f/0x770
+[  190.698553]  ? fuse_request_end+0x60f/0x770
+[  190.699022]  ? fuse_request_end+0x60f/0x770
+[  190.699981]  ? fuse_request_end+0x121/0x770
+[  190.700216]  ? fuse_request_end+0x60f/0x770
+[  190.700452]  ? fuse_request_end+0x60f/0x770
+[  195.401500] WARNING: CPU: 1 PID: 12532 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  195.405101] RIP: 0010:fuse_request_end+0x60f/0x770
+[  195.414629]  ? fuse_request_end+0x60f/0x770
+[  195.415091]  ? fuse_request_end+0x60f/0x770
+[  195.416010]  ? fuse_request_end+0x121/0x770
+[  195.416248]  ? fuse_request_end+0x60f/0x770
+[  195.416488]  ? fuse_request_end+0x60f/0x770
+[  209.204908] WARNING: CPU: 1 PID: 13448 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  209.212130] RIP: 0010:fuse_request_end+0x60f/0x770
+[  209.221033]  ? fuse_request_end+0x60f/0x770
+[  209.221523]  ? fuse_request_end+0x60f/0x770
+[  209.222512]  ? fuse_request_end+0x121/0x770
+[  209.222765]  ? fuse_request_end+0x60f/0x770
+[  209.223017]  ? fuse_request_end+0x60f/0x770
+[  210.501736] WARNING: CPU: 0 PID: 13532 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  210.505687] RIP: 0010:fuse_request_end+0x60f/0x770
+[  210.513844]  ? fuse_request_end+0x60f/0x770
+[  210.514394]  ? fuse_request_end+0x60f/0x770
+[  210.515463]  ? fuse_request_end+0x121/0x770
+[  210.515736]  ? fuse_request_end+0x60f/0x770
+[  210.516016]  ? fuse_request_end+0x60f/0x770
+[  211.893457] WARNING: CPU: 1 PID: 13624 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  211.896949] RIP: 0010:fuse_request_end+0x60f/0x770
+[  211.906993]  ? fuse_request_end+0x60f/0x770
+[  211.907463]  ? fuse_request_end+0x60f/0x770
+[  211.908417]  ? fuse_request_end+0x121/0x770
+[  211.908646]  ? fuse_request_end+0x60f/0x770
+[  211.908892]  ? fuse_request_end+0x60f/0x770
+[  228.443543] WARNING: CPU: 0 PID: 14744 at fs/fuse/dev.c:348 fuse_request_end+0x60f/0x770
+[  228.447071] RIP: 0010:fuse_request_end+0x60f/0x770
+[  228.460349]  ? fuse_request_end+0x60f/0x770
+[  228.460727]  ? fuse_request_end+0x60f/0x770
+[  228.461500]  ? fuse_request_end+0x121/0x770
+[  228.461696]  ? fuse_request_end+0x60f/0x770
+[  228.461896]  ? fuse_request_end+0x60f/0x770, FAIL|
+|0922_205417|git bisect bad 5de8acb41c86f1d335d165e0a350441ea3a1f480|
+|0922_205418|Bisect PASS: find bad commit: 5de8acb41c86f1d335d165e0a350441ea3a1f480 is the first bad commit
+commit 5de8acb41c86f1d335d165e0a350441ea3a1f480
+Author: Miklos Szeredi <mszeredi@redhat.com>
+Date:   Wed May 29 17:09:07 2024 +0200
+
+    fuse: cleanup request queuing towards virtiofs
+    
+    Virtiofs has its own queuing mechanism, but still requests are first queued
+    on fiq->pending to be immediately dequeued and queued onto the virtio
+    queue.
+    
+    The queuing on fiq->pending is unnecessary and might even have some
+    performance impact due to being a contention point.
+    
+    Forget requests are handled similarly.
+    
+    Move the queuing of requests and forgets into the fiq->ops->*.
+    fuse_iqueue_ops are renamed to reflect the new semantics.
+    
+    Reviewed-by: Stefan Hajnoczi <stefanha@redhat.com>
+    Fixed-by: Jingbo Xu <jefflexu@linux.alibaba.com>
+    Reviewed-by: Jingbo Xu <jefflexu@linux.alibaba.com>
+    Tested-by: Peter-Jan Gootzen <pgootzen@nvidia.com>
+    Reviewed-by: Peter-Jan Gootzen <pgootzen@nvidia.com>
+    Signed-off-by: Miklos Szeredi <mszeredi@redhat.com>
+
+ fs/fuse/dev.c       | 159 ++++++++++++++++++++++++++++------------------------
+ fs/fuse/fuse_i.h    |  19 ++-----
+ fs/fuse/virtio_fs.c |  41 +++++---------
+ 3 files changed, 106 insertions(+), 113 deletions(-)|
+|0922_205418|cmd=git bisect log >> /var/www/html/bzimage/bi.log|
+|0922_205418|cmd=git bisect log >> /var/www/html/bzimage/0922_114402_fuse_request_end/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [55bcd2e0d04c1171d382badef1def1fd04ef66c5] Add linux-next specific files for 20240918
+git bisect bad 55bcd2e0d04c1171d382badef1def1fd04ef66c5
+# status: waiting for good commit(s), bad commit known
+# good: [98f7e32f20d28ec452afb208f9cffc08448a2652] Linux 6.11
+git bisect good 98f7e32f20d28ec452afb208f9cffc08448a2652
+# good: [4d9c980a398f4aa447d52676bd5e532631c674aa] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/uml/linux.git
+git bisect good 4d9c980a398f4aa447d52676bd5e532631c674aa
+# bad: [09bf8f1280412a096915cfdb563e6057befbe967] Merge branch 'drm-next' of https://gitlab.freedesktop.org/drm/kernel.git
+git bisect bad 09bf8f1280412a096915cfdb563e6057befbe967
+# bad: [c4d949669edccc9813b66b50bb3222e805744544] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/rdma/rdma.git
+git bisect bad c4d949669edccc9813b66b50bb3222e805744544
+# bad: [588f8e5fdd402f1e3e7fabafd41d314df51e0b97] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git
+git bisect bad 588f8e5fdd402f1e3e7fabafd41d314df51e0b97
+# bad: [f0868c52d58c5c953862318dfd52d311d473e7fe] Merge branch 'ksmbd-for-next' of https://github.com/smfrench/smb3-kernel.git
+git bisect bad f0868c52d58c5c953862318dfd52d311d473e7fe
+# good: [3dcab35d9d3925064e08b14ee5d97de057913d1c] Merge branch 'for_next' of git://git.kernel.org/pub/scm/linux/kernel/git/jack/linux-fs.git
+git bisect good 3dcab35d9d3925064e08b14ee5d97de057913d1c
+# good: [295aa4fdb837afb248f94f91e312008dbecf4578] Merge branch 'dev' of git://git.kernel.org/pub/scm/linux/kernel/git/tytso/ext4.git
+git bisect good 295aa4fdb837afb248f94f91e312008dbecf4578
+# good: [2223fe652f759649ae1d520e47e5f06727c0acbd] f2fs: increase BG GC migration window granularity when boosted for zoned devices
+git bisect good 2223fe652f759649ae1d520e47e5f06727c0acbd
+# bad: [9dc504f244895def513a0f2982c909103d4ab345] virtio_fs: allow idmapped mounts
+git bisect bad 9dc504f244895def513a0f2982c909103d4ab345
+# bad: [aa16880d9f13c6490e80ad614402c8a6fe6f3efa] fuse: add basic infrastructure to support idmappings
+git bisect bad aa16880d9f13c6490e80ad614402c8a6fe6f3efa
+# bad: [9a8ebcf5e04e6cc9472bfcdd90b2aeef35a2f8f6] fuse: convert fuse_writepages_fill() to use a folio for its tmp page
+git bisect bad 9a8ebcf5e04e6cc9472bfcdd90b2aeef35a2f8f6
+# bad: [509a6458b44f72bb6854854c89cf76e56f11c9f1] fuse: drop unused fuse_mount arg in fuse_writepage_finish()
+git bisect bad 509a6458b44f72bb6854854c89cf76e56f11c9f1
+# bad: [ac5cffec53be0b0231b89470a357bd3a5814f599] fuse: add fast path for fuse_range_is_writeback
+git bisect bad ac5cffec53be0b0231b89470a357bd3a5814f599
+# bad: [5de8acb41c86f1d335d165e0a350441ea3a1f480] fuse: cleanup request queuing towards virtiofs
+git bisect bad 5de8acb41c86f1d335d165e0a350441ea3a1f480
+# first bad commit: [5de8acb41c86f1d335d165e0a350441ea3a1f480] fuse: cleanup request queuing towards virtiofs
+|0922_205418|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 55bcd2e0d04c1171d382badef1def1fd04ef66c5 -b 5de8acb41c86f1d335d165e0a350441ea3a1f480 -d /var/www/html/bzimage -o /tmp/kernel -f /var/www/html/bzimage/bzImage_55bcd2e0d04c1171d382badef1def1fd04ef66c5_5de8acb41c86f1d335d165e0a350441ea3a1f480_revert|
+|0922_205458|1st base commit:98f7e32f20d28ec452afb208f9cffc08448a2652!|
+|0922_205458|FAIL|bzImage:/var/www/html/bzimage/bzImage_55bcd2e0d04c1171d382badef1def1fd04ef66c5_5de8acb41c86f1d335d165e0a350441ea3a1f480_revert does not exist:|
+|0922_205458|1st base commit:98f7e32f20d28ec452afb208f9cffc08448a2652!|
+|0922_205458|ISSUE:ab207309c9725be898d250b81a58b0149f981b5f  EMAIL status after check:Email_not_sent|

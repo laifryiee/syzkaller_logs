@@ -1,0 +1,36 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [55bcd2e0d04c1171d382badef1def1fd04ef66c5] Add linux-next specific files for 20240918
+git bisect bad 55bcd2e0d04c1171d382badef1def1fd04ef66c5
+# status: waiting for good commit(s), bad commit known
+# good: [98f7e32f20d28ec452afb208f9cffc08448a2652] Linux 6.11
+git bisect good 98f7e32f20d28ec452afb208f9cffc08448a2652
+# good: [4d9c980a398f4aa447d52676bd5e532631c674aa] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/uml/linux.git
+git bisect good 4d9c980a398f4aa447d52676bd5e532631c674aa
+# bad: [09bf8f1280412a096915cfdb563e6057befbe967] Merge branch 'drm-next' of https://gitlab.freedesktop.org/drm/kernel.git
+git bisect bad 09bf8f1280412a096915cfdb563e6057befbe967
+# bad: [c4d949669edccc9813b66b50bb3222e805744544] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/rdma/rdma.git
+git bisect bad c4d949669edccc9813b66b50bb3222e805744544
+# bad: [588f8e5fdd402f1e3e7fabafd41d314df51e0b97] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git
+git bisect bad 588f8e5fdd402f1e3e7fabafd41d314df51e0b97
+# bad: [f0868c52d58c5c953862318dfd52d311d473e7fe] Merge branch 'ksmbd-for-next' of https://github.com/smfrench/smb3-kernel.git
+git bisect bad f0868c52d58c5c953862318dfd52d311d473e7fe
+# good: [3dcab35d9d3925064e08b14ee5d97de057913d1c] Merge branch 'for_next' of git://git.kernel.org/pub/scm/linux/kernel/git/jack/linux-fs.git
+git bisect good 3dcab35d9d3925064e08b14ee5d97de057913d1c
+# good: [295aa4fdb837afb248f94f91e312008dbecf4578] Merge branch 'dev' of git://git.kernel.org/pub/scm/linux/kernel/git/tytso/ext4.git
+git bisect good 295aa4fdb837afb248f94f91e312008dbecf4578
+# good: [2223fe652f759649ae1d520e47e5f06727c0acbd] f2fs: increase BG GC migration window granularity when boosted for zoned devices
+git bisect good 2223fe652f759649ae1d520e47e5f06727c0acbd
+# bad: [9dc504f244895def513a0f2982c909103d4ab345] virtio_fs: allow idmapped mounts
+git bisect bad 9dc504f244895def513a0f2982c909103d4ab345
+# bad: [aa16880d9f13c6490e80ad614402c8a6fe6f3efa] fuse: add basic infrastructure to support idmappings
+git bisect bad aa16880d9f13c6490e80ad614402c8a6fe6f3efa
+# bad: [9a8ebcf5e04e6cc9472bfcdd90b2aeef35a2f8f6] fuse: convert fuse_writepages_fill() to use a folio for its tmp page
+git bisect bad 9a8ebcf5e04e6cc9472bfcdd90b2aeef35a2f8f6
+# bad: [509a6458b44f72bb6854854c89cf76e56f11c9f1] fuse: drop unused fuse_mount arg in fuse_writepage_finish()
+git bisect bad 509a6458b44f72bb6854854c89cf76e56f11c9f1
+# bad: [ac5cffec53be0b0231b89470a357bd3a5814f599] fuse: add fast path for fuse_range_is_writeback
+git bisect bad ac5cffec53be0b0231b89470a357bd3a5814f599
+# bad: [5de8acb41c86f1d335d165e0a350441ea3a1f480] fuse: cleanup request queuing towards virtiofs
+git bisect bad 5de8acb41c86f1d335d165e0a350441ea3a1f480
+# first bad commit: [5de8acb41c86f1d335d165e0a350441ea3a1f480] fuse: cleanup request queuing towards virtiofs
