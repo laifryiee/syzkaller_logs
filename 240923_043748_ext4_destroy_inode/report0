@@ -1,0 +1,78 @@
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop0): Quotacheck: Done.
+loop3: detected capacity change from 0 to 131072
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 14197 at fs/ext4/super.c:1464 ext4_destroy_inode+0x1de/0x280 fs/ext4/super.c:1464
+Modules linked in:
+CPU: 0 UID: 0 PID: 14197 Comm: syz-executor.1 Not tainted 6.11.0-2024-09-16-intel-next-af0d5be8f9f5+ #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:ext4_destroy_inode+0x1de/0x280 fs/ext4/super.c:1464
+Code: 31 ff 44 89 e6 e8 42 7f 45 ff 45 85 e4 75 16 e8 b8 7b 45 ff 48 8d 65 e0 5b 41 5c 41 5d 41 5e 5d c3 cc cc cc cc e8 a2 7b 45 ff <0f> 0b 48 8d 7b 40 4c 8d 83 50 fd ff ff 48 b8 00 00 00 00 00 fc ff
+RSP: 0018:ff1100003a66fc08 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ff1100003f116fa8 RCX: ffffffff822283fe
+RDX: ff11000036ce2bc0 RSI: ffffffff8222841e RDI: 0000000000000005
+RBP: ff1100003a66fc30 R08: 0000000000000001 R09: ffe21c00021e3ceb
+R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000001
+R13: ff11000010f1e000 R14: ff1100003f117028 R15: ff1100006c12feb0
+FS:  00000000032ba480(0000) GS:ff1100006c200000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000032c3708 CR3: 0000000035270006 CR4: 0000000000771ef0
+DR0: fffffffffffffeff DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ destroy_inode+0xd6/0x1d0 fs/inode.c:313
+ evict+0x5a7/0x930 fs/inode.c:729
+ iput_final fs/inode.c:1838 [inline]
+ iput.part.0+0x543/0x740 fs/inode.c:1864
+ iput+0x68/0x90 fs/inode.c:1854
+ do_unlinkat+0x5dc/0x730 fs/namei.c:4493
+ __do_sys_unlink fs/namei.c:4534 [inline]
+ __se_sys_unlink fs/namei.c:4532 [inline]
+ __x64_sys_unlink+0xd1/0x120 fs/namei.c:4532
+ x64_sys_call+0x2106/0x21c0 arch/x86/include/generated/asm/syscalls_64.h:88
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x455e4b
+Code: 73 01 c3 48 c7 c1 b0 ff ff ff f7 d8 64 89 01 48 83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa b8 57 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffe97645e48 EFLAGS: 00000206 ORIG_RAX: 0000000000000057
+RAX: ffffffffffffffda RBX: 0000000000000037 RCX: 0000000000455e4b
+RDX: 00007ffe97645e60 RSI: 00007ffe97645ef0 RDI: 00007ffe97645ef0
+RBP: 0000000000000000 R08: 0000000000000000 R09: 00007ffe97645ce0
+R10: 0000000000000100 R11: 0000000000000206 R12: 00007ffe97646f90
+R13: 00000000032bb6d0 R14: 0000000000000000 R15: 0000000000000006
+ </TASK>
+irq event stamp: 269655
+hardirqs last  enabled at (269663): [<ffffffff8147b3d4>] __up_console_sem kernel/printk/printk.c:341 [inline]
+hardirqs last  enabled at (269663): [<ffffffff8147b3d4>] __console_unlock kernel/printk/printk.c:2802 [inline]
+hardirqs last  enabled at (269663): [<ffffffff8147b3d4>] console_unlock+0x224/0x240 kernel/printk/printk.c:3121
+hardirqs last disabled at (269670): [<ffffffff8147b3b9>] __up_console_sem kernel/printk/printk.c:339 [inline]
+hardirqs last disabled at (269670): [<ffffffff8147b3b9>] __console_unlock kernel/printk/printk.c:2802 [inline]
+hardirqs last disabled at (269670): [<ffffffff8147b3b9>] console_unlock+0x209/0x240 kernel/printk/printk.c:3121
+softirqs last  enabled at (269410): [<ffffffff812a71c9>] __do_softirq kernel/softirq.c:588 [inline]
+softirqs last  enabled at (269410): [<ffffffff812a71c9>] invoke_softirq kernel/softirq.c:428 [inline]
+softirqs last  enabled at (269410): [<ffffffff812a71c9>] __irq_exit_rcu+0xa9/0x120 kernel/softirq.c:637
+softirqs last disabled at (269401): [<ffffffff812a71c9>] __do_softirq kernel/softirq.c:588 [inline]
+softirqs last disabled at (269401): [<ffffffff812a71c9>] invoke_softirq kernel/softirq.c:428 [inline]
+softirqs last disabled at (269401): [<ffffffff812a71c9>] __irq_exit_rcu+0xa9/0x120 kernel/softirq.c:637
+---[ end trace 0000000000000000 ]---
+EXT4-fs: 56 callbacks suppressed
+EXT4-fs (sda): Inode 151575 (000000007763096e): i_reserved_data_blocks (1) not cleared!
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop3): Mounting V5 Filesystem f37484a6-847f-4c37-be64-3b143b6edc4c
+workqueue: Failed to create a rescuer kthread for wq "xfs-log/loop3": -EINTR
+XFS (loop3): log mount failed
+loop6: detected capacity change from 0 to 8192
+ loop6: p1 p2 p3
+loop6: p3 start 331777 is beyond EOD, truncated
+ loop6: p1 p2 p3
+loop6: p3 start 331777 is beyond EOD, truncated
+ loop6: p1 p2 p3
+loop6: p3 start 331777 is beyond EOD, truncated
+pim6reg (unregistering): left allmulticast mode
+ loop6: p1 p2 p3
+loop6: p3 start 331777 is beyond EOD, truncated
+pim6reg (unregistering): left allmulticast mode

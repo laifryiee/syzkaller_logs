@@ -1,0 +1,47 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [98f7e32f20d28ec452afb208f9cffc08448a2652] Linux 6.11
+git bisect bad 98f7e32f20d28ec452afb208f9cffc08448a2652
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [d8b879c00f69a22738f6bb7198e763cfcc6b68f8] Merge branch 'net-ethernet-ti-am65-cpsw-fix-set-channel-operation'
+git bisect good d8b879c00f69a22738f6bb7198e763cfcc6b68f8
+# good: [5e3704030b240ab6878c32abdc2e38b6bac9dfb8] Merge branch 'bnxt_en-next'
+git bisect good 5e3704030b240ab6878c32abdc2e38b6bac9dfb8
+# good: [07abb19a9b201c11e4367e8a428be7235b6dbd0d] Merge tag 'pm-6.9-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+git bisect good 07abb19a9b201c11e4367e8a428be7235b6dbd0d
+# good: [119d1b8a5d49138b151d3450ceb207dc439f7085] Merge tag 'xfs-6.10-merge-6' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux
+git bisect good 119d1b8a5d49138b151d3450ceb207dc439f7085
+# good: [b1bc554e009e3aeed7e4cfd2e717c7a34a98c683] Merge tag 'media/v6.11-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+git bisect good b1bc554e009e3aeed7e4cfd2e717c7a34a98c683
+# bad: [acc5965b9ff8a1889f5b51466562896d59c6e1b9] Merge tag 'char-misc-6.11-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc
+git bisect bad acc5965b9ff8a1889f5b51466562896d59c6e1b9
+# good: [d076e2bd09f22db8a181a081479008524674b5b3] Merge tag 'drm-misc-next-2024-07-04' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next
+git bisect good d076e2bd09f22db8a181a081479008524674b5b3
+# bad: [f4f92db4391285ef3a688cdad25d5c76db200a30] Merge tag 'for_linus' of git://git.kernel.org/pub/scm/linux/kernel/git/mst/vhost
+git bisect bad f4f92db4391285ef3a688cdad25d5c76db200a30
+# bad: [51ed42a8a135511f6d6f75b56e85e6586a06a93c] Merge tag 'ext4_for_linus-6.11-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/tytso/ext4
+git bisect bad 51ed42a8a135511f6d6f75b56e85e6586a06a93c
+# good: [f669aac34c5f76b58e6cad1fef0643e5ae16d413] Merge tag 'trace-v6.11-2' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+git bisect good f669aac34c5f76b58e6cad1fef0643e5ae16d413
+# good: [dde1a0e1625c08cf4f958348a83434b2ddecf449] Merge tag 'x86-percpu-2024-07-17' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect good dde1a0e1625c08cf4f958348a83434b2ddecf449
+# good: [7dd894c1bf65a9591ba27f6175cf3238748deb47] Merge tag 'sparc-for-6.11-tag1' of git://git.kernel.org/pub/scm/linux/kernel/git/alarsson/linux-sparc
+git bisect good 7dd894c1bf65a9591ba27f6175cf3238748deb47
+# good: [e7b5c6301910427d546603e3cfbf5b1e9304c92e] zh_CN/admin-guide: one typo fix
+git bisect good e7b5c6301910427d546603e3cfbf5b1e9304c92e
+# bad: [be27cd64461c45a6088a91a04eba5cd44e1767ef] ext4: use memtostr_pad() for s_volume_name
+git bisect bad be27cd64461c45a6088a91a04eba5cd44e1767ef
+# good: [b07855348b305c234d9fabb7ab9b50fa9b3a7759] jbd2: remove unnecessary "should_sleep" in kjournald2
+git bisect good b07855348b305c234d9fabb7ab9b50fa9b3a7759
+# bad: [bb6b18057f18e9b7f53a524721060652de151e8a] ext4: drop iblock parameter
+git bisect bad bb6b18057f18e9b7f53a524721060652de151e8a
+# good: [0ea6560abb3bac1ffcfa4bf6b2c4d344fdc27b3c] ext4: check the extent status again before inserting delalloc block
+git bisect good 0ea6560abb3bac1ffcfa4bf6b2c4d344fdc27b3c
+# bad: [14a210c110d1ffbef4ed56e88e3c34de04790ff8] ext4: trim delalloc extent
+git bisect bad 14a210c110d1ffbef4ed56e88e3c34de04790ff8
+# bad: [b37c907073e80016333b442c845c3acc198e570f] ext4: warn if delalloc counters are not zero on inactive
+git bisect bad b37c907073e80016333b442c845c3acc198e570f
+# first bad commit: [b37c907073e80016333b442c845c3acc198e570f] ext4: warn if delalloc counters are not zero on inactive
+|0923_065555|Bisect successfully! 98f7e32f20d28ec452afb208f9cffc08448a2652_b37c907073e80016333b442c845c3acc198e570f_revert bzimage passed!|
