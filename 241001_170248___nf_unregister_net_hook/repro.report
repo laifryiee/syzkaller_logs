@@ -1,0 +1,113 @@
+==================================================================
+BUG: KASAN: slab-use-after-free in __nf_unregister_net_hook+0x640/0x6b0 net/netfilter/core.c:500
+Read of size 8 at addr ffff88801551ac00 by task syz-executor184/703
+
+CPU: 1 UID: 0 PID: 703 Comm: syz-executor184 Not tainted 6.12.0-rc1-8a1813b4b534+ #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:377 [inline]
+ print_report+0xce/0x610 mm/kasan/report.c:488
+ kasan_report+0xcc/0x110 mm/kasan/report.c:601
+ __asan_report_load8_noabort+0x18/0x20 mm/kasan/report_generic.c:381
+ __nf_unregister_net_hook+0x640/0x6b0 net/netfilter/core.c:500
+ nf_unregister_net_hook+0xea/0x140 net/netfilter/core.c:539
+ bpf_nf_link_release net/netfilter/nf_bpf_link.c:121 [inline]
+ bpf_nf_link_release+0xda/0x1e0 net/netfilter/nf_bpf_link.c:112
+ bpf_link_free+0x139/0x2d0 kernel/bpf/syscall.c:3005
+ bpf_link_put_direct kernel/bpf/syscall.c:3045 [inline]
+ bpf_link_release+0x68/0x80 kernel/bpf/syscall.c:3052
+ __fput+0x414/0xb60 fs/file_table.c:431
+ ____fput+0x22/0x30 fs/file_table.c:459
+ task_work_run+0x19c/0x2b0 kernel/task_work.c:228
+ exit_task_work include/linux/task_work.h:40 [inline]
+ do_exit+0xb19/0x2a30 kernel/exit.c:939
+ __secure_computing_strict kernel/seccomp.c:1046 [inline]
+ __secure_computing+0x2f5/0x350 kernel/seccomp.c:1364
+ syscall_trace_enter+0x9b/0x230 kernel/entry/common.c:52
+ syscall_enter_from_user_mode_work include/linux/entry-common.h:168 [inline]
+ syscall_enter_from_user_mode include/linux/entry-common.h:198 [inline]
+ do_syscall_64+0x115/0x140 arch/x86/entry/common.c:79
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f084f718a4d
+Code: Unable to access opcode bytes at 0x7f084f718a23.
+RSP: 002b:00007ffece190098 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 00007f084f7f69e0 RCX: 00007f084f718a4d
+RDX: 00000000000000e7 RSI: ffffffffffffff80 RDI: 0000000000000000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000020
+R10: 00007ffece18ff40 R11: 0000000000000246 R12: 00007f084f7f69e0
+R13: 00007f084f7fbf00 R14: 0000000000000001 R15: 00007f084f7fbee8
+ </TASK>
+
+Allocated by task 703:
+ kasan_save_stack+0x2c/0x60 mm/kasan/common.c:47
+ kasan_save_track+0x18/0x40 mm/kasan/common.c:68
+ kasan_save_alloc_info+0x3c/0x50 mm/kasan/generic.c:565
+ unpoison_slab_object mm/kasan/common.c:319 [inline]
+ __kasan_slab_alloc+0x62/0x80 mm/kasan/common.c:345
+ kasan_slab_alloc include/linux/kasan.h:247 [inline]
+ slab_post_alloc_hook mm/slub.c:4086 [inline]
+ slab_alloc_node mm/slub.c:4135 [inline]
+ kmem_cache_alloc_noprof+0x114/0x370 mm/slub.c:4142
+ net_alloc net/core/net_namespace.c:421 [inline]
+ copy_net_ns+0xf0/0x6e0 net/core/net_namespace.c:480
+ create_new_namespaces+0x403/0xb40 kernel/nsproxy.c:110
+ unshare_nsproxy_namespaces+0xca/0x200 kernel/nsproxy.c:228
+ ksys_unshare+0x424/0xa10 kernel/fork.c:3315
+ __do_sys_unshare kernel/fork.c:3386 [inline]
+ __se_sys_unshare kernel/fork.c:3384 [inline]
+ __x64_sys_unshare+0x3a/0x50 kernel/fork.c:3384
+ x64_sys_call+0xcf1/0x20d0 arch/x86/include/generated/asm/syscalls_64.h:273
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+Freed by task 51:
+ kasan_save_stack+0x2c/0x60 mm/kasan/common.c:47
+ kasan_save_track+0x18/0x40 mm/kasan/common.c:68
+ kasan_save_free_info+0x3f/0x60 mm/kasan/generic.c:579
+ poison_slab_object mm/kasan/common.c:247 [inline]
+ __kasan_slab_free+0x3d/0x60 mm/kasan/common.c:264
+ kasan_slab_free include/linux/kasan.h:230 [inline]
+ slab_free_hook mm/slub.c:2343 [inline]
+ slab_free mm/slub.c:4580 [inline]
+ kmem_cache_free+0x1aa/0x550 mm/slub.c:4682
+ net_free net/core/net_namespace.c:454 [inline]
+ net_free net/core/net_namespace.c:446 [inline]
+ cleanup_net+0x8af/0xae0 net/core/net_namespace.c:647
+ process_one_work+0x92e/0x1b50 kernel/workqueue.c:3229
+ process_scheduled_works kernel/workqueue.c:3310 [inline]
+ worker_thread+0x68d/0xe90 kernel/workqueue.c:3391
+ kthread+0x35a/0x470 kernel/kthread.c:389
+ ret_from_fork+0x56/0x90 arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:244
+
+The buggy address belongs to the object at ffff888015519c00
+ which belongs to the cache net_namespace of size 6912
+The buggy address is located 4096 bytes inside of
+ freed 6912-byte region [ffff888015519c00, ffff88801551b700)
+
+The buggy address belongs to the physical page:
+page: refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x15518
+head: order:3 mapcount:0 entire_mapcount:0 nr_pages_mapped:0 pincount:0
+memcg:ffff8880123a5041
+flags: 0xfffffc0000040(head|node=0|zone=1|lastcpupid=0x1fffff)
+page_type: f5(slab)
+raw: 000fffffc0000040 ffff88800d71cc80 dead000000000122 0000000000000000
+raw: 0000000000000000 0000000080040004 00000001f5000000 ffff8880123a5041
+head: 000fffffc0000040 ffff88800d71cc80 dead000000000122 0000000000000000
+head: 0000000000000000 0000000080040004 00000001f5000000 ffff8880123a5041
+head: 000fffffc0000003 ffffea0000554601 ffffffffffffffff 0000000000000000
+head: 0000000000000008 0000000000000000 00000000ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff88801551ab00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff88801551ab80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+>ffff88801551ac00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+                   ^
+ ffff88801551ac80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff88801551ad00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+==================================================================

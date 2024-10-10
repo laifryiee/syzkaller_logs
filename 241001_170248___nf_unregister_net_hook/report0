@@ -1,0 +1,230 @@
+==================================================================
+BUG: KASAN: slab-use-after-free in __nf_unregister_net_hook+0x640/0x6b0 net/netfilter/core.c:500
+Read of size 8 at addr ffff88803e499000 by task /167374
+
+CPU: 0 UID: 0 PID: 167374 Comm:  Not tainted 6.12.0-rc1-8a1813b4b534+ #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:377 [inline]
+ print_report+0xce/0x610 mm/kasan/report.c:488
+ kasan_report+0xcc/0x110 mm/kasan/report.c:601
+ __asan_report_load8_noabort+0x18/0x20 mm/kasan/report_generic.c:381
+ __nf_unregister_net_hook+0x640/0x6b0 net/netfilter/core.c:500
+ nf_unregister_net_hook+0xea/0x140 net/netfilter/core.c:539
+ bpf_nf_link_release net/netfilter/nf_bpf_link.c:121 [inline]
+ bpf_nf_link_release+0xda/0x1e0 net/netfilter/nf_bpf_link.c:112
+ bpf_link_free+0x139/0x2d0 kernel/bpf/syscall.c:3005
+ bpf_link_put_direct kernel/bpf/syscall.c:3045 [inline]
+ bpf_link_release+0x68/0x80 kernel/bpf/syscall.c:3052
+ __fput+0x414/0xb60 fs/file_table.c:431
+ ____fput+0x22/0x30 fs/file_table.c:459
+ task_work_run+0x19c/0x2b0 kernel/task_work.c:228
+ exit_task_work include/linux/task_work.h:40 [inline]
+ do_exit+0xb19/0x2a30 kernel/exit.c:939
+ __secure_computing_strict kernel/seccomp.c:1046 [inline]
+ __secure_computing+0x2f5/0x350 kernel/seccomp.c:1364
+ syscall_trace_enter+0x9b/0x230 kernel/entry/common.c:52
+ syscall_enter_from_user_mode_work include/linux/entry-common.h:168 [inline]
+ syscall_enter_from_user_mode include/linux/entry-common.h:198 [inline]
+ do_syscall_64+0x115/0x140 arch/x86/entry/common.c:79
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f03f0e3ee5d
+Code: Unable to access opcode bytes at 0x7f03f0e3ee33.
+RSP: 002b:00007f03f1157f38 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 0000000000000001 RCX: 00007f03f0e3ee5d
+RDX: 0000000000000001 RSI: 0000000000000000 RDI: 000000000000000b
+RBP: 000000000000000b R08: 0000000000000000 R09: 0000000000000001
+R10: 0000000000000016 R11: 0000000000000246 R12: 000000000013621c
+R13: 4000000000000000 R14: 00007f03f0e9f560 R15: 0000000000000000
+ </TASK>
+
+Allocated by task 167374:
+ kasan_save_stack+0x2c/0x60 mm/kasan/common.c:47
+ kasan_save_track+0x18/0x40 mm/kasan/common.c:68
+ kasan_save_alloc_info+0x3c/0x50 mm/kasan/generic.c:565
+ unpoison_slab_object mm/kasan/common.c:319 [inline]
+ __kasan_slab_alloc+0x62/0x80 mm/kasan/common.c:345
+ kasan_slab_alloc include/linux/kasan.h:247 [inline]
+ slab_post_alloc_hook mm/slub.c:4086 [inline]
+ slab_alloc_node mm/slub.c:4135 [inline]
+ kmem_cache_alloc_noprof+0x114/0x370 mm/slub.c:4142
+ net_alloc net/core/net_namespace.c:421 [inline]
+ copy_net_ns+0xf0/0x6e0 net/core/net_namespace.c:480
+ create_new_namespaces+0x403/0xb40 kernel/nsproxy.c:110
+ unshare_nsproxy_namespaces+0xca/0x200 kernel/nsproxy.c:228
+ ksys_unshare+0x424/0xa10 kernel/fork.c:3315
+ __do_sys_unshare kernel/fork.c:3386 [inline]
+ __se_sys_unshare kernel/fork.c:3384 [inline]
+ __x64_sys_unshare+0x3a/0x50 kernel/fork.c:3384
+ x64_sys_call+0xcf1/0x20d0 arch/x86/include/generated/asm/syscalls_64.h:273
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+Freed by task 163860:
+ kasan_save_stack+0x2c/0x60 mm/kasan/common.c:47
+ kasan_save_track+0x18/0x40 mm/kasan/common.c:68
+ kasan_save_free_info+0x3f/0x60 mm/kasan/generic.c:579
+ poison_slab_object mm/kasan/common.c:247 [inline]
+ __kasan_slab_free+0x3d/0x60 mm/kasan/common.c:264
+ kasan_slab_free include/linux/kasan.h:230 [inline]
+ slab_free_hook mm/slub.c:2343 [inline]
+ slab_free mm/slub.c:4580 [inline]
+ kmem_cache_free+0x1aa/0x550 mm/slub.c:4682
+ net_free net/core/net_namespace.c:454 [inline]
+ net_free net/core/net_namespace.c:446 [inline]
+ cleanup_net+0x8af/0xae0 net/core/net_namespace.c:647
+ process_one_work+0x92e/0x1b50 kernel/workqueue.c:3229
+ process_scheduled_works kernel/workqueue.c:3310 [inline]
+ worker_thread+0x68d/0xe90 kernel/workqueue.c:3391
+ kthread+0x35a/0x470 kernel/kthread.c:389
+ ret_from_fork+0x56/0x90 arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:244
+
+The buggy address belongs to the object at ffff88803e498000
+ which belongs to the cache net_namespace of size 6912
+The buggy address is located 4096 bytes inside of
+ freed 6912-byte region [ffff88803e498000, ffff88803e499b00)
+
+The buggy address belongs to the physical page:
+page: refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x3e498
+head: order:3 mapcount:0 entire_mapcount:0 nr_pages_mapped:0 pincount:0
+memcg:ffff88800e7c9c81
+flags: 0xfffffc0000040(head|node=0|zone=1|lastcpupid=0x1fffff)
+page_type: f5(slab)
+raw: 000fffffc0000040 ffff88800d71c500 dead000000000100 dead000000000122
+raw: 0000000000000000 0000000080040004 00000001f5000000 ffff88800e7c9c81
+head: 000fffffc0000040 ffff88800d71c500 dead000000000100 dead000000000122
+head: 0000000000000000 0000000080040004 00000001f5000000 ffff88800e7c9c81
+head: 000fffffc0000003 ffffea0000f92601 ffffffffffffffff 0000000000000000
+head: 0000000000000008 0000000000000000 00000000ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff88803e498f00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff88803e498f80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+>ffff88803e499000: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+                   ^
+ ffff88803e499080: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff88803e499100: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+==================================================================
+fuse: Bad value for 'fd'
+loop3: detected capacity change from 0 to 65536
+XFS: attr2 mount option is deprecated.
+netlink: 76 bytes leftover after parsing attributes in process `syz-executor.4'.
+fuse: Unknown parameter 'øΩë··∂u¡e–
+`æS'
+fuse: Unknown parameter 'øΩë··∂u¡e–
+`æS'
+loop6: detected capacity change from 0 to 65536
+Injecting memory failure for pfn 0x66957 at process virtual address 0x20000000
+Memory failure: 0x66957: Sending SIGBUS to syz-executor.2:167452 due to hardware memory corruption
+Memory failure: 0x66957: recovery action for dirty LRU page: Recovered
+Injecting memory failure for pfn 0x3afd1 at process virtual address 0x20001000
+Memory failure: 0x3afd1: Sending SIGBUS to syz-executor.2:167452 due to hardware memory corruption
+Memory failure: 0x3afd1: recovery action for dirty LRU page: Recovered
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20001500
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200000c0
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200000c4
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200000c8
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200000cc
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200000d0
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200000d8
+loop1: detected capacity change from 0 to 65536
+XFS: attr2 mount option is deprecated.
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200000e0
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200000e4
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000440
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000000
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000000
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000004
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000008
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000009
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 2000000a
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 2000000b
+XFS (loop1): DAX unsupported by block device. Turning off DAX.
+XFS (loop1): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 2000000c
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000010
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000018
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000020
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+loop3: detected capacity change from 0 to 65536
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+XFS (loop1): Ending clean mount
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+XFS (loop1): Quotacheck needed: Please wait.
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.6'.
+XFS (loop1): Quotacheck: Done.
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+XFS (loop1): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000028
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000030
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000034
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000038
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000040
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000048
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000050
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000058
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 2000005c
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000060
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000068
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 2000006c
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 2000006e
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000070
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000074
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000078
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200019c0
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200019c8
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200019d0
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200019d8
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200019e0
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200019e8
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200019f0
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200019f8
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000100
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000108
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000110
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200000c0
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200001c0
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 200000c8
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000118
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000120
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000128
+MCE: Killing syz-executor.2:167450 due to hardware memory corruption fault at 20000130
