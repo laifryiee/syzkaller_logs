@@ -1,0 +1,110 @@
+Oops: general protection fault, probably for non-canonical address 0xdffffc0000000001: 0000 [#1] PREEMPT SMP KASAN NOPTI
+KASAN: null-ptr-deref in range [0x0000000000000008-0x000000000000000f]
+CPU: 1 UID: 0 PID: 58005 Comm: syz-executor.2 Tainted: G        W          6.12.0-rc1-2024-09-30-intel-next-7fd71eb2fc90+ #1
+Tainted: [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pgtable_trans_huge_withdraw+0x279/0x410 mm/pgtable-generic.c:189
+Code: 89 fa 48 c1 ea 03 80 3c 02 00 0f 85 51 01 00 00 48 b8 00 00 00 00 00 fc ff df 4c 8b 63 10 4d 8d 74 24 08 4c 89 f2 48 c1 ea 03 <80> 3c 02 00 0f 85 37 01 00 00 4d 8b 6c 24 08 4d 39 ee 0f 84 b0 00
+RSP: 0018:ffff888013a774f0 EFLAGS: 00010202
+RAX: dffffc0000000000 RBX: ffffea00008a6e00 RCX: ffffffff81bd4249
+RDX: 0000000000000001 RSI: ffffffff81bd435e RDI: ffffea00008a6e10
+RBP: ffff888013a77510 R08: 0000000000000000 R09: ffffed1008dedc9c
+R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000000
+R13: 1ffffffff0d89eb5 R14: 0000000000000008 R15: ffff888046f6e4e0
+FS:  00007f6435536640(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000000c00d0b0000 CR3: 000000005f178004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000600
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ zap_deposited_table mm/huge_memory.c:2049 [inline]
+ zap_huge_pmd+0x48e/0xd40 mm/huge_memory.c:2104
+ zap_pmd_range mm/memory.c:1719 [inline]
+ zap_pud_range mm/memory.c:1768 [inline]
+ zap_p4d_range mm/memory.c:1789 [inline]
+ unmap_page_range+0x1ad7/0x4320 mm/memory.c:1810
+ unmap_single_vma+0x1ac/0x2d0 mm/memory.c:1856
+ unmap_vmas+0x210/0x470 mm/memory.c:1900
+ exit_mmap+0x19e/0xb10 mm/mmap.c:1864
+ __mmput+0xde/0x3a0 kernel/fork.c:1347
+ mmput+0x74/0x90 kernel/fork.c:1369
+ copy_process+0x38f7/0x6a10 kernel/fork.c:2636
+ kernel_clone+0xfd/0x8b0 kernel/fork.c:2787
+ __do_sys_clone+0xe1/0x120 kernel/fork.c:2930
+ __se_sys_clone kernel/fork.c:2914 [inline]
+ __x64_sys_clone+0xc7/0x150 kernel/fork.c:2914
+ x64_sys_call+0x1d80/0x20d0 arch/x86/include/generated/asm/syscalls_64.h:57
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f643523ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007f6435535c78 EFLAGS: 00000246 ORIG_RAX: 0000000000000038
+RAX: ffffffffffffffda RBX: 00000000004bbf80 RCX: 00007f643523ee5d
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+RBP: 00000000004bbf80 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 000000000000000b R14: 00007f643529f560 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:pgtable_trans_huge_withdraw+0x279/0x410 mm/pgtable-generic.c:189
+Code: 89 fa 48 c1 ea 03 80 3c 02 00 0f 85 51 01 00 00 48 b8 00 00 00 00 00 fc ff df 4c 8b 63 10 4d 8d 74 24 08 4c 89 f2 48 c1 ea 03 <80> 3c 02 00 0f 85 37 01 00 00 4d 8b 6c 24 08 4d 39 ee 0f 84 b0 00
+RSP: 0018:ffff888013a774f0 EFLAGS: 00010202
+RAX: dffffc0000000000 RBX: ffffea00008a6e00 RCX: ffffffff81bd4249
+RDX: 0000000000000001 RSI: ffffffff81bd435e RDI: ffffea00008a6e10
+RBP: ffff888013a77510 R08: 0000000000000000 R09: ffffed1008dedc9c
+R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000000
+R13: 1ffffffff0d89eb5 R14: 0000000000000008 R15: ffff888046f6e4e0
+FS:  00007f6435536640(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000000c00d0b0000 CR3: 000000005f178004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000600
+PKRU: 55555554
+note: syz-executor.2[58005] exited with preempt_count 1
+Soft offlining pfn 0x8c17 at process virtual address 0x20b5c000
+Soft offline: 0x8c17: page already poisoned
+Soft offlining pfn 0x8c17 at process virtual address 0x20b5d000
+Soft offline: 0x8c17: page already poisoned
+Soft offlining pfn 0x8c17 at process virtual address 0x20b5c000
+Soft offline: 0x8c17: page already poisoned
+Soft offlining pfn 0x8c17 at process virtual address 0x20b5d000
+Soft offline: 0x8c17: page already poisoned
+Soft offlining pfn 0x8c17 at process virtual address 0x20b5c000
+Soft offline: 0x8c17: page already poisoned
+Soft offlining pfn 0x8c17 at process virtual address 0x20b5d000
+Soft offline: 0x8c17: page already poisoned
+loop5: detected capacity change from 0 to 128
+vfat: Unknown parameter '01777777777777777777777'
+loop5: detected capacity change from 0 to 128
+vfat: Unknown parameter '01777777777777777777777'
+loop5: detected capacity change from 0 to 128
+vfat: Unknown parameter '01777777777777777777777'
+loop5: detected capacity change from 0 to 128
+vfat: Unknown parameter '01777777777777777777777'
+loop5: detected capacity change from 0 to 128
+vfat: Unknown parameter '01777777777777777777777'
+loop5: detected capacity change from 0 to 128
+vfat: Unknown parameter '01777777777777777777777'
+----------------
+Code disassembly (best guess):
+   0:	89 fa                	mov    %edi,%edx
+   2:	48 c1 ea 03          	shr    $0x3,%rdx
+   6:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1)
+   a:	0f 85 51 01 00 00    	jne    0x161
+  10:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  17:	fc ff df
+  1a:	4c 8b 63 10          	mov    0x10(%rbx),%r12
+  1e:	4d 8d 74 24 08       	lea    0x8(%r12),%r14
+  23:	4c 89 f2             	mov    %r14,%rdx
+  26:	48 c1 ea 03          	shr    $0x3,%rdx
+* 2a:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1) <-- trapping instruction
+  2e:	0f 85 37 01 00 00    	jne    0x16b
+  34:	4d 8b 6c 24 08       	mov    0x8(%r12),%r13
+  39:	4d 39 ee             	cmp    %r13,%r14
+  3c:	0f                   	.byte 0xf
+  3d:	84                   	.byte 0x84
+  3e:	b0 00                	mov    $0x0,%al

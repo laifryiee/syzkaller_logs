@@ -1,0 +1,45 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [9852d85ec9d492ebef56dc5f229416c925758edc] Linux 6.12-rc1
+git bisect bad 9852d85ec9d492ebef56dc5f229416c925758edc
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [1ca06f1c1acecbe02124f14a37cce347b8c1a90c] Merge tag 'xtensa-20221213' of https://github.com/jcmvbkbc/linux-xtensa
+git bisect good 1ca06f1c1acecbe02124f14a37cce347b8c1a90c
+# good: [5eda8f25377f3d6de697eaa1d9801b9781d09dbc] Merge tag 'linux_kselftest-kunit-6.7-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest
+git bisect good 5eda8f25377f3d6de697eaa1d9801b9781d09dbc
+# good: [1b0aabcc9a35e729a6c7ce71e725fd63513b35de] Merge tag 'vfs-6.10.misc' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good 1b0aabcc9a35e729a6c7ce71e725fd63513b35de
+# good: [b3ce7a30847a54a7f96a35e609303d8afecd460b] Merge tag 'drm-next-2024-07-18' of https://gitlab.freedesktop.org/drm/kernel
+git bisect good b3ce7a30847a54a7f96a35e609303d8afecd460b
+# good: [26bb0d3f38a764b743a3ad5c8b6e5b5044d7ceb4] Merge tag 'for-6.12/block-20240913' of git://git.kernel.dk/linux
+git bisect good 26bb0d3f38a764b743a3ad5c8b6e5b5044d7ceb4
+# good: [2004cef11ea072838f99bd95cefa5c8e45df0847] Merge tag 'sched-core-2024-09-19' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect good 2004cef11ea072838f99bd95cefa5c8e45df0847
+# bad: [9ab27b018649c9504e894496cb4d7d8afcffd897] Merge tag 'clk-for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux
+git bisect bad 9ab27b018649c9504e894496cb4d7d8afcffd897
+# bad: [673a5009cf2f020dac440cd79e70c4c8b8e20d08] perf: Fix topology_sibling_cpumask check warning on ARM
+git bisect bad 673a5009cf2f020dac440cd79e70c4c8b8e20d08
+# bad: [617a814f14b8914271f7a70366d72c6196d17663] Merge tag 'mm-stable-2024-09-20-02-31' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+git bisect bad 617a814f14b8914271f7a70366d72c6196d17663
+# good: [fc21959f74bc1138b28e90a02ec224ab8626111e] mm: abstract vma_expand() to use vma_merge_struct
+git bisect good fc21959f74bc1138b28e90a02ec224ab8626111e
+# bad: [f2c5101be43677c227974912a043da29a62743ef] memcg: cleanup with !CONFIG_MEMCG_V1
+git bisect bad f2c5101be43677c227974912a043da29a62743ef
+# good: [73e7d81abbc80b04595cc7da09dcaa05a3a92602] zram: add zstd compression backend support
+git bisect good 73e7d81abbc80b04595cc7da09dcaa05a3a92602
+# good: [ec0db74b4b1f249ffca4df450f54c17573114045] mm: restart if multiple traversals raced
+git bisect good ec0db74b4b1f249ffca4df450f54c17573114045
+# good: [6da8e9634bb7e3fdad9ae0e4db873a05036c4343] mm: new follow_pfnmap API
+git bisect good 6da8e9634bb7e3fdad9ae0e4db873a05036c4343
+# bad: [75182022a0439788415b2dd1db3086e07aa506f7] mm/x86: support large pfn mappings
+git bisect bad 75182022a0439788415b2dd1db3086e07aa506f7
+# good: [a77f9489f1d7873a56e1d6640cc0c4865f64176b] vfio: use the new follow_pfnmap API
+git bisect good a77f9489f1d7873a56e1d6640cc0c4865f64176b
+# good: [b17269a51cc7f046a6f2cf9a6c314a0de885e5a5] mm/access_process_vm: use the new follow_pfnmap API
+git bisect good b17269a51cc7f046a6f2cf9a6c314a0de885e5a5
+# good: [b0a1c0d0edcd75a0f8ec5fd19dbd64b8d097f534] mm: remove follow_pte()
+git bisect good b0a1c0d0edcd75a0f8ec5fd19dbd64b8d097f534
+# first bad commit: [75182022a0439788415b2dd1db3086e07aa506f7] mm/x86: support large pfn mappings
+|1002_095203|Bisect successfully! 9852d85ec9d492ebef56dc5f229416c925758edc_75182022a0439788415b2dd1db3086e07aa506f7_revert bzimage passed!|
