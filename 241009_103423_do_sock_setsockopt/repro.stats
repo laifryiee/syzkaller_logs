@@ -1,0 +1,385 @@
+Extracting prog: 25m8.046761865s
+Minimizing prog: 51m38.11604333s
+Simplifying prog options: 0s
+Extracting C: 42.049996175s
+Simplifying C: 3m51.605068158s
+
+
+116 programs, 3 VMs, timeouts [6m0s]
+extracting reproducer from 116 programs
+single: executing 8 programs separately with timeout 6m0s
+testing program (duration=6m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): io_setup-pipe-io_submit-fcntl$setpipe
+detailed listing:
+executing program 0:
+io_setup(0x0, &(0x7f0000000000)=<r0=>0x0)
+pipe(&(0x7f00000006c0)={0xffffffffffffffff, <r1=>0xffffffffffffffff})
+io_submit(r0, 0x1, &(0x7f0000000500)=[&(0x7f0000000040)={0x0, 0x0, 0x0, 0x5, 0x0, r1, 0x0}])
+fcntl$setpipe(r1, 0x407, 0x0)
+
+program did not crash
+testing program (duration=6m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket$inet6_udp-bind$inet6-openat$tun-openat-creat-pwritev-ioctl$SCSI_IOCTL_SEND_COMMAND-openat-creat-fallocate-truncate-write-perf_event_open-bpf$LINK_GET_NEXT_ID-ioctl$EXT4_IOC_MOVE_EXT-ioctl$TUNSETIFF-socket$netlink-ioctl$PPPIOCSMRRU-sendmsg$nl_route-openat$tun-ioctl$TUNSETIFF-openat$tun-ioctl$TUNSETQUEUE-sendmmsg$inet
+detailed listing:
+executing program 0:
+r0 = socket$inet6_udp(0xa, 0x2, 0x0)
+bind$inet6(r0, &(0x7f0000000040)={0xa, 0x0, 0x0, @dev, 0x2}, 0x1c)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000080), 0x0, 0x0)
+r2 = openat(0xffffffffffffff9c, &(0x7f0000000340)='./file0\x00', 0x42, 0x0)
+r3 = creat(&(0x7f0000000000)='./file1\x00', 0x0)
+pwritev(r3, &(0x7f0000000180)=[{&(0x7f0000000080)='x', 0x1}], 0x1, 0x18000, 0x0)
+ioctl$SCSI_IOCTL_SEND_COMMAND(r3, 0x1, &(0x7f0000000100)=ANY=[])
+r4 = openat(0xffffffffffffff9c, &(0x7f0000000340)='./file0\x00', 0x125442, 0x1c6)
+r5 = creat(&(0x7f0000000000)='./file0\x00', 0x0)
+fallocate(r5, 0x0, 0x0, 0x9bd)
+truncate(&(0x7f0000000080)='./file0\x00', 0x10009)
+write(r4, &(0x7f0000000000)='G', 0x100000)
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5b, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_config_ext}, 0x0, 0xffffffffffffffff, 0xffffffffffffffff, 0x0)
+bpf$LINK_GET_NEXT_ID(0x1f, 0x0, 0x0)
+ioctl$EXT4_IOC_MOVE_EXT(r2, 0xc028660f, &(0x7f0000000480)={0x4, r3})
+ioctl$TUNSETIFF(r1, 0x400454ca, &(0x7f0000000040)={'veth0_virt_wifi\x00', 0x102})
+r6 = socket$netlink(0x10, 0x3, 0x0)
+ioctl$PPPIOCSMRRU(r2, 0x4004743b, &(0x7f00000000c0)=0x1)
+sendmsg$nl_route(r6, &(0x7f0000000780)={0x0, 0x0, &(0x7f0000000740)={&(0x7f0000000400)=@newlink={0x28, 0x10, 0x1, 0x0, 0x0, {0x0, 0x0, 0x0, 0x0, 0xffffffff}, [@IFLA_GROUP={0x8}]}, 0x28}}, 0x0)
+r7 = openat$tun(0xffffffffffffff9c, &(0x7f0000000080), 0x0, 0x0)
+ioctl$TUNSETIFF(r7, 0x400454ca, &(0x7f00000072c0)={'veth0_virt_wifi\x00', 0x1132})
+openat$tun(0xffffffffffffff9c, &(0x7f0000000140), 0x84000, 0x0)
+ioctl$TUNSETQUEUE(r1, 0x400454d9, &(0x7f0000000000)={'wlan1\x00', 0x400})
+sendmmsg$inet(r0, &(0x7f00000008c0)=[{{&(0x7f0000000100)={0x2, 0x4e24, @multicast2}, 0x10, &(0x7f0000000080)=[{&(0x7f0000001b40)="9e85a628e0c4cd154b5c263d3ed4e7acca619ee6a82b3da15cfb282acdbeda0c0697cdb45ad13db9e3934788ce4901738a2b645e55ca4c58ada571e8a67e41aace6a326ab57226bdb84a78b8a6e37853d8c2c19047fc6d91bb2e4e9ab0fc5802e9e539481a97a4969169a8684d02677150454632ba66d6e9c520e55b20a482ea0f3c9c6be0f0b34591bef6d732d26ca4dc21c38f319a1fed9cb5f52c8acf405d2e02bc9e87a12b87aa926aeb023226f700c9378f4c483fceceb5d2cb1b45bb3bc7fa6ef759c4dd6a46deefa54bddf02d6ca1642a6ea6b2da9e536a57d76ac3060fcde4992fdf84b8b216f1888b5af7406f1c81fb611cf50e380261e2b229107ba5012adb7affbbb672ab16b1ba80a006371f0ef11b8038f73e1272a6dc972c6f6d3bb7ac1eb75185cabd15b360ba1822c29a00257f10e270fe5e4862d7e90c9e82102d9185e652d9bec8b5c1534a88358aee8253206a5cd759befdb7fae74ab74f95f3c23c774e34d53042a980705114d23033138b64a521208f7bd3c4d8b93666695785f67fc7a8492069afc7280e268847810806a26f2912b674c1b32fb862b3c67370989e4b9e3e2e3df292a073c05c9fc39bffdc149242889f50d82962fdaf96687dc9cd70e550db1c79a63d7a46db469ec2d4f596391c184e8439a278a2181f07e53e4bf0576bbac1651e647d4b8c54ccf0f5ca00de8a7f1dccc72d371d85df64d3f47a2db9ee4cd733e3291e97fa7ce0c76bf152f659c6c7817a090bafc189d4da4113fe57da2214623d9c6811ad1071b1af6c01570f6ce94a26252fff018bd81782e28f290d4712d252c032dec4d75c499e0ccbc71923b1b9daf8f727bb31166317ed80a8347ffc3b8ce1941419ee7c9bed7918ab30fe5b10675a7c57ab9fe48de5c81e89b567184a1dc64c4462cac8ac5043d8744eba080f2e08d3dc90bab2377a2d6027738a6f1ba42b8290257457bb6d062f07cc8dc9eeeeeba25da696e8dd32a372a5fcebf0ed523f9ab242f6c922e3a0b6350536363d1d28278a8278b17fb3873a27f712f08157a64754c4dcaf39805d398c0d61e64c345fc1ab4e49f253922051aa71f46b20ffed2437e7bc6eb11b3349fc6ec118f2799f65e59269733a8c485c99d5486c125e6a37785125b34380f4ee9dab4579eccc01a377de91a9a0913324b36e00f574a51d659f1b8386393378f1c82c6e2ac5fc633bd8dfeeb2d6485ac33e7230d56b3a7bfe2e46ca2332e350e5bebaa626d9d3b951014fd19a9a523fffe26945b1bbca807c3ff2abc4649dc8391de7fdcaef342965cf54905c4d92a21d973d037b5c59b63e5eca130dd2a2d704b9e671426903eee3d22618369332bc3a05380f364a5e40ff758ed9aa7342d8c5933578bfb5c50c75011c9a7cc0a2aa48ff566ee6fd652b4fafd10480b82122b14dde6cd3a3b01008fa1b374c47d8cbfb78bb4b5379eca8201e4b12e4f230a6b394321145434961ebd4cd4f3a377e8b1899d78b3abf2ff4e5402c302b472f238278b224cda5b5d60d4f98590af18f714c59586daa98514a4c2fcbab819e6b9112af338cccbda2dc3beb7e80567ab46131e01503a20eee1afa3554c0b61dc89b501c043ab15074462bbfb81ba46545e2a8c0e0cf0863753bcafe11c082490653970e4f5390d7e0fa7f7ecacac347462df14664f9d01caf670829a6b1d9fa5a5e6a36bbeebc565450ddfa8fe17625c0227f3838e2acce4b9702fcc0a3b4240d4b676b0493209da4db98ab1473668f3c60617afb4dc2dc7c1251d8cce446cc037a1f96b95e7d14063808e069833bfbe5814a25d84d8777cf33a12d6f72f3ba4d08d3c805853941658f05c7b533ef1795a34cb08023fe9882e4142ecb97711ed735c11dcf0ec958e7577e68b9ddb0decf6a4a7a8aa2a5254cfc2bd12b47928a4fc8fd59ba3eb9dff813f59b79befe14bfbc3b83a49eaccbabc71322a7ed3172aefd5da0a12df51bad53008c9ec8fa436624342665714c10bbacbf7ce46b5e2559347f5405", 0x599}], 0x1, &(0x7f0000000bc0)=[@ip_retopts={{0x38, 0x0, 0x7, {[@timestamp={0x44, 0xc, 0xf4, 0x0, 0x0, [0x0, 0x0]}, @end, @timestamp={0x44, 0x18, 0x0, 0x0, 0x0, [0x0, 0x0, 0x0, 0x0, 0x0]}]}}}], 0x38}}], 0x1, 0x0)
+
+program did not crash
+testing program (duration=6m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_emit_ethernet
+detailed listing:
+executing program 0:
+syz_emit_ethernet(0x76, &(0x7f0000000480)={@local, @random="964c4e329e28", @void, {@ipv6={0x86dd, @icmpv6={0x0, 0x6, "23708d", 0x40, 0x3c, 0x0, @rand_addr=' \x01\x00', @mcast2, {[], @pkt_toobig={0x2, 0x0, 0x0, 0x0, {0x0, 0x6, "23a533", 0x0, 0x0, 0x0, @loopback, @remote, [@fragment={0x67}, @dstopts]}}}}}}}, 0x0)
+
+program did not crash
+testing program (duration=6m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-mmap$IORING_OFF_SQ_RING-openat$sysfs-preadv-creat-openat-ftruncate-sendmsg$nl_route-syz_io_uring_setup-io_uring_register$IORING_REGISTER_FILES-socket$inet6_udp-bind$inet6-sendmmsg$inet-perf_event_open-openat-socketpair$unix-setsockopt$sock_int-connect$unix-sendmmsg$unix-ioctl$FS_IOC_SETFLAGS-copy_file_range-syz_open_dev$tty20-ioctl$TCSETSF2-perf_event_open-mmap$IORING_OFF_SQ_RING-mlock-capset-prlimit64-munmap
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000340)='./file0\x00', 0x0, 0x0)
+mmap$IORING_OFF_SQ_RING(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x0, 0x12, r0, 0x0)
+r1 = openat$sysfs(0xffffffffffffff9c, &(0x7f0000000d40)='/sys/kernel/address_bits', 0x0, 0x0)
+preadv(r1, &(0x7f0000001240)=[{&(0x7f0000001040)=""/237, 0xed}], 0x1, 0x0, 0x0)
+creat(&(0x7f0000000100)='./file0\x00', 0x104)
+r2 = openat(0xffffffffffffff9c, &(0x7f0000000340)='./file0\x00', 0x2c042, 0x0)
+ftruncate(r2, 0x10001)
+sendmsg$nl_route(0xffffffffffffffff, 0x0, 0x0)
+r3 = syz_io_uring_setup(0x7897, &(0x7f0000000000)={0x0, 0x1000, 0x1}, &(0x7f0000000240), &(0x7f0000000200))
+io_uring_register$IORING_REGISTER_FILES(r3, 0x1e, &(0x7f0000000140)=[0xffffffffffffffff], 0x1)
+r4 = socket$inet6_udp(0xa, 0x2, 0x0)
+bind$inet6(r4, &(0x7f0000000040)={0xa, 0x0, 0x0, @dev, 0x2}, 0x1c)
+sendmmsg$inet(r4, &(0x7f0000004b00)=[{{&(0x7f0000000000)={0x2, 0x4f22, @broadcast}, 0x10, 0x0}}], 0x1, 0x0)
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5c, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={0x0}, 0x0, 0x6, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x3}, 0x0, 0xffffffffffffffff, 0xffffffffffffffff, 0x0)
+r5 = openat(0xffffffffffffff9c, &(0x7f0000000000)='./file0\x00', 0x0, 0x0)
+socketpair$unix(0x1, 0x5, 0x0, &(0x7f0000000040)={0xffffffffffffffff, <r6=>0xffffffffffffffff})
+setsockopt$sock_int(r6, 0x1, 0x10, &(0x7f0000000a00)=0x2, 0x4)
+connect$unix(r6, &(0x7f0000000080)=@file={0x1, './file0\x00'}, 0x6e)
+sendmmsg$unix(r6, &(0x7f0000004700)=[{{0x0, 0x40, 0x0}}], 0x1, 0x0)
+ioctl$FS_IOC_SETFLAGS(r2, 0x40086602, &(0x7f00000001c0))
+copy_file_range(r5, 0x0, r2, &(0x7f00000000c0)=0x9, 0x6, 0x0)
+r7 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TCSETSF2(r7, 0x402c542d, &(0x7f0000000100)={0x0, 0x0, 0x0, 0xfffffffe, 0x0, "8df37d3f000000000000003b7b00"})
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5b, 0x9, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_config_ext={0x40, 0x6}, 0x0, 0x0, 0x0, 0x0, 0x0, 0x1}, 0x0, 0x0, 0xffffffffffffffff, 0x0)
+mmap$IORING_OFF_SQ_RING(&(0x7f0000fef000/0x11000)=nil, 0x11000, 0x0, 0x132, 0xffffffffffffffff, 0x0)
+mlock(&(0x7f0000ffe000/0x2000)=nil, 0x2000)
+capset(&(0x7f0000002280)={0x20080522}, &(0x7f00000022c0))
+prlimit64(0x0, 0x8, &(0x7f0000001040), 0x0)
+munmap(&(0x7f0000ffd000/0x2000)=nil, 0x2000)
+
+program did not crash
+testing program (duration=6m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): perf_event_open-bpf$MAP_CREATE-bpf$MAP_UPDATE_BATCH-syz_mount_image$fuse-mount-add_key$user-add_key$user-keyctl$dh_compute-userfaultfd-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+detailed listing:
+executing program 0:
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5c, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={0x0}}, 0x0, 0xffffffffffffffff, 0xffffffffffffffff, 0x0)
+r0 = bpf$MAP_CREATE(0x0, &(0x7f0000000000)=@base={0x6, 0x4, 0x40, 0x2, 0x0, 0x1}, 0x48)
+bpf$MAP_UPDATE_BATCH(0x1a, &(0x7f00000000c0)={0x0, 0x0, &(0x7f0000000280), &(0x7f00000003c0), 0x6, r0}, 0x38)
+syz_mount_image$fuse(0x0, &(0x7f0000000240)='./file0\x00', 0x0, 0x0, 0x0, 0x0, 0x0)
+mount(0x0, &(0x7f0000000300)='./file0\x00', &(0x7f0000000080)='hugetlbfs\x00', 0x0, 0x0)
+r1 = add_key$user(&(0x7f0000000540), &(0x7f00000003c0)={'syz', 0x3}, &(0x7f00000004c0)="01", 0x1, 0xfffffffffffffffc)
+r2 = add_key$user(&(0x7f0000000000), &(0x7f0000000040)={'syz', 0x1}, &(0x7f0000000300)="5537f09f26860136e71b469ffd3d460276ea751dbc1111fe4ee3ff9c28687f015f187df9ffffff45faf40c27e522463af304950984d0e371352219ad986cbe23cde5e46682b0dc398a7a9b18c5ebbb2e7cc4e885d3377d3416ef3bbd223df68af3490c87617439551dfee516183a887e9fb0b6811e3b830746379664587b44e30b2673fa6d442ac3c4f7e923efff1b3e9591ec0c32f5115f392521a3361ba3d62605c18693707b7c8e6d1dc0290897ec229630706cc6d84c0000000000000000", 0xc0, 0xffffffffffffffff)
+keyctl$dh_compute(0x17, &(0x7f0000002300)={r1, r2, r1}, &(0x7f0000002340)=""/210, 0xd2, &(0x7f0000000480)={&(0x7f0000002440)={'sha3-384\x00'}, &(0x7f0000002480)="3aa6e195c73d06e5f0cb58efc8313fda1e65bf18a804f6af037a0416a879692086e1", 0x22})
+userfaultfd(0x0)
+r3 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$SO_ATTACH_FILTER(r3, 0x1, 0x50, &(0x7f0000000080)={0x0, 0x0}, 0x10)
+
+program crashed: BUG: soft lockup in do_sock_setsockopt
+single: successfully extracted reproducer
+found reproducer with 11 syscalls
+minimizing guilty program
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): perf_event_open-bpf$MAP_CREATE-bpf$MAP_UPDATE_BATCH-syz_mount_image$fuse-mount-add_key$user-add_key$user-keyctl$dh_compute-userfaultfd-socket$inet_tcp
+detailed listing:
+executing program 0:
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5c, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={0x0}}, 0x0, 0xffffffffffffffff, 0xffffffffffffffff, 0x0)
+r0 = bpf$MAP_CREATE(0x0, &(0x7f0000000000)=@base={0x6, 0x4, 0x40, 0x2, 0x0, 0x1}, 0x48)
+bpf$MAP_UPDATE_BATCH(0x1a, &(0x7f00000000c0)={0x0, 0x0, &(0x7f0000000280), &(0x7f00000003c0), 0x6, r0}, 0x38)
+syz_mount_image$fuse(0x0, &(0x7f0000000240)='./file0\x00', 0x0, 0x0, 0x0, 0x0, 0x0)
+mount(0x0, &(0x7f0000000300)='./file0\x00', &(0x7f0000000080)='hugetlbfs\x00', 0x0, 0x0)
+r1 = add_key$user(&(0x7f0000000540), &(0x7f00000003c0)={'syz', 0x3}, &(0x7f00000004c0)="01", 0x1, 0xfffffffffffffffc)
+r2 = add_key$user(&(0x7f0000000000), &(0x7f0000000040)={'syz', 0x1}, &(0x7f0000000300)="5537f09f26860136e71b469ffd3d460276ea751dbc1111fe4ee3ff9c28687f015f187df9ffffff45faf40c27e522463af304950984d0e371352219ad986cbe23cde5e46682b0dc398a7a9b18c5ebbb2e7cc4e885d3377d3416ef3bbd223df68af3490c87617439551dfee516183a887e9fb0b6811e3b830746379664587b44e30b2673fa6d442ac3c4f7e923efff1b3e9591ec0c32f5115f392521a3361ba3d62605c18693707b7c8e6d1dc0290897ec229630706cc6d84c0000000000000000", 0xc0, 0xffffffffffffffff)
+keyctl$dh_compute(0x17, &(0x7f0000002300)={r1, r2, r1}, &(0x7f0000002340)=""/210, 0xd2, &(0x7f0000000480)={&(0x7f0000002440)={'sha3-384\x00'}, &(0x7f0000002480)="3aa6e195c73d06e5f0cb58efc8313fda1e65bf18a804f6af037a0416a879692086e1", 0x22})
+userfaultfd(0x0)
+socket$inet_tcp(0x2, 0x1, 0x0)
+
+program did not crash
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): perf_event_open-bpf$MAP_CREATE-bpf$MAP_UPDATE_BATCH-syz_mount_image$fuse-mount-add_key$user-add_key$user-keyctl$dh_compute-userfaultfd-setsockopt$SO_ATTACH_FILTER
+detailed listing:
+executing program 0:
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5c, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={0x0}}, 0x0, 0xffffffffffffffff, 0xffffffffffffffff, 0x0)
+r0 = bpf$MAP_CREATE(0x0, &(0x7f0000000000)=@base={0x6, 0x4, 0x40, 0x2, 0x0, 0x1}, 0x48)
+bpf$MAP_UPDATE_BATCH(0x1a, &(0x7f00000000c0)={0x0, 0x0, &(0x7f0000000280), &(0x7f00000003c0), 0x6, r0}, 0x38)
+syz_mount_image$fuse(0x0, &(0x7f0000000240)='./file0\x00', 0x0, 0x0, 0x0, 0x0, 0x0)
+mount(0x0, &(0x7f0000000300)='./file0\x00', &(0x7f0000000080)='hugetlbfs\x00', 0x0, 0x0)
+r1 = add_key$user(&(0x7f0000000540), &(0x7f00000003c0)={'syz', 0x3}, &(0x7f00000004c0)="01", 0x1, 0xfffffffffffffffc)
+r2 = add_key$user(&(0x7f0000000000), &(0x7f0000000040)={'syz', 0x1}, &(0x7f0000000300)="5537f09f26860136e71b469ffd3d460276ea751dbc1111fe4ee3ff9c28687f015f187df9ffffff45faf40c27e522463af304950984d0e371352219ad986cbe23cde5e46682b0dc398a7a9b18c5ebbb2e7cc4e885d3377d3416ef3bbd223df68af3490c87617439551dfee516183a887e9fb0b6811e3b830746379664587b44e30b2673fa6d442ac3c4f7e923efff1b3e9591ec0c32f5115f392521a3361ba3d62605c18693707b7c8e6d1dc0290897ec229630706cc6d84c0000000000000000", 0xc0, 0xffffffffffffffff)
+keyctl$dh_compute(0x17, &(0x7f0000002300)={r1, r2, r1}, &(0x7f0000002340)=""/210, 0xd2, &(0x7f0000000480)={&(0x7f0000002440)={'sha3-384\x00'}, &(0x7f0000002480)="3aa6e195c73d06e5f0cb58efc8313fda1e65bf18a804f6af037a0416a879692086e1", 0x22})
+userfaultfd(0x0)
+setsockopt$SO_ATTACH_FILTER(0xffffffffffffffff, 0x1, 0x50, &(0x7f0000000080)={0x0, 0x0}, 0x10)
+
+program did not crash
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): perf_event_open-bpf$MAP_CREATE-bpf$MAP_UPDATE_BATCH-syz_mount_image$fuse-mount-add_key$user-add_key$user-keyctl$dh_compute-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+detailed listing:
+executing program 0:
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5c, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={0x0}}, 0x0, 0xffffffffffffffff, 0xffffffffffffffff, 0x0)
+r0 = bpf$MAP_CREATE(0x0, &(0x7f0000000000)=@base={0x6, 0x4, 0x40, 0x2, 0x0, 0x1}, 0x48)
+bpf$MAP_UPDATE_BATCH(0x1a, &(0x7f00000000c0)={0x0, 0x0, &(0x7f0000000280), &(0x7f00000003c0), 0x6, r0}, 0x38)
+syz_mount_image$fuse(0x0, &(0x7f0000000240)='./file0\x00', 0x0, 0x0, 0x0, 0x0, 0x0)
+mount(0x0, &(0x7f0000000300)='./file0\x00', &(0x7f0000000080)='hugetlbfs\x00', 0x0, 0x0)
+r1 = add_key$user(&(0x7f0000000540), &(0x7f00000003c0)={'syz', 0x3}, &(0x7f00000004c0)="01", 0x1, 0xfffffffffffffffc)
+r2 = add_key$user(&(0x7f0000000000), &(0x7f0000000040)={'syz', 0x1}, &(0x7f0000000300)="5537f09f26860136e71b469ffd3d460276ea751dbc1111fe4ee3ff9c28687f015f187df9ffffff45faf40c27e522463af304950984d0e371352219ad986cbe23cde5e46682b0dc398a7a9b18c5ebbb2e7cc4e885d3377d3416ef3bbd223df68af3490c87617439551dfee516183a887e9fb0b6811e3b830746379664587b44e30b2673fa6d442ac3c4f7e923efff1b3e9591ec0c32f5115f392521a3361ba3d62605c18693707b7c8e6d1dc0290897ec229630706cc6d84c0000000000000000", 0xc0, 0xffffffffffffffff)
+keyctl$dh_compute(0x17, &(0x7f0000002300)={r1, r2, r1}, &(0x7f0000002340)=""/210, 0xd2, &(0x7f0000000480)={&(0x7f0000002440)={'sha3-384\x00'}, &(0x7f0000002480)="3aa6e195c73d06e5f0cb58efc8313fda1e65bf18a804f6af037a0416a879692086e1", 0x22})
+r3 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$SO_ATTACH_FILTER(r3, 0x1, 0x50, &(0x7f0000000080)={0x0, 0x0}, 0x10)
+
+program crashed: BUG: soft lockup in do_sock_setsockopt
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): perf_event_open-bpf$MAP_CREATE-bpf$MAP_UPDATE_BATCH-syz_mount_image$fuse-mount-add_key$user-add_key$user-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+detailed listing:
+executing program 0:
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5c, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={0x0}}, 0x0, 0xffffffffffffffff, 0xffffffffffffffff, 0x0)
+r0 = bpf$MAP_CREATE(0x0, &(0x7f0000000000)=@base={0x6, 0x4, 0x40, 0x2, 0x0, 0x1}, 0x48)
+bpf$MAP_UPDATE_BATCH(0x1a, &(0x7f00000000c0)={0x0, 0x0, &(0x7f0000000280), &(0x7f00000003c0), 0x6, r0}, 0x38)
+syz_mount_image$fuse(0x0, &(0x7f0000000240)='./file0\x00', 0x0, 0x0, 0x0, 0x0, 0x0)
+mount(0x0, &(0x7f0000000300)='./file0\x00', &(0x7f0000000080)='hugetlbfs\x00', 0x0, 0x0)
+add_key$user(&(0x7f0000000540), &(0x7f00000003c0)={'syz', 0x3}, &(0x7f00000004c0)="01", 0x1, 0xfffffffffffffffc)
+add_key$user(&(0x7f0000000000), &(0x7f0000000040)={'syz', 0x1}, &(0x7f0000000300)="5537f09f26860136e71b469ffd3d460276ea751dbc1111fe4ee3ff9c28687f015f187df9ffffff45faf40c27e522463af304950984d0e371352219ad986cbe23cde5e46682b0dc398a7a9b18c5ebbb2e7cc4e885d3377d3416ef3bbd223df68af3490c87617439551dfee516183a887e9fb0b6811e3b830746379664587b44e30b2673fa6d442ac3c4f7e923efff1b3e9591ec0c32f5115f392521a3361ba3d62605c18693707b7c8e6d1dc0290897ec229630706cc6d84c0000000000000000", 0xc0, 0xffffffffffffffff)
+r1 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$SO_ATTACH_FILTER(r1, 0x1, 0x50, &(0x7f0000000080)={0x0, 0x0}, 0x10)
+
+program crashed: BUG: soft lockup in do_sock_setsockopt
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): perf_event_open-bpf$MAP_CREATE-bpf$MAP_UPDATE_BATCH-syz_mount_image$fuse-mount-add_key$user-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+detailed listing:
+executing program 0:
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5c, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={0x0}}, 0x0, 0xffffffffffffffff, 0xffffffffffffffff, 0x0)
+r0 = bpf$MAP_CREATE(0x0, &(0x7f0000000000)=@base={0x6, 0x4, 0x40, 0x2, 0x0, 0x1}, 0x48)
+bpf$MAP_UPDATE_BATCH(0x1a, &(0x7f00000000c0)={0x0, 0x0, &(0x7f0000000280), &(0x7f00000003c0), 0x6, r0}, 0x38)
+syz_mount_image$fuse(0x0, &(0x7f0000000240)='./file0\x00', 0x0, 0x0, 0x0, 0x0, 0x0)
+mount(0x0, &(0x7f0000000300)='./file0\x00', &(0x7f0000000080)='hugetlbfs\x00', 0x0, 0x0)
+add_key$user(&(0x7f0000000540), &(0x7f00000003c0)={'syz', 0x3}, &(0x7f00000004c0)="01", 0x1, 0xfffffffffffffffc)
+r1 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$SO_ATTACH_FILTER(r1, 0x1, 0x50, &(0x7f0000000080)={0x0, 0x0}, 0x10)
+
+program crashed: BUG: soft lockup in do_sock_setsockopt
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): perf_event_open-bpf$MAP_CREATE-bpf$MAP_UPDATE_BATCH-syz_mount_image$fuse-mount-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+detailed listing:
+executing program 0:
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5c, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={0x0}}, 0x0, 0xffffffffffffffff, 0xffffffffffffffff, 0x0)
+r0 = bpf$MAP_CREATE(0x0, &(0x7f0000000000)=@base={0x6, 0x4, 0x40, 0x2, 0x0, 0x1}, 0x48)
+bpf$MAP_UPDATE_BATCH(0x1a, &(0x7f00000000c0)={0x0, 0x0, &(0x7f0000000280), &(0x7f00000003c0), 0x6, r0}, 0x38)
+syz_mount_image$fuse(0x0, &(0x7f0000000240)='./file0\x00', 0x0, 0x0, 0x0, 0x0, 0x0)
+mount(0x0, &(0x7f0000000300)='./file0\x00', &(0x7f0000000080)='hugetlbfs\x00', 0x0, 0x0)
+r1 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$SO_ATTACH_FILTER(r1, 0x1, 0x50, &(0x7f0000000080)={0x0, 0x0}, 0x10)
+
+program crashed: BUG: soft lockup in do_sock_setsockopt
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): perf_event_open-bpf$MAP_CREATE-bpf$MAP_UPDATE_BATCH-syz_mount_image$fuse-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+detailed listing:
+executing program 0:
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5c, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={0x0}}, 0x0, 0xffffffffffffffff, 0xffffffffffffffff, 0x0)
+r0 = bpf$MAP_CREATE(0x0, &(0x7f0000000000)=@base={0x6, 0x4, 0x40, 0x2, 0x0, 0x1}, 0x48)
+bpf$MAP_UPDATE_BATCH(0x1a, &(0x7f00000000c0)={0x0, 0x0, &(0x7f0000000280), &(0x7f00000003c0), 0x6, r0}, 0x38)
+syz_mount_image$fuse(0x0, &(0x7f0000000240)='./file0\x00', 0x0, 0x0, 0x0, 0x0, 0x0)
+r1 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$SO_ATTACH_FILTER(r1, 0x1, 0x50, &(0x7f0000000080)={0x0, 0x0}, 0x10)
+
+program did not crash
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): perf_event_open-bpf$MAP_CREATE-bpf$MAP_UPDATE_BATCH-mount-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+detailed listing:
+executing program 0:
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5c, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={0x0}}, 0x0, 0xffffffffffffffff, 0xffffffffffffffff, 0x0)
+r0 = bpf$MAP_CREATE(0x0, &(0x7f0000000000)=@base={0x6, 0x4, 0x40, 0x2, 0x0, 0x1}, 0x48)
+bpf$MAP_UPDATE_BATCH(0x1a, &(0x7f00000000c0)={0x0, 0x0, &(0x7f0000000280), &(0x7f00000003c0), 0x6, r0}, 0x38)
+mount(0x0, &(0x7f0000000300)='./file0\x00', &(0x7f0000000080)='hugetlbfs\x00', 0x0, 0x0)
+r1 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$SO_ATTACH_FILTER(r1, 0x1, 0x50, &(0x7f0000000080)={0x0, 0x0}, 0x10)
+
+program crashed: BUG: soft lockup in do_sock_setsockopt
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): perf_event_open-bpf$MAP_CREATE-mount-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+detailed listing:
+executing program 0:
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5c, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={0x0}}, 0x0, 0xffffffffffffffff, 0xffffffffffffffff, 0x0)
+bpf$MAP_CREATE(0x0, &(0x7f0000000000)=@base={0x6, 0x4, 0x40, 0x2, 0x0, 0x1}, 0x48)
+mount(0x0, &(0x7f0000000300)='./file0\x00', &(0x7f0000000080)='hugetlbfs\x00', 0x0, 0x0)
+r0 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$SO_ATTACH_FILTER(r0, 0x1, 0x50, &(0x7f0000000080)={0x0, 0x0}, 0x10)
+
+program crashed: BUG: soft lockup in do_sock_setsockopt
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): perf_event_open-mount-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+detailed listing:
+executing program 0:
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5c, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={0x0}}, 0x0, 0xffffffffffffffff, 0xffffffffffffffff, 0x0)
+mount(0x0, &(0x7f0000000300)='./file0\x00', &(0x7f0000000080)='hugetlbfs\x00', 0x0, 0x0)
+r0 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$SO_ATTACH_FILTER(r0, 0x1, 0x50, &(0x7f0000000080)={0x0, 0x0}, 0x10)
+
+program crashed: BUG: soft lockup in do_sock_setsockopt
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): mount-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+detailed listing:
+executing program 0:
+mount(0x0, &(0x7f0000000300)='./file0\x00', &(0x7f0000000080)='hugetlbfs\x00', 0x0, 0x0)
+r0 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$SO_ATTACH_FILTER(r0, 0x1, 0x50, &(0x7f0000000080)={0x0, 0x0}, 0x10)
+
+program crashed: BUG: soft lockup in do_sock_setsockopt
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): mount-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+detailed listing:
+executing program 0:
+mount(0x0, 0x0, &(0x7f0000000080)='hugetlbfs\x00', 0x0, 0x0)
+r0 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$SO_ATTACH_FILTER(r0, 0x1, 0x50, &(0x7f0000000080)={0x0, 0x0}, 0x10)
+
+program crashed: BUG: soft lockup in do_sock_setsockopt
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): mount-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+detailed listing:
+executing program 0:
+mount(0x0, 0x0, 0x0, 0x0, 0x0)
+r0 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$SO_ATTACH_FILTER(r0, 0x1, 0x50, &(0x7f0000000080)={0x0, 0x0}, 0x10)
+
+program did not crash
+testing program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): mount-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+detailed listing:
+executing program 0:
+mount(0x0, 0x0, &(0x7f0000000080)='hugetlbfs\x00', 0x0, 0x0)
+r0 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$SO_ATTACH_FILTER(r0, 0x1, 0x50, 0x0, 0x0)
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=9m0s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): mount-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+program crashed: BUG: soft lockup in do_sock_setsockopt
+simplifying C reproducer
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): mount-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+program crashed: BUG: soft lockup in do_sock_setsockopt
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): mount-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+program crashed: BUG: soft lockup in do_sock_setsockopt
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:false UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): mount-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+program crashed: BUG: soft lockup in do_sock_setsockopt
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:false UseTmpDir:false HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): mount-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+program crashed: BUG: soft lockup in do_sock_setsockopt
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:false UseTmpDir:false HandleSegv:false Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): mount-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+program crashed: BUG: soft lockup in do_sock_setsockopt
+testing compiled C program (duration=9m0s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:false Swap:false UseTmpDir:false HandleSegv:false Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): mount-socket$inet_tcp-setsockopt$SO_ATTACH_FILTER
+program crashed: BUG: soft lockup in do_sock_setsockopt
+reproducing took 1h21m19.818210751s
+repro crashed as (corrupted=false):
+watchdog: BUG: soft lockup - CPU#0 stuck for 26s! [syz-executor626:745]
+Modules linked in:
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff81263b11>] copy_process+0x1d01/0x6a00 kernel/fork.c:2317
+softirqs last  enabled at (0): [<ffffffff81263b5e>] copy_process+0x1d4e/0x6a00 kernel/fork.c:2318
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+CPU: 0 UID: 0 PID: 745 Comm: syz-executor626 Not tainted 6.12.0-rc2-next-20241008-33ce24234fca #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:xas_invalid include/linux/xarray.h:1418 [inline]
+RIP: 0010:xas_store+0xb7/0x1ad0 lib/xarray.c:793
+Code: 4c 89 ff e8 8b 94 ff ff 48 89 45 c0 e8 a2 ed e1 fb 49 8d 47 18 48 89 c2 48 89 45 88 48 b8 00 00 00 00 00 fc ff df 48 c1 ea 03 <80> 3c 02 00 0f 85 99 17 00 00 4d 8b 77 18 31 ff 4d 89 f4 41 83 e4
+RSP: 0018:ffff888012a57840 EFLAGS: 00000a02
+RAX: dffffc0000000000 RBX: 0000000000000000 RCX: ffffffff8585765d
+RDX: 1ffff1100254af23 RSI: ffffffff8585b06e RDI: 0000000000000007
+RBP: ffff888012a578d0 R08: 0000000000000001 R09: ffffed100254af23
+R10: 0000000000000000 R11: 0000000000000000 R12: 000000007d07b9d7
+R13: ffff8880126584f0 R14: dffffc0000000000 R15: ffff888012a57900
+FS:  00007f7a88928600(0000) GS:ffff88806c400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 00000000155fe003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <IRQ>
+ </IRQ>
+ <TASK>
+ __xa_erase+0xc6/0x180 lib/xarray.c:1511
+ sock_devmem_dontneed+0x3a8/0x6d0 net/core/sock.c:1089
+ sk_setsockopt+0x480/0x3c60 net/core/sock.c:1280
+ sock_setsockopt+0x68/0x90 net/core/sock.c:1633
+ do_sock_setsockopt+0x3fb/0x480 net/socket.c:2325
+ __sys_setsockopt+0x131/0x200 net/socket.c:2352
+ __do_sys_setsockopt net/socket.c:2361 [inline]
+ __se_sys_setsockopt net/socket.c:2358 [inline]
+ __x64_sys_setsockopt+0xc6/0x160 net/socket.c:2358
+ x64_sys_call+0x6cf/0x20d0 arch/x86/include/generated/asm/syscalls_64.h:55
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f7a8863ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffce4afb728 EFLAGS: 00000246 ORIG_RAX: 0000000000000036
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f7a8863ee5d
+RDX: 0000000000000050 RSI: 0000000000000001 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000010 R09: 0000000000008000
+R10: 0000000020000080 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f7a8896f000
+ </TASK>
+
+final repro crashed as (corrupted=false):
+watchdog: BUG: soft lockup - CPU#0 stuck for 26s! [syz-executor626:745]
+Modules linked in:
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff81263b11>] copy_process+0x1d01/0x6a00 kernel/fork.c:2317
+softirqs last  enabled at (0): [<ffffffff81263b5e>] copy_process+0x1d4e/0x6a00 kernel/fork.c:2318
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+CPU: 0 UID: 0 PID: 745 Comm: syz-executor626 Not tainted 6.12.0-rc2-next-20241008-33ce24234fca #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:xas_invalid include/linux/xarray.h:1418 [inline]
+RIP: 0010:xas_store+0xb7/0x1ad0 lib/xarray.c:793
+Code: 4c 89 ff e8 8b 94 ff ff 48 89 45 c0 e8 a2 ed e1 fb 49 8d 47 18 48 89 c2 48 89 45 88 48 b8 00 00 00 00 00 fc ff df 48 c1 ea 03 <80> 3c 02 00 0f 85 99 17 00 00 4d 8b 77 18 31 ff 4d 89 f4 41 83 e4
+RSP: 0018:ffff888012a57840 EFLAGS: 00000a02
+RAX: dffffc0000000000 RBX: 0000000000000000 RCX: ffffffff8585765d
+RDX: 1ffff1100254af23 RSI: ffffffff8585b06e RDI: 0000000000000007
+RBP: ffff888012a578d0 R08: 0000000000000001 R09: ffffed100254af23
+R10: 0000000000000000 R11: 0000000000000000 R12: 000000007d07b9d7
+R13: ffff8880126584f0 R14: dffffc0000000000 R15: ffff888012a57900
+FS:  00007f7a88928600(0000) GS:ffff88806c400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 00000000155fe003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <IRQ>
+ </IRQ>
+ <TASK>
+ __xa_erase+0xc6/0x180 lib/xarray.c:1511
+ sock_devmem_dontneed+0x3a8/0x6d0 net/core/sock.c:1089
+ sk_setsockopt+0x480/0x3c60 net/core/sock.c:1280
+ sock_setsockopt+0x68/0x90 net/core/sock.c:1633
+ do_sock_setsockopt+0x3fb/0x480 net/socket.c:2325
+ __sys_setsockopt+0x131/0x200 net/socket.c:2352
+ __do_sys_setsockopt net/socket.c:2361 [inline]
+ __se_sys_setsockopt net/socket.c:2358 [inline]
+ __x64_sys_setsockopt+0xc6/0x160 net/socket.c:2358
+ x64_sys_call+0x6cf/0x20d0 arch/x86/include/generated/asm/syscalls_64.h:55
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f7a8863ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffce4afb728 EFLAGS: 00000246 ORIG_RAX: 0000000000000036
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f7a8863ee5d
+RDX: 0000000000000050 RSI: 0000000000000001 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000010 R09: 0000000000008000
+R10: 0000000020000080 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f7a8896f000
+ </TASK>
+

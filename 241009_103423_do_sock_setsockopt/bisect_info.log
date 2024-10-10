@@ -1,0 +1,45 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [8cf0b93919e13d1e8d4466eb4080a4c4d9d66d7b] Linux 6.12-rc2
+git bisect bad 8cf0b93919e13d1e8d4466eb4080a4c4d9d66d7b
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [1ca06f1c1acecbe02124f14a37cce347b8c1a90c] Merge tag 'xtensa-20221213' of https://github.com/jcmvbkbc/linux-xtensa
+git bisect good 1ca06f1c1acecbe02124f14a37cce347b8c1a90c
+# good: [57aff997450420b8a7da6a72f45c3677ac1c2f86] Merge tag 'ext4_for_linus-6.7-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/tytso/ext4
+git bisect good 57aff997450420b8a7da6a72f45c3677ac1c2f86
+# good: [87caef42200cd44f8b808ec2f8ac2257f3e0a8c1] Merge tag 'hardening-6.10-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/kees/linux
+git bisect good 87caef42200cd44f8b808ec2f8ac2257f3e0a8c1
+# good: [b3ce7a30847a54a7f96a35e609303d8afecd460b] Merge tag 'drm-next-2024-07-18' of https://gitlab.freedesktop.org/drm/kernel
+git bisect good b3ce7a30847a54a7f96a35e609303d8afecd460b
+# bad: [9ea925c806dbb8fee6797f59148daaf7f648832e] Merge tag 'timers-core-2024-09-16' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect bad 9ea925c806dbb8fee6797f59148daaf7f648832e
+# good: [e172f1e9068807a336c0429b6c57d29bded8d891] Merge tag 'v6.11-merge' of git://git.kernel.org/pub/scm/linux/kernel/git/lenb/linux
+git bisect good e172f1e9068807a336c0429b6c57d29bded8d891
+# good: [abbd838c579e491a6242f3916af7963e8a8fa9d5] Merge tag 'mt76-for-kvalo-2024-09-06' of https://github.com/nbd168/wireless
+git bisect good abbd838c579e491a6242f3916af7963e8a8fa9d5
+# bad: [9410645520e9b820069761f3450ef6661418e279] Merge tag 'net-next-6.12' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+git bisect bad 9410645520e9b820069761f3450ef6661418e279
+# good: [42c5b519498820e95d96311b1200eb4b854fc2bd] Merge tag 'platform-drivers-x86-v6.11-7' of git://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86
+git bisect good 42c5b519498820e95d96311b1200eb4b854fc2bd
+# good: [cf06766f1525d35542cbb15fe6103caf44840376] sfc: Add X4 PF support
+git bisect good cf06766f1525d35542cbb15fe6103caf44840376
+# bad: [26d7460222a0be34ff61a92a1fcc4469797ad937] memory-provider: disable building dmabuf mp on !CONFIG_PAGE_POOL
+git bisect bad 26d7460222a0be34ff61a92a1fcc4469797ad937
+# bad: [46ae4d0a489741565520195bddebc3414781e603] Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect bad 46ae4d0a489741565520195bddebc3414781e603
+# good: [3e705251d998c9688be0e7e0526c250fec24d233] net: netfilter: move nf flowtable bpf initialization in nf_flow_table_module_init()
+git bisect good 3e705251d998c9688be0e7e0526c250fec24d233
+# bad: [678f6e28b5f6fc2316f2c0fed8f8903101f1e128] net: add SO_DEVMEM_DONTNEED setsockopt to release RX frags
+git bisect bad 678f6e28b5f6fc2316f2c0fed8f8903101f1e128
+# good: [24b8c19314fa92baf03f2cea19d017789889a5b3] Merge branch '200GbE' of git://git.kernel.org/pub/scm/linux/kernel/git/tnguy/next-queue
+git bisect good 24b8c19314fa92baf03f2cea19d017789889a5b3
+# good: [8ab79ed50cf10f338465c296012500de1081646f] page_pool: devmem support
+git bisect good 8ab79ed50cf10f338465c296012500de1081646f
+# good: [9f6b619edf2e85746f261b42ae8f818a59d126f7] net: support non paged skb frags
+git bisect good 9f6b619edf2e85746f261b42ae8f818a59d126f7
+# good: [8f0b3cc9a4c102c24808c87f1bc943659d7a7f9f] tcp: RX path for devmem TCP
+git bisect good 8f0b3cc9a4c102c24808c87f1bc943659d7a7f9f
+# first bad commit: [678f6e28b5f6fc2316f2c0fed8f8903101f1e128] net: add SO_DEVMEM_DONTNEED setsockopt to release RX frags
+|1009_210900|Bisect successfully! 8cf0b93919e13d1e8d4466eb4080a4c4d9d66d7b_678f6e28b5f6fc2316f2c0fed8f8903101f1e128_revert bzimage passed!|
