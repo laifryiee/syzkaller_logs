@@ -1,0 +1,395 @@
+|1014_011832|cmd=cd /root/internal-devel|
+|1014_011832|git log 9852d85ec9d492ebef56dc5f229416c925758edc check_result:commit 9852d85ec9d492ebef56dc5f229416c925758edc|
+|1014_011832|git log f40ddce88593482919761f74910f42f4b84c004b check_result:commit f40ddce88593482919761f74910f42f4b84c004b|
+|1014_011832|cmd=git checkout -f 9852d85ec9d492ebef56dc5f229416c925758edc|
+|1014_011833|cmd=cd /root/internal-devel|
+|1014_011833||/var/www/html/bzimage/bzImage_9852d85ec9d492ebef56dc5f229416c925758edc| exist, no need make|
+|1014_011833|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_011833|Run /var/www/html/bzimage/bzImage_9852d85ec9d492ebef56dc5f229416c925758edc with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_011845|It takes 12 seconds to find login:test login: |
+|1014_011845|Boot 1 time: takes 12 seconds to boot up.|
+|1014_011845|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_011846|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_011847|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_011848|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_011849|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_011859|/var/www/html/bzimage/bzImage_9852d85ec9d492ebef56dc5f229416c925758edc contained squashfs_readpage_block:[   16.083508] BUG: KASAN: slab-out-of-bounds in squashfs_readpage_block+0xa3b/0xbd0
+[   16.085834]  ? squashfs_readpage_block+0xa3b/0xbd0
+[   16.086332]  ? squashfs_readpage_block+0xa3b/0xbd0
+[   16.086794]  ? squashfs_readpage_block+0xa3b/0xbd0
+[   16.087257]  squashfs_readpage_block+0xa3b/0xbd0
+[   16.100335]  squashfs_readpage_block+0x269/0xbd0
+[   16.168035]  squashfs_readpage_block+0x3ae/0xbd0, FAIL|
+|1014_011859|Found time:16 in /var/www/html/bzimage/1014_011832_squashfs_readpage_block/9852d85ec9d492ebef56dc5f229416c925758edc_dmesg.log|
+|1014_011859|Logic: |<=25: +25|25-100 +180|>100 +1800| Set TIME:41|
+|1014_011859|-END- commit 9852d85ec9d492ebef56dc5f229416c925758edc FAIL bad|
+|1014_011859|issue_folder alreayd exist:/var/www/html//syzkaller/2024_10_14/793de5f7aae9861b000480cc48f6762fe1960132|
+|1014_011859|cmd=cp -rf /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog /var/www/html//syzkaller/2024_10_14/793de5f7aae9861b000480cc48f6762fe1960132/repro.c|
+|1014_011859|gcc -pthread /var/www/html//syzkaller/2024_10_14/793de5f7aae9861b000480cc48f6762fe1960132/repro.c -o /var/www/html//syzkaller/2024_10_14/793de5f7aae9861b000480cc48f6762fe1960132/repro|
+|1014_011859|cmd=cp -rf /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/description /var/www/html//syzkaller/2024_10_14/793de5f7aae9861b000480cc48f6762fe1960132|
+|1014_011859|cp -rf /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/mount_* /var/www/html/bzimage/1014_011832_squashfs_readpage_block/|
+|1014_011901|wget https://raw.githubusercontent.com/xupengfe/kconfig_diff/main/config-5.18rc4i_kvm -O /var/www/html/bzimage/1014_011832_squashfs_readpage_block/kconfig_origin:0|
+|1014_011901|cmd=cd /root/internal-devel|
+|1014_011901||/var/www/html/bzimage/bzImage_f40ddce88593482919761f74910f42f4b84c004b| exist, no need make|
+|1014_011901|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_011901|Run /var/www/html/bzimage/bzImage_f40ddce88593482919761f74910f42f4b84c004b with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_011912|It takes 11 seconds to find login:test login: |
+|1014_011912|Boot 1 time: takes 11 seconds to boot up.|
+|1014_011912|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_011912|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_011914|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_011915|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_011915|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_011956|/var/www/html/bzimage/bzImage_f40ddce88593482919761f74910f42f4b84c004b didn't contain squashfs_readpage_block: in dmesg, pass|
+|1014_011956|Start commit f40ddce88593482919761f74910f42f4b84c004b PASS good|
+|1014_011956|cmd=git checkout -f 9852d85ec9d492ebef56dc5f229416c925758edc|
+|1014_011956|cmd=git bisect start|
+|1014_011956|cmd=git bisect bad 9852d85ec9d492ebef56dc5f229416c925758edc|
+|1014_011956|Bisect first start commit:f40ddce88593482919761f74910f42f4b84c004b|
+|1014_011956|git bisect good f40ddce88593482919761f74910f42f4b84c004b|
+|1014_012202||/var/www/html/bzimage/bzImage_1ca06f1c1acecbe02124f14a37cce347b8c1a90c| exist, no need make|
+|1014_012202|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_012202|Run /var/www/html/bzimage/bzImage_1ca06f1c1acecbe02124f14a37cce347b8c1a90c with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_012215|It takes 13 seconds to find login:test login: |
+|1014_012215|Boot 1 time: takes 13 seconds to boot up.|
+|1014_012215|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_012216|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_012218|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_012219|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_012219|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_012300|/var/www/html/bzimage/bzImage_1ca06f1c1acecbe02124f14a37cce347b8c1a90c didn't contain squashfs_readpage_block: in dmesg, pass|
+|1014_012300|git bisect good 1ca06f1c1acecbe02124f14a37cce347b8c1a90c|
+|1014_012313||/var/www/html/bzimage/bzImage_5eda8f25377f3d6de697eaa1d9801b9781d09dbc| exist, no need make|
+|1014_012313|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_012313|Run /var/www/html/bzimage/bzImage_5eda8f25377f3d6de697eaa1d9801b9781d09dbc with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_012327|It takes 14 seconds to find login:test login: |
+|1014_012327|Boot 1 time: takes 14 seconds to boot up.|
+|1014_012327|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_012328|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_012330|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_012331|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_012331|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_012412|/var/www/html/bzimage/bzImage_5eda8f25377f3d6de697eaa1d9801b9781d09dbc didn't contain squashfs_readpage_block: in dmesg, pass|
+|1014_012412|git bisect good 5eda8f25377f3d6de697eaa1d9801b9781d09dbc|
+|1014_012418||/var/www/html/bzimage/bzImage_1b0aabcc9a35e729a6c7ce71e725fd63513b35de| exist, no need make|
+|1014_012418|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_012418|Run /var/www/html/bzimage/bzImage_1b0aabcc9a35e729a6c7ce71e725fd63513b35de with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_012431|It takes 13 seconds to find login:test login: |
+|1014_012431|Boot 1 time: takes 13 seconds to boot up.|
+|1014_012431|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_012432|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_012434|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_012435|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_012435|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_012516|/var/www/html/bzimage/bzImage_1b0aabcc9a35e729a6c7ce71e725fd63513b35de contained squashfs_readpage_block:[   17.436824] BUG: KASAN: slab-out-of-bounds in squashfs_readpage_block+0xec4/0x10e0
+[   17.439017]  ? squashfs_readpage_block+0xec4/0x10e0
+[   17.439514]  ? squashfs_readpage_block+0xec4/0x10e0
+[   17.439939]  ? squashfs_readpage_block+0xec4/0x10e0
+[   17.440414]  squashfs_readpage_block+0xec4/0x10e0
+[   17.452129]  squashfs_readpage_block+0x1e9/0x10e0, FAIL|
+|1014_012516|git bisect bad 1b0aabcc9a35e729a6c7ce71e725fd63513b35de|
+|1014_012519||/var/www/html/bzimage/bzImage_0f289bdd4102fc870c8b97652c57d41952040d70| exist, no need make|
+|1014_012519|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_012519|Run /var/www/html/bzimage/bzImage_0f289bdd4102fc870c8b97652c57d41952040d70 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_012533|It takes 14 seconds to find login:test login: |
+|1014_012533|Boot 1 time: takes 14 seconds to boot up.|
+|1014_012533|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_012534|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_012536|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_012537|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_012538|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_012619|/var/www/html/bzimage/bzImage_0f289bdd4102fc870c8b97652c57d41952040d70 contained squashfs_readpage_block:[   18.562697] BUG: KASAN: slab-out-of-bounds in squashfs_readpage_block+0xec8/0x10e0
+[   18.564840]  ? squashfs_readpage_block+0xec8/0x10e0
+[   18.565320]  ? squashfs_readpage_block+0xec8/0x10e0
+[   18.565728]  ? squashfs_readpage_block+0xec8/0x10e0
+[   18.566190]  squashfs_readpage_block+0xec8/0x10e0
+[   18.577504]  squashfs_readpage_block+0x1ed/0x10e0
+[   22.249380]  squashfs_readpage_block+0x2c9/0x10e0, FAIL|
+|1014_012619|git bisect bad 0f289bdd4102fc870c8b97652c57d41952040d70|
+|1014_012621|nohup /root/bzimage_bisect/make_bz.sh -k /root/internal-devel -m affc5af36bbb62073b6aaa4f4459b38937ff5331 -d /var/www/html/bzimage -o /tmp/kernel|
+|1014_014547|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_014547|Run /var/www/html/bzimage/bzImage_affc5af36bbb62073b6aaa4f4459b38937ff5331 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_014601|It takes 14 seconds to find login:test login: |
+|1014_014601|Boot 1 time: takes 14 seconds to boot up.|
+|1014_014602|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_014602|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_014604|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_014605|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_014605|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_014646|/var/www/html/bzimage/bzImage_affc5af36bbb62073b6aaa4f4459b38937ff5331 contained squashfs_readpage_block:[   17.623518] BUG: KASAN: slab-out-of-bounds in squashfs_readpage_block+0xec8/0x10e0
+[   17.625667]  ? squashfs_readpage_block+0xec8/0x10e0
+[   17.626153]  ? squashfs_readpage_block+0xec8/0x10e0
+[   17.626562]  ? squashfs_readpage_block+0xec8/0x10e0
+[   17.627024]  squashfs_readpage_block+0xec8/0x10e0
+[   17.638234]  squashfs_readpage_block+0x1ed/0x10e0, FAIL|
+|1014_014646|git bisect bad affc5af36bbb62073b6aaa4f4459b38937ff5331|
+|1014_014648|nohup /root/bzimage_bisect/make_bz.sh -k /root/internal-devel -m b8dd631fcabe2656c8d3751ad4836131d51fb63b -d /var/www/html/bzimage -o /tmp/kernel|
+|1014_020543|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_020543|Run /var/www/html/bzimage/bzImage_b8dd631fcabe2656c8d3751ad4836131d51fb63b with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_020556|It takes 13 seconds to find login:test login: |
+|1014_020556|Boot 1 time: takes 13 seconds to boot up.|
+|1014_020556|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_020557|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_020558|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_020600|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_020600|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_020641|/var/www/html/bzimage/bzImage_b8dd631fcabe2656c8d3751ad4836131d51fb63b didn't contain squashfs_readpage_block: in dmesg, pass|
+|1014_020641|git bisect good b8dd631fcabe2656c8d3751ad4836131d51fb63b|
+|1014_020643|nohup /root/bzimage_bisect/make_bz.sh -k /root/internal-devel -m 8938f112b9c41aaf66f652fc18aa424d2990e15c -d /var/www/html/bzimage -o /tmp/kernel|
+|1014_022546|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_022546|Run /var/www/html/bzimage/bzImage_8938f112b9c41aaf66f652fc18aa424d2990e15c with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_022600|It takes 14 seconds to find login:test login: |
+|1014_022600|Boot 1 time: takes 14 seconds to boot up.|
+|1014_022600|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_022601|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_022602|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_022604|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_022604|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_022645|/var/www/html/bzimage/bzImage_8938f112b9c41aaf66f652fc18aa424d2990e15c didn't contain squashfs_readpage_block: in dmesg, pass|
+|1014_022645|git bisect good 8938f112b9c41aaf66f652fc18aa424d2990e15c|
+|1014_022646||/var/www/html/bzimage/bzImage_d30e51aa7b1f6fa7dd78d4598d1e4c047fcc3fb9| exist, no need make|
+|1014_022646|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_022646|Run /var/www/html/bzimage/bzImage_d30e51aa7b1f6fa7dd78d4598d1e4c047fcc3fb9 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_022701|It takes 15 seconds to find login:test login: |
+|1014_022701|Boot 1 time: takes 15 seconds to boot up.|
+|1014_022701|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_022702|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_022704|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_022705|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_022705|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_022746|/var/www/html/bzimage/bzImage_d30e51aa7b1f6fa7dd78d4598d1e4c047fcc3fb9 didn't contain squashfs_readpage_block: in dmesg, pass|
+|1014_022746|git bisect good d30e51aa7b1f6fa7dd78d4598d1e4c047fcc3fb9|
+|1014_022747||/var/www/html/bzimage/bzImage_da96801729b43eb6229425a23b7bdf6045685251| exist, no need make|
+|1014_022747|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_022747|Run /var/www/html/bzimage/bzImage_da96801729b43eb6229425a23b7bdf6045685251 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_022800|It takes 13 seconds to find login:test login: |
+|1014_022800|Boot 1 time: takes 13 seconds to boot up.|
+|1014_022800|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_022801|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_022802|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_022804|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_022804|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_022845|/var/www/html/bzimage/bzImage_da96801729b43eb6229425a23b7bdf6045685251 contained squashfs_readpage_block:[   17.052063] BUG: KASAN: slab-out-of-bounds in squashfs_readpage_block+0xec8/0x10e0
+[   17.054499]  ? squashfs_readpage_block+0xec8/0x10e0
+[   17.055057]  ? squashfs_readpage_block+0xec8/0x10e0
+[   17.055524]  ? squashfs_readpage_block+0xec8/0x10e0
+[   17.056054]  squashfs_readpage_block+0xec8/0x10e0
+[   17.069858]  squashfs_readpage_block+0x1ed/0x10e0
+[   17.482017]  squashfs_readpage_block+0x2c9/0x10e0, FAIL|
+|1014_022845|git bisect bad da96801729b43eb6229425a23b7bdf6045685251|
+|1014_022846|nohup /root/bzimage_bisect/make_bz.sh -k /root/internal-devel -m a8e61d584eda0d5532b0bbfe3c2427d2688d3c83 -d /var/www/html/bzimage -o /tmp/kernel|
+|1014_024731|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_024731|Run /var/www/html/bzimage/bzImage_a8e61d584eda0d5532b0bbfe3c2427d2688d3c83 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_024745|It takes 14 seconds to find login:test login: |
+|1014_024745|Boot 1 time: takes 14 seconds to boot up.|
+|1014_024745|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_024746|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_024747|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_024748|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_024749|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_024830|/var/www/html/bzimage/bzImage_a8e61d584eda0d5532b0bbfe3c2427d2688d3c83 didn't contain squashfs_readpage_block: in dmesg, pass|
+|1014_024830|git bisect good a8e61d584eda0d5532b0bbfe3c2427d2688d3c83|
+|1014_024830|nohup /root/bzimage_bisect/make_bz.sh -k /root/internal-devel -m 6dff315972640bfe542e2d044933751afd8e6c4a -d /var/www/html/bzimage -o /tmp/kernel|
+|1014_030740|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_030740|Run /var/www/html/bzimage/bzImage_6dff315972640bfe542e2d044933751afd8e6c4a with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_030756|It takes 16 seconds to find login:test login: |
+|1014_030756|Boot 1 time: takes 16 seconds to boot up.|
+|1014_030756|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_030758|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_030759|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_030800|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_030801|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_030842|/var/www/html/bzimage/bzImage_6dff315972640bfe542e2d044933751afd8e6c4a contained squashfs_readpage_block:[   20.378982] BUG: KASAN: slab-out-of-bounds in squashfs_readpage_block+0xec8/0x10e0
+[   20.381407]  ? squashfs_readpage_block+0xec8/0x10e0
+[   20.381951]  ? squashfs_readpage_block+0xec8/0x10e0
+[   20.382422]  ? squashfs_readpage_block+0xec8/0x10e0
+[   20.382952]  squashfs_readpage_block+0xec8/0x10e0
+[   20.395450]  squashfs_readpage_block+0x1ed/0x10e0, FAIL|
+|1014_030842|git bisect bad 6dff315972640bfe542e2d044933751afd8e6c4a|
+|1014_030842|nohup /root/bzimage_bisect/make_bz.sh -k /root/internal-devel -m b1c3efe07987592c16d5f59ce235e6ddbea65a73 -d /var/www/html/bzimage -o /tmp/kernel|
+|1014_032735|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_032735|Run /var/www/html/bzimage/bzImage_b1c3efe07987592c16d5f59ce235e6ddbea65a73 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_032749|It takes 14 seconds to find login:test login: |
+|1014_032749|Boot 1 time: takes 14 seconds to boot up.|
+|1014_032749|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_032750|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_032752|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_032753|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_032753|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_032834|/var/www/html/bzimage/bzImage_b1c3efe07987592c16d5f59ce235e6ddbea65a73 contained squashfs_readpage_block:[   18.105629] BUG: KASAN: slab-out-of-bounds in squashfs_readpage_block+0xec8/0x10e0
+[   18.107762]  ? squashfs_readpage_block+0xec8/0x10e0
+[   18.108239]  ? squashfs_readpage_block+0xec8/0x10e0
+[   18.108637]  ? squashfs_readpage_block+0xec8/0x10e0
+[   18.109100]  squashfs_readpage_block+0xec8/0x10e0
+[   18.119904]  squashfs_readpage_block+0x1ed/0x10e0
+[   44.759158]  squashfs_readpage_block+0x2c9/0x10e0
+[   44.784628]  squashfs_readpage_block+0x2c9/0x10e0, FAIL|
+|1014_032834|git bisect bad b1c3efe07987592c16d5f59ce235e6ddbea65a73|
+|1014_032835|nohup /root/bzimage_bisect/make_bz.sh -k /root/internal-devel -m bba07109f57d1299cd5551eb948ce182d711c221 -d /var/www/html/bzimage -o /tmp/kernel|
+|1014_034734|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_034735|Run /var/www/html/bzimage/bzImage_bba07109f57d1299cd5551eb948ce182d711c221 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_034749|It takes 14 seconds to find login:test login: |
+|1014_034749|Boot 1 time: takes 14 seconds to boot up.|
+|1014_034749|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_034750|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_034751|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_034752|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_034753|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_034834|/var/www/html/bzimage/bzImage_bba07109f57d1299cd5551eb948ce182d711c221 contained squashfs_readpage_block:[   17.959407] BUG: KASAN: slab-out-of-bounds in squashfs_readpage_block+0xec8/0x10e0
+[   17.961620]  ? squashfs_readpage_block+0xec8/0x10e0
+[   17.962106]  ? squashfs_readpage_block+0xec8/0x10e0
+[   17.962511]  ? squashfs_readpage_block+0xec8/0x10e0
+[   17.962979]  squashfs_readpage_block+0xec8/0x10e0
+[   17.973897]  squashfs_readpage_block+0x1ed/0x10e0
+[   18.184497]  ? squashfs_readpage_block+0xec8/0x10e0
+[   18.185305]  squashfs_readpage_block+0x2c9/0x10e0, FAIL|
+|1014_034834|git bisect bad bba07109f57d1299cd5551eb948ce182d711c221|
+|1014_034834|nohup /root/bzimage_bisect/make_bz.sh -k /root/internal-devel -m d80cb7777e18a1c0bcd1e660e6d8fffd257862aa -d /var/www/html/bzimage -o /tmp/kernel|
+|1014_040740|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_040740|Run /var/www/html/bzimage/bzImage_d80cb7777e18a1c0bcd1e660e6d8fffd257862aa with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_040755|It takes 15 seconds to find login:test login: |
+|1014_040755|Boot 1 time: takes 15 seconds to boot up.|
+|1014_040755|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_040756|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_040757|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_040759|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_040759|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_040840|/var/www/html/bzimage/bzImage_d80cb7777e18a1c0bcd1e660e6d8fffd257862aa contained squashfs_readpage_block:[   19.574745] BUG: KASAN: slab-out-of-bounds in squashfs_readpage_block+0xec8/0x10e0
+[   19.577206]  ? squashfs_readpage_block+0xec8/0x10e0
+[   19.577720]  ? squashfs_readpage_block+0xec8/0x10e0
+[   19.578150]  ? squashfs_readpage_block+0xec8/0x10e0
+[   19.578641]  squashfs_readpage_block+0xec8/0x10e0
+[   19.590080]  squashfs_readpage_block+0x1ed/0x10e0, FAIL|
+|1014_040840|git bisect bad d80cb7777e18a1c0bcd1e660e6d8fffd257862aa|
+|1014_040840|nohup /root/bzimage_bisect/make_bz.sh -k /root/internal-devel -m 36319c0c1c6c4374949f7351a018aa922fb6ef3d -d /var/www/html/bzimage -o /tmp/kernel|
+|1014_042804|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_042804|Run /var/www/html/bzimage/bzImage_36319c0c1c6c4374949f7351a018aa922fb6ef3d with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_042818|It takes 14 seconds to find login:test login: |
+|1014_042818|Boot 1 time: takes 14 seconds to boot up.|
+|1014_042818|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_042819|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_042820|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_042822|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_042822|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_042903|/var/www/html/bzimage/bzImage_36319c0c1c6c4374949f7351a018aa922fb6ef3d contained squashfs_readpage_block:[   17.989135] BUG: KASAN: slab-out-of-bounds in squashfs_readpage_block+0xec8/0x10e0
+[   17.991320]  ? squashfs_readpage_block+0xec8/0x10e0
+[   17.991822]  ? squashfs_readpage_block+0xec8/0x10e0
+[   17.992298]  ? squashfs_readpage_block+0xec8/0x10e0
+[   17.992762]  squashfs_readpage_block+0xec8/0x10e0
+[   18.003636]  squashfs_readpage_block+0x1ed/0x10e0, FAIL|
+|1014_042903|git bisect bad 36319c0c1c6c4374949f7351a018aa922fb6ef3d|
+|1014_042903||/var/www/html/bzimage/bzImage_12427de9439d68b8e96ba6f50b601ef15f437612| exist, no need make|
+|1014_042903|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_042903|Run /var/www/html/bzimage/bzImage_12427de9439d68b8e96ba6f50b601ef15f437612 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_042918|It takes 15 seconds to find login:test login: |
+|1014_042918|Boot 1 time: takes 15 seconds to boot up.|
+|1014_042918|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_042920|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_042921|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_042922|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_042923|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_043004|/var/www/html/bzimage/bzImage_12427de9439d68b8e96ba6f50b601ef15f437612 contained squashfs_readpage_block:[   19.601848] BUG: KASAN: slab-out-of-bounds in squashfs_readpage_block+0xec8/0x10e0
+[   19.604264]  ? squashfs_readpage_block+0xec8/0x10e0
+[   19.604807]  ? squashfs_readpage_block+0xec8/0x10e0
+[   19.605275]  ? squashfs_readpage_block+0xec8/0x10e0
+[   19.605801]  squashfs_readpage_block+0xec8/0x10e0
+[   19.618694]  squashfs_readpage_block+0x1ed/0x10e0, FAIL|
+|1014_043004|git bisect bad 12427de9439d68b8e96ba6f50b601ef15f437612|
+|1014_043004||/var/www/html/bzimage/bzImage_61a7a5e25fe79b6c43f1c49705a0294be113c4a5| exist, no need make|
+|1014_043004|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_043004|Run /var/www/html/bzimage/bzImage_61a7a5e25fe79b6c43f1c49705a0294be113c4a5 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_043019|It takes 15 seconds to find login:test login: |
+|1014_043019|Boot 1 time: takes 15 seconds to boot up.|
+|1014_043019|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_043020|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_043021|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_043023|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_043023|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_043104|/var/www/html/bzimage/bzImage_61a7a5e25fe79b6c43f1c49705a0294be113c4a5 didn't contain squashfs_readpage_block: in dmesg, pass|
+|1014_043104|git bisect good 61a7a5e25fe79b6c43f1c49705a0294be113c4a5|
+|1014_043104||/var/www/html/bzimage/bzImage_44e3876d268be49ee810481ee3c95d8d650bf22e| exist, no need make|
+|1014_043104|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1014_043104|Run /var/www/html/bzimage/bzImage_44e3876d268be49ee810481ee3c95d8d650bf22e with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1014_043117|It takes 13 seconds to find login:test login: |
+|1014_043117|Boot 1 time: takes 13 seconds to boot up.|
+|1014_043117|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1014_043118|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1014_043120|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/793de5f7aae9861b000480cc48f6762fe1960132/repro.cprog root@localhost:/root/repro.c|
+|1014_043121|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1014_043121|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1014_043202|/var/www/html/bzimage/bzImage_44e3876d268be49ee810481ee3c95d8d650bf22e didn't contain squashfs_readpage_block: in dmesg, pass|
+|1014_043202|git bisect good 44e3876d268be49ee810481ee3c95d8d650bf22e|
+|1014_043202|Bisect PASS: find bad commit: 12427de9439d68b8e96ba6f50b601ef15f437612 is the first bad commit
+commit 12427de9439d68b8e96ba6f50b601ef15f437612
+Author: Phillip Lougher <phillip@squashfs.org.uk>
+Date:   Mon Nov 13 16:09:01 2023 +0000
+
+    Squashfs: fix variable overflow triggered by sysbot
+    
+    Sysbot reports a slab out of bounds write in squashfs_readahead().
+    
+    This is ultimately caused by a file reporting an (infeasibly) large file
+    size (1407374883553280 bytes) with the minimum block size of 4K.
+    
+    This causes variable overflow.
+    
+    Link: https://lkml.kernel.org/r/20231113160901.6444-1-phillip@squashfs.org.uk
+    Signed-off-by: Phillip Lougher <phillip@squashfs.org.uk>
+    Reported-by: syzbot+604424eb051c2f696163@syzkaller.appspotmail.com
+    Closes: https://lore.kernel.org/all/000000000000b1fda20609ede0d1@google.com/
+    Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+
+ fs/squashfs/file.c        | 3 ++-
+ fs/squashfs/file_direct.c | 6 +++---
+ 2 files changed, 5 insertions(+), 4 deletions(-)|
+|1014_043202|cmd=git bisect log >> /var/www/html/bzimage/bi.log|
+|1014_043202|cmd=git bisect log >> /var/www/html/bzimage/1014_011832_squashfs_readpage_block/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [9852d85ec9d492ebef56dc5f229416c925758edc] Linux 6.12-rc1
+git bisect bad 9852d85ec9d492ebef56dc5f229416c925758edc
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [1ca06f1c1acecbe02124f14a37cce347b8c1a90c] Merge tag 'xtensa-20221213' of https://github.com/jcmvbkbc/linux-xtensa
+git bisect good 1ca06f1c1acecbe02124f14a37cce347b8c1a90c
+# good: [5eda8f25377f3d6de697eaa1d9801b9781d09dbc] Merge tag 'linux_kselftest-kunit-6.7-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest
+git bisect good 5eda8f25377f3d6de697eaa1d9801b9781d09dbc
+# bad: [1b0aabcc9a35e729a6c7ce71e725fd63513b35de] Merge tag 'vfs-6.10.misc' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect bad 1b0aabcc9a35e729a6c7ce71e725fd63513b35de
+# bad: [0f289bdd4102fc870c8b97652c57d41952040d70] Merge tag 'input-for-v6.8-rc0' of git://git.kernel.org/pub/scm/linux/kernel/git/dtor/input
+git bisect bad 0f289bdd4102fc870c8b97652c57d41952040d70
+# bad: [affc5af36bbb62073b6aaa4f4459b38937ff5331] Merge tag 'for-6.8-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux
+git bisect bad affc5af36bbb62073b6aaa4f4459b38937ff5331
+# good: [b8dd631fcabe2656c8d3751ad4836131d51fb63b] Merge tag 'rproc-v6.7' of git://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux
+git bisect good b8dd631fcabe2656c8d3751ad4836131d51fb63b
+# good: [8938f112b9c41aaf66f652fc18aa424d2990e15c] btrfs: factor out block mapping for RAID10
+git bisect good 8938f112b9c41aaf66f652fc18aa424d2990e15c
+# good: [d30e51aa7b1f6fa7dd78d4598d1e4c047fcc3fb9] Merge tag 'slab-for-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/vbabka/slab
+git bisect good d30e51aa7b1f6fa7dd78d4598d1e4c047fcc3fb9
+# bad: [da96801729b43eb6229425a23b7bdf6045685251] Merge tag 'regulator-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator
+git bisect bad da96801729b43eb6229425a23b7bdf6045685251
+# good: [a8e61d584eda0d5532b0bbfe3c2427d2688d3c83] mm/huge_memory: page_remove_rmap() -> folio_remove_rmap_pmd()
+git bisect good a8e61d584eda0d5532b0bbfe3c2427d2688d3c83
+# bad: [6dff315972640bfe542e2d044933751afd8e6c4a] crash_core: fix and simplify the logic of crash_exclude_mem_range()
+git bisect bad 6dff315972640bfe542e2d044933751afd8e6c4a
+# bad: [b1c3efe07987592c16d5f59ce235e6ddbea65a73] sched: fair: move unused stub functions to header
+git bisect bad b1c3efe07987592c16d5f59ce235e6ddbea65a73
+# bad: [bba07109f57d1299cd5551eb948ce182d711c221] hexagon: mm: include asm/setup.h for setup_arch_memory()'s prototype
+git bisect bad bba07109f57d1299cd5551eb948ce182d711c221
+# bad: [d80cb7777e18a1c0bcd1e660e6d8fffd257862aa] nilfs2: convert nilfs_btnode_create_block to use a folio
+git bisect bad d80cb7777e18a1c0bcd1e660e6d8fffd257862aa
+# bad: [36319c0c1c6c4374949f7351a018aa922fb6ef3d] nilfs2: convert to nilfs_folio_buffers_clean()
+git bisect bad 36319c0c1c6c4374949f7351a018aa922fb6ef3d
+# bad: [12427de9439d68b8e96ba6f50b601ef15f437612] Squashfs: fix variable overflow triggered by sysbot
+git bisect bad 12427de9439d68b8e96ba6f50b601ef15f437612
+# good: [61a7a5e25fe79b6c43f1c49705a0294be113c4a5] introduce for_other_threads(p, t)
+git bisect good 61a7a5e25fe79b6c43f1c49705a0294be113c4a5
+# good: [44e3876d268be49ee810481ee3c95d8d650bf22e] fs/nilfs2: use standard array-copy-function
+git bisect good 44e3876d268be49ee810481ee3c95d8d650bf22e
+# first bad commit: [12427de9439d68b8e96ba6f50b601ef15f437612] Squashfs: fix variable overflow triggered by sysbot
+|1014_043202|nohup /root/bzimage_bisect/make_bz.sh -k /root/internal-devel -m 9852d85ec9d492ebef56dc5f229416c925758edc -b 12427de9439d68b8e96ba6f50b601ef15f437612 -d /var/www/html/bzimage -o /tmp/kernel -f /var/www/html/bzimage/bzImage_9852d85ec9d492ebef56dc5f229416c925758edc_12427de9439d68b8e96ba6f50b601ef15f437612_revert|
+|1014_043235|2nd base commit:f40ddce88593482919761f74910f42f4b84c004b!|
+|1014_043235|FAIL|bzImage:/var/www/html/bzimage/bzImage_9852d85ec9d492ebef56dc5f229416c925758edc_12427de9439d68b8e96ba6f50b601ef15f437612_revert does not exist:|
+|1014_043235|2nd base commit:f40ddce88593482919761f74910f42f4b84c004b!|
+|1014_043235|ISSUE:793de5f7aae9861b000480cc48f6762fe1960132  EMAIL status after check:Email_not_sent|

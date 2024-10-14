@@ -1,0 +1,44 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [9852d85ec9d492ebef56dc5f229416c925758edc] Linux 6.12-rc1
+git bisect bad 9852d85ec9d492ebef56dc5f229416c925758edc
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [1ca06f1c1acecbe02124f14a37cce347b8c1a90c] Merge tag 'xtensa-20221213' of https://github.com/jcmvbkbc/linux-xtensa
+git bisect good 1ca06f1c1acecbe02124f14a37cce347b8c1a90c
+# good: [5eda8f25377f3d6de697eaa1d9801b9781d09dbc] Merge tag 'linux_kselftest-kunit-6.7-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest
+git bisect good 5eda8f25377f3d6de697eaa1d9801b9781d09dbc
+# bad: [1b0aabcc9a35e729a6c7ce71e725fd63513b35de] Merge tag 'vfs-6.10.misc' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect bad 1b0aabcc9a35e729a6c7ce71e725fd63513b35de
+# bad: [0f289bdd4102fc870c8b97652c57d41952040d70] Merge tag 'input-for-v6.8-rc0' of git://git.kernel.org/pub/scm/linux/kernel/git/dtor/input
+git bisect bad 0f289bdd4102fc870c8b97652c57d41952040d70
+# bad: [affc5af36bbb62073b6aaa4f4459b38937ff5331] Merge tag 'for-6.8-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux
+git bisect bad affc5af36bbb62073b6aaa4f4459b38937ff5331
+# good: [b8dd631fcabe2656c8d3751ad4836131d51fb63b] Merge tag 'rproc-v6.7' of git://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux
+git bisect good b8dd631fcabe2656c8d3751ad4836131d51fb63b
+# good: [8938f112b9c41aaf66f652fc18aa424d2990e15c] btrfs: factor out block mapping for RAID10
+git bisect good 8938f112b9c41aaf66f652fc18aa424d2990e15c
+# good: [d30e51aa7b1f6fa7dd78d4598d1e4c047fcc3fb9] Merge tag 'slab-for-6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/vbabka/slab
+git bisect good d30e51aa7b1f6fa7dd78d4598d1e4c047fcc3fb9
+# bad: [da96801729b43eb6229425a23b7bdf6045685251] Merge tag 'regulator-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator
+git bisect bad da96801729b43eb6229425a23b7bdf6045685251
+# good: [a8e61d584eda0d5532b0bbfe3c2427d2688d3c83] mm/huge_memory: page_remove_rmap() -> folio_remove_rmap_pmd()
+git bisect good a8e61d584eda0d5532b0bbfe3c2427d2688d3c83
+# bad: [6dff315972640bfe542e2d044933751afd8e6c4a] crash_core: fix and simplify the logic of crash_exclude_mem_range()
+git bisect bad 6dff315972640bfe542e2d044933751afd8e6c4a
+# bad: [b1c3efe07987592c16d5f59ce235e6ddbea65a73] sched: fair: move unused stub functions to header
+git bisect bad b1c3efe07987592c16d5f59ce235e6ddbea65a73
+# bad: [bba07109f57d1299cd5551eb948ce182d711c221] hexagon: mm: include asm/setup.h for setup_arch_memory()'s prototype
+git bisect bad bba07109f57d1299cd5551eb948ce182d711c221
+# bad: [d80cb7777e18a1c0bcd1e660e6d8fffd257862aa] nilfs2: convert nilfs_btnode_create_block to use a folio
+git bisect bad d80cb7777e18a1c0bcd1e660e6d8fffd257862aa
+# bad: [36319c0c1c6c4374949f7351a018aa922fb6ef3d] nilfs2: convert to nilfs_folio_buffers_clean()
+git bisect bad 36319c0c1c6c4374949f7351a018aa922fb6ef3d
+# bad: [12427de9439d68b8e96ba6f50b601ef15f437612] Squashfs: fix variable overflow triggered by sysbot
+git bisect bad 12427de9439d68b8e96ba6f50b601ef15f437612
+# good: [61a7a5e25fe79b6c43f1c49705a0294be113c4a5] introduce for_other_threads(p, t)
+git bisect good 61a7a5e25fe79b6c43f1c49705a0294be113c4a5
+# good: [44e3876d268be49ee810481ee3c95d8d650bf22e] fs/nilfs2: use standard array-copy-function
+git bisect good 44e3876d268be49ee810481ee3c95d8d650bf22e
+# first bad commit: [12427de9439d68b8e96ba6f50b601ef15f437612] Squashfs: fix variable overflow triggered by sysbot
