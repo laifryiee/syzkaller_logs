@@ -1,0 +1,45 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [8cf0b93919e13d1e8d4466eb4080a4c4d9d66d7b] Linux 6.12-rc2
+git bisect bad 8cf0b93919e13d1e8d4466eb4080a4c4d9d66d7b
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [1ca06f1c1acecbe02124f14a37cce347b8c1a90c] Merge tag 'xtensa-20221213' of https://github.com/jcmvbkbc/linux-xtensa
+git bisect good 1ca06f1c1acecbe02124f14a37cce347b8c1a90c
+# good: [57aff997450420b8a7da6a72f45c3677ac1c2f86] Merge tag 'ext4_for_linus-6.7-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/tytso/ext4
+git bisect good 57aff997450420b8a7da6a72f45c3677ac1c2f86
+# good: [87caef42200cd44f8b808ec2f8ac2257f3e0a8c1] Merge tag 'hardening-6.10-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/kees/linux
+git bisect good 87caef42200cd44f8b808ec2f8ac2257f3e0a8c1
+# good: [b3ce7a30847a54a7f96a35e609303d8afecd460b] Merge tag 'drm-next-2024-07-18' of https://gitlab.freedesktop.org/drm/kernel
+git bisect good b3ce7a30847a54a7f96a35e609303d8afecd460b
+# good: [9ea925c806dbb8fee6797f59148daaf7f648832e] Merge tag 'timers-core-2024-09-16' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect good 9ea925c806dbb8fee6797f59148daaf7f648832e
+# good: [1868f9d0260e9afaf7c6436d14923ae12eaea465] Merge tag 'for-linux-6.12-ofs1' of git://git.kernel.org/pub/scm/linux/kernel/git/hubcap/linux
+git bisect good 1868f9d0260e9afaf7c6436d14923ae12eaea465
+# good: [2af148ef8549a12f8025286b8825c2833ee6bcb8] ocfs2: fix uninit-value in ocfs2_get_block()
+git bisect good 2af148ef8549a12f8025286b8825c2833ee6bcb8
+# bad: [b707512b8b07396f8982103a84285a165a1bd94c] Merge tag 'staging-6.12-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging
+git bisect bad b707512b8b07396f8982103a84285a165a1bd94c
+# bad: [f7fccaa772718f6d2e798dece4a5210fe4c406ec] Merge tag 'fuse-update-6.12' of git://git.kernel.org/pub/scm/linux/kernel/git/mszeredi/fuse
+git bisect bad f7fccaa772718f6d2e798dece4a5210fe4c406ec
+# bad: [6db6a19f1ae31e29857b0f6f3e3896c22543be21] Merge tag 'hwlock-v6.12' of git://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux
+git bisect bad 6db6a19f1ae31e29857b0f6f3e3896c22543be21
+# bad: [6fa6588e5964473356f0e2a02093ea42a5b3fd56] Merge tag 'sched_ext-for-6.12-rc1-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/tj/sched_ext
+git bisect bad 6fa6588e5964473356f0e2a02093ea42a5b3fd56
+# good: [f0c9363db2ddfb07723c00cb153c84c8179e92d4] perf/riscv-sbi: Add platform specific firmware event handling
+git bisect good f0c9363db2ddfb07723c00cb153c84c8179e92d4
+# good: [e1b061b444fb01c237838f0d8238653afe6a8094] Merge tag 'landlock-6.12-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/mic/linux
+git bisect good e1b061b444fb01c237838f0d8238653afe6a8094
+# good: [172d513936c707e991c3eca1b79cd8a153171862] Merge tag 'sysctl-6.12-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/sysctl/sysctl
+git bisect good 172d513936c707e991c3eca1b79cd8a153171862
+# bad: [04beb6e0e08c30c6f845f50afb7d7953603d7a6f] io_uring: check for presence of task_work rather than TIF_NOTIFY_SIGNAL
+git bisect bad 04beb6e0e08c30c6f845f50afb7d7953603d7a6f
+# bad: [a09c17240bdf2e9fa6d0591afa9448b59785f7d4] io_uring/sqpoll: retain test for whether the CPU is valid
+git bisect bad a09c17240bdf2e9fa6d0591afa9448b59785f7d4
+# bad: [8b0c6025a02ddec2b497f83e7d2f27a07f1d0653] io_uring/rsrc: get rid of io_mapped_ubuf->folio_mask
+git bisect bad 8b0c6025a02ddec2b497f83e7d2f27a07f1d0653
+# bad: [636119af94f2fbf3e4458be66a1bc740ba69ce6d] io_uring: rename "copy buffers" to "clone buffers"
+git bisect bad 636119af94f2fbf3e4458be66a1bc740ba69ce6d
+# first bad commit: [636119af94f2fbf3e4458be66a1bc740ba69ce6d] io_uring: rename "copy buffers" to "clone buffers"
+|1016_032609|Bisect successfully! 8cf0b93919e13d1e8d4466eb4080a4c4d9d66d7b_636119af94f2fbf3e4458be66a1bc740ba69ce6d_revert bzimage passed!|

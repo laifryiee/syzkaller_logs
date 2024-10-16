@@ -1,0 +1,89 @@
+BUG: unable to handle page fault for address: ffffffff85f7e4b4
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0003) - permissions violation
+PGD 6e87067 P4D 6e87067 PUD 6e88063 PMD 8000000005e001a1 
+Oops: Oops: 0003 [#1] PREEMPT SMP KASAN NOPTI
+CPU: 0 UID: 0 PID: 722 Comm: syz-executor322 Not tainted 6.12.0-rc2-2024-10-08-intel-next-a0ec312cf724+ #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:arch_atomic_fetch_add arch/x86/include/asm/atomic.h:93 [inline]
+RIP: 0010:raw_atomic_fetch_add_relaxed include/linux/atomic/atomic-arch-fallback.h:749 [inline]
+RIP: 0010:atomic_fetch_add_relaxed include/linux/atomic/atomic-instrumented.h:253 [inline]
+RIP: 0010:__refcount_add include/linux/refcount.h:184 [inline]
+RIP: 0010:__refcount_inc include/linux/refcount.h:241 [inline]
+RIP: 0010:refcount_inc include/linux/refcount.h:258 [inline]
+RIP: 0010:io_clone_buffers io_uring/rsrc.c:1179 [inline]
+RIP: 0010:io_register_clone_buffers+0x45e/0x810 io_uring/rsrc.c:1234
+Code: 3c 08 00 0f 85 3c 03 00 00 48 8b 1b be 04 00 00 00 41 bf 01 00 00 00 48 8d 43 14 48 89 c7 48 89 85 08 ff ff ff e8 62 d9 f0 fe <f0> 44 0f c1 7b 14 31 ff 44 89 fe e8 b2 f5 88 fe 45 85 ff 0f 84 b1
+RSP: 0018:ffff88801035fc50 EFLAGS: 00010246
+RAX: 0000000000000001 RBX: ffffffff85f7e4a0 RCX: ffffffff82df0c5e
+RDX: fffffbfff0befc97 RSI: 0000000000000004 RDI: ffffffff85f7e4b4
+RBP: ffff88801035fd98 R08: 0000000000000001 R09: fffffbfff0befc96
+R10: ffffffff85f7e4b7 R11: 0000000000000001 R12: ffff8880127ed4e0
+R13: 0000000000000000 R14: ffff88801035fd70 R15: 0000000000000001
+FS:  00007fa26e7ad600(0000) GS:ffff88806c400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffffff85f7e4b4 CR3: 000000001b9f4000 CR4: 0000000000750ef0
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __io_uring_register+0x61d/0x20f0 io_uring/register.c:549
+ __do_sys_io_uring_register io_uring/register.c:611 [inline]
+ __se_sys_io_uring_register io_uring/register.c:591 [inline]
+ __x64_sys_io_uring_register+0x172/0x2a0 io_uring/register.c:591
+ x64_sys_call+0x14bd/0x20d0 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fa26e43ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fff64aa9928 EFLAGS: 00000246 ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 0000000000002a00 RCX: 00007fa26e43ee5d
+RDX: 00000000200002c0 RSI: 000000000000001e RDI: 0000000000000004
+RBP: 0000000000000004 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007fa26e7f4000
+ </TASK>
+Modules linked in:
+CR2: ffffffff85f7e4b4
+---[ end trace 0000000000000000 ]---
+RIP: 0010:arch_atomic_fetch_add arch/x86/include/asm/atomic.h:93 [inline]
+RIP: 0010:raw_atomic_fetch_add_relaxed include/linux/atomic/atomic-arch-fallback.h:749 [inline]
+RIP: 0010:atomic_fetch_add_relaxed include/linux/atomic/atomic-instrumented.h:253 [inline]
+RIP: 0010:__refcount_add include/linux/refcount.h:184 [inline]
+RIP: 0010:__refcount_inc include/linux/refcount.h:241 [inline]
+RIP: 0010:refcount_inc include/linux/refcount.h:258 [inline]
+RIP: 0010:io_clone_buffers io_uring/rsrc.c:1179 [inline]
+RIP: 0010:io_register_clone_buffers+0x45e/0x810 io_uring/rsrc.c:1234
+Code: 3c 08 00 0f 85 3c 03 00 00 48 8b 1b be 04 00 00 00 41 bf 01 00 00 00 48 8d 43 14 48 89 c7 48 89 85 08 ff ff ff e8 62 d9 f0 fe <f0> 44 0f c1 7b 14 31 ff 44 89 fe e8 b2 f5 88 fe 45 85 ff 0f 84 b1
+RSP: 0018:ffff88801035fc50 EFLAGS: 00010246
+RAX: 0000000000000001 RBX: ffffffff85f7e4a0 RCX: ffffffff82df0c5e
+RDX: fffffbfff0befc97 RSI: 0000000000000004 RDI: ffffffff85f7e4b4
+RBP: ffff88801035fd98 R08: 0000000000000001 R09: fffffbfff0befc96
+R10: ffffffff85f7e4b7 R11: 0000000000000001 R12: ffff8880127ed4e0
+R13: 0000000000000000 R14: ffff88801035fd70 R15: 0000000000000001
+FS:  00007fa26e7ad600(0000) GS:ffff88806c400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffffff85f7e4b4 CR3: 000000001b9f4000 CR4: 0000000000750ef0
+PKRU: 55555554
+note: syz-executor322[722] exited with irqs disabled
+----------------
+Code disassembly (best guess):
+   0:	3c 08                	cmp    $0x8,%al
+   2:	00 0f                	add    %cl,(%rdi)
+   4:	85 3c 03             	test   %edi,(%rbx,%rax,1)
+   7:	00 00                	add    %al,(%rax)
+   9:	48 8b 1b             	mov    (%rbx),%rbx
+   c:	be 04 00 00 00       	mov    $0x4,%esi
+  11:	41 bf 01 00 00 00    	mov    $0x1,%r15d
+  17:	48 8d 43 14          	lea    0x14(%rbx),%rax
+  1b:	48 89 c7             	mov    %rax,%rdi
+  1e:	48 89 85 08 ff ff ff 	mov    %rax,-0xf8(%rbp)
+  25:	e8 62 d9 f0 fe       	callq  0xfef0d98c
+* 2a:	f0 44 0f c1 7b 14    	lock xadd %r15d,0x14(%rbx) <-- trapping instruction
+  30:	31 ff                	xor    %edi,%edi
+  32:	44 89 fe             	mov    %r15d,%esi
+  35:	e8 b2 f5 88 fe       	callq  0xfe88f5ec
+  3a:	45 85 ff             	test   %r15d,%r15d
+  3d:	0f                   	.byte 0xf
+  3e:	84                   	.byte 0x84
+  3f:	b1                   	.byte 0xb1
