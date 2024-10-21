@@ -1,0 +1,170 @@
+program syz-executor.6 is using a deprecated SCSI ioctl, please convert it to SG_IO
+INFO: task kworker/u8:9:847 blocked for more than 143 seconds.
+      Tainted: G        W          6.12.0-rc2-2024-10-08-intel-next-a0ec312cf724+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:kworker/u8:9    state:D stack:0     pid:847   tgid:847   ppid:2      flags:0x00004000
+Workqueue: writeback wb_workfn (flush-8:0)
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5321 [inline]
+ __schedule+0xe13/0x33a0 kernel/sched/core.c:6689
+ __schedule_loop kernel/sched/core.c:6766 [inline]
+ schedule+0xf6/0x3f0 kernel/sched/core.c:6781
+ io_schedule+0xce/0x150 kernel/sched/core.c:7566
+ rq_qos_wait+0x1c5/0x310 block/blk-rq-qos.c:282
+ __wbt_wait block/blk-wbt.c:594 [inline]
+ wbt_wait+0x1ec/0x400 block/blk-wbt.c:658
+ __rq_qos_throttle+0x5f/0xb0 block/blk-rq-qos.c:66
+ rq_qos_throttle block/blk-rq-qos.h:151 [inline]
+ rq_qos_throttle block/blk-rq-qos.h:147 [inline]
+ blk_mq_get_new_requests block/blk-mq.c:2859 [inline]
+ blk_mq_submit_bio+0x8ad/0x2a20 block/blk-mq.c:3003
+ __submit_bio+0x18d/0x500 block/blk-core.c:615
+ __submit_bio_noacct_mq block/blk-core.c:696 [inline]
+ submit_bio_noacct_nocheck+0x6a0/0xcc0 block/blk-core.c:725
+ submit_bio_noacct+0x61d/0x1dc0 block/blk-core.c:854
+ submit_bio+0xce/0x480 block/blk-core.c:896
+ submit_bh_wbc+0x58a/0x740 fs/buffer.c:2819
+ __block_write_full_folio+0x7a1/0xed0 fs/buffer.c:1909
+ block_write_full_folio+0x2e6/0x3a0 fs/buffer.c:2748
+ write_cache_pages+0xbc/0x140 mm/page-writeback.c:2640
+ blkdev_writepages+0xa5/0xf0 block/fops.c:437
+ do_writepages+0x1c3/0x8a0 mm/page-writeback.c:2683
+ __writeback_single_inode+0x124/0xe10 fs/fs-writeback.c:1658
+ writeback_sb_inodes+0x63b/0x1000 fs/fs-writeback.c:1954
+ __writeback_inodes_wb+0xc8/0x280 fs/fs-writeback.c:2025
+ wb_writeback+0x717/0xaf0 fs/fs-writeback.c:2136
+ wb_check_old_data_flush fs/fs-writeback.c:2240 [inline]
+ wb_do_writeback fs/fs-writeback.c:2293 [inline]
+ wb_workfn+0x76c/0xc90 fs/fs-writeback.c:2321
+ process_one_work+0x92e/0x1b50 kernel/workqueue.c:3229
+ process_scheduled_works kernel/workqueue.c:3310 [inline]
+ worker_thread+0x68d/0xe90 kernel/workqueue.c:3391
+ kthread+0x35a/0x470 kernel/kthread.c:389
+ ret_from_fork+0x56/0x90 arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:247
+ </TASK>
+INFO: task kworker/u8:38:37173 blocked for more than 143 seconds.
+      Tainted: G        W          6.12.0-rc2-2024-10-08-intel-next-a0ec312cf724+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:kworker/u8:38   state:D stack:0     pid:37173 tgid:37173 ppid:2      flags:0x00004000
+Workqueue: writeback wb_workfn (flush-8:0)
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5321 [inline]
+ __schedule+0xe13/0x33a0 kernel/sched/core.c:6689
+ __schedule_loop kernel/sched/core.c:6766 [inline]
+ schedule+0xf6/0x3f0 kernel/sched/core.c:6781
+ io_schedule+0xce/0x150 kernel/sched/core.c:7566
+ rq_qos_wait+0x1c5/0x310 block/blk-rq-qos.c:282
+ __wbt_wait block/blk-wbt.c:594 [inline]
+ wbt_wait+0x1ec/0x400 block/blk-wbt.c:658
+ __rq_qos_throttle+0x5f/0xb0 block/blk-rq-qos.c:66
+ rq_qos_throttle block/blk-rq-qos.h:151 [inline]
+ rq_qos_throttle block/blk-rq-qos.h:147 [inline]
+ blk_mq_get_new_requests block/blk-mq.c:2859 [inline]
+ blk_mq_submit_bio+0x8ad/0x2a20 block/blk-mq.c:3003
+ __submit_bio+0x18d/0x500 block/blk-core.c:615
+ __submit_bio_noacct_mq block/blk-core.c:696 [inline]
+ submit_bio_noacct_nocheck+0x6a0/0xcc0 block/blk-core.c:725
+ submit_bio_noacct+0x61d/0x1dc0 block/blk-core.c:854
+ submit_bio+0xce/0x480 block/blk-core.c:896
+ ext4_io_submit+0xb0/0x150 fs/ext4/page-io.c:377
+ ext4_do_writepages+0xa54/0x2f30 fs/ext4/inode.c:2681
+ ext4_writepages+0x35c/0x7c0 fs/ext4/inode.c:2813
+ do_writepages+0x1c3/0x8a0 mm/page-writeback.c:2683
+ __writeback_single_inode+0x124/0xe10 fs/fs-writeback.c:1658
+ writeback_sb_inodes+0x63b/0x1000 fs/fs-writeback.c:1954
+ __writeback_inodes_wb+0xc8/0x280 fs/fs-writeback.c:2025
+ wb_writeback+0x717/0xaf0 fs/fs-writeback.c:2136
+ wb_check_old_data_flush fs/fs-writeback.c:2240 [inline]
+ wb_do_writeback fs/fs-writeback.c:2293 [inline]
+ wb_workfn+0x76c/0xc90 fs/fs-writeback.c:2321
+ process_one_work+0x92e/0x1b50 kernel/workqueue.c:3229
+ process_scheduled_works kernel/workqueue.c:3310 [inline]
+ worker_thread+0x68d/0xe90 kernel/workqueue.c:3391
+ kthread+0x35a/0x470 kernel/kthread.c:389
+ ret_from_fork+0x56/0x90 arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:247
+ </TASK>
+
+Showing all locks held in the system:
+2 locks held by kworker/1:0H/28:
+ #0: ffff88800e3e1948 ((wq_completion)kblockd){+.+.}-{0:0}, at: process_one_work+0x11fc/0x1b50 kernel/workqueue.c:3204
+ #1: ffff88800ddb7d78 ((work_completion)(&q->timeout_work)){+.+.}-{0:0}, at: process_one_work+0x8a0/0x1b50 kernel/workqueue.c:3205
+1 lock held by khungtaskd/33:
+ #0: ffffffff8705da80 (rcu_read_lock){....}-{1:2}, at: rcu_lock_acquire include/linux/rcupdate.h:337 [inline]
+ #0: ffffffff8705da80 (rcu_read_lock){....}-{1:2}, at: rcu_read_lock include/linux/rcupdate.h:849 [inline]
+ #0: ffffffff8705da80 (rcu_read_lock){....}-{1:2}, at: debug_show_all_locks+0x73/0x3c0 kernel/locking/lockdep.c:6720
+8 locks held by in:imjournal/332:
+ #0: ffff888013958408 (sb_writers#3){.+.+}-{0:0}, at: do_renameat2+0x39f/0xd90 fs/namei.c:5100
+ #1: ffff888027f67a18 (&type->i_mutex_dir_key#3/1){+.+.}-{3:3}, at: inode_lock_nested include/linux/fs.h:850 [inline]
+ #1: ffff888027f67a18 (&type->i_mutex_dir_key#3/1){+.+.}-{3:3}, at: lock_rename fs/namei.c:3161 [inline]
+ #1: ffff888027f67a18 (&type->i_mutex_dir_key#3/1){+.+.}-{3:3}, at: lock_rename fs/namei.c:3158 [inline]
+ #1: ffff888027f67a18 (&type->i_mutex_dir_key#3/1){+.+.}-{3:3}, at: do_renameat2+0xc6e/0xd90 fs/namei.c:5105
+ #2: ffff888017ebf040 (&sb->s_type->i_mutex_key#8){++++}-{3:3}, at: inode_lock include/linux/fs.h:815 [inline]
+ #2: ffff888017ebf040 (&sb->s_type->i_mutex_key#8){++++}-{3:3}, at: lock_two_nondirectories+0x117/0x1f0 fs/inode.c:1209
+ #3: ffff8880197ee668 (&sb->s_type->i_mutex_key#8/4){+.+.}-{3:3}, at: inode_lock_nested include/linux/fs.h:850 [inline]
+ #3: ffff8880197ee668 (&sb->s_type->i_mutex_key#8/4){+.+.}-{3:3}, at: lock_two_nondirectories+0x176/0x1f0 fs/inode.c:1211
+ #4: ffff88801395ab98 (&sbi->s_writepages_rwsem){++++}-{0:0}, at: do_writepages+0x1c3/0x8a0 mm/page-writeback.c:2683
+ #5: ffff88801395e958 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x107b/0x1590 fs/jbd2/transaction.c:448
+ #6: ffff888017ebeed0 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x344/0x1390 fs/ext4/inode.c:701
+ #7: ffffe8ffffc07b98 (&lg->lg_mutex){+.+.}-{3:3}, at: ext4_mb_group_or_file fs/ext4/mballoc.c:5786 [inline]
+ #7: ffffe8ffffc07b98 (&lg->lg_mutex){+.+.}-{3:3}, at: ext4_mb_initialize_context+0x8a3/0xd20 fs/ext4/mballoc.c:5830
+1 lock held by systemd/593:
+ #0: ffff888016027a18 (&type->i_mutex_dir_key#3){++++}-{3:3}, at: inode_lock_shared include/linux/fs.h:825 [inline]
+ #0: ffff888016027a18 (&type->i_mutex_dir_key#3){++++}-{3:3}, at: lookup_slow fs/namei.c:1748 [inline]
+ #0: ffff888016027a18 (&type->i_mutex_dir_key#3){++++}-{3:3}, at: walk_component+0x353/0x5d0 fs/namei.c:2053
+3 locks held by kworker/u8:9/847:
+ #0: ffff88800df9f148 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x11fc/0x1b50 kernel/workqueue.c:3204
+ #1: ffff8880504f7d78 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x8a0/0x1b50 kernel/workqueue.c:3205
+ #2: ffff88800d77a0e0 (&type->s_umount_key#52){.+.+}-{3:3}, at: super_trylock_shared+0x2b/0x110 fs/super.c:562
+4 locks held by kworker/1:4/8637:
+ #0: ffff88800d45ad48 ((wq_completion)events){+.+.}-{0:0}, at: process_one_work+0x11fc/0x1b50 kernel/workqueue.c:3204
+ #1: ffff88805019fd78 ((work_completion)(&(&ap->scsi_rescan_task)->work)){+.+.}-{0:0}, at: process_one_work+0x8a0/0x1b50 kernel/workqueue.c:3205
+ #2: ffff8880119f4430 (&ap->scsi_scan_mutex){+.+.}-{3:3}, at: ata_scsi_dev_rescan+0x42/0x470 drivers/ata/libata-scsi.c:4776
+ #3: ffff888011b3e378 (&dev->mutex){....}-{3:3}, at: device_lock include/linux/device.h:1014 [inline]
+ #3: ffff888011b3e378 (&dev->mutex){....}-{3:3}, at: scsi_rescan_device+0x33/0x360 drivers/scsi/scsi_scan.c:1691
+4 locks held by kworker/u8:38/37173:
+ #0: ffff88800df9f148 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x11fc/0x1b50 kernel/workqueue.c:3204
+ #1: ffff888060cefd78 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x8a0/0x1b50 kernel/workqueue.c:3205
+ #2: ffff8880139580e0 (&type->s_umount_key#38){++++}-{3:3}, at: super_trylock_shared+0x2b/0x110 fs/super.c:562
+ #3: ffff88801395ab98 (&sbi->s_writepages_rwsem){++++}-{0:0}, at: do_writepages+0x1c3/0x8a0 mm/page-writeback.c:2683
+2 locks held by syz-executor.5/53821:
+ #0: ffff8880139580e0 (&type->s_umount_key#38){++++}-{3:3}, at: __super_lock fs/super.c:58 [inline]
+ #0: ffff8880139580e0 (&type->s_umount_key#38){++++}-{3:3}, at: super_lock+0x334/0x400 fs/super.c:120
+ #1: ffff888011b407d0 (&bdi->wb_switch_rwsem){++++}-{3:3}, at: bdi_down_write_wb_switch_rwsem fs/fs-writeback.c:388 [inline]
+ #1: ffff888011b407d0 (&bdi->wb_switch_rwsem){++++}-{3:3}, at: sync_inodes_sb+0x1bb/0xa50 fs/fs-writeback.c:2797
+2 locks held by syz-executor.5/53837:
+ #0: ffff8880139580e0 (&type->s_umount_key#38){++++}-{3:3}, at: __super_lock fs/super.c:58 [inline]
+ #0: ffff8880139580e0 (&type->s_umount_key#38){++++}-{3:3}, at: super_lock+0x334/0x400 fs/super.c:120
+ #1: ffff888011b407d0 (&bdi->wb_switch_rwsem){++++}-{3:3}, at: bdi_down_write_wb_switch_rwsem fs/fs-writeback.c:388 [inline]
+ #1: ffff888011b407d0 (&bdi->wb_switch_rwsem){++++}-{3:3}, at: sync_inodes_sb+0x1bb/0xa50 fs/fs-writeback.c:2797
+2 locks held by syz-executor.5/55284:
+ #0: ffff8880139580e0 (&type->s_umount_key#38){++++}-{3:3}, at: __super_lock fs/super.c:58 [inline]
+ #0: ffff8880139580e0 (&type->s_umount_key#38){++++}-{3:3}, at: super_lock+0x334/0x400 fs/super.c:120
+ #1: ffff888011b407d0 (&bdi->wb_switch_rwsem){++++}-{3:3}, at: bdi_down_write_wb_switch_rwsem fs/fs-writeback.c:388 [inline]
+ #1: ffff888011b407d0 (&bdi->wb_switch_rwsem){++++}-{3:3}, at: sync_inodes_sb+0x1bb/0xa50 fs/fs-writeback.c:2797
+2 locks held by syz-executor.5/55285:
+ #0: ffff8880139580e0 (&type->s_umount_key#38){++++}-{3:3}, at: __super_lock fs/super.c:58 [inline]
+ #0: ffff8880139580e0 (&type->s_umount_key#38){++++}-{3:3}, at: super_lock+0x334/0x400 fs/super.c:120
+ #1: ffff888011b407d0 (&bdi->wb_switch_rwsem){++++}-{3:3}, at: bdi_down_write_wb_switch_rwsem fs/fs-writeback.c:388 [inline]
+ #1: ffff888011b407d0 (&bdi->wb_switch_rwsem){++++}-{3:3}, at: sync_inodes_sb+0x1bb/0xa50 fs/fs-writeback.c:2797
+1 lock held by (tmpfiles)/55288:
+ #0: ffff8880100bc8e0 (&type->i_mutex_dir_key#3){++++}-{3:3}, at: inode_lock_shared include/linux/fs.h:825 [inline]
+ #0: ffff8880100bc8e0 (&type->i_mutex_dir_key#3){++++}-{3:3}, at: lookup_slow fs/namei.c:1748 [inline]
+ #0: ffff8880100bc8e0 (&type->i_mutex_dir_key#3){++++}-{3:3}, at: walk_component+0x353/0x5d0 fs/namei.c:2053
+1 lock held by (coredump)/55447:
+ #0: ffff888016027a18 (&type->i_mutex_dir_key#3){++++}-{3:3}, at: inode_lock include/linux/fs.h:815 [inline]
+ #0: ffff888016027a18 (&type->i_mutex_dir_key#3){++++}-{3:3}, at: do_lock_mount+0xb6/0x5a0 fs/namespace.c:2607
+2 locks held by syz-executor.5/56362:
+ #0: ffff8880139580e0 (&type->s_umount_key#38){++++}-{3:3}, at: __super_lock fs/super.c:58 [inline]
+ #0: ffff8880139580e0 (&type->s_umount_key#38){++++}-{3:3}, at: super_lock+0x334/0x400 fs/super.c:120
+ #1: ffff888011b407d0 (&bdi->wb_switch_rwsem){++++}-{3:3}, at: bdi_down_write_wb_switch_rwsem fs/fs-writeback.c:388 [inline]
+ #1: ffff888011b407d0 (&bdi->wb_switch_rwsem){++++}-{3:3}, at: sync_inodes_sb+0x1bb/0xa50 fs/fs-writeback.c:2797
+
+=============================================
+
+ata1: lost interrupt (Status 0x58)
+hpet: Lost 15 RTC interrupts
+ata1: found unknown device (class 0)

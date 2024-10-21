@@ -1,0 +1,44 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [8cf0b93919e13d1e8d4466eb4080a4c4d9d66d7b] Linux 6.12-rc2
+git bisect bad 8cf0b93919e13d1e8d4466eb4080a4c4d9d66d7b
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [1ca06f1c1acecbe02124f14a37cce347b8c1a90c] Merge tag 'xtensa-20221213' of https://github.com/jcmvbkbc/linux-xtensa
+git bisect good 1ca06f1c1acecbe02124f14a37cce347b8c1a90c
+# good: [57aff997450420b8a7da6a72f45c3677ac1c2f86] Merge tag 'ext4_for_linus-6.7-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/tytso/ext4
+git bisect good 57aff997450420b8a7da6a72f45c3677ac1c2f86
+# bad: [87caef42200cd44f8b808ec2f8ac2257f3e0a8c1] Merge tag 'hardening-6.10-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/kees/linux
+git bisect bad 87caef42200cd44f8b808ec2f8ac2257f3e0a8c1
+# good: [b5f66ba2d07180706ffa10df07f202335df190f1] Merge tag 'kbuild-v6.8' of git://git.kernel.org/pub/scm/linux/kernel/git/masahiroy/linux-kbuild
+git bisect good b5f66ba2d07180706ffa10df07f202335df190f1
+# good: [e5e038b7ae9da96b93974bf072ca1876899a01a3] Merge tag 'fs_for_v6.9-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/jack/linux-fs
+git bisect good e5e038b7ae9da96b93974bf072ca1876899a01a3
+# good: [2ac2b1665d3fbec6ca709dd6ef3ea05f4a51ee4c] Merge tag 'hwlock-v6.9' of git://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux
+git bisect good 2ac2b1665d3fbec6ca709dd6ef3ea05f4a51ee4c
+# bad: [c748fc3b1f5605c12c8061ffb0c27707597b27b2] Merge tag 'timers-urgent-2024-04-14' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect bad c748fc3b1f5605c12c8061ffb0c27707597b27b2
+# good: [e3111d9c3f7250309f451cfbf55845a74e692d41] Merge tag 'block-6.9-20240322' of git://git.kernel.dk/linux
+git bisect good e3111d9c3f7250309f451cfbf55845a74e692d41
+# bad: [c88b9b4cde17aec34fb9bfaf69f9f72a1c44f511] Merge tag 'net-6.9-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect bad c88b9b4cde17aec34fb9bfaf69f9f72a1c44f511
+# good: [1cfa2f10f4e90a353c3ee2150866b4cf72579153] Merge tag 'for-netdev' of https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf
+git bisect good 1cfa2f10f4e90a353c3ee2150866b4cf72579153
+# good: [ac6727189c070863587e86705554bed47a85ff55] Merge tag 'i2c-for-6.9-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux
+git bisect good ac6727189c070863587e86705554bed47a85ff55
+# bad: [36f9ef109b1c6935928d09a3e73d744291f71545] bcachefs: fix trans->mem realloc in __bch2_trans_kmalloc
+git bisect bad 36f9ef109b1c6935928d09a3e73d744291f71545
+# good: [fe764a75cffea6ab128a40b5ad3df25b63959723] Merge tag 'scsi-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/jejb/scsi
+git bisect good fe764a75cffea6ab128a40b5ad3df25b63959723
+# good: [5dad26235c4adde4199c7750c696fd729e5020ae] Merge tag 'irq_urgent_for_v6.9_rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect good 5dad26235c4adde4199c7750c696fd729e5020ae
+# good: [7e40c2100c87e8f11c270b4ddbe0bf8534dcab21] Merge tag 'kbuild-fixes-v6.9' of git://git.kernel.org/pub/scm/linux/kernel/git/masahiroy/linux-kbuild
+git bisect good 7e40c2100c87e8f11c270b4ddbe0bf8534dcab21
+# good: [4bd02d3fb33d8a46e73085b8d47d21c0ccb3de9d] bcachefs: fix mount error path
+git bisect good 4bd02d3fb33d8a46e73085b8d47d21c0ccb3de9d
+# bad: [63332394c7e1f4f26e8e5b1387212016aaa7eae2] bcachefs: Move snapshot table size to struct snapshot_table
+git bisect bad 63332394c7e1f4f26e8e5b1387212016aaa7eae2
+# good: [aa6e130e3c2965a5c26a4033ff63b5dc9549bd76] bcachefs: Add an assertion for trying to evict btree root
+git bisect good aa6e130e3c2965a5c26a4033ff63b5dc9549bd76
+# first bad commit: [63332394c7e1f4f26e8e5b1387212016aaa7eae2] bcachefs: Move snapshot table size to struct snapshot_table
