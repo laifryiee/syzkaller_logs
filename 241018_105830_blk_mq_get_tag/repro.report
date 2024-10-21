@@ -1,0 +1,449 @@
+ata1: found unknown device (class 0)
+ata1: lost interrupt (Status 0x58)
+ata1: found unknown device (class 0)
+ata1: lost interrupt (Status 0x58)
+ata1: found unknown device (class 0)
+INFO: task kworker/u8:0:11 blocked for more than 147 seconds.
+      Not tainted 6.12.0-rc3-f3d94bee9aab+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:kworker/u8:0    state:D stack:0     pid:11    tgid:11    ppid:2      flags:0x00004000
+Workqueue: writeback wb_workfn (flush-8:0)
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5322 [inline]
+ __schedule+0xe13/0x33a0 kernel/sched/core.c:6682
+ __schedule_loop kernel/sched/core.c:6759 [inline]
+ schedule+0xf6/0x3f0 kernel/sched/core.c:6774
+ io_schedule+0xce/0x150 kernel/sched/core.c:7559
+ blk_mq_get_tag+0x5e7/0xce0 block/blk-mq-tag.c:188
+ __blk_mq_alloc_requests+0x6f6/0x1720 block/blk-mq.c:498
+ blk_mq_get_new_requests block/blk-mq.c:2867 [inline]
+ blk_mq_submit_bio+0x93c/0x2a20 block/blk-mq.c:3003
+ __submit_bio+0x18d/0x500 block/blk-core.c:615
+ __submit_bio_noacct_mq block/blk-core.c:696 [inline]
+ submit_bio_noacct_nocheck+0x6a0/0xcc0 block/blk-core.c:725
+ submit_bio_noacct+0x61d/0x1dc0 block/blk-core.c:854
+ submit_bio+0xce/0x480 block/blk-core.c:896
+ ext4_io_submit+0xb0/0x150 fs/ext4/page-io.c:377
+ ext4_do_writepages+0x1103/0x2f30 fs/ext4/inode.c:2744
+ ext4_writepages+0x35c/0x7c0 fs/ext4/inode.c:2813
+ do_writepages+0x1c3/0x8a0 mm/page-writeback.c:2683
+ __writeback_single_inode+0x124/0xe10 fs/fs-writeback.c:1658
+ writeback_sb_inodes+0x63b/0x1000 fs/fs-writeback.c:1954
+ __writeback_inodes_wb+0xc8/0x280 fs/fs-writeback.c:2025
+ wb_writeback+0x717/0xaf0 fs/fs-writeback.c:2136
+ wb_check_background_flush fs/fs-writeback.c:2206 [inline]
+ wb_do_writeback fs/fs-writeback.c:2294 [inline]
+ wb_workfn+0x7b5/0xc90 fs/fs-writeback.c:2321
+ process_one_work+0x92e/0x1b50 kernel/workqueue.c:3229
+ process_scheduled_works kernel/workqueue.c:3310 [inline]
+ worker_thread+0x68d/0xe90 kernel/workqueue.c:3391
+ kthread+0x35a/0x470 kernel/kthread.c:389
+ ret_from_fork+0x56/0x90 arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:244
+ </TASK>
+INFO: task jbd2/sda-8:104 blocked for more than 147 seconds.
+      Not tainted 6.12.0-rc3-f3d94bee9aab+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:jbd2/sda-8      state:D stack:0     pid:104   tgid:104   ppid:2      flags:0x00004000
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5322 [inline]
+ __schedule+0xe13/0x33a0 kernel/sched/core.c:6682
+ __schedule_loop kernel/sched/core.c:6759 [inline]
+ schedule+0xf6/0x3f0 kernel/sched/core.c:6774
+ io_schedule+0xce/0x150 kernel/sched/core.c:7559
+ blk_mq_get_tag+0x5e7/0xce0 block/blk-mq-tag.c:188
+ __blk_mq_alloc_requests+0x6f6/0x1720 block/blk-mq.c:498
+ blk_mq_get_new_requests block/blk-mq.c:2867 [inline]
+ blk_mq_submit_bio+0x93c/0x2a20 block/blk-mq.c:3003
+ __submit_bio+0x18d/0x500 block/blk-core.c:615
+ __submit_bio_noacct_mq block/blk-core.c:696 [inline]
+ submit_bio_noacct_nocheck+0x6a0/0xcc0 block/blk-core.c:725
+ submit_bio_noacct+0x61d/0x1dc0 block/blk-core.c:854
+ submit_bio+0xce/0x480 block/blk-core.c:896
+ submit_bh_wbc+0x58a/0x740 fs/buffer.c:2819
+ submit_bh+0x2b/0x40 fs/buffer.c:2824
+ jbd2_journal_commit_transaction+0x2a09/0x65e0 fs/jbd2/commit.c:730
+ kjournald2+0x204/0x790 fs/jbd2/journal.c:201
+ kthread+0x35a/0x470 kernel/kthread.c:389
+ ret_from_fork+0x56/0x90 arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:244
+ </TASK>
+INFO: task in:imjournal:328 blocked for more than 147 seconds.
+      Not tainted 6.12.0-rc3-f3d94bee9aab+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:in:imjournal    state:D stack:0     pid:328   tgid:311   ppid:1      flags:0x00000002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5322 [inline]
+ __schedule+0xe13/0x33a0 kernel/sched/core.c:6682
+ __schedule_loop kernel/sched/core.c:6759 [inline]
+ schedule+0xf6/0x3f0 kernel/sched/core.c:6774
+ io_schedule+0xce/0x150 kernel/sched/core.c:7559
+ bit_wait_io+0x1f/0x100 kernel/sched/wait_bit.c:209
+ __wait_on_bit+0x68/0x1b0 kernel/sched/wait_bit.c:49
+ out_of_line_wait_on_bit+0xe6/0x120 kernel/sched/wait_bit.c:64
+ wait_on_bit_io include/linux/wait_bit.h:101 [inline]
+ do_get_write_access+0x83b/0x1010 fs/jbd2/transaction.c:1096
+ jbd2_journal_get_write_access+0x1e4/0x270 fs/jbd2/transaction.c:1245
+ __ext4_journal_get_write_access+0x72/0x3b0 fs/ext4/ext4_jbd2.c:239
+ __ext4_new_inode+0xfef/0x5320 fs/ext4/ialloc.c:1129
+ ext4_create+0x32e/0x550 fs/ext4/namei.c:2834
+ lookup_open.isra.0+0x117c/0x1580 fs/namei.c:3595
+ open_last_lookups fs/namei.c:3694 [inline]
+ path_openat+0xdbf/0x2bf0 fs/namei.c:3930
+ do_filp_open+0x1cc/0x420 fs/namei.c:3960
+ do_sys_openat2+0x185/0x1f0 fs/open.c:1415
+ do_sys_open fs/open.c:1430 [inline]
+ __do_sys_openat fs/open.c:1446 [inline]
+ __se_sys_openat fs/open.c:1441 [inline]
+ __x64_sys_openat+0x17a/0x240 fs/open.c:1441
+ x64_sys_call+0x1a52/0x20d0 arch/x86/include/generated/asm/syscalls_64.h:258
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fc141f3e8c4
+RSP: 002b:00007fc140ffea40 EFLAGS: 00000293 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffda RBX: 00007fc13c000c50 RCX: 00007fc141f3e8c4
+RDX: 0000000000000241 RSI: 00007fc140ffeb80 RDI: 00000000ffffff9c
+RBP: 00007fc140ffeb80 R08: 0000000000000000 R09: 0000000000000001
+R10: 00000000000001b6 R11: 0000000000000293 R12: 0000000000000241
+R13: 00007fc13c000c50 R14: 0000000000000001 R15: 00007fc13c01c5c0
+ </TASK>
+INFO: task rs:main Q:Reg:329 blocked for more than 147 seconds.
+      Not tainted 6.12.0-rc3-f3d94bee9aab+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:rs:main Q:Reg   state:D stack:0     pid:329   tgid:311   ppid:1      flags:0x00000002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5322 [inline]
+ __schedule+0xe13/0x33a0 kernel/sched/core.c:6682
+ __schedule_loop kernel/sched/core.c:6759 [inline]
+ schedule+0xf6/0x3f0 kernel/sched/core.c:6774
+ io_schedule+0xce/0x150 kernel/sched/core.c:7559
+ bit_wait_io+0x1f/0x100 kernel/sched/wait_bit.c:209
+ __wait_on_bit+0x68/0x1b0 kernel/sched/wait_bit.c:49
+ out_of_line_wait_on_bit+0xe6/0x120 kernel/sched/wait_bit.c:64
+ wait_on_bit_io include/linux/wait_bit.h:101 [inline]
+ do_get_write_access+0x83b/0x1010 fs/jbd2/transaction.c:1096
+ jbd2_journal_get_write_access+0x1e4/0x270 fs/jbd2/transaction.c:1245
+ __ext4_journal_get_write_access+0x72/0x3b0 fs/ext4/ext4_jbd2.c:239
+ ext4_reserve_inode_write+0x199/0x280 fs/ext4/inode.c:5773
+ __ext4_mark_inode_dirty+0x18b/0x8c0 fs/ext4/inode.c:5947
+ ext4_dirty_inode+0xeb/0x140 fs/ext4/inode.c:5984
+ __mark_inode_dirty+0x1d0/0xd50 fs/fs-writeback.c:2493
+ generic_update_time+0xe0/0x110 fs/inode.c:2043
+ inode_update_time fs/inode.c:2056 [inline]
+ __file_update_time fs/inode.c:2245 [inline]
+ file_modified_flags fs/inode.c:2316 [inline]
+ file_modified+0x1af/0x1e0 fs/inode.c:2332
+ ext4_write_checks fs/ext4/file.c:279 [inline]
+ ext4_buffered_write_iter+0x101/0x3e0 fs/ext4/file.c:295
+ ext4_file_write_iter+0x8b8/0x1ab0 fs/ext4/file.c:698
+ new_sync_write fs/read_write.c:590 [inline]
+ vfs_write+0xc46/0x1120 fs/read_write.c:683
+ ksys_write+0x14f/0x290 fs/read_write.c:736
+ __do_sys_write fs/read_write.c:748 [inline]
+ __se_sys_write fs/read_write.c:745 [inline]
+ __x64_sys_write+0x7b/0xc0 fs/read_write.c:745
+ x64_sys_call+0x1685/0x20d0 arch/x86/include/generated/asm/syscalls_64.h:2
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fc141f3ebcf
+RSP: 002b:00007fc1409ff890 EFLAGS: 00000293 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 00007fc1340012f0 RCX: 00007fc141f3ebcf
+RDX: 0000000000000040 RSI: 00007fc1340015d0 RDI: 0000000000000007
+RBP: 00007fc1340015d0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000007 R11: 0000000000000293 R12: 0000000000000000
+R13: 000056219f98f330 R14: 00007fc1340012f0 R15: 0000000000000040
+ </TASK>
+INFO: task kworker/1:4:353 blocked for more than 147 seconds.
+      Not tainted 6.12.0-rc3-f3d94bee9aab+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:kworker/1:4     state:D stack:0     pid:353   tgid:353   ppid:2      flags:0x00004000
+Workqueue: events ata_scsi_dev_rescan
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5322 [inline]
+ __schedule+0xe13/0x33a0 kernel/sched/core.c:6682
+ __schedule_loop kernel/sched/core.c:6759 [inline]
+ schedule+0xf6/0x3f0 kernel/sched/core.c:6774
+ io_schedule+0xce/0x150 kernel/sched/core.c:7559
+ blk_mq_get_tag+0x5e7/0xce0 block/blk-mq-tag.c:188
+ __blk_mq_alloc_requests+0x6f6/0x1720 block/blk-mq.c:498
+ blk_mq_alloc_request+0x655/0x930 block/blk-mq.c:598
+ scsi_alloc_request drivers/scsi/scsi_lib.c:1222 [inline]
+ scsi_execute_cmd+0x223/0x1040 drivers/scsi/scsi_lib.c:304
+ scsi_vpd_inquiry+0xdf/0x220 drivers/scsi/scsi.c:312
+ scsi_get_vpd_size+0x11e/0x310 drivers/scsi/scsi.c:370
+ scsi_get_vpd_buf+0x30/0x180 drivers/scsi/scsi.c:440
+ scsi_attach_vpd+0xf8/0x5b0 drivers/scsi/scsi.c:508
+ scsi_rescan_device+0x106/0x360 drivers/scsi/scsi_scan.c:1705
+ ata_scsi_dev_rescan+0x1d2/0x470 drivers/ata/libata-scsi.c:4804
+ process_one_work+0x92e/0x1b50 kernel/workqueue.c:3229
+ process_scheduled_works kernel/workqueue.c:3310 [inline]
+ worker_thread+0x68d/0xe90 kernel/workqueue.c:3391
+ kthread+0x35a/0x470 kernel/kthread.c:389
+ ret_from_fork+0x56/0x90 arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:244
+ </TASK>
+INFO: task kworker/u8:1:734 blocked for more than 147 seconds.
+      Not tainted 6.12.0-rc3-f3d94bee9aab+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:kworker/u8:1    state:D stack:0     pid:734   tgid:734   ppid:2      flags:0x00004000
+Workqueue: writeback wb_workfn (flush-8:0)
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5322 [inline]
+ __schedule+0xe13/0x33a0 kernel/sched/core.c:6682
+ __schedule_loop kernel/sched/core.c:6759 [inline]
+ schedule+0xf6/0x3f0 kernel/sched/core.c:6774
+ io_schedule+0xce/0x150 kernel/sched/core.c:7559
+ bit_wait_io+0x1f/0x100 kernel/sched/wait_bit.c:209
+ __wait_on_bit+0x68/0x1b0 kernel/sched/wait_bit.c:49
+ out_of_line_wait_on_bit+0xe6/0x120 kernel/sched/wait_bit.c:64
+ wait_on_bit_io include/linux/wait_bit.h:101 [inline]
+ do_get_write_access+0x83b/0x1010 fs/jbd2/transaction.c:1096
+ jbd2_journal_get_write_access+0x1e4/0x270 fs/jbd2/transaction.c:1245
+ __ext4_journal_get_write_access+0x72/0x3b0 fs/ext4/ext4_jbd2.c:239
+ ext4_mb_mark_context+0x1ea/0xe30 fs/ext4/mballoc.c:4016
+ ext4_mb_mark_diskspace_used+0x44d/0x9e0 fs/ext4/mballoc.c:4133
+ ext4_mb_new_blocks+0x779/0x4790 fs/ext4/mballoc.c:6235
+ ext4_ext_map_blocks+0x16f0/0x6060 fs/ext4/extents.c:4379
+ ext4_map_create_blocks fs/ext4/inode.c:516 [inline]
+ ext4_map_blocks+0x421/0x1390 fs/ext4/inode.c:702
+ mpage_map_one_extent fs/ext4/inode.c:2208 [inline]
+ mpage_map_and_submit_extent fs/ext4/inode.c:2261 [inline]
+ ext4_do_writepages+0x18e0/0x2f30 fs/ext4/inode.c:2724
+ ext4_writepages+0x35c/0x7c0 fs/ext4/inode.c:2813
+ do_writepages+0x1c3/0x8a0 mm/page-writeback.c:2683
+ __writeback_single_inode+0x124/0xe10 fs/fs-writeback.c:1658
+ writeback_sb_inodes+0x63b/0x1000 fs/fs-writeback.c:1954
+ __writeback_inodes_wb+0xc8/0x280 fs/fs-writeback.c:2025
+ wb_writeback+0x717/0xaf0 fs/fs-writeback.c:2136
+ wb_check_background_flush fs/fs-writeback.c:2206 [inline]
+ wb_do_writeback fs/fs-writeback.c:2294 [inline]
+ wb_workfn+0x7b5/0xc90 fs/fs-writeback.c:2321
+ process_one_work+0x92e/0x1b50 kernel/workqueue.c:3229
+ process_scheduled_works kernel/workqueue.c:3310 [inline]
+ worker_thread+0x68d/0xe90 kernel/workqueue.c:3391
+ kthread+0x35a/0x470 kernel/kthread.c:389
+ ret_from_fork+0x56/0x90 arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:244
+ </TASK>
+INFO: task syz-executor429:766 blocked for more than 147 seconds.
+      Not tainted 6.12.0-rc3-f3d94bee9aab+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor429 state:D stack:0     pid:766   tgid:766   ppid:764    flags:0x00000006
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5322 [inline]
+ __schedule+0xe13/0x33a0 kernel/sched/core.c:6682
+ __schedule_loop kernel/sched/core.c:6759 [inline]
+ schedule+0xf6/0x3f0 kernel/sched/core.c:6774
+ io_schedule+0xce/0x150 kernel/sched/core.c:7559
+ blk_mq_get_tag+0x5e7/0xce0 block/blk-mq-tag.c:188
+ __blk_mq_alloc_requests+0x6f6/0x1720 block/blk-mq.c:498
+ blk_mq_alloc_request+0x655/0x930 block/blk-mq.c:598
+ scsi_alloc_request drivers/scsi/scsi_lib.c:1222 [inline]
+ scsi_execute_cmd+0x223/0x1040 drivers/scsi/scsi_lib.c:304
+ ata_cmd_ioctl+0x23c/0x570 drivers/ata/libata-scsi.c:513
+ ata_sas_scsi_ioctl+0x60a/0x7c0 drivers/ata/libata-scsi.c:695
+ ata_scsi_ioctl+0x70/0x90 drivers/ata/libata-scsi.c:714
+ scsi_ioctl+0xb6f/0x1630 drivers/scsi/scsi_ioctl.c:940
+ sg_ioctl+0xfb8/0x2880 drivers/scsi/sg.c:1166
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:907 [inline]
+ __se_sys_ioctl fs/ioctl.c:893 [inline]
+ __x64_sys_ioctl+0x1b5/0x230 fs/ioctl.c:893
+ x64_sys_call+0x1209/0x20d0 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f25eac3ee5d
+RSP: 002b:00007ffe196db308 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f25eac3ee5d
+RDX: 0000000020000080 RSI: 000000000000031f RDI: 0000000000000003
+RBP: 0000000000000000 R08: 00007ffe196db098 R09: 0000000000008000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffe196db468
+R13: 00000000004011a0 R14: 0000000000403e08 R15: 00007f25eb03b000
+ </TASK>
+INFO: task syz-executor429:771 blocked for more than 147 seconds.
+      Not tainted 6.12.0-rc3-f3d94bee9aab+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor429 state:D stack:0     pid:771   tgid:771   ppid:767    flags:0x00000006
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5322 [inline]
+ __schedule+0xe13/0x33a0 kernel/sched/core.c:6682
+ __schedule_loop kernel/sched/core.c:6759 [inline]
+ schedule+0xf6/0x3f0 kernel/sched/core.c:6774
+ io_schedule+0xce/0x150 kernel/sched/core.c:7559
+ blk_mq_get_tag+0x5e7/0xce0 block/blk-mq-tag.c:188
+ __blk_mq_alloc_requests+0x6f6/0x1720 block/blk-mq.c:498
+ blk_mq_alloc_request+0x655/0x930 block/blk-mq.c:598
+ scsi_alloc_request drivers/scsi/scsi_lib.c:1222 [inline]
+ scsi_execute_cmd+0x223/0x1040 drivers/scsi/scsi_lib.c:304
+ ata_cmd_ioctl+0x23c/0x570 drivers/ata/libata-scsi.c:513
+ ata_sas_scsi_ioctl+0x60a/0x7c0 drivers/ata/libata-scsi.c:695
+ ata_scsi_ioctl+0x70/0x90 drivers/ata/libata-scsi.c:714
+ scsi_ioctl+0xb6f/0x1630 drivers/scsi/scsi_ioctl.c:940
+ sg_ioctl+0xfb8/0x2880 drivers/scsi/sg.c:1166
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:907 [inline]
+ __se_sys_ioctl fs/ioctl.c:893 [inline]
+ __x64_sys_ioctl+0x1b5/0x230 fs/ioctl.c:893
+ x64_sys_call+0x1209/0x20d0 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f25eac3ee5d
+RSP: 002b:00007ffe196db308 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f25eac3ee5d
+RDX: 0000000020000080 RSI: 000000000000031f RDI: 0000000000000003
+RBP: 0000000000000000 R08: 00007ffe196db098 R09: 0000000000008000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffe196db468
+R13: 00000000004011a0 R14: 0000000000403e08 R15: 00007f25eb03b000
+ </TASK>
+INFO: task syz-executor429:772 blocked for more than 147 seconds.
+      Not tainted 6.12.0-rc3-f3d94bee9aab+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor429 state:D stack:0     pid:772   tgid:772   ppid:769    flags:0x00000006
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5322 [inline]
+ __schedule+0xe13/0x33a0 kernel/sched/core.c:6682
+ __schedule_loop kernel/sched/core.c:6759 [inline]
+ schedule+0xf6/0x3f0 kernel/sched/core.c:6774
+ io_schedule+0xce/0x150 kernel/sched/core.c:7559
+ blk_mq_get_tag+0x5e7/0xce0 block/blk-mq-tag.c:188
+ __blk_mq_alloc_requests+0x6f6/0x1720 block/blk-mq.c:498
+ blk_mq_alloc_request+0x655/0x930 block/blk-mq.c:598
+ scsi_alloc_request drivers/scsi/scsi_lib.c:1222 [inline]
+ scsi_execute_cmd+0x223/0x1040 drivers/scsi/scsi_lib.c:304
+ ata_cmd_ioctl+0x23c/0x570 drivers/ata/libata-scsi.c:513
+ ata_sas_scsi_ioctl+0x60a/0x7c0 drivers/ata/libata-scsi.c:695
+ ata_scsi_ioctl+0x70/0x90 drivers/ata/libata-scsi.c:714
+ scsi_ioctl+0xb6f/0x1630 drivers/scsi/scsi_ioctl.c:940
+ sg_ioctl+0xfb8/0x2880 drivers/scsi/sg.c:1166
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:907 [inline]
+ __se_sys_ioctl fs/ioctl.c:893 [inline]
+ __x64_sys_ioctl+0x1b5/0x230 fs/ioctl.c:893
+ x64_sys_call+0x1209/0x20d0 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f25eac3ee5d
+RSP: 002b:00007ffe196db308 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f25eac3ee5d
+RDX: 0000000020000080 RSI: 000000000000031f RDI: 0000000000000003
+RBP: 0000000000000000 R08: 00007ffe196db098 R09: 0000000000008000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffe196db468
+R13: 00000000004011a0 R14: 0000000000403e08 R15: 00007f25eb03b000
+ </TASK>
+INFO: task kworker/u8:2:773 blocked for more than 147 seconds.
+      Not tainted 6.12.0-rc3-f3d94bee9aab+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:kworker/u8:2    state:D stack:0     pid:773   tgid:773   ppid:2      flags:0x00004000
+Workqueue: writeback wb_workfn (flush-8:0)
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5322 [inline]
+ __schedule+0xe13/0x33a0 kernel/sched/core.c:6682
+ __schedule_loop kernel/sched/core.c:6759 [inline]
+ schedule+0xf6/0x3f0 kernel/sched/core.c:6774
+ io_schedule+0xce/0x150 kernel/sched/core.c:7559
+ rq_qos_wait+0x1c5/0x310 block/blk-rq-qos.c:282
+ __wbt_wait block/blk-wbt.c:594 [inline]
+ wbt_wait+0x1ec/0x400 block/blk-wbt.c:658
+ __rq_qos_throttle+0x5f/0xb0 block/blk-rq-qos.c:66
+ rq_qos_throttle block/blk-rq-qos.h:151 [inline]
+ rq_qos_throttle block/blk-rq-qos.h:147 [inline]
+ blk_mq_get_new_requests block/blk-mq.c:2859 [inline]
+ blk_mq_submit_bio+0x8ad/0x2a20 block/blk-mq.c:3003
+ __submit_bio+0x18d/0x500 block/blk-core.c:615
+ __submit_bio_noacct_mq block/blk-core.c:696 [inline]
+ submit_bio_noacct_nocheck+0x6a0/0xcc0 block/blk-core.c:725
+ submit_bio_noacct+0x61d/0x1dc0 block/blk-core.c:854
+ submit_bio+0xce/0x480 block/blk-core.c:896
+ submit_bh_wbc+0x58a/0x740 fs/buffer.c:2819
+ __block_write_full_folio+0x7a1/0xed0 fs/buffer.c:1909
+ block_write_full_folio+0x2e6/0x3a0 fs/buffer.c:2748
+ write_cache_pages+0xbc/0x140 mm/page-writeback.c:2640
+ blkdev_writepages+0xa5/0xf0 block/fops.c:437
+ do_writepages+0x1c3/0x8a0 mm/page-writeback.c:2683
+ __writeback_single_inode+0x124/0xe10 fs/fs-writeback.c:1658
+ writeback_sb_inodes+0x63b/0x1000 fs/fs-writeback.c:1954
+ __writeback_inodes_wb+0xc8/0x280 fs/fs-writeback.c:2025
+ wb_writeback+0x717/0xaf0 fs/fs-writeback.c:2136
+ wb_check_old_data_flush fs/fs-writeback.c:2240 [inline]
+ wb_do_writeback fs/fs-writeback.c:2293 [inline]
+ wb_workfn+0x76c/0xc90 fs/fs-writeback.c:2321
+ process_one_work+0x92e/0x1b50 kernel/workqueue.c:3229
+ process_scheduled_works kernel/workqueue.c:3310 [inline]
+ worker_thread+0x68d/0xe90 kernel/workqueue.c:3391
+ kthread+0x35a/0x470 kernel/kthread.c:389
+ ret_from_fork+0x56/0x90 arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:244
+ </TASK>
+Future hung task reports are suppressed, see sysctl kernel.hung_task_warnings
+
+Showing all locks held in the system:
+4 locks held by kworker/u8:0/11:
+ #0: ffff88800df9b948 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x11fc/0x1b50 kernel/workqueue.c:3204
+ #1: ffff88800dcd7d78 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x8a0/0x1b50 kernel/workqueue.c:3205
+ #2: ffff8880119fc0e0 (&type->s_umount_key#42){++++}-{3:3}, at: super_trylock_shared+0x2b/0x110 fs/super.c:562
+ #3: ffff8880119f8b98 (&sbi->s_writepages_rwsem){++++}-{0:0}, at: do_writepages+0x1c3/0x8a0 mm/page-writeback.c:2683
+1 lock held by khungtaskd/33:
+ #0: ffffffff8705c9c0 (rcu_read_lock){....}-{1:2}, at: rcu_lock_acquire include/linux/rcupdate.h:337 [inline]
+ #0: ffffffff8705c9c0 (rcu_read_lock){....}-{1:2}, at: rcu_read_lock include/linux/rcupdate.h:849 [inline]
+ #0: ffffffff8705c9c0 (rcu_read_lock){....}-{1:2}, at: debug_show_all_locks+0x73/0x3c0 kernel/locking/lockdep.c:6720
+4 locks held by kworker/u8:4/160:
+ #0: ffff88800df9b948 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x11fc/0x1b50 kernel/workqueue.c:3204
+ #1: ffff888014ec7d78 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x8a0/0x1b50 kernel/workqueue.c:3205
+ #2: ffff8880119fc0e0 (&type->s_umount_key#42){++++}-{3:3}, at: super_trylock_shared+0x2b/0x110 fs/super.c:562
+ #3: ffff8880119f8b98 (&sbi->s_writepages_rwsem){++++}-{0:0}, at: do_writepages+0x1c3/0x8a0 mm/page-writeback.c:2683
+3 locks held by in:imjournal/328:
+ #0: ffff8880119fc408 (sb_writers#3){.+.+}-{0:0}, at: open_last_lookups fs/namei.c:3683 [inline]
+ #0: ffff8880119fc408 (sb_writers#3){.+.+}-{0:0}, at: path_openat+0x1f7c/0x2bf0 fs/namei.c:3930
+ #1: ffff8880193cab58 (&type->i_mutex_dir_key#3){++++}-{3:3}, at: inode_lock include/linux/fs.h:815 [inline]
+ #1: ffff8880193cab58 (&type->i_mutex_dir_key#3){++++}-{3:3}, at: open_last_lookups fs/namei.c:3691 [inline]
+ #1: ffff8880193cab58 (&type->i_mutex_dir_key#3){++++}-{3:3}, at: path_openat+0xd40/0x2bf0 fs/namei.c:3930
+ #2: ffff888011a14958 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x107b/0x1590 fs/jbd2/transaction.c:448
+4 locks held by rs:main Q:Reg/329:
+ #0: ffff8880112adcf8 (&f->f_pos_lock){+.+.}-{3:3}, at: fdget_pos+0x25e/0x380 fs/file.c:1160
+ #1: ffff8880119fc408 (sb_writers#3){.+.+}-{0:0}, at: ksys_write+0x14f/0x290 fs/read_write.c:736
+ #2: ffff88801932c8e0 (&sb->s_type->i_mutex_key#8){++++}-{3:3}, at: inode_lock include/linux/fs.h:815 [inline]
+ #2: ffff88801932c8e0 (&sb->s_type->i_mutex_key#8){++++}-{3:3}, at: ext4_buffered_write_iter+0xb8/0x3e0 fs/ext4/file.c:294
+ #3: ffff888011a14958 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x107b/0x1590 fs/jbd2/transaction.c:448
+4 locks held by kworker/1:4/353:
+ #0: ffff88800d45ad48 ((wq_completion)events){+.+.}-{0:0}, at: process_one_work+0x11fc/0x1b50 kernel/workqueue.c:3204
+ #1: ffff88801c877d78 ((work_completion)(&(&ap->scsi_rescan_task)->work)){+.+.}-{0:0}, at: process_one_work+0x8a0/0x1b50 kernel/workqueue.c:3205
+ #2: ffff888011784430 (&ap->scsi_scan_mutex){+.+.}-{3:3}, at: ata_scsi_dev_rescan+0x42/0x470 drivers/ata/libata-scsi.c:4776
+ #3: ffff8880117ee378 (&dev->mutex){....}-{3:3}, at: device_lock include/linux/device.h:1014 [inline]
+ #3: ffff8880117ee378 (&dev->mutex){....}-{3:3}, at: scsi_rescan_device+0x33/0x360 drivers/scsi/scsi_scan.c:1691
+7 locks held by kworker/u8:1/734:
+ #0: ffff88800df9b948 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x11fc/0x1b50 kernel/workqueue.c:3204
+ #1: ffff888025697d78 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x8a0/0x1b50 kernel/workqueue.c:3205
+ #2: ffff8880119fc0e0 (&type->s_umount_key#42){++++}-{3:3}, at: super_trylock_shared+0x2b/0x110 fs/super.c:562
+ #3: ffff8880119f8b98 (&sbi->s_writepages_rwsem){++++}-{0:0}, at: do_writepages+0x1c3/0x8a0 mm/page-writeback.c:2683
+ #4: ffff888011a14958 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x107b/0x1590 fs/jbd2/transaction.c:448
+ #5: ffff8880277b8288 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x344/0x1390 fs/ext4/inode.c:701
+ #6: ffffe8ffffd07938 (&lg->lg_mutex){+.+.}-{3:3}, at: ext4_mb_group_or_file fs/ext4/mballoc.c:5786 [inline]
+ #6: ffffe8ffffd07938 (&lg->lg_mutex){+.+.}-{3:3}, at: ext4_mb_initialize_context+0x8a3/0xd20 fs/ext4/mballoc.c:5830
+3 locks held by kworker/u8:2/773:
+ #0: ffff88800df9b948 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x11fc/0x1b50 kernel/workqueue.c:3204
+ #1: ffff8880281bfd78 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x8a0/0x1b50 kernel/workqueue.c:3205
+ #2: ffff88800d77a0e0 (&type->s_umount_key#52){.+.+}-{3:3}, at: super_trylock_shared+0x2b/0x110 fs/super.c:562
+4 locks held by kworker/u8:5/776:
+ #0: ffff888013c88948 ((wq_completion)ext4-rsv-conversion){+.+.}-{0:0}, at: process_one_work+0x11fc/0x1b50 kernel/workqueue.c:3204
+ #1: ffff888012defd78 ((work_completion)(&ei->i_rsv_conversion_work)){+.+.}-{0:0}, at: process_one_work+0x8a0/0x1b50 kernel/workqueue.c:3205
+ #2: ffff888011a14958 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x107b/0x1590 fs/jbd2/transaction.c:448
+ #3: ffff88801932c770 (&ei->i_data_sem){++++}-{3:3}, at: ext4_map_blocks+0x344/0x1390 fs/ext4/inode.c:701
+
+=============================================
+
+ata1: lost interrupt (Status 0x58)

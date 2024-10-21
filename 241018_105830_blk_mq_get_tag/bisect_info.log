@@ -1,0 +1,45 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [8e929cb546ee42c9a61d24fae60605e9e3192354] Linux 6.12-rc3
+git bisect bad 8e929cb546ee42c9a61d24fae60605e9e3192354
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [1ca06f1c1acecbe02124f14a37cce347b8c1a90c] Merge tag 'xtensa-20221213' of https://github.com/jcmvbkbc/linux-xtensa
+git bisect good 1ca06f1c1acecbe02124f14a37cce347b8c1a90c
+# good: [27beb3ca347fa29fef5c23b351120239b8cf0612] Merge tag 'pci-v6.7-changes' of git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci
+git bisect good 27beb3ca347fa29fef5c23b351120239b8cf0612
+# good: [24e28b60b0649b3e84d81a6e7e1094c5b1f52842] Merge branch 'net-qede-convert-filter-code-to-use-extack'
+git bisect good 24e28b60b0649b3e84d81a6e7e1094c5b1f52842
+# good: [b3ce7a30847a54a7f96a35e609303d8afecd460b] Merge tag 'drm-next-2024-07-18' of https://gitlab.freedesktop.org/drm/kernel
+git bisect good b3ce7a30847a54a7f96a35e609303d8afecd460b
+# good: [6df928086070b4db8cadc31a4424524f57c584ae] Merge tag 'regulator-v6.12' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator
+git bisect good 6df928086070b4db8cadc31a4424524f57c584ae
+# bad: [617a814f14b8914271f7a70366d72c6196d17663] Merge tag 'mm-stable-2024-09-20-02-31' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+git bisect bad 617a814f14b8914271f7a70366d72c6196d17663
+# good: [4e0373f1f920811a67fef0c3383f1ad602b3845e] Merge tag 'v6.12-rc-smb3-client-fixes-part1' of git://git.samba.org/sfrench/cifs-2.6
+git bisect good 4e0373f1f920811a67fef0c3383f1ad602b3845e
+# good: [32bd3eb5fbab954e68adba8c0b6a43cf03605c93] Merge tag 'drm-intel-gt-next-2024-09-06' of https://gitlab.freedesktop.org/drm/i915/kernel into drm-next
+git bisect good 32bd3eb5fbab954e68adba8c0b6a43cf03605c93
+# bad: [a1d1eb2f57501b2e7e2076ce89b3f3a666ddbfdd] Merge tag 'scsi-misc' of git://git.kernel.org/pub/scm/linux/kernel/git/jejb/scsi
+git bisect bad a1d1eb2f57501b2e7e2076ce89b3f3a666ddbfdd
+# good: [d5e65d1fb75ffbe3aba33de81a72752ace28295e] Merge tag 'tpmdd-next-6.12-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/jarkko/linux-tpmdd
+git bisect good d5e65d1fb75ffbe3aba33de81a72752ace28295e
+# good: [ae2c6d8b3b88c176dff92028941a4023f1b4cb91] Merge tag 'drm-xe-next-fixes-2024-09-12' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next
+git bisect good ae2c6d8b3b88c176dff92028941a4023f1b4cb91
+# bad: [de848da12f752170c2ebe114804a985314fd5a6a] Merge tag 'drm-next-2024-09-19' of https://gitlab.freedesktop.org/drm/kernel
+git bisect bad de848da12f752170c2ebe114804a985314fd5a6a
+# good: [1a811edf4f756196ef38f3a8edee35326a328e1a] Merge branch 'for-6.12/wacom' into for-linus
+git bisect good 1a811edf4f756196ef38f3a8edee35326a328e1a
+# good: [0f3e1eaaf7f97839ac65f525efec392161d73219] ata: sata_gemini: Enable module autoloading
+git bisect good 0f3e1eaaf7f97839ac65f525efec392161d73219
+# good: [0aa04373bca5044a3cb4d5125de792872e971ed2] Merge branch 'for-6.12/cp2112' into for-linus
+git bisect good 0aa04373bca5044a3cb4d5125de792872e971ed2
+# good: [da65bbdd3bc1e8d2193e01167a413d90d9988c04] ata: libata: Move sector_buf from struct ata_port to struct ata_device
+git bisect good da65bbdd3bc1e8d2193e01167a413d90d9988c04
+# good: [d647bdf4d080208b71a205ec19a1c9f18ca83f00] ata: libata: Fix W=1 compilation warning
+git bisect good d647bdf4d080208b71a205ec19a1c9f18ca83f00
+# bad: [e5dd410acb34c7341a0a93b429dcf3dabf9e3323] ata: libata: Clear DID_TIME_OUT for ATA PT commands with sense data
+git bisect bad e5dd410acb34c7341a0a93b429dcf3dabf9e3323
+# first bad commit: [e5dd410acb34c7341a0a93b429dcf3dabf9e3323] ata: libata: Clear DID_TIME_OUT for ATA PT commands with sense data
+|1019_054406|Bisect successfully! 8e929cb546ee42c9a61d24fae60605e9e3192354_e5dd410acb34c7341a0a93b429dcf3dabf9e3323_revert bzimage passed!|
