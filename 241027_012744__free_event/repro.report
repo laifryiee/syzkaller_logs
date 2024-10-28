@@ -1,0 +1,46 @@
+INFO: task syz-executor352:763 blocked for more than 147 seconds.
+      Not tainted 6.12.0-rc4-f9356e25d20d+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor352 state:D stack:0     pid:763   tgid:763   ppid:743    flags:0x00004002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5328 [inline]
+ __schedule+0xe13/0x33a0 kernel/sched/core.c:6690
+ __schedule_loop kernel/sched/core.c:6767 [inline]
+ schedule+0xf6/0x3f0 kernel/sched/core.c:6782
+ perf_pending_task_sync kernel/events/core.c:5451 [inline]
+ _free_event+0x61a/0x1590 kernel/events/core.c:5458
+ put_event kernel/events/core.c:5589 [inline]
+ perf_event_release_kernel+0x648/0x870 kernel/events/core.c:5714
+ perf_release+0x3a/0x50 kernel/events/core.c:5724
+ __fput+0x414/0xb60 fs/file_table.c:431
+ ____fput+0x22/0x30 fs/file_table.c:459
+ task_work_run+0x19c/0x2b0 kernel/task_work.c:239
+ exit_task_work include/linux/task_work.h:43 [inline]
+ do_exit+0xb19/0x2a30 kernel/exit.c:939
+ do_group_exit+0xe4/0x2c0 kernel/exit.c:1088
+ get_signal+0x2279/0x24c0 kernel/signal.c:2917
+ arch_do_signal_or_restart+0x8e/0x7d0 arch/x86/kernel/signal.c:337
+ exit_to_user_mode_loop kernel/entry/common.c:111 [inline]
+ exit_to_user_mode_prepare include/linux/entry-common.h:328 [inline]
+ __syscall_exit_to_user_mode_work kernel/entry/common.c:207 [inline]
+ syscall_exit_to_user_mode+0x144/0x200 kernel/entry/common.c:218
+ do_syscall_64+0x79/0x140 arch/x86/entry/common.c:89
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fb39083ee5d
+RSP: 002b:00007ffc24398e48 EFLAGS: 00000246 ORIG_RAX: 000000000000012a
+RAX: 0000000000000003 RBX: 0000000000000000 RCX: 00007fb39083ee5d
+RDX: 00000000ffffffff RSI: 0000000000000000 RDI: 0000000020000240
+RBP: 0000000000000000 R08: 0000000000000008 R09: 0000000000008000
+R10: 00000000ffffffff R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007fb390a9b000
+ </TASK>
+
+Showing all locks held in the system:
+1 lock held by khungtaskd/33:
+ #0: ffffffff8705cb00 (rcu_read_lock){....}-{1:2}, at: rcu_lock_acquire include/linux/rcupdate.h:337 [inline]
+ #0: ffffffff8705cb00 (rcu_read_lock){....}-{1:2}, at: rcu_read_lock include/linux/rcupdate.h:849 [inline]
+ #0: ffffffff8705cb00 (rcu_read_lock){....}-{1:2}, at: debug_show_all_locks+0x73/0x3c0 kernel/locking/lockdep.c:6720
+
+=============================================
+

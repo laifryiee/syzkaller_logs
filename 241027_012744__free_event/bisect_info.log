@@ -1,0 +1,48 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [42f7652d3eb527d03665b09edac47f85fb600924] Linux 6.12-rc4
+git bisect bad 42f7652d3eb527d03665b09edac47f85fb600924
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [1ca06f1c1acecbe02124f14a37cce347b8c1a90c] Merge tag 'xtensa-20221213' of https://github.com/jcmvbkbc/linux-xtensa
+git bisect good 1ca06f1c1acecbe02124f14a37cce347b8c1a90c
+# good: [edd8e84ae9514e93368f56c3715b11af52df6c3b] Merge tag 'sound-6.7-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound
+git bisect good edd8e84ae9514e93368f56c3715b11af52df6c3b
+# good: [f952b6c863090464c148066df9f46cb3edd603da] Merge tag 'thermal-6.10-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+git bisect good f952b6c863090464c148066df9f46cb3edd603da
+# bad: [b3ce7a30847a54a7f96a35e609303d8afecd460b] Merge tag 'drm-next-2024-07-18' of https://gitlab.freedesktop.org/drm/kernel
+git bisect bad b3ce7a30847a54a7f96a35e609303d8afecd460b
+# good: [9b62e02e63363f5678d5598ee7372064301587f7] Merge tag 'mm-hotfixes-stable-2024-05-25-09-13' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+git bisect good 9b62e02e63363f5678d5598ee7372064301587f7
+# bad: [0434dbe32053d07d658165be681505120c6b1abc] Merge tag 'linux_kselftest-next-6.11-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest
+git bisect bad 0434dbe32053d07d658165be681505120c6b1abc
+# good: [3a56e241732975c2c1247047ddbfc0ac6f6a4905] Merge tag 'for-6.11/io_uring-20240714' of git://git.kernel.dk/linux
+git bisect good 3a56e241732975c2c1247047ddbfc0ac6f6a4905
+# good: [cc0f7c3f97bc6e888bf4be28a9da9dbd3735d2b4] Merge tag 'soc-drivers-6.11' of git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
+git bisect good cc0f7c3f97bc6e888bf4be28a9da9dbd3735d2b4
+# good: [462eeb978db8071722a3a546039943d42a297114] Merge tag 'mvebu-dt64-6.11-1' of https://git.kernel.org/pub/scm/linux/kernel/git/gclement/mvebu into soc/dt
+git bisect good 462eeb978db8071722a3a546039943d42a297114
+# good: [d80f2996b8502779c39221a9e7c9ea7e361c0ae4] Merge tag 'asm-generic-6.11' of git://git.kernel.org/pub/scm/linux/kernel/git/arnd/asm-generic
+git bisect good d80f2996b8502779c39221a9e7c9ea7e361c0ae4
+# good: [15114e8fb58ffd574da83951e89cb5ab0055cc1e] Merge tag 'thermal-6.11-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+git bisect good 15114e8fb58ffd574da83951e89cb5ab0055cc1e
+# good: [923a327e8f2257ab7cd5485cb5d8db92c965dfca] Merge tag 'acpi-6.11-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+git bisect good 923a327e8f2257ab7cd5485cb5d8db92c965dfca
+# bad: [576a997c6315ee482519e7cc080f341b07638808] Merge tag 'perf-core-2024-07-16' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect bad 576a997c6315ee482519e7cc080f341b07638808
+# bad: [5af42f928f3ac555c228740fb4a92d05b19fdd49] perf: Shrink the size of the recursion counter.
+git bisect bad 5af42f928f3ac555c228740fb4a92d05b19fdd49
+# good: [a31000753d41305d2fb7faa8cc80a8edaeb7b56b] perf/x86/intel/cstate: Add Arrowlake support
+git bisect good a31000753d41305d2fb7faa8cc80a8edaeb7b56b
+# good: [149fd4712bcd492a031945f92e5ce19879f62311] perf/x86/intel: Support Perfmon MSRs aliasing
+git bisect good 149fd4712bcd492a031945f92e5ce19879f62311
+# good: [2fd5ad3f310de22836cdacae919dd99d758a1f1b] perf: Fix event leak upon exit
+git bisect good 2fd5ad3f310de22836cdacae919dd99d758a1f1b
+# good: [058244c683111d44a5de16ac74f19a1754dd7a0c] perf: Move irq_work_queue() where the event is prepared.
+git bisect good 058244c683111d44a5de16ac74f19a1754dd7a0c
+# bad: [c5d93d23a26012a98b77f9e354ab9b3afd420059] perf: Enqueue SIGTRAP always via task_work.
+git bisect bad c5d93d23a26012a98b77f9e354ab9b3afd420059
+# good: [466e4d801cd438a1ab2c8a2cce1bef6b65c31bbb] task_work: Add TWA_NMI_CURRENT as an additional notify mode.
+git bisect good 466e4d801cd438a1ab2c8a2cce1bef6b65c31bbb
+# first bad commit: [c5d93d23a26012a98b77f9e354ab9b3afd420059] perf: Enqueue SIGTRAP always via task_work.
