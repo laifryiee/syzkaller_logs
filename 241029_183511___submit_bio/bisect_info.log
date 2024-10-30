@@ -1,0 +1,35 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [6fb2fa9805c501d9ade047fc511961f3273cdcb5] Add linux-next specific files for 20241029
+git bisect bad 6fb2fa9805c501d9ade047fc511961f3273cdcb5
+# status: waiting for good commit(s), bad commit known
+# good: [81983758430957d9a5cb3333fe324fd70cf63e7e] Linux 6.12-rc5
+git bisect good 81983758430957d9a5cb3333fe324fd70cf63e7e
+# good: [32ec3b3cd14c3f3f4f1d114f47a1578d102136da] Merge branch 'master' of git://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git
+git bisect good 32ec3b3cd14c3f3f4f1d114f47a1578d102136da
+# bad: [8296a2f668e73211984e2acc0fa0ea0a8d8c1023] Merge branch 'for-backlight-next' of git://git.kernel.org/pub/scm/linux/kernel/git/lee/backlight.git
+git bisect bad 8296a2f668e73211984e2acc0fa0ea0a8d8c1023
+# good: [776a0f0df18a8bda8d6a3d2286f882c904c018e6] Merge branch 'for-linux-next' of https://gitlab.freedesktop.org/drm/misc/kernel.git
+git bisect good 776a0f0df18a8bda8d6a3d2286f882c904c018e6
+# good: [101a9e71bac6b9917dd4436592e1b935a29c75ac] Merge branch 'for-next' of https://git.kernel.org/pub/scm/linux/kernel/git/ieee1394/linux1394.git
+git bisect good 101a9e71bac6b9917dd4436592e1b935a29c75ac
+# good: [307f5029255114fff174c3dbb4bc79195236b178] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git
+git bisect good 307f5029255114fff174c3dbb4bc79195236b178
+# bad: [096761af50f424871f01e76df1674336538c4ada] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/libata/linux
+git bisect bad 096761af50f424871f01e76df1674336538c4ada
+# good: [3193ca2dcb3fcd9db159247cb51139891d62f681] Merge branch 'for-6.13/io_uring' into for-next
+git bisect good 3193ca2dcb3fcd9db159247cb51139891d62f681
+# bad: [97221bde4488b01bed13c91432f9397ce93b8ff9] Merge branch 'io_uring-rsrc' into for-next
+git bisect bad 97221bde4488b01bed13c91432f9397ce93b8ff9
+# good: [ead12caeb8ac993592922fcaa36e1665a10dd993] io_uring/rsrc: get rid of per-ring io_rsrc_node list
+git bisect good ead12caeb8ac993592922fcaa36e1665a10dd993
+# good: [b90eed6726408cb96b8a427b06bf2215f66505d9] io_uring/rsrc: add last-lookup cache hit to io_rsrc_node_lookup()
+git bisect good b90eed6726408cb96b8a427b06bf2215f66505d9
+# bad: [f1be1788a32e8fa63416ad4518bbd1a85a825c9d] block: model freeze & enter queue as lock for supporting lockdep
+git bisect bad f1be1788a32e8fa63416ad4518bbd1a85a825c9d
+# good: [8acdd0e7bfadda6b5103f2960d293581954454ed] blk-mq: add non_owner variant of start_freeze/unfreeze queue APIs
+git bisect good 8acdd0e7bfadda6b5103f2960d293581954454ed
+# good: [6b6f6c41c8ac9b5ef758f16b793e1fd998cd25b4] nvme: core: switch to non_owner variant of start_freeze/unfreeze queue
+git bisect good 6b6f6c41c8ac9b5ef758f16b793e1fd998cd25b4
+# first bad commit: [f1be1788a32e8fa63416ad4518bbd1a85a825c9d] block: model freeze & enter queue as lock for supporting lockdep
+|1030_045925|Bisect successfully! 6fb2fa9805c501d9ade047fc511961f3273cdcb5_f1be1788a32e8fa63416ad4518bbd1a85a825c9d_revert bzimage passed!|
