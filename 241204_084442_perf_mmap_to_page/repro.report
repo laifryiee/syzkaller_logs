@@ -1,0 +1,86 @@
+Oops: general protection fault, probably for non-canonical address 0xdffffc000000002f: 0000 [#1] PREEMPT SMP KASAN NOPTI
+KASAN: null-ptr-deref in range [0x0000000000000178-0x000000000000017f]
+CPU: 1 UID: 0 PID: 701 Comm: syz-executor191 Not tainted 6.13.0-rc1-next-20241203-c245a7a79602 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:perf_mmap_to_page+0x39/0x500 kernel/events/ring_buffer.c:950
+Code: 41 56 41 55 41 54 49 89 f4 53 48 89 fb e8 3f 5f c2 ff 48 8d bb 78 01 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 <0f> b6 04 02 84 c0 74 08 3c 03 0f 8e e9 03 00 00 4c 63 ab 78 01 00
+RSP: 0018:ffff8880136a7798 EFLAGS: 00010202
+RAX: dffffc0000000000 RBX: 0000000000000000 RCX: dffffc0000000000
+RDX: 000000000000002f RSI: ffffffff81a5ccf1 RDI: 0000000000000178
+RBP: ffff8880136a77c0 R08: 0000000000000001 R09: ffffed100444881b
+R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000020002000 R15: ffff8880222432d0
+FS:  00007fc051266600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fb6801b54f4 CR3: 00000000223c4003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ map_range kernel/events/core.c:6577 [inline]
+ perf_mmap+0xbd9/0x1ce0 kernel/events/core.c:6819
+ call_mmap include/linux/fs.h:2195 [inline]
+ mmap_file mm/internal.h:124 [inline]
+ __mmap_new_file_vma mm/vma.c:2291 [inline]
+ __mmap_new_vma mm/vma.c:2355 [inline]
+ __mmap_region+0x10e7/0x25a0 mm/vma.c:2456
+ mmap_region+0x248/0x2f0 mm/mmap.c:1352
+ do_mmap+0xb29/0x12a0 mm/mmap.c:500
+ vm_mmap_pgoff+0x235/0x3e0 mm/util.c:580
+ ksys_mmap_pgoff+0x3dc/0x520 mm/mmap.c:546
+ __do_sys_mmap arch/x86/kernel/sys_x86_64.c:89 [inline]
+ __se_sys_mmap arch/x86/kernel/sys_x86_64.c:82 [inline]
+ __x64_sys_mmap+0x139/0x1d0 arch/x86/kernel/sys_x86_64.c:82
+ x64_sys_call+0x2001/0x2140 arch/x86/include/generated/asm/syscalls_64.h:10
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fc05103ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcad009068 EFLAGS: 00000246 ORIG_RAX: 0000000000000009
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fc05103ee5d
+RDX: 0000000000000000 RSI: 0000000000001000 RDI: 0000000020002000
+RBP: 0000000000000001 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000006053 R11: 0000000000000246 R12: 00007ffcad009198
+R13: 0000000000401050 R14: 0000000000403e08 R15: 00007fc0512ad000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:perf_mmap_to_page+0x39/0x500 kernel/events/ring_buffer.c:950
+Code: 41 56 41 55 41 54 49 89 f4 53 48 89 fb e8 3f 5f c2 ff 48 8d bb 78 01 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 <0f> b6 04 02 84 c0 74 08 3c 03 0f 8e e9 03 00 00 4c 63 ab 78 01 00
+RSP: 0018:ffff8880136a7798 EFLAGS: 00010202
+RAX: dffffc0000000000 RBX: 0000000000000000 RCX: dffffc0000000000
+RDX: 000000000000002f RSI: ffffffff81a5ccf1 RDI: 0000000000000178
+RBP: ffff8880136a77c0 R08: 0000000000000001 R09: ffffed100444881b
+R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000020002000 R15: ffff8880222432d0
+FS:  00007fc051266600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fb6801b54f4 CR3: 00000000223c4003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+----------------
+Code disassembly (best guess):
+   0:	41 56                	push   %r14
+   2:	41 55                	push   %r13
+   4:	41 54                	push   %r12
+   6:	49 89 f4             	mov    %rsi,%r12
+   9:	53                   	push   %rbx
+   a:	48 89 fb             	mov    %rdi,%rbx
+   d:	e8 3f 5f c2 ff       	callq  0xffc25f51
+  12:	48 8d bb 78 01 00 00 	lea    0x178(%rbx),%rdi
+  19:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  20:	fc ff df
+  23:	48 89 fa             	mov    %rdi,%rdx
+  26:	48 c1 ea 03          	shr    $0x3,%rdx
+* 2a:	0f b6 04 02          	movzbl (%rdx,%rax,1),%eax <-- trapping instruction
+  2e:	84 c0                	test   %al,%al
+  30:	74 08                	je     0x3a
+  32:	3c 03                	cmp    $0x3,%al
+  34:	0f 8e e9 03 00 00    	jle    0x423
+  3a:	4c                   	rex.WR
+  3b:	63                   	.byte 0x63
+  3c:	ab                   	stos   %eax,%es:(%rdi)
+  3d:	78 01                	js     0x40

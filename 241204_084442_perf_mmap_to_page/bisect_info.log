@@ -1,0 +1,31 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [c245a7a79602ccbee780c004c1e4abcda66aec32] Add linux-next specific files for 20241203
+git bisect bad c245a7a79602ccbee780c004c1e4abcda66aec32
+# status: waiting for good commit(s), bad commit known
+# good: [40384c840ea1944d7c5a392e8975ed088ecf0b37] Linux 6.13-rc1
+git bisect good 40384c840ea1944d7c5a392e8975ed088ecf0b37
+# good: [9c785071ac8d963d7324426ec96e17071c6b4997] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/printk/linux.git
+git bisect good 9c785071ac8d963d7324426ec96e17071c6b4997
+# good: [1641ce38d1d9dc832ef11b52575ed9d5bfe7e76f] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git
+git bisect good 1641ce38d1d9dc832ef11b52575ed9d5bfe7e76f
+# bad: [418451e2cba8c7e9d52403a7527e7ac6d5048a6c] Merge branch 'non-rcu/next' of git://git.kernel.org/pub/scm/linux/kernel/git/paulmck/linux-rcu.git
+git bisect bad 418451e2cba8c7e9d52403a7527e7ac6d5048a6c
+# good: [fc357370b80f74b8bb4a3f19cf17b29f3abd766e] Merge branch 'master' of git://www.linux-watchdog.org/linux-watchdog-next.git
+git bisect good fc357370b80f74b8bb4a3f19cf17b29f3abd766e
+# bad: [5b595eb0c2adc0f43f8a1eb1a9fb64253f66afc9] Merge branch into tip/master: 'perf/core'
+git bisect bad 5b595eb0c2adc0f43f8a1eb1a9fb64253f66afc9
+# good: [e0925f2dc4de2d8ba987392d3239e8edf88f8b96] uprobes: add speculative lockless VMA-to-inode-to-uprobe resolution
+git bisect good e0925f2dc4de2d8ba987392d3239e8edf88f8b96
+# good: [624bde3465f660e54a7cd4c1efc3e536349fead5] loongarch: Use ASM_REACHABLE
+git bisect good 624bde3465f660e54a7cd4c1efc3e536349fead5
+# good: [c3cb6c158c64dc39838208d51dcd06d1990b371d] objtool: Allow arch code to discover jump table size
+git bisect good c3cb6c158c64dc39838208d51dcd06d1990b371d
+# good: [f70beeecd352f0714c59ac5361e128103f50ca40] Merge branch into tip/master: 'irq/core'
+git bisect good f70beeecd352f0714c59ac5361e128103f50ca40
+# good: [344d939247755a9b97899c2527d9b93e2987750e] Merge branch into tip/master: 'locking/core'
+git bisect good 344d939247755a9b97899c2527d9b93e2987750e
+# bad: [eca51ce01d4956ab4b8f06bb55c031f4913fffcb] perf: Map pages in advance
+git bisect bad eca51ce01d4956ab4b8f06bb55c031f4913fffcb
+# first bad commit: [eca51ce01d4956ab4b8f06bb55c031f4913fffcb] perf: Map pages in advance
+|1204_174540|Bisect successfully! c245a7a79602ccbee780c004c1e4abcda66aec32_eca51ce01d4956ab4b8f06bb55c031f4913fffcb_revert bzimage passed!|
