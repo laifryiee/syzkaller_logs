@@ -1,0 +1,119 @@
+loop5: detected capacity change from 0 to 32768
+ loop5: p1 p9 p11
+loop4: detected capacity change from 0 to 512
+netlink: 8 bytes leftover after parsing attributes in process `syz.3.1347'.
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 12969 at net/ipv6/ip6mr.c:419 ip6mr_free_table+0xc6/0x130 net/ipv6/ip6mr.c:419
+Modules linked in:
+CPU: 1 UID: 0 PID: 12969 Comm: syz.3.1347 Tainted: G S                 6.13.0-rc1-2024-12-02-intel-next+ #1
+Tainted: [S]=CPU_OUT_OF_SPEC
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:ip6mr_free_table+0xc6/0x130 net/ipv6/ip6mr.c:419
+Code: 40 0d 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 80 3c 02 00 75 5e 48 83 bb 40 0d 00 00 00 74 07 e8 ba 91 09 fc <0f> 0b e8 b3 91 09 fc 49 8d 7c 24 38 e8 b9 36 f6 fb 4c 89 e7 be 0f
+RSP: 0018:ffff888030de7b88 EFLAGS: 00010216
+RAX: 000000000001989d RBX: ffff88803632d4c0 RCX: ffffc9000281e000
+RDX: 0000000000080000 RSI: ffffffff855e9536 RDI: ffff88803632e200
+RBP: ffff888030de7ba0 R08: 0000000000000000 R09: ffffed1006c65ac0
+R10: 0000000000000001 R11: 0000000000000001 R12: ffff888016c8c000
+R13: 0000000000000001 R14: dead000000000100 R15: dffffc0000000000
+FS:  00007fdbfdc8b640(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 0000000046192005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000600
+PKRU: 80000000
+Call Trace:
+ <TASK>
+ ip6mr_rules_exit+0x12a/0x260 net/ipv6/ip6mr.c:283
+ ip6mr_net_exit_batch+0x5d/0xb0 net/ipv6/ip6mr.c:1388
+ ops_exit_list+0x132/0x190 net/core/net_namespace.c:177
+ setup_net+0x502/0x840 net/core/net_namespace.c:394
+ copy_net_ns+0x2bb/0x6e0 net/core/net_namespace.c:500
+ create_new_namespaces+0x403/0xb40 kernel/nsproxy.c:110
+ unshare_nsproxy_namespaces+0xca/0x200 kernel/nsproxy.c:228
+ ksys_unshare+0x482/0xae0 kernel/fork.c:3334
+ __do_sys_unshare kernel/fork.c:3405 [inline]
+ __se_sys_unshare kernel/fork.c:3403 [inline]
+ __x64_sys_unshare+0x3a/0x50 kernel/fork.c:3403
+ x64_sys_call+0xd3e/0x2140 arch/x86/include/generated/asm/syscalls_64.h:273
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fdbfd63ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fdbfdc8ac78 EFLAGS: 00000246 ORIG_RAX: 0000000000000110
+RAX: ffffffffffffffda RBX: 0000000000526080 RCX: 00007fdbfd63ee5d
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000040000200
+RBP: 0000000000526080 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 0000000000000000 R14: 00007fdbfd69f560 R15: 0000000000000000
+ </TASK>
+irq event stamp: 3105
+hardirqs last  enabled at (3113): [<ffffffff81460745>] __up_console_sem+0x95/0xb0 kernel/printk/printk.c:344
+hardirqs last disabled at (3120): [<ffffffff8146072a>] __up_console_sem+0x7a/0xb0 kernel/printk/printk.c:342
+softirqs last  enabled at (3094): [<ffffffff8128c08e>] __do_softirq kernel/softirq.c:588 [inline]
+softirqs last  enabled at (3094): [<ffffffff8128c08e>] invoke_softirq kernel/softirq.c:428 [inline]
+softirqs last  enabled at (3094): [<ffffffff8128c08e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:655
+softirqs last disabled at (3137): [<ffffffff8128c08e>] __do_softirq kernel/softirq.c:588 [inline]
+softirqs last disabled at (3137): [<ffffffff8128c08e>] invoke_softirq kernel/softirq.c:428 [inline]
+softirqs last disabled at (3137): [<ffffffff8128c08e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:655
+---[ end trace 0000000000000000 ]---
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 12969 at net/ipv4/ipmr.c:440 ipmr_free_table net/ipv4/ipmr.c:440 [inline]
+WARNING: CPU: 1 PID: 12969 at net/ipv4/ipmr.c:440 ipmr_rules_exit+0x14b/0x1d0 net/ipv4/ipmr.c:361
+Modules linked in:
+CPU: 1 UID: 0 PID: 12969 Comm: syz.3.1347 Tainted: G S      W          6.13.0-rc1-2024-12-02-intel-next+ #1
+Tainted: [S]=CPU_OUT_OF_SPEC, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:ipmr_free_table net/ipv4/ipmr.c:440 [inline]
+RIP: 0010:ipmr_rules_exit+0x14b/0x1d0 net/ipv4/ipmr.c:361
+Code: df 48 c1 ea 03 80 3c 02 00 75 7b 48 c7 83 08 08 00 00 00 00 00 00 5b 41 5c 41 5d 41 5e 41 5f 5d c3 cc cc cc cc e8 85 e5 2b fc <0f> 0b eb 91 e8 7c e5 2b fc 44 0f b6 25 1d 38 87 02 31 ff 44 89 e6
+RSP: 0018:ffff888030de7bc0 EFLAGS: 00010212
+RAX: 0000000000052a02 RBX: ffff88803632d4c0 RCX: ffffc9000281e000
+RDX: 0000000000080000 RSI: ffffffff853c416b RDI: 0000000000000005
+RBP: ffff888030de7be8 R08: 0000000000000000 R09: ffffed1006c65ac0
+R10: 0000000000000001 R11: 0000000000000001 R12: ffff888044380000
+R13: 0000000000000001 R14: ffff88803632dcc8 R15: ffff88803632d4c0
+FS:  00007fdbfdc8b640(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f6c6e825060 CR3: 0000000046192001 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000600
+PKRU: 80000000
+Call Trace:
+ <TASK>
+ ipmr_net_exit_batch+0x5d/0xb0 net/ipv4/ipmr.c:3160
+ ops_exit_list+0x132/0x190 net/core/net_namespace.c:177
+ setup_net+0x502/0x840 net/core/net_namespace.c:394
+ copy_net_ns+0x2bb/0x6e0 net/core/net_namespace.c:500
+ create_new_namespaces+0x403/0xb40 kernel/nsproxy.c:110
+ unshare_nsproxy_namespaces+0xca/0x200 kernel/nsproxy.c:228
+ ksys_unshare+0x482/0xae0 kernel/fork.c:3334
+ __do_sys_unshare kernel/fork.c:3405 [inline]
+ __se_sys_unshare kernel/fork.c:3403 [inline]
+ __x64_sys_unshare+0x3a/0x50 kernel/fork.c:3403
+ x64_sys_call+0xd3e/0x2140 arch/x86/include/generated/asm/syscalls_64.h:273
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fdbfd63ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fdbfdc8ac78 EFLAGS: 00000246 ORIG_RAX: 0000000000000110
+RAX: ffffffffffffffda RBX: 0000000000526080 RCX: 00007fdbfd63ee5d
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000040000200
+RBP: 0000000000526080 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 0000000000000000 R14: 00007fdbfd69f560 R15: 0000000000000000
+ </TASK>
+irq event stamp: 4567
+hardirqs last  enabled at (4577): [<ffffffff81460745>] __up_console_sem+0x95/0xb0 kernel/printk/printk.c:344
+hardirqs last disabled at (4584): [<ffffffff8146072a>] __up_console_sem+0x7a/0xb0 kernel/printk/printk.c:342
+softirqs last  enabled at (4434): [<ffffffff8128c08e>] __do_softirq kernel/softirq.c:588 [inline]
+softirqs last  enabled at (4434): [<ffffffff8128c08e>] invoke_softirq kernel/softirq.c:428 [inline]
+softirqs last  enabled at (4434): [<ffffffff8128c08e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:655
+softirqs last disabled at (4409): [<ffffffff8128c08e>] __do_softirq kernel/softirq.c:588 [inline]
+softirqs last disabled at (4409): [<ffffffff8128c08e>] invoke_softirq kernel/softirq.c:428 [inline]
+softirqs last disabled at (4409): [<ffffffff8128c08e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:655
+---[ end trace 0000000000000000 ]---
+loop5: detected capacity change from 0 to 128
+tmpfs: Bad value for 'size'
