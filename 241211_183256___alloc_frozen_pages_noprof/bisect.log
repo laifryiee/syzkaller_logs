@@ -1,0 +1,789 @@
+|1211_183256|cmd=cd /root/linux-next|
+|1211_183256|git log d1486dca38afd08ca279ae94eb3a397f10737824 check_result:commit d1486dca38afd08ca279ae94eb3a397f10737824|
+|1211_183256|git log fac04efc5c793dccbd07e2d59af9f90b7fc0dca4 check_result:commit fac04efc5c793dccbd07e2d59af9f90b7fc0dca4|
+|1211_183256|cmd=git checkout -f d1486dca38afd08ca279ae94eb3a397f10737824|
+|1211_183256|cmd=cd /root/linux-next|
+|1211_183256||/var/www/html/bzimage/bzImage_d1486dca38afd08ca279ae94eb3a397f10737824| exist, no need make|
+|1211_183256|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1211_183256|Run /var/www/html/bzimage/bzImage_d1486dca38afd08ca279ae94eb3a397f10737824 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1211_183308|It takes 12 seconds to find login:test login: |
+|1211_183308|Boot 1 time: takes 12 seconds to boot up.|
+|1211_183308|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1211_183309|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1211_183311|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro.cprog root@localhost:/root/repro.c|
+|1211_183312|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1211_183312|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1211_183322|/var/www/html/bzimage/bzImage_d1486dca38afd08ca279ae94eb3a397f10737824 contained __alloc_frozen_pages_noprof:[   18.492278]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   18.492531]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   19.816965]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   19.817209]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   21.782277]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   21.782518]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   23.036463]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   23.036712]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   24.838660]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   24.838905]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10, FAIL|
+|1211_183322|Found time:18 in /var/www/html/bzimage/1211_183256___alloc_frozen_pages_noprof/d1486dca38afd08ca279ae94eb3a397f10737824_dmesg.log|
+|1211_183322|Logic: |<=25: +25|25-100 +180|>100 +1800| Set TIME:43|
+|1211_183322|-END- commit d1486dca38afd08ca279ae94eb3a397f10737824 FAIL bad|
+|1211_183322|cmd=rm -rf /var/www/html//syzkaller/2024_12_11/9cfd48d91de763e83b3b281abe91c717ca6086d0|
+|1211_183322|cmd=mkdir -p /var/www/html//syzkaller/2024_12_11/9cfd48d91de763e83b3b281abe91c717ca6086d0|
+|1211_183322|cmd=cp -rf /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro.cprog /var/www/html//syzkaller/2024_12_11/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro.c|
+|1211_183322|gcc -pthread /var/www/html//syzkaller/2024_12_11/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro.c -o /var/www/html//syzkaller/2024_12_11/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro|
+|1211_183322|cmd=cp -rf /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/description /var/www/html//syzkaller/2024_12_11/9cfd48d91de763e83b3b281abe91c717ca6086d0|
+|1211_183322|FAIL|cp /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/machineInfo0 /var/www/html/bzimage/1211_183256___alloc_frozen_pages_noprof/machineInfo0 failed!|
+|1211_183322|FAIL|cp /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/report0 /var/www/html/bzimage/1211_183256___alloc_frozen_pages_noprof/report0 failed!|
+|1211_183322|FAIL|cp /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/log0 /var/www/html/bzimage/1211_183256___alloc_frozen_pages_noprof/log0 failed!|
+|1211_183322|cp -rf /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/mount_* /var/www/html/bzimage/1211_183256___alloc_frozen_pages_noprof/|
+|1211_183324|wget https://raw.githubusercontent.com/xupengfe/kconfig_diff/main/config-5.18rc4i_kvm -O /var/www/html/bzimage/1211_183256___alloc_frozen_pages_noprof/kconfig_origin:0|
+|1211_183324|cmd=cd /root/linux-next|
+|1211_183324||/var/www/html/bzimage/bzImage_fac04efc5c793dccbd07e2d59af9f90b7fc0dca4| exist, no need make|
+|1211_183324|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1211_183324|Run /var/www/html/bzimage/bzImage_fac04efc5c793dccbd07e2d59af9f90b7fc0dca4 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1211_183336|It takes 12 seconds to find login:test login: |
+|1211_183336|Boot 1 time: takes 12 seconds to boot up.|
+|1211_183336|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1211_183337|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1211_183339|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro.cprog root@localhost:/root/repro.c|
+|1211_183340|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1211_183340|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1211_183423|/var/www/html/bzimage/bzImage_fac04efc5c793dccbd07e2d59af9f90b7fc0dca4 didn't contain __alloc_frozen_pages_noprof: in dmesg, pass|
+|1211_183423|Start commit fac04efc5c793dccbd07e2d59af9f90b7fc0dca4 PASS good|
+|1211_183423|cmd=git checkout -f d1486dca38afd08ca279ae94eb3a397f10737824|
+|1211_183423|cmd=git bisect start|
+|1211_183423|cmd=git bisect bad d1486dca38afd08ca279ae94eb3a397f10737824|
+|1211_183423|Bisect first start commit:fac04efc5c793dccbd07e2d59af9f90b7fc0dca4|
+|1211_183423|git bisect good fac04efc5c793dccbd07e2d59af9f90b7fc0dca4|
+|1211_183429|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 6431cd3d1238d093a03b495d7121366448e2913f -d /var/www/html/bzimage -o /tmp/kernel|
+|1211_185420|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1211_185420|Run /var/www/html/bzimage/bzImage_6431cd3d1238d093a03b495d7121366448e2913f with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1211_185434|It takes 14 seconds to find login:test login: |
+|1211_185434|Boot 1 time: takes 14 seconds to boot up.|
+|1211_185434|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1211_185435|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1211_185436|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro.cprog root@localhost:/root/repro.c|
+|1211_185437|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1211_185438|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1211_185521|/var/www/html/bzimage/bzImage_6431cd3d1238d093a03b495d7121366448e2913f contained __alloc_frozen_pages_noprof:[   19.991363]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   19.991606]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   21.182894]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   21.183141]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   22.649784]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   22.650026]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   23.830438]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   23.830685]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   24.392126]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   24.392369]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   24.470416]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   24.470663]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   26.081896]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   26.082155]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   28.058700]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   28.058988]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   28.431289]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   28.431576]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   29.557396]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   29.557700]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   29.633285]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   29.633578]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   29.714733]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   29.715026]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   29.790549]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   29.790843]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   29.865503]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   29.865784]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   33.069389]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   33.069702]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   33.273657]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   33.273949]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   33.375210]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   33.375518]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   34.257838]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   34.258145]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   34.547875]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   34.548171]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   34.643578]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   34.643881]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   38.442916]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   38.443153]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   39.357111]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   39.357382]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   39.605602]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   39.606138]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   41.293358]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   41.293659]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   41.713288]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   41.713569]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   43.432149]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   43.432437]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   44.455030]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   44.455305]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   44.621694]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   44.621972]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   46.985517]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   46.985760]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   47.756694]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   47.756932]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   47.925375]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   47.925610]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   48.007587]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   48.007823]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   49.706262]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   49.706500]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   50.787632]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   50.787872]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   50.999572]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   50.999816]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   51.272356]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   51.272591]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   51.365990]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   51.366222]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   52.829287]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   52.829527]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   53.309779]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   53.310015]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   53.467048]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   53.467278]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   53.549492]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   53.549734]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   53.614652]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   53.614895]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   55.272764]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   55.272997]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   55.357032]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   55.357266]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   55.826583]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   55.826822]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   55.961308]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   55.961545]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   56.102932]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   56.103166]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   57.902957]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   57.903193]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   57.996915]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   57.997152]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   58.532987]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   58.533218]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   58.956060]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   58.956302]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10, FAIL|
+|1211_185521|git bisect bad 6431cd3d1238d093a03b495d7121366448e2913f|
+|1211_185522|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 732a06a7df6eb9b7278cca9bdcb6b57f38af1e82 -d /var/www/html/bzimage -o /tmp/kernel|
+|1211_191545|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1211_191545|Run /var/www/html/bzimage/bzImage_732a06a7df6eb9b7278cca9bdcb6b57f38af1e82 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1211_191600|It takes 15 seconds to find login:test login: |
+|1211_191600|Boot 1 time: takes 15 seconds to boot up.|
+|1211_191600|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1211_191601|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1211_191602|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro.cprog root@localhost:/root/repro.c|
+|1211_191603|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1211_191604|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1211_191647|/var/www/html/bzimage/bzImage_732a06a7df6eb9b7278cca9bdcb6b57f38af1e82 contained __alloc_frozen_pages_noprof:[   22.030340]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   22.030623]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   22.073393]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   22.073673]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   23.016149]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   23.016432]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   23.765282]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   23.765562]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   24.531474]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   24.531756]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   24.656874]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   24.657162]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   26.324390]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   26.324684]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   27.039274]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   27.039553]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   27.113489]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   27.113774]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   27.215580]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   27.215859]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   28.433119]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   28.433380]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   30.166993]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   30.167242]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   30.381870]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   30.382115]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   30.468161]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   30.468410]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   30.528872]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   30.529119]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   30.696174]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   30.696424]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   34.410494]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   34.410748]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   34.506317]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   34.506563]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   37.511476]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   37.511714]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   41.065575]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   41.065840]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   41.131901]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   41.132168]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   48.677716]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   48.678011]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   50.370604]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   50.370919]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   51.355588]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   51.355871]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   51.872062]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   51.872353]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   52.766695]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   52.766985]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   56.535290]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   56.535581]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   57.100251]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   57.100541]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   57.397595]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   57.397886]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   60.147520]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   60.147796]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10, FAIL|
+|1211_191647|git bisect bad 732a06a7df6eb9b7278cca9bdcb6b57f38af1e82|
+|1211_191647|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 5de9573848aa512bb06e8842faf5da6926e693bd -d /var/www/html/bzimage -o /tmp/kernel|
+|1211_193709|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1211_193709|Run /var/www/html/bzimage/bzImage_5de9573848aa512bb06e8842faf5da6926e693bd with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1211_193722|It takes 13 seconds to find login:test login: |
+|1211_193722|Boot 1 time: takes 13 seconds to boot up.|
+|1211_193722|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1211_193723|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1211_193724|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro.cprog root@localhost:/root/repro.c|
+|1211_193726|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1211_193726|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1211_193809|/var/www/html/bzimage/bzImage_5de9573848aa512bb06e8842faf5da6926e693bd didn't contain __alloc_frozen_pages_noprof: in dmesg, pass|
+|1211_193809|git bisect good 5de9573848aa512bb06e8842faf5da6926e693bd|
+|1211_193810|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 8bb435707c07ff7650fe8ef690700845c772d3cf -d /var/www/html/bzimage -o /tmp/kernel|
+|1211_195813|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1211_195813|Run /var/www/html/bzimage/bzImage_8bb435707c07ff7650fe8ef690700845c772d3cf with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1211_195827|It takes 14 seconds to find login:test login: |
+|1211_195827|Boot 1 time: takes 14 seconds to boot up.|
+|1211_195827|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1211_195828|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1211_195829|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro.cprog root@localhost:/root/repro.c|
+|1211_195831|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1211_195831|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1211_195914|/var/www/html/bzimage/bzImage_8bb435707c07ff7650fe8ef690700845c772d3cf contained __alloc_frozen_pages_noprof:[   19.520118]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   19.520367]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   20.145513]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   20.145763]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   21.562209]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   21.562459]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   22.217638]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   22.217885]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   22.251316]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   22.251560]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   24.753188]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   24.753438]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   25.423487]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   25.423732]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   25.685652]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   25.685897]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   25.774014]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   25.774260]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   26.373692]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   26.373941]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   27.157705]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   27.157946]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   27.355150]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   27.355396]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   27.433548]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   27.433791]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   28.219075]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   28.219326]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   29.971394]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   29.971644]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   30.625959]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   30.626219]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   30.691666]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   30.691914]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   30.786668]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   30.786935]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   32.397841]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   32.398085]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   32.458544]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   32.458784]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   32.528217]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   32.528467]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   34.003758]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   34.003994]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   34.553653]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   34.553898]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   34.627658]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   34.627903]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   36.494604]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   36.494853]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   37.681005]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   37.681294]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   37.798902]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   37.799201]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   38.939202]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   38.939490]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   39.302796]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   39.303087]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   41.487457]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   41.488128]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   43.067616]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   43.068265]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   46.134392]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   46.134974]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   47.252890]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   47.253194]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10, FAIL|
+|1211_195914|git bisect bad 8bb435707c07ff7650fe8ef690700845c772d3cf|
+|1211_195915|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 7e274b34309bb7884cade55b7cb0b0b8722dcde2 -d /var/www/html/bzimage -o /tmp/kernel|
+|1211_201913|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1211_201913|Run /var/www/html/bzimage/bzImage_7e274b34309bb7884cade55b7cb0b0b8722dcde2 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1211_201927|It takes 14 seconds to find login:test login: |
+|1211_201927|Boot 1 time: takes 14 seconds to boot up.|
+|1211_201927|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1211_201928|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1211_201929|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro.cprog root@localhost:/root/repro.c|
+|1211_201930|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1211_201931|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1211_202014|/var/www/html/bzimage/bzImage_7e274b34309bb7884cade55b7cb0b0b8722dcde2 contained __alloc_frozen_pages_noprof:[   20.011958]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   20.012203]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   20.792467]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   20.792717]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   21.207838]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   21.208077]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   22.215952]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   22.216194]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   23.784826]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   23.785071]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   23.992192]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   23.992441]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   24.054164]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   24.054408]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   24.608071]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   24.608312]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   25.062774]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   25.063023]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   25.189779]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   25.190028]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   25.288236]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   25.288484]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   25.872063]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   25.872314]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   26.148479]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   26.148731]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   27.355968]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   27.356216]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   27.546154]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   27.546400]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   27.682804]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   27.683062]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   27.878271]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   27.878539]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   28.363498]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   28.363773]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   31.628847]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   31.629139]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   31.722805]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   31.723090]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   32.320104]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   32.320384]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   32.497057]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   32.497335]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   32.570125]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   32.570406]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   34.303807]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   34.304089]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   38.813054]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   38.813329]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   38.991546]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   38.991833]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   39.099309]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   39.099592]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   42.111363]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   42.111641]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   43.129540]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   43.129816]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   43.527770]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   43.528047]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   43.813811]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   43.814085]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   43.886733]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   43.887010]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   44.087704]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   44.087987]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   44.321599]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   44.321874]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   47.575487]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   47.575775]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   47.655752]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   47.656028]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   48.690511]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   48.690789]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   48.836514]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   48.836788]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   51.949689]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   51.949966]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   52.856910]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   52.857184]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   53.363970]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   53.364248]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   53.565813]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   53.566092]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   53.663509]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   53.663787]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   56.998256]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   56.998532]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   57.780311]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   57.780587]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   57.976352]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   57.976630]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   58.127230]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   58.127503]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   58.834920]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   58.835199]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   59.376571]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   59.376857]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10, FAIL|
+|1211_202014|git bisect bad 7e274b34309bb7884cade55b7cb0b0b8722dcde2|
+|1211_202014|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 0042a4248e7eb4c330da59da8b8bc8b5c47ba42f -d /var/www/html/bzimage -o /tmp/kernel|
+|1211_204011|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1211_204011|Run /var/www/html/bzimage/bzImage_0042a4248e7eb4c330da59da8b8bc8b5c47ba42f with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1211_204023|It takes 12 seconds to find login:test login: |
+|1211_204023|Boot 1 time: takes 12 seconds to boot up.|
+|1211_204023|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1211_204024|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1211_204025|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro.cprog root@localhost:/root/repro.c|
+|1211_204026|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1211_204026|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1211_204109|/var/www/html/bzimage/bzImage_0042a4248e7eb4c330da59da8b8bc8b5c47ba42f contained __alloc_frozen_pages_noprof:[   18.443126]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   18.443384]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   19.480841]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   19.481091]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   20.855642]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   20.855954]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   23.185847]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   23.186134]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   25.188370]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   25.188979]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   25.469770]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   25.470056]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   25.741191]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   25.741490]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   27.036546]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   27.036836]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   30.290507]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   30.290801]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   33.073190]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   33.073480]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   33.325374]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   33.325653]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   33.494563]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   33.494841]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   33.649642]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   33.649922]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   33.721961]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   33.722235]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   33.824666]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   33.824936]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   36.140493]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   36.140748]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   38.157479]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   38.157725]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   39.832581]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   39.832839]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   41.485991]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   41.486240]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   42.115483]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   42.115728]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   42.196821]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   42.197067]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   42.282626]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   42.282877]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   42.646965]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   42.647229]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   45.163431]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   45.163676]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   45.230182]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   45.230464]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   45.300918]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   45.301190]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   47.772655]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   47.772916]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   56.659827]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   56.660084]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   56.748155]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   56.748413]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10, FAIL|
+|1211_204109|git bisect bad 0042a4248e7eb4c330da59da8b8bc8b5c47ba42f|
+|1211_204110|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 5ba3582c8bb718ce7cd358eff228003a70124e4b -d /var/www/html/bzimage -o /tmp/kernel|
+|1211_210100|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1211_210100|Run /var/www/html/bzimage/bzImage_5ba3582c8bb718ce7cd358eff228003a70124e4b with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1211_210116|It takes 16 seconds to find login:test login: |
+|1211_210116|Boot 1 time: takes 16 seconds to boot up.|
+|1211_210116|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1211_210117|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1211_210118|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro.cprog root@localhost:/root/repro.c|
+|1211_210120|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1211_210120|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1211_210203|/var/www/html/bzimage/bzImage_5ba3582c8bb718ce7cd358eff228003a70124e4b contained __alloc_frozen_pages_noprof:[   23.302674]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   23.302917]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   23.367844]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   23.368086]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   24.690794]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   24.691037]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   27.482100]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   27.482343]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   27.542900]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   27.543145]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   28.271961]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   28.272215]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   29.093697]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   29.093956]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   29.629496]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   29.629745]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   29.742369]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   29.742611]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   34.696434]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   34.696679]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   34.901510]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   34.901754]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   36.293572]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   36.293817]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   38.549215]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   38.549503]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   38.637380]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   38.637666]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   41.920879]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   41.921165]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   42.030117]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   42.030399]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   42.947952]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   42.948243]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   47.218895]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   47.219178]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   47.288900]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   47.289182]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   47.699785]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   47.700072]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   47.778909]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   47.779192]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   49.171774]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   49.172021]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   50.204787]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   50.205032]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   50.489879]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   50.490122]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   54.050129]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   54.050369]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   54.116902]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   54.117144]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   54.181312]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   54.181559]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   54.271949]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   54.272193]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   54.545308]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   54.545561]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   54.758164]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   54.758420]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   54.880214]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   54.880474]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   56.352484]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   56.352729]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   56.594954]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   56.595202]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   56.701950]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   56.702189]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   60.185435]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   60.185681]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   60.289873]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   60.290112]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   60.477649]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   60.477891]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   60.678819]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   60.679064]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10, FAIL|
+|1211_210203|git bisect bad 5ba3582c8bb718ce7cd358eff228003a70124e4b|
+|1211_210203|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m a04139c19dc4c31e6f4252953f356e7cfda17e27 -d /var/www/html/bzimage -o /tmp/kernel|
+|1211_212214|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1211_212214|Run /var/www/html/bzimage/bzImage_a04139c19dc4c31e6f4252953f356e7cfda17e27 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1211_212228|It takes 14 seconds to find login:test login: |
+|1211_212228|Boot 1 time: takes 14 seconds to boot up.|
+|1211_212228|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1211_212229|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1211_212230|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro.cprog root@localhost:/root/repro.c|
+|1211_212231|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1211_212232|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1211_212315|/var/www/html/bzimage/bzImage_a04139c19dc4c31e6f4252953f356e7cfda17e27 didn't contain __alloc_frozen_pages_noprof: in dmesg, pass|
+|1211_212315|git bisect good a04139c19dc4c31e6f4252953f356e7cfda17e27|
+|1211_212315|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 9181a585d2d140ef3434c875d8321c3f94ed3833 -d /var/www/html/bzimage -o /tmp/kernel|
+|1211_214325|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1211_214325|Run /var/www/html/bzimage/bzImage_9181a585d2d140ef3434c875d8321c3f94ed3833 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1211_214339|It takes 14 seconds to find login:test login: |
+|1211_214339|Boot 1 time: takes 14 seconds to boot up.|
+|1211_214339|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1211_214340|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1211_214341|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro.cprog root@localhost:/root/repro.c|
+|1211_214342|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1211_214342|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1211_214425|/var/www/html/bzimage/bzImage_9181a585d2d140ef3434c875d8321c3f94ed3833 contained __alloc_frozen_pages_noprof:[   21.170146]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   21.170410]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   22.015288]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   22.015560]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   23.277273]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   23.277552]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   24.622888]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   24.623159]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   24.850884]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   24.851166]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   25.043048]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   25.043323]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   25.131830]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   25.132118]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   25.747444]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   25.747724]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   25.901471]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   25.901781]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   26.342744]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   26.343025]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   27.129006]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   27.129293]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   27.580140]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   27.580427]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   27.819775]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   27.820066]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   28.585711]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   28.585994]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   28.657357]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   28.657645]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   30.839008]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   30.839298]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   31.375846]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   31.376220]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   32.578646]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   32.578926]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   35.950518]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   35.950798]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   36.215377]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   36.215658]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   36.684615]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   36.684901]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   36.896354]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   36.896637]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   41.552333]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   41.552614]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   42.761237]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   42.761520]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   43.029591]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   43.029876]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   43.286605]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   43.286895]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   45.299715]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   45.299990]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   45.549263]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   45.549550]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   45.632706]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   45.632996]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   46.471632]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   46.472391]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   49.266588]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   49.266863]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   49.348556]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   49.348837]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   50.782081]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   50.782355]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   51.021171]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   51.021435]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   52.702690]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   52.702974]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   53.872175]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   53.872456]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   54.002055]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   54.002335]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   55.379021]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   55.379310]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   55.686755]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   55.687038]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   56.031045]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   56.031321]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   57.392213]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   57.392491]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   58.496330]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   58.496607]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   58.727184]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   58.727446]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[   58.837202]  __alloc_frozen_pages_noprof+0x5d4/0x6f0
+[   58.837476]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10, FAIL|
+|1211_214425|git bisect bad 9181a585d2d140ef3434c875d8321c3f94ed3833|
+|1211_214426|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 355c6a6808e2aedfa4df179d43adccfb5ed4d5a3 -d /var/www/html/bzimage -o /tmp/kernel|
+|1211_220437|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1211_220437|Run /var/www/html/bzimage/bzImage_355c6a6808e2aedfa4df179d43adccfb5ed4d5a3 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1211_220452|It takes 14 seconds to find login:test login: |
+|1211_220452|Boot 1 time: takes 14 seconds to boot up.|
+|1211_220452|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1211_220453|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1211_220454|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro.cprog root@localhost:/root/repro.c|
+|1211_220455|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1211_220455|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1211_220538|/var/www/html/bzimage/bzImage_355c6a6808e2aedfa4df179d43adccfb5ed4d5a3 didn't contain __alloc_frozen_pages_noprof: in dmesg, pass|
+|1211_220539|git bisect good 355c6a6808e2aedfa4df179d43adccfb5ed4d5a3|
+|1211_220539|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 73eb294f15d392c56b6f5bd285238b4d9663a964 -d /var/www/html/bzimage -o /tmp/kernel|
+|1211_222539|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1211_222539|Run /var/www/html/bzimage/bzImage_73eb294f15d392c56b6f5bd285238b4d9663a964 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1211_222554|It takes 15 seconds to find login:test login: |
+|1211_222554|Boot 1 time: takes 15 seconds to boot up.|
+|1211_222554|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1211_222555|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1211_222557|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/9cfd48d91de763e83b3b281abe91c717ca6086d0/repro.cprog root@localhost:/root/repro.c|
+|1211_222558|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1211_222558|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1211_222641|/var/www/html/bzimage/bzImage_73eb294f15d392c56b6f5bd285238b4d9663a964 didn't contain __alloc_frozen_pages_noprof: in dmesg, pass|
+|1211_222641|git bisect good 73eb294f15d392c56b6f5bd285238b4d9663a964|
+|1211_222641|Bisect PASS: find bad commit: 9181a585d2d140ef3434c875d8321c3f94ed3833 is the first bad commit
+commit 9181a585d2d140ef3434c875d8321c3f94ed3833
+Author: Matthew Wilcox (Oracle) <willy@infradead.org>
+Date:   Mon Nov 25 21:01:45 2024 +0000
+
+    mm/page_alloc: add __alloc_frozen_pages()
+    
+    Defer the initialisation of the page refcount to the new __alloc_pages()
+    wrapper and turn the old __alloc_pages() into __alloc_frozen_pages().
+    
+    Link: https://lkml.kernel.org/r/20241125210149.2976098-14-willy@infradead.org
+    Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+    Reviewed-by: Zi Yan <ziy@nvidia.com>
+    Acked-by: David Hildenbrand <david@redhat.com>
+    Reviewed-by: Vlastimil Babka <vbabka@suse.cz>
+    Cc: Hyeonggon Yoo <42.hyeyoo@gmail.com>
+    Cc: Mel Gorman <mgorman@techsingularity.net>
+    Cc: Miaohe Lin <linmiaohe@huawei.com>
+    Cc: Muchun Song <songmuchun@bytedance.com>
+    Cc: William Kucharski <william.kucharski@oracle.com>
+    Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+
+ mm/internal.h   |  4 ++++
+ mm/page_alloc.c | 18 ++++++++++++++----
+ 2 files changed, 18 insertions(+), 4 deletions(-)|
+|1211_222641|cmd=git bisect log >> /var/www/html/bzimage/bi.log|
+|1211_222641|cmd=git bisect log >> /var/www/html/bzimage/1211_183256___alloc_frozen_pages_noprof/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [d1486dca38afd08ca279ae94eb3a397f10737824] Add linux-next specific files for 20241209
+git bisect bad d1486dca38afd08ca279ae94eb3a397f10737824
+# status: waiting for good commit(s), bad commit known
+# good: [fac04efc5c793dccbd07e2d59af9f90b7fc0dca4] Linux 6.13-rc2
+git bisect good fac04efc5c793dccbd07e2d59af9f90b7fc0dca4
+# bad: [6431cd3d1238d093a03b495d7121366448e2913f] Merge branch 'main' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
+git bisect bad 6431cd3d1238d093a03b495d7121366448e2913f
+# bad: [732a06a7df6eb9b7278cca9bdcb6b57f38af1e82] Merge branch 'for-next' of git://github.com/Xilinx/linux-xlnx.git
+git bisect bad 732a06a7df6eb9b7278cca9bdcb6b57f38af1e82
+# good: [5de9573848aa512bb06e8842faf5da6926e693bd] Merge branch 'tip/urgent' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git
+git bisect good 5de9573848aa512bb06e8842faf5da6926e693bd
+# bad: [8bb435707c07ff7650fe8ef690700845c772d3cf] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+git bisect bad 8bb435707c07ff7650fe8ef690700845c772d3cf
+# bad: [7e274b34309bb7884cade55b7cb0b0b8722dcde2] mm: do_zap_pte_range: return any_skipped information to the caller
+git bisect bad 7e274b34309bb7884cade55b7cb0b0b8722dcde2
+# bad: [0042a4248e7eb4c330da59da8b8bc8b5c47ba42f] mm: remove the non-useful else after a break in a if statement
+git bisect bad 0042a4248e7eb4c330da59da8b8bc8b5c47ba42f
+# bad: [5ba3582c8bb718ce7cd358eff228003a70124e4b] selftests/mm: add a few missing gitignore files
+git bisect bad 5ba3582c8bb718ce7cd358eff228003a70124e4b
+# good: [a04139c19dc4c31e6f4252953f356e7cfda17e27] mm/page_alloc: move set_page_refcounted() to callers of __alloc_pages_may_oom()
+git bisect good a04139c19dc4c31e6f4252953f356e7cfda17e27
+# bad: [9181a585d2d140ef3434c875d8321c3f94ed3833] mm/page_alloc: add __alloc_frozen_pages()
+git bisect bad 9181a585d2d140ef3434c875d8321c3f94ed3833
+# good: [355c6a6808e2aedfa4df179d43adccfb5ed4d5a3] mm/page_alloc: move set_page_refcounted() to callers of __alloc_pages_direct_reclaim()
+git bisect good 355c6a6808e2aedfa4df179d43adccfb5ed4d5a3
+# good: [73eb294f15d392c56b6f5bd285238b4d9663a964] mm/page_alloc: move set_page_refcounted() to end of __alloc_pages()
+git bisect good 73eb294f15d392c56b6f5bd285238b4d9663a964
+# first bad commit: [9181a585d2d140ef3434c875d8321c3f94ed3833] mm/page_alloc: add __alloc_frozen_pages()
+|1211_222641|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m d1486dca38afd08ca279ae94eb3a397f10737824 -b 9181a585d2d140ef3434c875d8321c3f94ed3833 -d /var/www/html/bzimage -o /tmp/kernel -f /var/www/html/bzimage/bzImage_d1486dca38afd08ca279ae94eb3a397f10737824_9181a585d2d140ef3434c875d8321c3f94ed3833_revert|
+|1211_224342|FAIL|Make d1486dca38afd08ca279ae94eb3a397f10737824 9181a585d2d140ef3434c875d8321c3f94ed3833 /var/www/html/bzimage/bzImage_d1486dca38afd08ca279ae94eb3a397f10737824_9181a585d2d140ef3434c875d8321c3f94ed3833_revert failed|
+|1211_224342|ISSUE:9cfd48d91de763e83b3b281abe91c717ca6086d0  EMAIL status after check:Email_not_sent|

@@ -1,0 +1,30 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [d1486dca38afd08ca279ae94eb3a397f10737824] Add linux-next specific files for 20241209
+git bisect bad d1486dca38afd08ca279ae94eb3a397f10737824
+# status: waiting for good commit(s), bad commit known
+# good: [fac04efc5c793dccbd07e2d59af9f90b7fc0dca4] Linux 6.13-rc2
+git bisect good fac04efc5c793dccbd07e2d59af9f90b7fc0dca4
+# bad: [6431cd3d1238d093a03b495d7121366448e2913f] Merge branch 'main' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
+git bisect bad 6431cd3d1238d093a03b495d7121366448e2913f
+# bad: [732a06a7df6eb9b7278cca9bdcb6b57f38af1e82] Merge branch 'for-next' of git://github.com/Xilinx/linux-xlnx.git
+git bisect bad 732a06a7df6eb9b7278cca9bdcb6b57f38af1e82
+# good: [5de9573848aa512bb06e8842faf5da6926e693bd] Merge branch 'tip/urgent' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git
+git bisect good 5de9573848aa512bb06e8842faf5da6926e693bd
+# bad: [8bb435707c07ff7650fe8ef690700845c772d3cf] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+git bisect bad 8bb435707c07ff7650fe8ef690700845c772d3cf
+# bad: [7e274b34309bb7884cade55b7cb0b0b8722dcde2] mm: do_zap_pte_range: return any_skipped information to the caller
+git bisect bad 7e274b34309bb7884cade55b7cb0b0b8722dcde2
+# bad: [0042a4248e7eb4c330da59da8b8bc8b5c47ba42f] mm: remove the non-useful else after a break in a if statement
+git bisect bad 0042a4248e7eb4c330da59da8b8bc8b5c47ba42f
+# bad: [5ba3582c8bb718ce7cd358eff228003a70124e4b] selftests/mm: add a few missing gitignore files
+git bisect bad 5ba3582c8bb718ce7cd358eff228003a70124e4b
+# good: [a04139c19dc4c31e6f4252953f356e7cfda17e27] mm/page_alloc: move set_page_refcounted() to callers of __alloc_pages_may_oom()
+git bisect good a04139c19dc4c31e6f4252953f356e7cfda17e27
+# bad: [9181a585d2d140ef3434c875d8321c3f94ed3833] mm/page_alloc: add __alloc_frozen_pages()
+git bisect bad 9181a585d2d140ef3434c875d8321c3f94ed3833
+# good: [355c6a6808e2aedfa4df179d43adccfb5ed4d5a3] mm/page_alloc: move set_page_refcounted() to callers of __alloc_pages_direct_reclaim()
+git bisect good 355c6a6808e2aedfa4df179d43adccfb5ed4d5a3
+# good: [73eb294f15d392c56b6f5bd285238b4d9663a964] mm/page_alloc: move set_page_refcounted() to end of __alloc_pages()
+git bisect good 73eb294f15d392c56b6f5bd285238b4d9663a964
+# first bad commit: [9181a585d2d140ef3434c875d8321c3f94ed3833] mm/page_alloc: add __alloc_frozen_pages()
