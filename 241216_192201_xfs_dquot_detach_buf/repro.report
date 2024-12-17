@@ -1,0 +1,286 @@
+XFS (loop0): Mounting V5 Filesystem b93a8937-ccd4-41a2-86c7-66a1570a2846
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop0): Quotacheck: Done.
+======================================================
+WARNING: possible circular locking dependency detected
+6.13.0-rc3-de04deaff254+ #1 Not tainted
+------------------------------------------------------
+syz-executor302/723 is trying to acquire lock:
+ffff888023e37c70 (&lp->qli_lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:351 [inline]
+ffff888023e37c70 (&lp->qli_lock){+.+.}-{3:3}, at: xfs_dquot_detach_buf+0x2d/0x190 fs/xfs/xfs_dquot.c:83
+
+but task is already holding lock:
+ffff888024c2c730 (&l->lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:351 [inline]
+ffff888024c2c730 (&l->lock){+.+.}-{3:3}, at: lock_list_lru_of_memcg mm/list_lru.c:77 [inline]
+ffff888024c2c730 (&l->lock){+.+.}-{3:3}, at: __list_lru_walk_one+0x409/0x810 mm/list_lru.c:287
+
+which lock already depends on the new lock.
+
+
+the existing dependency chain (in reverse order) is:
+
+-> #3 (&l->lock){+.+.}-{3:3}:
+       lock_acquire+0x80/0xb0 kernel/locking/lockdep.c:5822
+       __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+       _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+       spin_lock include/linux/spinlock.h:351 [inline]
+       lock_list_lru_of_memcg mm/list_lru.c:77 [inline]
+       list_lru_add+0x198/0x5d0 mm/list_lru.c:164
+       list_lru_add_obj+0x207/0x360 mm/list_lru.c:190
+       xfs_buf_rele_cached fs/xfs/xfs_buf.c:1106 [inline]
+       xfs_buf_rele+0xcb6/0x1610 fs/xfs/xfs_buf.c:1151
+       xfs_buf_relse fs/xfs/xfs_buf.h:316 [inline]
+       xfs_trans_brelse+0x385/0x410 fs/xfs/xfs_trans_buf.c:369
+       xfs_imap_lookup+0x38d/0x5a0 fs/xfs/libxfs/xfs_ialloc.c:2431
+       xfs_imap+0x668/0xc80 fs/xfs/libxfs/xfs_ialloc.c:2514
+       xfs_iget_cache_miss fs/xfs/xfs_icache.c:644 [inline]
+       xfs_iget+0x875/0x2dd0 fs/xfs/xfs_icache.c:806
+       xfs_mountfs+0x116b/0x2060 fs/xfs/xfs_mount.c:919
+       xfs_fs_fill_super+0x12bc/0x1f10 fs/xfs/xfs_super.c:1791
+       get_tree_bdev_flags+0x3d8/0x6c0 fs/super.c:1636
+       get_tree_bdev+0x29/0x40 fs/super.c:1659
+       xfs_fs_get_tree+0x26/0x30 fs/xfs/xfs_super.c:1838
+       vfs_get_tree+0x9e/0x390 fs/super.c:1814
+       do_new_mount fs/namespace.c:3507 [inline]
+       path_mount+0x707/0x2000 fs/namespace.c:3834
+       do_mount fs/namespace.c:3847 [inline]
+       __do_sys_mount fs/namespace.c:4057 [inline]
+       __se_sys_mount fs/namespace.c:4034 [inline]
+       __x64_sys_mount+0x2bf/0x350 fs/namespace.c:4034
+       x64_sys_call+0x1e1d/0x2140 arch/x86/include/generated/asm/syscalls_64.h:166
+       do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+       do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+       entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+-> #2 (&bch->bc_lock){+.+.}-{3:3}:
+       lock_acquire+0x80/0xb0 kernel/locking/lockdep.c:5822
+       __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+       _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+       spin_lock include/linux/spinlock.h:351 [inline]
+       _atomic_dec_and_lock+0xb8/0x100 lib/dec_and_lock.c:28
+       xfs_buf_rele_cached fs/xfs/xfs_buf.c:1085 [inline]
+       xfs_buf_rele+0x112/0x1610 fs/xfs/xfs_buf.c:1151
+       xfs_buf_relse fs/xfs/xfs_buf.h:316 [inline]
+       xfs_trans_brelse+0x385/0x410 fs/xfs/xfs_trans_buf.c:369
+       xfs_imap_lookup+0x38d/0x5a0 fs/xfs/libxfs/xfs_ialloc.c:2431
+       xfs_imap+0x668/0xc80 fs/xfs/libxfs/xfs_ialloc.c:2514
+       xfs_iget_cache_miss fs/xfs/xfs_icache.c:644 [inline]
+       xfs_iget+0x875/0x2dd0 fs/xfs/xfs_icache.c:806
+       xfs_mountfs+0x116b/0x2060 fs/xfs/xfs_mount.c:919
+       xfs_fs_fill_super+0x12bc/0x1f10 fs/xfs/xfs_super.c:1791
+       get_tree_bdev_flags+0x3d8/0x6c0 fs/super.c:1636
+       get_tree_bdev+0x29/0x40 fs/super.c:1659
+       xfs_fs_get_tree+0x26/0x30 fs/xfs/xfs_super.c:1838
+       vfs_get_tree+0x9e/0x390 fs/super.c:1814
+       do_new_mount fs/namespace.c:3507 [inline]
+       path_mount+0x707/0x2000 fs/namespace.c:3834
+       do_mount fs/namespace.c:3847 [inline]
+       __do_sys_mount fs/namespace.c:4057 [inline]
+       __se_sys_mount fs/namespace.c:4034 [inline]
+       __x64_sys_mount+0x2bf/0x350 fs/namespace.c:4034
+       x64_sys_call+0x1e1d/0x2140 arch/x86/include/generated/asm/syscalls_64.h:166
+       do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+       do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+       entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+-> #1 (&bp->b_lock){+.+.}-{3:3}:
+       lock_acquire+0x80/0xb0 kernel/locking/lockdep.c:5822
+       __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+       _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+       spin_lock include/linux/spinlock.h:351 [inline]
+       xfs_buf_rele_cached fs/xfs/xfs_buf.c:1084 [inline]
+       xfs_buf_rele+0x106/0x1610 fs/xfs/xfs_buf.c:1151
+       xfs_buf_relse fs/xfs/xfs_buf.h:316 [inline]
+       xfs_trans_brelse+0x385/0x410 fs/xfs/xfs_trans_buf.c:369
+       xfs_dquot_attach_buf+0x312/0x490 fs/xfs/xfs_dquot.c:1345
+       xfs_qm_quotacheck_dqadjust+0x122/0x580 fs/xfs/xfs_qm.c:1341
+       xfs_qm_dqusage_adjust+0x5e0/0x7c0 fs/xfs/xfs_qm.c:1457
+       xfs_iwalk_ag_recs+0x423/0x780 fs/xfs/xfs_iwalk.c:209
+       xfs_iwalk_run_callbacks+0x1e2/0x540 fs/xfs/xfs_iwalk.c:370
+       xfs_iwalk_ag+0x6e6/0x920 fs/xfs/xfs_iwalk.c:476
+       xfs_iwalk_ag_work+0x160/0x1e0 fs/xfs/xfs_iwalk.c:625
+       xfs_pwork_work+0x8b/0x180 fs/xfs/xfs_pwork.c:47
+       process_one_work+0x92e/0x1b60 kernel/workqueue.c:3229
+       process_scheduled_works kernel/workqueue.c:3310 [inline]
+       worker_thread+0x68d/0xe90 kernel/workqueue.c:3391
+       kthread+0x35a/0x470 kernel/kthread.c:389
+       ret_from_fork+0x56/0x90 arch/x86/kernel/process.c:147
+       ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:244
+
+-> #0 (&lp->qli_lock){+.+.}-{3:3}:
+       check_prev_add kernel/locking/lockdep.c:3161 [inline]
+       check_prevs_add kernel/locking/lockdep.c:3280 [inline]
+       validate_chain kernel/locking/lockdep.c:3904 [inline]
+       __lock_acquire+0x2ff8/0x5d60 kernel/locking/lockdep.c:5226
+       lock_acquire.part.0+0x142/0x390 kernel/locking/lockdep.c:5849
+       lock_acquire+0x80/0xb0 kernel/locking/lockdep.c:5822
+       __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+       _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+       spin_lock include/linux/spinlock.h:351 [inline]
+       xfs_dquot_detach_buf+0x2d/0x190 fs/xfs/xfs_dquot.c:83
+       xfs_qm_dquot_isolate+0x1c6/0x12f0 fs/xfs/xfs_qm.c:528
+       __list_lru_walk_one+0x31a/0x810 mm/list_lru.c:301
+       list_lru_walk_one+0x4c/0x60 mm/list_lru.c:338
+       list_lru_shrink_walk include/linux/list_lru.h:240 [inline]
+       xfs_qm_shrink_scan+0x1d0/0x380 fs/xfs/xfs_qm.c:574
+       do_shrink_slab+0x410/0x10a0 mm/shrinker.c:437
+       shrink_slab+0x349/0x1370 mm/shrinker.c:664
+       drop_slab_node mm/vmscan.c:414 [inline]
+       drop_slab+0xf5/0x1f0 mm/vmscan.c:432
+       drop_caches_sysctl_handler+0x179/0x1a0 fs/drop_caches.c:68
+       proc_sys_call_handler+0x418/0x610 fs/proc/proc_sysctl.c:601
+       proc_sys_write+0x2c/0x40 fs/proc/proc_sysctl.c:627
+       new_sync_write fs/read_write.c:586 [inline]
+       vfs_write+0xc59/0x1140 fs/read_write.c:679
+       ksys_write+0x14f/0x280 fs/read_write.c:731
+       __do_sys_write fs/read_write.c:742 [inline]
+       __se_sys_write fs/read_write.c:739 [inline]
+       __x64_sys_write+0x7b/0xc0 fs/read_write.c:739
+       x64_sys_call+0x16b3/0x2140 arch/x86/include/generated/asm/syscalls_64.h:2
+       do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+       do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+       entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+other info that might help us debug this:
+
+Chain exists of:
+  &lp->qli_lock --> &bch->bc_lock --> &l->lock
+
+ Possible unsafe locking scenario:
+
+       CPU0                    CPU1
+       ----                    ----
+  lock(&l->lock);
+                               lock(&bch->bc_lock);
+                               lock(&l->lock);
+  lock(&lp->qli_lock);
+
+ *** DEADLOCK ***
+
+3 locks held by syz-executor302/723:
+ #0: ffff888013de8408 (sb_writers#5){.+.+}-{0:0}, at: ksys_write+0x14f/0x280 fs/read_write.c:731
+ #1: ffff888024c2c730 (&l->lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:351 [inline]
+ #1: ffff888024c2c730 (&l->lock){+.+.}-{3:3}, at: lock_list_lru_of_memcg mm/list_lru.c:77 [inline]
+ #1: ffff888024c2c730 (&l->lock){+.+.}-{3:3}, at: __list_lru_walk_one+0x409/0x810 mm/list_lru.c:287
+ #2: ffff888023e37d58 (&dqp->q_qlock){+.+.}-{4:4}, at: xfs_dqlock_nowait fs/xfs/xfs_dquot.h:126 [inline]
+ #2: ffff888023e37d58 (&dqp->q_qlock){+.+.}-{4:4}, at: xfs_qm_dquot_isolate+0x8f/0x12f0 fs/xfs/xfs_qm.c:467
+
+stack backtrace:
+CPU: 0 UID: 0 PID: 723 Comm: syz-executor302 Not tainted 6.13.0-rc3-de04deaff254+ #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ print_circular_bug+0x47f/0x750 kernel/locking/lockdep.c:2074
+ check_noncircular+0x2f4/0x3e0 kernel/locking/lockdep.c:2206
+ check_prev_add kernel/locking/lockdep.c:3161 [inline]
+ check_prevs_add kernel/locking/lockdep.c:3280 [inline]
+ validate_chain kernel/locking/lockdep.c:3904 [inline]
+ __lock_acquire+0x2ff8/0x5d60 kernel/locking/lockdep.c:5226
+ lock_acquire.part.0+0x142/0x390 kernel/locking/lockdep.c:5849
+ lock_acquire+0x80/0xb0 kernel/locking/lockdep.c:5822
+ __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+ _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+ spin_lock include/linux/spinlock.h:351 [inline]
+ xfs_dquot_detach_buf+0x2d/0x190 fs/xfs/xfs_dquot.c:83
+ xfs_qm_dquot_isolate+0x1c6/0x12f0 fs/xfs/xfs_qm.c:528
+ __list_lru_walk_one+0x31a/0x810 mm/list_lru.c:301
+ list_lru_walk_one+0x4c/0x60 mm/list_lru.c:338
+ list_lru_shrink_walk include/linux/list_lru.h:240 [inline]
+ xfs_qm_shrink_scan+0x1d0/0x380 fs/xfs/xfs_qm.c:574
+ do_shrink_slab+0x410/0x10a0 mm/shrinker.c:437
+ shrink_slab+0x349/0x1370 mm/shrinker.c:664
+ drop_slab_node mm/vmscan.c:414 [inline]
+ drop_slab+0xf5/0x1f0 mm/vmscan.c:432
+ drop_caches_sysctl_handler+0x179/0x1a0 fs/drop_caches.c:68
+ proc_sys_call_handler+0x418/0x610 fs/proc/proc_sysctl.c:601
+ proc_sys_write+0x2c/0x40 fs/proc/proc_sysctl.c:627
+ new_sync_write fs/read_write.c:586 [inline]
+ vfs_write+0xc59/0x1140 fs/read_write.c:679
+ ksys_write+0x14f/0x280 fs/read_write.c:731
+ __do_sys_write fs/read_write.c:742 [inline]
+ __se_sys_write fs/read_write.c:739 [inline]
+ __x64_sys_write+0x7b/0xc0 fs/read_write.c:739
+ x64_sys_call+0x16b3/0x2140 arch/x86/include/generated/asm/syscalls_64.h:2
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fd7ee23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd99ef2a48 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fd7ee23ee5d
+RDX: 0000000000000001 RSI: 0000000020000080 RDI: 0000000000000004
+RBP: 0000000000000000 R08: 0000000000000040 R09: 0000000000000040
+R10: 002c646975756f6e R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401230 R14: 000000000041ae08 R15: 00007fd7ee620000
+ </TASK>
+syz-executor302 (723): drop_caches: 2
+syz-executor302 (735): drop_caches: 2
+syz-executor302 (736): drop_caches: 2
+syz-executor302 (737): drop_caches: 2
+syz-executor302 (738): drop_caches: 2
+syz-executor302 (739): drop_caches: 2
+syz-executor302 (740): drop_caches: 2
+syz-executor302 (741): drop_caches: 2
+syz-executor302 (742): drop_caches: 2
+syz-executor302 (743): drop_caches: 2
+syz-executor302 (744): drop_caches: 2
+syz-executor302 (745): drop_caches: 2
+syz-executor302 (746): drop_caches: 2
+syz-executor302 (747): drop_caches: 2
+syz-executor302 (748): drop_caches: 2
+syz-executor302 (749): drop_caches: 2
+syz-executor302 (750): drop_caches: 2
+syz-executor302 (751): drop_caches: 2
+syz-executor302 (752): drop_caches: 2
+syz-executor302 (753): drop_caches: 2
+syz-executor302 (754): drop_caches: 2
+syz-executor302 (755): drop_caches: 2
+syz-executor302 (756): drop_caches: 2
+syz-executor302 (757): drop_caches: 2
+syz-executor302 (758): drop_caches: 2
+syz-executor302 (759): drop_caches: 2
+syz-executor302 (760): drop_caches: 2
+syz-executor302 (761): drop_caches: 2
+syz-executor302 (762): drop_caches: 2
+syz-executor302 (763): drop_caches: 2
+syz-executor302 (764): drop_caches: 2
+syz-executor302 (765): drop_caches: 2
+syz-executor302 (766): drop_caches: 2
+syz-executor302 (767): drop_caches: 2
+syz-executor302 (768): drop_caches: 2
+syz-executor302 (769): drop_caches: 2
+syz-executor302 (770): drop_caches: 2
+syz-executor302 (771): drop_caches: 2
+syz-executor302 (772): drop_caches: 2
+syz-executor302 (773): drop_caches: 2
+syz-executor302 (774): drop_caches: 2
+syz-executor302 (775): drop_caches: 2
+syz-executor302 (776): drop_caches: 2
+syz-executor302 (777): drop_caches: 2
+syz-executor302 (778): drop_caches: 2
+syz-executor302 (779): drop_caches: 2
+syz-executor302 (780): drop_caches: 2
+syz-executor302 (781): drop_caches: 2
+syz-executor302 (782): drop_caches: 2
+syz-executor302 (783): drop_caches: 2
+syz-executor302 (784): drop_caches: 2
+syz-executor302 (785): drop_caches: 2
+syz-executor302 (786): drop_caches: 2
+syz-executor302 (787): drop_caches: 2
+syz-executor302 (788): drop_caches: 2
+syz-executor302 (789): drop_caches: 2
+syz-executor302 (790): drop_caches: 2
+syz-executor302 (791): drop_caches: 2
+syz-executor302 (792): drop_caches: 2
+syz-executor302 (793): drop_caches: 2
+syz-executor302 (794): drop_caches: 2
+syz-executor302 (795): drop_caches: 2
+syz-executor302 (796): drop_caches: 2
+syz-executor302 (797): drop_caches: 2
+syz-executor302 (798): drop_caches: 2
+syz-executor302 (799): drop_caches: 2
+syz-executor302 (800): drop_caches: 2

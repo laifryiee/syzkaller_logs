@@ -1,0 +1,45 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8] Linux 6.13-rc3
+git bisect bad 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [a99da46ac01a12e582684771b486c9292326d7a4] Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good a99da46ac01a12e582684771b486c9292326d7a4
+# good: [689237ab37c59b9909bc9371d7fece3081683fba] fbdev/intelfb: Remove driver
+git bisect good 689237ab37c59b9909bc9371d7fece3081683fba
+# good: [91c93e475ca4b4bd5f1e8d525c9a9810283db056] Merge tag 'drm-misc-next-2024-06-13' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next
+git bisect good 91c93e475ca4b4bd5f1e8d525c9a9810283db056
+# good: [176000734ee2978121fde22a954eb1eabb204329] Merge tag 'ata-6.12-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/libata/linux
+git bisect good 176000734ee2978121fde22a954eb1eabb204329
+# good: [7d7560666515855f67df6b0a78fecf2007d35dcc] Merge tag 'pwm/for-6.13-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux
+git bisect good 7d7560666515855f67df6b0a78fecf2007d35dcc
+# good: [28eb75e178d389d325f1666e422bc13bbbb9804c] Merge tag 'drm-next-2024-11-21' of https://gitlab.freedesktop.org/drm/kernel
+git bisect good 28eb75e178d389d325f1666e422bc13bbbb9804c
+# good: [c94696977527f69cbb41aa6a9af9d1991895d002] Merge tag 'loongarch-6.13' of git://git.kernel.org/pub/scm/linux/kernel/git/chenhuacai/linux-loongson
+git bisect good c94696977527f69cbb41aa6a9af9d1991895d002
+# good: [2ba9f676d0a2e408aef14d679984c26373bf37b7] Merge tag 'drm-next-2024-11-29' of https://gitlab.freedesktop.org/drm/kernel
+git bisect good 2ba9f676d0a2e408aef14d679984c26373bf37b7
+# good: [6a103867b95ac7f9cc7dffe2fcad2f6c0d60b9ae] Merge tag 'for-linus-iommufd' of git://git.kernel.org/pub/scm/linux/kernel/git/jgg/iommufd
+git bisect good 6a103867b95ac7f9cc7dffe2fcad2f6c0d60b9ae
+# bad: [12f2930f5f91bc0d67794c69d1961098c7c72040] xfs: port xfs_ioc_start_commit to multigrain timestamps
+git bisect bad 12f2930f5f91bc0d67794c69d1961098c7c72040
+# good: [7503345ac5f5e82fd9a36d6e6b447c016376403a] Merge tag 'block-6.13-20241207' of git://git.kernel.dk/linux
+git bisect good 7503345ac5f5e82fd9a36d6e6b447c016376403a
+# good: [84262262177b98cf4e57e8c010119576d3c6bc2b] Merge tag 'x86_urgent_for_v6.13_rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect good 84262262177b98cf4e57e8c010119576d3c6bc2b
+# good: [5a087a6b17eeb64893b81d08d38e6f6300419ee5] Merge tag 'for-6.13-rc2-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux
+git bisect good 5a087a6b17eeb64893b81d08d38e6f6300419ee5
+# good: [6d7b4bc1c3e00b1a25b7a05141a64337b4629337] xfs: update btree keys correctly when _insrec splits an inode root block
+git bisect good 6d7b4bc1c3e00b1a25b7a05141a64337b4629337
+# good: [ec88b41b932d5731291dcc0d0d63ea13ab8e07d5] xfs: clean up log item accesses in xfs_qm_dqflush{,_done}
+git bisect good ec88b41b932d5731291dcc0d0d63ea13ab8e07d5
+# bad: [3853b5e1d7ccb83f572df8a12619d1a58d266d6d] xfs: don't move nondir/nonreg temporary repair files to the metadir namespace
+git bisect bad 3853b5e1d7ccb83f572df8a12619d1a58d266d6d
+# bad: [ca378189fdfa890a4f0622f85ee41b710bbac271] xfs: convert quotacheck to attach dquot buffers
+git bisect bad ca378189fdfa890a4f0622f85ee41b710bbac271
+# good: [acc8f8628c3737108f36e5637f4d5daeaf96d90e] xfs: attach dquot buffer to dquot log item buffer
+git bisect good acc8f8628c3737108f36e5637f4d5daeaf96d90e
+# first bad commit: [ca378189fdfa890a4f0622f85ee41b710bbac271] xfs: convert quotacheck to attach dquot buffers
+|1217_021725|Bisect successfully! 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8_ca378189fdfa890a4f0622f85ee41b710bbac271_revert bzimage passed!|
