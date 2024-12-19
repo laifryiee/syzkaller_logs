@@ -1,0 +1,497 @@
+|1219_115855|cmd=cd /root/linux-next|
+|1219_115855|git log fdb298fa865b0136f7be842e6c2e6310dede421a check_result:commit fdb298fa865b0136f7be842e6c2e6310dede421a|
+|1219_115855|git log 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8 check_result:commit 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8|
+|1219_115855|There was old bisect log:git bisect start
+# status: waiting for both good and bad commits
+# bad: [fdb298fa865b0136f7be842e6c2e6310dede421a] Add linux-next specific files for 20241217
+git bisect bad fdb298fa865b0136f7be842e6c2e6310dede421a
+# status: waiting for good commit(s), bad commit known
+# good: [78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8] Linux 6.13-rc3
+git bisect good 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
+# good: [5a8344608b7d42c0e6a31fdcafdf2930e3dae796] Merge branch 'mlx5-next' of git://git.kernel.org/pub/scm/linux/kernel/git/mellanox/linux.git
+git bisect good 5a8344608b7d42c0e6a31fdcafdf2930e3dae796
+# bad: [3d0a4503f4e86d5a8fc806cc9055fdc6f623dccc] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git
+git bisect bad 3d0a4503f4e86d5a8fc806cc9055fdc6f623dccc
+# bad: [bf2894e077fadc7ac769700bec3fb8293089df28] Merge branch 'for-linux-next' of https://gitlab.freedesktop.org/drm/misc/kernel.git
+git bisect bad bf2894e077fadc7ac769700bec3fb8293089df28
+# bad: [bdecb30d579ef8f3bbaee2693b1b4d53ded5f730] Merge tag 'drm-xe-next-2024-12-11' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next
+git bisect bad bdecb30d579ef8f3bbaee2693b1b4d53ded5f730
+# good: [cb2e1c2136f71618142557ceca3a8802e87a44cd] drm: remove driver date from struct drm_driver and all drivers
+git bisect good cb2e1c2136f71618142557ceca3a8802e87a44cd
+# good: [dbf670f13949249f09b872ae59aab2feb259ca5f] drm/xe: Wire devcoredump to LR TDR
+git bisect good dbf670f13949249f09b872ae59aab2feb259ca5f
+# good: [54254727837440966c3381ea688df002ff14f269] drm/xe: Only allow contiguous BOs to use xe_bo_vmap
+git bisect good 54254727837440966c3381ea688df002ff14f269
+# good: [36bcc52b9bf078d92ff8f0f258cbe6b6e5213ee0] drm/xe/guc: Fix for dead CT dump not re-arming
+git bisect good 36bcc52b9bf078d92ff8f0f258cbe6b6e5213ee0
+# good: [65338639b79ce88aef5263cd518cde570a3c7c8e] drm/xe: Call invalidation_fence_fini for PT inval fences in error state
+git bisect good 65338639b79ce88aef5263cd518cde570a3c7c8e
+# good: [c1151691b5e97b600a9ef3efd7c31a3abf568e41] drm/xe/reg_sr: Stop setting all whitelist slots
+git bisect good c1151691b5e97b600a9ef3efd7c31a3abf568e41
+# good: [4d79a1266d4cc3c967bc8823502466cad1ac8514] drm/xe: Make irq enabled flag atomic
+git bisect good 4d79a1266d4cc3c967bc8823502466cad1ac8514
+# bad: [c7d6cb4c43a6baf940f4ae42541dcc1a1a74b2a3] Merge tag 'drm-misc-next-2024-12-05' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next
+git bisect bad c7d6cb4c43a6baf940f4ae42541dcc1a1a74b2a3
+# first bad commit: [c7d6cb4c43a6baf940f4ae42541dcc1a1a74b2a3] Merge tag 'drm-misc-next-2024-12-05' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next, will clean it|
+|1219_115855|cmd=git bisect reset|
+|1219_115856|cmd=git checkout -f fdb298fa865b0136f7be842e6c2e6310dede421a|
+|1219_115856|cmd=cd /root/linux-next|
+|1219_115856||/var/www/html/bzimage/bzImage_fdb298fa865b0136f7be842e6c2e6310dede421a| exist, no need make|
+|1219_115856|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1219_115856|Run /var/www/html/bzimage/bzImage_fdb298fa865b0136f7be842e6c2e6310dede421a with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1219_115909|It takes 12 seconds to find login:test login: |
+|1219_115909|Boot 1 time: takes 12 seconds to boot up.|
+|1219_115909|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1219_115909|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1219_115911|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.cprog root@localhost:/root/repro.c|
+|1219_115912|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1219_115912|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1219_115937|/var/www/html/bzimage/bzImage_fdb298fa865b0136f7be842e6c2e6310dede421a contained mnt_ns_release:[   35.462037] WARNING: CPU: 0 PID: 8084 at fs/namespace.c:163 mnt_ns_release+0x18d/0x200
+[   35.463503] RIP: 0010:mnt_ns_release+0x18d/0x200
+[   35.468937]  ? mnt_ns_release+0x18d/0x200
+[   35.469311]  ? mnt_ns_release+0x18d/0x200
+[   35.469517]  ? mnt_ns_release+0x18e/0x200
+[   35.470458]  ? mnt_ns_release+0x17f/0x200
+[   35.470651]  ? mnt_ns_release+0x18d/0x200
+[   35.470841]  ? mnt_ns_release+0x18d/0x200
+[   35.471031]  ? mnt_ns_release+0x18d/0x200
+[   35.471395]  mnt_ns_release_rcu+0x1f/0x30, FAIL|
+|1219_115937|Found time:35 in /var/www/html/bzimage/1219_115855_mnt_ns_release/fdb298fa865b0136f7be842e6c2e6310dede421a_dmesg.log|
+|1219_115937|Logic: |<=25: +25|25-100 +180|>100 +1800| Set TIME:215|
+|1219_115937|-END- commit fdb298fa865b0136f7be842e6c2e6310dede421a FAIL bad|
+|1219_115937|cmd=rm -rf /var/www/html//syzkaller/2024_12_19/56b3942a47a467756c77dbd9d6b63b82b276c7fe|
+|1219_115937|cmd=mkdir -p /var/www/html//syzkaller/2024_12_19/56b3942a47a467756c77dbd9d6b63b82b276c7fe|
+|1219_115937|cmd=cp -rf /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.cprog /var/www/html//syzkaller/2024_12_19/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.c|
+|1219_115937|gcc -pthread /var/www/html//syzkaller/2024_12_19/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.c -o /var/www/html//syzkaller/2024_12_19/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro|
+|1219_115937|cmd=cp -rf /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/description /var/www/html//syzkaller/2024_12_19/56b3942a47a467756c77dbd9d6b63b82b276c7fe|
+|1219_115937|FAIL|cp /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/machineInfo0 /var/www/html/bzimage/1219_115855_mnt_ns_release/machineInfo0 failed!|
+|1219_115937|FAIL|cp /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/report0 /var/www/html/bzimage/1219_115855_mnt_ns_release/report0 failed!|
+|1219_115937|FAIL|cp /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/log0 /var/www/html/bzimage/1219_115855_mnt_ns_release/log0 failed!|
+|1219_115937|cp -rf /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/mount_* /var/www/html/bzimage/1219_115855_mnt_ns_release/|
+|1219_115940|wget https://raw.githubusercontent.com/xupengfe/kconfig_diff/main/config-5.18rc4i_kvm -O /var/www/html/bzimage/1219_115855_mnt_ns_release/kconfig_origin:0|
+|1219_115940|cmd=cd /root/linux-next|
+|1219_115940||/var/www/html/bzimage/bzImage_78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8| exist, no need make|
+|1219_115940|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1219_115940|Run /var/www/html/bzimage/bzImage_78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1219_115952|It takes 12 seconds to find login:test login: |
+|1219_115952|Boot 1 time: takes 12 seconds to boot up.|
+|1219_115952|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1219_115953|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1219_115954|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.cprog root@localhost:/root/repro.c|
+|1219_115955|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1219_115955|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1219_120330|/var/www/html/bzimage/bzImage_78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8 didn't contain mnt_ns_release: in dmesg, pass|
+|1219_120330|Start commit 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8 PASS good|
+|1219_120330|cmd=git checkout -f fdb298fa865b0136f7be842e6c2e6310dede421a|
+|1219_120331|cmd=git bisect start|
+|1219_120331|cmd=git bisect bad fdb298fa865b0136f7be842e6c2e6310dede421a|
+|1219_120331|Bisect first start commit:78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8|
+|1219_120331|git bisect good 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8|
+|1219_120337||/var/www/html/bzimage/bzImage_5a8344608b7d42c0e6a31fdcafdf2930e3dae796| exist, no need make|
+|1219_120337|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1219_120337|Run /var/www/html/bzimage/bzImage_5a8344608b7d42c0e6a31fdcafdf2930e3dae796 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1219_120350|It takes 13 seconds to find login:test login: |
+|1219_120350|Boot 1 time: takes 13 seconds to boot up.|
+|1219_120350|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1219_120351|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1219_120352|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.cprog root@localhost:/root/repro.c|
+|1219_120353|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1219_120354|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1219_120729|/var/www/html/bzimage/bzImage_5a8344608b7d42c0e6a31fdcafdf2930e3dae796 contained mnt_ns_release:[   41.397975] WARNING: CPU: 1 PID: 9909 at fs/namespace.c:163 mnt_ns_release+0x18d/0x200
+[   41.399407] RIP: 0010:mnt_ns_release+0x18d/0x200
+[   41.404819]  ? mnt_ns_release+0x18d/0x200
+[   41.405189]  ? mnt_ns_release+0x18d/0x200
+[   41.405381]  ? mnt_ns_release+0x18e/0x200
+[   41.406328]  ? mnt_ns_release+0x17f/0x200
+[   41.406524]  ? mnt_ns_release+0x18d/0x200
+[   41.406722]  ? mnt_ns_release+0x18d/0x200
+[   41.406921]  ? mnt_ns_release+0x18d/0x200
+[   41.407290]  mnt_ns_release_rcu+0x1f/0x30, FAIL|
+|1219_120729|git bisect bad 5a8344608b7d42c0e6a31fdcafdf2930e3dae796|
+|1219_120729|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 255fb9ba03411ea8ff7f9dc1ce41f5e59a064240 -d /var/www/html/bzimage -o /tmp/kernel|
+|1219_122700|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1219_122700|Run /var/www/html/bzimage/bzImage_255fb9ba03411ea8ff7f9dc1ce41f5e59a064240 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1219_122715|It takes 15 seconds to find login:test login: |
+|1219_122715|Boot 1 time: takes 15 seconds to boot up.|
+|1219_122715|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1219_122715|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1219_122717|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.cprog root@localhost:/root/repro.c|
+|1219_122718|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1219_122718|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1219_123053|/var/www/html/bzimage/bzImage_255fb9ba03411ea8ff7f9dc1ce41f5e59a064240 didn't contain mnt_ns_release: in dmesg, pass|
+|1219_123053|git bisect good 255fb9ba03411ea8ff7f9dc1ce41f5e59a064240|
+|1219_123054|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m e14f5ab9e730c8027598dac2f7ef911c91cdc24d -d /var/www/html/bzimage -o /tmp/kernel|
+|1219_125045|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1219_125045|Run /var/www/html/bzimage/bzImage_e14f5ab9e730c8027598dac2f7ef911c91cdc24d with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1219_125059|It takes 14 seconds to find login:test login: |
+|1219_125059|Boot 1 time: takes 14 seconds to boot up.|
+|1219_125059|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1219_125100|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1219_125101|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.cprog root@localhost:/root/repro.c|
+|1219_125102|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1219_125102|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1219_125437|/var/www/html/bzimage/bzImage_e14f5ab9e730c8027598dac2f7ef911c91cdc24d contained mnt_ns_release:[   49.946021] WARNING: CPU: 0 PID: 12245 at fs/namespace.c:163 mnt_ns_release+0x18d/0x200
+[   49.947506] RIP: 0010:mnt_ns_release+0x18d/0x200
+[   49.953472]  ? mnt_ns_release+0x18d/0x200
+[   49.953897]  ? mnt_ns_release+0x18d/0x200
+[   49.954109]  ? mnt_ns_release+0x18e/0x200
+[   49.955125]  ? mnt_ns_release+0x17f/0x200
+[   49.955329]  ? mnt_ns_release+0x18d/0x200
+[   49.955539]  ? mnt_ns_release+0x18d/0x200
+[   49.955744]  ? mnt_ns_release+0x18d/0x200
+[   49.956139]  mnt_ns_release_rcu+0x1f/0x30
+[  135.658096] WARNING: CPU: 1 PID: 43706 at fs/namespace.c:163 mnt_ns_release+0x18d/0x200
+[  135.659707] RIP: 0010:mnt_ns_release+0x18d/0x200
+[  135.665140]  ? mnt_ns_release+0x18d/0x200
+[  135.665517]  ? mnt_ns_release+0x18d/0x200
+[  135.665721]  ? mnt_ns_release+0x18e/0x200
+[  135.666669]  ? mnt_ns_release+0x17f/0x200
+[  135.666864]  ? mnt_ns_release+0x18d/0x200
+[  135.667058]  ? mnt_ns_release+0x18d/0x200
+[  135.667255]  ? mnt_ns_release+0x18d/0x200
+[  135.667627]  mnt_ns_release_rcu+0x1f/0x30
+[  213.873997] WARNING: CPU: 0 PID: 72111 at fs/namespace.c:163 mnt_ns_release+0x18d/0x200
+[  213.875628] RIP: 0010:mnt_ns_release+0x18d/0x200
+[  213.881009]  ? mnt_ns_release+0x18d/0x200
+[  213.881381]  ? mnt_ns_release+0x18d/0x200
+[  213.881588]  ? mnt_ns_release+0x18e/0x200
+[  213.882549]  ? mnt_ns_release+0x17f/0x200
+[  213.882741]  ? mnt_ns_release+0x18d/0x200
+[  213.882939]  ? mnt_ns_release+0x18d/0x200
+[  213.883132]  ? mnt_ns_release+0x18d/0x200
+[  213.883502]  mnt_ns_release_rcu+0x1f/0x30, FAIL|
+|1219_125437|git bisect bad e14f5ab9e730c8027598dac2f7ef911c91cdc24d|
+|1219_125438|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 79bfb0e127752e591c8c44543e2f2a0fbec464f2 -d /var/www/html/bzimage -o /tmp/kernel|
+|1219_131449|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1219_131449|Run /var/www/html/bzimage/bzImage_79bfb0e127752e591c8c44543e2f2a0fbec464f2 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1219_131503|It takes 14 seconds to find login:test login: |
+|1219_131503|Boot 1 time: takes 14 seconds to boot up.|
+|1219_131503|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1219_131504|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1219_131506|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.cprog root@localhost:/root/repro.c|
+|1219_131507|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1219_131507|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1219_131842|/var/www/html/bzimage/bzImage_79bfb0e127752e591c8c44543e2f2a0fbec464f2 didn't contain mnt_ns_release: in dmesg, pass|
+|1219_131842|git bisect good 79bfb0e127752e591c8c44543e2f2a0fbec464f2|
+|1219_131844|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 1d7d385bad0806c71548768914b2b3bf0ef84611 -d /var/www/html/bzimage -o /tmp/kernel|
+|1219_133838|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1219_133838|Run /var/www/html/bzimage/bzImage_1d7d385bad0806c71548768914b2b3bf0ef84611 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1219_133852|It takes 14 seconds to find login:test login: |
+|1219_133852|Boot 1 time: takes 14 seconds to boot up.|
+|1219_133852|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1219_133852|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1219_133854|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.cprog root@localhost:/root/repro.c|
+|1219_133855|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1219_133855|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1219_134230|/var/www/html/bzimage/bzImage_1d7d385bad0806c71548768914b2b3bf0ef84611 contained mnt_ns_release:[  125.818176] WARNING: CPU: 1 PID: 38870 at fs/namespace.c:163 mnt_ns_release+0x18d/0x200
+[  125.819708] RIP: 0010:mnt_ns_release+0x18d/0x200
+[  125.825664]  ? mnt_ns_release+0x18d/0x200
+[  125.826058]  ? mnt_ns_release+0x18d/0x200
+[  125.826262]  ? mnt_ns_release+0x18e/0x200
+[  125.827262]  ? mnt_ns_release+0x17f/0x200
+[  125.827467]  ? mnt_ns_release+0x18d/0x200
+[  125.827671]  ? mnt_ns_release+0x18d/0x200
+[  125.827874]  ? mnt_ns_release+0x18d/0x200
+[  125.828257]  mnt_ns_release_rcu+0x1f/0x30
+[  145.754085] WARNING: CPU: 1 PID: 45746 at fs/namespace.c:163 mnt_ns_release+0x18d/0x200
+[  145.755919] RIP: 0010:mnt_ns_release+0x18d/0x200
+[  145.761926]  ? mnt_ns_release+0x18d/0x200
+[  145.762317]  ? mnt_ns_release+0x18d/0x200
+[  145.762527]  ? mnt_ns_release+0x18e/0x200
+[  145.763559]  ? mnt_ns_release+0x17f/0x200
+[  145.763805]  ? mnt_ns_release+0x18d/0x200
+[  145.764021]  ? mnt_ns_release+0x18d/0x200
+[  145.764235]  ? mnt_ns_release+0x18d/0x200
+[  145.764640]  mnt_ns_release_rcu+0x1f/0x30
+[  180.670026] WARNING: CPU: 0 PID: 57755 at fs/namespace.c:163 mnt_ns_release+0x18d/0x200
+[  180.671752] RIP: 0010:mnt_ns_release+0x18d/0x200
+[  180.677608]  ? mnt_ns_release+0x18d/0x200
+[  180.678032]  ? mnt_ns_release+0x18d/0x200
+[  180.678240]  ? mnt_ns_release+0x18e/0x200
+[  180.679259]  ? mnt_ns_release+0x17f/0x200
+[  180.679469]  ? mnt_ns_release+0x18d/0x200
+[  180.679678]  ? mnt_ns_release+0x18d/0x200
+[  180.679891]  ? mnt_ns_release+0x18d/0x200
+[  180.680286]  mnt_ns_release_rcu+0x1f/0x30
+[  183.149967] WARNING: CPU: 0 PID: 58606 at fs/namespace.c:163 mnt_ns_release+0x18d/0x200
+[  183.151619] RIP: 0010:mnt_ns_release+0x18d/0x200
+[  183.157214]  ? mnt_ns_release+0x18d/0x200
+[  183.157601]  ? mnt_ns_release+0x18d/0x200
+[  183.157818]  ? mnt_ns_release+0x18e/0x200
+[  183.158787]  ? mnt_ns_release+0x17f/0x200
+[  183.158984]  ? mnt_ns_release+0x18d/0x200
+[  183.159183]  ? mnt_ns_release+0x18d/0x200
+[  183.159381]  ? mnt_ns_release+0x18d/0x200
+[  183.159763]  mnt_ns_release_rcu+0x1f/0x30
+[  194.418019] WARNING: CPU: 1 PID: 62459 at fs/namespace.c:163 mnt_ns_release+0x18d/0x200
+[  194.419732] RIP: 0010:mnt_ns_release+0x18d/0x200
+[  194.425547]  ? mnt_ns_release+0x18d/0x200
+[  194.425963]  ? mnt_ns_release+0x18d/0x200
+[  194.426170]  ? mnt_ns_release+0x18e/0x200
+[  194.427177]  ? mnt_ns_release+0x17f/0x200
+[  194.427383]  ? mnt_ns_release+0x18d/0x200
+[  194.427590]  ? mnt_ns_release+0x18d/0x200
+[  194.427801]  ? mnt_ns_release+0x18d/0x200
+[  194.428195]  mnt_ns_release_rcu+0x1f/0x30
+[  222.405930] WARNING: CPU: 1 PID: 72283 at fs/namespace.c:163 mnt_ns_release+0x18d/0x200
+[  222.407554] RIP: 0010:mnt_ns_release+0x18d/0x200
+[  222.413128]  ? mnt_ns_release+0x18d/0x200
+[  222.413507]  ? mnt_ns_release+0x18d/0x200
+[  222.413714]  ? mnt_ns_release+0x18e/0x200
+[  222.414657]  ? mnt_ns_release+0x17f/0x200
+[  222.414851]  ? mnt_ns_release+0x18d/0x200
+[  222.415045]  ? mnt_ns_release+0x18d/0x200
+[  222.415237]  ? mnt_ns_release+0x18d/0x200
+[  222.415609]  mnt_ns_release_rcu+0x1f/0x30, FAIL|
+|1219_134230|git bisect bad 1d7d385bad0806c71548768914b2b3bf0ef84611|
+|1219_134231|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 4c1a2264a17bbdc3175b94b0392ccc5e2a8bc042 -d /var/www/html/bzimage -o /tmp/kernel|
+|1219_140242|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1219_140242|Run /var/www/html/bzimage/bzImage_4c1a2264a17bbdc3175b94b0392ccc5e2a8bc042 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1219_140256|It takes 14 seconds to find login:test login: |
+|1219_140256|Boot 1 time: takes 14 seconds to boot up.|
+|1219_140256|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1219_140257|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1219_140258|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.cprog root@localhost:/root/repro.c|
+|1219_140300|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1219_140300|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1219_140635|/var/www/html/bzimage/bzImage_4c1a2264a17bbdc3175b94b0392ccc5e2a8bc042 didn't contain mnt_ns_release: in dmesg, pass|
+|1219_140635|git bisect good 4c1a2264a17bbdc3175b94b0392ccc5e2a8bc042|
+|1219_140635|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m a6babf4cbeaaa1c97a205382cdc958571f668ea8 -d /var/www/html/bzimage -o /tmp/kernel|
+|1219_142611|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1219_142611|Run /var/www/html/bzimage/bzImage_a6babf4cbeaaa1c97a205382cdc958571f668ea8 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1219_142625|It takes 14 seconds to find login:test login: |
+|1219_142625|Boot 1 time: takes 14 seconds to boot up.|
+|1219_142625|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1219_142626|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1219_142628|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.cprog root@localhost:/root/repro.c|
+|1219_142629|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1219_142629|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1219_143004|/var/www/html/bzimage/bzImage_a6babf4cbeaaa1c97a205382cdc958571f668ea8 didn't contain mnt_ns_release: in dmesg, pass|
+|1219_143004|git bisect good a6babf4cbeaaa1c97a205382cdc958571f668ea8|
+|1219_143004|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 69c83fb7809ea4eb9790f9807c8a45d27ecf5089 -d /var/www/html/bzimage -o /tmp/kernel|
+|1219_144953|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1219_144953|Run /var/www/html/bzimage/bzImage_69c83fb7809ea4eb9790f9807c8a45d27ecf5089 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1219_145007|It takes 14 seconds to find login:test login: |
+|1219_145007|Boot 1 time: takes 14 seconds to boot up.|
+|1219_145007|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1219_145008|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1219_145009|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.cprog root@localhost:/root/repro.c|
+|1219_145011|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1219_145011|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1219_145346|/var/www/html/bzimage/bzImage_69c83fb7809ea4eb9790f9807c8a45d27ecf5089 didn't contain mnt_ns_release: in dmesg, pass|
+|1219_145346|git bisect good 69c83fb7809ea4eb9790f9807c8a45d27ecf5089|
+|1219_145346|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 16c7220c407aecc96a844553fc4957f2b9fa570b -d /var/www/html/bzimage -o /tmp/kernel|
+|1219_151349|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1219_151349|Run /var/www/html/bzimage/bzImage_16c7220c407aecc96a844553fc4957f2b9fa570b with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1219_151405|It takes 16 seconds to find login:test login: |
+|1219_151405|Boot 1 time: takes 16 seconds to boot up.|
+|1219_151405|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1219_151406|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1219_151407|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.cprog root@localhost:/root/repro.c|
+|1219_151408|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1219_151409|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1219_151744|/var/www/html/bzimage/bzImage_16c7220c407aecc96a844553fc4957f2b9fa570b contained mnt_ns_release:[   86.273922] WARNING: CPU: 0 PID: 24221 at fs/namespace.c:163 mnt_ns_release+0x18d/0x200
+[   86.275344] RIP: 0010:mnt_ns_release+0x18d/0x200
+[   86.280862]  ? mnt_ns_release+0x18d/0x200
+[   86.281244]  ? mnt_ns_release+0x18d/0x200
+[   86.281444]  ? mnt_ns_release+0x18e/0x200
+[   86.282422]  ? mnt_ns_release+0x17f/0x200
+[   86.282617]  ? mnt_ns_release+0x18d/0x200
+[   86.282817]  ? mnt_ns_release+0x18d/0x200
+[   86.283012]  ? mnt_ns_release+0x18d/0x200
+[   86.283391]  mnt_ns_release_rcu+0x1f/0x30
+[  156.741779] WARNING: CPU: 1 PID: 50103 at fs/namespace.c:163 mnt_ns_release+0x18d/0x200
+[  156.743327] RIP: 0010:mnt_ns_release+0x18d/0x200
+[  156.748574]  ? mnt_ns_release+0x18d/0x200
+[  156.748937]  ? mnt_ns_release+0x18d/0x200
+[  156.749122]  ? mnt_ns_release+0x18e/0x200
+[  156.750047]  ? mnt_ns_release+0x17f/0x200
+[  156.750235]  ? mnt_ns_release+0x18d/0x200
+[  156.750424]  ? mnt_ns_release+0x18d/0x200
+[  156.750613]  ? mnt_ns_release+0x18d/0x200
+[  156.750974]  mnt_ns_release_rcu+0x1f/0x30, FAIL|
+|1219_151744|git bisect bad 16c7220c407aecc96a844553fc4957f2b9fa570b|
+|1219_151744|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m c6c9e2bd9fe6fd2c9582b6a2e5f8c9015b1b92ff -d /var/www/html/bzimage -o /tmp/kernel|
+|1219_153727|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1219_153727|Run /var/www/html/bzimage/bzImage_c6c9e2bd9fe6fd2c9582b6a2e5f8c9015b1b92ff with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1219_153741|It takes 14 seconds to find login:test login: |
+|1219_153741|Boot 1 time: takes 14 seconds to boot up.|
+|1219_153741|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1219_153742|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1219_153744|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.cprog root@localhost:/root/repro.c|
+|1219_153745|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1219_153745|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1219_154120|/var/www/html/bzimage/bzImage_c6c9e2bd9fe6fd2c9582b6a2e5f8c9015b1b92ff contained mnt_ns_release:[   40.877986] WARNING: CPU: 0 PID: 9058 at fs/namespace.c:156 mnt_ns_release+0x18d/0x200
+[   40.879439] RIP: 0010:mnt_ns_release+0x18d/0x200
+[   40.885145]  ? mnt_ns_release+0x18d/0x200
+[   40.885537]  ? mnt_ns_release+0x18d/0x200
+[   40.885732]  ? mnt_ns_release+0x18e/0x200
+[   40.886696]  ? mnt_ns_release+0x17f/0x200
+[   40.886895]  ? mnt_ns_release+0x18d/0x200
+[   40.887094]  ? mnt_ns_release+0x18d/0x200
+[   40.887293]  ? mnt_ns_release+0x18d/0x200
+[   40.887670]  mnt_ns_release_rcu+0x1f/0x30
+[   84.457665] WARNING: CPU: 1 PID: 24785 at fs/namespace.c:156 mnt_ns_release+0x18d/0x200
+[   84.459200] RIP: 0010:mnt_ns_release+0x18d/0x200
+[   84.464453]  ? mnt_ns_release+0x18d/0x200
+[   84.464820]  ? mnt_ns_release+0x18d/0x200
+[   84.465015]  ? mnt_ns_release+0x18e/0x200
+[   84.465952]  ? mnt_ns_release+0x17f/0x200
+[   84.466139]  ? mnt_ns_release+0x18d/0x200
+[   84.466323]  ? mnt_ns_release+0x18d/0x200
+[   84.466514]  ? mnt_ns_release+0x18d/0x200
+[   84.466864]  mnt_ns_release_rcu+0x1f/0x30
+[  134.069640] WARNING: CPU: 1 PID: 42642 at fs/namespace.c:156 mnt_ns_release+0x18d/0x200
+[  134.071270] RIP: 0010:mnt_ns_release+0x18d/0x200
+[  134.076746]  ? mnt_ns_release+0x18d/0x200
+[  134.077131]  ? mnt_ns_release+0x18d/0x200
+[  134.077344]  ? mnt_ns_release+0x18e/0x200
+[  134.078312]  ? mnt_ns_release+0x17f/0x200
+[  134.078505]  ? mnt_ns_release+0x18d/0x200
+[  134.078699]  ? mnt_ns_release+0x18d/0x200
+[  134.078894]  ? mnt_ns_release+0x18d/0x200
+[  134.079266]  mnt_ns_release_rcu+0x1f/0x30
+[  144.901678] WARNING: CPU: 0 PID: 46583 at fs/namespace.c:156 mnt_ns_release+0x18d/0x200
+[  144.903296] RIP: 0010:mnt_ns_release+0x18d/0x200
+[  144.908713]  ? mnt_ns_release+0x18d/0x200
+[  144.909085]  ? mnt_ns_release+0x18d/0x200
+[  144.909278]  ? mnt_ns_release+0x18e/0x200
+[  144.910232]  ? mnt_ns_release+0x17f/0x200
+[  144.910426]  ? mnt_ns_release+0x18d/0x200
+[  144.910620]  ? mnt_ns_release+0x18d/0x200
+[  144.910814]  ? mnt_ns_release+0x18d/0x200
+[  144.911186]  mnt_ns_release_rcu+0x1f/0x30, FAIL|
+|1219_154120|git bisect bad c6c9e2bd9fe6fd2c9582b6a2e5f8c9015b1b92ff|
+|1219_154120|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 7e2578cbec19c19ee35cc25f5cf4acc0d2e5fb89 -d /var/www/html/bzimage -o /tmp/kernel|
+|1219_160122|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1219_160122|Run /var/www/html/bzimage/bzImage_7e2578cbec19c19ee35cc25f5cf4acc0d2e5fb89 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1219_160137|It takes 15 seconds to find login:test login: |
+|1219_160137|Boot 1 time: takes 15 seconds to boot up.|
+|1219_160137|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1219_160138|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1219_160139|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.cprog root@localhost:/root/repro.c|
+|1219_160141|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1219_160141|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1219_160516|/var/www/html/bzimage/bzImage_7e2578cbec19c19ee35cc25f5cf4acc0d2e5fb89 didn't contain mnt_ns_release: in dmesg, pass|
+|1219_160516|git bisect good 7e2578cbec19c19ee35cc25f5cf4acc0d2e5fb89|
+|1219_160516|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 5eda70f550d70e4bba91b41a3310cfa8b8c94067 -d /var/www/html/bzimage -o /tmp/kernel|
+|1219_162534|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|1219_162534|Run /var/www/html/bzimage/bzImage_5eda70f550d70e4bba91b41a3310cfa8b8c94067 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|1219_162548|It takes 14 seconds to find login:test login: |
+|1219_162548|Boot 1 time: takes 14 seconds to boot up.|
+|1219_162548|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|1219_162549|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|1219_162550|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/56b3942a47a467756c77dbd9d6b63b82b276c7fe/repro.cprog root@localhost:/root/repro.c|
+|1219_162551|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|1219_162552|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|1219_162927|/var/www/html/bzimage/bzImage_5eda70f550d70e4bba91b41a3310cfa8b8c94067 contained mnt_ns_release:[   72.574395] WARNING: CPU: 1 PID: 20917 at fs/namespace.c:156 mnt_ns_release+0x18d/0x200
+[   72.575831] RIP: 0010:mnt_ns_release+0x18d/0x200
+[   72.581457]  ? mnt_ns_release+0x18d/0x200
+[   72.581833]  ? mnt_ns_release+0x18d/0x200
+[   72.582038]  ? mnt_ns_release+0x18e/0x200
+[   72.582996]  ? mnt_ns_release+0x17f/0x200
+[   72.583188]  ? mnt_ns_release+0x18d/0x200
+[   72.583381]  ? mnt_ns_release+0x18d/0x200
+[   72.583574]  ? mnt_ns_release+0x18d/0x200
+[   72.583947]  mnt_ns_release_rcu+0x1f/0x30
+[   98.562229] WARNING: CPU: 1 PID: 30418 at fs/namespace.c:156 mnt_ns_release+0x18d/0x200
+[   98.563871] RIP: 0010:mnt_ns_release+0x18d/0x200
+[   98.569426]  ? mnt_ns_release+0x18d/0x200
+[   98.569817]  ? mnt_ns_release+0x18d/0x200
+[   98.570031]  ? mnt_ns_release+0x18e/0x200
+[   98.571010]  ? mnt_ns_release+0x17f/0x200
+[   98.571207]  ? mnt_ns_release+0x18d/0x200
+[   98.571407]  ? mnt_ns_release+0x18d/0x200
+[   98.571605]  ? mnt_ns_release+0x18d/0x200
+[   98.571988]  mnt_ns_release_rcu+0x1f/0x30
+[  145.470239] WARNING: CPU: 0 PID: 47313 at fs/namespace.c:156 mnt_ns_release+0x18d/0x200
+[  145.471877] RIP: 0010:mnt_ns_release+0x18d/0x200
+[  145.477484]  ? mnt_ns_release+0x18d/0x200
+[  145.477875]  ? mnt_ns_release+0x18d/0x200
+[  145.478093]  ? mnt_ns_release+0x18e/0x200
+[  145.479056]  ? mnt_ns_release+0x17f/0x200
+[  145.479251]  ? mnt_ns_release+0x18d/0x200
+[  145.479448]  ? mnt_ns_release+0x18d/0x200
+[  145.479648]  ? mnt_ns_release+0x18d/0x200
+[  145.480044]  mnt_ns_release_rcu+0x1f/0x30
+[  163.086267] WARNING: CPU: 1 PID: 53760 at fs/namespace.c:156 mnt_ns_release+0x18d/0x200
+[  163.087848] RIP: 0010:mnt_ns_release+0x18d/0x200
+[  163.093221]  ? mnt_ns_release+0x18d/0x200
+[  163.093586]  ? mnt_ns_release+0x18d/0x200
+[  163.093774]  ? mnt_ns_release+0x18e/0x200
+[  163.094715]  ? mnt_ns_release+0x17f/0x200
+[  163.094907]  ? mnt_ns_release+0x18d/0x200
+[  163.095101]  ? mnt_ns_release+0x18d/0x200
+[  163.095291]  ? mnt_ns_release+0x18d/0x200
+[  163.095655]  mnt_ns_release_rcu+0x1f/0x30
+[  208.530272] WARNING: CPU: 0 PID: 70213 at fs/namespace.c:156 mnt_ns_release+0x18d/0x200
+[  208.531893] RIP: 0010:mnt_ns_release+0x18d/0x200
+[  208.537331]  ? mnt_ns_release+0x18d/0x200
+[  208.537699]  ? mnt_ns_release+0x18d/0x200
+[  208.537896]  ? mnt_ns_release+0x18e/0x200
+[  208.538860]  ? mnt_ns_release+0x17f/0x200
+[  208.539048]  ? mnt_ns_release+0x18d/0x200
+[  208.539239]  ? mnt_ns_release+0x18d/0x200
+[  208.539429]  ? mnt_ns_release+0x18d/0x200
+[  208.539793]  mnt_ns_release_rcu+0x1f/0x30, FAIL|
+|1219_162927|git bisect bad 5eda70f550d70e4bba91b41a3310cfa8b8c94067|
+|1219_162927|Bisect PASS: find bad commit: 5eda70f550d70e4bba91b41a3310cfa8b8c94067 is the first bad commit
+commit 5eda70f550d70e4bba91b41a3310cfa8b8c94067
+Author: Christian Brauner <brauner@kernel.org>
+Date:   Fri Dec 13 00:03:42 2024 +0100
+
+    fs: lockless mntns rbtree lookup
+    
+    Currently we use a read-write lock but for the simple search case we can
+    make this lockless. Creating a new mount namespace is a rather rare
+    event compared with querying mounts in a foreign mount namespace. Once
+    this is picked up by e.g., systemd to list mounts in another mount in
+    it's isolated services or in containers this will be used a lot so this
+    seems worthwhile doing.
+    
+    Link: https://lore.kernel.org/r/20241213-work-mount-rbtree-lockless-v3-3-6e3cdaf9b280@kernel.org
+    Reviewed-by: Jeff Layton <jlayton@kernel.org>
+    Signed-off-by: Christian Brauner <brauner@kernel.org>
+
+ fs/mount.h     |   5 ++-
+ fs/namespace.c | 119 +++++++++++++++++++++++++++++++++++----------------------
+ 2 files changed, 77 insertions(+), 47 deletions(-)|
+|1219_162927|cmd=git bisect log >> /var/www/html/bzimage/bi.log|
+|1219_162927|cmd=git bisect log >> /var/www/html/bzimage/1219_115855_mnt_ns_release/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [fdb298fa865b0136f7be842e6c2e6310dede421a] Add linux-next specific files for 20241217
+git bisect bad fdb298fa865b0136f7be842e6c2e6310dede421a
+# status: waiting for good commit(s), bad commit known
+# good: [78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8] Linux 6.13-rc3
+git bisect good 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
+# bad: [5a8344608b7d42c0e6a31fdcafdf2930e3dae796] Merge branch 'mlx5-next' of git://git.kernel.org/pub/scm/linux/kernel/git/mellanox/linux.git
+git bisect bad 5a8344608b7d42c0e6a31fdcafdf2930e3dae796
+# good: [255fb9ba03411ea8ff7f9dc1ce41f5e59a064240] Merge branch 'xtensa-for-next' of git://github.com/jcmvbkbc/linux-xtensa.git
+git bisect good 255fb9ba03411ea8ff7f9dc1ce41f5e59a064240
+# bad: [e14f5ab9e730c8027598dac2f7ef911c91cdc24d] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/hid/hid.git
+git bisect bad e14f5ab9e730c8027598dac2f7ef911c91cdc24d
+# good: [79bfb0e127752e591c8c44543e2f2a0fbec464f2] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux.git
+git bisect good 79bfb0e127752e591c8c44543e2f2a0fbec464f2
+# bad: [1d7d385bad0806c71548768914b2b3bf0ef84611] Merge branch 'vfs-6.14.mount' into vfs.all
+git bisect bad 1d7d385bad0806c71548768914b2b3bf0ef84611
+# good: [4c1a2264a17bbdc3175b94b0392ccc5e2a8bc042] Merge branch 'vfs-6.14.misc' into vfs.all
+git bisect good 4c1a2264a17bbdc3175b94b0392ccc5e2a8bc042
+# good: [a6babf4cbeaaa1c97a205382cdc958571f668ea8] cred: fold get_new_cred_many() into get_cred_many()
+git bisect good a6babf4cbeaaa1c97a205382cdc958571f668ea8
+# good: [69c83fb7809ea4eb9790f9807c8a45d27ecf5089] Merge branch 'kernel-6.14.cred' into vfs.all
+git bisect good 69c83fb7809ea4eb9790f9807c8a45d27ecf5089
+# bad: [16c7220c407aecc96a844553fc4957f2b9fa570b] selftests: add tests for mntns iteration
+git bisect bad 16c7220c407aecc96a844553fc4957f2b9fa570b
+# bad: [c6c9e2bd9fe6fd2c9582b6a2e5f8c9015b1b92ff] rculist: add list_bidir_{del,prev}_rcu()
+git bisect bad c6c9e2bd9fe6fd2c9582b6a2e5f8c9015b1b92ff
+# good: [7e2578cbec19c19ee35cc25f5cf4acc0d2e5fb89] fs: add mount namespace to rbtree late
+git bisect good 7e2578cbec19c19ee35cc25f5cf4acc0d2e5fb89
+# bad: [5eda70f550d70e4bba91b41a3310cfa8b8c94067] fs: lockless mntns rbtree lookup
+git bisect bad 5eda70f550d70e4bba91b41a3310cfa8b8c94067
+# first bad commit: [5eda70f550d70e4bba91b41a3310cfa8b8c94067] fs: lockless mntns rbtree lookup
+|1219_162927|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m fdb298fa865b0136f7be842e6c2e6310dede421a -b 5eda70f550d70e4bba91b41a3310cfa8b8c94067 -d /var/www/html/bzimage -o /tmp/kernel -f /var/www/html/bzimage/bzImage_fdb298fa865b0136f7be842e6c2e6310dede421a_5eda70f550d70e4bba91b41a3310cfa8b8c94067_revert|
+|1219_163013|1st base commit:78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8!|
+|1219_163013|FAIL|bzImage:/var/www/html/bzimage/bzImage_fdb298fa865b0136f7be842e6c2e6310dede421a_5eda70f550d70e4bba91b41a3310cfa8b8c94067_revert does not exist:|
+|1219_163013|1st base commit:78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8!|
+|1219_163013|ISSUE:56b3942a47a467756c77dbd9d6b63b82b276c7fe  EMAIL status after check:Email_not_sent|

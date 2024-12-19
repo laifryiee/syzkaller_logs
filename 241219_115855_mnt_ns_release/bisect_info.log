@@ -1,0 +1,32 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [fdb298fa865b0136f7be842e6c2e6310dede421a] Add linux-next specific files for 20241217
+git bisect bad fdb298fa865b0136f7be842e6c2e6310dede421a
+# status: waiting for good commit(s), bad commit known
+# good: [78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8] Linux 6.13-rc3
+git bisect good 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
+# bad: [5a8344608b7d42c0e6a31fdcafdf2930e3dae796] Merge branch 'mlx5-next' of git://git.kernel.org/pub/scm/linux/kernel/git/mellanox/linux.git
+git bisect bad 5a8344608b7d42c0e6a31fdcafdf2930e3dae796
+# good: [255fb9ba03411ea8ff7f9dc1ce41f5e59a064240] Merge branch 'xtensa-for-next' of git://github.com/jcmvbkbc/linux-xtensa.git
+git bisect good 255fb9ba03411ea8ff7f9dc1ce41f5e59a064240
+# bad: [e14f5ab9e730c8027598dac2f7ef911c91cdc24d] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/hid/hid.git
+git bisect bad e14f5ab9e730c8027598dac2f7ef911c91cdc24d
+# good: [79bfb0e127752e591c8c44543e2f2a0fbec464f2] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux.git
+git bisect good 79bfb0e127752e591c8c44543e2f2a0fbec464f2
+# bad: [1d7d385bad0806c71548768914b2b3bf0ef84611] Merge branch 'vfs-6.14.mount' into vfs.all
+git bisect bad 1d7d385bad0806c71548768914b2b3bf0ef84611
+# good: [4c1a2264a17bbdc3175b94b0392ccc5e2a8bc042] Merge branch 'vfs-6.14.misc' into vfs.all
+git bisect good 4c1a2264a17bbdc3175b94b0392ccc5e2a8bc042
+# good: [a6babf4cbeaaa1c97a205382cdc958571f668ea8] cred: fold get_new_cred_many() into get_cred_many()
+git bisect good a6babf4cbeaaa1c97a205382cdc958571f668ea8
+# good: [69c83fb7809ea4eb9790f9807c8a45d27ecf5089] Merge branch 'kernel-6.14.cred' into vfs.all
+git bisect good 69c83fb7809ea4eb9790f9807c8a45d27ecf5089
+# bad: [16c7220c407aecc96a844553fc4957f2b9fa570b] selftests: add tests for mntns iteration
+git bisect bad 16c7220c407aecc96a844553fc4957f2b9fa570b
+# bad: [c6c9e2bd9fe6fd2c9582b6a2e5f8c9015b1b92ff] rculist: add list_bidir_{del,prev}_rcu()
+git bisect bad c6c9e2bd9fe6fd2c9582b6a2e5f8c9015b1b92ff
+# good: [7e2578cbec19c19ee35cc25f5cf4acc0d2e5fb89] fs: add mount namespace to rbtree late
+git bisect good 7e2578cbec19c19ee35cc25f5cf4acc0d2e5fb89
+# bad: [5eda70f550d70e4bba91b41a3310cfa8b8c94067] fs: lockless mntns rbtree lookup
+git bisect bad 5eda70f550d70e4bba91b41a3310cfa8b8c94067
+# first bad commit: [5eda70f550d70e4bba91b41a3310cfa8b8c94067] fs: lockless mntns rbtree lookup

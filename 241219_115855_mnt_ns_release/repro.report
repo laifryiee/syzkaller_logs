@@ -1,0 +1,188 @@
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 13651 at fs/namespace.c:163 mnt_ns_release+0x18d/0x200 fs/namespace.c:163
+Modules linked in:
+CPU: 1 UID: 0 PID: 13651 Comm: syz-executor321 Not tainted 6.13.0-rc3-next-20241217-fdb298fa865b #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:mnt_ns_release+0x18d/0x200 fs/namespace.c:163
+Code: ff ff 48 c7 c7 30 67 29 87 e8 ff ea ac 03 bf 01 00 00 00 89 c3 89 c6 e8 91 81 7e ff 83 fb 01 0f 85 d5 fe ff ff e8 03 7e 7e ff <0f> 0b e9 c9 fe ff ff e8 f7 7d 7e ff 4c 89 ef e8 bf 90 7a ff eb 99
+RSP: 0018:ffff88806c509df8 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000001 RCX: ffffffff820995df
+RDX: ffff88801d7d8000 RSI: ffffffff820995ed RDI: 0000000000000005
+RBP: ffff88806c509e18 R08: ffff888012457c48 R09: fffffbfff15085a3
+R10: 0000000000000001 R11: 0000000000000001 R12: ffff888012457c00
+R13: ffff88806c509eb8 R14: ffffffff816e536a R15: 0000000000000002
+FS:  0000000000000000(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fd4871fca50 CR3: 0000000006e82003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <IRQ>
+ mnt_ns_release_rcu+0x1f/0x30 fs/namespace.c:178
+ rcu_do_batch kernel/rcu/tree.c:2546 [inline]
+ rcu_core+0x86c/0x1920 kernel/rcu/tree.c:2802
+ rcu_core_si+0x12/0x20 kernel/rcu/tree.c:2819
+ handle_softirqs+0x1c5/0x860 kernel/softirq.c:561
+ __do_softirq kernel/softirq.c:595 [inline]
+ invoke_softirq kernel/softirq.c:435 [inline]
+ __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+ irq_exit_rcu+0x12/0x30 kernel/softirq.c:678
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1049 [inline]
+ sysvec_apic_timer_interrupt+0xb4/0xd0 arch/x86/kernel/apic/apic.c:1049
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1f/0x30 arch/x86/include/asm/idtentry.h:702
+RIP: 0010:arch_local_irq_enable arch/x86/include/asm/paravirt.h:692 [inline]
+RIP: 0010:arch_local_irq_restore arch/x86/include/asm/irqflags.h:155 [inline]
+RIP: 0010:lock_acquire.part.0+0x30a/0x390 kernel/locking/lockdep.c:5852
+Code: 85 c0 0f 85 89 fe ff ff 49 8d 74 24 90 b9 0a 00 00 00 ba 08 00 00 00 4c 89 ef e8 01 66 ff ff e9 6d fe ff ff fb 0f 1f 44 00 00 <e9> 62 fe ff ff 0f 0b 48 c7 c7 e0 bd cb 85 e8 63 34 53 04 65 c7 05
+RSP: 0018:ffff8880152cfbc8 EFLAGS: 00000206
+RAX: 0000000000000001 RBX: 1ffff11002a59f7c RCX: 1ffff11002a59f61
+RDX: 1ffff11003afb1c8 RSI: 0000000000000001 RDI: 0000000000000000
+RBP: ffff8880152cfca8 R08: 0000000000000000 R09: fffffbfff15085a2
+R10: ffffffff8a842d17 R11: 0000000000000001 R12: 0000000000000200
+R13: 0000000000000000 R14: 0000000000000001 R15: ffffffff872966e8
+ lock_acquire+0x80/0xb0 kernel/locking/lockdep.c:5822
+ do_write_seqcount_begin_nested include/linux/seqlock.h:476 [inline]
+ do_write_seqcount_begin include/linux/seqlock.h:502 [inline]
+ write_seqlock include/linux/seqlock.h:876 [inline]
+ mnt_ns_tree_write_lock fs/namespace.c:133 [inline]
+ mnt_ns_tree_remove fs/namespace.c:185 [inline]
+ free_mnt_ns+0x136/0x260 fs/namespace.c:3911
+ put_mnt_ns fs/namespace.c:5729 [inline]
+ put_mnt_ns+0x114/0x160 fs/namespace.c:5724
+ free_nsproxy+0x53/0x470 kernel/nsproxy.c:193
+ put_nsproxy include/linux/nsproxy.h:118 [inline]
+ switch_task_namespaces+0xf4/0x110 kernel/nsproxy.c:251
+ exit_task_namespaces+0x21/0x30 kernel/nsproxy.c:256
+ do_exit+0xb0f/0x2a40 kernel/exit.c:937
+ do_group_exit+0xe4/0x2c0 kernel/exit.c:1087
+ __do_sys_exit_group kernel/exit.c:1098 [inline]
+ __se_sys_exit_group kernel/exit.c:1096 [inline]
+ __x64_sys_exit_group+0x4d/0x60 kernel/exit.c:1096
+ x64_sys_call+0xf81/0x2140 arch/x86/include/generated/asm/syscalls_64.h:232
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fd487118a4d
+Code: Unable to access opcode bytes at 0x7fd487118a23.
+RSP: 002b:00007ffd97c09998 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 00007fd4871f69e0 RCX: 00007fd487118a4d
+RDX: 00000000000000e7 RSI: ffffffffffffff80 RDI: 0000000000000000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000020
+R10: 00007ffd97c09840 R11: 0000000000000246 R12: 00007fd4871f69e0
+R13: 00007fd4871fbf00 R14: 0000000000000001 R15: 00007fd4871fbee8
+ </TASK>
+irq event stamp: 2192
+hardirqs last  enabled at (2200): [<ffffffff81662885>] __up_console_sem+0x95/0xb0 kernel/printk/printk.c:344
+hardirqs last disabled at (2207): [<ffffffff8166286a>] __up_console_sem+0x7a/0xb0 kernel/printk/printk.c:342
+softirqs last  enabled at (596): [<ffffffff8148a84e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last  enabled at (596): [<ffffffff8148a84e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last  enabled at (596): [<ffffffff8148a84e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+softirqs last disabled at (1221): [<ffffffff8148a84e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last disabled at (1221): [<ffffffff8148a84e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last disabled at (1221): [<ffffffff8148a84e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+---[ end trace 0000000000000000 ]---
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 14338 at fs/namespace.c:163 mnt_ns_release+0x18d/0x200 fs/namespace.c:163
+Modules linked in:
+CPU: 1 UID: 0 PID: 14338 Comm: syz-executor321 Tainted: G        W          6.13.0-rc3-next-20241217-fdb298fa865b #1
+Tainted: [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:mnt_ns_release+0x18d/0x200 fs/namespace.c:163
+Code: ff ff 48 c7 c7 30 67 29 87 e8 ff ea ac 03 bf 01 00 00 00 89 c3 89 c6 e8 91 81 7e ff 83 fb 01 0f 85 d5 fe ff ff e8 03 7e 7e ff <0f> 0b e9 c9 fe ff ff e8 f7 7d 7e ff 4c 89 ef e8 bf 90 7a ff eb 99
+RSP: 0018:ffff88806c509df8 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000001 RCX: ffffffff820995df
+RDX: ffff888012244a00 RSI: ffffffff820995ed RDI: 0000000000000005
+RBP: ffff88806c509e18 R08: ffff888027e03c48 R09: fffffbfff15085a3
+R10: 0000000000000001 R11: 0000000000000001 R12: ffff888027e03c00
+R13: ffff88806c509eb8 R14: ffffffff816e536a R15: 0000000000000003
+FS:  0000000000000000(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fd4871fca50 CR3: 0000000006e82002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <IRQ>
+ mnt_ns_release_rcu+0x1f/0x30 fs/namespace.c:178
+ rcu_do_batch kernel/rcu/tree.c:2546 [inline]
+ rcu_core+0x86c/0x1920 kernel/rcu/tree.c:2802
+ rcu_core_si+0x12/0x20 kernel/rcu/tree.c:2819
+ handle_softirqs+0x1c5/0x860 kernel/softirq.c:561
+ __do_softirq kernel/softirq.c:595 [inline]
+ invoke_softirq kernel/softirq.c:435 [inline]
+ __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+ irq_exit_rcu+0x12/0x30 kernel/softirq.c:678
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1049 [inline]
+ sysvec_apic_timer_interrupt+0xb4/0xd0 arch/x86/kernel/apic/apic.c:1049
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1f/0x30 arch/x86/include/asm/idtentry.h:702
+RIP: 0010:lock_release+0x46a/0x870 kernel/locking/lockdep.c:5857
+Code: 04 b8 ff ff ff ff 65 0f c1 05 fa c1 9f 7e 83 f8 01 0f 85 6a 01 00 00 48 f7 85 50 ff ff ff 00 02 00 00 74 06 fb 0f 1f 44 00 00 <48> b8 00 00 00 00 00 fc ff df 48 01 c3 48 c7 03 00 00 00 00 c7 43
+RSP: 0018:ffff888014397c30 EFLAGS: 00000206
+RAX: 0000000000000001 RBX: 1ffff11002872f8a RCX: 1ffff11002448b0e
+RDX: 1ffff11002448b07 RSI: 0000000000000001 RDI: 0000000000000000
+RBP: ffff888014397cf8 R08: 0000000000000001 R09: 0000000000000002
+R10: ffff888012245840 R11: 0000000000000001 R12: 0000000000000001
+R13: 4db5f23a82cf2124 R14: ffff888014397cd0 R15: ffff888012244a00
+ do_write_seqcount_end include/linux/seqlock.h:522 [inline]
+ write_sequnlock include/linux/seqlock.h:888 [inline]
+ mnt_ns_tree_write_unlock fs/namespace.c:138 [inline]
+ mnt_ns_tree_remove fs/namespace.c:188 [inline]
+ free_mnt_ns+0x1ed/0x260 fs/namespace.c:3911
+ put_mnt_ns fs/namespace.c:5729 [inline]
+ put_mnt_ns+0x114/0x160 fs/namespace.c:5724
+ free_nsproxy+0x53/0x470 kernel/nsproxy.c:193
+ put_nsproxy include/linux/nsproxy.h:118 [inline]
+ switch_task_namespaces+0xf4/0x110 kernel/nsproxy.c:251
+ exit_task_namespaces+0x21/0x30 kernel/nsproxy.c:256
+ do_exit+0xb0f/0x2a40 kernel/exit.c:937
+ do_group_exit+0xe4/0x2c0 kernel/exit.c:1087
+ __do_sys_exit_group kernel/exit.c:1098 [inline]
+ __se_sys_exit_group kernel/exit.c:1096 [inline]
+ __x64_sys_exit_group+0x4d/0x60 kernel/exit.c:1096
+ x64_sys_call+0xf81/0x2140 arch/x86/include/generated/asm/syscalls_64.h:232
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fd487118a4d
+Code: Unable to access opcode bytes at 0x7fd487118a23.
+RSP: 002b:00007ffd97c09998 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 00007fd4871f69e0 RCX: 00007fd487118a4d
+RDX: 00000000000000e7 RSI: ffffffffffffff80 RDI: 0000000000000000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000020
+R10: 00007ffd97c09840 R11: 0000000000000246 R12: 00007fd4871f69e0
+R13: 00007fd4871fbf00 R14: 0000000000000001 R15: 00007fd4871fbee8
+ </TASK>
+irq event stamp: 2180
+hardirqs last  enabled at (2188): [<ffffffff81662885>] __up_console_sem+0x95/0xb0 kernel/printk/printk.c:344
+hardirqs last disabled at (2195): [<ffffffff8166286a>] __up_console_sem+0x7a/0xb0 kernel/printk/printk.c:342
+softirqs last  enabled at (598): [<ffffffff8148a84e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last  enabled at (598): [<ffffffff8148a84e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last  enabled at (598): [<ffffffff8148a84e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+softirqs last disabled at (1229): [<ffffffff8148a84e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last disabled at (1229): [<ffffffff8148a84e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last disabled at (1229): [<ffffffff8148a84e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+---[ end trace 0000000000000000 ]---
+----------------
+Code disassembly (best guess):
+   0:	85 c0                	test   %eax,%eax
+   2:	0f 85 89 fe ff ff    	jne    0xfffffe91
+   8:	49 8d 74 24 90       	lea    -0x70(%r12),%rsi
+   d:	b9 0a 00 00 00       	mov    $0xa,%ecx
+  12:	ba 08 00 00 00       	mov    $0x8,%edx
+  17:	4c 89 ef             	mov    %r13,%rdi
+  1a:	e8 01 66 ff ff       	callq  0xffff6620
+  1f:	e9 6d fe ff ff       	jmpq   0xfffffe91
+  24:	fb                   	sti
+  25:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+* 2a:	e9 62 fe ff ff       	jmpq   0xfffffe91 <-- trapping instruction
+  2f:	0f 0b                	ud2
+  31:	48 c7 c7 e0 bd cb 85 	mov    $0xffffffff85cbbde0,%rdi
+  38:	e8 63 34 53 04       	callq  0x45334a0
+  3d:	65                   	gs
+  3e:	c7                   	.byte 0xc7
+  3f:	05                   	.byte 0x5
