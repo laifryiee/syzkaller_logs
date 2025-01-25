@@ -1,0 +1,37 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [f066b5a6c7a06adfb666b7652cc99b4ff264f4ed] Add linux-next specific files for 20250121
+git bisect bad f066b5a6c7a06adfb666b7652cc99b4ff264f4ed
+# status: waiting for good commit(s), bad commit known
+# good: [ffd294d346d185b70e28b1a28abe367bbfe53c04] Linux 6.13
+git bisect good ffd294d346d185b70e28b1a28abe367bbfe53c04
+# bad: [8367e7b8b7e47b15181562630ab2ba5837ad2d48] Merge branch 'main' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
+git bisect bad 8367e7b8b7e47b15181562630ab2ba5837ad2d48
+# good: [17fc52d9c3fde5ffa70e30eef640f07e8d27aa02] Merge branch 'clk-next' of git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git
+git bisect good 17fc52d9c3fde5ffa70e30eef640f07e8d27aa02
+# good: [66cc61a25c7dd64489e0b7d160e3de513fbaca8c] Merge tag 'wireless-next-2025-01-17' of git://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless-next
+git bisect good 66cc61a25c7dd64489e0b7d160e3de513fbaca8c
+# bad: [93d9c88c16c52002c467534a38cb7c1054398eb6] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git
+git bisect bad 93d9c88c16c52002c467534a38cb7c1054398eb6
+# bad: [97101aaa2d6b53a3650bd8babe60bb380b81540b] Merge branch 'for-next' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux.git
+git bisect bad 97101aaa2d6b53a3650bd8babe60bb380b81540b
+# good: [611bd0f836c176e3e9177384a665dc68af06ac9b] Merge branch 'linux-next' of git://git.linux-nfs.org/projects/anna/linux-nfs.git
+git bisect good 611bd0f836c176e3e9177384a665dc68af06ac9b
+# good: [155debbe7e627baf6439e75f15856d40ec115c5d] xfs: enable realtime reflink
+git bisect good 155debbe7e627baf6439e75f15856d40ec115c5d
+# good: [89007859501944d18b56763edc843ec32a3bce5a] Merge branch 'master' of https://github.com/Paragon-Software-Group/linux-ntfs3.git
+git bisect good 89007859501944d18b56763edc843ec32a3bce5a
+# good: [72842dbc2b81c4a43203b47b1d4c1ec2aa508020] xfs: remove xfs_buf_delwri_submit_buffers
+git bisect good 72842dbc2b81c4a43203b47b1d4c1ec2aa508020
+# good: [c873f5466c8307ff1b3c9eda0952ed7ffb92f09c] Merge branch '9p-next' of git://github.com/martinetd/linux
+git bisect good c873f5466c8307ff1b3c9eda0952ed7ffb92f09c
+# good: [819f29cc7be6a9d949e017ca3f5ccc772a80daef] xfs: always complete the buffer inline in xfs_buf_submit
+git bisect good 819f29cc7be6a9d949e017ca3f5ccc772a80daef
+# good: [4e35be63c4ad880c3dba12a287a0ea196541258e] xfs: add a b_iodone callback to struct xfs_buf
+git bisect good 4e35be63c4ad880c3dba12a287a0ea196541258e
+# bad: [ee10f6fcdb961e810d7b16be1285319c15c78ef6] xfs: fix buffer lookup vs release race
+git bisect bad ee10f6fcdb961e810d7b16be1285319c15c78ef6
+# good: [07eae0fa67ca4bbb199ad85645e0f9dfaef931cd] xfs: check for dead buffers in xfs_buf_find_insert
+git bisect good 07eae0fa67ca4bbb199ad85645e0f9dfaef931cd
+# first bad commit: [ee10f6fcdb961e810d7b16be1285319c15c78ef6] xfs: fix buffer lookup vs release race
+|0124_224920|Bisect successfully! f066b5a6c7a06adfb666b7652cc99b4ff264f4ed_ee10f6fcdb961e810d7b16be1285319c15c78ef6_revert bzimage passed!|

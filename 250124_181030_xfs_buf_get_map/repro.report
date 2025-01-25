@@ -1,0 +1,612 @@
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+======================================================
+WARNING: possible circular locking dependency detected
+6.13.0-next-20250121-f066b5a6c7a0-dirty #1 Not tainted
+------------------------------------------------------
+syz-executor357/1116 is trying to acquire lock:
+ffff8880290fe7a0 (&bp->b_lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:351 [inline]
+ffff8880290fe7a0 (&bp->b_lock){+.+.}-{3:3}, at: xfs_buf_try_hold fs/xfs/xfs_buf.c:578 [inline]
+ffff8880290fe7a0 (&bp->b_lock){+.+.}-{3:3}, at: xfs_buf_find_insert fs/xfs/xfs_buf.c:663 [inline]
+ffff8880290fe7a0 (&bp->b_lock){+.+.}-{3:3}, at: xfs_buf_get_map+0x1ba3/0x2fb0 fs/xfs/xfs_buf.c:754
+
+but task is already holding lock:
+ffff8880154f4180 (&bch->bc_lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:351 [inline]
+ffff8880154f4180 (&bch->bc_lock){+.+.}-{3:3}, at: xfs_buf_find_insert fs/xfs/xfs_buf.c:655 [inline]
+ffff8880154f4180 (&bch->bc_lock){+.+.}-{3:3}, at: xfs_buf_get_map+0x156f/0x2fb0 fs/xfs/xfs_buf.c:754
+
+which lock already depends on the new lock.
+
+
+the existing dependency chain (in reverse order) is:
+
+-> #1 (&bch->bc_lock){+.+.}-{3:3}:
+       __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+       _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+       spin_lock include/linux/spinlock.h:351 [inline]
+       xfs_buf_rele_cached fs/xfs/xfs_buf.c:1093 [inline]
+       xfs_buf_rele+0x2c1/0x1670 fs/xfs/xfs_buf.c:1147
+       xfs_buf_relse fs/xfs/xfs_buf.h:311 [inline]
+       xfs_trans_brelse+0x385/0x410 fs/xfs/xfs_trans_buf.c:369
+       xfs_imap_lookup+0x38d/0x5a0 fs/xfs/libxfs/xfs_ialloc.c:2431
+       xfs_imap+0x668/0xc80 fs/xfs/libxfs/xfs_ialloc.c:2514
+       xfs_iget_cache_miss fs/xfs/xfs_icache.c:644 [inline]
+       xfs_iget+0x875/0x2dd0 fs/xfs/xfs_icache.c:806
+       xfs_mountfs+0x121d/0x2130 fs/xfs/xfs_mount.c:933
+       xfs_fs_fill_super+0x12bb/0x1ed0 fs/xfs/xfs_super.c:1813
+       get_tree_bdev_flags+0x3d8/0x6c0 fs/super.c:1636
+       get_tree_bdev+0x29/0x40 fs/super.c:1659
+       xfs_fs_get_tree+0x26/0x30 fs/xfs/xfs_super.c:1860
+       vfs_get_tree+0x9e/0x390 fs/super.c:1814
+       do_new_mount fs/namespace.c:3560 [inline]
+       path_mount+0x707/0x2000 fs/namespace.c:3887
+       do_mount fs/namespace.c:3900 [inline]
+       __do_sys_mount fs/namespace.c:4111 [inline]
+       __se_sys_mount fs/namespace.c:4088 [inline]
+       __x64_sys_mount+0x2a8/0x330 fs/namespace.c:4088
+       x64_sys_call+0x1e1d/0x2140 arch/x86/include/generated/asm/syscalls_64.h:166
+       do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+       do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+       entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+-> #0 (&bp->b_lock){+.+.}-{3:3}:
+       check_prev_add kernel/locking/lockdep.c:3163 [inline]
+       check_prevs_add kernel/locking/lockdep.c:3282 [inline]
+       validate_chain kernel/locking/lockdep.c:3906 [inline]
+       __lock_acquire+0x2ff8/0x5d60 kernel/locking/lockdep.c:5228
+       lock_acquire kernel/locking/lockdep.c:5851 [inline]
+       lock_acquire+0x1bd/0x550 kernel/locking/lockdep.c:5816
+       __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+       _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+       spin_lock include/linux/spinlock.h:351 [inline]
+       xfs_buf_try_hold fs/xfs/xfs_buf.c:578 [inline]
+       xfs_buf_find_insert fs/xfs/xfs_buf.c:663 [inline]
+       xfs_buf_get_map+0x1ba3/0x2fb0 fs/xfs/xfs_buf.c:754
+       xfs_buf_read_map+0xe8/0xaa0 fs/xfs/xfs_buf.c:862
+       xfs_trans_read_buf_map+0x12f/0x990 fs/xfs/xfs_trans_buf.c:304
+       xfs_trans_read_buf fs/xfs/xfs_trans.h:212 [inline]
+       xfs_read_agf+0x259/0x5a0 fs/xfs/libxfs/xfs_alloc.c:3378
+       xfs_alloc_read_agf+0x127/0xb50 fs/xfs/libxfs/xfs_alloc.c:3413
+       xfs_trim_gather_extents fs/xfs/xfs_discard.c:203 [inline]
+       xfs_trim_perag_extents fs/xfs/xfs_discard.c:374 [inline]
+       xfs_trim_datadev_extents fs/xfs/xfs_discard.c:429 [inline]
+       xfs_ioc_trim+0x1369/0x22f0 fs/xfs/xfs_discard.c:887
+       xfs_file_ioctl+0x18a0/0x2270 fs/xfs/xfs_ioctl.c:1199
+       vfs_ioctl fs/ioctl.c:51 [inline]
+       __do_sys_ioctl fs/ioctl.c:906 [inline]
+       __se_sys_ioctl fs/ioctl.c:892 [inline]
+       __x64_sys_ioctl+0x1ba/0x220 fs/ioctl.c:892
+       x64_sys_call+0x1227/0x2140 arch/x86/include/generated/asm/syscalls_64.h:17
+       do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+       do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+       entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+other info that might help us debug this:
+
+ Possible unsafe locking scenario:
+
+       CPU0                    CPU1
+       ----                    ----
+  lock(&bch->bc_lock);
+                               lock(&bp->b_lock);
+                               lock(&bch->bc_lock);
+  lock(&bp->b_lock);
+
+ *** DEADLOCK ***
+
+1 lock held by syz-executor357/1116:
+ #0: ffff8880154f4180 (&bch->bc_lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:351 [inline]
+ #0: ffff8880154f4180 (&bch->bc_lock){+.+.}-{3:3}, at: xfs_buf_find_insert fs/xfs/xfs_buf.c:655 [inline]
+ #0: ffff8880154f4180 (&bch->bc_lock){+.+.}-{3:3}, at: xfs_buf_get_map+0x156f/0x2fb0 fs/xfs/xfs_buf.c:754
+
+stack backtrace:
+CPU: 1 UID: 0 PID: 1116 Comm: syz-executor357 Not tainted 6.13.0-next-20250121-f066b5a6c7a0-dirty #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ print_circular_bug+0x47f/0x750 kernel/locking/lockdep.c:2076
+ check_noncircular+0x2f4/0x3e0 kernel/locking/lockdep.c:2208
+ check_prev_add kernel/locking/lockdep.c:3163 [inline]
+ check_prevs_add kernel/locking/lockdep.c:3282 [inline]
+ validate_chain kernel/locking/lockdep.c:3906 [inline]
+ __lock_acquire+0x2ff8/0x5d60 kernel/locking/lockdep.c:5228
+ lock_acquire kernel/locking/lockdep.c:5851 [inline]
+ lock_acquire+0x1bd/0x550 kernel/locking/lockdep.c:5816
+ __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+ _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+ spin_lock include/linux/spinlock.h:351 [inline]
+ xfs_buf_try_hold fs/xfs/xfs_buf.c:578 [inline]
+ xfs_buf_find_insert fs/xfs/xfs_buf.c:663 [inline]
+ xfs_buf_get_map+0x1ba3/0x2fb0 fs/xfs/xfs_buf.c:754
+ xfs_buf_read_map+0xe8/0xaa0 fs/xfs/xfs_buf.c:862
+ xfs_trans_read_buf_map+0x12f/0x990 fs/xfs/xfs_trans_buf.c:304
+ xfs_trans_read_buf fs/xfs/xfs_trans.h:212 [inline]
+ xfs_read_agf+0x259/0x5a0 fs/xfs/libxfs/xfs_alloc.c:3378
+ xfs_alloc_read_agf+0x127/0xb50 fs/xfs/libxfs/xfs_alloc.c:3413
+ xfs_trim_gather_extents fs/xfs/xfs_discard.c:203 [inline]
+ xfs_trim_perag_extents fs/xfs/xfs_discard.c:374 [inline]
+ xfs_trim_datadev_extents fs/xfs/xfs_discard.c:429 [inline]
+ xfs_ioc_trim+0x1369/0x22f0 fs/xfs/xfs_discard.c:887
+ xfs_file_ioctl+0x18a0/0x2270 fs/xfs/xfs_ioctl.c:1199
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:906 [inline]
+ __se_sys_ioctl fs/ioctl.c:892 [inline]
+ __x64_sys_ioctl+0x1ba/0x220 fs/ioctl.c:892
+ x64_sys_call+0x1227/0x2140 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fce9463ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fce949d5e38 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00000000004114d8 RCX: 00007fce9463ee5d
+RDX: 0000000020000000 RSI: 00000000c0185879 RDI: 0000000000000004
+RBP: 00000000004114d0 R08: 00007ffc484ddfaf R09: 00007fce949d6640
+R10: 0000000000000000 R11: 0000000000000246 R12: 0031656c69662f2e
+R13: 0000000000000006 R14: 00007fce9469f560 R15: 0000000000000000
+ </TASK>
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+loop0: detected capacity change from 0 to 65536
+XFS (loop0): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop0): Ending clean mount
+XFS (loop0): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
