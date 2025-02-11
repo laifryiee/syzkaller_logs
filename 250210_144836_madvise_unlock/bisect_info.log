@@ -1,0 +1,33 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [df5d6180169ae06a2eac57e33b077ad6f6252440] Add linux-next specific files for 20250210
+git bisect bad df5d6180169ae06a2eac57e33b077ad6f6252440
+# status: waiting for good commit(s), bad commit known
+# good: [a64dcfb451e254085a7daee5fe51bf22959d52d3] Linux 6.14-rc2
+git bisect good a64dcfb451e254085a7daee5fe51bf22959d52d3
+# bad: [045cdeb6e813195d6314df60cf8da35e13918909] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless-next.git
+git bisect bad 045cdeb6e813195d6314df60cf8da35e13918909
+# bad: [64f138f53e2a1b21cd88a49b3505b9dbc3f5c916] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/geert/linux-m68k.git
+git bisect bad 64f138f53e2a1b21cd88a49b3505b9dbc3f5c916
+# bad: [eea451e3e130e787a6acf15736b8b46ffd9af3f9] Merge branch 'mm-everything' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+git bisect bad eea451e3e130e787a6acf15736b8b46ffd9af3f9
+# good: [2e0e56a1c54f1148b0d53f382a1fa115cf13c442] Merge branch 'urgent' of git://git.kernel.org/pub/scm/linux/kernel/git/efi/efi.git
+git bisect good 2e0e56a1c54f1148b0d53f382a1fa115cf13c442
+# bad: [7f3085bfcfa2c04f3e833d492ee0989e405d3571] mm/hugetlb: remove redundant __ClearPageReserved
+git bisect bad 7f3085bfcfa2c04f3e833d492ee0989e405d3571
+# good: [0d4c8cf7c76aa8c2725e2e7f0e4c504b8cef8304] fs/dax: always remove DAX page-cache entries when breaking layouts
+git bisect good 0d4c8cf7c76aa8c2725e2e7f0e4c504b8cef8304
+# bad: [ec6d101ee12d0c08387da3f83ef76eea830d6eb3] mm/swap_state.c: optimize the code in clear_shadow_from_swap_cache()
+git bisect bad ec6d101ee12d0c08387da3f83ef76eea830d6eb3
+# good: [ab79819e5bab002356d69cad60f51b8ccd22e6fc] mm/gup: don't allow FOLL_LONGTERM pinning of FS DAX pages
+git bisect good ab79819e5bab002356d69cad60f51b8ccd22e6fc
+# good: [a4d5a73cdc1467a40fd90376a52fbd14d5bbf8c5] mm/madvise: split out madvise input validity check
+git bisect good a4d5a73cdc1467a40fd90376a52fbd14d5bbf8c5
+# bad: [415553982a1ed7cacb4b24f8cb6e617544838e6f] mm-madvise-remove-redundant-mmap_lock-operations-from-process_madvise-fix
+git bisect bad 415553982a1ed7cacb4b24f8cb6e617544838e6f
+# bad: [ec68fbd9e99f7d320bc7e949df36ad93ac16a141] mm/madvise: remove redundant mmap_lock operations from process_madvise()
+git bisect bad ec68fbd9e99f7d320bc7e949df36ad93ac16a141
+# good: [f19c9d7b57cf13a0b1c6cc30411ff563368cdfc7] mm/madvise: split out madvise() behavior execution
+git bisect good f19c9d7b57cf13a0b1c6cc30411ff563368cdfc7
+# first bad commit: [ec68fbd9e99f7d320bc7e949df36ad93ac16a141] mm/madvise: remove redundant mmap_lock operations from process_madvise()
+|0211_011056|Bisect successfully! df5d6180169ae06a2eac57e33b077ad6f6252440_ec68fbd9e99f7d320bc7e949df36ad93ac16a141_revert bzimage passed!|

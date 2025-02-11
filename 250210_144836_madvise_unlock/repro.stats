@@ -1,0 +1,499 @@
+Extracting prog: 3m35.593456071s
+Minimizing prog: 3m55.923767117s
+Simplifying prog options: 0s
+Extracting C: 25.712849872s
+Simplifying C: 1m23.834526832s
+
+
+40 programs, 3 VMs, timeouts [15s 1m40s 6m0s]
+extracting reproducer from 10 programs
+single: executing 3 programs separately with timeout 15s
+testing program (duration=15s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): creat-perf_event_open-socket$netlink-setsockopt$netlink_NETLINK_ADD_MEMBERSHIP-getsockopt$netlink
+detailed listing:
+executing program 0:
+creat(0x0, 0x0)
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5, 0x2, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={0x0}}, 0x0, 0x0, 0xffffffffffffffff, 0x0)
+r0 = socket$netlink(0x10, 0x3, 0x0)
+setsockopt$netlink_NETLINK_ADD_MEMBERSHIP(r0, 0x10e, 0x1, 0x0, 0x0)
+getsockopt$netlink(r0, 0x10e, 0x9, &(0x7f00000017c0)=""/4105, &(0x7f00000000c0)=0x1009)
+
+program did not crash
+testing program (duration=15s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_procfs-madvise-madvise-move_pages
+detailed listing:
+executing program 0:
+syz_open_procfs(0x0, 0x0)
+madvise(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0xe)
+madvise(&(0x7f0000e7f000/0x4000)=nil, 0x4000, 0x64)
+move_pages(0x0, 0x1, &(0x7f00000000c0)=[&(0x7f0000ffc000/0x3000)=nil], 0x0, &(0x7f0000000140), 0x0)
+
+program did not crash
+testing program (duration=15s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_mount_image$ext4-openat-mount$tmpfs-socket$nl_route-sendmsg$nl_route-perf_event_open-openat$sw_sync-ioctl$SW_SYNC_IOC_CREATE_FENCE-openat$sw_sync-ioctl$SW_SYNC_IOC_CREATE_FENCE-ioctl$SYNC_IOC_MERGE-ioctl$SCSI_IOCTL_SEND_COMMAND-poll-dup2
+detailed listing:
+executing program 0:
+syz_mount_image$ext4(&(0x7f00000004c0)='ext4\x00', &(0x7f00000000c0)='./file0\x00', 0x810002, &(0x7f00000003c0)=ANY=[@ANYRES64=0x0, @ANYRES16, @ANYRESHEX, @ANYRES64, @ANYRES16], 0x9, 0x4d6, &(0x7f0000000500)="$eJzs3c9vFG8ZAPBntt1aSr+232gi6kECaDGm2x9QAnoA48GDISHyB5Dabpum227T3SJteigx0YMHLySYePLuzRiu/AMkelLD3UQTVKgHjJoxs51CKdsfhHZXdz+f5GXmndnZ53mX3bfzzrvZCaBrnY+IWxHRExFfj4ihfHshL7G1U7LHvXq5ObP9cnMmiTS9+7ekcUy2bfe5knx5Nj+sPyK+/92IHyTvx62tbyxOVyrl1bw+Vl9aGautb4wuLE3Pl+fLy1euXpu6fmNyfGLqZBraH7F24TdPnj26/ZNffWd0/Hc//uezLK1L+e697ThJO00vNl6LHQ+jNyJWTyNYG/Tky2Kb8wAA4Hiyc/ybEXGhcf4/FD2Ns1MAAACgk6Q3B+PfSUQKAAAAdKxCRAxGUijl3wUYjEKhVIroi4jPx0ChUq3VvzFXXVuezfZFDEexMLdQKY/n3xUejmKS1Sca62/rk/vqVyLi04h4NHSmUS/NVCuz7b74AQAAAF3i7L7x/z+Gdsb/AAAAQIcZbncCAAAAwKkz/gcAAIDOZ/wPAAAAHe3O7dtZSbfz+1/P3l9fW6zeH50t1xZLS2szpZnq6kppvlqdb/xm39JRz1epVleuxvLag7F6uVYfq61v3Fuqri3X7zXu632v7D7RAAAA0HqffuXpH5OI2PrmmUbJ9OX7jNWhsxU++IjkVPIAWq+n3QkAbdPb7gSAtjHGB44a1fcftOO3J58LAABwOka+aP4futWHz/8DncL8P3Svo+f/H/W1JBGg5YpG+dD1zP8DAEDnG2yUpFBqzAWm/0rTQqFUivikcVuAYjK3UCmPR8RnI+IPQ8XPZPWJdicNAAAAAAAAAAAAAAAAAAAAAAAAAP9n0jSJFAAAAOhoEYW/JPn9v0aGLg3uvz7Ql7weaiwj4oe/uPv4wXS9vjqRbf/7m+31n+fbJ9txBQMAAADYb3ecvjuOBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICT9Orl5sxuaWXcF9+OiOGd+Nt52dnTG/2NZX8UI2JgO4nePcclEdFzAvG3HkbEuWbtT7K0YjjPYn/8QkScaW38vv3xz55AfOhmT7P+51azz18hzjeWzT//vXn5WLv93/Z7/V/hTf/Xc0D/98kxY/z+13+9fmD8hxFf6m0WP3kTP4s1MNH/znHZtovHjP/liZ89P2hf+suIkTsR0ST+3lhj9aWVsdr6xujC0vR8eb68fOXqtanrNybHJ6bG5hYq5fGdf5vG+N63frR8WPsHonn7h/e2v8nrf+md2sFefOE/f/7cIfEvX2z+/3/ukPjZe+KreeTsb8HX8mVWH9kXY/Onjw98q2TxZw9of/8R7b98aKvfev7kT6+P+VAAoAVq6xuL05VKebW7VmIr4n8gDStWTmclTdP0456n3T0TAABw0t6e9Lc7EwAAAAAAAAAAAAAAAAAAAOherfg1sna3EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgOP4bAAD//92P2p0=")
+openat(0xffffffffffffff9c, 0x0, 0x125042, 0x0)
+mount$tmpfs(0x0, 0x0, 0x0, 0x0, 0x0)
+socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(0xffffffffffffffff, &(0x7f0000000280)={0x0, 0x0, &(0x7f00000002c0)={&(0x7f00000003c0)=@ipv6_newaddrlabel={0x1c, 0x48, 0x1}, 0x1c}}, 0x0)
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5d, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_config_ext}, 0x0, 0x0, 0xffffffffffffffff, 0x0)
+r0 = openat$sw_sync(0xffffffffffffff9c, &(0x7f0000000180), 0x0, 0x0)
+ioctl$SW_SYNC_IOC_CREATE_FENCE(r0, 0xc0285700, &(0x7f00000001c0)={0x0, "562723ed1347ba960cc6db0a70f2f364e5537d8efd1bf30ea7b9dd89638c5c18", <r1=>0xffffffffffffffff})
+r2 = openat$sw_sync(0xffffffffffffff9c, &(0x7f0000000180), 0x0, 0x0)
+ioctl$SW_SYNC_IOC_CREATE_FENCE(r2, 0xc0285700, &(0x7f00000001c0)={0x7, "562723ed1347ba960cc6db0a70f2f364e5537d8efd1bf30ea7b9dd89638c5c18", <r3=>0xffffffffffffffff})
+ioctl$SYNC_IOC_MERGE(r1, 0xc0303e03, &(0x7f0000000100)={"fbba6a4416a3db796fb73a68e230000000000000e1602415b9399762a5670190", r3})
+ioctl$SCSI_IOCTL_SEND_COMMAND(0xffffffffffffffff, 0x1, &(0x7f0000000300)=ANY=[])
+poll(&(0x7f0000000080), 0xd2, 0x0)
+dup2(r0, r2)
+
+program did not crash
+single: failed to extract reproducer
+bisect: bisecting 10 programs with base timeout 15s
+testing program (duration=17s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): [5, 2, 2, 2, 5, 4, 3, 14, 4, 5]
+detailed listing:
+executing program 2:
+bpf$BPF_PROG_RAW_TRACEPOINT_LOAD(0x5, 0x0, 0x0)
+r0 = socket$inet_udp(0x2, 0x2, 0x0)
+bind$inet(r0, &(0x7f0000000040)={0x2, 0x4e20, @empty}, 0x10)
+r1 = socket$inet6_udp(0xa, 0x2, 0x0)
+bind$inet6(r1, &(0x7f0000000000)={0xa, 0x4e20, 0x0, @loopback}, 0x1c)
+executing program 2:
+r0 = socket(0x2, 0x3, 0x7)
+sendto$packet(r0, 0x0, 0xe0, 0x0, &(0x7f0000000100)={0x2}, 0x14)
+executing program 2:
+r0 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r0, &(0x7f0000000c00)={0x0, 0x0, &(0x7f0000000bc0)={&(0x7f0000000b80)=@ipv4_getroute={0x1c, 0x1a, 0x1, 0x0, 0x0, {0x2, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x100}}, 0x1c}}, 0x0)
+executing program 2:
+r0 = openat$procfs(0xffffffffffffff9c, &(0x7f0000000000)='/proc/mdstat\x00', 0x0, 0x0)
+ppoll(&(0x7f00000001c0)=[{r0}], 0x1, &(0x7f0000000240)={0x0, 0x989680}, 0x0, 0x0)
+executing program 2:
+socketpair$unix(0x1, 0x2, 0x0, &(0x7f0000000000)={0xffffffffffffffff, <r0=>0xffffffffffffffff})
+bind$unix(r0, &(0x7f0000000180)=@file={0x1, './file0\x00'}, 0x6e)
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5d, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_config_ext}, 0x0, 0x0, 0xffffffffffffffff, 0x0)
+socketpair$unix(0x1, 0x2, 0x0, &(0x7f0000000000)={0xffffffffffffffff, <r1=>0xffffffffffffffff})
+connect$unix(r1, &(0x7f0000003540)=@file={0x1, './file0\x00'}, 0x6e)
+executing program 2:
+r0 = gettid()
+msgget$private(0x0, 0x0)
+msgrcv(0x0, 0x0, 0x0, 0x0, 0x2000)
+tkill(r0, 0x21)
+executing program 3:
+r0 = getpid()
+r1 = syz_pidfd_open(r0, 0x0)
+process_madvise(r1, &(0x7f0000001680)=[{&(0x7f0000000200)="e5", 0x1}], 0x1, 0x5e69bee0e1e66e5f, 0x0)
+executing program 0:
+syz_mount_image$ext4(&(0x7f00000004c0)='ext4\x00', &(0x7f00000000c0)='./file0\x00', 0x810002, &(0x7f00000003c0)=ANY=[@ANYRES64=0x0, @ANYRES16, @ANYRESHEX, @ANYRES64, @ANYRES16], 0x9, 0x4d6, &(0x7f0000000500)="$eJzs3c9vFG8ZAPBntt1aSr+232gi6kECaDGm2x9QAnoA48GDISHyB5Dabpum227T3SJteigx0YMHLySYePLuzRiu/AMkelLD3UQTVKgHjJoxs51CKdsfhHZXdz+f5GXmndnZ53mX3bfzzrvZCaBrnY+IWxHRExFfj4ihfHshL7G1U7LHvXq5ObP9cnMmiTS9+7ekcUy2bfe5knx5Nj+sPyK+/92IHyTvx62tbyxOVyrl1bw+Vl9aGautb4wuLE3Pl+fLy1euXpu6fmNyfGLqZBraH7F24TdPnj26/ZNffWd0/Hc//uezLK1L+e697ThJO00vNl6LHQ+jNyJWTyNYG/Tky2Kb8wAA4Hiyc/ybEXGhcf4/FD2Ns1MAAACgk6Q3B+PfSUQKAAAAdKxCRAxGUijl3wUYjEKhVIroi4jPx0ChUq3VvzFXXVuezfZFDEexMLdQKY/n3xUejmKS1Sca62/rk/vqVyLi04h4NHSmUS/NVCuz7b74AQAAAF3i7L7x/z+Gdsb/AAAAQIcZbncCAAAAwKkz/gcAAIDOZ/wPAAAAHe3O7dtZSbfz+1/P3l9fW6zeH50t1xZLS2szpZnq6kppvlqdb/xm39JRz1epVleuxvLag7F6uVYfq61v3Fuqri3X7zXu632v7D7RAAAA0HqffuXpH5OI2PrmmUbJ9OX7jNWhsxU++IjkVPIAWq+n3QkAbdPb7gSAtjHGB44a1fcftOO3J58LAABwOka+aP4futWHz/8DncL8P3Svo+f/H/W1JBGg5YpG+dD1zP8DAEDnG2yUpFBqzAWm/0rTQqFUivikcVuAYjK3UCmPR8RnI+IPQ8XPZPWJdicNAAAAAAAAAAAAAAAAAAAAAAAAAP9n0jSJFAAAAOhoEYW/JPn9v0aGLg3uvz7Ql7weaiwj4oe/uPv4wXS9vjqRbf/7m+31n+fbJ9txBQMAAADYb3ecvjuOBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICT9Orl5sxuaWXcF9+OiOGd+Nt52dnTG/2NZX8UI2JgO4nePcclEdFzAvG3HkbEuWbtT7K0YjjPYn/8QkScaW38vv3xz55AfOhmT7P+51azz18hzjeWzT//vXn5WLv93/Z7/V/hTf/Xc0D/98kxY/z+13+9fmD8hxFf6m0WP3kTP4s1MNH/znHZtovHjP/liZ89P2hf+suIkTsR0ST+3lhj9aWVsdr6xujC0vR8eb68fOXqtanrNybHJ6bG5hYq5fGdf5vG+N63frR8WPsHonn7h/e2v8nrf+md2sFefOE/f/7cIfEvX2z+/3/ukPjZe+KreeTsb8HX8mVWH9kXY/Onjw98q2TxZw9of/8R7b98aKvfev7kT6+P+VAAoAVq6xuL05VKebW7VmIr4n8gDStWTmclTdP0456n3T0TAABw0t6e9Lc7EwAAAAAAAAAAAAAAAAAAAOherfg1sna3EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgOP4bAAD//92P2p0=")
+openat(0xffffffffffffff9c, 0x0, 0x125042, 0x0)
+mount$tmpfs(0x0, 0x0, 0x0, 0x0, 0x0)
+socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(0xffffffffffffffff, &(0x7f0000000280)={0x0, 0x0, &(0x7f00000002c0)={&(0x7f00000003c0)=@ipv6_newaddrlabel={0x1c, 0x48, 0x1}, 0x1c}}, 0x0)
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5d, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_config_ext}, 0x0, 0x0, 0xffffffffffffffff, 0x0)
+r0 = openat$sw_sync(0xffffffffffffff9c, &(0x7f0000000180), 0x0, 0x0)
+ioctl$SW_SYNC_IOC_CREATE_FENCE(r0, 0xc0285700, &(0x7f00000001c0)={0x0, "562723ed1347ba960cc6db0a70f2f364e5537d8efd1bf30ea7b9dd89638c5c18", <r1=>0xffffffffffffffff})
+r2 = openat$sw_sync(0xffffffffffffff9c, &(0x7f0000000180), 0x0, 0x0)
+ioctl$SW_SYNC_IOC_CREATE_FENCE(r2, 0xc0285700, &(0x7f00000001c0)={0x7, "562723ed1347ba960cc6db0a70f2f364e5537d8efd1bf30ea7b9dd89638c5c18", <r3=>0xffffffffffffffff})
+ioctl$SYNC_IOC_MERGE(r1, 0xc0303e03, &(0x7f0000000100)={"fbba6a4416a3db796fb73a68e230000000000000e1602415b9399762a5670190", r3})
+ioctl$SCSI_IOCTL_SEND_COMMAND(0xffffffffffffffff, 0x1, &(0x7f0000000300)=ANY=[])
+poll(&(0x7f0000000080), 0xd2, 0x0)
+dup2(r0, r2)
+executing program 2:
+syz_open_procfs(0x0, 0x0)
+madvise(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0xe)
+madvise(&(0x7f0000e7f000/0x4000)=nil, 0x4000, 0x64)
+move_pages(0x0, 0x1, &(0x7f00000000c0)=[&(0x7f0000ffc000/0x3000)=nil], 0x0, &(0x7f0000000140), 0x0)
+executing program 3:
+creat(0x0, 0x0)
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5, 0x2, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={0x0}}, 0x0, 0x0, 0xffffffffffffffff, 0x0)
+r0 = socket$netlink(0x10, 0x3, 0x0)
+setsockopt$netlink_NETLINK_ADD_MEMBERSHIP(r0, 0x10e, 0x1, 0x0, 0x0)
+getsockopt$netlink(r0, 0x10e, 0x9, &(0x7f00000017c0)=""/4105, &(0x7f00000000c0)=0x1009)
+
+program did not crash
+replaying the whole log did not cause a kernel crash
+single: executing 3 programs separately with timeout 1m40s
+testing program (duration=1m40s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): creat-perf_event_open-socket$netlink-setsockopt$netlink_NETLINK_ADD_MEMBERSHIP-getsockopt$netlink
+detailed listing:
+executing program 0:
+creat(0x0, 0x0)
+perf_event_open(&(0x7f0000000400)={0x2, 0x80, 0x5, 0x2, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={0x0}}, 0x0, 0x0, 0xffffffffffffffff, 0x0)
+r0 = socket$netlink(0x10, 0x3, 0x0)
+setsockopt$netlink_NETLINK_ADD_MEMBERSHIP(r0, 0x10e, 0x1, 0x0, 0x0)
+getsockopt$netlink(r0, 0x10e, 0x9, &(0x7f00000017c0)=""/4105, &(0x7f00000000c0)=0x1009)
+
+program did not crash
+testing program (duration=1m40s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_procfs-madvise-madvise-move_pages
+detailed listing:
+executing program 0:
+syz_open_procfs(0x0, 0x0)
+madvise(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0xe)
+madvise(&(0x7f0000e7f000/0x4000)=nil, 0x4000, 0x64)
+move_pages(0x0, 0x1, &(0x7f00000000c0)=[&(0x7f0000ffc000/0x3000)=nil], 0x0, &(0x7f0000000140), 0x0)
+
+program crashed: WARNING in madvise_unlock
+single: successfully extracted reproducer
+found reproducer with 4 syscalls
+minimizing guilty program
+testing program (duration=2m30s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_procfs-madvise-madvise
+detailed listing:
+executing program 0:
+syz_open_procfs(0x0, 0x0)
+madvise(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0xe)
+madvise(&(0x7f0000e7f000/0x4000)=nil, 0x4000, 0x64)
+
+program crashed: WARNING in madvise_unlock
+testing program (duration=2m30s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_procfs-madvise
+detailed listing:
+executing program 0:
+syz_open_procfs(0x0, 0x0)
+madvise(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0xe)
+
+program did not crash
+testing program (duration=2m30s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_procfs-madvise
+detailed listing:
+executing program 0:
+syz_open_procfs(0x0, 0x0)
+madvise(&(0x7f0000e7f000/0x4000)=nil, 0x4000, 0x64)
+
+program crashed: WARNING in madvise_unlock
+testing program (duration=2m30s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): madvise
+detailed listing:
+executing program 0:
+madvise(&(0x7f0000e7f000/0x4000)=nil, 0x4000, 0x64)
+
+program crashed: WARNING in madvise_unlock
+extracting C reproducer
+testing compiled C program (duration=2m30s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): madvise
+program crashed: WARNING in madvise_unlock
+simplifying C reproducer
+testing compiled C program (duration=2m30s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): madvise
+program crashed: WARNING in madvise_unlock
+testing compiled C program (duration=2m30s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): madvise
+program crashed: WARNING in madvise_unlock
+testing compiled C program (duration=2m30s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:false UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): madvise
+program crashed: WARNING in madvise_unlock
+testing compiled C program (duration=2m30s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:false UseTmpDir:false HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): madvise
+program crashed: WARNING in madvise_unlock
+testing compiled C program (duration=2m30s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:false UseTmpDir:false HandleSegv:false Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): madvise
+program crashed: WARNING in madvise_unlock
+testing compiled C program (duration=2m30s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:false Swap:false UseTmpDir:false HandleSegv:false Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): madvise
+program crashed: WARNING in madvise_unlock
+reproducing took 9m21.064618141s
+repro crashed as (corrupted=false):
+Injecting memory failure for pfn 0x8ea0 at process virtual address 0x20e7f000
+Memory failure: 0x8ea0: recovery action for reserved kernel page: Ignored
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 721 at ./include/linux/rwsem.h:203 rwsem_assert_held_write include/linux/rwsem.h:203 [inline]
+WARNING: CPU: 1 PID: 721 at ./include/linux/rwsem.h:203 mmap_assert_write_locked include/linux/mmap_lock.h:70 [inline]
+WARNING: CPU: 1 PID: 721 at ./include/linux/rwsem.h:203 vma_end_write_all include/linux/mmap_lock.h:169 [inline]
+WARNING: CPU: 1 PID: 721 at ./include/linux/rwsem.h:203 mmap_write_unlock include/linux/mmap_lock.h:176 [inline]
+WARNING: CPU: 1 PID: 721 at ./include/linux/rwsem.h:203 madvise_unlock+0x17e/0x1a0 mm/madvise.c:1599
+Modules linked in:
+CPU: 1 UID: 0 PID: 721 Comm: syz-executor125 Not tainted 6.14.0-rc2-next-20250210-df5d6180169a #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:rwsem_assert_held_write include/linux/rwsem.h:203 [inline]
+RIP: 0010:mmap_assert_write_locked include/linux/mmap_lock.h:70 [inline]
+RIP: 0010:vma_end_write_all include/linux/mmap_lock.h:169 [inline]
+RIP: 0010:mmap_write_unlock include/linux/mmap_lock.h:176 [inline]
+RIP: 0010:madvise_unlock+0x17e/0x1a0 mm/madvise.c:1599
+Code: a1 9f ff 31 f6 49 8d bc 24 e0 01 00 00 e8 fa 80 d5 03 31 ff 89 c3 89 c6 e8 9f 9b 9f ff 85 db 0f 85 1c ff ff ff e8 22 a1 9f ff <0f> 0b e9 10 ff ff ff 48 c7 c7 54 19 ed 87 e8 df d6 09 00 e9 e8 fe
+RSP: 0018:ffff8880233dfe88 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff81e878f1
+RDX: ffff8880232ea540 RSI: ffffffff81e878fe RDI: 0000000000000005
+RBP: ffff8880233dfea0 R08: 0000000000000001 R09: ffffed100467bf25
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff88801bc6a700
+R13: ffff88801bc6a870 R14: 0000000000004000 R15: ffff88801bc6a700
+FS:  00007f599d469600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f599d33e7f0 CR3: 0000000028ee6003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ do_madvise+0x14f/0x1a0 mm/madvise.c:1745
+ __do_sys_madvise mm/madvise.c:1752 [inline]
+ __se_sys_madvise mm/madvise.c:1750 [inline]
+ __x64_sys_madvise+0xb2/0x120 mm/madvise.c:1750
+ x64_sys_call+0x19b1/0x2150 arch/x86/include/generated/asm/syscalls_64.h:29
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f599d23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffe1dca0fc8 EFLAGS: 00000246 ORIG_RAX: 000000000000001c
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f599d23ee5d
+RDX: 0000000000000064 RSI: 0000000000004000 RDI: 0000000020e7f000
+RBP: 0000000000000000 R08: 00007ffe1dca0a40 R09: 0000000000008000
+R10: 0000000000000000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f599d4b0000
+ </TASK>
+irq event stamp: 1199
+hardirqs last  enabled at (1207): [<ffffffff81663b55>] __up_console_sem+0x95/0xb0 kernel/printk/printk.c:344
+hardirqs last disabled at (1214): [<ffffffff81663b3a>] __up_console_sem+0x7a/0xb0 kernel/printk/printk.c:342
+softirqs last  enabled at (830): [<ffffffff8148c40e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last  enabled at (830): [<ffffffff8148c40e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last  enabled at (830): [<ffffffff8148c40e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+softirqs last disabled at (435): [<ffffffff8148c40e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last disabled at (435): [<ffffffff8148c40e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last disabled at (435): [<ffffffff8148c40e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+---[ end trace 0000000000000000 ]---
+
+=====================================
+WARNING: bad unlock balance detected!
+6.14.0-rc2-next-20250210-df5d6180169a #1 Tainted: G        W         
+-------------------------------------
+syz-executor125/721 is trying to release lock (&mm->mmap_lock) at:
+[<ffffffff81e87854>] mmap_write_unlock include/linux/mmap_lock.h:177 [inline]
+[<ffffffff81e87854>] madvise_unlock+0xd4/0x1a0 mm/madvise.c:1599
+but there are no more locks to release!
+
+other info that might help us debug this:
+no locks held by syz-executor125/721.
+
+stack backtrace:
+CPU: 1 UID: 0 PID: 721 Comm: syz-executor125 Tainted: G        W          6.14.0-rc2-next-20250210-df5d6180169a #1
+Tainted: [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ print_unlock_imbalance_bug kernel/locking/lockdep.c:5289 [inline]
+ print_unlock_imbalance_bug+0x1b5/0x200 kernel/locking/lockdep.c:5263
+ __lock_release kernel/locking/lockdep.c:5528 [inline]
+ lock_release+0x5bc/0x870 kernel/locking/lockdep.c:5872
+ up_write+0x31/0x550 kernel/locking/rwsem.c:1629
+ mmap_write_unlock include/linux/mmap_lock.h:177 [inline]
+ madvise_unlock+0xd4/0x1a0 mm/madvise.c:1599
+ do_madvise+0x14f/0x1a0 mm/madvise.c:1745
+ __do_sys_madvise mm/madvise.c:1752 [inline]
+ __se_sys_madvise mm/madvise.c:1750 [inline]
+ __x64_sys_madvise+0xb2/0x120 mm/madvise.c:1750
+ x64_sys_call+0x19b1/0x2150 arch/x86/include/generated/asm/syscalls_64.h:29
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f599d23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffe1dca0fc8 EFLAGS: 00000246 ORIG_RAX: 000000000000001c
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f599d23ee5d
+RDX: 0000000000000064 RSI: 0000000000004000 RDI: 0000000020e7f000
+RBP: 0000000000000000 R08: 00007ffe1dca0a40 R09: 0000000000008000
+R10: 0000000000000000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f599d4b0000
+ </TASK>
+------------[ cut here ]------------
+DEBUG_RWSEMS_WARN_ON((rwsem_owner(sem) != current) && !rwsem_test_oflags(sem, RWSEM_NONSPINNABLE)): count = 0x0, magic = 0xffff88801bc6a870, owner = 0x1, curr 0xffff8880232ea540, list empty
+WARNING: CPU: 1 PID: 721 at kernel/locking/rwsem.c:1367 __up_write kernel/locking/rwsem.c:1367 [inline]
+WARNING: CPU: 1 PID: 721 at kernel/locking/rwsem.c:1367 up_write+0x451/0x550 kernel/locking/rwsem.c:1630
+Modules linked in:
+CPU: 1 UID: 0 PID: 721 Comm: syz-executor125 Tainted: G        W          6.14.0-rc2-next-20250210-df5d6180169a #1
+Tainted: [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:__up_write kernel/locking/rwsem.c:1367 [inline]
+RIP: 0010:up_write+0x451/0x550 kernel/locking/rwsem.c:1630
+Code: ea 03 80 3c 02 00 0f 85 d5 00 00 00 49 8b 14 24 53 4d 89 f9 4c 89 f1 48 c7 c6 40 bd eb 85 48 c7 c7 60 bc eb 85 e8 9f e3 e4 ff <0f> 0b 59 e9 bc fc ff ff 4c 89 ff e8 1f 65 90 00 e9 f5 fb ff ff 48
+RSP: 0018:ffff8880233dfe30 EFLAGS: 00010282
+RAX: 0000000000000000 RBX: ffffffff85ebbba0 RCX: ffffffff8146cfd3
+RDX: ffff8880232ea540 RSI: ffffffff8146cfe0 RDI: 0000000000000001
+RBP: ffff8880233dfe78 R08: 0000000000000001 R09: ffffed100d8a6301
+R10: 0000000000000001 R11: 57525f4755424544 R12: ffff88801bc6a870
+R13: ffff88801bc6a878 R14: ffff88801bc6a870 R15: ffff8880232ea540
+FS:  00007f599d469600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f599d33e7f0 CR3: 0000000028ee6003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ mmap_write_unlock include/linux/mmap_lock.h:177 [inline]
+ madvise_unlock+0xd4/0x1a0 mm/madvise.c:1599
+ do_madvise+0x14f/0x1a0 mm/madvise.c:1745
+ __do_sys_madvise mm/madvise.c:1752 [inline]
+ __se_sys_madvise mm/madvise.c:1750 [inline]
+ __x64_sys_madvise+0xb2/0x120 mm/madvise.c:1750
+ x64_sys_call+0x19b1/0x2150 arch/x86/include/generated/asm/syscalls_64.h:29
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f599d23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffe1dca0fc8 EFLAGS: 00000246 ORIG_RAX: 000000000000001c
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f599d23ee5d
+RDX: 0000000000000064 RSI: 0000000000004000 RDI: 0000000020e7f000
+RBP: 0000000000000000 R08: 00007ffe1dca0a40 R09: 0000000000008000
+R10: 0000000000000000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f599d4b0000
+ </TASK>
+irq event stamp: 1247
+hardirqs last  enabled at (1247): [<ffffffff81663b55>] __up_console_sem+0x95/0xb0 kernel/printk/printk.c:344
+hardirqs last disabled at (1246): [<ffffffff81663b3a>] __up_console_sem+0x7a/0xb0 kernel/printk/printk.c:342
+softirqs last  enabled at (830): [<ffffffff8148c40e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last  enabled at (830): [<ffffffff8148c40e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last  enabled at (830): [<ffffffff8148c40e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+softirqs last disabled at (435): [<ffffffff8148c40e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last disabled at (435): [<ffffffff8148c40e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last disabled at (435): [<ffffffff8148c40e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+---[ end trace 0000000000000000 ]---
+
+final repro crashed as (corrupted=false):
+Injecting memory failure for pfn 0x8ea0 at process virtual address 0x20e7f000
+Memory failure: 0x8ea0: recovery action for reserved kernel page: Ignored
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 721 at ./include/linux/rwsem.h:203 rwsem_assert_held_write include/linux/rwsem.h:203 [inline]
+WARNING: CPU: 1 PID: 721 at ./include/linux/rwsem.h:203 mmap_assert_write_locked include/linux/mmap_lock.h:70 [inline]
+WARNING: CPU: 1 PID: 721 at ./include/linux/rwsem.h:203 vma_end_write_all include/linux/mmap_lock.h:169 [inline]
+WARNING: CPU: 1 PID: 721 at ./include/linux/rwsem.h:203 mmap_write_unlock include/linux/mmap_lock.h:176 [inline]
+WARNING: CPU: 1 PID: 721 at ./include/linux/rwsem.h:203 madvise_unlock+0x17e/0x1a0 mm/madvise.c:1599
+Modules linked in:
+CPU: 1 UID: 0 PID: 721 Comm: syz-executor125 Not tainted 6.14.0-rc2-next-20250210-df5d6180169a #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:rwsem_assert_held_write include/linux/rwsem.h:203 [inline]
+RIP: 0010:mmap_assert_write_locked include/linux/mmap_lock.h:70 [inline]
+RIP: 0010:vma_end_write_all include/linux/mmap_lock.h:169 [inline]
+RIP: 0010:mmap_write_unlock include/linux/mmap_lock.h:176 [inline]
+RIP: 0010:madvise_unlock+0x17e/0x1a0 mm/madvise.c:1599
+Code: a1 9f ff 31 f6 49 8d bc 24 e0 01 00 00 e8 fa 80 d5 03 31 ff 89 c3 89 c6 e8 9f 9b 9f ff 85 db 0f 85 1c ff ff ff e8 22 a1 9f ff <0f> 0b e9 10 ff ff ff 48 c7 c7 54 19 ed 87 e8 df d6 09 00 e9 e8 fe
+RSP: 0018:ffff8880233dfe88 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff81e878f1
+RDX: ffff8880232ea540 RSI: ffffffff81e878fe RDI: 0000000000000005
+RBP: ffff8880233dfea0 R08: 0000000000000001 R09: ffffed100467bf25
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff88801bc6a700
+R13: ffff88801bc6a870 R14: 0000000000004000 R15: ffff88801bc6a700
+FS:  00007f599d469600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f599d33e7f0 CR3: 0000000028ee6003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ do_madvise+0x14f/0x1a0 mm/madvise.c:1745
+ __do_sys_madvise mm/madvise.c:1752 [inline]
+ __se_sys_madvise mm/madvise.c:1750 [inline]
+ __x64_sys_madvise+0xb2/0x120 mm/madvise.c:1750
+ x64_sys_call+0x19b1/0x2150 arch/x86/include/generated/asm/syscalls_64.h:29
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f599d23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffe1dca0fc8 EFLAGS: 00000246 ORIG_RAX: 000000000000001c
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f599d23ee5d
+RDX: 0000000000000064 RSI: 0000000000004000 RDI: 0000000020e7f000
+RBP: 0000000000000000 R08: 00007ffe1dca0a40 R09: 0000000000008000
+R10: 0000000000000000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f599d4b0000
+ </TASK>
+irq event stamp: 1199
+hardirqs last  enabled at (1207): [<ffffffff81663b55>] __up_console_sem+0x95/0xb0 kernel/printk/printk.c:344
+hardirqs last disabled at (1214): [<ffffffff81663b3a>] __up_console_sem+0x7a/0xb0 kernel/printk/printk.c:342
+softirqs last  enabled at (830): [<ffffffff8148c40e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last  enabled at (830): [<ffffffff8148c40e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last  enabled at (830): [<ffffffff8148c40e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+softirqs last disabled at (435): [<ffffffff8148c40e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last disabled at (435): [<ffffffff8148c40e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last disabled at (435): [<ffffffff8148c40e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+---[ end trace 0000000000000000 ]---
+
+=====================================
+WARNING: bad unlock balance detected!
+6.14.0-rc2-next-20250210-df5d6180169a #1 Tainted: G        W         
+-------------------------------------
+syz-executor125/721 is trying to release lock (&mm->mmap_lock) at:
+[<ffffffff81e87854>] mmap_write_unlock include/linux/mmap_lock.h:177 [inline]
+[<ffffffff81e87854>] madvise_unlock+0xd4/0x1a0 mm/madvise.c:1599
+but there are no more locks to release!
+
+other info that might help us debug this:
+no locks held by syz-executor125/721.
+
+stack backtrace:
+CPU: 1 UID: 0 PID: 721 Comm: syz-executor125 Tainted: G        W          6.14.0-rc2-next-20250210-df5d6180169a #1
+Tainted: [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ print_unlock_imbalance_bug kernel/locking/lockdep.c:5289 [inline]
+ print_unlock_imbalance_bug+0x1b5/0x200 kernel/locking/lockdep.c:5263
+ __lock_release kernel/locking/lockdep.c:5528 [inline]
+ lock_release+0x5bc/0x870 kernel/locking/lockdep.c:5872
+ up_write+0x31/0x550 kernel/locking/rwsem.c:1629
+ mmap_write_unlock include/linux/mmap_lock.h:177 [inline]
+ madvise_unlock+0xd4/0x1a0 mm/madvise.c:1599
+ do_madvise+0x14f/0x1a0 mm/madvise.c:1745
+ __do_sys_madvise mm/madvise.c:1752 [inline]
+ __se_sys_madvise mm/madvise.c:1750 [inline]
+ __x64_sys_madvise+0xb2/0x120 mm/madvise.c:1750
+ x64_sys_call+0x19b1/0x2150 arch/x86/include/generated/asm/syscalls_64.h:29
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f599d23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffe1dca0fc8 EFLAGS: 00000246 ORIG_RAX: 000000000000001c
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f599d23ee5d
+RDX: 0000000000000064 RSI: 0000000000004000 RDI: 0000000020e7f000
+RBP: 0000000000000000 R08: 00007ffe1dca0a40 R09: 0000000000008000
+R10: 0000000000000000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f599d4b0000
+ </TASK>
+------------[ cut here ]------------
+DEBUG_RWSEMS_WARN_ON((rwsem_owner(sem) != current) && !rwsem_test_oflags(sem, RWSEM_NONSPINNABLE)): count = 0x0, magic = 0xffff88801bc6a870, owner = 0x1, curr 0xffff8880232ea540, list empty
+WARNING: CPU: 1 PID: 721 at kernel/locking/rwsem.c:1367 __up_write kernel/locking/rwsem.c:1367 [inline]
+WARNING: CPU: 1 PID: 721 at kernel/locking/rwsem.c:1367 up_write+0x451/0x550 kernel/locking/rwsem.c:1630
+Modules linked in:
+CPU: 1 UID: 0 PID: 721 Comm: syz-executor125 Tainted: G        W          6.14.0-rc2-next-20250210-df5d6180169a #1
+Tainted: [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:__up_write kernel/locking/rwsem.c:1367 [inline]
+RIP: 0010:up_write+0x451/0x550 kernel/locking/rwsem.c:1630
+Code: ea 03 80 3c 02 00 0f 85 d5 00 00 00 49 8b 14 24 53 4d 89 f9 4c 89 f1 48 c7 c6 40 bd eb 85 48 c7 c7 60 bc eb 85 e8 9f e3 e4 ff <0f> 0b 59 e9 bc fc ff ff 4c 89 ff e8 1f 65 90 00 e9 f5 fb ff ff 48
+RSP: 0018:ffff8880233dfe30 EFLAGS: 00010282
+RAX: 0000000000000000 RBX: ffffffff85ebbba0 RCX: ffffffff8146cfd3
+RDX: ffff8880232ea540 RSI: ffffffff8146cfe0 RDI: 0000000000000001
+RBP: ffff8880233dfe78 R08: 0000000000000001 R09: ffffed100d8a6301
+R10: 0000000000000001 R11: 57525f4755424544 R12: ffff88801bc6a870
+R13: ffff88801bc6a878 R14: ffff88801bc6a870 R15: ffff8880232ea540
+FS:  00007f599d469600(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f599d33e7f0 CR3: 0000000028ee6003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ mmap_write_unlock include/linux/mmap_lock.h:177 [inline]
+ madvise_unlock+0xd4/0x1a0 mm/madvise.c:1599
+ do_madvise+0x14f/0x1a0 mm/madvise.c:1745
+ __do_sys_madvise mm/madvise.c:1752 [inline]
+ __se_sys_madvise mm/madvise.c:1750 [inline]
+ __x64_sys_madvise+0xb2/0x120 mm/madvise.c:1750
+ x64_sys_call+0x19b1/0x2150 arch/x86/include/generated/asm/syscalls_64.h:29
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f599d23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffe1dca0fc8 EFLAGS: 00000246 ORIG_RAX: 000000000000001c
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f599d23ee5d
+RDX: 0000000000000064 RSI: 0000000000004000 RDI: 0000000020e7f000
+RBP: 0000000000000000 R08: 00007ffe1dca0a40 R09: 0000000000008000
+R10: 0000000000000000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007f599d4b0000
+ </TASK>
+irq event stamp: 1247
+hardirqs last  enabled at (1247): [<ffffffff81663b55>] __up_console_sem+0x95/0xb0 kernel/printk/printk.c:344
+hardirqs last disabled at (1246): [<ffffffff81663b3a>] __up_console_sem+0x7a/0xb0 kernel/printk/printk.c:342
+softirqs last  enabled at (830): [<ffffffff8148c40e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last  enabled at (830): [<ffffffff8148c40e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last  enabled at (830): [<ffffffff8148c40e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+softirqs last disabled at (435): [<ffffffff8148c40e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last disabled at (435): [<ffffffff8148c40e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last disabled at (435): [<ffffffff8148c40e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+---[ end trace 0000000000000000 ]---
+
