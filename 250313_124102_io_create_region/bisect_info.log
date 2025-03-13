@@ -1,0 +1,37 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [eea255893718268e1ab852fb52f70c613d109b99] Add linux-next specific files for 20250311
+git bisect bad eea255893718268e1ab852fb52f70c613d109b99
+# status: waiting for good commit(s), bad commit known
+# good: [80e54e84911a923c40d7bee33a34c1b4be148d7a] Linux 6.14-rc6
+git bisect good 80e54e84911a923c40d7bee33a34c1b4be148d7a
+# bad: [35a44026e774afeae9ccbd3cbfd8d73aa7fe06a0] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless-next.git
+git bisect bad 35a44026e774afeae9ccbd3cbfd8d73aa7fe06a0
+# bad: [f122ed30288bc440d16c3daeb80295c666aabe29] Merge branch 'fs-next' of linux-next
+git bisect bad f122ed30288bc440d16c3daeb80295c666aabe29
+# bad: [0618ec00f6c03af1ba7c1df99d59e2bf5b09f580] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git
+git bisect bad 0618ec00f6c03af1ba7c1df99d59e2bf5b09f580
+# bad: [cd6c8d17640bc4226840b29bf0ef092c1c2470dd] Merge branch 'mm-everything' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+git bisect bad cd6c8d17640bc4226840b29bf0ef092c1c2470dd
+# bad: [b300cd93434b5f6c47c586eb8c1bf55b6108dd1e] mm/damon/core: support committing ops_filters
+git bisect bad b300cd93434b5f6c47c586eb8c1bf55b6108dd1e
+# good: [23f4234e5c4acbc6b72203b07791b484e2ae5b69] mm/huge_memory: add vmf_insert_folio_pmd()
+git bisect good 23f4234e5c4acbc6b72203b07791b484e2ae5b69
+# good: [6557c08314e661c09391e92c130c31097c0d4cdd] fix up for "mm, swap: simplify folio swap allocation"
+git bisect good 6557c08314e661c09391e92c130c31097c0d4cdd
+# good: [ce500d6dd03b277ecc0373aad56caeb3b4be1bbe] mm: move hugetlb specific things in folio to page[3]
+git bisect good ce500d6dd03b277ecc0373aad56caeb3b4be1bbe
+# good: [2ebeb7d3fefbc9ed1805795f882fa55afd9660ad] mm/mremap: correctly handle partial mremap() of VMA starting at 0
+git bisect good 2ebeb7d3fefbc9ed1805795f882fa55afd9660ad
+# bad: [81e2050bc5d6e086eb29df1a0dbb87eecefb8157] page_counter: track failcnt only for legacy cgroups
+git bisect bad 81e2050bc5d6e086eb29df1a0dbb87eecefb8157
+# good: [f00d29dcb63e151dcdde13665dd838bc36ae0ea9] mm/mremap: refactor move_page_tables(), abstracting state
+git bisect good f00d29dcb63e151dcdde13665dd838bc36ae0ea9
+# bad: [0e3cc1ba9b30bd6f31e012a1979161df3dfb79f2] mm/page_alloc: clarify terminology in migratetype fallback code
+git bisect bad 0e3cc1ba9b30bd6f31e012a1979161df3dfb79f2
+# bad: [35388cb1e37ec928c3ecb9b9b7ca655298b4a054] mm/vmalloc: move free_vm_area(area) from the __vmalloc_area_node function to the __vmalloc_node_range_noprof function
+git bisect bad 35388cb1e37ec928c3ecb9b9b7ca655298b4a054
+# good: [bba4abfab0c8e0c272db1175cb29cb220815e5e8] mm/mremap: thread state through move page table operation
+git bisect good bba4abfab0c8e0c272db1175cb29cb220815e5e8
+# first bad commit: [35388cb1e37ec928c3ecb9b9b7ca655298b4a054] mm/vmalloc: move free_vm_area(area) from the __vmalloc_area_node function to the __vmalloc_node_range_noprof function
+|0313_125910|Bisect successfully! eea255893718268e1ab852fb52f70c613d109b99_35388cb1e37ec928c3ecb9b9b7ca655298b4a054_revert bzimage passed!|

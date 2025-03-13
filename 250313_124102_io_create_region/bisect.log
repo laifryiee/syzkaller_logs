@@ -1,0 +1,1420 @@
+|0313_124102|cmd=cd /root/linux-next|
+|0313_124102|git log eea255893718268e1ab852fb52f70c613d109b99 check_result:commit eea255893718268e1ab852fb52f70c613d109b99|
+|0313_124102|git log 80e54e84911a923c40d7bee33a34c1b4be148d7a check_result:commit 80e54e84911a923c40d7bee33a34c1b4be148d7a|
+|0313_124102|There was old bisect log:git bisect start
+# status: waiting for both good and bad commits
+# bad: [eea255893718268e1ab852fb52f70c613d109b99] Add linux-next specific files for 20250311
+git bisect bad eea255893718268e1ab852fb52f70c613d109b99
+# status: waiting for good commit(s), bad commit known
+# good: [80e54e84911a923c40d7bee33a34c1b4be148d7a] Linux 6.14-rc6
+git bisect good 80e54e84911a923c40d7bee33a34c1b4be148d7a
+# good: [35a44026e774afeae9ccbd3cbfd8d73aa7fe06a0] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless-next.git
+git bisect good 35a44026e774afeae9ccbd3cbfd8d73aa7fe06a0
+# good: [37ff4715616698b3287e7df57c8dd4e404007cc9] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/ulfh/mmc.git
+git bisect good 37ff4715616698b3287e7df57c8dd4e404007cc9
+# bad: [907c9e3a3a75a9dc541b61966acb8232ad33e9e3] Merge branch 'usb-next' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git
+git bisect bad 907c9e3a3a75a9dc541b61966acb8232ad33e9e3
+# bad: [f70397476bb384cc880238cf0af3ff3d6004838d] next-20250303/tip
+git bisect bad f70397476bb384cc880238cf0af3ff3d6004838d
+# bad: [18d4c0d92831db11d2f282a5ba765a00457c8e21] Merge branch into tip/master: 'x86/core'
+git bisect bad 18d4c0d92831db11d2f282a5ba765a00457c8e21
+# good: [9ecbc841221222f9493c18e78f43f8cb1e73ae5d] Merge branch into tip/master: 'timers/cleanups'
+git bisect good 9ecbc841221222f9493c18e78f43f8cb1e73ae5d
+# bad: [856d2e6543f4af00f463d1649981570b4a646cde] Merge branch into tip/master: 'x86/boot'
+git bisect bad 856d2e6543f4af00f463d1649981570b4a646cde
+# good: [8f43bd44958b6b2e976015a27179934957cadb04] Merge branch into tip/master: 'timers/vdso'
+git bisect good 8f43bd44958b6b2e976015a27179934957cadb04
+# good: [dc8bd769e70ecae0916bf1b05acad6120c6bd6f0] x86/ioperm: Use atomic64_inc_return() in ksys_ioperm()
+git bisect good dc8bd769e70ecae0916bf1b05acad6120c6bd6f0
+# good: [adf6819278ba34be1d29ffcdca5c2ccd2123f667] x86/bootflag: Micro-optimize sbf_write()
+git bisect good adf6819278ba34be1d29ffcdca5c2ccd2123f667
+# good: [b6762467a09ba8838c499e4f36561e82fc608ed1] x86/percpu: Disable named address spaces for UBSAN_BOOL with KASAN for GCC < 14.2
+git bisect good b6762467a09ba8838c499e4f36561e82fc608ed1
+# good: [ad546940b5991d3e141238cd80a6d1894b767184] x86/ia32: Leave NULL selector values 0~3 unchanged
+git bisect good ad546940b5991d3e141238cd80a6d1894b767184
+# good: [9c94c14ca39577b6324c667d8450ffa19fc1e5c4] x86/bootflag: Replace open-coded parity calculation with parity8()
+git bisect good 9c94c14ca39577b6324c667d8450ffa19fc1e5c4
+# bad: [2900740d18a42029799533f6e6b49f46f25e4f98] Merge branch into tip/master: 'x86/asm'
+git bisect bad 2900740d18a42029799533f6e6b49f46f25e4f98
+# first bad commit: [2900740d18a42029799533f6e6b49f46f25e4f98] Merge branch into tip/master: 'x86/asm', will clean it|
+|0313_124102|cmd=git bisect reset|
+|0313_124104|cmd=git checkout -f eea255893718268e1ab852fb52f70c613d109b99|
+|0313_124104|cmd=cd /root/linux-next|
+|0313_124104||/var/www/html/bzimage/bzImage_eea255893718268e1ab852fb52f70c613d109b99| exist, no need make|
+|0313_124104|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_124104|Run /var/www/html/bzimage/bzImage_eea255893718268e1ab852fb52f70c613d109b99 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_124121|It takes 17 seconds to find login:test login: |
+|0313_124121|Boot 1 time: takes 17 seconds to boot up.|
+|0313_124121|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_124122|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_124123|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_124124|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_124125|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_124135|/var/www/html/bzimage/bzImage_eea255893718268e1ab852fb52f70c613d109b99 contained io_create_region:[   24.707915]  ? io_create_region+0x6ca/0xe00
+[   24.707969]  ? io_create_region+0x6ca/0xe00
+[   24.707979]  ? io_create_region+0x6ca/0xe00
+[   24.707992]  io_create_region+0x6ca/0xe00
+[   24.708002]  ? io_create_region+0x6ca/0xe00
+[   24.708015]  ? __pfx_io_create_region+0x10/0x10
+[   24.708056]  io_create_region_mmap_safe+0xaf/0x150
+[   24.708067]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   24.721848]  io_create_region+0x6ca/0xe00
+[   24.722049]  io_create_region_mmap_safe+0xaf/0x150
+[   24.725240]  io_create_region+0x6ca/0xe00
+[   24.725442]  io_create_region_mmap_safe+0xaf/0x150
+[   24.745687]  ? io_create_region+0x6ca/0xe00
+[   24.746623]  ? io_create_region+0x6ca/0xe00
+[   24.746831]  ? io_create_region+0x6ca/0xe00
+[   24.747042]  io_create_region+0x6ca/0xe00
+[   24.747243]  ? io_create_region+0x6ca/0xe00
+[   24.747464]  ? __pfx_io_create_region+0x10/0x10
+[   24.748358]  io_create_region_mmap_safe+0xaf/0x150
+[   24.748599]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   24.766339]  ? io_create_region+0x6ca/0xe00
+[   24.767280]  ? io_create_region+0x6ca/0xe00
+[   24.767494]  ? io_create_region+0x6ca/0xe00
+[   24.767707]  io_create_region+0x6ca/0xe00
+[   24.767910]  ? io_create_region+0x6ca/0xe00
+[   24.768124]  ? __pfx_io_create_region+0x10/0x10
+[   24.769009]  io_create_region_mmap_safe+0xaf/0x150
+[   24.769250]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   24.791343]  ? io_create_region+0x6ca/0xe00
+[   24.792380]  ? io_create_region+0x6ca/0xe00
+[   24.792587]  ? io_create_region+0x6ca/0xe00
+[   24.792799]  io_create_region+0x6ca/0xe00
+[   24.792998]  ? io_create_region+0x6ca/0xe00
+[   24.793206]  ? __pfx_io_create_region+0x10/0x10
+[   24.794074]  io_create_region_mmap_safe+0xaf/0x150
+[   24.794307]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   24.812191]  ? io_create_region+0x6ca/0xe00
+[   24.813141]  ? io_create_region+0x6ca/0xe00
+[   24.813354]  ? io_create_region+0x6ca/0xe00
+[   24.813567]  io_create_region+0x6ca/0xe00
+[   24.813772]  ? io_create_region+0x6ca/0xe00
+[   24.813989]  ? __pfx_io_create_region+0x10/0x10
+[   24.814860]  io_create_region_mmap_safe+0xaf/0x150
+[   24.815099]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   24.920722]  ? io_create_region+0x6ca/0xe00
+[   24.921648]  ? io_create_region+0x6ca/0xe00
+[   24.921858]  ? io_create_region+0x6ca/0xe00
+[   24.922293]  io_create_region+0x6ca/0xe00
+[   24.922491]  ? io_create_region+0x6ca/0xe00
+[   24.922701]  ? __pfx_io_create_region+0x10/0x10
+[   24.924059]  io_create_region_mmap_safe+0xaf/0x150
+[   24.924289]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   24.942614]  ? io_create_region+0x6ca/0xe00
+[   24.943548]  ? io_create_region+0x6ca/0xe00
+[   24.943765]  ? io_create_region+0x6ca/0xe00
+[   24.944205]  io_create_region+0x6ca/0xe00
+[   24.944412]  ? io_create_region+0x6ca/0xe00
+[   24.944623]  ? __pfx_io_create_region+0x10/0x10
+[   24.945952]  io_create_region_mmap_safe+0xaf/0x150
+[   24.946191]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.875236]  ? io_create_region+0x6ca/0xe00
+[   25.876770]  ? io_create_region+0x6ca/0xe00
+[   25.877186]  ? io_create_region+0x6ca/0xe00
+[   25.877967]  io_create_region+0x6ca/0xe00
+[   25.878415]  ? io_create_region+0x6ca/0xe00
+[   25.878616]  ? io_create_region+0x6ca/0xe00
+[   25.878835]  ? __pfx_io_create_region+0x10/0x10
+[   25.880230]  ? io_create_region+0x6ca/0xe00
+[   25.880690]  ? io_create_region+0x6ca/0xe00
+[   25.881304]  io_create_region_mmap_safe+0xaf/0x150
+[   25.881507]  io_create_region+0x6ca/0xe00
+[   25.881719]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.881973]  ? io_create_region+0x6ca/0xe00
+[   25.882374]  ? __pfx_io_create_region+0x10/0x10
+[   25.884993]  io_create_region_mmap_safe+0xaf/0x150
+[   25.885467]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.912792]  ? io_create_region+0x6ca/0xe00
+[   25.913713]  ? io_create_region+0x6ca/0xe00
+[   25.913921]  ? io_create_region+0x6ca/0xe00
+[   25.914353]  io_create_region+0x6ca/0xe00
+[   25.914558]  ? io_create_region+0x6ca/0xe00
+[   25.914770]  ? __pfx_io_create_region+0x10/0x10
+[   25.916062]  io_create_region_mmap_safe+0xaf/0x150
+[   25.916299]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.937695]  ? io_create_region+0x6ca/0xe00
+[   25.938624]  ? io_create_region+0x6ca/0xe00
+[   25.938835]  ? io_create_region+0x6ca/0xe00
+[   25.939269]  io_create_region+0x6ca/0xe00
+[   25.939474]  ? io_create_region+0x6ca/0xe00
+[   25.939684]  ? __pfx_io_create_region+0x10/0x10
+[   25.941016]  io_create_region_mmap_safe+0xaf/0x150
+[   25.941255]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   26.195656]  ? io_create_region+0x6ca/0xe00
+[   26.196578]  ? io_create_region+0x6ca/0xe00
+[   26.196779]  ? io_create_region+0x6ca/0xe00
+[   26.197211]  io_create_region+0x6ca/0xe00
+[   26.197409]  ? io_create_region+0x6ca/0xe00
+[   26.197617]  ? __pfx_io_create_region+0x10/0x10
+[   26.198900]  io_create_region_mmap_safe+0xaf/0x150
+[   26.199127]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   26.218825]  ? io_create_region+0x6ca/0xe00
+[   26.219751]  ? io_create_region+0x6ca/0xe00
+[   26.219959]  ? io_create_region+0x6ca/0xe00
+[   26.220392]  io_create_region+0x6ca/0xe00
+[   26.220593]  ? io_create_region+0x6ca/0xe00
+[   26.220803]  ? __pfx_io_create_region+0x10/0x10
+[   26.222113]  io_create_region_mmap_safe+0xaf/0x150
+[   26.222343]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   26.408273]  ? io_create_region+0x6ca/0xe00
+[   26.409213]  ? io_create_region+0x6ca/0xe00
+[   26.409429]  ? io_create_region+0x6ca/0xe00
+[   26.409854]  io_create_region+0x6ca/0xe00
+[   26.410049]  ? io_create_region+0x6ca/0xe00
+[   26.410254]  ? __pfx_io_create_region+0x10/0x10
+[   26.411570]  io_create_region_mmap_safe+0xaf/0x150
+[   26.411804]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   26.430470]  ? io_create_region+0x6ca/0xe00
+[   26.431393]  ? io_create_region+0x6ca/0xe00
+[   26.431605]  ? io_create_region+0x6ca/0xe00
+[   26.432037]  io_create_region+0x6ca/0xe00
+[   26.432239]  ? io_create_region+0x6ca/0xe00
+[   26.432452]  ? __pfx_io_create_region+0x10/0x10
+[   26.433770]  io_create_region_mmap_safe+0xaf/0x150
+[   26.434010]  ? __pfx_io_create_region_mmap_safe+0x10/0x10, FAIL|
+|0313_124135|Found time:24 in /var/www/html/bzimage/0313_124102_io_create_region/eea255893718268e1ab852fb52f70c613d109b99_dmesg.log|
+|0313_124135|Logic: |<=25: +25|25-100 +180|>100 +1800| Set TIME:49|
+|0313_124135|-END- commit eea255893718268e1ab852fb52f70c613d109b99 FAIL bad|
+|0313_124135|cmd=rm -rf /var/www/html//syzkaller/2025_03_13/145b30c59824969bb51c40650a27aa01a0a97840|
+|0313_124135|cmd=mkdir -p /var/www/html//syzkaller/2025_03_13/145b30c59824969bb51c40650a27aa01a0a97840|
+|0313_124135|cmd=cp -rf /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog /var/www/html//syzkaller/2025_03_13/145b30c59824969bb51c40650a27aa01a0a97840/repro.c|
+|0313_124135|gcc -pthread /var/www/html//syzkaller/2025_03_13/145b30c59824969bb51c40650a27aa01a0a97840/repro.c -o /var/www/html//syzkaller/2025_03_13/145b30c59824969bb51c40650a27aa01a0a97840/repro|
+|0313_124135|cmd=cp -rf /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/description /var/www/html//syzkaller/2025_03_13/145b30c59824969bb51c40650a27aa01a0a97840|
+|0313_124135|cp -rf /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/mount_* /var/www/html/bzimage/0313_124102_io_create_region/|
+|0313_124137|wget https://raw.githubusercontent.com/xupengfe/kconfig_diff/main/config-5.18rc4i_kvm -O /var/www/html/bzimage/0313_124102_io_create_region/kconfig_origin:0|
+|0313_124137|cmd=cd /root/linux-next|
+|0313_124137||/var/www/html/bzimage/bzImage_80e54e84911a923c40d7bee33a34c1b4be148d7a| exist, no need make|
+|0313_124137|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_124137|Run /var/www/html/bzimage/bzImage_80e54e84911a923c40d7bee33a34c1b4be148d7a with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_124151|It takes 14 seconds to find login:test login: |
+|0313_124151|Boot 1 time: takes 14 seconds to boot up.|
+|0313_124151|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_124152|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_124153|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_124154|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_124155|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_124244|/var/www/html/bzimage/bzImage_80e54e84911a923c40d7bee33a34c1b4be148d7a didn't contain io_create_region: in dmesg, pass|
+|0313_124244|Start commit 80e54e84911a923c40d7bee33a34c1b4be148d7a PASS good|
+|0313_124244|cmd=git checkout -f eea255893718268e1ab852fb52f70c613d109b99|
+|0313_124244|cmd=git bisect start|
+|0313_124244|cmd=git bisect bad eea255893718268e1ab852fb52f70c613d109b99|
+|0313_124244|Bisect first start commit:80e54e84911a923c40d7bee33a34c1b4be148d7a|
+|0313_124244|git bisect good 80e54e84911a923c40d7bee33a34c1b4be148d7a|
+|0313_124245||/var/www/html/bzimage/bzImage_35a44026e774afeae9ccbd3cbfd8d73aa7fe06a0| exist, no need make|
+|0313_124245|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_124245|Run /var/www/html/bzimage/bzImage_35a44026e774afeae9ccbd3cbfd8d73aa7fe06a0 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_124259|It takes 13 seconds to find login:test login: |
+|0313_124259|Boot 1 time: takes 13 seconds to boot up.|
+|0313_124259|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_124259|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_124301|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_124302|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_124302|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_124351|/var/www/html/bzimage/bzImage_35a44026e774afeae9ccbd3cbfd8d73aa7fe06a0 contained io_create_region:[   21.594910]  ? io_create_region+0x6cc/0xe00
+[   21.594964]  ? io_create_region+0x6cc/0xe00
+[   21.594973]  ? io_create_region+0x6cc/0xe00
+[   21.594983]  io_create_region+0x6cc/0xe00
+[   21.594995]  ? __pfx_io_create_region+0x10/0x10
+[   21.595028]  io_create_region_mmap_safe+0xb0/0x150
+[   21.595038]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.599221]  io_create_region+0x6cc/0xe00
+[   21.599626]  io_create_region_mmap_safe+0xb0/0x150
+[   21.607145]  io_create_region+0x6cc/0xe00
+[   21.607154]  io_create_region_mmap_safe+0xb0/0x150
+[   21.615737]  ? io_create_region+0x6cc/0xe00
+[   21.618257]  ? io_create_region+0x6cc/0xe00
+[   21.618667]  ? io_create_region+0x6cc/0xe00
+[   21.619027]  io_create_region+0x6cc/0xe00
+[   21.620290]  ? __pfx_io_create_region+0x10/0x10
+[   21.621021]  io_create_region_mmap_safe+0xb0/0x150
+[   21.621270]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.638894]  ? io_create_region+0x6cc/0xe00
+[   21.642699]  ? io_create_region+0x6cc/0xe00
+[   21.643073]  ? io_create_region+0x6cc/0xe00
+[   21.643569]  io_create_region+0x6cc/0xe00
+[   21.644268]  ? __pfx_io_create_region+0x10/0x10
+[   21.646307]  io_create_region_mmap_safe+0xb0/0x150
+[   21.646675]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.650402]  ? io_create_region+0x6cc/0xe00
+[   21.652595]  ? io_create_region+0x6cc/0xe00
+[   21.653102]  ? io_create_region+0x6cc/0xe00
+[   21.653656]  io_create_region+0x6cc/0xe00
+[   21.654203]  ? __pfx_io_create_region+0x10/0x10
+[   21.655779]  io_create_region_mmap_safe+0xb0/0x150
+[   21.656311]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.690444]  ? io_create_region+0x6cc/0xe00
+[   21.691563]  ? io_create_region+0x6cc/0xe00
+[   21.691766]  ? io_create_region+0x6cc/0xe00
+[   21.691969]  io_create_region+0x6cc/0xe00
+[   21.692171]  ? __pfx_io_create_region+0x10/0x10
+[   21.693014]  io_create_region_mmap_safe+0xb0/0x150
+[   21.693246]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.717322]  ? io_create_region+0x6cc/0xe00
+[   21.718422]  ? io_create_region+0x6cc/0xe00
+[   21.718628]  ? io_create_region+0x6cc/0xe00
+[   21.718830]  io_create_region+0x6cc/0xe00
+[   21.719029]  ? __pfx_io_create_region+0x10/0x10
+[   21.719884]  io_create_region_mmap_safe+0xb0/0x150
+[   21.720112]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.737037]  ? io_create_region+0x6cc/0xe00
+[   21.738145]  ? io_create_region+0x6cc/0xe00
+[   21.738352]  ? io_create_region+0x6cc/0xe00
+[   21.738558]  io_create_region+0x6cc/0xe00
+[   21.738755]  ? __pfx_io_create_region+0x10/0x10
+[   21.739589]  io_create_region_mmap_safe+0xb0/0x150
+[   21.739821]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.492030]  ? io_create_region+0x6cc/0xe00
+[   22.493349]  ? io_create_region+0x6cc/0xe00
+[   22.493553]  ? io_create_region+0x6cc/0xe00
+[   22.493761]  io_create_region+0x6cc/0xe00
+[   22.493958]  ? __pfx_io_create_region+0x10/0x10
+[   22.495284]  io_create_region_mmap_safe+0xb0/0x150
+[   22.495518]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.513412]  ? io_create_region+0x6cc/0xe00
+[   22.514705]  ? io_create_region+0x6cc/0xe00
+[   22.514907]  ? io_create_region+0x6cc/0xe00
+[   22.515112]  io_create_region+0x6cc/0xe00
+[   22.515310]  ? __pfx_io_create_region+0x10/0x10
+[   22.516577]  io_create_region_mmap_safe+0xb0/0x150
+[   22.516808]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   23.684004]  ? io_create_region+0x6cc/0xe00
+[   23.685366]  ? io_create_region+0x6cc/0xe00
+[   23.685577]  ? io_create_region+0x6cc/0xe00
+[   23.685792]  io_create_region+0x6cc/0xe00
+[   23.685999]  ? __pfx_io_create_region+0x10/0x10
+[   23.687353]  io_create_region_mmap_safe+0xb0/0x150
+[   23.687594]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   23.706223]  ? io_create_region+0x6cc/0xe00
+[   23.707581]  ? io_create_region+0x6cc/0xe00
+[   23.707794]  ? io_create_region+0x6cc/0xe00
+[   23.708006]  io_create_region+0x6cc/0xe00
+[   23.708213]  ? __pfx_io_create_region+0x10/0x10
+[   23.709545]  io_create_region_mmap_safe+0xb0/0x150
+[   23.709785]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   23.766104]  ? io_create_region+0x6cc/0xe00
+[   23.768537]  ? io_create_region+0x6cc/0xe00
+[   23.768952]  ? io_create_region+0x6cc/0xe00
+[   23.769345]  io_create_region+0x6cc/0xe00
+[   23.769737]  ? __pfx_io_create_region+0x10/0x10
+[   23.770339]  ? io_create_region+0x6cc/0xe00
+[   23.771677]  ? io_create_region+0x6cc/0xe00
+[   23.772066]  ? io_create_region+0x6cc/0xe00
+[   23.772287]  io_create_region_mmap_safe+0xb0/0x150
+[   23.772503]  io_create_region+0x6cc/0xe00
+[   23.772754]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   23.772955]  ? __pfx_io_create_region+0x10/0x10
+[   23.775590]  io_create_region_mmap_safe+0xb0/0x150
+[   23.776095]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   23.801553]  ? io_create_region+0x6cc/0xe00
+[   23.802859]  ? io_create_region+0x6cc/0xe00
+[   23.803064]  ? io_create_region+0x6cc/0xe00
+[   23.803270]  io_create_region+0x6cc/0xe00
+[   23.803468]  ? __pfx_io_create_region+0x10/0x10
+[   23.804756]  io_create_region_mmap_safe+0xb0/0x150
+[   23.804989]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   23.825728]  ? io_create_region+0x6cc/0xe00
+[   23.827043]  ? io_create_region+0x6cc/0xe00
+[   23.827249]  ? io_create_region+0x6cc/0xe00
+[   23.827457]  io_create_region+0x6cc/0xe00
+[   23.827656]  ? __pfx_io_create_region+0x10/0x10
+[   23.828942]  io_create_region_mmap_safe+0xb0/0x150
+[   23.829175]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.374517]  ? io_create_region+0x6cc/0xe00
+[   25.375826]  ? io_create_region+0x6cc/0xe00
+[   25.376025]  ? io_create_region+0x6cc/0xe00
+[   25.376226]  io_create_region+0x6cc/0xe00
+[   25.376425]  ? __pfx_io_create_region+0x10/0x10
+[   25.377697]  io_create_region_mmap_safe+0xb0/0x150
+[   25.377927]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.395659]  ? io_create_region+0x6cc/0xe00
+[   25.396968]  ? io_create_region+0x6cc/0xe00
+[   25.397173]  ? io_create_region+0x6cc/0xe00
+[   25.397379]  io_create_region+0x6cc/0xe00
+[   25.397580]  ? __pfx_io_create_region+0x10/0x10
+[   25.398859]  io_create_region_mmap_safe+0xb0/0x150
+[   25.399090]  ? __pfx_io_create_region_mmap_safe+0x10/0x10, FAIL|
+|0313_124351|git bisect bad 35a44026e774afeae9ccbd3cbfd8d73aa7fe06a0|
+|0313_124352||/var/www/html/bzimage/bzImage_f122ed30288bc440d16c3daeb80295c666aabe29| exist, no need make|
+|0313_124352|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_124352|Run /var/www/html/bzimage/bzImage_f122ed30288bc440d16c3daeb80295c666aabe29 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_124406|It takes 14 seconds to find login:test login: |
+|0313_124406|Boot 1 time: takes 14 seconds to boot up.|
+|0313_124406|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_124407|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_124409|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_124410|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_124410|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_124459|/var/www/html/bzimage/bzImage_f122ed30288bc440d16c3daeb80295c666aabe29 contained io_create_region:[   25.009889]  ? io_create_region+0x6cc/0xe00
+[   25.009946]  ? io_create_region+0x6cc/0xe00
+[   25.009955]  ? io_create_region+0x6cc/0xe00
+[   25.009965]  io_create_region+0x6cc/0xe00
+[   25.009977]  ? __pfx_io_create_region+0x10/0x10
+[   25.010025]  io_create_region_mmap_safe+0xb0/0x150
+[   25.010035]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.025140]  io_create_region+0x6cc/0xe00
+[   25.025369]  io_create_region_mmap_safe+0xb0/0x150
+[   25.028908]  io_create_region+0x6cc/0xe00
+[   25.029127]  io_create_region_mmap_safe+0xb0/0x150
+[   25.054775]  ? io_create_region+0x6cc/0xe00
+[   25.056053]  ? io_create_region+0x6cc/0xe00
+[   25.056315]  ? io_create_region+0x6cc/0xe00
+[   25.056547]  io_create_region+0x6cc/0xe00
+[   25.056798]  ? __pfx_io_create_region+0x10/0x10
+[   25.057739]  io_create_region_mmap_safe+0xb0/0x150
+[   25.057996]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.077688]  ? io_create_region+0x6cc/0xe00
+[   25.078959]  ? io_create_region+0x6cc/0xe00
+[   25.079187]  ? io_create_region+0x6cc/0xe00
+[   25.079418]  io_create_region+0x6cc/0xe00
+[   25.079641]  ? __pfx_io_create_region+0x10/0x10
+[   25.080602]  io_create_region_mmap_safe+0xb0/0x150
+[   25.080867]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.107249]  ? io_create_region+0x6cc/0xe00
+[   25.108493]  ? io_create_region+0x6cc/0xe00
+[   25.108719]  ? io_create_region+0x6cc/0xe00
+[   25.108943]  io_create_region+0x6cc/0xe00
+[   25.109162]  ? __pfx_io_create_region+0x10/0x10
+[   25.110123]  io_create_region_mmap_safe+0xb0/0x150
+[   25.110383]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.129897]  ? io_create_region+0x6cc/0xe00
+[   25.131152]  ? io_create_region+0x6cc/0xe00
+[   25.131385]  ? io_create_region+0x6cc/0xe00
+[   25.131623]  io_create_region+0x6cc/0xe00
+[   25.131847]  ? __pfx_io_create_region+0x10/0x10
+[   25.132798]  io_create_region_mmap_safe+0xb0/0x150
+[   25.133056]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.182091]  ? io_create_region+0x6cc/0xe00
+[   25.184644]  ? io_create_region+0x6cc/0xe00
+[   25.185050]  ? io_create_region+0x6cc/0xe00
+[   25.185506]  io_create_region+0x6cc/0xe00
+[   25.185939]  ? __pfx_io_create_region+0x10/0x10
+[   25.188511]  io_create_region_mmap_safe+0xb0/0x150
+[   25.188744]  ? io_create_region+0x6cc/0xe00
+[   25.188948]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.191709]  ? io_create_region+0x6cc/0xe00
+[   25.192206]  ? io_create_region+0x6cc/0xe00
+[   25.192731]  io_create_region+0x6cc/0xe00
+[   25.193187]  ? __pfx_io_create_region+0x10/0x10
+[   25.196200]  io_create_region_mmap_safe+0xb0/0x150
+[   25.196635]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.223731]  ? io_create_region+0x6cc/0xe00
+[   25.225206]  ? io_create_region+0x6cc/0xe00
+[   25.225436]  ? io_create_region+0x6cc/0xe00
+[   25.225668]  io_create_region+0x6cc/0xe00
+[   25.225892]  ? __pfx_io_create_region+0x10/0x10
+[   25.227363]  io_create_region_mmap_safe+0xb0/0x150
+[   25.227626]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.251123]  ? io_create_region+0x6cc/0xe00
+[   25.252611]  ? io_create_region+0x6cc/0xe00
+[   25.252843]  ? io_create_region+0x6cc/0xe00
+[   25.253075]  io_create_region+0x6cc/0xe00
+[   25.253303]  ? __pfx_io_create_region+0x10/0x10
+[   25.254786]  io_create_region_mmap_safe+0xb0/0x150
+[   25.255046]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.724304]  ? io_create_region+0x6cc/0xe00
+[   25.726945]  ? io_create_region+0x6cc/0xe00
+[   25.727343]  ? io_create_region+0x6cc/0xe00
+[   25.727777]  io_create_region+0x6cc/0xe00
+[   25.728254]  ? __pfx_io_create_region+0x10/0x10
+[   25.728501]  ? io_create_region+0x6cc/0xe00
+[   25.731013]  io_create_region_mmap_safe+0xb0/0x150
+[   25.731231]  ? io_create_region+0x6cc/0xe00
+[   25.731442]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.731676]  ? io_create_region+0x6cc/0xe00
+[   25.732196]  io_create_region+0x6cc/0xe00
+[   25.732666]  ? __pfx_io_create_region+0x10/0x10
+[   25.735529]  io_create_region_mmap_safe+0xb0/0x150
+[   25.735962]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.764845]  ? io_create_region+0x6cc/0xe00
+[   25.766318]  ? io_create_region+0x6cc/0xe00
+[   25.766546]  ? io_create_region+0x6cc/0xe00
+[   25.766796]  io_create_region+0x6cc/0xe00
+[   25.767023]  ? __pfx_io_create_region+0x10/0x10
+[   25.768469]  io_create_region_mmap_safe+0xb0/0x150
+[   25.768727]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   25.792140]  ? io_create_region+0x6cc/0xe00
+[   25.793669]  ? io_create_region+0x6cc/0xe00
+[   25.793907]  ? io_create_region+0x6cc/0xe00
+[   25.794148]  io_create_region+0x6cc/0xe00
+[   25.794381]  ? __pfx_io_create_region+0x10/0x10
+[   25.795851]  io_create_region_mmap_safe+0xb0/0x150
+[   25.796111]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   26.893213]  ? io_create_region+0x6cc/0xe00
+[   26.894526]  ? io_create_region+0x6cc/0xe00
+[   26.894728]  ? io_create_region+0x6cc/0xe00
+[   26.894934]  io_create_region+0x6cc/0xe00
+[   26.895135]  ? __pfx_io_create_region+0x10/0x10
+[   26.896460]  io_create_region_mmap_safe+0xb0/0x150
+[   26.896689]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   26.914744]  ? io_create_region+0x6cc/0xe00
+[   26.916069]  ? io_create_region+0x6cc/0xe00
+[   26.916278]  ? io_create_region+0x6cc/0xe00
+[   26.916488]  io_create_region+0x6cc/0xe00
+[   26.916689]  ? __pfx_io_create_region+0x10/0x10
+[   26.917998]  io_create_region_mmap_safe+0xb0/0x150
+[   26.918231]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   27.970536]  ? io_create_region+0x6cc/0xe00
+[   27.971889]  ? io_create_region+0x6cc/0xe00
+[   27.972086]  ? io_create_region+0x6cc/0xe00
+[   27.972288]  io_create_region+0x6cc/0xe00
+[   27.972486]  ? __pfx_io_create_region+0x10/0x10
+[   27.973754]  io_create_region_mmap_safe+0xb0/0x150
+[   27.973982]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   27.991637]  ? io_create_region+0x6cc/0xe00
+[   27.992928]  ? io_create_region+0x6cc/0xe00
+[   27.993129]  ? io_create_region+0x6cc/0xe00
+[   27.993332]  io_create_region+0x6cc/0xe00
+[   27.993526]  ? __pfx_io_create_region+0x10/0x10
+[   27.994800]  io_create_region_mmap_safe+0xb0/0x150
+[   27.995028]  ? __pfx_io_create_region_mmap_safe+0x10/0x10, FAIL|
+|0313_124459|git bisect bad f122ed30288bc440d16c3daeb80295c666aabe29|
+|0313_124500||/var/www/html/bzimage/bzImage_0618ec00f6c03af1ba7c1df99d59e2bf5b09f580| exist, no need make|
+|0313_124500|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_124500|Run /var/www/html/bzimage/bzImage_0618ec00f6c03af1ba7c1df99d59e2bf5b09f580 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_124512|It takes 12 seconds to find login:test login: |
+|0313_124512|Boot 1 time: takes 12 seconds to boot up.|
+|0313_124512|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_124513|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_124514|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_124515|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_124516|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_124605|/var/www/html/bzimage/bzImage_0618ec00f6c03af1ba7c1df99d59e2bf5b09f580 contained io_create_region:[   20.417830]  ? io_create_region+0x6cc/0xe00
+[   20.417885]  ? io_create_region+0x6cc/0xe00
+[   20.417892]  ? io_create_region+0x6cc/0xe00
+[   20.417900]  io_create_region+0x6cc/0xe00
+[   20.417910]  ? __pfx_io_create_region+0x10/0x10
+[   20.417961]  io_create_region_mmap_safe+0xb0/0x150
+[   20.417969]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.427678]  io_create_region+0x6cc/0xe00
+[   20.428997]  io_create_region_mmap_safe+0xb0/0x150
+[   20.434299]  io_create_region+0x6cc/0xe00
+[   20.434608]  io_create_region_mmap_safe+0xb0/0x150
+[   20.446426]  ? io_create_region+0x6cc/0xe00
+[   20.457307]  ? io_create_region+0x6cc/0xe00
+[   20.457542]  ? io_create_region+0x6cc/0xe00
+[   20.457774]  io_create_region+0x6cc/0xe00
+[   20.458034]  ? __pfx_io_create_region+0x10/0x10
+[   20.458987]  io_create_region_mmap_safe+0xb0/0x150
+[   20.459246]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.482378]  ? io_create_region+0x6cc/0xe00
+[   20.485318]  ? io_create_region+0x6cc/0xe00
+[   20.485905]  ? io_create_region+0x6cc/0xe00
+[   20.485915]  io_create_region+0x6cc/0xe00
+[   20.486556]  ? __pfx_io_create_region+0x10/0x10
+[   20.488873]  io_create_region_mmap_safe+0xb0/0x150
+[   20.489247]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.496769]  ? io_create_region+0x6cc/0xe00
+[   20.500195]  ? io_create_region+0x6cc/0xe00
+[   20.500603]  ? io_create_region+0x6cc/0xe00
+[   20.501076]  io_create_region+0x6cc/0xe00
+[   20.501601]  ? __pfx_io_create_region+0x10/0x10
+[   20.505851]  io_create_region_mmap_safe+0xb0/0x150
+[   20.505860]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.529080]  ? io_create_region+0x6cc/0xe00
+[   20.530587]  ? io_create_region+0x6cc/0xe00
+[   20.530818]  ? io_create_region+0x6cc/0xe00
+[   20.531054]  io_create_region+0x6cc/0xe00
+[   20.531279]  ? __pfx_io_create_region+0x10/0x10
+[   20.532765]  io_create_region_mmap_safe+0xb0/0x150
+[   20.533029]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.559186]  ? io_create_region+0x6cc/0xe00
+[   20.560610]  ? io_create_region+0x6cc/0xe00
+[   20.560845]  ? io_create_region+0x6cc/0xe00
+[   20.561102]  io_create_region+0x6cc/0xe00
+[   20.561340]  ? __pfx_io_create_region+0x10/0x10
+[   20.562350]  io_create_region_mmap_safe+0xb0/0x150
+[   20.562613]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.584169]  ? io_create_region+0x6cc/0xe00
+[   20.585569]  ? io_create_region+0x6cc/0xe00
+[   20.585836]  ? io_create_region+0x6cc/0xe00
+[   20.586100]  io_create_region+0x6cc/0xe00
+[   20.586351]  ? __pfx_io_create_region+0x10/0x10
+[   20.587414]  io_create_region_mmap_safe+0xb0/0x150
+[   20.587721]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.629961]  ? io_create_region+0x6cc/0xe00
+[   21.631483]  ? io_create_region+0x6cc/0xe00
+[   21.631717]  ? io_create_region+0x6cc/0xe00
+[   21.631955]  io_create_region+0x6cc/0xe00
+[   21.632182]  ? __pfx_io_create_region+0x10/0x10
+[   21.633669]  io_create_region_mmap_safe+0xb0/0x150
+[   21.633952]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.654872]  ? io_create_region+0x6cc/0xe00
+[   21.656412]  ? io_create_region+0x6cc/0xe00
+[   21.656648]  ? io_create_region+0x6cc/0xe00
+[   21.656887]  io_create_region+0x6cc/0xe00
+[   21.657118]  ? __pfx_io_create_region+0x10/0x10
+[   21.658631]  io_create_region_mmap_safe+0xb0/0x150
+[   21.658900]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.832801]  ? io_create_region+0x6cc/0xe00
+[   21.834818]  ? io_create_region+0x6cc/0xe00
+[   21.835436]  ? io_create_region+0x6cc/0xe00
+[   21.835942]  ? io_create_region+0x6cc/0xe00
+[   21.836362]  io_create_region+0x6cc/0xe00
+[   21.836785]  ? __pfx_io_create_region+0x10/0x10
+[   21.837518]  ? io_create_region+0x6cc/0xe00
+[   21.838016]  ? io_create_region+0x6cc/0xe00
+[   21.838025]  io_create_region+0x6cc/0xe00
+[   21.838033]  ? __pfx_io_create_region+0x10/0x10
+[   21.839641]  io_create_region_mmap_safe+0xb0/0x150
+[   21.840134]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.840772]  io_create_region_mmap_safe+0xb0/0x150
+[   21.841209]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.873809]  ? io_create_region+0x6cc/0xe00
+[   21.875286]  ? io_create_region+0x6cc/0xe00
+[   21.875512]  ? io_create_region+0x6cc/0xe00
+[   21.875741]  io_create_region+0x6cc/0xe00
+[   21.875966]  ? __pfx_io_create_region+0x10/0x10
+[   21.877435]  io_create_region_mmap_safe+0xb0/0x150
+[   21.877695]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.903328]  ? io_create_region+0x6cc/0xe00
+[   21.904810]  ? io_create_region+0x6cc/0xe00
+[   21.905041]  ? io_create_region+0x6cc/0xe00
+[   21.905269]  io_create_region+0x6cc/0xe00
+[   21.905488]  ? __pfx_io_create_region+0x10/0x10
+[   21.906927]  io_create_region_mmap_safe+0xb0/0x150
+[   21.907200]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.455728]  ? io_create_region+0x6cc/0xe00
+[   22.457302]  ? io_create_region+0x6cc/0xe00
+[   22.458523]  ? io_create_region+0x6cc/0xe00
+[   22.458968]  ? io_create_region+0x6cc/0xe00
+[   22.459404]  io_create_region+0x6cc/0xe00
+[   22.459860]  ? __pfx_io_create_region+0x10/0x10
+[   22.460057]  ? io_create_region+0x6cc/0xe00
+[   22.460522]  ? io_create_region+0x6cc/0xe00
+[   22.460953]  io_create_region+0x6cc/0xe00
+[   22.461385]  ? __pfx_io_create_region+0x10/0x10
+[   22.462544]  io_create_region_mmap_safe+0xb0/0x150
+[   22.462977]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.464274]  io_create_region_mmap_safe+0xb0/0x150
+[   22.464745]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.493236]  ? io_create_region+0x6cc/0xe00
+[   22.494688]  ? io_create_region+0x6cc/0xe00
+[   22.494913]  ? io_create_region+0x6cc/0xe00
+[   22.495137]  io_create_region+0x6cc/0xe00
+[   22.495355]  ? __pfx_io_create_region+0x10/0x10
+[   22.496790]  io_create_region_mmap_safe+0xb0/0x150
+[   22.497045]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.526867]  ? io_create_region+0x6cc/0xe00
+[   22.528329]  ? io_create_region+0x6cc/0xe00
+[   22.528555]  ? io_create_region+0x6cc/0xe00
+[   22.528781]  io_create_region+0x6cc/0xe00
+[   22.529006]  ? __pfx_io_create_region+0x10/0x10
+[   22.530469]  io_create_region_mmap_safe+0xb0/0x150
+[   22.530725]  ? __pfx_io_create_region_mmap_safe+0x10/0x10, FAIL|
+|0313_124605|git bisect bad 0618ec00f6c03af1ba7c1df99d59e2bf5b09f580|
+|0313_124605||/var/www/html/bzimage/bzImage_cd6c8d17640bc4226840b29bf0ef092c1c2470dd| exist, no need make|
+|0313_124605|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_124605|Run /var/www/html/bzimage/bzImage_cd6c8d17640bc4226840b29bf0ef092c1c2470dd with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_124618|It takes 13 seconds to find login:test login: |
+|0313_124618|Boot 1 time: takes 13 seconds to boot up.|
+|0313_124618|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_124619|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_124621|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_124622|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_124622|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_124711|/var/www/html/bzimage/bzImage_cd6c8d17640bc4226840b29bf0ef092c1c2470dd contained io_create_region:[   22.336415]  ? io_create_region+0x6cc/0xe00
+[   22.336463]  ? io_create_region+0x6cc/0xe00
+[   22.336469]  ? io_create_region+0x6cc/0xe00
+[   22.336477]  io_create_region+0x6cc/0xe00
+[   22.336486]  ? __pfx_io_create_region+0x10/0x10
+[   22.336524]  io_create_region_mmap_safe+0xb0/0x150
+[   22.336531]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.349839]  io_create_region+0x6cc/0xe00
+[   22.350034]  io_create_region_mmap_safe+0xb0/0x150
+[   22.353185]  io_create_region+0x6cc/0xe00
+[   22.353386]  io_create_region_mmap_safe+0xb0/0x150
+[   22.371146]  ? io_create_region+0x6cc/0xe00
+[   22.372264]  ? io_create_region+0x6cc/0xe00
+[   22.372464]  ? io_create_region+0x6cc/0xe00
+[   22.372665]  io_create_region+0x6cc/0xe00
+[   22.372861]  ? __pfx_io_create_region+0x10/0x10
+[   22.373715]  io_create_region_mmap_safe+0xb0/0x150
+[   22.373948]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.391618]  ? io_create_region+0x6cc/0xe00
+[   22.392773]  ? io_create_region+0x6cc/0xe00
+[   22.392980]  ? io_create_region+0x6cc/0xe00
+[   22.393189]  io_create_region+0x6cc/0xe00
+[   22.393391]  ? __pfx_io_create_region+0x10/0x10
+[   22.394273]  io_create_region_mmap_safe+0xb0/0x150
+[   22.394508]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.513185]  ? io_create_region+0x6cc/0xe00
+[   22.514493]  ? io_create_region+0x6cc/0xe00
+[   22.514696]  ? io_create_region+0x6cc/0xe00
+[   22.514899]  io_create_region+0x6cc/0xe00
+[   22.515094]  ? __pfx_io_create_region+0x10/0x10
+[   22.516413]  io_create_region_mmap_safe+0xb0/0x150
+[   22.516640]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.534717]  ? io_create_region+0x6cc/0xe00
+[   22.536084]  ? io_create_region+0x6cc/0xe00
+[   22.536294]  ? io_create_region+0x6cc/0xe00
+[   22.536499]  io_create_region+0x6cc/0xe00
+[   22.536700]  ? __pfx_io_create_region+0x10/0x10
+[   22.538021]  io_create_region_mmap_safe+0xb0/0x150
+[   22.538257]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.755874]  ? io_create_region+0x6cc/0xe00
+[   22.757219]  ? io_create_region+0x6cc/0xe00
+[   22.757422]  ? io_create_region+0x6cc/0xe00
+[   22.757627]  io_create_region+0x6cc/0xe00
+[   22.757830]  ? __pfx_io_create_region+0x10/0x10
+[   22.759146]  io_create_region_mmap_safe+0xb0/0x150
+[   22.759413]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.777620]  ? io_create_region+0x6cc/0xe00
+[   22.778957]  ? io_create_region+0x6cc/0xe00
+[   22.779165]  ? io_create_region+0x6cc/0xe00
+[   22.779373]  io_create_region+0x6cc/0xe00
+[   22.779574]  ? __pfx_io_create_region+0x10/0x10
+[   22.780894]  io_create_region_mmap_safe+0xb0/0x150
+[   22.781127]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.805409]  ? io_create_region+0x6cc/0xe00
+[   22.806721]  ? io_create_region+0x6cc/0xe00
+[   22.806924]  ? io_create_region+0x6cc/0xe00
+[   22.807127]  io_create_region+0x6cc/0xe00
+[   22.807366]  ? __pfx_io_create_region+0x10/0x10
+[   22.808638]  io_create_region_mmap_safe+0xb0/0x150
+[   22.808867]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.826864]  ? io_create_region+0x6cc/0xe00
+[   22.828174]  ? io_create_region+0x6cc/0xe00
+[   22.828378]  ? io_create_region+0x6cc/0xe00
+[   22.828583]  io_create_region+0x6cc/0xe00
+[   22.828778]  ? __pfx_io_create_region+0x10/0x10
+[   22.830082]  io_create_region_mmap_safe+0xb0/0x150
+[   22.830314]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   23.725532]  ? io_create_region+0x6cc/0xe00
+[   23.727280]  ? io_create_region+0x6cc/0xe00
+[   23.727936]  ? io_create_region+0x6cc/0xe00
+[   23.728315]  ? io_create_region+0x6cc/0xe00
+[   23.728702]  io_create_region+0x6cc/0xe00
+[   23.729116]  ? __pfx_io_create_region+0x10/0x10
+[   23.729351]  ? io_create_region+0x6cc/0xe00
+[   23.729801]  ? io_create_region+0x6cc/0xe00
+[   23.730206]  io_create_region+0x6cc/0xe00
+[   23.730602]  ? __pfx_io_create_region+0x10/0x10
+[   23.731644]  io_create_region_mmap_safe+0xb0/0x150
+[   23.732024]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   23.733046]  io_create_region_mmap_safe+0xb0/0x150
+[   23.733481]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   23.761184]  ? io_create_region+0x6cc/0xe00
+[   23.762491]  ? io_create_region+0x6cc/0xe00
+[   23.762691]  ? io_create_region+0x6cc/0xe00
+[   23.762895]  io_create_region+0x6cc/0xe00
+[   23.763090]  ? __pfx_io_create_region+0x10/0x10
+[   23.764391]  io_create_region_mmap_safe+0xb0/0x150
+[   23.764619]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   23.785418]  ? io_create_region+0x6cc/0xe00
+[   23.786769]  ? io_create_region+0x6cc/0xe00
+[   23.786973]  ? io_create_region+0x6cc/0xe00
+[   23.787179]  io_create_region+0x6cc/0xe00
+[   23.787379]  ? __pfx_io_create_region+0x10/0x10
+[   23.788706]  io_create_region_mmap_safe+0xb0/0x150
+[   23.788940]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   24.276758]  ? io_create_region+0x6cc/0xe00
+[   24.279142]  ? io_create_region+0x6cc/0xe00
+[   24.279566]  ? io_create_region+0x6cc/0xe00
+[   24.279972]  io_create_region+0x6cc/0xe00
+[   24.280368]  ? __pfx_io_create_region+0x10/0x10
+[   24.280571]  ? io_create_region+0x6cc/0xe00
+[   24.282864]  io_create_region_mmap_safe+0xb0/0x150
+[   24.283115]  ? io_create_region+0x6cc/0xe00
+[   24.283351]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   24.283551]  ? io_create_region+0x6cc/0xe00
+[   24.283994]  io_create_region+0x6cc/0xe00
+[   24.284450]  ? __pfx_io_create_region+0x10/0x10
+[   24.287070]  io_create_region_mmap_safe+0xb0/0x150
+[   24.287531]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   24.313171]  ? io_create_region+0x6cc/0xe00
+[   24.314537]  ? io_create_region+0x6cc/0xe00
+[   24.314748]  ? io_create_region+0x6cc/0xe00
+[   24.314959]  io_create_region+0x6cc/0xe00
+[   24.315168]  ? __pfx_io_create_region+0x10/0x10
+[   24.316501]  io_create_region_mmap_safe+0xb0/0x150
+[   24.316738]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   24.337985]  ? io_create_region+0x6cc/0xe00
+[   24.339313]  ? io_create_region+0x6cc/0xe00
+[   24.339517]  ? io_create_region+0x6cc/0xe00
+[   24.339723]  io_create_region+0x6cc/0xe00
+[   24.339921]  ? __pfx_io_create_region+0x10/0x10
+[   24.341237]  io_create_region_mmap_safe+0xb0/0x150
+[   24.341472]  ? __pfx_io_create_region_mmap_safe+0x10/0x10, FAIL|
+|0313_124711|git bisect bad cd6c8d17640bc4226840b29bf0ef092c1c2470dd|
+|0313_124711||/var/www/html/bzimage/bzImage_b300cd93434b5f6c47c586eb8c1bf55b6108dd1e| exist, no need make|
+|0313_124712|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_124712|Run /var/www/html/bzimage/bzImage_b300cd93434b5f6c47c586eb8c1bf55b6108dd1e with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_124724|It takes 12 seconds to find login:test login: |
+|0313_124724|Boot 1 time: takes 12 seconds to boot up.|
+|0313_124724|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_124724|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_124726|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_124727|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_124727|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_124816|/var/www/html/bzimage/bzImage_b300cd93434b5f6c47c586eb8c1bf55b6108dd1e contained io_create_region:[   19.704749]  ? io_create_region+0x6cc/0xe00
+[   19.704797]  ? io_create_region+0x6cc/0xe00
+[   19.704803]  ? io_create_region+0x6cc/0xe00
+[   19.704811]  io_create_region+0x6cc/0xe00
+[   19.704819]  ? __pfx_io_create_region+0x10/0x10
+[   19.704856]  io_create_region_mmap_safe+0xb0/0x150
+[   19.704863]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   19.717963]  io_create_region+0x6cc/0xe00
+[   19.718159]  io_create_region_mmap_safe+0xb0/0x150
+[   19.721236]  io_create_region+0x6cc/0xe00
+[   19.721431]  io_create_region_mmap_safe+0xb0/0x150
+[   19.744798]  ? io_create_region+0x6cc/0xe00
+[   19.745942]  ? io_create_region+0x6cc/0xe00
+[   19.746148]  ? io_create_region+0x6cc/0xe00
+[   19.746362]  io_create_region+0x6cc/0xe00
+[   19.746561]  ? __pfx_io_create_region+0x10/0x10
+[   19.747408]  io_create_region_mmap_safe+0xb0/0x150
+[   19.747637]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   19.764846]  ? io_create_region+0x6cc/0xe00
+[   19.765954]  ? io_create_region+0x6cc/0xe00
+[   19.766155]  ? io_create_region+0x6cc/0xe00
+[   19.766357]  io_create_region+0x6cc/0xe00
+[   19.766552]  ? __pfx_io_create_region+0x10/0x10
+[   19.767397]  io_create_region_mmap_safe+0xb0/0x150
+[   19.767624]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.341627]  ? io_create_region+0x6cc/0xe00
+[   20.342975]  ? io_create_region+0x6cc/0xe00
+[   20.343182]  ? io_create_region+0x6cc/0xe00
+[   20.343383]  io_create_region+0x6cc/0xe00
+[   20.343577]  ? __pfx_io_create_region+0x10/0x10
+[   20.344848]  io_create_region_mmap_safe+0xb0/0x150
+[   20.345075]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.363262]  ? io_create_region+0x6cc/0xe00
+[   20.364569]  ? io_create_region+0x6cc/0xe00
+[   20.364768]  ? io_create_region+0x6cc/0xe00
+[   20.364973]  io_create_region+0x6cc/0xe00
+[   20.365170]  ? __pfx_io_create_region+0x10/0x10
+[   20.366468]  io_create_region_mmap_safe+0xb0/0x150
+[   20.366695]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.619018]  ? io_create_region+0x6cc/0xe00
+[   20.620335]  ? io_create_region+0x6cc/0xe00
+[   20.620539]  ? io_create_region+0x6cc/0xe00
+[   20.620739]  io_create_region+0x6cc/0xe00
+[   20.620933]  ? __pfx_io_create_region+0x10/0x10
+[   20.622203]  io_create_region_mmap_safe+0xb0/0x150
+[   20.622447]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.640223]  ? io_create_region+0x6cc/0xe00
+[   20.641509]  ? io_create_region+0x6cc/0xe00
+[   20.641709]  ? io_create_region+0x6cc/0xe00
+[   20.641911]  io_create_region+0x6cc/0xe00
+[   20.642110]  ? __pfx_io_create_region+0x10/0x10
+[   20.643402]  io_create_region_mmap_safe+0xb0/0x150
+[   20.643630]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.152351]  ? io_create_region+0x6cc/0xe00
+[   21.153665]  ? io_create_region+0x6cc/0xe00
+[   21.153864]  ? io_create_region+0x6cc/0xe00
+[   21.154065]  io_create_region+0x6cc/0xe00
+[   21.154260]  ? __pfx_io_create_region+0x10/0x10
+[   21.155553]  io_create_region_mmap_safe+0xb0/0x150
+[   21.155777]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.173728]  ? io_create_region+0x6cc/0xe00
+[   21.175030]  ? io_create_region+0x6cc/0xe00
+[   21.175231]  ? io_create_region+0x6cc/0xe00
+[   21.175430]  io_create_region+0x6cc/0xe00
+[   21.175625]  ? __pfx_io_create_region+0x10/0x10
+[   21.176916]  io_create_region_mmap_safe+0xb0/0x150
+[   21.177148]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.922817]  ? io_create_region+0x6cc/0xe00
+[   21.925218]  ? io_create_region+0x6cc/0xe00
+[   21.925606]  ? io_create_region+0x6cc/0xe00
+[   21.925988]  io_create_region+0x6cc/0xe00
+[   21.926397]  ? __pfx_io_create_region+0x10/0x10
+[   21.928178]  ? io_create_region+0x6cc/0xe00
+[   21.928875]  io_create_region_mmap_safe+0xb0/0x150
+[   21.929270]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.930874]  ? io_create_region+0x6cc/0xe00
+[   21.931324]  ? io_create_region+0x6cc/0xe00
+[   21.931758]  io_create_region+0x6cc/0xe00
+[   21.932215]  ? __pfx_io_create_region+0x10/0x10
+[   21.934711]  io_create_region_mmap_safe+0xb0/0x150
+[   21.935113]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.958944]  ? io_create_region+0x6cc/0xe00
+[   21.960282]  ? io_create_region+0x6cc/0xe00
+[   21.960493]  ? io_create_region+0x6cc/0xe00
+[   21.960701]  io_create_region+0x6cc/0xe00
+[   21.960904]  ? __pfx_io_create_region+0x10/0x10
+[   21.962195]  io_create_region_mmap_safe+0xb0/0x150
+[   21.962419]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.983168]  ? io_create_region+0x6cc/0xe00
+[   21.984684]  ? io_create_region+0x6cc/0xe00
+[   21.985136]  ? io_create_region+0x6cc/0xe00
+[   21.985691]  io_create_region+0x6cc/0xe00
+[   21.986033]  ? __pfx_io_create_region+0x10/0x10
+[   21.989778]  io_create_region_mmap_safe+0xb0/0x150
+[   21.990339]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.003651]  ? io_create_region+0x6cc/0xe00
+[   22.007130]  ? io_create_region+0x6cc/0xe00
+[   22.007674]  ? io_create_region+0x6cc/0xe00
+[   22.008204]  io_create_region+0x6cc/0xe00
+[   22.008775]  ? __pfx_io_create_region+0x10/0x10
+[   22.011689]  io_create_region_mmap_safe+0xb0/0x150
+[   22.011931]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.030430]  ? io_create_region+0x6cc/0xe00
+[   22.031786]  ? io_create_region+0x6cc/0xe00
+[   22.031995]  ? io_create_region+0x6cc/0xe00
+[   22.032206]  io_create_region+0x6cc/0xe00
+[   22.032407]  ? __pfx_io_create_region+0x10/0x10
+[   22.033746]  io_create_region_mmap_safe+0xb0/0x150
+[   22.033992]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   23.164005]  ? io_create_region+0x6cc/0xe00
+[   23.165318]  ? io_create_region+0x6cc/0xe00
+[   23.165512]  ? io_create_region+0x6cc/0xe00
+[   23.165708]  io_create_region+0x6cc/0xe00
+[   23.165902]  ? __pfx_io_create_region+0x10/0x10
+[   23.167216]  io_create_region_mmap_safe+0xb0/0x150
+[   23.167443]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   23.185316]  ? io_create_region+0x6cc/0xe00
+[   23.186624]  ? io_create_region+0x6cc/0xe00
+[   23.186824]  ? io_create_region+0x6cc/0xe00
+[   23.187025]  io_create_region+0x6cc/0xe00
+[   23.187224]  ? __pfx_io_create_region+0x10/0x10
+[   23.188537]  io_create_region_mmap_safe+0xb0/0x150
+[   23.188769]  ? __pfx_io_create_region_mmap_safe+0x10/0x10, FAIL|
+|0313_124816|git bisect bad b300cd93434b5f6c47c586eb8c1bf55b6108dd1e|
+|0313_124817||/var/www/html/bzimage/bzImage_23f4234e5c4acbc6b72203b07791b484e2ae5b69| exist, no need make|
+|0313_124817|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_124817|Run /var/www/html/bzimage/bzImage_23f4234e5c4acbc6b72203b07791b484e2ae5b69 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_124830|It takes 13 seconds to find login:test login: |
+|0313_124830|Boot 1 time: takes 13 seconds to boot up.|
+|0313_124830|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_124831|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_124832|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_124833|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_124833|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_124922|/var/www/html/bzimage/bzImage_23f4234e5c4acbc6b72203b07791b484e2ae5b69 didn't contain io_create_region: in dmesg, pass|
+|0313_124922|git bisect good 23f4234e5c4acbc6b72203b07791b484e2ae5b69|
+|0313_124923||/var/www/html/bzimage/bzImage_6557c08314e661c09391e92c130c31097c0d4cdd| exist, no need make|
+|0313_124923|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_124923|Run /var/www/html/bzimage/bzImage_6557c08314e661c09391e92c130c31097c0d4cdd with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_124936|It takes 13 seconds to find login:test login: |
+|0313_124936|Boot 1 time: takes 13 seconds to boot up.|
+|0313_124936|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_124937|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_124938|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_124939|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_124939|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_125029|/var/www/html/bzimage/bzImage_6557c08314e661c09391e92c130c31097c0d4cdd didn't contain io_create_region: in dmesg, pass|
+|0313_125029|git bisect good 6557c08314e661c09391e92c130c31097c0d4cdd|
+|0313_125029||/var/www/html/bzimage/bzImage_ce500d6dd03b277ecc0373aad56caeb3b4be1bbe| exist, no need make|
+|0313_125029|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_125029|Run /var/www/html/bzimage/bzImage_ce500d6dd03b277ecc0373aad56caeb3b4be1bbe with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_125041|It takes 12 seconds to find login:test login: |
+|0313_125041|Boot 1 time: takes 12 seconds to boot up.|
+|0313_125041|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_125042|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_125043|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_125044|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_125044|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_125133|/var/www/html/bzimage/bzImage_ce500d6dd03b277ecc0373aad56caeb3b4be1bbe didn't contain io_create_region: in dmesg, pass|
+|0313_125133|git bisect good ce500d6dd03b277ecc0373aad56caeb3b4be1bbe|
+|0313_125134||/var/www/html/bzimage/bzImage_2ebeb7d3fefbc9ed1805795f882fa55afd9660ad| exist, no need make|
+|0313_125134|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_125134|Run /var/www/html/bzimage/bzImage_2ebeb7d3fefbc9ed1805795f882fa55afd9660ad with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_125146|It takes 12 seconds to find login:test login: |
+|0313_125146|Boot 1 time: takes 12 seconds to boot up.|
+|0313_125146|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_125146|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_125148|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_125149|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_125149|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_125238|/var/www/html/bzimage/bzImage_2ebeb7d3fefbc9ed1805795f882fa55afd9660ad didn't contain io_create_region: in dmesg, pass|
+|0313_125238|git bisect good 2ebeb7d3fefbc9ed1805795f882fa55afd9660ad|
+|0313_125238||/var/www/html/bzimage/bzImage_81e2050bc5d6e086eb29df1a0dbb87eecefb8157| exist, no need make|
+|0313_125239|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_125239|Run /var/www/html/bzimage/bzImage_81e2050bc5d6e086eb29df1a0dbb87eecefb8157 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_125252|It takes 13 seconds to find login:test login: |
+|0313_125252|Boot 1 time: takes 13 seconds to boot up.|
+|0313_125252|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_125252|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_125254|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_125255|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_125255|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_125344|/var/www/html/bzimage/bzImage_81e2050bc5d6e086eb29df1a0dbb87eecefb8157 contained io_create_region:[   23.710503]  ? io_create_region+0x6cc/0xe00
+[   23.710551]  ? io_create_region+0x6cc/0xe00
+[   23.710557]  ? io_create_region+0x6cc/0xe00
+[   23.710565]  io_create_region+0x6cc/0xe00
+[   23.710573]  ? __pfx_io_create_region+0x10/0x10
+[   23.710611]  io_create_region_mmap_safe+0xb0/0x150
+[   23.710618]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   23.724264]  io_create_region+0x6cc/0xe00
+[   23.724466]  io_create_region_mmap_safe+0xb0/0x150
+[   23.727647]  io_create_region+0x6cc/0xe00
+[   23.727845]  io_create_region_mmap_safe+0xb0/0x150
+[   23.786410]  ? io_create_region+0x6cc/0xe00
+[   23.787585]  ? io_create_region+0x6cc/0xe00
+[   23.787791]  ? io_create_region+0x6cc/0xe00
+[   23.787997]  io_create_region+0x6cc/0xe00
+[   23.788203]  ? __pfx_io_create_region+0x10/0x10
+[   23.789064]  io_create_region_mmap_safe+0xb0/0x150
+[   23.789304]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   23.806730]  ? io_create_region+0x6cc/0xe00
+[   23.807866]  ? io_create_region+0x6cc/0xe00
+[   23.808073]  ? io_create_region+0x6cc/0xe00
+[   23.808282]  io_create_region+0x6cc/0xe00
+[   23.808485]  ? __pfx_io_create_region+0x10/0x10
+[   23.809348]  io_create_region_mmap_safe+0xb0/0x150
+[   23.809584]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   23.987978]  ? io_create_region+0x6cc/0xe00
+[   23.989623]  ? io_create_region+0x6cc/0xe00
+[   23.989829]  ? io_create_region+0x6cc/0xe00
+[   23.990035]  io_create_region+0x6cc/0xe00
+[   23.990245]  ? __pfx_io_create_region+0x10/0x10
+[   23.991606]  io_create_region_mmap_safe+0xb0/0x150
+[   23.991837]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   24.010158]  ? io_create_region+0x6cc/0xe00
+[   24.011473]  ? io_create_region+0x6cc/0xe00
+[   24.011654]  ? io_create_region+0x6cc/0xe00
+[   24.011866]  io_create_region+0x6cc/0xe00
+[   24.012067]  ? __pfx_io_create_region+0x10/0x10
+[   24.013395]  io_create_region_mmap_safe+0xb0/0x150
+[   24.013631]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   24.750133]  ? io_create_region+0x6cc/0xe00
+[   24.751666]  ? io_create_region+0x6cc/0xe00
+[   24.751896]  ? io_create_region+0x6cc/0xe00
+[   24.752125]  io_create_region+0x6cc/0xe00
+[   24.752348]  ? __pfx_io_create_region+0x10/0x10
+[   24.753796]  io_create_region_mmap_safe+0xb0/0x150
+[   24.754054]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   24.774349]  ? io_create_region+0x6cc/0xe00
+[   24.775833]  ? io_create_region+0x6cc/0xe00
+[   24.776066]  ? io_create_region+0x6cc/0xe00
+[   24.776297]  io_create_region+0x6cc/0xe00
+[   24.776520]  ? __pfx_io_create_region+0x10/0x10
+[   24.777987]  io_create_region_mmap_safe+0xb0/0x150
+[   24.778246]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   27.447322]  ? io_create_region+0x6cc/0xe00
+[   27.449955]  ? io_create_region+0x6cc/0xe00
+[   27.450337]  ? io_create_region+0x6cc/0xe00
+[   27.450841]  io_create_region+0x6cc/0xe00
+[   27.451242]  ? __pfx_io_create_region+0x10/0x10
+[   27.452125]  io_create_region_mmap_safe+0xb0/0x150
+[   27.452523]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   27.453990]  ? io_create_region+0x6cc/0xe00
+[   27.456579]  ? io_create_region+0x6cc/0xe00
+[   27.457045]  ? io_create_region+0x6cc/0xe00
+[   27.457515]  io_create_region+0x6cc/0xe00
+[   27.458015]  ? __pfx_io_create_region+0x10/0x10
+[   27.460789]  io_create_region_mmap_safe+0xb0/0x150
+[   27.461252]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   27.488862]  ? io_create_region+0x6cc/0xe00
+[   27.490266]  ? io_create_region+0x6cc/0xe00
+[   27.490475]  ? io_create_region+0x6cc/0xe00
+[   27.490688]  io_create_region+0x6cc/0xe00
+[   27.490894]  ? __pfx_io_create_region+0x10/0x10
+[   27.492289]  io_create_region_mmap_safe+0xb0/0x150
+[   27.492529]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   27.514330]  ? io_create_region+0x6cc/0xe00
+[   27.515704]  ? io_create_region+0x6cc/0xe00
+[   27.515914]  ? io_create_region+0x6cc/0xe00
+[   27.516128]  io_create_region+0x6cc/0xe00
+[   27.516337]  ? __pfx_io_create_region+0x10/0x10
+[   27.517725]  io_create_region_mmap_safe+0xb0/0x150
+[   27.517965]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   27.607078]  ? io_create_region+0x6cc/0xe00
+[   27.608464]  ? io_create_region+0x6cc/0xe00
+[   27.608672]  ? io_create_region+0x6cc/0xe00
+[   27.608882]  io_create_region+0x6cc/0xe00
+[   27.609086]  ? __pfx_io_create_region+0x10/0x10
+[   27.610435]  io_create_region_mmap_safe+0xb0/0x150
+[   27.610674]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   27.629296]  ? io_create_region+0x6cc/0xe00
+[   27.630640]  ? io_create_region+0x6cc/0xe00
+[   27.630850]  ? io_create_region+0x6cc/0xe00
+[   27.631055]  io_create_region+0x6cc/0xe00
+[   27.631259]  ? __pfx_io_create_region+0x10/0x10
+[   27.632584]  io_create_region_mmap_safe+0xb0/0x150
+[   27.632820]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   27.661086]  ? io_create_region+0x6cc/0xe00
+[   27.662432]  ? io_create_region+0x6cc/0xe00
+[   27.662637]  ? io_create_region+0x6cc/0xe00
+[   27.662846]  io_create_region+0x6cc/0xe00
+[   27.663044]  ? __pfx_io_create_region+0x10/0x10
+[   27.664361]  io_create_region_mmap_safe+0xb0/0x150
+[   27.664598]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   27.682956]  ? io_create_region+0x6cc/0xe00
+[   27.684314]  ? io_create_region+0x6cc/0xe00
+[   27.684518]  ? io_create_region+0x6cc/0xe00
+[   27.684726]  io_create_region+0x6cc/0xe00
+[   27.684927]  ? __pfx_io_create_region+0x10/0x10
+[   27.686261]  io_create_region_mmap_safe+0xb0/0x150
+[   27.686496]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   27.718914]  ? io_create_region+0x6cc/0xe00
+[   27.720247]  ? io_create_region+0x6cc/0xe00
+[   27.720445]  ? io_create_region+0x6cc/0xe00
+[   27.720644]  io_create_region+0x6cc/0xe00
+[   27.720838]  ? __pfx_io_create_region+0x10/0x10
+[   27.722124]  io_create_region_mmap_safe+0xb0/0x150
+[   27.722351]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   27.740162]  ? io_create_region+0x6cc/0xe00
+[   27.741477]  ? io_create_region+0x6cc/0xe00
+[   27.741678]  ? io_create_region+0x6cc/0xe00
+[   27.741883]  io_create_region+0x6cc/0xe00
+[   27.742080]  ? __pfx_io_create_region+0x10/0x10
+[   27.743373]  io_create_region_mmap_safe+0xb0/0x150
+[   27.743604]  ? __pfx_io_create_region_mmap_safe+0x10/0x10, FAIL|
+|0313_125344|git bisect bad 81e2050bc5d6e086eb29df1a0dbb87eecefb8157|
+|0313_125344||/var/www/html/bzimage/bzImage_f00d29dcb63e151dcdde13665dd838bc36ae0ea9| exist, no need make|
+|0313_125344|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_125345|Run /var/www/html/bzimage/bzImage_f00d29dcb63e151dcdde13665dd838bc36ae0ea9 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_125357|It takes 12 seconds to find login:test login: |
+|0313_125357|Boot 1 time: takes 12 seconds to boot up.|
+|0313_125357|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_125357|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_125359|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_125400|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_125400|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_125449|/var/www/html/bzimage/bzImage_f00d29dcb63e151dcdde13665dd838bc36ae0ea9 didn't contain io_create_region: in dmesg, pass|
+|0313_125449|git bisect good f00d29dcb63e151dcdde13665dd838bc36ae0ea9|
+|0313_125449||/var/www/html/bzimage/bzImage_0e3cc1ba9b30bd6f31e012a1979161df3dfb79f2| exist, no need make|
+|0313_125449|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_125449|Run /var/www/html/bzimage/bzImage_0e3cc1ba9b30bd6f31e012a1979161df3dfb79f2 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_125501|It takes 12 seconds to find login:test login: |
+|0313_125501|Boot 1 time: takes 12 seconds to boot up.|
+|0313_125501|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_125502|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_125504|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_125505|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_125505|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_125554|/var/www/html/bzimage/bzImage_0e3cc1ba9b30bd6f31e012a1979161df3dfb79f2 contained io_create_region:[   20.349025]  ? io_create_region+0x6cc/0xe00
+[   20.349075]  ? io_create_region+0x6cc/0xe00
+[   20.349081]  ? io_create_region+0x6cc/0xe00
+[   20.349089]  io_create_region+0x6cc/0xe00
+[   20.349097]  ? __pfx_io_create_region+0x10/0x10
+[   20.349136]  io_create_region_mmap_safe+0xb0/0x150
+[   20.349143]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.352490]  io_create_region+0x6cc/0xe00
+[   20.352945]  io_create_region_mmap_safe+0xb0/0x150
+[   20.359340]  io_create_region+0x6cc/0xe00
+[   20.360002]  io_create_region_mmap_safe+0xb0/0x150
+[   20.370532]  ? io_create_region+0x6cc/0xe00
+[   20.372912]  ? io_create_region+0x6cc/0xe00
+[   20.373279]  ? io_create_region+0x6cc/0xe00
+[   20.373664]  io_create_region+0x6cc/0xe00
+[   20.374034]  ? __pfx_io_create_region+0x10/0x10
+[   20.375765]  io_create_region_mmap_safe+0xb0/0x150
+[   20.376501]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.388604]  ? io_create_region+0x6cc/0xe00
+[   20.391009]  ? io_create_region+0x6cc/0xe00
+[   20.391569]  ? io_create_region+0x6cc/0xe00
+[   20.392192]  io_create_region+0x6cc/0xe00
+[   20.392709]  ? __pfx_io_create_region+0x10/0x10
+[   20.394765]  io_create_region_mmap_safe+0xb0/0x150
+[   20.395119]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.405542]  ? io_create_region+0x6cc/0xe00
+[   20.408252]  ? io_create_region+0x6cc/0xe00
+[   20.409269]  ? io_create_region+0x6cc/0xe00
+[   20.409727]  io_create_region+0x6cc/0xe00
+[   20.425765]  ? __pfx_io_create_region+0x10/0x10
+[   20.426641]  io_create_region_mmap_safe+0xb0/0x150
+[   20.426880]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.446886]  ? io_create_region+0x6cc/0xe00
+[   20.447990]  ? io_create_region+0x6cc/0xe00
+[   20.448189]  ? io_create_region+0x6cc/0xe00
+[   20.448389]  io_create_region+0x6cc/0xe00
+[   20.448583]  ? __pfx_io_create_region+0x10/0x10
+[   20.449433]  io_create_region_mmap_safe+0xb0/0x150
+[   20.449664]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.470740]  ? io_create_region+0x6cc/0xe00
+[   20.471877]  ? io_create_region+0x6cc/0xe00
+[   20.472088]  ? io_create_region+0x6cc/0xe00
+[   20.472293]  io_create_region+0x6cc/0xe00
+[   20.472493]  ? __pfx_io_create_region+0x10/0x10
+[   20.473347]  io_create_region_mmap_safe+0xb0/0x150
+[   20.473592]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.490956]  ? io_create_region+0x6cc/0xe00
+[   20.492083]  ? io_create_region+0x6cc/0xe00
+[   20.492287]  ? io_create_region+0x6cc/0xe00
+[   20.492494]  io_create_region+0x6cc/0xe00
+[   20.492695]  ? __pfx_io_create_region+0x10/0x10
+[   20.493561]  io_create_region_mmap_safe+0xb0/0x150
+[   20.493793]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.160831]  ? io_create_region+0x6cc/0xe00
+[   21.162380]  ? io_create_region+0x6cc/0xe00
+[   21.162586]  ? io_create_region+0x6cc/0xe00
+[   21.162796]  io_create_region+0x6cc/0xe00
+[   21.162998]  ? __pfx_io_create_region+0x10/0x10
+[   21.164315]  io_create_region_mmap_safe+0xb0/0x150
+[   21.164551]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.182779]  ? io_create_region+0x6cc/0xe00
+[   21.184104]  ? io_create_region+0x6cc/0xe00
+[   21.184304]  ? io_create_region+0x6cc/0xe00
+[   21.184510]  io_create_region+0x6cc/0xe00
+[   21.184708]  ? __pfx_io_create_region+0x10/0x10
+[   21.186017]  io_create_region_mmap_safe+0xb0/0x150
+[   21.186249]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.713177]  ? io_create_region+0x6cc/0xe00
+[   22.714157]  ? io_create_region+0x6cc/0xe00
+[   22.715114]  ? io_create_region+0x6cc/0xe00
+[   22.715534]  ? io_create_region+0x6cc/0xe00
+[   22.715962]  io_create_region+0x6cc/0xe00
+[   22.716395]  ? __pfx_io_create_region+0x10/0x10
+[   22.716649]  ? io_create_region+0x6cc/0xe00
+[   22.717077]  ? io_create_region+0x6cc/0xe00
+[   22.717526]  io_create_region+0x6cc/0xe00
+[   22.717951]  ? __pfx_io_create_region+0x10/0x10
+[   22.718926]  io_create_region_mmap_safe+0xb0/0x150
+[   22.719335]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.720345]  io_create_region_mmap_safe+0xb0/0x150
+[   22.720725]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.749317]  ? io_create_region+0x6cc/0xe00
+[   22.750633]  ? io_create_region+0x6cc/0xe00
+[   22.750834]  ? io_create_region+0x6cc/0xe00
+[   22.751037]  io_create_region+0x6cc/0xe00
+[   22.751234]  ? __pfx_io_create_region+0x10/0x10
+[   22.752524]  io_create_region_mmap_safe+0xb0/0x150
+[   22.752755]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.773598]  ? io_create_region+0x6cc/0xe00
+[   22.774938]  ? io_create_region+0x6cc/0xe00
+[   22.775158]  ? io_create_region+0x6cc/0xe00
+[   22.775370]  io_create_region+0x6cc/0xe00
+[   22.775569]  ? __pfx_io_create_region+0x10/0x10
+[   22.776864]  io_create_region_mmap_safe+0xb0/0x150
+[   22.777104]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.996358]  ? io_create_region+0x6cc/0xe00
+[   22.997719]  ? io_create_region+0x6cc/0xe00
+[   22.997915]  ? io_create_region+0x6cc/0xe00
+[   22.998117]  io_create_region+0x6cc/0xe00
+[   22.998310]  ? __pfx_io_create_region+0x10/0x10
+[   22.999618]  io_create_region_mmap_safe+0xb0/0x150
+[   22.999852]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   23.017534]  ? io_create_region+0x6cc/0xe00
+[   23.018830]  ? io_create_region+0x6cc/0xe00
+[   23.019032]  ? io_create_region+0x6cc/0xe00
+[   23.019233]  io_create_region+0x6cc/0xe00
+[   23.019425]  ? __pfx_io_create_region+0x10/0x10
+[   23.020682]  io_create_region_mmap_safe+0xb0/0x150
+[   23.020903]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   26.827916]  ? io_create_region+0x6cc/0xe00
+[   26.829228]  ? io_create_region+0x6cc/0xe00
+[   26.829450]  ? io_create_region+0x6cc/0xe00
+[   26.829659]  io_create_region+0x6cc/0xe00
+[   26.829856]  ? __pfx_io_create_region+0x10/0x10
+[   26.831139]  io_create_region_mmap_safe+0xb0/0x150
+[   26.831368]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   26.849190]  ? io_create_region+0x6cc/0xe00
+[   26.850509]  ? io_create_region+0x6cc/0xe00
+[   26.850712]  ? io_create_region+0x6cc/0xe00
+[   26.850914]  io_create_region+0x6cc/0xe00
+[   26.851113]  ? __pfx_io_create_region+0x10/0x10
+[   26.852405]  io_create_region_mmap_safe+0xb0/0x150
+[   26.852635]  ? __pfx_io_create_region_mmap_safe+0x10/0x10, FAIL|
+|0313_125554|git bisect bad 0e3cc1ba9b30bd6f31e012a1979161df3dfb79f2|
+|0313_125554||/var/www/html/bzimage/bzImage_35388cb1e37ec928c3ecb9b9b7ca655298b4a054| exist, no need make|
+|0313_125554|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_125554|Run /var/www/html/bzimage/bzImage_35388cb1e37ec928c3ecb9b9b7ca655298b4a054 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_125606|It takes 12 seconds to find login:test login: |
+|0313_125606|Boot 1 time: takes 12 seconds to boot up.|
+|0313_125606|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_125607|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_125608|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_125610|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_125610|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_125659|/var/www/html/bzimage/bzImage_35388cb1e37ec928c3ecb9b9b7ca655298b4a054 contained io_create_region:[   20.019649]  ? io_create_region+0x6cc/0xe00
+[   20.019697]  ? io_create_region+0x6cc/0xe00
+[   20.019702]  ? io_create_region+0x6cc/0xe00
+[   20.019710]  io_create_region+0x6cc/0xe00
+[   20.019718]  ? __pfx_io_create_region+0x10/0x10
+[   20.019755]  io_create_region_mmap_safe+0xb0/0x150
+[   20.019762]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.032986]  io_create_region+0x6cc/0xe00
+[   20.033179]  io_create_region_mmap_safe+0xb0/0x150
+[   20.036257]  io_create_region+0x6cc/0xe00
+[   20.036450]  io_create_region_mmap_safe+0xb0/0x150
+[   20.055101]  ? io_create_region+0x6cc/0xe00
+[   20.056198]  ? io_create_region+0x6cc/0xe00
+[   20.056427]  ? io_create_region+0x6cc/0xe00
+[   20.056628]  io_create_region+0x6cc/0xe00
+[   20.056822]  ? __pfx_io_create_region+0x10/0x10
+[   20.057665]  io_create_region_mmap_safe+0xb0/0x150
+[   20.057893]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.075359]  ? io_create_region+0x6cc/0xe00
+[   20.076492]  ? io_create_region+0x6cc/0xe00
+[   20.076695]  ? io_create_region+0x6cc/0xe00
+[   20.076903]  io_create_region+0x6cc/0xe00
+[   20.077101]  ? __pfx_io_create_region+0x10/0x10
+[   20.077942]  io_create_region_mmap_safe+0xb0/0x150
+[   20.078174]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.479120]  ? io_create_region+0x6cc/0xe00
+[   20.480429]  ? io_create_region+0x6cc/0xe00
+[   20.480629]  ? io_create_region+0x6cc/0xe00
+[   20.480830]  io_create_region+0x6cc/0xe00
+[   20.481028]  ? __pfx_io_create_region+0x10/0x10
+[   20.482346]  io_create_region_mmap_safe+0xb0/0x150
+[   20.482579]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   20.500498]  ? io_create_region+0x6cc/0xe00
+[   20.501811]  ? io_create_region+0x6cc/0xe00
+[   20.502014]  ? io_create_region+0x6cc/0xe00
+[   20.502221]  io_create_region+0x6cc/0xe00
+[   20.502420]  ? __pfx_io_create_region+0x10/0x10
+[   20.503732]  io_create_region_mmap_safe+0xb0/0x150
+[   20.503967]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.200261]  ? io_create_region+0x6cc/0xe00
+[   21.201611]  ? io_create_region+0x6cc/0xe00
+[   21.201820]  ? io_create_region+0x6cc/0xe00
+[   21.202028]  io_create_region+0x6cc/0xe00
+[   21.202228]  ? __pfx_io_create_region+0x10/0x10
+[   21.203544]  io_create_region_mmap_safe+0xb0/0x150
+[   21.203772]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.222040]  ? io_create_region+0x6cc/0xe00
+[   21.223371]  ? io_create_region+0x6cc/0xe00
+[   21.223582]  ? io_create_region+0x6cc/0xe00
+[   21.223791]  io_create_region+0x6cc/0xe00
+[   21.223992]  ? __pfx_io_create_region+0x10/0x10
+[   21.225316]  io_create_region_mmap_safe+0xb0/0x150
+[   21.225553]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.473486]  ? io_create_region+0x6cc/0xe00
+[   21.474800]  ? io_create_region+0x6cc/0xe00
+[   21.475002]  ? io_create_region+0x6cc/0xe00
+[   21.475212]  io_create_region+0x6cc/0xe00
+[   21.475410]  ? __pfx_io_create_region+0x10/0x10
+[   21.476721]  io_create_region_mmap_safe+0xb0/0x150
+[   21.476950]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.495106]  ? io_create_region+0x6cc/0xe00
+[   21.496443]  ? io_create_region+0x6cc/0xe00
+[   21.496649]  ? io_create_region+0x6cc/0xe00
+[   21.496855]  io_create_region+0x6cc/0xe00
+[   21.497057]  ? __pfx_io_create_region+0x10/0x10
+[   21.498356]  io_create_region_mmap_safe+0xb0/0x150
+[   21.498587]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.590698]  ? io_create_region+0x6cc/0xe00
+[   21.592023]  ? io_create_region+0x6cc/0xe00
+[   21.592224]  ? io_create_region+0x6cc/0xe00
+[   21.592459]  io_create_region+0x6cc/0xe00
+[   21.592656]  ? __pfx_io_create_region+0x10/0x10
+[   21.593987]  io_create_region_mmap_safe+0xb0/0x150
+[   21.594249]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   21.612091]  ? io_create_region+0x6cc/0xe00
+[   21.613401]  ? io_create_region+0x6cc/0xe00
+[   21.613602]  ? io_create_region+0x6cc/0xe00
+[   21.613807]  io_create_region+0x6cc/0xe00
+[   21.614004]  ? __pfx_io_create_region+0x10/0x10
+[   21.615307]  io_create_region_mmap_safe+0xb0/0x150
+[   21.615535]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.548012]  ? io_create_region+0x6cc/0xe00
+[   22.549329]  ? io_create_region+0x6cc/0xe00
+[   22.549540]  ? io_create_region+0x6cc/0xe00
+[   22.549742]  io_create_region+0x6cc/0xe00
+[   22.549937]  ? __pfx_io_create_region+0x10/0x10
+[   22.551222]  io_create_region_mmap_safe+0xb0/0x150
+[   22.551450]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.569457]  ? io_create_region+0x6cc/0xe00
+[   22.570778]  ? io_create_region+0x6cc/0xe00
+[   22.570980]  ? io_create_region+0x6cc/0xe00
+[   22.571185]  io_create_region+0x6cc/0xe00
+[   22.571380]  ? __pfx_io_create_region+0x10/0x10
+[   22.572687]  io_create_region_mmap_safe+0xb0/0x150
+[   22.572917]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.974734]  ? io_create_region+0x6cc/0xe00
+[   22.976085]  ? io_create_region+0x6cc/0xe00
+[   22.976293]  ? io_create_region+0x6cc/0xe00
+[   22.976499]  io_create_region+0x6cc/0xe00
+[   22.976697]  ? __pfx_io_create_region+0x10/0x10
+[   22.978029]  io_create_region_mmap_safe+0xb0/0x150
+[   22.978269]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   22.996377]  ? io_create_region+0x6cc/0xe00
+[   22.997698]  ? io_create_region+0x6cc/0xe00
+[   22.997899]  ? io_create_region+0x6cc/0xe00
+[   22.998106]  io_create_region+0x6cc/0xe00
+[   22.998296]  ? __pfx_io_create_region+0x10/0x10
+[   22.999429]  io_create_region_mmap_safe+0xb0/0x150
+[   22.999631]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   32.222808]  ? io_create_region+0x6cc/0xe00
+[   32.224105]  ? io_create_region+0x6cc/0xe00
+[   32.224308]  ? io_create_region+0x6cc/0xe00
+[   32.224516]  io_create_region+0x6cc/0xe00
+[   32.224727]  ? __pfx_io_create_region+0x10/0x10
+[   32.226010]  io_create_region_mmap_safe+0xb0/0x150
+[   32.226240]  ? __pfx_io_create_region_mmap_safe+0x10/0x10
+[   32.244038]  ? io_create_region+0x6cc/0xe00
+[   32.245352]  ? io_create_region+0x6cc/0xe00
+[   32.245554]  ? io_create_region+0x6cc/0xe00
+[   32.245757]  io_create_region+0x6cc/0xe00
+[   32.245952]  ? __pfx_io_create_region+0x10/0x10
+[   32.247230]  io_create_region_mmap_safe+0xb0/0x150
+[   32.247457]  ? __pfx_io_create_region_mmap_safe+0x10/0x10, FAIL|
+|0313_125659|git bisect bad 35388cb1e37ec928c3ecb9b9b7ca655298b4a054|
+|0313_125659||/var/www/html/bzimage/bzImage_bba4abfab0c8e0c272db1175cb29cb220815e5e8| exist, no need make|
+|0313_125659|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_125659|Run /var/www/html/bzimage/bzImage_bba4abfab0c8e0c272db1175cb29cb220815e5e8 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_125711|It takes 12 seconds to find login:test login: |
+|0313_125711|Boot 1 time: takes 12 seconds to boot up.|
+|0313_125711|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_125712|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_125713|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_125715|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_125715|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_125804|/var/www/html/bzimage/bzImage_bba4abfab0c8e0c272db1175cb29cb220815e5e8 didn't contain io_create_region: in dmesg, pass|
+|0313_125804|git bisect good bba4abfab0c8e0c272db1175cb29cb220815e5e8|
+|0313_125804|Bisect PASS: find bad commit: 35388cb1e37ec928c3ecb9b9b7ca655298b4a054 is the first bad commit
+commit 35388cb1e37ec928c3ecb9b9b7ca655298b4a054
+Author: Liu Ye <liuye@kylinos.cn>
+Date:   Mon Mar 3 09:57:02 2025 +0800
+
+    mm/vmalloc: move free_vm_area(area) from the __vmalloc_area_node function to the __vmalloc_node_range_noprof function
+    
+    Moved free_vm_area from the __vmalloc_area_node function to the
+    __vmalloc_node_range_noprof function so that allocation and freeing of the
+    area can be paired in one function for better readability.
+    
+    Link: https://lkml.kernel.org/r/20250303015702.319416-1-liuye@kylinos.cn
+    Signed-off-by: Liu Ye <liuye@kylinos.cn>
+    Reviewed-by: Uladzislau Rezki (Sony) <urezki@gmail.com>
+    Cc: Christop Hellwig <hch@infradead.org>
+    Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+
+ mm/vmalloc.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)|
+|0313_125804|cmd=git bisect log >> /var/www/html/bzimage/bi.log|
+|0313_125804|cmd=git bisect log >> /var/www/html/bzimage/0313_124102_io_create_region/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [eea255893718268e1ab852fb52f70c613d109b99] Add linux-next specific files for 20250311
+git bisect bad eea255893718268e1ab852fb52f70c613d109b99
+# status: waiting for good commit(s), bad commit known
+# good: [80e54e84911a923c40d7bee33a34c1b4be148d7a] Linux 6.14-rc6
+git bisect good 80e54e84911a923c40d7bee33a34c1b4be148d7a
+# bad: [35a44026e774afeae9ccbd3cbfd8d73aa7fe06a0] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless-next.git
+git bisect bad 35a44026e774afeae9ccbd3cbfd8d73aa7fe06a0
+# bad: [f122ed30288bc440d16c3daeb80295c666aabe29] Merge branch 'fs-next' of linux-next
+git bisect bad f122ed30288bc440d16c3daeb80295c666aabe29
+# bad: [0618ec00f6c03af1ba7c1df99d59e2bf5b09f580] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git
+git bisect bad 0618ec00f6c03af1ba7c1df99d59e2bf5b09f580
+# bad: [cd6c8d17640bc4226840b29bf0ef092c1c2470dd] Merge branch 'mm-everything' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+git bisect bad cd6c8d17640bc4226840b29bf0ef092c1c2470dd
+# bad: [b300cd93434b5f6c47c586eb8c1bf55b6108dd1e] mm/damon/core: support committing ops_filters
+git bisect bad b300cd93434b5f6c47c586eb8c1bf55b6108dd1e
+# good: [23f4234e5c4acbc6b72203b07791b484e2ae5b69] mm/huge_memory: add vmf_insert_folio_pmd()
+git bisect good 23f4234e5c4acbc6b72203b07791b484e2ae5b69
+# good: [6557c08314e661c09391e92c130c31097c0d4cdd] fix up for "mm, swap: simplify folio swap allocation"
+git bisect good 6557c08314e661c09391e92c130c31097c0d4cdd
+# good: [ce500d6dd03b277ecc0373aad56caeb3b4be1bbe] mm: move hugetlb specific things in folio to page[3]
+git bisect good ce500d6dd03b277ecc0373aad56caeb3b4be1bbe
+# good: [2ebeb7d3fefbc9ed1805795f882fa55afd9660ad] mm/mremap: correctly handle partial mremap() of VMA starting at 0
+git bisect good 2ebeb7d3fefbc9ed1805795f882fa55afd9660ad
+# bad: [81e2050bc5d6e086eb29df1a0dbb87eecefb8157] page_counter: track failcnt only for legacy cgroups
+git bisect bad 81e2050bc5d6e086eb29df1a0dbb87eecefb8157
+# good: [f00d29dcb63e151dcdde13665dd838bc36ae0ea9] mm/mremap: refactor move_page_tables(), abstracting state
+git bisect good f00d29dcb63e151dcdde13665dd838bc36ae0ea9
+# bad: [0e3cc1ba9b30bd6f31e012a1979161df3dfb79f2] mm/page_alloc: clarify terminology in migratetype fallback code
+git bisect bad 0e3cc1ba9b30bd6f31e012a1979161df3dfb79f2
+# bad: [35388cb1e37ec928c3ecb9b9b7ca655298b4a054] mm/vmalloc: move free_vm_area(area) from the __vmalloc_area_node function to the __vmalloc_node_range_noprof function
+git bisect bad 35388cb1e37ec928c3ecb9b9b7ca655298b4a054
+# good: [bba4abfab0c8e0c272db1175cb29cb220815e5e8] mm/mremap: thread state through move page table operation
+git bisect good bba4abfab0c8e0c272db1175cb29cb220815e5e8
+# first bad commit: [35388cb1e37ec928c3ecb9b9b7ca655298b4a054] mm/vmalloc: move free_vm_area(area) from the __vmalloc_area_node function to the __vmalloc_node_range_noprof function
+|0313_125804|/var/www/html/bzimage/bzImage_eea255893718268e1ab852fb52f70c613d109b99_35388cb1e37ec928c3ecb9b9b7ca655298b4a054_revert exist, no need make|
+|0313_125804|1st base commit:80e54e84911a923c40d7bee33a34c1b4be148d7a!|
+|0313_125804|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0313_125804|Run /var/www/html/bzimage/bzImage_eea255893718268e1ab852fb52f70c613d109b99_35388cb1e37ec928c3ecb9b9b7ca655298b4a054_revert with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0313_125817|It takes 13 seconds to find login:test login: |
+|0313_125817|Boot 1 time: takes 13 seconds to boot up.|
+|0313_125817|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0313_125818|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_125819|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/145b30c59824969bb51c40650a27aa01a0a97840/repro.cprog root@localhost:/root/repro.c|
+|0313_125820|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0313_125821|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0313_125910|/var/www/html/bzimage/bzImage_eea255893718268e1ab852fb52f70c613d109b99_35388cb1e37ec928c3ecb9b9b7ca655298b4a054_revert didn't contain io_create_region: in dmesg, pass|
+|0313_125910|Bisect successfully! eea255893718268e1ab852fb52f70c613d109b99_35388cb1e37ec928c3ecb9b9b7ca655298b4a054_revert bzimage passed!|
+|0313_125910|cmd=cd /root/linux-next|
+|0313_125910|ISSUE:145b30c59824969bb51c40650a27aa01a0a97840  EMAIL status after check:Email_not_sent|

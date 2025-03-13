@@ -1,0 +1,1095 @@
+==================================================================
+------------[ cut here ]------------
+BUG: KASAN: slab-use-after-free in free_vm_area mm/vmalloc.c:4526 [inline]
+BUG: KASAN: slab-use-after-free in __vmalloc_node_range_noprof+0x1344/0x1420 mm/vmalloc.c:3845
+Read of size 8 at addr ffff888024984c08 by task syz-executor324/1122
+
+CPU: 0 UID: 0 PID: 1122 Comm: syz-executor324 Not tainted 6.14.0-rc6-next-20250311-eea255893718 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:408 [inline]
+ print_report+0xce/0x660 mm/kasan/report.c:521
+ kasan_report+0xd6/0x110 mm/kasan/report.c:634
+ __asan_report_load8_noabort+0x18/0x20 mm/kasan/report_generic.c:381
+ free_vm_area mm/vmalloc.c:4526 [inline]
+ __vmalloc_node_range_noprof+0x1344/0x1420 mm/vmalloc.c:3845
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f00ad23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246 ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 0000000000007792
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+ </TASK>
+
+Trying to vfree() bad address (00000000f1cc562e)
+Allocated by task 1122:
+WARNING: CPU: 1 PID: 1123 at mm/vmalloc.c:3231 remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+ kasan_save_stack+0x2c/0x60 mm/kasan/common.c:47
+ kasan_save_track+0x18/0x40 mm/kasan/common.c:68
+ kasan_save_alloc_info+0x3c/0x50 mm/kasan/generic.c:562
+ poison_kmalloc_redzone mm/kasan/common.c:377 [inline]
+ __kasan_kmalloc+0x88/0xa0 mm/kasan/common.c:394
+ kasan_kmalloc include/linux/kasan.h:260 [inline]
+ __kmalloc_cache_node_noprof+0x1d0/0x470 mm/slub.c:4374
+Modules linked in:
+ kmalloc_node_noprof include/linux/slab.h:928 [inline]
+ __get_vm_area_node+0xf7/0x260 mm/vmalloc.c:3127
+
+ __vmalloc_node_range_noprof+0x25c/0x1420 mm/vmalloc.c:3803
+CPU: 1 UID: 0 PID: 1123 Comm: syz-executor324 Not tainted 6.14.0-rc6-next-20250311-eea255893718 #1
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+RIP: 0010:remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+Code: c3 cc cc cc cc e8 7e e2 a4 ff 49 81 ee 00 10 00 00 e9 51 ff ff ff e8 6d e2 a4 ff 4c 89 e6 48 c7 c7 a0 eb fa 85 e8 ce 71 63 ff <0f> 0b 45 31 ed eb bb 45 31 ed eb b6 e8 ed d2 0f 00 e9 10 ff ff ff
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+RSP: 0018:ffff88801b7cf8b8 EFLAGS: 00010292
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+RAX: 0000000000000000 RBX: 0000000000000463 RCX: ffffffff8146eac2
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+RDX: ffff888012ba0000 RSI: ffffffff8146eacf RDI: 0000000000000001
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RBP: ffff88801b7cf8e0 R08: 0000000000000001 R09: ffffed100d8a5921
+
+R10: 0000000000000001 R11: 0000000000000001 R12: 027a010100000463
+Freed by task 1122:
+R13: 0000000000000c00 R14: ffff88800ece16ac R15: dffffc0000000000
+ kasan_save_stack+0x2c/0x60 mm/kasan/common.c:47
+FS:  00007f00ad534600(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+ kasan_save_track+0x18/0x40 mm/kasan/common.c:68
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+ kasan_save_free_info+0x3f/0x60 mm/kasan/generic.c:576
+CR2: 0000000020000304 CR3: 000000000dffa001 CR4: 0000000000770ef0
+ poison_slab_object mm/kasan/common.c:247 [inline]
+ __kasan_slab_free+0x3d/0x60 mm/kasan/common.c:264
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+ kasan_slab_free include/linux/kasan.h:233 [inline]
+ slab_free_hook mm/slub.c:2389 [inline]
+ slab_free mm/slub.c:4646 [inline]
+ kfree+0x28d/0x440 mm/slub.c:4845
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+ vfree+0x2ce/0x910 mm/vmalloc.c:3389
+PKRU: 55555554
+ __vmalloc_area_node mm/vmalloc.c:3733 [inline]
+ __vmalloc_node_range_noprof+0xeca/0x1420 mm/vmalloc.c:3843
+Call Trace:
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ <TASK>
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+The buggy address belongs to the object at ffff888024984c00
+ which belongs to the cache kmalloc-64 of size 64
+The buggy address is located 8 bytes inside of
+ freed 64-byte region [ffff888024984c00, ffff888024984c40)
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x24984
+flags: 0xfffffc0000000(node=0|zone=1|lastcpupid=0x1fffff)
+page_type: f5(slab)
+raw: 000fffffc0000000 ffff88800d4418c0 dead000000000100 dead000000000122
+raw: 0000000000000000 0000000000200020 00000000f5000000 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ free_vm_area mm/vmalloc.c:4526 [inline]
+ __vmalloc_node_range_noprof+0x97e/0x1420 mm/vmalloc.c:3845
+ ffff888024984b00: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+ ffff888024984b80: 00 00 00 00 00 00 fc fc fc fc fc fc fc fc fc fc
+>ffff888024984c00: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+                      ^
+ ffff888024984c80: 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc fc
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ ffff888024984d00: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
+==================================================================
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f00ad23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246 ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 000000000000778b
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+ </TASK>
+irq event stamp: 26978
+hardirqs last  enabled at (26977): [<ffffffff8167126d>] console_trylock_spinning kernel/printk/printk.c:2054 [inline]
+hardirqs last  enabled at (26977): [<ffffffff8167126d>] vprintk_emit kernel/printk/printk.c:2431 [inline]
+hardirqs last  enabled at (26977): [<ffffffff8167126d>] vprintk_emit+0x64d/0x920 kernel/printk/printk.c:2378
+hardirqs last disabled at (26978): [<ffffffff8166d86a>] console_emit_next_record kernel/printk/printk.c:3113 [inline]
+hardirqs last disabled at (26978): [<ffffffff8166d86a>] console_flush_all+0x96a/0xc10 kernel/printk/printk.c:3208
+softirqs last  enabled at (26650): [<ffffffff8148deae>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last  enabled at (26650): [<ffffffff8148deae>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last  enabled at (26650): [<ffffffff8148deae>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+softirqs last disabled at (26645): [<ffffffff8148deae>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last disabled at (26645): [<ffffffff8148deae>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last disabled at (26645): [<ffffffff8148deae>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+---[ end trace 0000000000000000 ]---
+------------[ cut here ]------------
+kernel BUG at mm/vmalloc.c:4527!
+Oops: invalid opcode: 0000 [#1] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 1123 Comm: syz-executor324 Tainted: G    B   W           6.14.0-rc6-next-20250311-eea255893718 #1
+Tainted: [B]=BAD_PAGE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+RSP: 0018:ffff88801b7cf8f0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000009 RCX: ffffffff8146eac2
+RDX: ffff888012ba0000 RSI: ffffffff81e39a8d RDI: 0000000000000001
+RBP: ffff88801b7cfa98 R08: 0000000000000001 R09: ffffed100d8a5921
+R10: 0000000000000001 R11: 0000000000000001 R12: 027a010100000463
+R13: 0000000000000c00 R14: ffff88800ece16ac R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020000304 CR3: 000000000dffa001 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+------------[ cut here ]------------
+Trying to vfree() bad address (00000000a71855ce)
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+WARNING: CPU: 0 PID: 1122 at mm/vmalloc.c:3231 remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+Modules linked in:
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+CPU: 0 UID: 0 PID: 1122 Comm: syz-executor324 Tainted: G    B   W           6.14.0-rc6-next-20250311-eea255893718 #1
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+Tainted: [B]=BAD_PAGE, [W]=WARN
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0033:0x7f00ad23ee5d
+RIP: 0010:remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+Code: c3 cc cc cc cc e8 7e e2 a4 ff 49 81 ee 00 10 00 00 e9 51 ff ff ff e8 6d e2 a4 ff 4c 89 e6 48 c7 c7 a0 eb fa 85 e8 ce 71 63 ff <0f> 0b 45 31 ed eb bb 45 31 ed eb b6 e8 ed d2 0f 00 e9 10 ff ff ff
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246 ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 000000000000778b
+RSP: 0018:ffff8880134378b8 EFLAGS: 00010292
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+
+ </TASK>
+RAX: 0000000000000000 RBX: 0000000000000462 RCX: ffffffff8146eac2
+Modules linked in:
+RDX: ffff888012ba2540 RSI: ffffffff8146eacf RDI: 0000000000000001
+
+RBP: ffff8880134378e0 R08: 0000000000000001 R09: ffffed100d885921
+---[ end trace 0000000000000000 ]---
+R10: 0000000000000001 R11: 7420676e69797254 R12: 027a010100000462
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+R13: 0000000000000c00 R14: ffff888024984c2c R15: dffffc0000000000
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+FS:  00007f00ad534600(0000) GS:ffff8880e358d000(0000) knlGS:0000000000000000
+RSP: 0018:ffff88801b7cf8f0 EFLAGS: 00010293
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+
+CR2: 00007f4226dbb000 CR3: 0000000013dca005 CR4: 0000000000770ef0
+RAX: 0000000000000000 RBX: 0000000000000009 RCX: ffffffff8146eac2
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+RDX: ffff888012ba0000 RSI: ffffffff81e39a8d RDI: 0000000000000001
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+RBP: ffff88801b7cfa98 R08: 0000000000000001 R09: ffffed100d8a5921
+PKRU: 55555554
+R10: 0000000000000001 R11: 0000000000000001 R12: 027a010100000463
+Call Trace:
+R13: 0000000000000c00 R14: ffff88800ece16ac R15: dffffc0000000000
+ <TASK>
+FS:  00007f00ad534600(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020000304 CR3: 000000000dffa001 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+ free_vm_area mm/vmalloc.c:4526 [inline]
+ __vmalloc_node_range_noprof+0x97e/0x1420 mm/vmalloc.c:3845
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f00ad23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246 ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 0000000000007792
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+ </TASK>
+irq event stamp: 27647
+hardirqs last  enabled at (27647): [<ffffffff85c3b83e>] irqentry_exit+0x3e/0xa0 kernel/entry/common.c:357
+hardirqs last disabled at (27646): [<ffffffff8148dbeb>] handle_softirqs+0x6bb/0x860 kernel/softirq.c:576
+softirqs last  enabled at (1850): [<ffffffff8148deae>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last  enabled at (1850): [<ffffffff8148deae>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last  enabled at (1850): [<ffffffff8148deae>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+softirqs last disabled at (1535): [<ffffffff8148deae>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last disabled at (1535): [<ffffffff8148deae>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last disabled at (1535): [<ffffffff8148deae>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+---[ end trace 0000000000000000 ]---
+------------[ cut here ]------------
+kernel BUG at mm/vmalloc.c:4527!
+Oops: invalid opcode: 0000 [#2] PREEMPT SMP KASAN NOPTI
+CPU: 0 UID: 0 PID: 1122 Comm: syz-executor324 Tainted: G    B D W           6.14.0-rc6-next-20250311-eea255893718 #1
+Tainted: [B]=BAD_PAGE, [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+RSP: 0018:ffff8880134378f0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000009 RCX: ffffffff8146eac2
+RDX: ffff888012ba2540 RSI: ffffffff81e39a8d RDI: 0000000000000001
+RBP: ffff888013437a98 R08: 0000000000000001 R09: ffffed100d885921
+R10: 0000000000000001 R11: 7420676e69797254 R12: 027a010100000462
+R13: 0000000000000c00 R14: ffff888024984c2c R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e358d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f4226dbb000 CR3: 0000000013dca005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f00ad23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246 ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 0000000000007792
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+RSP: 0018:ffff88801b7cf8f0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000009 RCX: ffffffff8146eac2
+RDX: ffff888012ba0000 RSI: ffffffff81e39a8d RDI: 0000000000000001
+RBP: ffff88801b7cfa98 R08: 0000000000000001 R09: ffffed100d8a5921
+R10: 0000000000000001 R11: 0000000000000001 R12: 027a010100000463
+R13: 0000000000000c00 R14: ffff88800ece16ac R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e358d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+------------[ cut here ]------------
+CR2: 00007f4226dbb000 CR3: 0000000013dca005 CR4: 0000000000770ef0
+Trying to vfree() bad address (000000009dcc553b)
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+WARNING: CPU: 1 PID: 1130 at mm/vmalloc.c:3231 remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Modules linked in:
+CPU: 1 UID: 0 PID: 1130 Comm: syz-executor324 Tainted: G    B D W           6.14.0-rc6-next-20250311-eea255893718 #1
+Tainted: [B]=BAD_PAGE, [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+Code: c3 cc cc cc cc e8 7e e2 a4 ff 49 81 ee 00 10 00 00 e9 51 ff ff ff e8 6d e2 a4 ff 4c 89 e6 48 c7 c7 a0 eb fa 85 e8 ce 71 63 ff <0f> 0b 45 31 ed eb bb 45 31 ed eb b6 e8 ed d2 0f 00 e9 10 ff ff ff
+RSP: 0018:ffff8880129a78b8 EFLAGS: 00010292
+RAX: 0000000000000000 RBX: 000000000000046a RCX: ffffffff8146eac2
+RDX: ffff88801ceb0000 RSI: ffffffff8146eacf RDI: 0000000000000001
+RBP: ffff8880129a78e0 R08: 0000000000000001 R09: ffffed100d8a5921
+R10: 0000000000000001 R11: 7420676e69797254 R12: 027a01010000046a
+R13: 0000000000000400 R14: ffff8880108933ac R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffd40e5a3d8 CR3: 000000001fefc004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ free_vm_area mm/vmalloc.c:4526 [inline]
+ __vmalloc_node_range_noprof+0x97e/0x1420 mm/vmalloc.c:3845
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f00ad23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246 ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 00000000000077cf
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+ </TASK>
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff8146709f>] copy_process+0x1cff/0x69c0 kernel/fork.c:2372
+softirqs last  enabled at (0): [<ffffffff814670ec>] copy_process+0x1d4c/0x69c0 kernel/fork.c:2373
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+------------[ cut here ]------------
+kernel BUG at mm/vmalloc.c:4527!
+Oops: invalid opcode: 0000 [#3] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 1130 Comm: syz-executor324 Tainted: G    B D W           6.14.0-rc6-next-20250311-eea255893718 #1
+Tainted: [B]=BAD_PAGE, [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+RSP: 0018:ffff8880129a78f0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000009 RCX: ffffffff8146eac2
+RDX: ffff88801ceb0000 RSI: ffffffff81e39a8d RDI: 0000000000000001
+RBP: ffff8880129a7a98 R08: 0000000000000001 R09: ffffed100d8a5921
+R10: 0000000000000001 R11: 7420676e69797254 R12: 027a01010000046a
+R13: 0000000000000400 R14: ffff8880108933ac R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffd40e5a3d8 CR3: 000000001fefc004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f00ad23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246 ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 00000000000077cf
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+RSP: 0018:ffff88801b7cf8f0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000009 RCX: ffffffff8146eac2
+RDX: ffff888012ba0000 RSI: ffffffff81e39a8d RDI: 0000000000000001
+RBP: ffff88801b7cfa98 R08: 0000000000000001 R09: ffffed100d8a5921
+R10: 0000000000000001 R11: 0000000000000001 R12: 027a010100000463
+R13: 0000000000000c00 R14: ffff88800ece16ac R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffd40e5a3d8 CR3: 000000001fefc004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+------------[ cut here ]------------
+Trying to vfree() bad address (000000001ce6a8ca)
+WARNING: CPU: 0 PID: 1448 at mm/vmalloc.c:3231 remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+Modules linked in:
+CPU: 0 UID: 0 PID: 1448 Comm: syz-executor324 Tainted: G    B D W           6.14.0-rc6-next-20250311-eea255893718 #1
+Tainted: [B]=BAD_PAGE, [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+Code: c3 cc cc cc cc e8 7e e2 a4 ff 49 81 ee 00 10 00 00 e9 51 ff ff ff e8 6d e2 a4 ff 4c 89 e6 48 c7 c7 a0 eb fa 85 e8 ce 71 63 ff <0f> 0b 45 31 ed eb bb 45 31 ed eb b6 e8 ed d2 0f 00 e9 10 ff ff ff
+RSP: 0018:ffff8880286078b8 EFLAGS: 00010292
+RAX: 0000000000000000 RBX: 00000000000005a8 RCX: ffffffff8146eac2
+RDX: ffff888015232540 RSI: ffffffff8146eacf RDI: 0000000000000001
+RBP: ffff8880286078e0 R08: 0000000000000001 R09: ffffed10050c0eb7
+R10: 0000000000000001 R11: 7420676e69797254 R12: 027a0101000005a8
+R13: 0000000000000400 R14: ffff888024d6b52c R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e358d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020001000 CR3: 000000001fefa001 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ free_vm_area mm/vmalloc.c:4526 [inline]
+ __vmalloc_node_range_noprof+0x97e/0x1420 mm/vmalloc.c:3845
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+------------[ cut here ]------------
+Trying to vfree() bad address (00000000d320fe7e)
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+WARNING: CPU: 1 PID: 1446 at mm/vmalloc.c:3231 remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+Modules linked in:
+
+CPU: 1 UID: 0 PID: 1446 Comm: syz-executor324 Tainted: G    B D W           6.14.0-rc6-next-20250311-eea255893718 #1
+Tainted: [B]=BAD_PAGE, [D]=DIE, [W]=WARN
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+Code: c3 cc cc cc cc e8 7e e2 a4 ff 49 81 ee 00 10 00 00 e9 51 ff ff ff e8 6d e2 a4 ff 4c 89 e6 48 c7 c7 a0 eb fa 85 e8 ce 71 63 ff <0f> 0b 45 31 ed eb bb 45 31 ed eb b6 e8 ed d2 0f 00 e9 10 ff ff ff
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+RSP: 0018:ffff88802107f8b8 EFLAGS: 00010292
+
+RAX: 0000000000000000 RBX: 00000000000005a6 RCX: ffffffff8146eac2
+RDX: ffff888013834a80 RSI: ffffffff8146eacf RDI: 0000000000000001
+RBP: ffff88802107f8e0 R08: 0000000000000001 R09: ffffed100420feb7
+R10: 0000000000000001 R11: 7420676e69797254 R12: 027a0101000005a6
+R13: 0000000000000c00 R14: ffff888024d6b6ac R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f00ad3fca50 CR3: 0000000026594002 CR4: 0000000000770ef0
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+PKRU: 55555554
+RIP: 0033:0x7f00ad23ee5d
+Call Trace:
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+ <TASK>
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246
+ ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 0000000000007d92
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+ </TASK>
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff8146709f>] copy_process+0x1cff/0x69c0 kernel/fork.c:2372
+softirqs last  enabled at (0): [<ffffffff814670ec>] copy_process+0x1d4c/0x69c0 kernel/fork.c:2373
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+------------[ cut here ]------------
+kernel BUG at mm/vmalloc.c:4527!
+Oops: invalid opcode: 0000 [#4] PREEMPT SMP KASAN NOPTI
+ free_vm_area mm/vmalloc.c:4526 [inline]
+ __vmalloc_node_range_noprof+0x97e/0x1420 mm/vmalloc.c:3845
+CPU: 0 UID: 0 PID: 1448 Comm: syz-executor324 Tainted: G    B D W           6.14.0-rc6-next-20250311-eea255893718 #1
+Tainted: [B]=BAD_PAGE, [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+RSP: 0018:ffff8880286078f0 EFLAGS: 00010293
+
+RAX: 0000000000000000 RBX: 0000000000000009 RCX: ffffffff8146eac2
+RDX: ffff888015232540 RSI: ffffffff81e39a8d RDI: 0000000000000001
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+RBP: ffff888028607a98 R08: 0000000000000001 R09: ffffed10050c0eb7
+R10: 0000000000000001 R11: 7420676e69797254 R12: 027a0101000005a8
+R13: 0000000000000400 R14: ffff888024d6b52c R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e358d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020001000 CR3: 000000001fefa001 CR4: 0000000000770ef0
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f00ad23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246
+ ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 0000000000007d91
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+ </TASK>
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff8146709f>] copy_process+0x1cff/0x69c0 kernel/fork.c:2372
+softirqs last  enabled at (0): [<ffffffff814670ec>] copy_process+0x1d4c/0x69c0 kernel/fork.c:2373
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+------------[ cut here ]------------
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+kernel BUG at mm/vmalloc.c:4527!
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f00ad23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246 ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 0000000000007d92
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+Oops: invalid opcode: 0000 [#5] PREEMPT SMP KASAN NOPTI
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+CPU: 1 UID: 0 PID: 1446 Comm: syz-executor324 Tainted: G    B D W           6.14.0-rc6-next-20250311-eea255893718 #1
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+Tainted: [B]=BAD_PAGE, [D]=DIE, [W]=WARN
+RSP: 0018:ffff88801b7cf8f0 EFLAGS: 00010293
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RAX: 0000000000000000 RBX: 0000000000000009 RCX: ffffffff8146eac2
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+RDX: ffff888012ba0000 RSI: ffffffff81e39a8d RDI: 0000000000000001
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+RBP: ffff88801b7cfa98 R08: 0000000000000001 R09: ffffed100d8a5921
+RSP: 0018:ffff88802107f8f0 EFLAGS: 00010293
+R10: 0000000000000001 R11: 0000000000000001 R12: 027a010100000463
+
+R13: 0000000000000c00 R14: ffff88800ece16ac R15: dffffc0000000000
+RAX: 0000000000000000 RBX: 0000000000000009 RCX: ffffffff8146eac2
+FS:  00007f00ad534600(0000) GS:ffff8880e358d000(0000) knlGS:0000000000000000
+RDX: ffff888013834a80 RSI: ffffffff81e39a8d RDI: 0000000000000001
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+RBP: ffff88802107fa98 R08: 0000000000000001 R09: ffffed100420feb7
+CR2: 0000000020001000 CR3: 000000001fefa001 CR4: 0000000000770ef0
+R10: 0000000000000001 R11: 7420676e69797254 R12: 027a0101000005a6
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+R13: 0000000000000c00 R14: ffff888024d6b6ac R15: dffffc0000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+FS:  00007f00ad534600(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+PKRU: 55555554
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f00ad3fca50 CR3: 0000000026594002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f00ad23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246 ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 0000000000007d91
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+RSP: 0018:ffff88801b7cf8f0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000009 RCX: ffffffff8146eac2
+RDX: ffff888012ba0000 RSI: ffffffff81e39a8d RDI: 0000000000000001
+RBP: ffff88801b7cfa98 R08: 0000000000000001 R09: ffffed100d8a5921
+R10: 0000000000000001 R11: 0000000000000001 R12: 027a010100000463
+R13: 0000000000000c00 R14: ffff88800ece16ac R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f00ad3fca50 CR3: 0000000026594002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+------------[ cut here ]------------
+Trying to vfree() bad address (000000008af68292)
+WARNING: CPU: 1 PID: 1658 at mm/vmalloc.c:3231 remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+Modules linked in:
+CPU: 1 UID: 0 PID: 1658 Comm: syz-executor324 Tainted: G    B D W           6.14.0-rc6-next-20250311-eea255893718 #1
+Tainted: [B]=BAD_PAGE, [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+Code: c3 cc cc cc cc e8 7e e2 a4 ff 49 81 ee 00 10 00 00 e9 51 ff ff ff e8 6d e2 a4 ff 4c 89 e6 48 c7 c7 a0 eb fa 85 e8 ce 71 63 ff <0f> 0b 45 31 ed eb bb 45 31 ed eb b6 e8 ed d2 0f 00 e9 10 ff ff ff
+RSP: 0018:ffff888033dff8b8 EFLAGS: 00010292
+RAX: 0000000000000000 RBX: 000000000000067a RCX: ffffffff8146eac2
+RDX: ffff88800e902540 RSI: ffffffff8146eacf RDI: 0000000000000001
+RBP: ffff888033dff8e0 R08: 0000000000000001 R09: ffffed100d8a5921
+R10: 0000000000000000 R11: 7420676e69797254 R12: 027a01010000067a
+R13: 0000000000000c00 R14: ffff88801155dc2c R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020001000 CR3: 0000000033df4003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ free_vm_area mm/vmalloc.c:4526 [inline]
+ __vmalloc_node_range_noprof+0x97e/0x1420 mm/vmalloc.c:3845
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f00ad23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246 ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 00000000000080e9
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+ </TASK>
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff8146709f>] copy_process+0x1cff/0x69c0 kernel/fork.c:2372
+softirqs last  enabled at (0): [<ffffffff814670ec>] copy_process+0x1d4c/0x69c0 kernel/fork.c:2373
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+------------[ cut here ]------------
+kernel BUG at mm/vmalloc.c:4527!
+Oops: invalid opcode: 0000 [#6] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 1658 Comm: syz-executor324 Tainted: G    B D W           6.14.0-rc6-next-20250311-eea255893718 #1
+Tainted: [B]=BAD_PAGE, [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+RSP: 0018:ffff888033dff8f0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000009 RCX: ffffffff8146eac2
+RDX: ffff88800e902540 RSI: ffffffff81e39a8d RDI: 0000000000000001
+RBP: ffff888033dffa98 R08: 0000000000000001 R09: ffffed100d8a5921
+R10: 0000000000000000 R11: 7420676e69797254 R12: 027a01010000067a
+R13: 0000000000000c00 R14: ffff88801155dc2c R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020001000 CR3: 0000000033df4003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f00ad23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246 ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 00000000000080e9
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+RSP: 0018:ffff88801b7cf8f0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000009 RCX: ffffffff8146eac2
+RDX: ffff888012ba0000 RSI: ffffffff81e39a8d RDI: 0000000000000001
+RBP: ffff88801b7cfa98 R08: 0000000000000001 R09: ffffed100d8a5921
+R10: 0000000000000001 R11: 0000000000000001 R12: 027a010100000463
+R13: 0000000000000c00 R14: ffff88800ece16ac R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020001000 CR3: 0000000033df4003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+------------[ cut here ]------------
+Trying to vfree() bad address (00000000293c2241)
+WARNING: CPU: 1 PID: 1667 at mm/vmalloc.c:3231 remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+Modules linked in:
+CPU: 1 UID: 0 PID: 1667 Comm: syz-executor324 Tainted: G    B D W           6.14.0-rc6-next-20250311-eea255893718 #1
+Tainted: [B]=BAD_PAGE, [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+Code: c3 cc cc cc cc e8 7e e2 a4 ff 49 81 ee 00 10 00 00 e9 51 ff ff ff e8 6d e2 a4 ff 4c 89 e6 48 c7 c7 a0 eb fa 85 e8 ce 71 63 ff <0f> 0b 45 31 ed eb bb 45 31 ed eb b6 e8 ed d2 0f 00 e9 10 ff ff ff
+RSP: 0018:ffff88801b5078b8 EFLAGS: 00010292
+RAX: 0000000000000000 RBX: 0000000000000683 RCX: ffffffff8146eac2
+RDX: ffff888022492540 RSI: ffffffff8146eacf RDI: 0000000000000001
+RBP: ffff88801b5078e0 R08: 0000000000000001 R09: ffffed100d8a5921
+R10: 0000000000000001 R11: 7420676e69797254 R12: 027a010100000683
+R13: 0000000000000a00 R14: ffff888013e275ac R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f4226dfe000 CR3: 0000000022082006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ free_vm_area mm/vmalloc.c:4526 [inline]
+ __vmalloc_node_range_noprof+0x97e/0x1420 mm/vmalloc.c:3845
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f00ad23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246 ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 0000000000008126
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+ </TASK>
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff8146709f>] copy_process+0x1cff/0x69c0 kernel/fork.c:2372
+softirqs last  enabled at (0): [<ffffffff814670ec>] copy_process+0x1d4c/0x69c0 kernel/fork.c:2373
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+------------[ cut here ]------------
+kernel BUG at mm/vmalloc.c:4527!
+Oops: invalid opcode: 0000 [#7] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 1667 Comm: syz-executor324 Tainted: G    B D W           6.14.0-rc6-next-20250311-eea255893718 #1
+Tainted: [B]=BAD_PAGE, [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+RSP: 0018:ffff88801b5078f0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000009 RCX: ffffffff8146eac2
+RDX: ffff888022492540 RSI: ffffffff81e39a8d RDI: 0000000000000001
+RBP: ffff88801b507a98 R08: 0000000000000001 R09: ffffed100d8a5921
+R10: 0000000000000001 R11: 7420676e69797254 R12: 027a010100000683
+R13: 0000000000000a00 R14: ffff888013e275ac R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f4226dfe000 CR3: 0000000022082006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f00ad23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246 ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 0000000000008126
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+RSP: 0018:ffff88801b7cf8f0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000009 RCX: ffffffff8146eac2
+RDX: ffff888012ba0000 RSI: ffffffff81e39a8d RDI: 0000000000000001
+RBP: ffff88801b7cfa98 R08: 0000000000000001 R09: ffffed100d8a5921
+R10: 0000000000000001 R11: 0000000000000001 R12: 027a010100000463
+R13: 0000000000000c00 R14: ffff88800ece16ac R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f4226dfe000 CR3: 0000000022082006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+------------[ cut here ]------------
+Trying to vfree() bad address (000000001dc80222)
+WARNING: CPU: 0 PID: 1670 at mm/vmalloc.c:3231 remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+Modules linked in:
+CPU: 0 UID: 0 PID: 1670 Comm: syz-executor324 Tainted: G    B D W           6.14.0-rc6-next-20250311-eea255893718 #1
+Tainted: [B]=BAD_PAGE, [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+Code: c3 cc cc cc cc e8 7e e2 a4 ff 49 81 ee 00 10 00 00 e9 51 ff ff ff e8 6d e2 a4 ff 4c 89 e6 48 c7 c7 a0 eb fa 85 e8 ce 71 63 ff <0f> 0b 45 31 ed eb bb 45 31 ed eb b6 e8 ed d2 0f 00 e9 10 ff ff ff
+RSP: 0018:ffff88801eab78b8 EFLAGS: 00010292
+RAX: 0000000000000000 RBX: 0000000000000686 RCX: ffffffff8146eac2
+RDX: ffff88801e914a80 RSI: ffffffff8146eacf RDI: 0000000000000001
+RBP: ffff88801eab78e0 R08: 0000000000000001 R09: ffffed100d885921
+R10: 0000000000000001 R11: 7420676e69797254 R12: 027a010100000686
+R13: 0000000000000e00 R14: ffff888013e27f2c R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e358d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020001000 CR3: 00000000220ee004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ free_vm_area mm/vmalloc.c:4526 [inline]
+ __vmalloc_node_range_noprof+0x97e/0x1420 mm/vmalloc.c:3845
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f00ad23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246 ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 0000000000008141
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+ </TASK>
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff8146709f>] copy_process+0x1cff/0x69c0 kernel/fork.c:2372
+softirqs last  enabled at (0): [<ffffffff814670ec>] copy_process+0x1d4c/0x69c0 kernel/fork.c:2373
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+------------[ cut here ]------------
+kernel BUG at mm/vmalloc.c:4527!
+Oops: invalid opcode: 0000 [#8] PREEMPT SMP KASAN NOPTI
+CPU: 0 UID: 0 PID: 1670 Comm: syz-executor324 Tainted: G    B D W           6.14.0-rc6-next-20250311-eea255893718 #1
+Tainted: [B]=BAD_PAGE, [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+RSP: 0018:ffff88801eab78f0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000009 RCX: ffffffff8146eac2
+RDX: ffff88801e914a80 RSI: ffffffff81e39a8d RDI: 0000000000000001
+RBP: ffff88801eab7a98 R08: 0000000000000001 R09: ffffed100d885921
+R10: 0000000000000001 R11: 7420676e69797254 R12: 027a010100000686
+R13: 0000000000000e00 R14: ffff888013e27f2c R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e358d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020001000 CR3: 00000000220ee004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ kvmalloc_array_node_noprof include/linux/slab.h:1065 [inline]
+ io_region_allocate_pages io_uring/memmap.c:163 [inline]
+ io_create_region+0x6ca/0xe00 io_uring/memmap.c:223
+ io_create_region_mmap_safe+0xaf/0x150 io_uring/memmap.c:244
+ io_register_mem_region io_uring/register.c:613 [inline]
+ __io_uring_register io_uring/register.c:833 [inline]
+ __do_sys_io_uring_register+0xb90/0x2b10 io_uring/register.c:926
+ __se_sys_io_uring_register io_uring/register.c:903 [inline]
+ __x64_sys_io_uring_register+0x9f/0x100 io_uring/register.c:903
+ x64_sys_call+0x1eef/0x2150 arch/x86/include/generated/asm/syscalls_64.h:428
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f00ad23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd40e5a4d8 EFLAGS: 00000246 ORIG_RAX: 00000000000001ab
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f00ad23ee5d
+RDX: 0000000020003300 RSI: 0000000000000022 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000008000 R09: 0000000000008000
+R10: 0000000000000001 R11: 0000000000000246 R12: 0000000000008141
+R13: 0000000000401170 R14: 0000000000403e08 R15: 00007f00ad57d000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+RSP: 0018:ffff88801b7cf8f0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000009 RCX: ffffffff8146eac2
+RDX: ffff888012ba0000 RSI: ffffffff81e39a8d RDI: 0000000000000001
+RBP: ffff88801b7cfa98 R08: 0000000000000001 R09: ffffed100d8a5921
+R10: 0000000000000001 R11: 0000000000000001 R12: 027a010100000463
+R13: 0000000000000c00 R14: ffff88800ece16ac R15: dffffc0000000000
+FS:  00007f00ad534600(0000) GS:ffff8880e358d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020001000 CR3: 00000000220ee004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+----------------
+Code disassembly (best guess):
+   0:	ff c3                	inc    %ebx
+   2:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+   9:	00 00 00
+   c:	90                   	nop
+   d:	f3 0f 1e fa          	endbr64
+  11:	48 89 f8             	mov    %rdi,%rax
+  14:	48 89 f7             	mov    %rsi,%rdi
+  17:	48 89 d6             	mov    %rdx,%rsi
+  1a:	48 89 ca             	mov    %rcx,%rdx
+  1d:	4d 89 c2             	mov    %r8,%r10
+  20:	4d 89 c8             	mov    %r9,%r8
+  23:	4c 8b 4c 24 08       	mov    0x8(%rsp),%r9
+  28:	0f 05                	syscall
+* 2a:	48 3d 01 f0 ff ff    	cmp    $0xfffffffffffff001,%rax <-- trapping instruction
+  30:	73 01                	jae    0x33
+  32:	c3                   	retq
+  33:	48 8b 0d 93 af 1b 00 	mov    0x1baf93(%rip),%rcx        # 0x1bafcd
+  3a:	f7 d8                	neg    %eax
+  3c:	64 89 01             	mov    %eax,%fs:(%rcx)
+  3f:	48                   	rex.W
