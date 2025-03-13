@@ -1,0 +1,314 @@
+==================================================================
+BUG: KASAN: slab-use-after-free in free_vm_area mm/vmalloc.c:4526 [inline]
+BUG: KASAN: slab-use-after-free in __vmalloc_node_range_noprof+0x1344/0x1420 mm/vmalloc.c:3845
+Read of size 8 at addr ffff8880213f3e08 by task syz-executor.3/4753
+
+CPU: 1 UID: 0 PID: 4753 Comm: syz-executor.3 Not tainted 6.14.0-rc6-next-20250311-eea255893718 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:408 [inline]
+ print_report+0xce/0x660 mm/kasan/report.c:521
+ kasan_report+0xd6/0x110 mm/kasan/report.c:634
+ __asan_report_load8_noabort+0x18/0x20 mm/kasan/report_generic.c:381
+ free_vm_area mm/vmalloc.c:4526 [inline]
+ __vmalloc_node_range_noprof+0x1344/0x1420 mm/vmalloc.c:3845
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ iommufd_test_access_rw drivers/iommu/iommufd/selftest.c:1472 [inline]
+ iommufd_test+0x2d8/0x4b00 drivers/iommu/iommufd/selftest.c:1658
+ iommufd_fops_ioctl+0x38e/0x520 drivers/iommu/iommufd/main.c:416
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:906 [inline]
+ __se_sys_ioctl fs/ioctl.c:892 [inline]
+ __x64_sys_ioctl+0x1ba/0x220 fs/ioctl.c:892
+ x64_sys_call+0x1233/0x2150 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f0a8943ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007f0a89636cc8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00000000004bbf80 RCX: 00007f0a8943ee5d
+RDX: 0000000020000440 RSI: 0000000000003ba0 RDI: 0000000000000006
+RBP: 00000000004bbf80 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 000000000000000b R14: 00007f0a8949f560 R15: 0000000000000000
+ </TASK>
+
+Allocated by task 4753:
+ kasan_save_stack+0x2c/0x60 mm/kasan/common.c:47
+ kasan_save_track+0x18/0x40 mm/kasan/common.c:68
+ kasan_save_alloc_info+0x3c/0x50 mm/kasan/generic.c:562
+ poison_kmalloc_redzone mm/kasan/common.c:377 [inline]
+ __kasan_kmalloc+0x88/0xa0 mm/kasan/common.c:394
+ kasan_kmalloc include/linux/kasan.h:260 [inline]
+ __kmalloc_cache_node_noprof+0x1d0/0x470 mm/slub.c:4374
+ kmalloc_node_noprof include/linux/slab.h:928 [inline]
+ __get_vm_area_node+0xf7/0x260 mm/vmalloc.c:3127
+ __vmalloc_node_range_noprof+0x25c/0x1420 mm/vmalloc.c:3803
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ iommufd_test_access_rw drivers/iommu/iommufd/selftest.c:1472 [inline]
+ iommufd_test+0x2d8/0x4b00 drivers/iommu/iommufd/selftest.c:1658
+ iommufd_fops_ioctl+0x38e/0x520 drivers/iommu/iommufd/main.c:416
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:906 [inline]
+ __se_sys_ioctl fs/ioctl.c:892 [inline]
+ __x64_sys_ioctl+0x1ba/0x220 fs/ioctl.c:892
+ x64_sys_call+0x1233/0x2150 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+Freed by task 4753:
+ kasan_save_stack+0x2c/0x60 mm/kasan/common.c:47
+ kasan_save_track+0x18/0x40 mm/kasan/common.c:68
+ kasan_save_free_info+0x3f/0x60 mm/kasan/generic.c:576
+ poison_slab_object mm/kasan/common.c:247 [inline]
+ __kasan_slab_free+0x3d/0x60 mm/kasan/common.c:264
+ kasan_slab_free include/linux/kasan.h:233 [inline]
+ slab_free_hook mm/slub.c:2389 [inline]
+ slab_free mm/slub.c:4646 [inline]
+ kfree+0x28d/0x440 mm/slub.c:4845
+ vfree+0x2ce/0x910 mm/vmalloc.c:3389
+ __vmalloc_area_node mm/vmalloc.c:3733 [inline]
+ __vmalloc_node_range_noprof+0xeca/0x1420 mm/vmalloc.c:3843
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ iommufd_test_access_rw drivers/iommu/iommufd/selftest.c:1472 [inline]
+ iommufd_test+0x2d8/0x4b00 drivers/iommu/iommufd/selftest.c:1658
+ iommufd_fops_ioctl+0x38e/0x520 drivers/iommu/iommufd/main.c:416
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:906 [inline]
+ __se_sys_ioctl fs/ioctl.c:892 [inline]
+ __x64_sys_ioctl+0x1ba/0x220 fs/ioctl.c:892
+ x64_sys_call+0x1233/0x2150 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+The buggy address belongs to the object at ffff8880213f3e00
+ which belongs to the cache kmalloc-64 of size 64
+The buggy address is located 8 bytes inside of
+ freed 64-byte region [ffff8880213f3e00, ffff8880213f3e40)
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x213f3
+flags: 0xfffffc0000000(node=0|zone=1|lastcpupid=0x1fffff)
+page_type: f5(slab)
+raw: 000fffffc0000000 ffff88800d4418c0 ffffea00007c9300 dead000000000002
+raw: 0000000000000000 0000000080200020 00000000f5000000 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff8880213f3d00: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+ ffff8880213f3d80: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+>ffff8880213f3e00: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+                      ^
+ ffff8880213f3e80: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
+ ffff8880213f3f00: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+==================================================================
+XFS (loop6): Ending clean mount
+XFS (loop6): Quotacheck needed: Please wait.
+XFS (loop6): Quotacheck: Done.
+loop5: detected capacity change from 0 to 4096
+ext4: Unknown parameter 'dont_appraise'
+loop2: detected capacity change from 0 to 65536
+XFS: attr2 mount option is deprecated.
+XFS (loop2): Invalid device [./cgroup], error=-15
+------------[ cut here ]------------
+Trying to vfree() bad address (000000000afcd7ca)
+WARNING: CPU: 1 PID: 4753 at mm/vmalloc.c:3231 remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+Modules linked in:
+CPU: 1 UID: 0 PID: 4753 Comm: syz-executor.3 Tainted: G    B               6.14.0-rc6-next-20250311-eea255893718 #1
+Tainted: [B]=BAD_PAGE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:remove_vm_area+0x1c2/0x220 mm/vmalloc.c:3231
+Code: c3 cc cc cc cc e8 7e e2 a4 ff 49 81 ee 00 10 00 00 e9 51 ff ff ff e8 6d e2 a4 ff 4c 89 e6 48 c7 c7 a0 eb fa 85 e8 ce 71 63 ff <0f> 0b 45 31 ed eb bb 45 31 ed eb b6 e8 ed d2 0f 00 e9 10 ff ff ff
+RSP: 0018:ffff888042e5f978 EFLAGS: 00010292
+RAX: 0000000000000000 RBX: 0000000000000291 RCX: ffffffff8146eac2
+RDX: ffff88801f374a80 RSI: ffffffff8146eacf RDI: 0000000000000001
+RBP: ffff888042e5f9a0 R08: 0000000000000001 R09: ffffed100d8a5921
+R10: 0000000000000000 R11: 7420676e69797254 R12: 047c012f00001291
+R13: 0000000000000200 R14: ffff8880213f3e2c R15: dffffc0000000000
+FS:  00007f0a89637640(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f0e0cf36000 CR3: 000000003e8e4002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ free_vm_area mm/vmalloc.c:4526 [inline]
+ __vmalloc_node_range_noprof+0x97e/0x1420 mm/vmalloc.c:3845
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ iommufd_test_access_rw drivers/iommu/iommufd/selftest.c:1472 [inline]
+ iommufd_test+0x2d8/0x4b00 drivers/iommu/iommufd/selftest.c:1658
+ iommufd_fops_ioctl+0x38e/0x520 drivers/iommu/iommufd/main.c:416
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:906 [inline]
+ __se_sys_ioctl fs/ioctl.c:892 [inline]
+ __x64_sys_ioctl+0x1ba/0x220 fs/ioctl.c:892
+ x64_sys_call+0x1233/0x2150 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f0a8943ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007f0a89636cc8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00000000004bbf80 RCX: 00007f0a8943ee5d
+RDX: 0000000020000440 RSI: 0000000000003ba0 RDI: 0000000000000006
+RBP: 00000000004bbf80 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 000000000000000b R14: 00007f0a8949f560 R15: 0000000000000000
+ </TASK>
+irq event stamp: 4609
+hardirqs last  enabled at (4609): [<ffffffff85c3b83e>] irqentry_exit+0x3e/0xa0 kernel/entry/common.c:357
+hardirqs last disabled at (4608): [<ffffffff8148dbeb>] handle_softirqs+0x6bb/0x860 kernel/softirq.c:576
+softirqs last  enabled at (0): [<ffffffff814670ec>] copy_process+0x1d4c/0x69c0 kernel/fork.c:2373
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+------------[ cut here ]------------
+kernel BUG at mm/vmalloc.c:4527!
+Oops: invalid opcode: 0000 [#1] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 4753 Comm: syz-executor.3 Tainted: G    B   W           6.14.0-rc6-next-20250311-eea255893718 #1
+Tainted: [B]=BAD_PAGE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+RSP: 0018:ffff888042e5f9b0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000100 RCX: ffffffff8146eac2
+RDX: ffff88801f374a80 RSI: ffffffff81e39a8d RDI: 0000000000000001
+RBP: ffff888042e5fb58 R08: 0000000000000001 R09: ffffed100d8a5921
+R10: 0000000000000000 R11: 7420676e69797254 R12: 047c012f00001291
+R13: 0000000000000200 R14: ffff8880213f3e2c R15: dffffc0000000000
+FS:  00007f0a89637640(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f0e0cf36000 CR3: 000000003e8e4002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __kvmalloc_node_noprof+0x2a9/0x6a0 mm/slub.c:5038
+ iommufd_test_access_rw drivers/iommu/iommufd/selftest.c:1472 [inline]
+ iommufd_test+0x2d8/0x4b00 drivers/iommu/iommufd/selftest.c:1658
+ iommufd_fops_ioctl+0x38e/0x520 drivers/iommu/iommufd/main.c:416
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:906 [inline]
+ __se_sys_ioctl fs/ioctl.c:892 [inline]
+ __x64_sys_ioctl+0x1ba/0x220 fs/ioctl.c:892
+ x64_sys_call+0x1233/0x2150 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f0a8943ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007f0a89636cc8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00000000004bbf80 RCX: 00007f0a8943ee5d
+RDX: 0000000020000440 RSI: 0000000000003ba0 RDI: 0000000000000006
+RBP: 00000000004bbf80 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 000000000000000b R14: 00007f0a8949f560 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:free_vm_area mm/vmalloc.c:4527 [inline]
+RIP: 0010:__vmalloc_node_range_noprof+0xf7d/0x1420 mm/vmalloc.c:3845
+Code: 34 ff ff ff 0c 00 00 00 bb 00 10 00 00 e8 6b bf a4 ff 48 8b 85 a0 fe ff ff 48 39 d8 48 0f 43 d8 e9 d3 f1 ff ff e8 53 bf a4 ff <0f> 0b 45 31 e4 e8 49 bf a4 ff 48 b8 00 00 00 00 00 fc ff df 48 03
+RSP: 0018:ffff888042e5f9b0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000100 RCX: ffffffff8146eac2
+RDX: ffff88801f374a80 RSI: ffffffff81e39a8d RDI: 0000000000000001
+RBP: ffff888042e5fb58 R08: 0000000000000001 R09: ffffed100d8a5921
+R10: 0000000000000000 R11: 7420676e69797254 R12: 047c012f00001291
+R13: 0000000000000200 R14: ffff8880213f3e2c R15: dffffc0000000000
+FS:  00007f0a89637640(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f0e0cf36000 CR3: 000000003e8e4002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+loop2: detected capacity change from 0 to 8
+squashfs: Unknown parameter 'ext4'
+EXT4-fs (loop7): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+loop2: detected capacity change from 0 to 32768
+loop3: detected capacity change from 0 to 128
+EXT4-fs (loop3): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+XFS (loop6): Unmounting Filesystem 9f1cad42-11bd-4e12-8f0b-f07876b81d9a
+ext4 filesystem being mounted at /syzkaller-testdir2760334463/syzkaller.CDMFzk/15/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+loop4: detected capacity change from 0 to 128
+program syz-executor.3 is using a deprecated SCSI ioctl, please convert it to SG_IO
+EXT4-fs (loop3): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+EXT4-fs (loop4): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+ext4 filesystem being mounted at /syzkaller-testdir1649374578/syzkaller.BNyYBE/17/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+EXT4-fs (loop4): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+loop0: detected capacity change from 0 to 32768
+XFS (loop0): DAX unsupported by block device. Turning off DAX.
+XFS (loop0): Mounting V5 Filesystem 9f1cad42-11bd-4e12-8f0b-f07876b81d9a
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop0): Quotacheck: Done.
+XFS (loop0): Unmounting Filesystem 9f1cad42-11bd-4e12-8f0b-f07876b81d9a
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 4728 at kernel/tracepoint.c:358 tracepoint_remove_func kernel/tracepoint.c:358 [inline]
+WARNING: CPU: 1 PID: 4728 at kernel/tracepoint.c:358 tracepoint_probe_unregister+0x7f6/0xc90 kernel/tracepoint.c:504
+Modules linked in:
+CPU: 1 UID: 0 PID: 4728 Comm: syz-executor.2 Tainted: G    B D W           6.14.0-rc6-next-20250311-eea255893718 #1
+Tainted: [B]=BAD_PAGE, [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:tracepoint_remove_func kernel/tracepoint.c:358 [inline]
+RIP: 0010:tracepoint_probe_unregister+0x7f6/0xc90 kernel/tracepoint.c:504
+Code: c6 05 35 3a 02 0b 01 48 89 05 26 3a 02 0b e9 d6 fc ff ff 49 c7 c4 ff ff ff ff e9 d2 f9 ff ff 41 bc fe ff ff ff e8 ea 60 fb ff <0f> 0b e9 5b fd ff ff e8 de 60 fb ff 48 89 da 48 b8 00 00 00 00 00
+RSP: 0018:ffff888040d2fb20 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff818cf149
+RDX: ffff88801bc34a80 RSI: ffffffff818cf8f6 RDI: 0000000000000005
+RBP: ffff888040d2fb88 R08: 0000000000000000 R09: fffffbfff0fdc34c
+R10: 0000000000000000 R11: 0000000000000000 R12: 00000000fffffffe
+R13: 0000000000000008 R14: 0000000000000000 R15: 0000000000000000
+FS:  00007fe240ba6800(0000) GS:ffff8880e368d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fd0a7c560b8 CR3: 00000000407ae003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ trace_event_reg+0x18d/0x360 kernel/trace/trace_events.c:689
+ perf_trace_event_unreg.isra.0+0xb6/0x1f0 kernel/trace/trace_event_perf.c:162
+ perf_trace_destroy+0xcb/0x1d0 kernel/trace/trace_event_perf.c:241
+ tp_perf_event_destroy+0x1f/0x30 kernel/events/core.c:10505
+ __free_event+0x1e2/0x8a0 kernel/events/core.c:5383
+ _free_event+0x211/0xe00 kernel/events/core.c:5443
+ put_event kernel/events/core.c:5518 [inline]
+ perf_event_release_kernel+0x647/0x870 kernel/events/core.c:5643
+ perf_release+0x3a/0x50 kernel/events/core.c:5653
+ __fput+0x41c/0xb70 fs/file_table.c:464
+ fput_close_sync+0x173/0x200 fs/file_table.c:569
+ __do_sys_close fs/open.c:1580 [inline]
+ __se_sys_close fs/open.c:1565 [inline]
+ __x64_sys_close+0x98/0x130 fs/open.c:1565
+ x64_sys_call+0x1fe1/0x2150 arch/x86/include/generated/asm/syscalls_64.h:4
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fe24093f26b
+Code: 03 00 00 00 0f 05 48 3d 00 f0 ff ff 77 41 c3 48 83 ec 18 89 7c 24 0c e8 c3 c9 f5 ff 8b 7c 24 0c 41 89 c0 b8 03 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 35 44 89 c7 89 44 24 0c e8 21 ca f5 ff 8b 44
+RSP: 002b:00007ffed709f3d0 EFLAGS: 00000293 ORIG_RAX: 0000000000000003
+RAX: ffffffffffffffda RBX: 0000000000000004 RCX: 00007fe24093f26b
+RDX: 0000000000000002 RSI: 0000000000000002 RDI: 0000000000000003
+RBP: 00000000004bd980 R08: 0000000000000000 R09: 0000000000001bec
+R10: 000000008195dbf0 R11: 0000000000000293 R12: 0000000000007790
+R13: 00000000004bc050 R14: 00000000004bc05c R15: 0000000000000001
+ </TASK>
+irq event stamp: 1884
+hardirqs last  enabled at (1883): [<ffffffff85c67065>] __raw_spin_unlock_irqrestore include/linux/spinlock_api_smp.h:151 [inline]
+hardirqs last  enabled at (1883): [<ffffffff85c67065>] _raw_spin_unlock_irqrestore+0x35/0x70 kernel/locking/spinlock.c:194
+hardirqs last disabled at (1884): [<ffffffff85c4bc2a>] __schedule+0x177a/0x3510 kernel/sched/core.c:6661
+softirqs last  enabled at (1578): [<ffffffff8131592a>] local_bh_enable include/linux/bottom_half.h:33 [inline]
+softirqs last  enabled at (1578): [<ffffffff8131592a>] fpregs_unlock arch/x86/include/asm/fpu/api.h:80 [inline]
+softirqs last  enabled at (1578): [<ffffffff8131592a>] fpu_clone+0x33a/0xb10 arch/x86/kernel/fpu/core.c:634
+softirqs last disabled at (1576): [<ffffffff813158bf>] local_bh_disable include/linux/bottom_half.h:20 [inline]
+softirqs last disabled at (1576): [<ffffffff813158bf>] fpregs_lock arch/x86/include/asm/fpu/api.h:72 [inline]
+softirqs last disabled at (1576): [<ffffffff813158bf>] fpu_clone+0x2cf/0xb10 arch/x86/kernel/fpu/core.c:630
+---[ end trace 0000000000000000 ]---
