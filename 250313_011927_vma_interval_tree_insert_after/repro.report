@@ -1,0 +1,79 @@
+Oops: general protection fault, probably for non-canonical address 0xdffffc0000000001: 0000 [#1] PREEMPT SMP KASAN NOPTI
+KASAN: null-ptr-deref in range [0x0000000000000008-0x000000000000000f]
+CPU: 0 UID: 0 PID: 722 Comm: syz-executor223 Not tainted 6.14.0-rc6-next-20250311-eea255893718 #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:__rb_insert lib/rbtree.c:115 [inline]
+RIP: 0010:__rb_insert_augmented+0x7a/0x9d0 lib/rbtree.c:459
+Code: 89 e2 48 c1 ea 03 42 80 3c 32 00 0f 85 9c 05 00 00 4d 8b 2c 24 41 f6 c5 01 0f 85 88 01 00 00 4d 8d 45 08 4c 89 c2 48 c1 ea 03 <42> 80 3c 32 00 0f 85 95 05 00 00 4d 8b 7d 08 4d 39 e7 0f 84 78 01
+RSP: 0018:ffff888026b878d0 EFLAGS: 00010202
+RAX: ffffffff81d744d0 RBX: ffff888011752470 RCX: ffff88800edcf0e0
+RDX: 0000000000000001 RSI: 1ffff110022ea48e RDI: ffff888011752470
+RBP: ffff888026b87918 R08: 0000000000000008 R09: ffffed1001db9e2e
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888011752d30
+R13: 0000000000000000 R14: dffffc0000000000 R15: ffff888011752d38
+FS:  00007fc3915db600(0000) GS:ffff8880e358d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020000008 CR3: 000000001c61a003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ rb_insert_augmented include/linux/rbtree_augmented.h:50 [inline]
+ vma_interval_tree_insert_after+0x2a2/0x370 mm/interval_tree.c:57
+ dup_mmap kernel/fork.c:717 [inline]
+ dup_mm kernel/fork.c:1732 [inline]
+ copy_mm+0x11f6/0x2740 kernel/fork.c:1784
+ copy_process+0x29d8/0x69c0 kernel/fork.c:2427
+ kernel_clone+0xfc/0x8c0 kernel/fork.c:2839
+ __do_sys_clone+0xf5/0x140 kernel/fork.c:2982
+ __se_sys_clone kernel/fork.c:2966 [inline]
+ __x64_sys_clone+0xc7/0x150 kernel/fork.c:2966
+ x64_sys_call+0x1acf/0x2150 arch/x86/include/generated/asm/syscalls_64.h:57
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fc39123ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffc16fdb388 EFLAGS: 00000246 ORIG_RAX: 0000000000000038
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fc39123ee5d
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 0000000000401160 R14: 0000000000403e08 R15: 00007fc391624000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:__rb_insert lib/rbtree.c:115 [inline]
+RIP: 0010:__rb_insert_augmented+0x7a/0x9d0 lib/rbtree.c:459
+Code: 89 e2 48 c1 ea 03 42 80 3c 32 00 0f 85 9c 05 00 00 4d 8b 2c 24 41 f6 c5 01 0f 85 88 01 00 00 4d 8d 45 08 4c 89 c2 48 c1 ea 03 <42> 80 3c 32 00 0f 85 95 05 00 00 4d 8b 7d 08 4d 39 e7 0f 84 78 01
+RSP: 0018:ffff888026b878d0 EFLAGS: 00010202
+RAX: ffffffff81d744d0 RBX: ffff888011752470 RCX: ffff88800edcf0e0
+RDX: 0000000000000001 RSI: 1ffff110022ea48e RDI: ffff888011752470
+RBP: ffff888026b87918 R08: 0000000000000008 R09: ffffed1001db9e2e
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888011752d30
+R13: 0000000000000000 R14: dffffc0000000000 R15: ffff888011752d38
+FS:  00007fc3915db600(0000) GS:ffff8880e358d000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020000008 CR3: 000000001c61a003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+----------------
+Code disassembly (best guess):
+   0:	89 e2                	mov    %esp,%edx
+   2:	48 c1 ea 03          	shr    $0x3,%rdx
+   6:	42 80 3c 32 00       	cmpb   $0x0,(%rdx,%r14,1)
+   b:	0f 85 9c 05 00 00    	jne    0x5ad
+  11:	4d 8b 2c 24          	mov    (%r12),%r13
+  15:	41 f6 c5 01          	test   $0x1,%r13b
+  19:	0f 85 88 01 00 00    	jne    0x1a7
+  1f:	4d 8d 45 08          	lea    0x8(%r13),%r8
+  23:	4c 89 c2             	mov    %r8,%rdx
+  26:	48 c1 ea 03          	shr    $0x3,%rdx
+* 2a:	42 80 3c 32 00       	cmpb   $0x0,(%rdx,%r14,1) <-- trapping instruction
+  2f:	0f 85 95 05 00 00    	jne    0x5ca
+  35:	4d 8b 7d 08          	mov    0x8(%r13),%r15
+  39:	4d 39 e7             	cmp    %r12,%r15
+  3c:	0f                   	.byte 0xf
+  3d:	84 78 01             	test   %bh,0x1(%rax)
