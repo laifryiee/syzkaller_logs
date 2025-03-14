@@ -1,0 +1,35 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [eea255893718268e1ab852fb52f70c613d109b99] Add linux-next specific files for 20250311
+git bisect bad eea255893718268e1ab852fb52f70c613d109b99
+# status: waiting for good commit(s), bad commit known
+# good: [80e54e84911a923c40d7bee33a34c1b4be148d7a] Linux 6.14-rc6
+git bisect good 80e54e84911a923c40d7bee33a34c1b4be148d7a
+# bad: [35a44026e774afeae9ccbd3cbfd8d73aa7fe06a0] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/wireless/wireless-next.git
+git bisect bad 35a44026e774afeae9ccbd3cbfd8d73aa7fe06a0
+# bad: [f122ed30288bc440d16c3daeb80295c666aabe29] Merge branch 'fs-next' of linux-next
+git bisect bad f122ed30288bc440d16c3daeb80295c666aabe29
+# bad: [0618ec00f6c03af1ba7c1df99d59e2bf5b09f580] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git
+git bisect bad 0618ec00f6c03af1ba7c1df99d59e2bf5b09f580
+# bad: [cd6c8d17640bc4226840b29bf0ef092c1c2470dd] Merge branch 'mm-everything' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+git bisect bad cd6c8d17640bc4226840b29bf0ef092c1c2470dd
+# good: [b300cd93434b5f6c47c586eb8c1bf55b6108dd1e] mm/damon/core: support committing ops_filters
+git bisect good b300cd93434b5f6c47c586eb8c1bf55b6108dd1e
+# good: [51f870df15099375a59850f819c02abca6a0f5a9] Merge branch 'fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/ulfh/linux-pm.git
+git bisect good 51f870df15099375a59850f819c02abca6a0f5a9
+# bad: [e1408503792dc337559496c7fced2f30c689af23] selftests: x86: test_mremap_vdso: skip if vdso is msealed
+git bisect bad e1408503792dc337559496c7fced2f30c689af23
+# good: [7518015ee2203e214ebcd0d75575084495bdca77] mm/damon/sysfs: remove damon_sysfs_cmd_request and its readers
+git bisect good 7518015ee2203e214ebcd0d75575084495bdca77
+# bad: [25e0e20f924b6ccf5b548c144419594e1f3bf79e] mm/truncate: use folio_split() in truncate operation
+git bisect bad 25e0e20f924b6ccf5b548c144419594e1f3bf79e
+# bad: [a34cc1fc36099c23b0c683cf67ec9b7559c490a1] mm: vma: skip anonymous vma when inserting vma to file rmap tree
+git bisect bad a34cc1fc36099c23b0c683cf67ec9b7559c490a1
+# good: [7460c0e515f12f34a8961581b2c492d01d8271a4] mm/damon: remove damon_callback->before_damos_apply
+git bisect good 7460c0e515f12f34a8961581b2c492d01d8271a4
+# good: [ba39de47896c9511c50ff15ce82512a98bcf4345] mm: page_ext: add an iteration API for page extensions
+git bisect good ba39de47896c9511c50ff15ce82512a98bcf4345
+# good: [a5bc091881fd936225de0e32662c1b0676b9ab36] mm: page_owner: use new iteration API
+git bisect good a5bc091881fd936225de0e32662c1b0676b9ab36
+# first bad commit: [a34cc1fc36099c23b0c683cf67ec9b7559c490a1] mm: vma: skip anonymous vma when inserting vma to file rmap tree
+|0313_165752|Bisect successfully! eea255893718268e1ab852fb52f70c613d109b99_a34cc1fc36099c23b0c683cf67ec9b7559c490a1_revert bzimage passed!|
