@@ -1,0 +1,36 @@
+BUG: sleeping function called from invalid context at mm/util.c:743
+in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 38, name: kcompactd0
+preempt_count: 1, expected: 0
+RCU nest depth: 0, expected: 0
+1 lock held by kcompactd0/38:
+ #0: ffff88800d9189d8 (&mapping->i_private_lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:351 [inline]
+ #0: ffff88800d9189d8 (&mapping->i_private_lock){+.+.}-{3:3}, at: __buffer_migrate_folio+0x327/0x7b0 mm/migrate.c:853
+Preemption disabled at:
+[<ffffffff81f3caa7>] spin_lock include/linux/spinlock.h:351 [inline]
+[<ffffffff81f3caa7>] __buffer_migrate_folio+0x327/0x7b0 mm/migrate.c:853
+CPU: 0 UID: 0 PID: 38 Comm: kcompactd0 Not tainted 6.14.0-rc7-next-20250317-e94bd4ec45ac #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0x121/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ __might_resched+0x37b/0x5a0 kernel/sched/core.c:8762
+ folio_mc_copy+0x111/0x240 mm/util.c:743
+ __migrate_folio.constprop.0+0x173/0x3c0 mm/migrate.c:758
+ filemap_migrate_folio mm/migrate.c:943 [inline]
+ __buffer_migrate_folio+0x6a2/0x7b0 mm/migrate.c:874
+ buffer_migrate_folio_norefs+0x3d/0x50 mm/migrate.c:935
+ move_to_new_folio+0x153/0x5b0 mm/migrate.c:1050
+ migrate_folio_move mm/migrate.c:1358 [inline]
+ migrate_folios_move mm/migrate.c:1710 [inline]
+ migrate_pages_batch+0x19e0/0x2890 mm/migrate.c:1957
+ migrate_pages_sync mm/migrate.c:1987 [inline]
+ migrate_pages+0x18de/0x2450 mm/migrate.c:2096
+ compact_zone+0x1d66/0x4480 mm/compaction.c:2690
+ compact_node+0x190/0x2c0 mm/compaction.c:2959
+ kcompactd+0x784/0xde0 mm/compaction.c:3255
+ kthread+0x444/0x980 kernel/kthread.c:464
+ ret_from_fork+0x56/0x90 arch/x86/kernel/process.c:153
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>

@@ -1,0 +1,37 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [e94bd4ec45ac156616da285a0bf03056cd7430fc] Add linux-next specific files for 20250317
+git bisect bad e94bd4ec45ac156616da285a0bf03056cd7430fc
+# status: waiting for good commit(s), bad commit known
+# good: [4701f33a10702d5fc577c32434eb62adde0a1ae1] Linux 6.14-rc7
+git bisect good 4701f33a10702d5fc577c32434eb62adde0a1ae1
+# bad: [8f25bc1e17e91393ae1512b065dd124d0191542f] Merge branch 'master' of git://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth-next.git
+git bisect bad 8f25bc1e17e91393ae1512b065dd124d0191542f
+# bad: [ec9ef288f04a47907257c157a8839905df8f77fe] Merge branch 'fs-next' of linux-next
+git bisect bad ec9ef288f04a47907257c157a8839905df8f77fe
+# good: [3765f015aa2b2ca67158b7739f45c2b9122bbafd] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git
+git bisect good 3765f015aa2b2ca67158b7739f45c2b9122bbafd
+# good: [73cc38c434e3245f889d2a4accee87073b2174dd] Merge branch 'for-next' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux.git
+git bisect good 73cc38c434e3245f889d2a4accee87073b2174dd
+# good: [b11e9bdec6235c02abc5a71756b307b71b6fa594] Merge branch 'next' of git://git.monstr.eu/linux-2.6-microblaze.git
+git bisect good b11e9bdec6235c02abc5a71756b307b71b6fa594
+# bad: [d7148bf4df68f4214e7a31fd3fa1c28337493983] Merge branch 'vfs-6.15.shared.afs' into vfs.all
+git bisect bad d7148bf4df68f4214e7a31fd3fa1c28337493983
+# good: [b34d9cd39cad2318a996a5cdf577282580de8391] Merge branch 'vfs-6.15.mount.api' into vfs.all
+git bisect good b34d9cd39cad2318a996a5cdf577282580de8391
+# bad: [e06210bbdfd009f1591535d481d0ffc6ddb9a2e2] Merge branch 'vfs-6.15.pagesize' into vfs.all
+git bisect bad e06210bbdfd009f1591535d481d0ffc6ddb9a2e2
+# good: [c502613eb71c81d3fb4465eaf4c7496ba05c7196] Merge branch 'vfs-6.15.overlayfs' into vfs.all
+git bisect good c502613eb71c81d3fb4465eaf4c7496ba05c7196
+# good: [1bd6c921c8c41eb585e9d7d4befbcad9ab1ec9fc] Merge branch 'vfs-6.15.sysv' into vfs.all
+git bisect good 1bd6c921c8c41eb585e9d7d4befbcad9ab1ec9fc
+# good: [e59e97d42b053011ca831a9079ae0b6c4b2ecf65] fs/buffer fs/mpage: remove large folio restriction
+git bisect good e59e97d42b053011ca831a9079ae0b6c4b2ecf65
+# bad: [425fbcd62d2e1330e64d8d3bf89e554830ba997f] bdev: use bdev_io_min() for statx block size
+git bisect bad 425fbcd62d2e1330e64d8d3bf89e554830ba997f
+# bad: [47dd67532303803a87f43195e088b3b4bcf0454d] block/bdev: lift block size restrictions to 64k
+git bisect bad 47dd67532303803a87f43195e088b3b4bcf0454d
+# bad: [3c20917120ce61f2a123ca0810293872f4c6b5a4] block/bdev: enable large folio support for large logical block sizes
+git bisect bad 3c20917120ce61f2a123ca0810293872f4c6b5a4
+# first bad commit: [3c20917120ce61f2a123ca0810293872f4c6b5a4] block/bdev: enable large folio support for large logical block sizes
+|0320_083807|Bisect successfully! e94bd4ec45ac156616da285a0bf03056cd7430fc_3c20917120ce61f2a123ca0810293872f4c6b5a4_revert bzimage passed!|
