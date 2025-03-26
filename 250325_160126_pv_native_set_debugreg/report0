@@ -1,0 +1,110 @@
+XFS (loop3): Unmounting Filesystem 6653b971-41ab-480a-bd7b-5ff79b9409b5
+loop7: detected capacity change from 0 to 32768
+XFS (loop7): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop7): Ending clean mount
+Oops: general protection fault, maybe for address 0x100050202: 0000 [#1] PREEMPT SMP KASAN NOPTI
+CPU: 1 UID: 0 PID: 36726 Comm: syz.3.801 Not tainted 6.14.0-2025-03-24-intel-next-428434b060f9+ #1
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:native_set_debugreg arch/x86/include/asm/debugreg.h:95 [inline]
+RIP: 0010:pv_native_set_debugreg+0x76/0xe0 arch/x86/kernel/paravirt.c:126
+Code: 85 db 75 7d 0f 1f 44 00 00 41 0f 23 c4 0f 1f 44 00 00 5b 41 5c 5d c3 cc cc cc cc 83 fb 06 74 4a 83 fb 07 75 5c 0f 1f 44 00 00 <41> 0f 23 fc 0f 1f 44 00 00 5b 41 5c 5d c3 cc cc cc cc 0f 1f 44 00
+RSP: 0018:ffff888050c8f5b0 EFLAGS: 00010046
+RAX: dffffc0000000000 RBX: 0000000000000007 RCX: ffffc90002830000
+RDX: 1ffff1100d8a610d RSI: ffffffff85e714c0 RDI: 0000000000000007
+RBP: ffff888050c8f5c0 R08: 0000000000000001 R09: ffffed100a191eb6
+R10: 0000000000002000 R11: 0000000000000001 R12: 0000000100050202
+R13: 0000000000000000 R14: 0000000100050202 R15: ffff88806c530860
+FS:  00007efe6a498640(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007efe6a497fe8 CR3: 00000000362da004 CR4: 0000000000370ef0
+DR0: 0000000000000074 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ set_debugreg arch/x86/include/asm/paravirt.h:133 [inline]
+ arch_install_hw_breakpoint+0x2c9/0x550 arch/x86/kernel/hw_breakpoint.c:140
+ hw_breakpoint_add+0xb0/0x140 kernel/events/hw_breakpoint.c:977
+ event_sched_in+0x3fb/0xac0 kernel/events/core.c:2718
+ group_sched_in kernel/events/core.c:2751 [inline]
+ merge_sched_in+0xa02/0x1630 kernel/events/core.c:4046
+ visit_groups_merge.constprop.0.isra.0+0x8e8/0x13a0 kernel/events/core.c:3977
+ pmu_groups_sched_in kernel/events/core.c:4077 [inline]
+ __pmu_ctx_sched_in+0x1b9/0x1f0 kernel/events/core.c:4089
+ ctx_sched_in+0x814/0xcd0 kernel/events/core.c:4156
+ perf_event_sched_in+0x72/0xa0 kernel/events/core.c:2850
+ ctx_resched+0x3a5/0x830 kernel/events/core.c:2906
+ __perf_install_in_context+0x2d1/0xda0 kernel/events/core.c:2981
+ remote_function kernel/events/core.c:92 [inline]
+ remote_function+0x135/0x1b0 kernel/events/core.c:72
+ csd_do_func kernel/smp.c:134 [inline]
+ generic_exec_single+0x1e5/0x2e0 kernel/smp.c:433
+ smp_call_function_single+0x196/0x470 kernel/smp.c:676
+ task_function_call+0x10e/0x1b0 kernel/events/core.c:120
+ perf_install_in_context+0x2eb/0x5a0 kernel/events/core.c:3084
+ __do_sys_perf_event_open+0x1915/0x2be0 kernel/events/core.c:13492
+ __se_sys_perf_event_open kernel/events/core.c:13143 [inline]
+ __x64_sys_perf_event_open+0xc7/0x150 kernel/events/core.c:13143
+ x64_sys_call+0x1e96/0x2140 arch/x86/include/generated/asm/syscalls_64.h:299
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0x6d/0x140 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x564cfd
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007efe6a497fb8 EFLAGS: 00000246 ORIG_RAX: 000000000000012a
+RAX: ffffffffffffffda RBX: 0000000000725fa0 RCX: 0000000000564cfd
+RDX: 0000000400000001 RSI: 0000000000000000 RDI: 0000000020000000
+RBP: 0000000000725fa0 R08: 0000000000000002 R09: 0000000000000000
+R10: ffffffffffffffff R11: 0000000000000246 R12: 0000000000000000
+R13: 0000000000000001 R14: 00000000005038a0 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:native_set_debugreg arch/x86/include/asm/debugreg.h:95 [inline]
+RIP: 0010:pv_native_set_debugreg+0x76/0xe0 arch/x86/kernel/paravirt.c:126
+Code: 85 db 75 7d 0f 1f 44 00 00 41 0f 23 c4 0f 1f 44 00 00 5b 41 5c 5d c3 cc cc cc cc 83 fb 06 74 4a 83 fb 07 75 5c 0f 1f 44 00 00 <41> 0f 23 fc 0f 1f 44 00 00 5b 41 5c 5d c3 cc cc cc cc 0f 1f 44 00
+RSP: 0018:ffff888050c8f5b0 EFLAGS: 00010046
+RAX: dffffc0000000000 RBX: 0000000000000007 RCX: ffffc90002830000
+RDX: 1ffff1100d8a610d RSI: ffffffff85e714c0 RDI: 0000000000000007
+RBP: ffff888050c8f5c0 R08: 0000000000000001 R09: ffffed100a191eb6
+R10: 0000000000002000 R11: 0000000000000001 R12: 0000000100050202
+R13: 0000000000000000 R14: 0000000100050202 R15: ffff88806c530860
+FS:  00007efe6a498640(0000) GS:ffff88806c500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007efe6a497fe8 CR3: 00000000362da004 CR4: 0000000000370ef0
+DR0: 0000000000000074 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+note: syz.3.801[36726] exited with irqs disabled
+note: syz.3.801[36726] exited with preempt_count 3
+----------------
+Code disassembly (best guess):
+   0:	85 db                	test   %ebx,%ebx
+   2:	75 7d                	jne    0x81
+   4:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+   9:	41 0f 23 c4          	mov    %r12,%db0
+   d:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+  12:	5b                   	pop    %rbx
+  13:	41 5c                	pop    %r12
+  15:	5d                   	pop    %rbp
+  16:	c3                   	ret
+  17:	cc                   	int3
+  18:	cc                   	int3
+  19:	cc                   	int3
+  1a:	cc                   	int3
+  1b:	83 fb 06             	cmp    $0x6,%ebx
+  1e:	74 4a                	je     0x6a
+  20:	83 fb 07             	cmp    $0x7,%ebx
+  23:	75 5c                	jne    0x81
+  25:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+* 2a:	41 0f 23 fc          	mov    %r12,%db7 <-- trapping instruction
+  2e:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+  33:	5b                   	pop    %rbx
+  34:	41 5c                	pop    %r12
+  36:	5d                   	pop    %rbp
+  37:	c3                   	ret
+  38:	cc                   	int3
+  39:	cc                   	int3
+  3a:	cc                   	int3
+  3b:	cc                   	int3
+  3c:	0f                   	.byte 0xf
+  3d:	1f                   	(bad)
+  3e:	44                   	rex.R

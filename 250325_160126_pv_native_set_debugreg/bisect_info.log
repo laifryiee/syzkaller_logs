@@ -1,0 +1,32 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [428434b060f9343ebff7805a27487f472985100d] Intel Next: Add release files for v6.14 2025-03-24
+git bisect bad 428434b060f9343ebff7805a27487f472985100d
+# status: waiting for good commit(s), bad commit known
+# good: [38fec10eb60d687e30c8c6b5420d86e8149f7557] Linux 6.14
+git bisect good 38fec10eb60d687e30c8c6b5420d86e8149f7557
+# good: [67c217d04207d705034b41b9f3d0b28c2dfa6ff3] Revert "Merge remote-tracking branch 'drm-intel/topic/core-for-CI' into drm-tip"
+git bisect good 67c217d04207d705034b41b9f3d0b28c2dfa6ff3
+# good: [1aeae2ca0b0ee4785621c3c862e61adb6d29ae64] Intel Next: Merge commit e6d5f748327beb04fc0b334738c7ccb32ebc688b from https://github.com/intel-sandbox/taosu.linux.git dmr-nis-6.14
+git bisect good 1aeae2ca0b0ee4785621c3c862e61adb6d29ae64
+# bad: [3332cba5c95fe9e4e79f6069d7f7b25cd5f0893a] Intel Next: Merge commit e9db10f900930a048912ddaeb267f7061aff6388 from https://github.com/intel-sandbox/linux-perf.git pttt-for-eywa
+git bisect bad 3332cba5c95fe9e4e79f6069d7f7b25cd5f0893a
+# good: [b6c6b212b5133bea2ec532dc60a57a47e2b48f54] Intel Next: Merge commit 310bcafffa428f8d41d0a785ca4fb154aebeeda7 from https://github.com/intel-innersource/os.linux.validation.svos-next.svos-next svos-next-pull-6.14
+git bisect good b6c6b212b5133bea2ec532dc60a57a47e2b48f54
+# good: [9d1c6ed62a798938a926932566bc08e42c4bcfcd] KVM: x86/pmu: Add counter bitmap in x86_pmu_capability
+git bisect good 9d1c6ed62a798938a926932566bc08e42c4bcfcd
+# good: [a472e6daf18f9bd34b674aef138cc4f350ae2ee2] KVM: VMX: Enable Intel PT virtualization in mediated vPMU only
+git bisect good a472e6daf18f9bd34b674aef138cc4f350ae2ee2
+# good: [00118071212542cb34f53d94e1ab1959824a67de] perf/x86/pt: Support PMC events as PT sources
+git bisect good 00118071212542cb34f53d94e1ab1959824a67de
+# good: [1c03874e38e33c7143385ddb3734245cb713f1e0] NOT_UPSTREAM: EDAC/ie31200: Add debugfs for faking MCE event
+git bisect good 1c03874e38e33c7143385ddb3734245cb713f1e0
+# good: [f55fa4a6afa7dca20e7fc6229c9d9a232cf17ec0] iommu/vt-d: Add debugfs files to trigger HPT fault
+git bisect good f55fa4a6afa7dca20e7fc6229c9d9a232cf17ec0
+# bad: [e9db10f900930a048912ddaeb267f7061aff6388] x86: Preserve DR7 setting across temporary mm
+git bisect bad e9db10f900930a048912ddaeb267f7061aff6388
+# bad: [b5836bb877a15e9be7299d12589fac2edff6bec1] perf/x86/pt: Support HW breakpoints as PT trigger sources
+git bisect bad b5836bb877a15e9be7299d12589fac2edff6bec1
+# good: [a8262859b77048785d31a1bbd0603a6ab60cf585] perf/hw_breakpoint: Add an arch hook for BP PMU initialization
+git bisect good a8262859b77048785d31a1bbd0603a6ab60cf585
+# first bad commit: [b5836bb877a15e9be7299d12589fac2edff6bec1] perf/x86/pt: Support HW breakpoints as PT trigger sources
