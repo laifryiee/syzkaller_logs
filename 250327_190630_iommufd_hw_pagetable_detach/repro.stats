@@ -1,0 +1,479 @@
+Extracting prog: 1m10.074510558s
+Minimizing prog: 3m36.732163391s
+Simplifying prog options: 53.055450816s
+Extracting C: 24.087727309s
+Simplifying C: 1m2.175210904s
+
+
+18 programs, 3 VMs, timeouts [15s 1m40s 6m0s]
+extracting reproducer from 15 programs
+single: executing 7 programs separately with timeout 15s
+testing program (duration=15s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): socket$inet6_udp-setsockopt$inet6_IPV6_FLOWLABEL_MGR
+detailed listing:
+executing program 0:
+r0 = socket$inet6_udp(0xa, 0x2, 0x0)
+setsockopt$inet6_IPV6_FLOWLABEL_MGR(r0, 0x29, 0x15, &(0x7f0000000000)={@rand_addr=' \x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02'}, 0x20)
+
+program did not crash
+testing program (duration=15s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$iommufd-ioctl$IOMMU_IOAS_ALLOC-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE
+detailed listing:
+executing program 0:
+r0 = openat$iommufd(0xffffffffffffff9c, &(0x7f00000006c0), 0x0, 0x0)
+ioctl$IOMMU_IOAS_ALLOC(r0, 0x3b81, &(0x7f0000000000)={0xc, 0x0, <r1=>0x0})
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS(r0, 0x3ba0, &(0x7f00000001c0)={0x48, 0x2, r1, 0x0, <r2=>0x0})
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE(r0, 0x3ba0, &(0x7f0000000300)={0x48, 0x14, r2, 0x0, r1})
+
+program crashed: general protection fault in iommufd_hw_pagetable_detach
+single: successfully extracted reproducer
+found reproducer with 4 syscalls
+minimizing guilty program
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$iommufd-ioctl$IOMMU_IOAS_ALLOC-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS
+detailed listing:
+executing program 0:
+r0 = openat$iommufd(0xffffffffffffff9c, &(0x7f00000006c0), 0x0, 0x0)
+ioctl$IOMMU_IOAS_ALLOC(r0, 0x3b81, &(0x7f0000000000)={0xc, 0x0, <r1=>0x0})
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS(r0, 0x3ba0, &(0x7f00000001c0)={0x48, 0x2, r1})
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$iommufd-ioctl$IOMMU_IOAS_ALLOC-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE
+detailed listing:
+executing program 0:
+r0 = openat$iommufd(0xffffffffffffff9c, &(0x7f00000006c0), 0x0, 0x0)
+ioctl$IOMMU_IOAS_ALLOC(r0, 0x3b81, &(0x7f0000000000)={0xc, 0x0, <r1=>0x0})
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE(r0, 0x3ba0, &(0x7f0000000300)={0x48, 0x14, 0x0, 0x0, r1})
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$iommufd-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE
+detailed listing:
+executing program 0:
+r0 = openat$iommufd(0xffffffffffffff9c, &(0x7f00000006c0), 0x0, 0x0)
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS(r0, 0x3ba0, &(0x7f00000001c0)={0x48, 0x2, 0x0, 0x0, <r1=>0x0})
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE(r0, 0x3ba0, &(0x7f0000000300)={0x48, 0x14, r1})
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): ioctl$IOMMU_IOAS_ALLOC-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE
+detailed listing:
+executing program 0:
+ioctl$IOMMU_IOAS_ALLOC(0xffffffffffffffff, 0x3b81, &(0x7f0000000000)={0xc, 0x0, <r0=>0x0})
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS(0xffffffffffffffff, 0x3ba0, &(0x7f00000001c0)={0x48, 0x2, r0, 0x0, <r1=>0x0})
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE(0xffffffffffffffff, 0x3ba0, &(0x7f0000000300)={0x48, 0x14, r1, 0x0, r0})
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$iommufd-ioctl$IOMMU_IOAS_ALLOC-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE
+detailed listing:
+executing program 0:
+r0 = openat$iommufd(0xffffffffffffff9c, 0x0, 0x0, 0x0)
+ioctl$IOMMU_IOAS_ALLOC(r0, 0x3b81, &(0x7f0000000000)={0xc, 0x0, <r1=>0x0})
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS(r0, 0x3ba0, &(0x7f00000001c0)={0x48, 0x2, r1, 0x0, <r2=>0x0})
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE(r0, 0x3ba0, &(0x7f0000000300)={0x48, 0x14, r2, 0x0, r1})
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$iommufd-ioctl$IOMMU_IOAS_ALLOC-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE
+detailed listing:
+executing program 0:
+r0 = openat$iommufd(0xffffffffffffff9c, &(0x7f00000006c0), 0x0, 0x0)
+ioctl$IOMMU_IOAS_ALLOC(r0, 0x3b81, 0x0)
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS(r0, 0x3ba0, &(0x7f00000001c0)={0x48, 0x2, 0x0, 0x0, <r1=>0x0})
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE(r0, 0x3ba0, &(0x7f0000000300)={0x48, 0x14, r1})
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$iommufd-ioctl$IOMMU_IOAS_ALLOC-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE
+detailed listing:
+executing program 0:
+r0 = openat$iommufd(0xffffffffffffff9c, &(0x7f00000006c0), 0x0, 0x0)
+ioctl$IOMMU_IOAS_ALLOC(r0, 0x3b81, &(0x7f0000000000)={0xc, 0x0, <r1=>0x0})
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS(r0, 0x3ba0, 0x0)
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE(r0, 0x3ba0, &(0x7f0000000300)={0x48, 0x14, 0x0, 0x0, r1})
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$iommufd-ioctl$IOMMU_IOAS_ALLOC-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE
+detailed listing:
+executing program 0:
+r0 = openat$iommufd(0xffffffffffffff9c, &(0x7f00000006c0), 0x0, 0x0)
+ioctl$IOMMU_IOAS_ALLOC(r0, 0x3b81, &(0x7f0000000000)={0xc, 0x0, <r1=>0x0})
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS(r0, 0x3ba0, &(0x7f00000001c0)={0x48, 0x2, r1})
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE(r0, 0x3ba0, 0x0)
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$iommufd-ioctl$IOMMU_IOAS_ALLOC-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE
+program did not crash
+simplifying guilty program options
+testing program (duration=22.5s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$iommufd-ioctl$IOMMU_IOAS_ALLOC-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE
+detailed listing:
+executing program 0:
+r0 = openat$iommufd(0xffffffffffffff9c, &(0x7f00000006c0), 0x0, 0x0)
+ioctl$IOMMU_IOAS_ALLOC(r0, 0x3b81, &(0x7f0000000000)={0xc, 0x0, <r1=>0x0})
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS(r0, 0x3ba0, &(0x7f00000001c0)={0x48, 0x2, r1, 0x0, <r2=>0x0})
+ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE(r0, 0x3ba0, &(0x7f0000000300)={0x48, 0x14, r2, 0x0, r1})
+
+program crashed: general protection fault in iommufd_hw_pagetable_detach
+extracting C reproducer
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$iommufd-ioctl$IOMMU_IOAS_ALLOC-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE
+program crashed: general protection fault in iommufd_hw_pagetable_detach
+simplifying C reproducer
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$iommufd-ioctl$IOMMU_IOAS_ALLOC-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE
+program crashed: general protection fault in iommufd_hw_pagetable_detach
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:false UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$iommufd-ioctl$IOMMU_IOAS_ALLOC-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE
+program crashed: general protection fault in iommufd_hw_pagetable_detach
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:false UseTmpDir:false HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$iommufd-ioctl$IOMMU_IOAS_ALLOC-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE
+program crashed: general protection fault in iommufd_hw_pagetable_detach
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:false UseTmpDir:false HandleSegv:false Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$iommufd-ioctl$IOMMU_IOAS_ALLOC-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE
+program crashed: general protection fault in iommufd_hw_pagetable_detach
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:false Swap:false UseTmpDir:false HandleSegv:false Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$iommufd-ioctl$IOMMU_IOAS_ALLOC-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_FLAGS-ioctl$IOMMU_TEST_OP_MOCK_DOMAIN_REPLACE
+program crashed: general protection fault in iommufd_hw_pagetable_detach
+reproducing took 7m12.796877611s
+repro crashed as (corrupted=false):
+iommufd_mock iommufd_mock0: Adding to iommu group 0
+Oops: general protection fault, probably for non-canonical address 0xdffffc0000000000: 0000 [#1] SMP KASAN NOPTI
+KASAN: null-ptr-deref in range [0x0000000000000000-0x0000000000000007]
+CPU: 1 UID: 0 PID: 703 Comm: syz-executor348 Not tainted 6.14.0-next-20250325-eb4bc4b07f66 #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:iommufd_hw_pagetable_detach+0x8a/0x4d0 drivers/iommu/iommufd/device.c:647
+Code: 00 00 00 44 89 ee 48 89 c7 48 89 75 c8 48 89 45 c0 e8 ca 55 17 02 48 89 c2 49 89 c4 48 b8 00 00 00 00 00 fc ff df 48 c1 ea 03 <80> 3c 02 00 0f 85 99 03 00 00 48 b8 00 00 00 00 00 fc ff df 4d 8b
+RSP: 0018:ffff888014b77b78 EFLAGS: 00010246
+RAX: dffffc0000000000 RBX: ffff88801260f800 RCX: ffff888014b77a64
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff8880130bad3c
+RBP: ffff888014b77bc8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: ffff8880130bb398 R12: 0000000000000000
+R13: 0000000000000001 R14: ffff888014b77e18 R15: ffff88800e8ae008
+FS:  00007f98ce449600(0000) GS:ffff8880e3684000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000200006ca CR3: 00000000227aa001 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ iommufd_device_detach+0x2a/0x2e0 drivers/iommu/iommufd/device.c:1003
+ iommufd_test_pasid_detach drivers/iommu/iommufd/selftest.c:1837 [inline]
+ iommufd_test+0x2f99/0x5cd0 drivers/iommu/iommufd/selftest.c:1930
+ iommufd_fops_ioctl+0x38e/0x520 drivers/iommu/iommufd/main.c:419
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:906 [inline]
+ __se_sys_ioctl fs/ioctl.c:892 [inline]
+ __x64_sys_ioctl+0x1ba/0x220 fs/ioctl.c:892
+ x64_sys_call+0x122e/0x2150 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x150 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98ce23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffea057d978 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f98ce23ee5d
+RDX: 0000000020000300 RSI: 0000000000003ba0 RDI: 0000000000000003
+RBP: 0000000000000001 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffea057da98
+R13: 0000000000401050 R14: 0000000000403e08 R15: 00007f98ce492000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:iommufd_hw_pagetable_detach+0x8a/0x4d0 drivers/iommu/iommufd/device.c:647
+Code: 00 00 00 44 89 ee 48 89 c7 48 89 75 c8 48 89 45 c0 e8 ca 55 17 02 48 89 c2 49 89 c4 48 b8 00 00 00 00 00 fc ff df 48 c1 ea 03 <80> 3c 02 00 0f 85 99 03 00 00 48 b8 00 00 00 00 00 fc ff df 4d 8b
+RSP: 0018:ffff888014b77b78 EFLAGS: 00010246
+RAX: dffffc0000000000 RBX: ffff88801260f800 RCX: ffff888014b77a64
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff8880130bad3c
+RBP: ffff888014b77bc8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: ffff8880130bb398 R12: 0000000000000000
+R13: 0000000000000001 R14: ffff888014b77e18 R15: ffff88800e8ae008
+FS:  00007f98ce449600(0000) GS:ffff8880e3684000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000200006ca CR3: 00000000227aa001 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 703 at drivers/iommu/iommufd/main.c:265 iommufd_fops_release+0x386/0x420 drivers/iommu/iommufd/main.c:265
+Modules linked in:
+CPU: 0 UID: 0 PID: 703 Comm: syz-executor348 Tainted: G      D             6.14.0-next-20250325-eb4bc4b07f66 #1 PREEMPT(voluntary) 
+Tainted: [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:iommufd_fops_release+0x386/0x420 drivers/iommu/iommufd/main.c:265
+Code: 8b 45 d0 65 48 2b 05 f1 59 3a 05 75 76 48 81 c4 88 00 00 00 31 c0 5b 41 5c 41 5d 41 5e 41 5f 5d c3 cc cc cc cc e8 2a d6 d7 fd <0f> 0b e9 bd fe ff ff e8 1e d6 d7 fd 0f 0b e9 f4 fe ff ff e8 b2 4f
+RSP: 0018:ffff888014b77c08 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff888021e05008 RCX: ffffffff83afe4ca
+RDX: ffff8880130ba540 RSI: ffffffff83afe636 RDI: 0000000000000005
+RBP: ffff888014b77cb8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: ffff888027c407a0 R12: 0000000000000000
+R13: 0000000000000000 R14: ffff888014b77c50 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8880e3584000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fbe0b3f9000 CR3: 0000000007086004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __fput+0x41c/0xb70 fs/file_table.c:465
+ ____fput+0x22/0x30 fs/file_table.c:493
+ task_work_run+0x19b/0x2b0 kernel/task_work.c:227
+ exit_task_work include/linux/task_work.h:40 [inline]
+ do_exit+0xb0e/0x29d0 kernel/exit.c:954
+ make_task_dead+0x181/0x3c0 kernel/exit.c:1065
+ rewind_stack_and_make_dead+0x16/0x20 arch/x86/entry/entry_64.S:1493
+RIP: 0033:0x7f98ce23ee5d
+Code: Unable to access opcode bytes at 0x7f98ce23ee33.
+RSP: 002b:00007ffea057d978 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f98ce23ee5d
+RDX: 0000000020000300 RSI: 0000000000003ba0 RDI: 0000000000000003
+RBP: 0000000000000001 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffea057da98
+R13: 0000000000401050 R14: 0000000000403e08 R15: 00007f98ce492000
+ </TASK>
+irq event stamp: 26587
+hardirqs last  enabled at (26587): [<ffffffff812e194b>] cond_local_irq_enable arch/x86/include/asm/traps.h:51 [inline]
+hardirqs last  enabled at (26587): [<ffffffff812e194b>] cond_local_irq_enable.isra.0+0x3b/0x50 arch/x86/include/asm/traps.h:48
+hardirqs last disabled at (26586): [<ffffffff85c6ecc6>] exc_general_protection+0x36/0x340 arch/x86/kernel/traps.c:791
+softirqs last  enabled at (26332): [<ffffffff8149141e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last  enabled at (26332): [<ffffffff8149141e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last  enabled at (26332): [<ffffffff8149141e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+softirqs last disabled at (26311): [<ffffffff8149141e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last disabled at (26311): [<ffffffff8149141e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last disabled at (26311): [<ffffffff8149141e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+---[ end trace 0000000000000000 ]---
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 703 at drivers/iommu/iommufd/main.c:268 iommufd_fops_release+0x392/0x420 drivers/iommu/iommufd/main.c:268
+Modules linked in:
+CPU: 0 UID: 0 PID: 703 Comm: syz-executor348 Tainted: G      D W           6.14.0-next-20250325-eb4bc4b07f66 #1 PREEMPT(voluntary) 
+Tainted: [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:iommufd_fops_release+0x392/0x420 drivers/iommu/iommufd/main.c:268
+Code: 76 48 81 c4 88 00 00 00 31 c0 5b 41 5c 41 5d 41 5e 41 5f 5d c3 cc cc cc cc e8 2a d6 d7 fd 0f 0b e9 bd fe ff ff e8 1e d6 d7 fd <0f> 0b e9 f4 fe ff ff e8 b2 4f 43 fe e9 f7 fd ff ff 48 89 85 50 ff
+RSP: 0018:ffff888014b77c08 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff888021e05008 RCX: ffffffff83afe4ca
+RDX: ffff8880130ba540 RSI: ffffffff83afe642 RDI: ffff888021e050a0
+RBP: ffff888014b77cb8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: ffff888027c407a0 R12: 0000000000000000
+R13: 0000000000000000 R14: ffff888014b77c50 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8880e3584000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fbe0b3f9000 CR3: 0000000007086004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __fput+0x41c/0xb70 fs/file_table.c:465
+ ____fput+0x22/0x30 fs/file_table.c:493
+ task_work_run+0x19b/0x2b0 kernel/task_work.c:227
+ exit_task_work include/linux/task_work.h:40 [inline]
+ do_exit+0xb0e/0x29d0 kernel/exit.c:954
+ make_task_dead+0x181/0x3c0 kernel/exit.c:1065
+ rewind_stack_and_make_dead+0x16/0x20 arch/x86/entry/entry_64.S:1493
+RIP: 0033:0x7f98ce23ee5d
+Code: Unable to access opcode bytes at 0x7f98ce23ee33.
+RSP: 002b:00007ffea057d978 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f98ce23ee5d
+RDX: 0000000020000300 RSI: 0000000000003ba0 RDI: 0000000000000003
+RBP: 0000000000000001 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffea057da98
+R13: 0000000000401050 R14: 0000000000403e08 R15: 00007f98ce492000
+ </TASK>
+irq event stamp: 26587
+hardirqs last  enabled at (26587): [<ffffffff812e194b>] cond_local_irq_enable arch/x86/include/asm/traps.h:51 [inline]
+hardirqs last  enabled at (26587): [<ffffffff812e194b>] cond_local_irq_enable.isra.0+0x3b/0x50 arch/x86/include/asm/traps.h:48
+hardirqs last disabled at (26586): [<ffffffff85c6ecc6>] exc_general_protection+0x36/0x340 arch/x86/kernel/traps.c:791
+softirqs last  enabled at (26332): [<ffffffff8149141e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last  enabled at (26332): [<ffffffff8149141e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last  enabled at (26332): [<ffffffff8149141e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+softirqs last disabled at (26311): [<ffffffff8149141e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last disabled at (26311): [<ffffffff8149141e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last disabled at (26311): [<ffffffff8149141e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+---[ end trace 0000000000000000 ]---
+----------------
+Code disassembly (best guess):
+   0:	00 00                	add    %al,(%rax)
+   2:	00 44 89 ee          	add    %al,-0x12(%rcx,%rcx,4)
+   6:	48 89 c7             	mov    %rax,%rdi
+   9:	48 89 75 c8          	mov    %rsi,-0x38(%rbp)
+   d:	48 89 45 c0          	mov    %rax,-0x40(%rbp)
+  11:	e8 ca 55 17 02       	callq  0x21755e0
+  16:	48 89 c2             	mov    %rax,%rdx
+  19:	49 89 c4             	mov    %rax,%r12
+  1c:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  23:	fc ff df
+  26:	48 c1 ea 03          	shr    $0x3,%rdx
+* 2a:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1) <-- trapping instruction
+  2e:	0f 85 99 03 00 00    	jne    0x3cd
+  34:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  3b:	fc ff df
+  3e:	4d                   	rex.WRB
+  3f:	8b                   	.byte 0x8b
+
+final repro crashed as (corrupted=false):
+iommufd_mock iommufd_mock0: Adding to iommu group 0
+Oops: general protection fault, probably for non-canonical address 0xdffffc0000000000: 0000 [#1] SMP KASAN NOPTI
+KASAN: null-ptr-deref in range [0x0000000000000000-0x0000000000000007]
+CPU: 1 UID: 0 PID: 703 Comm: syz-executor348 Not tainted 6.14.0-next-20250325-eb4bc4b07f66 #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:iommufd_hw_pagetable_detach+0x8a/0x4d0 drivers/iommu/iommufd/device.c:647
+Code: 00 00 00 44 89 ee 48 89 c7 48 89 75 c8 48 89 45 c0 e8 ca 55 17 02 48 89 c2 49 89 c4 48 b8 00 00 00 00 00 fc ff df 48 c1 ea 03 <80> 3c 02 00 0f 85 99 03 00 00 48 b8 00 00 00 00 00 fc ff df 4d 8b
+RSP: 0018:ffff888014b77b78 EFLAGS: 00010246
+RAX: dffffc0000000000 RBX: ffff88801260f800 RCX: ffff888014b77a64
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff8880130bad3c
+RBP: ffff888014b77bc8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: ffff8880130bb398 R12: 0000000000000000
+R13: 0000000000000001 R14: ffff888014b77e18 R15: ffff88800e8ae008
+FS:  00007f98ce449600(0000) GS:ffff8880e3684000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000200006ca CR3: 00000000227aa001 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ iommufd_device_detach+0x2a/0x2e0 drivers/iommu/iommufd/device.c:1003
+ iommufd_test_pasid_detach drivers/iommu/iommufd/selftest.c:1837 [inline]
+ iommufd_test+0x2f99/0x5cd0 drivers/iommu/iommufd/selftest.c:1930
+ iommufd_fops_ioctl+0x38e/0x520 drivers/iommu/iommufd/main.c:419
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:906 [inline]
+ __se_sys_ioctl fs/ioctl.c:892 [inline]
+ __x64_sys_ioctl+0x1ba/0x220 fs/ioctl.c:892
+ x64_sys_call+0x122e/0x2150 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x150 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f98ce23ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffea057d978 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f98ce23ee5d
+RDX: 0000000020000300 RSI: 0000000000003ba0 RDI: 0000000000000003
+RBP: 0000000000000001 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffea057da98
+R13: 0000000000401050 R14: 0000000000403e08 R15: 00007f98ce492000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:iommufd_hw_pagetable_detach+0x8a/0x4d0 drivers/iommu/iommufd/device.c:647
+Code: 00 00 00 44 89 ee 48 89 c7 48 89 75 c8 48 89 45 c0 e8 ca 55 17 02 48 89 c2 49 89 c4 48 b8 00 00 00 00 00 fc ff df 48 c1 ea 03 <80> 3c 02 00 0f 85 99 03 00 00 48 b8 00 00 00 00 00 fc ff df 4d 8b
+RSP: 0018:ffff888014b77b78 EFLAGS: 00010246
+RAX: dffffc0000000000 RBX: ffff88801260f800 RCX: ffff888014b77a64
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff8880130bad3c
+RBP: ffff888014b77bc8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: ffff8880130bb398 R12: 0000000000000000
+R13: 0000000000000001 R14: ffff888014b77e18 R15: ffff88800e8ae008
+FS:  00007f98ce449600(0000) GS:ffff8880e3684000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000200006ca CR3: 00000000227aa001 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 703 at drivers/iommu/iommufd/main.c:265 iommufd_fops_release+0x386/0x420 drivers/iommu/iommufd/main.c:265
+Modules linked in:
+CPU: 0 UID: 0 PID: 703 Comm: syz-executor348 Tainted: G      D             6.14.0-next-20250325-eb4bc4b07f66 #1 PREEMPT(voluntary) 
+Tainted: [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:iommufd_fops_release+0x386/0x420 drivers/iommu/iommufd/main.c:265
+Code: 8b 45 d0 65 48 2b 05 f1 59 3a 05 75 76 48 81 c4 88 00 00 00 31 c0 5b 41 5c 41 5d 41 5e 41 5f 5d c3 cc cc cc cc e8 2a d6 d7 fd <0f> 0b e9 bd fe ff ff e8 1e d6 d7 fd 0f 0b e9 f4 fe ff ff e8 b2 4f
+RSP: 0018:ffff888014b77c08 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff888021e05008 RCX: ffffffff83afe4ca
+RDX: ffff8880130ba540 RSI: ffffffff83afe636 RDI: 0000000000000005
+RBP: ffff888014b77cb8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: ffff888027c407a0 R12: 0000000000000000
+R13: 0000000000000000 R14: ffff888014b77c50 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8880e3584000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fbe0b3f9000 CR3: 0000000007086004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __fput+0x41c/0xb70 fs/file_table.c:465
+ ____fput+0x22/0x30 fs/file_table.c:493
+ task_work_run+0x19b/0x2b0 kernel/task_work.c:227
+ exit_task_work include/linux/task_work.h:40 [inline]
+ do_exit+0xb0e/0x29d0 kernel/exit.c:954
+ make_task_dead+0x181/0x3c0 kernel/exit.c:1065
+ rewind_stack_and_make_dead+0x16/0x20 arch/x86/entry/entry_64.S:1493
+RIP: 0033:0x7f98ce23ee5d
+Code: Unable to access opcode bytes at 0x7f98ce23ee33.
+RSP: 002b:00007ffea057d978 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f98ce23ee5d
+RDX: 0000000020000300 RSI: 0000000000003ba0 RDI: 0000000000000003
+RBP: 0000000000000001 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffea057da98
+R13: 0000000000401050 R14: 0000000000403e08 R15: 00007f98ce492000
+ </TASK>
+irq event stamp: 26587
+hardirqs last  enabled at (26587): [<ffffffff812e194b>] cond_local_irq_enable arch/x86/include/asm/traps.h:51 [inline]
+hardirqs last  enabled at (26587): [<ffffffff812e194b>] cond_local_irq_enable.isra.0+0x3b/0x50 arch/x86/include/asm/traps.h:48
+hardirqs last disabled at (26586): [<ffffffff85c6ecc6>] exc_general_protection+0x36/0x340 arch/x86/kernel/traps.c:791
+softirqs last  enabled at (26332): [<ffffffff8149141e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last  enabled at (26332): [<ffffffff8149141e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last  enabled at (26332): [<ffffffff8149141e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+softirqs last disabled at (26311): [<ffffffff8149141e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last disabled at (26311): [<ffffffff8149141e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last disabled at (26311): [<ffffffff8149141e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+---[ end trace 0000000000000000 ]---
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 703 at drivers/iommu/iommufd/main.c:268 iommufd_fops_release+0x392/0x420 drivers/iommu/iommufd/main.c:268
+Modules linked in:
+CPU: 0 UID: 0 PID: 703 Comm: syz-executor348 Tainted: G      D W           6.14.0-next-20250325-eb4bc4b07f66 #1 PREEMPT(voluntary) 
+Tainted: [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:iommufd_fops_release+0x392/0x420 drivers/iommu/iommufd/main.c:268
+Code: 76 48 81 c4 88 00 00 00 31 c0 5b 41 5c 41 5d 41 5e 41 5f 5d c3 cc cc cc cc e8 2a d6 d7 fd 0f 0b e9 bd fe ff ff e8 1e d6 d7 fd <0f> 0b e9 f4 fe ff ff e8 b2 4f 43 fe e9 f7 fd ff ff 48 89 85 50 ff
+RSP: 0018:ffff888014b77c08 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff888021e05008 RCX: ffffffff83afe4ca
+RDX: ffff8880130ba540 RSI: ffffffff83afe642 RDI: ffff888021e050a0
+RBP: ffff888014b77cb8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: ffff888027c407a0 R12: 0000000000000000
+R13: 0000000000000000 R14: ffff888014b77c50 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8880e3584000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fbe0b3f9000 CR3: 0000000007086004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __fput+0x41c/0xb70 fs/file_table.c:465
+ ____fput+0x22/0x30 fs/file_table.c:493
+ task_work_run+0x19b/0x2b0 kernel/task_work.c:227
+ exit_task_work include/linux/task_work.h:40 [inline]
+ do_exit+0xb0e/0x29d0 kernel/exit.c:954
+ make_task_dead+0x181/0x3c0 kernel/exit.c:1065
+ rewind_stack_and_make_dead+0x16/0x20 arch/x86/entry/entry_64.S:1493
+RIP: 0033:0x7f98ce23ee5d
+Code: Unable to access opcode bytes at 0x7f98ce23ee33.
+RSP: 002b:00007ffea057d978 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f98ce23ee5d
+RDX: 0000000020000300 RSI: 0000000000003ba0 RDI: 0000000000000003
+RBP: 0000000000000001 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffea057da98
+R13: 0000000000401050 R14: 0000000000403e08 R15: 00007f98ce492000
+ </TASK>
+irq event stamp: 26587
+hardirqs last  enabled at (26587): [<ffffffff812e194b>] cond_local_irq_enable arch/x86/include/asm/traps.h:51 [inline]
+hardirqs last  enabled at (26587): [<ffffffff812e194b>] cond_local_irq_enable.isra.0+0x3b/0x50 arch/x86/include/asm/traps.h:48
+hardirqs last disabled at (26586): [<ffffffff85c6ecc6>] exc_general_protection+0x36/0x340 arch/x86/kernel/traps.c:791
+softirqs last  enabled at (26332): [<ffffffff8149141e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last  enabled at (26332): [<ffffffff8149141e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last  enabled at (26332): [<ffffffff8149141e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+softirqs last disabled at (26311): [<ffffffff8149141e>] __do_softirq kernel/softirq.c:595 [inline]
+softirqs last disabled at (26311): [<ffffffff8149141e>] invoke_softirq kernel/softirq.c:435 [inline]
+softirqs last disabled at (26311): [<ffffffff8149141e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:662
+---[ end trace 0000000000000000 ]---
+----------------
+Code disassembly (best guess):
+   0:	00 00                	add    %al,(%rax)
+   2:	00 44 89 ee          	add    %al,-0x12(%rcx,%rcx,4)
+   6:	48 89 c7             	mov    %rax,%rdi
+   9:	48 89 75 c8          	mov    %rsi,-0x38(%rbp)
+   d:	48 89 45 c0          	mov    %rax,-0x40(%rbp)
+  11:	e8 ca 55 17 02       	callq  0x21755e0
+  16:	48 89 c2             	mov    %rax,%rdx
+  19:	49 89 c4             	mov    %rax,%r12
+  1c:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  23:	fc ff df
+  26:	48 c1 ea 03          	shr    $0x3,%rdx
+* 2a:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1) <-- trapping instruction
+  2e:	0f 85 99 03 00 00    	jne    0x3cd
+  34:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  3b:	fc ff df
+  3e:	4d                   	rex.WRB
+  3f:	8b                   	.byte 0x8b
+

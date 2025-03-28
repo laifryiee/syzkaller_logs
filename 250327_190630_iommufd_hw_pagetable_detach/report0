@@ -1,0 +1,635 @@
+loop7: detected capacity change from 0 to 512
+iommufd_mock iommufd_mock0: Adding to iommu group 0
+Oops: general protection fault, probably for non-canonical address 0xdffffc0000000000: 0000 [#1] SMP KASAN NOPTI
+KASAN: null-ptr-deref in range [0x0000000000000000-0x0000000000000007]
+CPU: 1 UID: 0 PID: 9699 Comm: syz-executor.1 Not tainted 6.14.0-next-20250325-eb4bc4b07f66 #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:iommufd_hw_pagetable_detach+0x8a/0x4d0 drivers/iommu/iommufd/device.c:647
+Code: 00 00 00 44 89 ee 48 89 c7 48 89 75 c8 48 89 45 c0 e8 ca 55 17 02 48 89 c2 49 89 c4 48 b8 00 00 00 00 00 fc ff df 48 c1 ea 03 <80> 3c 02 00 0f 85 99 03 00 00 48 b8 00 00 00 00 00 fc ff df 4d 8b
+RSP: 0018:ffff888012f57b78 EFLAGS: 00010246
+RAX: dffffc0000000000 RBX: ffff888010616600 RCX: ffff888012f57a64
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff88802eec87fc
+RBP: ffff888012f57bc8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: ffff88802eec8e58 R12: 0000000000000000
+R13: 0000000000000001 R14: ffff888012f57e18 R15: ffff8880135a4408
+FS:  00007f937f87f640(0000) GS:ffff8880e3684000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b33223000 CR3: 000000004ae02006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ iommufd_device_detach+0x2a/0x2e0 drivers/iommu/iommufd/device.c:1003
+ iommufd_test_pasid_detach drivers/iommu/iommufd/selftest.c:1837 [inline]
+ iommufd_test+0x2f99/0x5cd0 drivers/iommu/iommufd/selftest.c:1930
+ iommufd_fops_ioctl+0x38e/0x520 drivers/iommu/iommufd/main.c:419
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:906 [inline]
+ __se_sys_ioctl fs/ioctl.c:892 [inline]
+ __x64_sys_ioctl+0x1ba/0x220 fs/ioctl.c:892
+ x64_sys_call+0x122e/0x2150 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x150 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f937f63ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007f937f87ecc8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00000000004bbf80 RCX: 00007f937f63ee5d
+RDX: 0000000020000300 RSI: 0000000000003ba0 RDI: 0000000000000003
+RBP: 00000000004bbf80 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 000000000000000b R14: 00007f937f69f560 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:iommufd_hw_pagetable_detach+0x8a/0x4d0 drivers/iommu/iommufd/device.c:647
+Code: 00 00 00 44 89 ee 48 89 c7 48 89 75 c8 48 89 45 c0 e8 ca 55 17 02 48 89 c2 49 89 c4 48 b8 00 00 00 00 00 fc ff df 48 c1 ea 03 <80> 3c 02 00 0f 85 99 03 00 00 48 b8 00 00 00 00 00 fc ff df 4d 8b
+RSP: 0018:ffff888012f57b78 EFLAGS: 00010246
+RAX: dffffc0000000000 RBX: ffff888010616600 RCX: ffff888012f57a64
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff88802eec87fc
+RBP: ffff888012f57bc8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: ffff88802eec8e58 R12: 0000000000000000
+R13: 0000000000000001 R14: ffff888012f57e18 R15: ffff8880135a4408
+FS:  00007f937f87f640(0000) GS:ffff8880e3684000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b33223000 CR3: 000000004ae02006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+iommufd_mock iommufd_mock1: Adding to iommu group 1
+iommufd_mock iommufd_mock1: Adding to iommu group 1
+pimreg: entered allmulticast mode
+XFS (loop2): Unmounting Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+sock: sock_timestamping_bind_phc: sock not bind to device
+iommufd_mock iommufd_mock1: Adding to iommu group 1
+loop2: detected capacity change from 0 to 256
+FAT-fs (loop2): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+iommufd_mock iommufd_mock1: Adding to iommu group 1
+loop4: detected capacity change from 0 to 512
+ext4: Bad value for 'errors'
+pim6reg: entered allmulticast mode
+loop7: detected capacity change from 0 to 2048
+vfat: Unknown parameter 'mpol'
+loop6: detected capacity change from 0 to 32768
+xfs: Unknown parameter 'dont_se'
+iommufd_mock iommufd_mock1: Adding to iommu group 1
+loop7: detected capacity change from 0 to 256
+FAT-fs (loop7): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+loop3: detected capacity change from 0 to 65536
+XFS: ikeep mount option is deprecated.
+pimreg: entered allmulticast mode
+XFS (loop3): DAX unsupported by block device. Turning off DAX.
+XFS (loop3): Mounting V5 Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+loop2: detected capacity change from 0 to 256
+loop2: detected capacity change from 0 to 256
+XFS (loop3): Ending clean mount
+XFS (loop3): Quotacheck needed: Please wait.
+FAT-fs (loop2): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+XFS (loop3): Quotacheck: Done.
+XFS (loop3): Unmounting Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+loop5: detected capacity change from 0 to 65536
+XFS (loop5): Mounting V5 Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+XFS (loop5): Ending clean mount
+XFS (loop5): Unmounting Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+loop3: detected capacity change from 0 to 256
+EXT4-fs warning (device sda): ext4_group_extend:1891: can't read last block, resize aborted
+FAT-fs (loop3): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+pimreg: entered allmulticast mode
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 9827 at net/ipv4/udp_offload.c:118 udp_tunnel_update_gro_rcv net/ipv4/udp_offload.c:118 [inline]
+WARNING: CPU: 0 PID: 9827 at net/ipv4/udp_offload.c:118 udp_tunnel_update_gro_rcv+0x48e/0x570 net/ipv4/udp_offload.c:78
+Modules linked in:
+CPU: 0 UID: 0 PID: 9827 Comm: syz-executor.4 Tainted: G      D             6.14.0-next-20250325-eb4bc4b07f66 #1 PREEMPT(voluntary) 
+Tainted: [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:udp_tunnel_update_gro_rcv net/ipv4/udp_offload.c:118 [inline]
+RIP: 0010:udp_tunnel_update_gro_rcv+0x48e/0x570 net/ipv4/udp_offload.c:78
+Code: 0f b6 74 24 07 31 ff e8 10 6e 24 fc 80 3c 24 00 74 13 41 be 01 00 00 00 bb 08 00 00 00 45 31 ed e9 90 fd ff ff e8 c2 73 24 fc <0f> 0b e9 19 fd ff ff e8 b6 73 24 fc 0f b6 1d 7f ae 82 02 31 ff 89
+RSP: 0018:ffff88804ae07c68 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff888015253180 RCX: ffffffff85634880
+RDX: ffff88801320ca80 RSI: ffffffff8563489e RDI: 0000000000000001
+RBP: ffff88804ae07cb0 R08: 0000000000000000 R09: fffffbfff0fdc534
+R10: 0000000000000000 R11: ffff88806c443ec0 R12: 0000000000000000
+R13: ffff8880153a1cc0 R14: ffffffff858a2f60 R15: 0000000000000000
+FS:  00007f44cdc65800(0000) GS:ffff8880e3584000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b33529000 CR3: 0000000030c58004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ udp_tunnel_cleanup_gro include/net/udp_tunnel.h:220 [inline]
+ udpv6_destroy_sock net/ipv6/udp.c:1829 [inline]
+ udpv6_destroy_sock+0x1a5/0x2e0 net/ipv6/udp.c:1809
+ sk_common_release+0x74/0x360 net/core/sock.c:3896
+ udp_lib_close+0x1a/0x30 include/net/udp.h:312
+ inet_release+0x14c/0x290 net/ipv4/af_inet.c:435
+ inet6_release+0x5c/0x80 net/ipv6/af_inet6.c:487
+ __sock_release+0xb6/0x280 net/socket.c:647
+ sock_close+0x27/0x40 net/socket.c:1391
+ __fput+0x41c/0xb70 fs/file_table.c:465
+ fput_close_sync+0x173/0x200 fs/file_table.c:570
+ __do_sys_close fs/open.c:1581 [inline]
+ __se_sys_close fs/open.c:1566 [inline]
+ __x64_sys_close+0x98/0x130 fs/open.c:1566
+ x64_sys_call+0x1fdc/0x2150 arch/x86/include/generated/asm/syscalls_64.h:4
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x150 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f44cdb3f26b
+Code: 03 00 00 00 0f 05 48 3d 00 f0 ff ff 77 41 c3 48 83 ec 18 89 7c 24 0c e8 c3 c9 f5 ff 8b 7c 24 0c 41 89 c0 b8 03 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 35 44 89 c7 89 44 24 0c e8 21 ca f5 ff 8b 44
+RSP: 002b:00007fff49d791e0 EFLAGS: 00000293 ORIG_RAX: 0000000000000003
+RAX: ffffffffffffffda RBX: 0000000000000006 RCX: 00007f44cdb3f26b
+RDX: 0000000000000002 RSI: 0000000000000002 RDI: 0000000000000005
+RBP: 0000000000000000 R08: 0000000000000000 R09: 00000000000009c2
+R10: 00000000813149c6 R11: 0000000000000293 R12: 00007f44cd600000
+R13: 00007f44cd601a18 R14: 00007f44cd601a20 R15: 00007f44cd601a18
+loop5: detected capacity change from 0 to 512
+ </TASK>
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff8146a49f>] copy_process+0x1cff/0x69c0 kernel/fork.c:2370
+softirqs last  enabled at (0): [<ffffffff8146a4ec>] copy_process+0x1d4c/0x69c0 kernel/fork.c:2371
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+ext4: Bad value for 'errors'
+iommufd_mock iommufd_mock1: Adding to iommu group 1
+Oops: general protection fault, probably for non-canonical address 0xdffffc0000000000: 0000 [#2] SMP KASAN NOPTI
+KASAN: null-ptr-deref in range [0x0000000000000000-0x0000000000000007]
+CPU: 0 UID: 0 PID: 9850 Comm: syz-executor.6 Tainted: G      D W           6.14.0-next-20250325-eb4bc4b07f66 #1 PREEMPT(voluntary) 
+Tainted: [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:iommufd_hw_pagetable_detach+0x8a/0x4d0 drivers/iommu/iommufd/device.c:647
+Code: 00 00 00 44 89 ee 48 89 c7 48 89 75 c8 48 89 45 c0 e8 ca 55 17 02 48 89 c2 49 89 c4 48 b8 00 00 00 00 00 fc ff df 48 c1 ea 03 <80> 3c 02 00 0f 85 99 03 00 00 48 b8 00 00 00 00 00 fc ff df 4d 8b
+iommufd_mock iommufd_mock2: Adding to iommu group 2
+RSP: 0018:ffff88804dfffb78 EFLAGS: 00010246
+RAX: dffffc0000000000 RBX: ffff888012351c00 RCX: 1ffffffff0dd8bdc
+RDX: 0000000000000000 RSI: 0000000000000001 RDI: ffff8880219dad3c
+RBP: ffff88804dfffbc8 R08: ffffffff85c5c7a2 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000001 R14: ffff88804dfffe18 R15: ffff8880139d1c08
+FS:  00007fc14df58640(0000) GS:ffff8880e3584000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f44cdbfb714 CR3: 000000004de28002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ iommufd_device_detach+0x2a/0x2e0 drivers/iommu/iommufd/device.c:1003
+ iommufd_test_pasid_detach drivers/iommu/iommufd/selftest.c:1837 [inline]
+ iommufd_test+0x2f99/0x5cd0 drivers/iommu/iommufd/selftest.c:1930
+program syz-executor.2 is using a deprecated SCSI ioctl, please convert it to SG_IO
+ iommufd_fops_ioctl+0x38e/0x520 drivers/iommu/iommufd/main.c:419
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:906 [inline]
+ __se_sys_ioctl fs/ioctl.c:892 [inline]
+ __x64_sys_ioctl+0x1ba/0x220 fs/ioctl.c:892
+ x64_sys_call+0x122e/0x2150 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x150 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fc14dc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fc14df57cc8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00000000004bbf80 RCX: 00007fc14dc3ee5d
+RDX: 0000000020000300 RSI: 0000000000003ba0 RDI: 0000000000000003
+RBP: 00000000004bbf80 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 000000000000000b R14: 00007fc14dc9f560 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:iommufd_hw_pagetable_detach+0x8a/0x4d0 drivers/iommu/iommufd/device.c:647
+Code: 00 00 00 44 89 ee 48 89 c7 48 89 75 c8 48 89 45 c0 e8 ca 55 17 02 48 89 c2 49 89 c4 48 b8 00 00 00 00 00 fc ff df 48 c1 ea 03 <80> 3c 02 00 0f 85 99 03 00 00 48 b8 00 00 00 00 00 fc ff df 4d 8b
+RSP: 0018:ffff888012f57b78 EFLAGS: 00010246
+RAX: dffffc0000000000 RBX: ffff888010616600 RCX: ffff888012f57a64
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff88802eec87fc
+RBP: ffff888012f57bc8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: ffff88802eec8e58 R12: 0000000000000000
+R13: 0000000000000001 R14: ffff888012f57e18 R15: ffff8880135a4408
+FS:  00007fc14df58640(0000) GS:ffff8880e3584000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f44cdbfb714 CR3: 000000004de28002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+PKRU: 55555554
+loop3: detected capacity change from 0 to 1024
+fuse: Bad value for 'fd'
+fuse: blksize only supported for fuseblk
+EXT4-fs (loop3): warning: mounting unchecked fs, running e2fsck is recommended
+iommufd_mock iommufd_mock2: Adding to iommu group 2
+pimreg: entered allmulticast mode
+loop2: detected capacity change from 0 to 32768
+XFS (loop2): Mounting V5 Filesystem c496e05e-540d-4c72-b591-04d79d8b4eeb
+XFS (loop2): Ending clean mount
+iommufd_mock iommufd_mock2: Adding to iommu group 2
+loop4: detected capacity change from 0 to 65536
+XFS (loop4): Mounting V5 Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+iommufd_mock iommufd_mock3: Adding to iommu group 3
+loop7: detected capacity change from 0 to 256
+FAT-fs (loop7): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+XFS (loop4): Ending clean mount
+iommufd_mock iommufd_mock2: Adding to iommu group 2
+iommufd_mock iommufd_mock2: Adding to iommu group 2
+iommufd_mock iommufd_mock2: Adding to iommu group 2
+iommufd_mock iommufd_mock2: Adding to iommu group 2
+loop5: detected capacity change from 0 to 4096
+EXT4-fs: Ignoring removed nobh option
+EXT4-fs: Journaled quota options ignored when QUOTA feature is enabled
+XFS (loop4): Unmounting Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+/dev/loop0: Can't lookup blockdev
+XFS (loop2): Unmounting Filesystem c496e05e-540d-4c72-b591-04d79d8b4eeb
+loop3: detected capacity change from 0 to 512
+ext4: Bad value for 'errors'
+iommufd_mock iommufd_mock2: Adding to iommu group 2
+loop3: detected capacity change from 0 to 8
+iommufd_mock iommufd_mock2: Adding to iommu group 2
+iommufd_mock iommufd_mock2: Adding to iommu group 2
+iommufd_mock iommufd_mock3: Adding to iommu group 2
+x86/PAT: syz-executor.0:9958 freeing invalid memtype [mem 0xfed00000-0xfed00fff]
+loop6: detected capacity change from 0 to 8
+SQUASHFS error: Failed to read block 0x291: -5
+SQUASHFS error: Unable to read metadata cache entry [28f]
+SQUASHFS error: Unable to read inode 0x11f
+loop2: detected capacity change from 0 to 4096
+EXT4-fs: Ignoring removed nobh option
+EXT4-fs: Journaled quota options ignored when QUOTA feature is enabled
+iommufd_mock iommufd_mock2: Adding to iommu group 2
+Oops: general protection fault, probably for non-canonical address 0xdffffc0000000000: 0000 [#3] SMP KASAN NOPTI
+KASAN: null-ptr-deref in range [0x0000000000000000-0x0000000000000007]
+CPU: 0 UID: 0 PID: 9979 Comm: syz-executor.3 Tainted: G      D W           6.14.0-next-20250325-eb4bc4b07f66 #1 PREEMPT(voluntary) 
+Tainted: [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:iommufd_hw_pagetable_detach+0x8a/0x4d0 drivers/iommu/iommufd/device.c:647
+Code: 00 00 00 44 89 ee 48 89 c7 48 89 75 c8 48 89 45 c0 e8 ca 55 17 02 48 89 c2 49 89 c4 48 b8 00 00 00 00 00 fc ff df 48 c1 ea 03 <80> 3c 02 00 0f 85 99 03 00 00 48 b8 00 00 00 00 00 fc ff df 4d 8b
+RSP: 0018:ffff8880081a7b78 EFLAGS: 00010246
+RAX: dffffc0000000000 RBX: ffff88802585a400 RCX: 1ffffffff0dd8bdc
+RDX: 0000000000000000 RSI: 0000000000000001 RDI: ffff88801320d27c
+RBP: ffff8880081a7bc8 R08: ffffffff85c5c7a2 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000001 R14: ffff8880081a7e18 R15: ffff8880110c8008
+FS:  00007f357178b640(0000) GS:ffff8880e3584000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b33426000 CR3: 00000000275c4006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ iommufd_device_detach+0x2a/0x2e0 drivers/iommu/iommufd/device.c:1003
+ iommufd_test_pasid_detach drivers/iommu/iommufd/selftest.c:1837 [inline]
+ iommufd_test+0x2f99/0x5cd0 drivers/iommu/iommufd/selftest.c:1930
+ iommufd_fops_ioctl+0x38e/0x520 drivers/iommu/iommufd/main.c:419
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:906 [inline]
+ __se_sys_ioctl fs/ioctl.c:892 [inline]
+ __x64_sys_ioctl+0x1ba/0x220 fs/ioctl.c:892
+ x64_sys_call+0x122e/0x2150 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x150 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f357143ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007f357178acc8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00000000004bbf80 RCX: 00007f357143ee5d
+RDX: 0000000020000300 RSI: 0000000000003ba0 RDI: 0000000000000003
+RBP: 00000000004bbf80 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 000000000000000b R14: 00007f357149f560 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:iommufd_hw_pagetable_detach+0x8a/0x4d0 drivers/iommu/iommufd/device.c:647
+Code: 00 00 00 44 89 ee 48 89 c7 48 89 75 c8 48 89 45 c0 e8 ca 55 17 02 48 89 c2 49 89 c4 48 b8 00 00 00 00 00 fc ff df 48 c1 ea 03 <80> 3c 02 00 0f 85 99 03 00 00 48 b8 00 00 00 00 00 fc ff df 4d 8b
+RSP: 0018:ffff888012f57b78 EFLAGS: 00010246
+RAX: dffffc0000000000 RBX: ffff888010616600 RCX: ffff888012f57a64
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff88802eec87fc
+RBP: ffff888012f57bc8 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: ffff88802eec8e58 R12: 0000000000000000
+R13: 0000000000000001 R14: ffff888012f57e18 R15: ffff8880135a4408
+FS:  00007f357178b640(0000) GS:ffff8880e3584000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b33426000 CR3: 00000000275c4006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+PKRU: 55555554
+iommufd_mock iommufd_mock3: Adding to iommu group 3
+loop4: detected capacity change from 0 to 32768
+iommufd_mock iommufd_mock3: Adding to iommu group 3
+loop4: detected capacity change from 0 to 256
+loop5: detected capacity change from 0 to 65536
+XFS (loop5): Mounting V5 Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+XFS (loop5): Ending clean mount
+netlink: 45944 bytes leftover after parsing attributes in process `syz-executor.1'.
+program syz-executor.6 is using a deprecated SCSI ioctl, please convert it to SG_IO
+loop2: detected capacity change from 0 to 512
+EXT4-fs (loop2): ext4_check_descriptors: Block bitmap for group 0 not in group (block 2)!
+EXT4-fs (loop2): group descriptors corrupted!
+loop7: detected capacity change from 0 to 8
+SQUASHFS error: Failed to read block 0x291: -5
+SQUASHFS error: Unable to read metadata cache entry [28f]
+SQUASHFS error: Unable to read inode 0x11f
+EXT4-fs warning (device sda): ext4_group_extend:1891: can't read last block, resize aborted
+EXT4-fs warning (device sda): ext4_group_extend:1891: can't read last block, resize aborted
+XFS (loop5): Unmounting Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+loop7: detected capacity change from 0 to 4096
+EXT4-fs: Ignoring removed nobh option
+EXT4-fs: Journaled quota options ignored when QUOTA feature is enabled
+x86/PAT: syz-executor.0:9984 freeing invalid memtype [mem 0xfed00000-0xfed00fff]
+loop4: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 512
+ext4: Bad value for 'errors'
+loop6: detected capacity change from 0 to 8
+EXT4-fs (loop7): ext4_check_descriptors: Block bitmap for group 0 not in group (block 2)!
+EXT4-fs (loop7): group descriptors corrupted!
+SQUASHFS error: Failed to read block 0x291: -5
+SQUASHFS error: Unable to read metadata cache entry [28f]
+SQUASHFS error: Unable to read inode 0x11f
+netlink: 45944 bytes leftover after parsing attributes in process `syz-executor.0'.
+loop4: detected capacity change from 0 to 512
+ext4: Bad value for 'errors'
+x86/PAT: syz-executor.3:10076 freeing invalid memtype [mem 0xfed00000-0xfed00fff]
+loop2: detected capacity change from 0 to 8
+SQUASHFS error: Failed to read block 0x291: -5
+SQUASHFS error: Unable to read metadata cache entry [28f]
+SQUASHFS error: Unable to read inode 0x11f
+loop6: detected capacity change from 0 to 4096
+EXT4-fs: Ignoring removed nobh option
+EXT4-fs: Journaled quota options ignored when QUOTA feature is enabled
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop4): ext4_check_descriptors: Block bitmap for group 0 not in group (block 2)!
+EXT4-fs (loop4): group descriptors corrupted!
+netlink: 45944 bytes leftover after parsing attributes in process `syz-executor.0'.
+loop4: detected capacity change from 0 to 8
+loop6: detected capacity change from 0 to 512
+ext4: Bad value for 'errors'
+loop2: detected capacity change from 0 to 32768
+xfs: Unknown parameter 'gqnoenforze'
+iommufd_mock iommufd_mock3: Adding to iommu group 3
+iommufd_mock iommufd_mock3: Adding to iommu group 3
+Oops: general protection fault, probably for non-canonical address 0xdffffc0000000000: 0000 [#4] SMP KASAN NOPTI
+KASAN: null-ptr-deref in range [0x0000000000000000-0x0000000000000007]
+CPU: 0 UID: 0 PID: 10149 Comm: syz-executor.1 Tainted: G      D W           6.14.0-next-20250325-eb4bc4b07f66 #1 PREEMPT(voluntary) 
+Tainted: [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:iommufd_hw_pagetable_detach+0x8a/0x4d0 drivers/iommu/iommufd/device.c:647
+Code: 00 00 00 44 89 ee 48 89 c7 48 89 75 c8 48 89 45 c0 e8 ca 55 17 02 48 89 c2 49 89 c4 48 b8 00 00 00 00 00 fc ff df 48 c1 ea 03 <80> 3c 02 00 0f 85 99 03 00 00 48 b8 00 00 00 00 00 fc ff df 4d 8b
+RSP: 0018:ffff88804c137b78 EFLAGS: 00010246
+RAX: dffffc0000000000 RBX: ffff88802585b600 RCX: 1ffffffff0dd8bdc
+RDX: 0000000000000000 RSI: 0000000000000001 RDI: ffff88804bb107fc
+RBP: ffff88804c137bc8 R08: ffffffff85c5c7a2 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000001 R14: ffff88804c137e18 R15: ffff888013b77008
+FS:  00007f937f87f640(0000) GS:ffff8880e3584000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000000003a20e2d8 CR3: 0000000015af4001 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ iommufd_device_detach+0x2a/0x2e0 drivers/iommu/iommufd/device.c:1003
+ iommufd_test_pasid_detach drivers/iommu/iommufd/selftest.c:1837 [inline]
+ iommufd_test+0x2f99/0x5cd0 drivers/iommu/iommufd/selftest.c:1930
+ iommufd_fops_ioctl+0x38e/0x520 drivers/iommu/iommufd/main.c:419
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:906 [inline]
+ __se_sys_ioctl fs/ioctl.c:892 [inline]
+ __x64_sys_ioctl+0x1ba/0x220 fs/ioctl.c:892
+ x64_sys_call+0x122e/0x2150 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x150 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f937f63ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007f937f87ecc8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00000000004bbf80 RCX: 00007f937f63ee5d
+RDX: 0000000020000300 RSI: 0000000000003ba0 RDI: 0000000000000003
+RBP: 00000000004bbf80 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 000000000000000b R14: 00007f937f69f560 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:iommufd_hw_pagetable_detach+0x8a/0x4d0 drivers/iommu/iommufd/device.c:647
+Code: 00 00 00 44 89 ee 48 89 c7 48 89 75 c8 48 89 45 c0 e8 ca 55 17 02 48 89 c2 49 89 c4 48 b8 00 00 00 00 00 fc ff df 48 c1 ea 03 <80> 3c 02 00 0f 85 99 03 00 00 48 b8 00 00 00 00 00 fc ff df 4d 8b
+RSP: 0018:ffff888012f57b78 EFLAGS: 00010246
+RAX: dffffc0000000000 RBX: ffff888010616600 RCX: ffff888012f57a64
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff88802eec87fc
+RBP: ffff888012f57bc8 R08: 0000000000000001 R09: 0000000000000001
+loop6: detected capacity change from 0 to 512
+R10: 0000000000000001 R11: ffff88802eec8e58 R12: 0000000000000000
+R13: 0000000000000001 R14: ffff888012f57e18 R15: ffff8880135a4408
+FS:  00007f937f87f640(0000) GS:ffff8880e3584000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+EXT4-fs (loop6): ext4_check_descriptors: Block bitmap for group 0 not in group (block 2)!
+CR2: 000000003a20e2d8 CR3: 0000000015af4001 CR4: 0000000000770ef0
+EXT4-fs (loop6): group descriptors corrupted!
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+PKRU: 55555554
+x86/PAT: syz-executor.3:10071 freeing invalid memtype [mem 0xfed00000-0xfed00fff]
+loop3: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 8
+EXT4-fs warning (device sda): __ext4_ioctl:1258: Setting inode version is not supported with metadata_csum enabled.
+EXT4-fs (loop3): ext4_check_descriptors: Block bitmap for group 0 not in group (block 2)!
+EXT4-fs (loop3): group descriptors corrupted!
+loop6: detected capacity change from 0 to 512
+loop5: detected capacity change from 0 to 512
+ext4: Bad value for 'errors'
+EXT4-fs error (device loop6): ext4_orphan_get:1416: comm syz-executor.6: bad orphan inode 2048
+ext4 filesystem being mounted at /syzkaller-testdir2864371579/syzkaller.V61IVv/177/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+loop2: detected capacity change from 0 to 32768
+xfs: Unknown parameter 'dont_se'
+x86/PAT: syz-executor.5:10184 freeing invalid memtype [mem 0xfed00000-0xfed00fff]
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+loop3: detected capacity change from 0 to 512
+EXT4-fs error (device loop3): ext4_orphan_get:1416: comm syz-executor.3: bad orphan inode 2048
+ext4 filesystem being mounted at /syzkaller-testdir1612414218/syzkaller.sdoCry/201/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+loop6: detected capacity change from 0 to 4096
+EXT4-fs: Ignoring removed nobh option
+EXT4-fs: Journaled quota options ignored when QUOTA feature is enabled
+loop4: detected capacity change from 0 to 65536
+XFS (loop4): Mounting V5 Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+loop7: detected capacity change from 0 to 65536
+XFS (loop7): Mounting V5 Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+XFS (loop4): Ending clean mount
+9p: Unknown access argument 
+: -22
+XFS (loop7): Ending clean mount
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): ext4_check_descriptors: Block bitmap for group 0 not in group (block 2)!
+EXT4-fs (loop6): group descriptors corrupted!
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+XFS (loop7): Unmounting Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+iommufd_mock iommufd_mock5: Adding to iommu group 5
+XFS (loop4): Unmounting Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+netlink: 45944 bytes leftover after parsing attributes in process `syz-executor.2'.
+loop6: detected capacity change from 0 to 512
+ext4: Bad value for 'errors'
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+loop4: detected capacity change from 0 to 4096
+EXT4-fs: Ignoring removed nobh option
+EXT4-fs: Journaled quota options ignored when QUOTA feature is enabled
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+A link change request failed with some changes committed already. Interface lo may have been left with an inconsistent configuration, please check.
+loop2: detected capacity change from 0 to 65536
+XFS (loop2): Mounting V5 Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+x86/PAT: syz-executor.5:10183 freeing invalid memtype [mem 0xfed00000-0xfed00fff]
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+XFS (loop2): Ending clean mount
+loop4: detected capacity change from 0 to 128
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+XFS (loop2): Unmounting Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+loop7: detected capacity change from 0 to 4096
+EXT4-fs: Ignoring removed nobh option
+loop3: detected capacity change from 0 to 32768
+EXT4-fs: Journaled quota options ignored when QUOTA feature is enabled
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+x86/PAT: syz-executor.5:10309 freeing invalid memtype [mem 0xfed00000-0xfed00fff]
+XFS (loop3): Ending clean mount
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+tmpfs: Unknown parameter 'subj_user'
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+iommufd_mock iommufd_mock5: Adding to iommu group 5
+loop6: detected capacity change from 0 to 4096
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+EXT4-fs: Ignoring removed nobh option
+EXT4-fs: Journaled quota options ignored when QUOTA feature is enabled
+x86/PAT: syz-executor.5:10336 freeing invalid memtype [mem 0xfed00000-0xfed00fff]
+loop6: detected capacity change from 0 to 512
+A link change request failed with some changes committed already. Interface lo may have been left with an inconsistent configuration, please check.
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+program syz-executor.7 is using a deprecated SCSI ioctl, please convert it to SG_IO
+EXT4-fs (loop6): ext4_check_descriptors: Block bitmap for group 0 not in group (block 2)!
+EXT4-fs (loop6): group descriptors corrupted!
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+loop4: detected capacity change from 0 to 8
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+loop5: detected capacity change from 0 to 8
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+loop3: detected capacity change from 0 to 65536
+XFS (loop3): Mounting V5 Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+XFS (loop3): Ending clean mount
+XFS (loop3): Unmounting Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+iommufd_mock iommufd_mock5: Adding to iommu group 5
+loop7: detected capacity change from 0 to 512
+ext4: Bad value for 'errors'
+A link change request failed with some changes committed already. Interface lo may have been left with an inconsistent configuration, please check.
+loop7: detected capacity change from 0 to 512
+ext4: Bad value for 'errors'
+loop2: detected capacity change from 0 to 32768
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+loop2: detected capacity change from 0 to 8
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+loop7: detected capacity change from 0 to 512
+EXT4-fs error (device loop7): ext4_orphan_get:1416: comm syz-executor.7: bad orphan inode 2048
+ext4 filesystem being mounted at /syzkaller-testdir3287093432/syzkaller.8F1Zso/209/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+loop3: detected capacity change from 0 to 65536
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+XFS (loop3): Mounting V5 Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+XFS (loop3): Ending clean mount
+XFS (loop3): Unmounting Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+loop3: detected capacity change from 0 to 512
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+EXT4-fs error (device loop3): ext4_orphan_get:1416: comm syz-executor.3: bad orphan inode 2048
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+ext4 filesystem being mounted at /syzkaller-testdir1612414218/syzkaller.sdoCry/217/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+rfkill: input handler disabled
+loop6: detected capacity change from 0 to 1024
+ext2: Unknown parameter ''
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+iommufd_mock iommufd_mock5: Adding to iommu group 5
+A link change request failed with some changes committed already. Interface lo may have been left with an inconsistent configuration, please check.
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+loop4: detected capacity change from 0 to 65536
+XFS (loop4): Mounting V5 Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+XFS (loop4): Ending clean mount
+XFS (loop4): Unmounting Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+loop2: detected capacity change from 0 to 65536
+XFS (loop2): DAX unsupported by block device. Turning off DAX.
+XFS (loop2): Mounting V5 Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+XFS (loop2): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop2): Quotacheck: Done.
+tmpfs: Unknown parameter 'subj_user'
+XFS (loop2): Unmounting Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+rfkill: input handler enabled
+loop2: detected capacity change from 0 to 128
+FAT-fs (loop2): Invalid FSINFO signature: 0x41615daf, 0x61417272 (sector = 1)
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+A link change request failed with some changes committed already. Interface lo may have been left with an inconsistent configuration, please check.
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+loop6: detected capacity change from 0 to 8
+SQUASHFS error: Failed to read block 0x291: -5
+SQUASHFS error: Unable to read metadata cache entry [28f]
+SQUASHFS error: Unable to read inode 0x11f
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+A link change request failed with some changes committed already. Interface lo may have been left with an inconsistent configuration, please check.
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+loop5: detected capacity change from 0 to 32768
+XFS (loop5): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+XFS (loop5): Ending clean mount
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+lo: entered promiscuous mode
+lo: entered allmulticast mode
+syz_tun: entered promiscuous mode
+syz_tun: entered allmulticast mode
+pimreg: entered promiscuous mode
+caif0: entered promiscuous mode
+caif0: entered allmulticast mode
+loop6: detected capacity change from 0 to 512
+EXT4-fs error (device loop6): ext4_orphan_get:1416: comm syz-executor.6: bad orphan inode 2048
+EXT4-fs mount: 94 callbacks suppressed
+EXT4-fs (loop6): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir2864371579/syzkaller.V61IVv/210/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+XFS (loop5): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+iommufd_mock iommufd_mock4: Adding to iommu group 4
+loop2: detected capacity change from 0 to 65536
+XFS (loop2): Mounting V5 Filesystem 3e7e19ec-4fa8-4c61-9f42-f376546f3591
+lo: entered promiscuous mode
+lo: entered allmulticast mode
+syz_tun: entered promiscuous mode
+syz_tun: entered allmulticast mode
+caif0: entered promiscuous mode
+caif0: entered allmulticast mode
+----------------
+Code disassembly (best guess):
+   0:	00 00                	add    %al,(%rax)
+   2:	00 44 89 ee          	add    %al,-0x12(%rcx,%rcx,4)
+   6:	48 89 c7             	mov    %rax,%rdi
+   9:	48 89 75 c8          	mov    %rsi,-0x38(%rbp)
+   d:	48 89 45 c0          	mov    %rax,-0x40(%rbp)
+  11:	e8 ca 55 17 02       	callq  0x21755e0
+  16:	48 89 c2             	mov    %rax,%rdx
+  19:	49 89 c4             	mov    %rax,%r12
+  1c:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  23:	fc ff df
+  26:	48 c1 ea 03          	shr    $0x3,%rdx
+* 2a:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1) <-- trapping instruction
+  2e:	0f 85 99 03 00 00    	jne    0x3cd
+  34:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  3b:	fc ff df
+  3e:	4d                   	rex.WRB
+  3f:	8b                   	.byte 0x8b

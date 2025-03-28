@@ -1,0 +1,37 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [eb4bc4b07f66f01618d9cb1aa4eaef59b1188415] Add linux-next specific files for 20250325
+git bisect bad eb4bc4b07f66f01618d9cb1aa4eaef59b1188415
+# status: waiting for good commit(s), bad commit known
+# good: [38fec10eb60d687e30c8c6b5420d86e8149f7557] Linux 6.14
+git bisect good 38fec10eb60d687e30c8c6b5420d86e8149f7557
+# good: [7fce4e72b3a632ef0571b6808743f7161eb381d5] Merge branch 'main' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
+git bisect good 7fce4e72b3a632ef0571b6808743f7161eb381d5
+# good: [8447b0779f1aa7db55d5f249779ba8635aa856e7] Merge branch 'master' of git://www.linux-watchdog.org/linux-watchdog-next.git
+git bisect good 8447b0779f1aa7db55d5f249779ba8635aa856e7
+# good: [58c5e9711276d4921f98df3dde6eed3a66f399c7] Merge branch 'usb-next' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git
+git bisect good 58c5e9711276d4921f98df3dde6eed3a66f399c7
+# good: [b9f63521d75fd80e596e83ef5b01f9081f6e4346] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux.git
+git bisect good b9f63521d75fd80e596e83ef5b01f9081f6e4346
+# good: [277263c566ec4763faf854577dabd12683c0ccc8] Merge branch 'hyperv-next' of git://git.kernel.org/pub/scm/linux/kernel/git/hyperv/linux.git
+git bisect good 277263c566ec4763faf854577dabd12683c0ccc8
+# good: [9af1a85abbf4ae162786a8a97ce2630ec1e2b57e] Merge branch 'rust-next' of https://github.com/Rust-for-Linux/linux.git
+git bisect good 9af1a85abbf4ae162786a8a97ce2630ec1e2b57e
+# good: [2ddb499dde5507066b937cb7b1add8ab77e31927] Merge branch 'for-next/kspp' of git://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git
+git bisect good 2ddb499dde5507066b937cb7b1add8ab77e31927
+# bad: [7ca1d5b7238340f0bfbd446ba9684b0293ab41d2] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/lenb/linux.git
+git bisect bad 7ca1d5b7238340f0bfbd446ba9684b0293ab41d2
+# good: [3613606e64901ee927a148c2646ac5a84bd8844e] iommufd/device: Only add reserved_iova in non-pasid path
+git bisect good 3613606e64901ee927a148c2646ac5a84bd8844e
+# good: [d1915383518bfe0993bd31d00e464b0148d61af0] iommufd/selftest: Add a helper to get test device
+git bisect good d1915383518bfe0993bd31d00e464b0148d61af0
+# bad: [b20331e10e51f99f94312270508d5fd1eb5969e8] iommufd: Extend IOMMU_GET_HW_INFO to report PASID capability
+git bisect bad b20331e10e51f99f94312270508d5fd1eb5969e8
+# bad: [100d5d3c2b4338d788d4ec52adca23f89ac20b41] ida: Add ida_find_first_range()
+git bisect bad 100d5d3c2b4338d788d4ec52adca23f89ac20b41
+# bad: [d813b7ba91d513f4dd0c607ac294e4664932bfaa] iommufd/selftest: Add coverage for iommufd pasid attach/detach
+git bisect bad d813b7ba91d513f4dd0c607ac294e4664932bfaa
+# bad: [3d183bab95eaf7ac0310f8409827e4c3c4a3900c] iommufd/selftest: Add test ops to test pasid attach/detach
+git bisect bad 3d183bab95eaf7ac0310f8409827e4c3c4a3900c
+# first bad commit: [3d183bab95eaf7ac0310f8409827e4c3c4a3900c] iommufd/selftest: Add test ops to test pasid attach/detach
+|0328_041029|Bisect successfully! eb4bc4b07f66f01618d9cb1aa4eaef59b1188415_3d183bab95eaf7ac0310f8409827e4c3c4a3900c_revert bzimage passed!|
