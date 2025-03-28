@@ -1,0 +1,165 @@
+loop4: detected capacity change from 0 to 128
+loop3: detected capacity change from 128 to 0
+======================================================
+WARNING: possible circular locking dependency detected
+6.14.0-next-20250325-eb4bc4b07f66 #1 Not tainted
+------------------------------------------------------
+syz-executor362/736 is trying to acquire lock:
+ffffffff87e3c568 (uevent_sock_mutex){+.+.}-{4:4}, at: uevent_net_broadcast_untagged lib/kobject_uevent.c:317 [inline]
+ffffffff87e3c568 (uevent_sock_mutex){+.+.}-{4:4}, at: kobject_uevent_net_broadcast lib/kobject_uevent.c:410 [inline]
+ffffffff87e3c568 (uevent_sock_mutex){+.+.}-{4:4}, at: kobject_uevent_env+0x92c/0x14a0 lib/kobject_uevent.c:608
+
+but task is already holding lock:
+ffff88801178a7a8 (&q->q_usage_counter(io)#20){++++}-{0:0}, at: blk_mq_freeze_queue_nomemsave+0x1f/0x40 block/blk-mq.c:215
+
+which lock already depends on the new lock.
+
+
+the existing dependency chain (in reverse order) is:
+
+-> #2 (&q->q_usage_counter(io)#20){++++}-{0:0}:
+       blk_alloc_queue+0x64c/0x790 block/blk-core.c:461
+       blk_mq_alloc_queue+0x18c/0x2a0 block/blk-mq.c:4349
+       __blk_mq_alloc_disk+0x34/0x100 block/blk-mq.c:4396
+       loop_add+0x4b9/0xbc0 drivers/block/loop.c:2103
+       loop_init+0x133/0x1a0 drivers/block/loop.c:2338
+       do_one_initcall+0x108/0x610 init/main.c:1257
+       do_initcall_level init/main.c:1319 [inline]
+       do_initcalls init/main.c:1335 [inline]
+       do_basic_setup init/main.c:1354 [inline]
+       kernel_init_freeable+0xaab/0xeb0 init/main.c:1567
+       kernel_init+0x28/0x2f0 init/main.c:1457
+       ret_from_fork+0x56/0x90 arch/x86/kernel/process.c:153
+       ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+
+-> #1 (fs_reclaim){+.+.}-{0:0}:
+       __fs_reclaim_acquire mm/page_alloc.c:4028 [inline]
+       fs_reclaim_acquire+0x116/0x160 mm/page_alloc.c:4042
+       might_alloc include/linux/sched/mm.h:318 [inline]
+       slab_pre_alloc_hook mm/slub.c:4102 [inline]
+       slab_alloc_node mm/slub.c:4180 [inline]
+       kmem_cache_alloc_node_noprof+0x4f/0x420 mm/slub.c:4252
+       __alloc_skb+0x2d6/0x3a0 net/core/skbuff.c:658
+       alloc_skb include/linux/skbuff.h:1340 [inline]
+       alloc_uevent_skb+0x86/0x230 lib/kobject_uevent.c:289
+       uevent_net_broadcast_untagged lib/kobject_uevent.c:326 [inline]
+       kobject_uevent_net_broadcast lib/kobject_uevent.c:410 [inline]
+       kobject_uevent_env+0xaa3/0x14a0 lib/kobject_uevent.c:608
+       kobject_synth_uevent+0x7d2/0x8a0 lib/kobject_uevent.c:207
+       store_uevent+0x1f/0x40 kernel/module/main.c:940
+       module_attr_store+0x60/0x90 kernel/params.c:921
+       sysfs_kf_write+0xfc/0x160 fs/sysfs/file.c:145
+       kernfs_fop_write_iter+0x41a/0x640 fs/kernfs/file.c:334
+       new_sync_write fs/read_write.c:591 [inline]
+       vfs_write+0xc5e/0x1140 fs/read_write.c:684
+       ksys_write+0x14e/0x280 fs/read_write.c:736
+       __do_sys_write fs/read_write.c:747 [inline]
+       __se_sys_write fs/read_write.c:744 [inline]
+       __x64_sys_write+0x7b/0xc0 fs/read_write.c:744
+       x64_sys_call+0x16ba/0x2150 arch/x86/include/generated/asm/syscalls_64.h:2
+       do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+       do_syscall_64+0x6d/0x150 arch/x86/entry/syscall_64.c:94
+       entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+-> #0 (uevent_sock_mutex){+.+.}-{4:4}:
+       check_prev_add kernel/locking/lockdep.c:3166 [inline]
+       check_prevs_add kernel/locking/lockdep.c:3285 [inline]
+       validate_chain kernel/locking/lockdep.c:3909 [inline]
+       __lock_acquire+0x14c0/0x2260 kernel/locking/lockdep.c:5235
+       lock_acquire kernel/locking/lockdep.c:5866 [inline]
+       lock_acquire+0x170/0x310 kernel/locking/lockdep.c:5823
+       __mutex_lock_common kernel/locking/mutex.c:601 [inline]
+       __mutex_lock+0x17b/0x1700 kernel/locking/mutex.c:746
+       mutex_lock_nested+0x1f/0x30 kernel/locking/mutex.c:798
+       uevent_net_broadcast_untagged lib/kobject_uevent.c:317 [inline]
+       kobject_uevent_net_broadcast lib/kobject_uevent.c:410 [inline]
+       kobject_uevent_env+0x92c/0x14a0 lib/kobject_uevent.c:608
+       kobject_uevent+0x24/0x30 lib/kobject_uevent.c:656
+       loop_set_size drivers/block/loop.c:211 [inline]
+       loop_set_size drivers/block/loop.c:208 [inline]
+       loop_set_status+0x9b0/0xb70 drivers/block/loop.c:1357
+       loop_set_status64 drivers/block/loop.c:1466 [inline]
+       lo_ioctl+0x75d/0x2840 drivers/block/loop.c:1633
+       blkdev_ioctl+0x2a1/0x6a0 block/ioctl.c:698
+       vfs_ioctl fs/ioctl.c:51 [inline]
+       __do_sys_ioctl fs/ioctl.c:906 [inline]
+       __se_sys_ioctl fs/ioctl.c:892 [inline]
+       __x64_sys_ioctl+0x1ba/0x220 fs/ioctl.c:892
+       x64_sys_call+0x122e/0x2150 arch/x86/include/generated/asm/syscalls_64.h:17
+       do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+       do_syscall_64+0x6d/0x150 arch/x86/entry/syscall_64.c:94
+       entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+other info that might help us debug this:
+
+Chain exists of:
+  uevent_sock_mutex --> fs_reclaim --> &q->q_usage_counter(io)#20
+
+ Possible unsafe locking scenario:
+
+       CPU0                    CPU1
+       ----                    ----
+  lock(&q->q_usage_counter(io)#20);
+                               lock(fs_reclaim);
+                               lock(&q->q_usage_counter(io)#20);
+  lock(uevent_sock_mutex);
+
+ *** DEADLOCK ***
+
+3 locks held by syz-executor362/736:
+ #0: ffff8880117ccb68 (&lo->lo_mutex){+.+.}-{4:4}, at: loop_set_status+0x33/0xb70 drivers/block/loop.c:1326
+ #1: ffff88801178a7a8 (&q->q_usage_counter(io)#20){++++}-{0:0}, at: blk_mq_freeze_queue_nomemsave+0x1f/0x40 block/blk-mq.c:215
+ #2: ffff88801178a7e0 (&q->q_usage_counter(queue)#8){+.+.}-{0:0}, at: blk_mq_freeze_queue_nomemsave+0x1f/0x40 block/blk-mq.c:215
+
+stack backtrace:
+CPU: 0 UID: 0 PID: 736 Comm: syz-executor362 Not tainted 6.14.0-next-20250325-eb4bc4b07f66 #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ print_circular_bug+0x283/0x350 kernel/locking/lockdep.c:2079
+ check_noncircular+0x12f/0x150 kernel/locking/lockdep.c:2211
+ check_prev_add kernel/locking/lockdep.c:3166 [inline]
+ check_prevs_add kernel/locking/lockdep.c:3285 [inline]
+ validate_chain kernel/locking/lockdep.c:3909 [inline]
+ __lock_acquire+0x14c0/0x2260 kernel/locking/lockdep.c:5235
+ lock_acquire kernel/locking/lockdep.c:5866 [inline]
+ lock_acquire+0x170/0x310 kernel/locking/lockdep.c:5823
+ __mutex_lock_common kernel/locking/mutex.c:601 [inline]
+ __mutex_lock+0x17b/0x1700 kernel/locking/mutex.c:746
+ mutex_lock_nested+0x1f/0x30 kernel/locking/mutex.c:798
+ uevent_net_broadcast_untagged lib/kobject_uevent.c:317 [inline]
+ kobject_uevent_net_broadcast lib/kobject_uevent.c:410 [inline]
+ kobject_uevent_env+0x92c/0x14a0 lib/kobject_uevent.c:608
+ kobject_uevent+0x24/0x30 lib/kobject_uevent.c:656
+ loop_set_size drivers/block/loop.c:211 [inline]
+ loop_set_size drivers/block/loop.c:208 [inline]
+ loop_set_status+0x9b0/0xb70 drivers/block/loop.c:1357
+ loop_set_status64 drivers/block/loop.c:1466 [inline]
+ lo_ioctl+0x75d/0x2840 drivers/block/loop.c:1633
+ blkdev_ioctl+0x2a1/0x6a0 block/ioctl.c:698
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:906 [inline]
+ __se_sys_ioctl fs/ioctl.c:892 [inline]
+ __x64_sys_ioctl+0x1ba/0x220 fs/ioctl.c:892
+ x64_sys_call+0x122e/0x2150 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x150 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f2d60a3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd7fb53148 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00000000000f4240 RCX: 00007f2d60a3ee5d
+RDX: 00000000200018c0 RSI: 0000000000004c04 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0023706f6f6c2f76 R09: 0000000000200000
+R10: 000000000000000f R11: 0000000000000246 R12: 00007ffd7fb53170
+R13: 0000000000401260 R14: 0000000000411e08 R15: 00007f2d60ce8000
+ </TASK>
+loop6: detected capacity change from 0 to 128
+syz-executor362: attempt to access beyond end of device
+loop3: rw=0, sector=0, nr_sectors = 1 limit=0
+FAT-fs (loop3): unable to read boot sector
+loop1: detected capacity change from 0 to 128
+loop7: detected capacity change from 0 to 128

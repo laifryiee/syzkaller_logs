@@ -1,0 +1,37 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [eb4bc4b07f66f01618d9cb1aa4eaef59b1188415] Add linux-next specific files for 20250325
+git bisect bad eb4bc4b07f66f01618d9cb1aa4eaef59b1188415
+# status: waiting for good commit(s), bad commit known
+# good: [38fec10eb60d687e30c8c6b5420d86e8149f7557] Linux 6.14
+git bisect good 38fec10eb60d687e30c8c6b5420d86e8149f7557
+# good: [7fce4e72b3a632ef0571b6808743f7161eb381d5] Merge branch 'main' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
+git bisect good 7fce4e72b3a632ef0571b6808743f7161eb381d5
+# bad: [8447b0779f1aa7db55d5f249779ba8635aa856e7] Merge branch 'master' of git://www.linux-watchdog.org/linux-watchdog-next.git
+git bisect bad 8447b0779f1aa7db55d5f249779ba8635aa856e7
+# good: [52eb8cd788f1a56a0645c1f6650e5795e04aaed0] Merge drm/drm-next into drm-xe-next
+git bisect good 52eb8cd788f1a56a0645c1f6650e5795e04aaed0
+# good: [985b964c63502e64a45907baf838f98ef4c46660] Merge branch 'master' of git://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git
+git bisect good 985b964c63502e64a45907baf838f98ef4c46660
+# bad: [b3f9d748911e6839fe11e48c3a31270eadf7a297] Merge branch 'for-next' of git://git.kernel.dk/linux-block.git
+git bisect bad b3f9d748911e6839fe11e48c3a31270eadf7a297
+# bad: [95fb1ce9385b257bcf7bac1933b2d97270713c10] Merge branch 'for-6.15/io_uring' into for-next
+git bisect bad 95fb1ce9385b257bcf7bac1933b2d97270713c10
+# good: [5f14404bfa245a156915ee44c827edc56655b067] io_uring/cmd: don't expose entire cmd async data
+git bisect good 5f14404bfa245a156915ee44c827edc56655b067
+# good: [017ff379b60b98c17b82f878b4eb751dc99eb21c] Merge tag 'md-6.15-20250312' of https://git.kernel.org/pub/scm/linux/kernel/git/mdraid/linux into for-6.15/block
+git bisect good 017ff379b60b98c17b82f878b4eb751dc99eb21c
+# bad: [64ea88e3afa8c5b6c3f9c477da304b7a56149612] nvmet: replace max(a, min(b, c)) by clamp(val, lo, hi)
+git bisect bad 64ea88e3afa8c5b6c3f9c477da304b7a56149612
+# bad: [9d5c0fffee266f61ccc745faa6298dafe2b8c5bf] nvme: add nvme_auth_derive_tls_psk()
+git bisect bad 9d5c0fffee266f61ccc745faa6298dafe2b8c5bf
+# bad: [e1a0202c6bfda24002a3ae2115154fa90104c649] blk-cgroup: improve policy registration error handling
+git bisect bad e1a0202c6bfda24002a3ae2115154fa90104c649
+# good: [0e94ed33681424a6dce65c62837e08e4c7aa09ac] block: protect debugfs attribute method hctx_busy_show
+git bisect good 0e94ed33681424a6dce65c62837e08e4c7aa09ac
+# bad: [ffa1e7ada456087c2402b37cd6b2863ced29aff0] block: Make request_queue lockdep splats show up earlier
+git bisect bad ffa1e7ada456087c2402b37cd6b2863ced29aff0
+# good: [b0d42581195603f38184d7c130d0e2f43f40fb33] block: fix a comment in the queue_attrs[] array
+git bisect good b0d42581195603f38184d7c130d0e2f43f40fb33
+# first bad commit: [ffa1e7ada456087c2402b37cd6b2863ced29aff0] block: Make request_queue lockdep splats show up earlier
+|0327_221729|Bisect successfully! eb4bc4b07f66f01618d9cb1aa4eaef59b1188415_ffa1e7ada456087c2402b37cd6b2863ced29aff0_revert bzimage passed!|
