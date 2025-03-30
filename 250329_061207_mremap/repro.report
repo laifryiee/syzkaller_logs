@@ -1,0 +1,79 @@
+Oops: general protection fault, probably for non-canonical address 0xdffffc0000000004: 0000 [#1] SMP KASAN NOPTI
+KASAN: null-ptr-deref in range [0x0000000000000020-0x0000000000000027]
+CPU: 0 UID: 0 PID: 702 Comm: syz-executor985 Not tainted 6.14.0-next-20250325-eb4bc4b07f66 #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:vrm_uncharge mm/mremap.c:964 [inline]
+RIP: 0010:expand_vma_in_place mm/mremap.c:1566 [inline]
+RIP: 0010:expand_vma mm/mremap.c:1621 [inline]
+RIP: 0010:mremap_at mm/mremap.c:1682 [inline]
+RIP: 0010:do_mremap mm/mremap.c:1727 [inline]
+RIP: 0010:__do_sys_mremap+0x13a9/0x15d0 mm/mremap.c:1784
+Code: e8 ac 57 a8 ff 48 8b 85 30 fe ff ff 48 89 83 70 ff ff ff 49 89 c5 e9 2b f2 ff ff e8 91 57 a8 ff 48 b8 04 00 00 00 00 fc ff df <80> 38 00 0f 85 41 01 00 00 4c 8b 2c 25 20 00 00 00 31 ff 41 81 e5
+RSP: 0018:ffff88801f817ce8 EFLAGS: 00010293
+RAX: dffffc0000000004 RBX: ffff88801f817eb0 RCX: ffffffff81e42e5a
+RDX: ffff888013c32540 RSI: ffffffff81df64cf RDI: 0000000000000007
+RBP: ffff88801f817ed8 R08: 0000000000000000 R09: ffffed10027864a8
+R10: 0000000010000000 R11: ffff888013c33398 R12: ffff8880130fda00
+R13: ffff8880226c88c0 R14: ffff8880130fdb70 R15: 0000000000000000
+FS:  00007f432b2b7600(0000) GS:ffff8880e3584000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000402010 CR3: 0000000028ca8004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __se_sys_mremap mm/mremap.c:1752 [inline]
+ __x64_sys_mremap+0xc7/0x150 mm/mremap.c:1752
+ x64_sys_call+0x1933/0x2150 arch/x86/include/generated/asm/syscalls_64.h:26
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x150 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f432b03ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fff3c351278 EFLAGS: 00000246 ORIG_RAX: 0000000000000019
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f432b03ee5d
+RDX: 0000000000004000 RSI: 0000000000002000 RDI: 0000000020ffd000
+RBP: 0000000000000001 R08: 0000000020ffc000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fff3c3513a8
+R13: 0000000000401050 R14: 0000000000403e08 R15: 00007f432b300000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:vrm_uncharge mm/mremap.c:964 [inline]
+RIP: 0010:expand_vma_in_place mm/mremap.c:1566 [inline]
+RIP: 0010:expand_vma mm/mremap.c:1621 [inline]
+RIP: 0010:mremap_at mm/mremap.c:1682 [inline]
+RIP: 0010:do_mremap mm/mremap.c:1727 [inline]
+RIP: 0010:__do_sys_mremap+0x13a9/0x15d0 mm/mremap.c:1784
+Code: e8 ac 57 a8 ff 48 8b 85 30 fe ff ff 48 89 83 70 ff ff ff 49 89 c5 e9 2b f2 ff ff e8 91 57 a8 ff 48 b8 04 00 00 00 00 fc ff df <80> 38 00 0f 85 41 01 00 00 4c 8b 2c 25 20 00 00 00 31 ff 41 81 e5
+RSP: 0018:ffff88801f817ce8 EFLAGS: 00010293
+RAX: dffffc0000000004 RBX: ffff88801f817eb0 RCX: ffffffff81e42e5a
+RDX: ffff888013c32540 RSI: ffffffff81df64cf RDI: 0000000000000007
+RBP: ffff88801f817ed8 R08: 0000000000000000 R09: ffffed10027864a8
+R10: 0000000010000000 R11: ffff888013c33398 R12: ffff8880130fda00
+R13: ffff8880226c88c0 R14: ffff8880130fdb70 R15: 0000000000000000
+FS:  00007f432b2b7600(0000) GS:ffff8880e3584000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000402010 CR3: 0000000028ca8004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+----------------
+Code disassembly (best guess):
+   0:	e8 ac 57 a8 ff       	callq  0xffa857b1
+   5:	48 8b 85 30 fe ff ff 	mov    -0x1d0(%rbp),%rax
+   c:	48 89 83 70 ff ff ff 	mov    %rax,-0x90(%rbx)
+  13:	49 89 c5             	mov    %rax,%r13
+  16:	e9 2b f2 ff ff       	jmpq   0xfffff246
+  1b:	e8 91 57 a8 ff       	callq  0xffa857b1
+  20:	48 b8 04 00 00 00 00 	movabs $0xdffffc0000000004,%rax
+  27:	fc ff df
+* 2a:	80 38 00             	cmpb   $0x0,(%rax) <-- trapping instruction
+  2d:	0f 85 41 01 00 00    	jne    0x174
+  33:	4c 8b 2c 25 20 00 00 	mov    0x20,%r13
+  3a:	00
+  3b:	31 ff                	xor    %edi,%edi
+  3d:	41                   	rex.B
+  3e:	81                   	.byte 0x81
+  3f:	e5                   	.byte 0xe5

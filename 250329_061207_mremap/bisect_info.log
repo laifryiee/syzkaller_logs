@@ -1,0 +1,36 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [eb4bc4b07f66f01618d9cb1aa4eaef59b1188415] Add linux-next specific files for 20250325
+git bisect bad eb4bc4b07f66f01618d9cb1aa4eaef59b1188415
+# status: waiting for good commit(s), bad commit known
+# good: [38fec10eb60d687e30c8c6b5420d86e8149f7557] Linux 6.14
+git bisect good 38fec10eb60d687e30c8c6b5420d86e8149f7557
+# bad: [7fce4e72b3a632ef0571b6808743f7161eb381d5] Merge branch 'main' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
+git bisect bad 7fce4e72b3a632ef0571b6808743f7161eb381d5
+# bad: [8c9d7cef441a1524fda5f897e51170cbdaf7f805] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/s390/linux.git
+git bisect bad 8c9d7cef441a1524fda5f897e51170cbdaf7f805
+# bad: [19a59037028747a7f197d612f496f897512635b3] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/masahiroy/linux-kbuild.git
+git bisect bad 19a59037028747a7f197d612f496f897512635b3
+# good: [829ee558f3527fd602c6e2e9f270959d1de09fe0] ALSA: hda/realtek: Fix built-in mic assignment on ASUS VivoBook X515UA
+git bisect good 829ee558f3527fd602c6e2e9f270959d1de09fe0
+# bad: [87f556baedc9cca2edb318efe9d8cf009d916c4d] mseal sysmap: add arch-support txt
+git bisect bad 87f556baedc9cca2edb318efe9d8cf009d916c4d
+# good: [e47f1f56dd82cc6d91f5c4d914a534aa03cd12ca] mm/page_alloc: clarify terminology in migratetype fallback code
+git bisect good e47f1f56dd82cc6d91f5c4d914a534aa03cd12ca
+# bad: [3a812bed3d32ae8c7443d1dd82f20b9a7e503ed2] mm: page_owner: use new iteration API
+git bisect bad 3a812bed3d32ae8c7443d1dd82f20b9a7e503ed2
+# bad: [2a4077f49ccd6f904be6edb363714646e47292c9] mm/mremap: refactor move_page_tables(), abstracting state
+git bisect bad 2a4077f49ccd6f904be6edb363714646e47292c9
+# good: [cd81c424b53fa174df1e18b021806bc978c8fb7f] mm: shmem: change the return value of shmem_find_swap_entries()
+git bisect good cd81c424b53fa174df1e18b021806bc978c8fb7f
+# good: [82ba975e4c43d98afebced82d940ddb7aec42a9d] mm: allow compound zone device pages
+git bisect good 82ba975e4c43d98afebced82d940ddb7aec42a9d
+# good: [653d7825c149932f254e0cd22153ccc945e7e545] dcssblk: mark DAX broken, remove FS_DAX_LIMITED support
+git bisect good 653d7825c149932f254e0cd22153ccc945e7e545
+# good: [85ea6bdd88a27317875088b54119bec209c6c09c] mm/mremap: refactor mremap() system call implementation
+git bisect good 85ea6bdd88a27317875088b54119bec209c6c09c
+# bad: [d5c8aec0542e2d79b64de9089b88fabdebe05c1e] mm/mremap: initial refactor of move_vma()
+git bisect bad d5c8aec0542e2d79b64de9089b88fabdebe05c1e
+# good: [221bf5cac5c2f3b9d8a07f4b2738225a59962945] mm/mremap: introduce and use vma_remap_struct threaded state
+git bisect good 221bf5cac5c2f3b9d8a07f4b2738225a59962945
+# first bad commit: [d5c8aec0542e2d79b64de9089b88fabdebe05c1e] mm/mremap: initial refactor of move_vma()
