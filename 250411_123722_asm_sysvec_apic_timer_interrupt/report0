@@ -1,0 +1,130 @@
+EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+watchdog: BUG: soft lockup - CPU#0 stuck for 26s! [kworker/0:27:10606]
+Modules linked in:
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff8146aabf>] copy_process+0x1cff/0x69c0 kernel/fork.c:2374
+softirqs last  enabled at (0): [<ffffffff8146ab0c>] copy_process+0x1d4c/0x69c0 kernel/fork.c:2375
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+CPU: 0 UID: 0 PID: 10606 Comm: kworker/0:27 Tainted: G S                  6.15.0-rc1-next-20250407-2bdde620f7f2 #1 PREEMPT(voluntary) 
+Tainted: [S]=CPU_OUT_OF_SPEC
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Workqueue: events key_garbage_collector
+RIP: 0010:pv_native_safe_halt+0x22/0x30 arch/x86/kernel/paravirt.c:81
+Code: 90 90 90 90 90 90 90 90 f3 0f 1e fa 55 48 89 e5 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d d5 33 1f 00 0f 1f 44 00 00 fb f4 <5d> c3 cc cc cc cc 0f 1f 84 00 00 00 00 00 90 90 90 90 90 90 90 90
+RSP: 0000:ffff88806c408bc0 EFLAGS: 00000246
+RAX: 0000000000000001 RBX: 0000000000000003 RCX: 1ffffffff0dd95e8
+RDX: 0000000000000000 RSI: 0000000000000103 RDI: ffffffff813ee927
+RBP: ffff88806c408bc0 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff87ee3c27 R11: 000000000000000d R12: ffffffff876c22c0
+R13: 0000000000000003 R14: 0000000000000003 R15: fffffbfff0ed8458
+FS:  0000000000000000(0000) GS:ffff8880e3580000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f8f49d8c760 CR3: 000000002365c004 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000600
+PKRU: 55555554
+Call Trace:
+ <IRQ>
+ arch_safe_halt arch/x86/include/asm/paravirt.h:107 [inline]
+ kvm_wait arch/x86/kernel/kvm.c:1063 [inline]
+ kvm_wait+0x14c/0x190 arch/x86/kernel/kvm.c:1045
+ pv_wait arch/x86/include/asm/paravirt.h:584 [inline]
+ pv_wait_head_or_lock kernel/locking/qspinlock_paravirt.h:466 [inline]
+ __pv_queued_spin_lock_slowpath+0x9f0/0xc70 kernel/locking/qspinlock.c:325
+ pv_queued_spin_lock_slowpath arch/x86/include/asm/paravirt.h:572 [inline]
+ queued_spin_lock_slowpath arch/x86/include/asm/qspinlock.h:51 [inline]
+ queued_spin_lock include/asm-generic/qspinlock.h:114 [inline]
+ do_raw_spin_lock+0x1f9/0x280 kernel/locking/spinlock_debug.c:116
+ __raw_spin_lock include/linux/spinlock_api_smp.h:134 [inline]
+ _raw_spin_lock+0x40/0x50 kernel/locking/spinlock.c:154
+ spin_lock include/linux/spinlock.h:351 [inline]
+ key_put security/keys/key.c:663 [inline]
+ key_put+0x107/0x3f0 security/keys/key.c:646
+ keyring_free_object+0x22/0x30 security/keys/keyring.c:389
+ assoc_array_rcu_cleanup+0x97/0x260 lib/assoc_array.c:1309
+ rcu_do_batch kernel/rcu/tree.c:2568 [inline]
+ rcu_core+0x86b/0x1920 kernel/rcu/tree.c:2824
+ rcu_core_si+0x12/0x20 kernel/rcu/tree.c:2841
+ handle_softirqs+0x1c5/0x860 kernel/softirq.c:579
+ __do_softirq kernel/softirq.c:613 [inline]
+ invoke_softirq kernel/softirq.c:453 [inline]
+ __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:680
+ irq_exit_rcu+0x12/0x30 kernel/softirq.c:696
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1049 [inline]
+ sysvec_apic_timer_interrupt+0xb4/0xd0 arch/x86/kernel/apic/apic.c:1049
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1f/0x30 arch/x86/include/asm/idtentry.h:702
+RIP: 0010:key_garbage_collector+0x165/0x930 security/keys/gc.c:238
+Code: 85 2f 04 00 00 e8 bb c2 bc fe 48 8d bb c0 00 00 00 48 89 f8 48 c1 e8 03 42 80 3c 30 00 0f 85 ff 06 00 00 4c 8b ab c0 00 00 00 <49> bf ff ff ff ff ff ff ff 7f 4c 89 ff 4c 89 ee e8 66 bd bc fe 4d
+RSP: 0000:ffff888037b07bf0 EFLAGS: 00000246
+RAX: 1ffff110024109a1 RBX: ffff888012084c48 RCX: ffffffff82cb1bd7
+RDX: ffff88802c314a80 RSI: ffffffff82cb1be5 RDI: ffff888012084d08
+RBP: ffff888037b07c50 R08: 0000000000000000 R09: fffffbfff0ed8458
+R10: 0000000000000000 R11: fefefefefefefeff R12: 0000000000000000
+R13: 7fffffffffffffff R14: dffffc0000000000 R15: 7fffffffffffffff
+ process_one_work+0x92d/0x1b20 kernel/workqueue.c:3238
+ process_scheduled_works kernel/workqueue.c:3319 [inline]
+ worker_thread+0x697/0xeb0 kernel/workqueue.c:3400
+ kthread+0x461/0x980 kernel/kthread.c:464
+ ret_from_fork+0x56/0x90 arch/x86/kernel/process.c:153
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+Sending NMI from CPU 0 to CPUs 1:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 13754 Comm: syz-executor.5 Tainted: G S                  6.15.0-rc1-next-20250407-2bdde620f7f2 #1 PREEMPT(voluntary) 
+Tainted: [S]=CPU_OUT_OF_SPEC
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x22/0x30 arch/x86/kernel/paravirt.c:81
+Code: 90 90 90 90 90 90 90 90 f3 0f 1e fa 55 48 89 e5 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d d5 33 1f 00 0f 1f 44 00 00 fb f4 <5d> c3 cc cc cc cc 0f 1f 84 00 00 00 00 00 90 90 90 90 90 90 90 90
+RSP: 0018:ffff88805c80f8f0 EFLAGS: 00000246
+RAX: 0000000000000001 RBX: 0000000000000001 RCX: 1ffffffff0dd95e9
+RDX: 0000000000000000 RSI: 0000000000000002 RDI: ffffffff813ee927
+RBP: ffff88805c80f8f0 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff87ee3c27 R11: 00000000b2d05e02 R12: ffff88806c544b94
+R13: 0000000000000001 R14: 0000000000000001 R15: ffff88806c544b80
+FS:  00007fe0c6df7640(0000) GS:ffff8880e3680000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000000000043aad0 CR3: 0000000039566003 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ arch_safe_halt arch/x86/include/asm/paravirt.h:107 [inline]
+ kvm_wait arch/x86/kernel/kvm.c:1063 [inline]
+ kvm_wait+0x14c/0x190 arch/x86/kernel/kvm.c:1045
+ pv_wait arch/x86/include/asm/paravirt.h:584 [inline]
+ pv_wait_node kernel/locking/qspinlock_paravirt.h:322 [inline]
+ __pv_queued_spin_lock_slowpath+0x7a1/0xc70 kernel/locking/qspinlock.c:290
+ pv_queued_spin_lock_slowpath arch/x86/include/asm/paravirt.h:572 [inline]
+ queued_spin_lock_slowpath arch/x86/include/asm/qspinlock.h:51 [inline]
+ queued_spin_lock include/asm-generic/qspinlock.h:114 [inline]
+ do_raw_spin_lock+0x1f9/0x280 kernel/locking/spinlock_debug.c:116
+ __raw_spin_lock include/linux/spinlock_api_smp.h:134 [inline]
+ _raw_spin_lock+0x40/0x50 kernel/locking/spinlock.c:154
+ spin_lock include/linux/spinlock.h:351 [inline]
+ key_alloc_serial security/keys/key.c:146 [inline]
+ key_alloc+0xa66/0x13a0 security/keys/key.c:322
+ keyring_alloc+0x56/0xd0 security/keys/keyring.c:526
+ install_process_keyring_to_cred security/keys/process_keys.c:275 [inline]
+ install_process_keyring_to_cred security/keys/process_keys.c:268 [inline]
+ install_process_keyring security/keys/process_keys.c:300 [inline]
+ lookup_user_key+0xa8d/0x1450 security/keys/process_keys.c:653
+ __do_sys_add_key+0x1f5/0x460 security/keys/keyctl.c:126
+ __se_sys_add_key security/keys/keyctl.c:74 [inline]
+ __x64_sys_add_key+0xc7/0x150 security/keys/keyctl.c:74
+ x64_sys_call+0x175a/0x2150 arch/x86/include/generated/asm/syscalls_64.h:249
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x150 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fe0c7a3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fe0c6df6cc8 EFLAGS: 00000246 ORIG_RAX: 00000000000000f8
+RAX: ffffffffffffffda RBX: 00000000004bbf80 RCX: 00007fe0c7a3ee5d
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000020000000
+RBP: 00000000004bbf80 R08: fffffffffffffffe R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 000000000000000b R14: 00007fe0c7a9f560 R15: 0000000000000000
+ </TASK>

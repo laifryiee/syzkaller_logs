@@ -1,0 +1,67 @@
+watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [kworker/1:0:25]
+Modules linked in:
+irq event stamp: 108
+hardirqs last  enabled at (107): [<ffffffff85ca95fc>] __raw_spin_unlock_irq include/linux/spinlock_api_smp.h:159 [inline]
+hardirqs last  enabled at (107): [<ffffffff85ca95fc>] _raw_spin_unlock_irq+0x2c/0x60 kernel/locking/spinlock.c:202
+hardirqs last disabled at (108): [<ffffffff85c8dafc>] __schedule+0x180c/0x37d0 kernel/sched/core.c:6671
+softirqs last  enabled at (0): [<ffffffff8146ab0c>] copy_process+0x1d4c/0x69c0 kernel/fork.c:2375
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+CPU: 1 UID: 0 PID: 25 Comm: kworker/1:0 Not tainted 6.15.0-rc1-next-20250407-2bdde620f7f2 #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Workqueue: events key_garbage_collector
+RIP: 0010:pv_wait_head_or_lock kernel/locking/qspinlock_paravirt.h:430 [inline]
+RIP: 0010:__pv_queued_spin_lock_slowpath+0x44d/0xc70 kernel/locking/qspinlock.c:325
+Code: bb 00 80 00 00 48 b8 00 00 00 00 00 fc ff df 48 c1 e9 03 41 83 e4 07 4c 8d 3c 01 49 8d 45 b0 48 89 85 48 ff ff ff eb 0b f3 90 <83> eb 01 0f 84 1f 05 00 00 b8 00 01 00 00 66 41 89 45 b0 41 0f b6
+RSP: 0018:ffff88806c508c00 EFLAGS: 00000206
+RAX: 0000000000000003 RBX: 0000000000003ed4 RCX: 1ffffffff0ed8458
+RDX: 0000000000000001 RSI: ffffffff813ee932 RDI: ffffffff813ee927
+RBP: ffff88806c508cf8 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff87ee3c27 R11: 000000000000000c R12: 0000000000000000
+R13: ffff88806c508cd0 R14: ffffffff876c22c0 R15: fffffbfff0ed8458
+FS:  0000000000000000(0000) GS:ffff8880e3680000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fffbb0bd3c8 CR3: 00000000252d0005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <IRQ>
+ pv_queued_spin_lock_slowpath arch/x86/include/asm/paravirt.h:572 [inline]
+ queued_spin_lock_slowpath arch/x86/include/asm/qspinlock.h:51 [inline]
+ queued_spin_lock include/asm-generic/qspinlock.h:114 [inline]
+ do_raw_spin_lock+0x1f9/0x280 kernel/locking/spinlock_debug.c:116
+ __raw_spin_lock include/linux/spinlock_api_smp.h:134 [inline]
+ _raw_spin_lock+0x40/0x50 kernel/locking/spinlock.c:154
+ spin_lock include/linux/spinlock.h:351 [inline]
+ key_put security/keys/key.c:663 [inline]
+ key_put+0x107/0x3f0 security/keys/key.c:646
+ keyring_free_object+0x22/0x30 security/keys/keyring.c:389
+ assoc_array_rcu_cleanup+0x97/0x260 lib/assoc_array.c:1309
+ rcu_do_batch kernel/rcu/tree.c:2568 [inline]
+ rcu_core+0x86b/0x1920 kernel/rcu/tree.c:2824
+ rcu_core_si+0x12/0x20 kernel/rcu/tree.c:2841
+ handle_softirqs+0x1c5/0x860 kernel/softirq.c:579
+ __do_softirq kernel/softirq.c:613 [inline]
+ invoke_softirq kernel/softirq.c:453 [inline]
+ __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:680
+ irq_exit_rcu+0x12/0x30 kernel/softirq.c:696
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1049 [inline]
+ sysvec_apic_timer_interrupt+0xb4/0xd0 arch/x86/kernel/apic/apic.c:1049
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1f/0x30 arch/x86/include/asm/idtentry.h:702
+RIP: 0010:key_garbage_collector+0x158/0x930 security/keys/gc.c:237
+Code: 10 44 89 ee e8 f9 bc bc fe 45 84 ed 0f 85 2f 04 00 00 e8 bb c2 bc fe 48 8d bb c0 00 00 00 48 89 f8 48 c1 e8 03 42 80 3c 30 00 <0f> 85 ff 06 00 00 4c 8b ab c0 00 00 00 49 bf ff ff ff ff ff ff ff
+RSP: 0018:ffff88800dd9fbf0 EFLAGS: 00000246
+RAX: 1ffff11002799399 RBX: ffff888013cc9c08 RCX: ffffffff82cb1bd7
+RDX: ffff88800dd8a540 RSI: ffffffff82cb1be5 RDI: ffff888013cc9cc8
+RBP: ffff88800dd9fc50 R08: 0000000000000000 R09: fffffbfff0ed8458
+R10: 0000000000000000 R11: fefefefefefefeff R12: 0000000000000000
+R13: 0000000000000000 R14: dffffc0000000000 R15: 7fffffffffffffff
+ process_one_work+0x92d/0x1b20 kernel/workqueue.c:3238
+ process_scheduled_works kernel/workqueue.c:3319 [inline]
+ worker_thread+0x697/0xeb0 kernel/workqueue.c:3400
+ kthread+0x461/0x980 kernel/kthread.c:464
+ ret_from_fork+0x56/0x90 arch/x86/kernel/process.c:153
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>

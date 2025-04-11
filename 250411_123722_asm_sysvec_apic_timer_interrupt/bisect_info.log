@@ -1,0 +1,29 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [2bdde620f7f2bff2ff1cb7dc166859eaa0c78a7c] Add linux-next specific files for 20250407
+git bisect bad 2bdde620f7f2bff2ff1cb7dc166859eaa0c78a7c
+# status: waiting for good commit(s), bad commit known
+# good: [0af2f6be1b4281385b618cb86ad946eded089ac8] Linux 6.15-rc1
+git bisect good 0af2f6be1b4281385b618cb86ad946eded089ac8
+# good: [03936be436af8d66e5575e1e527a5575736074bd] Merge branch 'fs-next' of linux-next
+git bisect good 03936be436af8d66e5575e1e527a5575736074bd
+# bad: [457e6b88667bde5c53fa2bbce27c91ed7af0fa0c] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/jarkko/linux-tpmdd.git
+git bisect bad 457e6b88667bde5c53fa2bbce27c91ed7af0fa0c
+# good: [18195d05c562b49ff11e6a5eab7b205f75be21a1] Merge branch 'cpufreq/arm/linux-next' of git://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git
+git bisect good 18195d05c562b49ff11e6a5eab7b205f75be21a1
+# good: [32cb8dc550e469facfe54e8fa3b5d8d01448d5df] drm/xe: Fix xe_pt_stage_bind_walk kerneldoc
+git bisect good 32cb8dc550e469facfe54e8fa3b5d8d01448d5df
+# good: [bb98a6e1d4fb2f8247804e66ac59ddf98a4605f8] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/regmap.git
+git bisect good bb98a6e1d4fb2f8247804e66ac59ddf98a4605f8
+# good: [c05e705812d179f4b85aeacc34a555a42bc4f9ac] apparmor: add fine grained af_unix mediation
+git bisect good c05e705812d179f4b85aeacc34a555a42bc4f9ac
+# good: [3e45553acb14692519db853e4b5be35b45e46ad0] apparmor: Remove unused variable 'sock' in __file_sock_perm()
+git bisect good 3e45553acb14692519db853e4b5be35b45e46ad0
+# good: [0e70e097ea9141e51d7f7714175de909f0903c5e] Merge branch 'for-next' of git://git.kernel.dk/linux-block.git
+git bisect good 0e70e097ea9141e51d7f7714175de909f0903c5e
+# good: [62085bd8959d79d9506949356305978336d01e0b] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git
+git bisect good 62085bd8959d79d9506949356305978336d01e0b
+# bad: [b0d023797e3e3b615dc46e7c9fbbba4beb1c92c8] keys: Add a list for unreferenced keys
+git bisect bad b0d023797e3e3b615dc46e7c9fbbba4beb1c92c8
+# first bad commit: [b0d023797e3e3b615dc46e7c9fbbba4beb1c92c8] keys: Add a list for unreferenced keys
+|0411_133030|Bisect successfully! 2bdde620f7f2bff2ff1cb7dc166859eaa0c78a7c_b0d023797e3e3b615dc46e7c9fbbba4beb1c92c8_revert bzimage passed!|
