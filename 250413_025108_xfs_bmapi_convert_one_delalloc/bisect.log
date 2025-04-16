@@ -1,0 +1,399 @@
+|0413_025108|cmd=cd /root/linux-next|
+|0413_025108|git log 0af2f6be1b4281385b618cb86ad946eded089ac8 check_result:commit 0af2f6be1b4281385b618cb86ad946eded089ac8|
+|0413_025108|git log f40ddce88593482919761f74910f42f4b84c004b check_result:commit f40ddce88593482919761f74910f42f4b84c004b|
+|0413_025108|cmd=git checkout -f 0af2f6be1b4281385b618cb86ad946eded089ac8|
+|0413_025108|cmd=cd /root/linux-next|
+|0413_025108||/var/www/html/bzimage/bzImage_0af2f6be1b4281385b618cb86ad946eded089ac8| exist, no need make|
+|0413_025108|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_025108|Run /var/www/html/bzimage/bzImage_0af2f6be1b4281385b618cb86ad946eded089ac8 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_025128|It takes 19 seconds to find login:test login: |
+|0413_025128|Boot 1 time: takes 19 seconds to boot up.|
+|0413_025128|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_025129|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_025130|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_025132|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_025132|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_025142|/var/www/html/bzimage/bzImage_0af2f6be1b4281385b618cb86ad946eded089ac8 contained xfs_bmapi_convert_one_delalloc:[   25.326135] WARNING: CPU: 1 PID: 828 at fs/xfs/libxfs/xfs_bmap.c:4401 xfs_bmapi_convert_one_delalloc+0x520/0xca0
+[   25.330853] RIP: 0010:xfs_bmapi_convert_one_delalloc+0x520/0xca0
+[   25.339166]  ? __pfx_xfs_bmapi_convert_one_delalloc+0x10/0x10, FAIL|
+|0413_025142|Found time:25 in /var/www/html/bzimage/0413_025108_xfs_bmapi_convert_one_delalloc/0af2f6be1b4281385b618cb86ad946eded089ac8_dmesg.log|
+|0413_025142|Logic: |<=25: +25|25-100 +180|>100 +1800| Set TIME:50|
+|0413_025142|-END- commit 0af2f6be1b4281385b618cb86ad946eded089ac8 FAIL bad|
+|0413_025142|issue_folder alreayd exist:/var/www/html//syzkaller/2025_04_13/5c87a39eb1f7ad139f1baa064f085839fad62bc8|
+|0413_025142|cmd=cp -rf /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog /var/www/html//syzkaller/2025_04_13/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.c|
+|0413_025142|gcc -pthread /var/www/html//syzkaller/2025_04_13/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.c -o /var/www/html//syzkaller/2025_04_13/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro|
+|0413_025143|cmd=cp -rf /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/description /var/www/html//syzkaller/2025_04_13/5c87a39eb1f7ad139f1baa064f085839fad62bc8|
+|0413_025143|cp -rf /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/mount_* /var/www/html/bzimage/0413_025108_xfs_bmapi_convert_one_delalloc/|
+|0413_025145|wget https://raw.githubusercontent.com/xupengfe/kconfig_diff/main/config-5.18rc4i_kvm -O /var/www/html/bzimage/0413_025108_xfs_bmapi_convert_one_delalloc/kconfig_origin:0|
+|0413_025145|cmd=cd /root/linux-next|
+|0413_025145||/var/www/html/bzimage/bzImage_f40ddce88593482919761f74910f42f4b84c004b| exist, no need make|
+|0413_025145|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_025145|Run /var/www/html/bzimage/bzImage_f40ddce88593482919761f74910f42f4b84c004b with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_025200|It takes 15 seconds to find login:test login: |
+|0413_025200|Boot 1 time: takes 15 seconds to boot up.|
+|0413_025200|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_025201|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_025202|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_025204|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_025204|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_025254|/var/www/html/bzimage/bzImage_f40ddce88593482919761f74910f42f4b84c004b didn't contain xfs_bmapi_convert_one_delalloc: in dmesg, pass|
+|0413_025254|Start commit f40ddce88593482919761f74910f42f4b84c004b PASS good|
+|0413_025254|cmd=git checkout -f 0af2f6be1b4281385b618cb86ad946eded089ac8|
+|0413_025254|cmd=git bisect start|
+|0413_025254|cmd=git bisect bad 0af2f6be1b4281385b618cb86ad946eded089ac8|
+|0413_025254|Bisect first start commit:f40ddce88593482919761f74910f42f4b84c004b|
+|0413_025254|git bisect good f40ddce88593482919761f74910f42f4b84c004b|
+|0413_025400||/var/www/html/bzimage/bzImage_1ec35eadc3b448c91a6b763371a7073444e95f9d| exist, no need make|
+|0413_025400|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_025400|Run /var/www/html/bzimage/bzImage_1ec35eadc3b448c91a6b763371a7073444e95f9d with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_025419|It takes 19 seconds to find login:test login: |
+|0413_025419|Boot 1 time: takes 19 seconds to boot up.|
+|0413_025419|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_025421|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_025422|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_025423|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_025424|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_025514|/var/www/html/bzimage/bzImage_1ec35eadc3b448c91a6b763371a7073444e95f9d didn't contain xfs_bmapi_convert_one_delalloc: in dmesg, pass|
+|0413_025514|git bisect good 1ec35eadc3b448c91a6b763371a7073444e95f9d|
+|0413_025532||/var/www/html/bzimage/bzImage_480e035fc4c714fb5536e64ab9db04fedc89e910| exist, no need make|
+|0413_025532|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_025532|Run /var/www/html/bzimage/bzImage_480e035fc4c714fb5536e64ab9db04fedc89e910 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_025549|It takes 17 seconds to find login:test login: |
+|0413_025549|Boot 1 time: takes 17 seconds to boot up.|
+|0413_025549|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_025551|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_025552|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_025553|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_025554|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_025644|/var/www/html/bzimage/bzImage_480e035fc4c714fb5536e64ab9db04fedc89e910 didn't contain xfs_bmapi_convert_one_delalloc: in dmesg, pass|
+|0413_025644|git bisect good 480e035fc4c714fb5536e64ab9db04fedc89e910|
+|0413_025656||/var/www/html/bzimage/bzImage_431844b65f4c1b988ccd886f2ed29c138f7bb262| exist, no need make|
+|0413_025656|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_025656|Run /var/www/html/bzimage/bzImage_431844b65f4c1b988ccd886f2ed29c138f7bb262 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_025711|It takes 15 seconds to find login:test login: |
+|0413_025711|Boot 1 time: takes 15 seconds to boot up.|
+|0413_025711|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_025712|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_025714|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_025716|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_025716|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_025806|/var/www/html/bzimage/bzImage_431844b65f4c1b988ccd886f2ed29c138f7bb262 contained xfs_bmapi_convert_one_delalloc:[   23.925765] WARNING: CPU: 1 PID: 898 at fs/xfs/libxfs/xfs_bmap.c:4699 xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   23.927877] RIP: 0010:xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   23.935157]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   23.935725]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   23.936053]  ? xfs_bmapi_convert_one_delalloc+0x52a/0xb50
+[   23.937148]  ? xfs_bmapi_convert_one_delalloc+0x51a/0xb50
+[   23.937481]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   23.937812]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   23.938152]  ? __pfx_xfs_bmapi_convert_one_delalloc+0x10/0x10, FAIL|
+|0413_025806|git bisect bad 431844b65f4c1b988ccd886f2ed29c138f7bb262|
+|0413_025811|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 76ed626479ebe0227728eff16bb44544ebd98920 -d /var/www/html/bzimage -o /tmp/kernel|
+|0413_032036|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_032036|Run /var/www/html/bzimage/bzImage_76ed626479ebe0227728eff16bb44544ebd98920 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_032053|It takes 17 seconds to find login:test login: |
+|0413_032053|Boot 1 time: takes 17 seconds to boot up.|
+|0413_032053|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_032054|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_032056|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_032057|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_032058|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_032148|/var/www/html/bzimage/bzImage_76ed626479ebe0227728eff16bb44544ebd98920 contained xfs_bmapi_convert_one_delalloc:[   22.731502] WARNING: CPU: 0 PID: 781 at fs/xfs/libxfs/xfs_bmap.c:4689 xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   22.735869] RIP: 0010:xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   22.744760]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   22.745300]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   22.746477]  ? xfs_bmapi_convert_one_delalloc+0x51a/0xb50
+[   22.746797]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   22.747125]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   22.747444]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   22.748352]  ? __pfx_xfs_bmapi_convert_one_delalloc+0x10/0x10, FAIL|
+|0413_032148|git bisect bad 76ed626479ebe0227728eff16bb44544ebd98920|
+|0413_032152||/var/www/html/bzimage/bzImage_b850dc206a57ae272c639e31ac202ec0c2f46960| exist, no need make|
+|0413_032152|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_032152|Run /var/www/html/bzimage/bzImage_b850dc206a57ae272c639e31ac202ec0c2f46960 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_032210|It takes 18 seconds to find login:test login: |
+|0413_032210|Boot 1 time: takes 18 seconds to boot up.|
+|0413_032210|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_032211|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_032213|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_032214|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_032214|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_032304|/var/www/html/bzimage/bzImage_b850dc206a57ae272c639e31ac202ec0c2f46960 didn't contain xfs_bmapi_convert_one_delalloc: in dmesg, pass|
+|0413_032305|git bisect good b850dc206a57ae272c639e31ac202ec0c2f46960|
+|0413_032307|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 93a43155127fec0f8cc942d63b76668c2f8f69fa -d /var/www/html/bzimage -o /tmp/kernel|
+|0413_034459|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_034459|Run /var/www/html/bzimage/bzImage_93a43155127fec0f8cc942d63b76668c2f8f69fa with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_034514|It takes 15 seconds to find login:test login: |
+|0413_034514|Boot 1 time: takes 15 seconds to boot up.|
+|0413_034514|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_034515|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_034516|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_034517|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_034518|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_034608|/var/www/html/bzimage/bzImage_93a43155127fec0f8cc942d63b76668c2f8f69fa didn't contain xfs_bmapi_convert_one_delalloc: in dmesg, pass|
+|0413_034608|git bisect good 93a43155127fec0f8cc942d63b76668c2f8f69fa|
+|0413_034610|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 1e37449fe3aa32e453eadaaba6e75b66c365efc4 -d /var/www/html/bzimage -o /tmp/kernel|
+|0413_040635|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_040635|Run /var/www/html/bzimage/bzImage_1e37449fe3aa32e453eadaaba6e75b66c365efc4 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_040650|It takes 15 seconds to find login:test login: |
+|0413_040650|Boot 1 time: takes 15 seconds to boot up.|
+|0413_040650|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_040651|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_040652|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_040653|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_040654|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_040744|/var/www/html/bzimage/bzImage_1e37449fe3aa32e453eadaaba6e75b66c365efc4 didn't contain xfs_bmapi_convert_one_delalloc: in dmesg, pass|
+|0413_040744|git bisect good 1e37449fe3aa32e453eadaaba6e75b66c365efc4|
+|0413_040745|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m c3de9b572fc2063fb62e53df50cc55156d6bfb45 -d /var/www/html/bzimage -o /tmp/kernel|
+|0413_042811|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_042811|Run /var/www/html/bzimage/bzImage_c3de9b572fc2063fb62e53df50cc55156d6bfb45 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_042826|It takes 15 seconds to find login:test login: |
+|0413_042826|Boot 1 time: takes 15 seconds to boot up.|
+|0413_042826|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_042827|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_042828|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_042829|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_042830|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_042920|/var/www/html/bzimage/bzImage_c3de9b572fc2063fb62e53df50cc55156d6bfb45 contained xfs_bmapi_convert_one_delalloc:[   24.580696] WARNING: CPU: 0 PID: 1207 at fs/xfs/libxfs/xfs_bmap.c:4666 xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   24.582228] RIP: 0010:xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   24.588115]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   24.588567]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   24.589436]  ? xfs_bmapi_convert_one_delalloc+0x51a/0xb50
+[   24.589693]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   24.589958]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   24.590217]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   24.590486]  ? __pfx_xfs_bmapi_convert_one_delalloc+0x10/0x10, FAIL|
+|0413_042920|git bisect bad c3de9b572fc2063fb62e53df50cc55156d6bfb45|
+|0413_042921|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 2faf6332c506fc3bd23815f8fe8f6d0c35271c17 -d /var/www/html/bzimage -o /tmp/kernel|
+|0413_044929|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_044929|Run /var/www/html/bzimage/bzImage_2faf6332c506fc3bd23815f8fe8f6d0c35271c17 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_044944|It takes 15 seconds to find login:test login: |
+|0413_044944|Boot 1 time: takes 15 seconds to boot up.|
+|0413_044944|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_044945|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_044946|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_044947|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_044948|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_045038|/var/www/html/bzimage/bzImage_2faf6332c506fc3bd23815f8fe8f6d0c35271c17 didn't contain xfs_bmapi_convert_one_delalloc: in dmesg, pass|
+|0413_045038|git bisect good 2faf6332c506fc3bd23815f8fe8f6d0c35271c17|
+|0413_045038|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m e874557fce1b6023efafd523aee0c347bf7f1694 -d /var/www/html/bzimage -o /tmp/kernel|
+|0413_051021|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_051021|Run /var/www/html/bzimage/bzImage_e874557fce1b6023efafd523aee0c347bf7f1694 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_051036|It takes 15 seconds to find login:test login: |
+|0413_051036|Boot 1 time: takes 15 seconds to boot up.|
+|0413_051036|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_051037|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_051038|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_051040|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_051040|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_051130|/var/www/html/bzimage/bzImage_e874557fce1b6023efafd523aee0c347bf7f1694 contained xfs_bmapi_convert_one_delalloc:[   39.886524] WARNING: CPU: 0 PID: 2531 at fs/xfs/libxfs/xfs_bmap.c:4666 xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   39.888064] RIP: 0010:xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   39.893832]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   39.894424]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   39.895312]  ? xfs_bmapi_convert_one_delalloc+0x51a/0xb50
+[   39.896050]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   39.896540]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   39.897103]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   39.897726]  ? __pfx_xfs_bmapi_convert_one_delalloc+0x10/0x10, FAIL|
+|0413_051130|git bisect bad e874557fce1b6023efafd523aee0c347bf7f1694|
+|0413_051131|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m dc772f8237f9b0c9ea3f34d0dc4a57d1f6a5070d -d /var/www/html/bzimage -o /tmp/kernel|
+|0413_053057|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_053057|Run /var/www/html/bzimage/bzImage_dc772f8237f9b0c9ea3f34d0dc4a57d1f6a5070d with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_053113|It takes 15 seconds to find login:test login: |
+|0413_053113|Boot 1 time: takes 15 seconds to boot up.|
+|0413_053113|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_053113|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_053115|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_053116|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_053116|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_053206|/var/www/html/bzimage/bzImage_dc772f8237f9b0c9ea3f34d0dc4a57d1f6a5070d contained xfs_bmapi_convert_one_delalloc:[   61.559342] WARNING: CPU: 0 PID: 4340 at fs/xfs/libxfs/xfs_bmap.c:4666 xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   61.560830] RIP: 0010:xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   61.569132]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   61.570592]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   61.571454]  ? xfs_bmapi_convert_one_delalloc+0x51a/0xb50
+[   61.571706]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   61.571964]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   61.572222]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   61.572499]  ? __pfx_xfs_bmapi_convert_one_delalloc+0x10/0x10, FAIL|
+|0413_053207|git bisect bad dc772f8237f9b0c9ea3f34d0dc4a57d1f6a5070d|
+|0413_053207|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m b0632e53e0da8054e36bc973f0eec69d30f1b7c6 -d /var/www/html/bzimage -o /tmp/kernel|
+|0413_055159|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_055159|Run /var/www/html/bzimage/bzImage_b0632e53e0da8054e36bc973f0eec69d30f1b7c6 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_055214|It takes 15 seconds to find login:test login: |
+|0413_055214|Boot 1 time: takes 15 seconds to boot up.|
+|0413_055214|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_055215|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_055216|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_055218|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_055218|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_055308|/var/www/html/bzimage/bzImage_b0632e53e0da8054e36bc973f0eec69d30f1b7c6 didn't contain xfs_bmapi_convert_one_delalloc: in dmesg, pass|
+|0413_055308|git bisect good b0632e53e0da8054e36bc973f0eec69d30f1b7c6|
+|0413_055309|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m f24b46ea10d7d2096ea1c9ce5746a0c85920ec62 -d /var/www/html/bzimage -o /tmp/kernel|
+|0413_061319|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_061319|Run /var/www/html/bzimage/bzImage_f24b46ea10d7d2096ea1c9ce5746a0c85920ec62 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_061334|It takes 15 seconds to find login:test login: |
+|0413_061334|Boot 1 time: takes 15 seconds to boot up.|
+|0413_061334|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_061335|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_061336|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_061338|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_061338|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_061428|/var/www/html/bzimage/bzImage_f24b46ea10d7d2096ea1c9ce5746a0c85920ec62 didn't contain xfs_bmapi_convert_one_delalloc: in dmesg, pass|
+|0413_061428|git bisect good f24b46ea10d7d2096ea1c9ce5746a0c85920ec62|
+|0413_061428|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m e33915892d8871b28d17675fecc1b5b36b0d5721 -d /var/www/html/bzimage -o /tmp/kernel|
+|0413_063423|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_063423|Run /var/www/html/bzimage/bzImage_e33915892d8871b28d17675fecc1b5b36b0d5721 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_063438|It takes 15 seconds to find login:test login: |
+|0413_063438|Boot 1 time: takes 15 seconds to boot up.|
+|0413_063438|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_063439|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_063441|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_063442|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_063442|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_063532|/var/www/html/bzimage/bzImage_e33915892d8871b28d17675fecc1b5b36b0d5721 contained xfs_bmapi_convert_one_delalloc:[   50.767308] WARNING: CPU: 0 PID: 3373 at fs/xfs/libxfs/xfs_bmap.c:4666 xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   50.769044] RIP: 0010:xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   50.775441]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   50.775945]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   50.776915]  ? xfs_bmapi_convert_one_delalloc+0x51a/0xb50
+[   50.777208]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   50.777503]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   50.777794]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   50.778088]  ? __pfx_xfs_bmapi_convert_one_delalloc+0x10/0x10, FAIL|
+|0413_063532|git bisect bad e33915892d8871b28d17675fecc1b5b36b0d5721|
+|0413_063533|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 8d6b029e15ab47986e486f52b2b768ca6faa5cbe -d /var/www/html/bzimage -o /tmp/kernel|
+|0413_065527|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_065527|Run /var/www/html/bzimage/bzImage_8d6b029e15ab47986e486f52b2b768ca6faa5cbe with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_065544|It takes 16 seconds to find login:test login: |
+|0413_065544|Boot 1 time: takes 16 seconds to boot up.|
+|0413_065544|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_065544|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_065546|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_065547|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_065547|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_065637|/var/www/html/bzimage/bzImage_8d6b029e15ab47986e486f52b2b768ca6faa5cbe didn't contain xfs_bmapi_convert_one_delalloc: in dmesg, pass|
+|0413_065637|git bisect good 8d6b029e15ab47986e486f52b2b768ca6faa5cbe|
+|0413_065638|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m eecba7c070283f053434808fa69abda36cf154b4 -d /var/www/html/bzimage -o /tmp/kernel|
+|0413_071629|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_071629|Run /var/www/html/bzimage/bzImage_eecba7c070283f053434808fa69abda36cf154b4 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_071644|It takes 15 seconds to find login:test login: |
+|0413_071644|Boot 1 time: takes 15 seconds to boot up.|
+|0413_071644|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_071645|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_071647|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_071648|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_071648|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_071739|/var/www/html/bzimage/bzImage_eecba7c070283f053434808fa69abda36cf154b4 contained xfs_bmapi_convert_one_delalloc:[   61.195981] WARNING: CPU: 1 PID: 4125 at fs/xfs/libxfs/xfs_bmap.c:4666 xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   61.197705] RIP: 0010:xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   61.204437]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   61.204933]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   61.205898]  ? xfs_bmapi_convert_one_delalloc+0x51a/0xb50
+[   61.206211]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   61.206502]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   61.206791]  ? xfs_bmapi_convert_one_delalloc+0x529/0xb50
+[   61.207087]  ? __pfx_xfs_bmapi_convert_one_delalloc+0x10/0x10, FAIL|
+|0413_071739|git bisect bad eecba7c070283f053434808fa69abda36cf154b4|
+|0413_071739|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m e2c79b4c5c4d83520abb570ca633ded09621c0a6 -d /var/www/html/bzimage -o /tmp/kernel|
+|0413_073720|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_073720|Run /var/www/html/bzimage/bzImage_e2c79b4c5c4d83520abb570ca633ded09621c0a6 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_073735|It takes 15 seconds to find login:test login: |
+|0413_073735|Boot 1 time: takes 15 seconds to boot up.|
+|0413_073735|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_073736|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_073738|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_073739|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_073739|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_073829|/var/www/html/bzimage/bzImage_e2c79b4c5c4d83520abb570ca633ded09621c0a6 didn't contain xfs_bmapi_convert_one_delalloc: in dmesg, pass|
+|0413_073829|git bisect good e2c79b4c5c4d83520abb570ca633ded09621c0a6|
+|0413_073832|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 4a77c3dead97339478c7422eb07bf4bf63577008 -d /var/www/html/bzimage -o /tmp/kernel|
+|0413_075840|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_075840|Run /var/www/html/bzimage/bzImage_4a77c3dead97339478c7422eb07bf4bf63577008 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_075856|It takes 16 seconds to find login:test login: |
+|0413_075856|Boot 1 time: takes 16 seconds to boot up.|
+|0413_075856|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_075857|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_075858|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_075900|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_075900|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_075950|/var/www/html/bzimage/bzImage_4a77c3dead97339478c7422eb07bf4bf63577008 didn't contain xfs_bmapi_convert_one_delalloc: in dmesg, pass|
+|0413_075950|git bisect good 4a77c3dead97339478c7422eb07bf4bf63577008|
+|0413_075954|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 0a02756d9145725c1b9979f0486c268f91471a48 -d /var/www/html/bzimage -o /tmp/kernel|
+|0413_081932|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0413_081932|Run /var/www/html/bzimage/bzImage_0a02756d9145725c1b9979f0486c268f91471a48 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0413_081948|It takes 15 seconds to find login:test login: |
+|0413_081948|Boot 1 time: takes 15 seconds to boot up.|
+|0413_081948|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0413_081948|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0413_081950|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/5c87a39eb1f7ad139f1baa064f085839fad62bc8/repro.cprog root@localhost:/root/repro.c|
+|0413_081951|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0413_081951|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0413_082041|/var/www/html/bzimage/bzImage_0a02756d9145725c1b9979f0486c268f91471a48 didn't contain xfs_bmapi_convert_one_delalloc: in dmesg, pass|
+|0413_082041|git bisect good 0a02756d9145725c1b9979f0486c268f91471a48|
+|0413_082042|Bisect PASS: find bad commit: eecba7c070283f053434808fa69abda36cf154b4 is the first bad commit
+commit eecba7c070283f053434808fa69abda36cf154b4
+Merge: 0a02756d9145 4a77c3dead97
+Author: Linus Torvalds <torvalds@linux-foundation.org>
+Date:   Fri Jun 7 15:07:57 2024 -0700
+
+    Merge tag 'nfsd-6.10-1' of git://git.kernel.org/pub/scm/linux/kernel/git/cel/linux
+    
+    Pull nfsd fix from Chuck Lever:
+    
+     - Fix an occasional memory overwrite caused by a fix added in 6.10
+    
+    * tag 'nfsd-6.10-1' of git://git.kernel.org/pub/scm/linux/kernel/git/cel/linux:
+      SUNRPC: Fix loop termination condition in gss_free_in_token_pages()
+
+ net/sunrpc/auth_gss/svcauth_gss.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)|
+|0413_082042|cmd=git bisect log >> /var/www/html/bzimage/bi.log|
+|0413_082042|cmd=git bisect log >> /var/www/html/bzimage/0413_025108_xfs_bmapi_convert_one_delalloc/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [0af2f6be1b4281385b618cb86ad946eded089ac8] Linux 6.15-rc1
+git bisect bad 0af2f6be1b4281385b618cb86ad946eded089ac8
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [1ec35eadc3b448c91a6b763371a7073444e95f9d] Merge tag 'clk-for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux
+git bisect good 1ec35eadc3b448c91a6b763371a7073444e95f9d
+# good: [480e035fc4c714fb5536e64ab9db04fedc89e910] Merge tag 'drm-next-2024-03-13' of https://gitlab.freedesktop.org/drm/kernel
+git bisect good 480e035fc4c714fb5536e64ab9db04fedc89e910
+# bad: [431844b65f4c1b988ccd886f2ed29c138f7bb262] sched_ext: Provide a sysfs enable_seq counter
+git bisect bad 431844b65f4c1b988ccd886f2ed29c138f7bb262
+# bad: [76ed626479ebe0227728eff16bb44544ebd98920] Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect bad 76ed626479ebe0227728eff16bb44544ebd98920
+# good: [b850dc206a57ae272c639e31ac202ec0c2f46960] Merge tag 'firewire-updates-6.10' of git://git.kernel.org/pub/scm/linux/kernel/git/ieee1394/linux1394
+git bisect good b850dc206a57ae272c639e31ac202ec0c2f46960
+# good: [93a43155127fec0f8cc942d63b76668c2f8f69fa] cifs: Fix missing set of remote_i_size
+git bisect good 93a43155127fec0f8cc942d63b76668c2f8f69fa
+# good: [1e37449fe3aa32e453eadaaba6e75b66c365efc4] Merge branch 'net-ethernet-ti-am65-cpsw-nuss-support-stacked-switches'
+git bisect good 1e37449fe3aa32e453eadaaba6e75b66c365efc4
+# bad: [c3de9b572fc2063fb62e53df50cc55156d6bfb45] Merge tag 'bcachefs-2024-06-22' of https://evilpiepirate.org/git/bcachefs
+git bisect bad c3de9b572fc2063fb62e53df50cc55156d6bfb45
+# good: [2faf6332c506fc3bd23815f8fe8f6d0c35271c17] Merge tag 'tomoyo-pr-20240606' of git://git.code.sf.net/p/tomoyo/tomoyo
+git bisect good 2faf6332c506fc3bd23815f8fe8f6d0c35271c17
+# bad: [e874557fce1b6023efafd523aee0c347bf7f1694] selftests: mptcp: userspace_pm: fixed subtest names
+git bisect bad e874557fce1b6023efafd523aee0c347bf7f1694
+# bad: [dc772f8237f9b0c9ea3f34d0dc4a57d1f6a5070d] Merge tag 'mm-hotfixes-stable-2024-06-07-15-24' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+git bisect bad dc772f8237f9b0c9ea3f34d0dc4a57d1f6a5070d
+# good: [b0632e53e0da8054e36bc973f0eec69d30f1b7c6] af_unix: Annotate data-races around sk->sk_sndbuf.
+git bisect good b0632e53e0da8054e36bc973f0eec69d30f1b7c6
+# good: [f24b46ea10d7d2096ea1c9ce5746a0c85920ec62] Merge tag 'iommu-fixes-v6.10-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/joro/iommu
+git bisect good f24b46ea10d7d2096ea1c9ce5746a0c85920ec62
+# bad: [e33915892d8871b28d17675fecc1b5b36b0d5721] Merge tag 'io_uring-6.10-20240607' of git://git.kernel.dk/linux
+git bisect bad e33915892d8871b28d17675fecc1b5b36b0d5721
+# good: [8d6b029e15ab47986e486f52b2b768ca6faa5cbe] Merge tag 's390-6.10-3' of git://git.kernel.org/pub/scm/linux/kernel/git/s390/linux
+git bisect good 8d6b029e15ab47986e486f52b2b768ca6faa5cbe
+# bad: [eecba7c070283f053434808fa69abda36cf154b4] Merge tag 'nfsd-6.10-1' of git://git.kernel.org/pub/scm/linux/kernel/git/cel/linux
+git bisect bad eecba7c070283f053434808fa69abda36cf154b4
+# good: [e2c79b4c5c4d83520abb570ca633ded09621c0a6] Revert "riscv: mm: accelerate pagefault when badaccess"
+git bisect good e2c79b4c5c4d83520abb570ca633ded09621c0a6
+# good: [4a77c3dead97339478c7422eb07bf4bf63577008] SUNRPC: Fix loop termination condition in gss_free_in_token_pages()
+git bisect good 4a77c3dead97339478c7422eb07bf4bf63577008
+# good: [0a02756d9145725c1b9979f0486c268f91471a48] Merge tag 'riscv-for-linus-6.10-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/riscv/linux
+git bisect good 0a02756d9145725c1b9979f0486c268f91471a48
+# first bad commit: [eecba7c070283f053434808fa69abda36cf154b4] Merge tag 'nfsd-6.10-1' of git://git.kernel.org/pub/scm/linux/kernel/git/cel/linux
+|0413_082043|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 0af2f6be1b4281385b618cb86ad946eded089ac8 -b eecba7c070283f053434808fa69abda36cf154b4 -d /var/www/html/bzimage -o /tmp/kernel -f /var/www/html/bzimage/bzImage_0af2f6be1b4281385b618cb86ad946eded089ac8_eecba7c070283f053434808fa69abda36cf154b4_revert|
+|0413_082119|2nd base commit:f40ddce88593482919761f74910f42f4b84c004b!|
+|0413_082119|FAIL|bzImage:/var/www/html/bzimage/bzImage_0af2f6be1b4281385b618cb86ad946eded089ac8_eecba7c070283f053434808fa69abda36cf154b4_revert does not exist:|
+|0413_082119|2nd base commit:f40ddce88593482919761f74910f42f4b84c004b!|
+|0413_082119|ISSUE:5c87a39eb1f7ad139f1baa064f085839fad62bc8  EMAIL status after check:Email_not_sent|
