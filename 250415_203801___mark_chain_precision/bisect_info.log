@@ -1,0 +1,46 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [8ffd015db85fea3e15a77027fda6c02ced4d2444] Linux 6.15-rc2
+git bisect bad 8ffd015db85fea3e15a77027fda6c02ced4d2444
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [4b8c673b761e74add4fd185d806ac16c9b40158f] Merge tag 'media/v6.3-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+git bisect good 4b8c673b761e74add4fd185d806ac16c9b40158f
+# bad: [8403ce70be339d462892a2b935ae30ee52416f92] Merge tag 'mfd-next-6.9' of git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd
+git bisect bad 8403ce70be339d462892a2b935ae30ee52416f92
+# bad: [7733171926cc336ddf0c8f847eefaff569dbff86] Merge tag 'mailbox-v6.6' of git://git.linaro.org/landing-teams/working/fujitsu/integration
+git bisect bad 7733171926cc336ddf0c8f847eefaff569dbff86
+# good: [3a8a670eeeaa40d87bd38a587438952741980c18] Merge tag 'net-next-6.5' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+git bisect good 3a8a670eeeaa40d87bd38a587438952741980c18
+# bad: [c65dffc6f25c59e3c637ab4e124f8686a08f3c15] Merge branch 'genetlink-provide-struct-genl_info-to-dumps'
+git bisect bad c65dffc6f25c59e3c637ab4e124f8686a08f3c15
+# good: [7fffbc71075dcb733068d711c2593127cdce86f0] sysctl: set variable sysctl_mount_point storage-class-specifier to static
+git bisect good 7fffbc71075dcb733068d711c2593127cdce86f0
+# good: [ebc27aaceeb9c4c988dbf321e849fcb75c6b55fa] Merge tag 'trace-v6.5-rc1-3' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+git bisect good ebc27aaceeb9c4c988dbf321e849fcb75c6b55fa
+# good: [8fb86b0dcaed2d6bbc33203e7340bff3e68fe339] net: ti: icssg-prueth: Add ethtool ops for ICSSG Ethernet driver
+git bisect good 8fb86b0dcaed2d6bbc33203e7340bff3e68fe339
+# good: [25aa0bebba72b318e71fe205bfd1236550cc9534] Merge tag 'net-6.5-rc6' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good 25aa0bebba72b318e71fe205bfd1236550cc9534
+# bad: [16fd753995f740fb968edaf5fd57ffb96020102e] Merge branch 'tcp-options-lockless'
+git bisect bad 16fd753995f740fb968edaf5fd57ffb96020102e
+# good: [904b102f1ebb67b91f1e90783a480fc473c986dd] Merge ath-next from git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
+git bisect good 904b102f1ebb67b91f1e90783a480fc473c986dd
+# good: [35b1b1fd96388d5e3cf179bf36bd8a4153baf4a3] Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good 35b1b1fd96388d5e3cf179bf36bd8a4153baf4a3
+# bad: [87dc2bb3291832994d216c7c86e3f4898022272f] Merge branch 'bpf-xdp-add-tracepoint-to-xdp-attaching-failure'
+git bisect bad 87dc2bb3291832994d216c7c86e3f4898022272f
+# bad: [613dad498072f20d9bfd996422f0fd8e9a2f6c0d] selftests/bpf: Add unit tests for new gotol insn
+git bisect bad 613dad498072f20d9bfd996422f0fd8e9a2f6c0d
+# good: [1f9a1ea821ff25353a0e80d971e7958cd55b47a3] bpf: Support new sign-extension load insns
+git bisect good 1f9a1ea821ff25353a0e80d971e7958cd55b47a3
+# bad: [f835bb6222998c8655bc4e85287d42b57c17b208] bpf: Add kernel/bpftool asm support for new instructions
+git bisect bad f835bb6222998c8655bc4e85287d42b57c17b208
+# good: [0845c3db7bf5c4ceb7100bcd8fd594d9ccf3c29a] bpf: Support new unconditional bswap instruction
+git bisect good 0845c3db7bf5c4ceb7100bcd8fd594d9ccf3c29a
+# good: [7058e3a31ee4b9240cccab5bc13c1afbfa3d16a0] bpf: Fix jit blinding with new sdiv/smov insns
+git bisect good 7058e3a31ee4b9240cccab5bc13c1afbfa3d16a0
+# bad: [4cd58e9af8b9d9fff6b7145e742abbfcda0af4af] bpf: Support new 32bit offset jmp instruction
+git bisect bad 4cd58e9af8b9d9fff6b7145e742abbfcda0af4af
+# first bad commit: [4cd58e9af8b9d9fff6b7145e742abbfcda0af4af] bpf: Support new 32bit offset jmp instruction

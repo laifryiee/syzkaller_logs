@@ -1,0 +1,94 @@
+EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+------------[ cut here ]------------
+verifier backtracking bug
+WARNING: CPU: 1 PID: 29013 at kernel/bpf/verifier.c:4302 backtrack_insn kernel/bpf/verifier.c:4302 [inline]
+WARNING: CPU: 1 PID: 29013 at kernel/bpf/verifier.c:4302 __mark_chain_precision+0x35d3/0x37b0 kernel/bpf/verifier.c:4734
+Modules linked in:
+CPU: 1 UID: 0 PID: 29013 Comm: syz-executor.2 Not tainted 6.15.0-rc2-next-20250414-b425262c07a6 #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:backtrack_insn kernel/bpf/verifier.c:4302 [inline]
+RIP: 0010:__mark_chain_precision+0x35d3/0x37b0 kernel/bpf/verifier.c:4734
+Code: 06 31 ff 89 de e8 9d 0a e0 ff 84 db 0f 85 a7 e5 ff ff e8 60 10 e0 ff 48 c7 c7 e0 d8 f4 85 c6 05 25 86 3d 06 01 e8 2d 37 9f ff <0f> 0b 41 bc f2 ff ff ff e9 f4 d4 ff ff e8 6b 8f 4b 00 e9 e7 ea ff
+RSP: 0018:ffff88803a1672d8 EFLAGS: 00010296
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffc90006044000
+RDX: 0000000000040000 RSI: ffffffff814758af RDI: 0000000000000001
+RBP: ffff88803a167428 R08: 0000000000000001 R09: ffffed100d8a59c1
+R10: 0000000000000000 R11: ffff88802c9fb398 R12: 0000000000000400
+R13: dffffc0000000000 R14: 0000000000000002 R15: ffff888033bf8000
+FS:  00007f4e693f7640(0000) GS:ffff8880e367f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b33122000 CR3: 0000000035c68002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000600
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ mark_chain_precision kernel/bpf/verifier.c:4837 [inline]
+ check_cond_jmp_op+0x2692/0x65f0 kernel/bpf/verifier.c:16456
+ do_check kernel/bpf/verifier.c:19670 [inline]
+ do_check_common+0x9134/0xd570 kernel/bpf/verifier.c:22776
+systemd-journald[145]: Data hash table of /run/log/journal/938775788448454bb5b34822d5730c41/system.journal has a fill level at 75.0 (5259 of 7011 items, 4038656 file size, 767 bytes per hash table item), suggesting rotation.
+ do_check_main kernel/bpf/verifier.c:22867 [inline]
+ bpf_check+0x9c13/0xd870 kernel/bpf/verifier.c:24033
+ bpf_prog_load+0x14d7/0x2600 kernel/bpf/syscall.c:2971
+ __sys_bpf+0x18bc/0x5c60 kernel/bpf/syscall.c:5834
+ __do_sys_bpf kernel/bpf/syscall.c:5941 [inline]
+ __se_sys_bpf kernel/bpf/syscall.c:5939 [inline]
+ __x64_sys_bpf+0x7d/0xc0 kernel/bpf/syscall.c:5939
+ x64_sys_call+0x204a/0x2150 arch/x86/include/generated/asm/syscalls_64.h:322
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x150 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f4e6a03ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007f4e693f6cc8 EFLAGS: 00000246 ORIG_RAX: 0000000000000141
+RAX: ffffffffffffffda RBX: 00000000004bbf80 RCX: 00007f4e6a03ee5d
+RDX: 0000000000000090 RSI: 00000000200009c0 RDI: 0000000000000005
+RBP: 00000000004bbf80 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 000000000000000b R14: 00007f4e6a09f560 R15: 0000000000000000
+ </TASK>
+irq event stamp: 1291
+hardirqs last  enabled at (1299): [<ffffffff81664065>] __up_console_sem+0x95/0xb0 kernel/printk/printk.c:344
+hardirqs last disabled at (1306): [<ffffffff8166404a>] __up_console_sem+0x7a/0xb0 kernel/printk/printk.c:342
+softirqs last  enabled at (1096): [<ffffffff81494e2e>] __do_softirq kernel/softirq.c:613 [inline]
+softirqs last  enabled at (1096): [<ffffffff81494e2e>] invoke_softirq kernel/softirq.c:453 [inline]
+softirqs last  enabled at (1096): [<ffffffff81494e2e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:680
+softirqs last disabled at (1089): [<ffffffff81494e2e>] __do_softirq kernel/softirq.c:613 [inline]
+softirqs last disabled at (1089): [<ffffffff81494e2e>] invoke_softirq kernel/softirq.c:453 [inline]
+softirqs last disabled at (1089): [<ffffffff81494e2e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:680
+---[ end trace 0000000000000000 ]---
+systemd-journald[145]: /run/log/journal/938775788448454bb5b34822d5730c41/system.journal: Journal header limits reached or header out-of-date, rotating.
+loop0: detected capacity change from 0 to 2048
+EXT4-fs (loop0): ext4_check_descriptors: Checksum for group 0 failed (22995!=55237)
+EXT4-fs (loop0): orphan cleanup on readonly fs
+Quota error (device loop0): v2_read_file_info: Block with free entry 257 out of range (1, 6).
+EXT4-fs warning (device loop0): ext4_enable_quotas:7166: Failed to enable quota tracking (type=0, err=-117, ino=3). Please run e2fsck to fix.
+EXT4-fs (loop0): Cannot turn on quotas: error -117
+EXT4-fs error (device loop0): ext4_orphan_get:1416: comm syz-executor.0: bad orphan inode 32
+ext4_test_bit(bit=31, block=3) = 0
+EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 ro without journal. Quota mode: writeback.
+loop4: detected capacity change from 0 to 4096
+EXT4-fs error (device loop4): mb_free_blocks:1945: group 0, inode 11: block 112:freeing already freed block (bit 7); block bitmap corrupt.
+EXT4-fs (loop4): Remounting filesystem read-only
+EXT4-fs (loop4): 1 truncate cleaned up
+EXT4-fs (loop4): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+loop1: detected capacity change from 0 to 32768
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+EXT4-fs (loop4): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+loop6: detected capacity change from 0 to 4096
+XFS (loop1): Ending clean mount
+loop0: detected capacity change from 0 to 32768
+XFS (loop0): DAX unsupported by block device. Turning off DAX.
+XFS (loop0): Mounting V5 Filesystem 9f1cad42-11bd-4e12-8f0b-f07876b81d9a
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop0): Quotacheck: Done.
+XFS (loop0): Unmounting Filesystem 9f1cad42-11bd-4e12-8f0b-f07876b81d9a
+loop2: detected capacity change from 0 to 32768
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Ending clean mount
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+loop5: detected capacity change from 0 to 8192

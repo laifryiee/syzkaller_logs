@@ -1,0 +1,58 @@
+------------[ cut here ]------------
+verifier backtracking bug
+WARNING: CPU: 0 PID: 703 at kernel/bpf/verifier.c:4302 backtrack_insn kernel/bpf/verifier.c:4302 [inline]
+WARNING: CPU: 0 PID: 703 at kernel/bpf/verifier.c:4302 __mark_chain_precision+0x35d3/0x37b0 kernel/bpf/verifier.c:4734
+Modules linked in:
+CPU: 0 UID: 0 PID: 703 Comm: syz-executor190 Not tainted 6.15.0-rc2-next-20250414-b425262c07a6 #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:backtrack_insn kernel/bpf/verifier.c:4302 [inline]
+RIP: 0010:__mark_chain_precision+0x35d3/0x37b0 kernel/bpf/verifier.c:4734
+Code: 06 31 ff 89 de e8 9d 0a e0 ff 84 db 0f 85 a7 e5 ff ff e8 60 10 e0 ff 48 c7 c7 e0 d8 f4 85 c6 05 25 86 3d 06 01 e8 2d 37 9f ff <0f> 0b 41 bc f2 ff ff ff e9 f4 d4 ff ff e8 6b 8f 4b 00 e9 e7 ea ff
+RSP: 0018:ffff888016e372d8 EFLAGS: 00010296
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff814758a2
+RDX: ffff88801e0cca80 RSI: ffffffff814758af RDI: 0000000000000001
+RBP: ffff888016e37428 R08: 0000000000000001 R09: ffffed100d8859c1
+R10: 0000000000000000 R11: ffff88801e0cd8d8 R12: 0000000000000400
+R13: dffffc0000000000 R14: 0000000000000002 R15: ffff88801c7a8000
+FS:  00007f16136fb600(0000) GS:ffff8880e357f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000200009c0 CR3: 0000000013180005 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ mark_chain_precision kernel/bpf/verifier.c:4837 [inline]
+ check_cond_jmp_op+0x2692/0x65f0 kernel/bpf/verifier.c:16456
+ do_check kernel/bpf/verifier.c:19670 [inline]
+ do_check_common+0x9134/0xd570 kernel/bpf/verifier.c:22776
+ do_check_main kernel/bpf/verifier.c:22867 [inline]
+ bpf_check+0x9c13/0xd870 kernel/bpf/verifier.c:24033
+ bpf_prog_load+0x14d7/0x2600 kernel/bpf/syscall.c:2971
+ __sys_bpf+0x18bc/0x5c60 kernel/bpf/syscall.c:5834
+ __do_sys_bpf kernel/bpf/syscall.c:5941 [inline]
+ __se_sys_bpf kernel/bpf/syscall.c:5939 [inline]
+ __x64_sys_bpf+0x7d/0xc0 kernel/bpf/syscall.c:5939
+ x64_sys_call+0x204a/0x2150 arch/x86/include/generated/asm/syscalls_64.h:322
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x150 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f161343ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffe23041658 EFLAGS: 00000246 ORIG_RAX: 0000000000000141
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f161343ee5d
+RDX: 0000000000000090 RSI: 00000000200009c0 RDI: 0000000000000005
+RBP: 0000000000000001 R08: 0000000000000000 R09: 0000000000000000
+R10: 00000000ffffffff R11: 0000000000000246 R12: 00007ffe23041788
+R13: 0000000000401050 R14: 0000000000403e08 R15: 00007f1613744000
+ </TASK>
+irq event stamp: 22465
+hardirqs last  enabled at (22473): [<ffffffff81664065>] __up_console_sem+0x95/0xb0 kernel/printk/printk.c:344
+hardirqs last disabled at (22480): [<ffffffff8166404a>] __up_console_sem+0x7a/0xb0 kernel/printk/printk.c:342
+softirqs last  enabled at (21882): [<ffffffff81494e2e>] __do_softirq kernel/softirq.c:613 [inline]
+softirqs last  enabled at (21882): [<ffffffff81494e2e>] invoke_softirq kernel/softirq.c:453 [inline]
+softirqs last  enabled at (21882): [<ffffffff81494e2e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:680
+softirqs last disabled at (22497): [<ffffffff81494e2e>] __do_softirq kernel/softirq.c:613 [inline]
+softirqs last disabled at (22497): [<ffffffff81494e2e>] invoke_softirq kernel/softirq.c:453 [inline]
+softirqs last disabled at (22497): [<ffffffff81494e2e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:680
+---[ end trace 0000000000000000 ]---
