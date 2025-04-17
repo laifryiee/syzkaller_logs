@@ -1,0 +1,688 @@
+|0416_221056|cmd=cd /root/laiyi/linux|
+|0416_221056|git log v6.15-rc2 check_result:commit 8ffd015db85fea3e15a77027fda6c02ced4d2444|
+|0416_221056|git log v5.12 check_result:commit 9f4ad9e425a1d3b6a34617b8ea226d56a119a717|
+|0416_221056|There was old bisect log:git bisect start
+# status: waiting for both good and bad commits
+# bad: [8ffd015db85fea3e15a77027fda6c02ced4d2444] Linux 6.15-rc2
+git bisect bad 8ffd015db85fea3e15a77027fda6c02ced4d2444
+# status: waiting for good commit(s), bad commit known
+# good: [9f4ad9e425a1d3b6a34617b8ea226d56a119a717] Linux 5.12
+git bisect good 9f4ad9e425a1d3b6a34617b8ea226d56a119a717
+# good: [4ea956963f4fca59050a22fcc65f00a85d586e63] Merge tag 'media/v6.4-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+git bisect good 4ea956963f4fca59050a22fcc65f00a85d586e63
+# good: [e09bf86f3d53ecf4da61163d88036c4c16419d70] Merge tag 'usb-6.9-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb
+git bisect good e09bf86f3d53ecf4da61163d88036c4c16419d70
+# bad: [0181f8c809d6116a8347d8beb25a8c35ed22f7d7] Merge tag 'for_linus' of git://git.kernel.org/pub/scm/linux/kernel/git/mst/vhost
+git bisect bad 0181f8c809d6116a8347d8beb25a8c35ed22f7d7
+# bad: [51835949dda3783d4639cfa74ce13a3c9829de00] Merge tag 'net-next-6.11' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+git bisect bad 51835949dda3783d4639cfa74ce13a3c9829de00
+# good: [f4b0c4b508364fde023e4f7b9f23f7e38c663dfe] Merge tag 'for-linus' of git://git.kernel.org/pub/scm/virt/kvm/kvm
+git bisect good f4b0c4b508364fde023e4f7b9f23f7e38c663dfe
+# bad: [b5beaa44747bddbabb338377340244f56465cd7d] Merge tag 'usb-6.10-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb
+git bisect bad b5beaa44747bddbabb338377340244f56465cd7d
+# bad: [34dcc466103e1de5376db85b043bdde19fa0c0ff] Merge tag 'mailbox-v6.10' of git://git.kernel.org/pub/scm/linux/kernel/git/jassibrar/mailbox
+git bisect bad 34dcc466103e1de5376db85b043bdde19fa0c0ff
+# good: [0450d2083be6bdcd18c9535ac50c55266499b2df] Merge tag '6.10-rc-smb-fix' of git://git.samba.org/sfrench/cifs-2.6
+git bisect good 0450d2083be6bdcd18c9535ac50c55266499b2df
+# good: [2de68638aa7c0da594d23b1aa025fc5a801c427e] Merge tag 'pinctrl-v6.10-1' of git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl
+git bisect good 2de68638aa7c0da594d23b1aa025fc5a801c427e
+# bad: [119d1b8a5d49138b151d3450ceb207dc439f7085] Merge tag 'xfs-6.10-merge-6' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux
+git bisect bad 119d1b8a5d49138b151d3450ceb207dc439f7085
+# good: [b44bfc06958f49ccb611632a4fb7c7df4fdcbc06] xfs: fix iunlock calls in xrep_adoption_trans_alloc
+git bisect good b44bfc06958f49ccb611632a4fb7c7df4fdcbc06
+# good: [6e51b4b5bbc07e52b226017936874715629932d1] Merge tag 'mips_6.10' of git://git.kernel.org/pub/scm/linux/kernel/git/mips/linux
+git bisect good 6e51b4b5bbc07e52b226017936874715629932d1
+# good: [bb6b206216f599cd5d4362394c6704a36e14f1ff] Merge tag 'fs_for_v6.10-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/jack/linux-fs
+git bisect good bb6b206216f599cd5d4362394c6704a36e14f1ff
+# bad: [5ce5674187c345dc31534d2024c09ad8ef29b7ba] xfs: convert delayed extents to unwritten when zeroing post eof blocks
+git bisect bad 5ce5674187c345dc31534d2024c09ad8ef29b7ba
+# good: [4b0bf86c179775c882fed7ff5db4a147b3f7f94a] Merge tag 'repair-fixes-6.10_2024-04-23' of https://git.kernel.org/pub/scm/linux/kernel/git/djwong/xfs-linux into xfs-6.10-mergeC
+git bisect good 4b0bf86c179775c882fed7ff5db4a147b3f7f94a
+# good: [dfe5febe2b6a175d730861441bff4f726fc58a6c] xfs: factor out a xfs_dir_replace_args helper
+git bisect good dfe5febe2b6a175d730861441bff4f726fc58a6c
+# good: [bb712842a85d595525e72f0e378c143e620b3ea2] xfs: match lock mode in xfs_buffered_write_iomap_begin()
+git bisect good bb712842a85d595525e72f0e378c143e620b3ea2
+# good: [2e08371a83f1c06fd85eea8cd37c87a224cc4cc4] xfs: make xfs_bmapi_convert_delalloc() to allocate the target offset
+git bisect good 2e08371a83f1c06fd85eea8cd37c87a224cc4cc4
+# first bad commit: [5ce5674187c345dc31534d2024c09ad8ef29b7ba] xfs: convert delayed extents to unwritten when zeroing post eof blocks, will clean it|
+|0416_221056|cmd=git bisect reset|
+|0416_221103|cmd=git checkout -f v6.15-rc2|
+|0416_221104|sshpass is already installed|
+|0416_221104|cmd=cd /root/laiyi/linux|
+|0416_221104|ISSUE_FOLDER alreayd exist:/var/www/html//syzkaller/2025_04_16/bisection|
+|0416_221104|cmd=cp -rf /root/laiyi/vm_bisect/config-5.18rc4i_kvm /root/laiyi/bisection/0416_221056_ext4_update_inline_data/kconfig_origin|
+|0416_221104|cmd=cp -rf /root/laiyi/vm_bisect/repro.sh /root/laiyi/bisection/0416_221056_ext4_update_inline_data|
+|0416_221104|/root/laiyi/bisection/repro_ext4 is not .c or .cprog file|
+|0416_221104||/root/laiyi/bisection/bzImage_v6.15-rc2| exist, no need make|
+|0416_221104|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_v6.15-rc2, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/v6.15-rc2_dmesg.log, port:10024, 1 time|
+|0416_221122|It takes 18 seconds to find login:test login: |
+|0416_221122|Boot 1 time: takes 18 seconds to boot up.|
+|0416_221122|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_221124|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_221124|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_221125|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_221125|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_221125|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_221135|/root/laiyi/bisection/bzImage_v6.15-rc2 contained ext4_update_inline_data:[   21.796200] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   21.805148]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   21.822830] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   24.371172] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   24.380952]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   24.398600] RIP: 0010:ext4_update_inline_data+0x48a/0x500, FAIL|
+|0416_221135|Found time:21 in /root/laiyi/bisection/0416_221056_ext4_update_inline_data/v6.15-rc2_dmesg.log|
+|0416_221135|Logic: |<=50: +50|50-100 +180|>100 +1800| Set TIME:46|
+|0416_221135|-END- commit v6.15-rc2 FAIL bad|
+|0416_221135|cmd=cd /root/laiyi/linux|
+|0416_221135||/root/laiyi/bisection/bzImage_v5.12| exist, no need make|
+|0416_221135|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_v5.12, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/v5.12_dmesg.log, port:10024, 1 time|
+|0416_221152|It takes 16 seconds to find login:test login: |
+|0416_221152|Boot 1 time: takes 16 seconds to boot up.|
+|0416_221152|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_221153|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_221153|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_221154|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_221155|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_221155|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_221241|/root/laiyi/bisection/bzImage_v5.12 didn't contain ext4_update_inline_data: in dmesg, pass|
+|0416_221241|Start commit v5.12 PASS good|
+|0416_221241|cmd=git checkout -f v6.15-rc2|
+|0416_221241|cmd=git bisect start|
+|0416_221241|cmd=git bisect bad v6.15-rc2|
+|0416_221241|Bisect first start commit:v5.12|
+|0416_221241|git bisect good v5.12|
+|0416_221457||/root/laiyi/bisection/bzImage_4ea956963f4fca59050a22fcc65f00a85d586e63| exist, no need make|
+|0416_221457|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_4ea956963f4fca59050a22fcc65f00a85d586e63, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/4ea956963f4fca59050a22fcc65f00a85d586e63_dmesg.log, port:10024, 1 time|
+|0416_221515|It takes 18 seconds to find login:test login: |
+|0416_221515|Boot 1 time: takes 18 seconds to boot up.|
+|0416_221515|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_221517|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_221517|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_221518|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_221518|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_221518|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_221604|/root/laiyi/bisection/bzImage_4ea956963f4fca59050a22fcc65f00a85d586e63 didn't contain ext4_update_inline_data: in dmesg, pass|
+|0416_221605|git bisect good 4ea956963f4fca59050a22fcc65f00a85d586e63|
+|0416_221730||/root/laiyi/bisection/bzImage_e09bf86f3d53ecf4da61163d88036c4c16419d70| exist, no need make|
+|0416_221730|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_e09bf86f3d53ecf4da61163d88036c4c16419d70, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/e09bf86f3d53ecf4da61163d88036c4c16419d70_dmesg.log, port:10024, 1 time|
+|0416_221750|It takes 20 seconds to find login:test login: |
+|0416_221750|Boot 1 time: takes 20 seconds to boot up.|
+|0416_221750|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_221753|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_221753|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_221754|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_221754|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_221754|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_221840|/root/laiyi/bisection/bzImage_e09bf86f3d53ecf4da61163d88036c4c16419d70 didn't contain ext4_update_inline_data: in dmesg, pass|
+|0416_221840|git bisect good e09bf86f3d53ecf4da61163d88036c4c16419d70|
+|0416_221911||/root/laiyi/bisection/bzImage_0181f8c809d6116a8347d8beb25a8c35ed22f7d7| exist, no need make|
+|0416_221911|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_0181f8c809d6116a8347d8beb25a8c35ed22f7d7, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/0181f8c809d6116a8347d8beb25a8c35ed22f7d7_dmesg.log, port:10024, 1 time|
+|0416_221930|It takes 19 seconds to find login:test login: |
+|0416_221930|Boot 1 time: takes 19 seconds to boot up.|
+|0416_221930|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_221932|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_221932|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_221933|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_221933|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_221933|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_222019|/root/laiyi/bisection/bzImage_0181f8c809d6116a8347d8beb25a8c35ed22f7d7 didn't contain ext4_update_inline_data: in dmesg, pass|
+|0416_222019|git bisect good 0181f8c809d6116a8347d8beb25a8c35ed22f7d7|
+|0416_222037||/root/laiyi/bisection/bzImage_0ad9617c78acbc71373fb341a6f75d4012b01d69| does not exist, will make it|
+|0416_222037|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m 0ad9617c78acbc71373fb341a6f75d4012b01d69 -d /root/laiyi/bisection -o /tmp/kernel -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm > /root/laiyi/vm_bisect/nohup.log|
+|0416_222639|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_0ad9617c78acbc71373fb341a6f75d4012b01d69, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/0ad9617c78acbc71373fb341a6f75d4012b01d69_dmesg.log, port:10024, 1 time|
+|0416_222659|It takes 20 seconds to find login:test login: |
+|0416_222659|Boot 1 time: takes 20 seconds to boot up.|
+|0416_222659|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_222701|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_222701|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_222702|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_222703|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_222703|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_222749|/root/laiyi/bisection/bzImage_0ad9617c78acbc71373fb341a6f75d4012b01d69 didn't contain ext4_update_inline_data: in dmesg, pass|
+|0416_222749|git bisect good 0ad9617c78acbc71373fb341a6f75d4012b01d69|
+|0416_222754||/root/laiyi/bisection/bzImage_d48b663f410f8b35b8ba9bd597bafaa00f53293b| does not exist, will make it|
+|0416_222754|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m d48b663f410f8b35b8ba9bd597bafaa00f53293b -d /root/laiyi/bisection -o /tmp/kernel -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm > /root/laiyi/vm_bisect/nohup.log|
+|0416_223348|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_d48b663f410f8b35b8ba9bd597bafaa00f53293b, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/d48b663f410f8b35b8ba9bd597bafaa00f53293b_dmesg.log, port:10024, 1 time|
+|0416_223406|It takes 18 seconds to find login:test login: |
+|0416_223406|Boot 1 time: takes 18 seconds to boot up.|
+|0416_223406|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_223408|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_223408|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_223409|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_223410|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_223410|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_223456|/root/laiyi/bisection/bzImage_d48b663f410f8b35b8ba9bd597bafaa00f53293b didn't contain ext4_update_inline_data: in dmesg, pass|
+|0416_223456|git bisect good d48b663f410f8b35b8ba9bd597bafaa00f53293b|
+|0416_223458||/root/laiyi/bisection/bzImage_390513642ee6763c7ada07f0a1470474986e6c1c| does not exist, will make it|
+|0416_223458|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m 390513642ee6763c7ada07f0a1470474986e6c1c -d /root/laiyi/bisection -o /tmp/kernel -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm > /root/laiyi/vm_bisect/nohup.log|
+|0416_224053|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_390513642ee6763c7ada07f0a1470474986e6c1c, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/390513642ee6763c7ada07f0a1470474986e6c1c_dmesg.log, port:10024, 1 time|
+|0416_224111|It takes 18 seconds to find login:test login: |
+|0416_224111|Boot 1 time: takes 18 seconds to boot up.|
+|0416_224111|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_224113|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_224113|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_224114|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_224115|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_224115|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_224201|/root/laiyi/bisection/bzImage_390513642ee6763c7ada07f0a1470474986e6c1c contained ext4_update_inline_data:[   22.180520] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   22.190238]  ? ext4_update_inline_data+0x48a/0x500
+[   22.190966]  ? ext4_update_inline_data+0x48a/0x500
+[   22.192025]  ? ext4_update_inline_data+0x1fd/0x500
+[   22.192418]  ? ext4_update_inline_data+0x48a/0x500
+[   22.192808]  ? ext4_update_inline_data+0x48a/0x500
+[   22.193199]  ? ext4_update_inline_data+0x48a/0x500
+[   22.194023]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   22.212546] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   24.461461] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   24.471893]  ? ext4_update_inline_data+0x48a/0x500
+[   24.472632]  ? ext4_update_inline_data+0x48a/0x500
+[   24.474003]  ? ext4_update_inline_data+0x1fd/0x500
+[   24.474431]  ? ext4_update_inline_data+0x48a/0x500
+[   24.474830]  ? ext4_update_inline_data+0x48a/0x500
+[   24.475235]  ? ext4_update_inline_data+0x48a/0x500
+[   24.476005]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   24.495583] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   29.076011] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   29.085839]  ? ext4_update_inline_data+0x48a/0x500
+[   29.086581]  ? ext4_update_inline_data+0x48a/0x500
+[   29.087646]  ? ext4_update_inline_data+0x1fd/0x500
+[   29.088040]  ? ext4_update_inline_data+0x48a/0x500
+[   29.088437]  ? ext4_update_inline_data+0x48a/0x500
+[   29.088833]  ? ext4_update_inline_data+0x48a/0x500
+[   29.089673]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   29.107781] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   30.792221] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   30.802054]  ? ext4_update_inline_data+0x48a/0x500
+[   30.802799]  ? ext4_update_inline_data+0x48a/0x500
+[   30.803871]  ? ext4_update_inline_data+0x1fd/0x500
+[   30.804269]  ? ext4_update_inline_data+0x48a/0x500
+[   30.804665]  ? ext4_update_inline_data+0x48a/0x500
+[   30.805060]  ? ext4_update_inline_data+0x48a/0x500
+[   30.805887]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   30.823949] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   31.274640] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   31.284420]  ? ext4_update_inline_data+0x48a/0x500
+[   31.285157]  ? ext4_update_inline_data+0x48a/0x500
+[   31.286274]  ? ext4_update_inline_data+0x1fd/0x500
+[   31.286668]  ? ext4_update_inline_data+0x48a/0x500
+[   31.287067]  ? ext4_update_inline_data+0x48a/0x500
+[   31.287468]  ? ext4_update_inline_data+0x48a/0x500
+[   31.288243]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   31.306323] RIP: 0010:ext4_update_inline_data+0x48a/0x500, FAIL|
+|0416_224201|git bisect bad 390513642ee6763c7ada07f0a1470474986e6c1c|
+|0416_224202||/root/laiyi/bisection/bzImage_023b1e9d265ca0662111a9df23d22b4632717a8a| does not exist, will make it|
+|0416_224202|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m 023b1e9d265ca0662111a9df23d22b4632717a8a -d /root/laiyi/bisection -o /tmp/kernel -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm > /root/laiyi/vm_bisect/nohup.log|
+|0416_224756|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_023b1e9d265ca0662111a9df23d22b4632717a8a, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/023b1e9d265ca0662111a9df23d22b4632717a8a_dmesg.log, port:10024, 1 time|
+|0416_224815|It takes 19 seconds to find login:test login: |
+|0416_224815|Boot 1 time: takes 19 seconds to boot up.|
+|0416_224815|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_224817|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_224817|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_224818|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_224818|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_224818|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_224904|/root/laiyi/bisection/bzImage_023b1e9d265ca0662111a9df23d22b4632717a8a didn't contain ext4_update_inline_data: in dmesg, pass|
+|0416_224904|git bisect good 023b1e9d265ca0662111a9df23d22b4632717a8a|
+|0416_224906||/root/laiyi/bisection/bzImage_980a573621ea4b5032123937df0115bdbec6b2de| does not exist, will make it|
+|0416_224906|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m 980a573621ea4b5032123937df0115bdbec6b2de -d /root/laiyi/bisection -o /tmp/kernel -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm > /root/laiyi/vm_bisect/nohup.log|
+|0416_225457|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_980a573621ea4b5032123937df0115bdbec6b2de, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/980a573621ea4b5032123937df0115bdbec6b2de_dmesg.log, port:10024, 1 time|
+|0416_225515|It takes 18 seconds to find login:test login: |
+|0416_225515|Boot 1 time: takes 18 seconds to boot up.|
+|0416_225515|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_225517|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_225517|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_225518|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_225519|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_225519|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_225605|/root/laiyi/bisection/bzImage_980a573621ea4b5032123937df0115bdbec6b2de didn't contain ext4_update_inline_data: in dmesg, pass|
+|0416_225605|git bisect good 980a573621ea4b5032123937df0115bdbec6b2de|
+|0416_225605||/root/laiyi/bisection/bzImage_b2e7b0ffa56185d04871c6fe317b36d30ce2861d| does not exist, will make it|
+|0416_225605|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m b2e7b0ffa56185d04871c6fe317b36d30ce2861d -d /root/laiyi/bisection -o /tmp/kernel -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm > /root/laiyi/vm_bisect/nohup.log|
+|0416_230157|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_b2e7b0ffa56185d04871c6fe317b36d30ce2861d, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/b2e7b0ffa56185d04871c6fe317b36d30ce2861d_dmesg.log, port:10024, 1 time|
+|0416_230215|It takes 18 seconds to find login:test login: |
+|0416_230215|Boot 1 time: takes 18 seconds to boot up.|
+|0416_230215|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_230217|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_230217|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_230218|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_230218|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_230218|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_230304|/root/laiyi/bisection/bzImage_b2e7b0ffa56185d04871c6fe317b36d30ce2861d didn't contain ext4_update_inline_data: in dmesg, pass|
+|0416_230304|git bisect good b2e7b0ffa56185d04871c6fe317b36d30ce2861d|
+|0416_230305||/root/laiyi/bisection/bzImage_4a4b30ea80d8cb5e8c4c62bb86201f4ea0d9b030| does not exist, will make it|
+|0416_230305|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m 4a4b30ea80d8cb5e8c4c62bb86201f4ea0d9b030 -d /root/laiyi/bisection -o /tmp/kernel -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm > /root/laiyi/vm_bisect/nohup.log|
+|0416_230856|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_4a4b30ea80d8cb5e8c4c62bb86201f4ea0d9b030, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/4a4b30ea80d8cb5e8c4c62bb86201f4ea0d9b030_dmesg.log, port:10024, 1 time|
+|0416_230913|It takes 17 seconds to find login:test login: |
+|0416_230913|Boot 1 time: takes 17 seconds to boot up.|
+|0416_230913|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_230915|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_230915|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_230916|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_230916|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_230916|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_231002|/root/laiyi/bisection/bzImage_4a4b30ea80d8cb5e8c4c62bb86201f4ea0d9b030 didn't contain ext4_update_inline_data: in dmesg, pass|
+|0416_231003|git bisect good 4a4b30ea80d8cb5e8c4c62bb86201f4ea0d9b030|
+|0416_231003||/root/laiyi/bisection/bzImage_a7e135fe59a516b2a981fc5820e7a1e2118b427e| does not exist, will make it|
+|0416_231003|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m a7e135fe59a516b2a981fc5820e7a1e2118b427e -d /root/laiyi/bisection -o /tmp/kernel -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm > /root/laiyi/vm_bisect/nohup.log|
+|0416_231558|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_a7e135fe59a516b2a981fc5820e7a1e2118b427e, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/a7e135fe59a516b2a981fc5820e7a1e2118b427e_dmesg.log, port:10024, 1 time|
+|0416_231616|It takes 18 seconds to find login:test login: |
+|0416_231616|Boot 1 time: takes 18 seconds to boot up.|
+|0416_231616|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_231618|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_231618|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_231619|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_231619|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_231619|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_231705|/root/laiyi/bisection/bzImage_a7e135fe59a516b2a981fc5820e7a1e2118b427e contained ext4_update_inline_data:[   22.295685] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   22.305087]  ? ext4_update_inline_data+0x48a/0x500
+[   22.305794]  ? ext4_update_inline_data+0x48a/0x500
+[   22.306827]  ? ext4_update_inline_data+0x1fd/0x500
+[   22.307214]  ? ext4_update_inline_data+0x48a/0x500
+[   22.307598]  ? ext4_update_inline_data+0x48a/0x500
+[   22.307988]  ? ext4_update_inline_data+0x48a/0x500
+[   22.308734]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   22.326602] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   22.557734] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   22.569691]  ? ext4_update_inline_data+0x48a/0x500
+[   22.570405]  ? ext4_update_inline_data+0x48a/0x500
+[   22.571443]  ? ext4_update_inline_data+0x1fd/0x500
+[   22.571824]  ? ext4_update_inline_data+0x48a/0x500
+[   22.572215]  ? ext4_update_inline_data+0x48a/0x500
+[   22.572598]  ? ext4_update_inline_data+0x48a/0x500
+[   22.573351]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   22.590662] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   23.582593] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   23.593450]  ? ext4_update_inline_data+0x48a/0x500
+[   23.594196]  ? ext4_update_inline_data+0x48a/0x500
+[   23.595250]  ? ext4_update_inline_data+0x1fd/0x500
+[   23.595630]  ? ext4_update_inline_data+0x48a/0x500
+[   23.596018]  ? ext4_update_inline_data+0x48a/0x500
+[   23.596398]  ? ext4_update_inline_data+0x48a/0x500
+[   23.597147]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   23.614789] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   25.130620] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   25.140042]  ? ext4_update_inline_data+0x48a/0x500
+[   25.140750]  ? ext4_update_inline_data+0x48a/0x500
+[   25.141782]  ? ext4_update_inline_data+0x1fd/0x500
+[   25.142172]  ? ext4_update_inline_data+0x48a/0x500
+[   25.142553]  ? ext4_update_inline_data+0x48a/0x500
+[   25.142939]  ? ext4_update_inline_data+0x48a/0x500
+[   25.143686]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   25.161012] RIP: 0010:ext4_update_inline_data+0x48a/0x500, FAIL|
+|0416_231705|git bisect bad a7e135fe59a516b2a981fc5820e7a1e2118b427e|
+|0416_231706||/root/laiyi/bisection/bzImage_31eb415bf6f06c90fdd9b635caf3a6c5110a38b6| does not exist, will make it|
+|0416_231706|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m 31eb415bf6f06c90fdd9b635caf3a6c5110a38b6 -d /root/laiyi/bisection -o /tmp/kernel -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm > /root/laiyi/vm_bisect/nohup.log|
+|0416_232258|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_31eb415bf6f06c90fdd9b635caf3a6c5110a38b6, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/31eb415bf6f06c90fdd9b635caf3a6c5110a38b6_dmesg.log, port:10024, 1 time|
+|0416_232316|It takes 18 seconds to find login:test login: |
+|0416_232316|Boot 1 time: takes 18 seconds to boot up.|
+|0416_232316|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_232318|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_232318|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_232319|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_232319|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_232319|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_232405|/root/laiyi/bisection/bzImage_31eb415bf6f06c90fdd9b635caf3a6c5110a38b6 contained ext4_update_inline_data:[   23.643517] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   23.657880]  ? ext4_update_inline_data+0x48a/0x500
+[   23.658605]  ? ext4_update_inline_data+0x48a/0x500
+[   23.659705]  ? ext4_update_inline_data+0x1fd/0x500
+[   23.660105]  ? ext4_update_inline_data+0x48a/0x500
+[   23.660499]  ? ext4_update_inline_data+0x48a/0x500
+[   23.660909]  ? ext4_update_inline_data+0x48a/0x500
+[   23.661683]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   23.679414] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   24.018301] RIP: 0010:ext4_update_inline_data+0x48a/0x500
+[   24.029512]  ? ext4_update_inline_data+0x48a/0x500
+[   24.030256]  ? ext4_update_inline_data+0x48a/0x500
+[   24.031302]  ? ext4_update_inline_data+0x1fd/0x500
+[   24.031755]  ? ext4_update_inline_data+0x48a/0x500
+[   24.032150]  ? ext4_update_inline_data+0x48a/0x500
+[   24.032541]  ? ext4_update_inline_data+0x48a/0x500
+[   24.033326]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   24.051449] RIP: 0010:ext4_update_inline_data+0x48a/0x500, FAIL|
+|0416_232405|git bisect bad 31eb415bf6f06c90fdd9b635caf3a6c5110a38b6|
+|0416_232407||/root/laiyi/bisection/bzImage_e8eac9fc4832976af800628ba8cbd351edc7f841| does not exist, will make it|
+|0416_232407|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m e8eac9fc4832976af800628ba8cbd351edc7f841 -d /root/laiyi/bisection -o /tmp/kernel -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm > /root/laiyi/vm_bisect/nohup.log|
+|0416_233002|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_e8eac9fc4832976af800628ba8cbd351edc7f841, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/e8eac9fc4832976af800628ba8cbd351edc7f841_dmesg.log, port:10024, 1 time|
+|0416_233020|It takes 18 seconds to find login:test login: |
+|0416_233020|Boot 1 time: takes 18 seconds to boot up.|
+|0416_233020|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_233022|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_233022|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_233023|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_233023|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_233023|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_233109|/root/laiyi/bisection/bzImage_e8eac9fc4832976af800628ba8cbd351edc7f841 didn't contain ext4_update_inline_data: in dmesg, pass|
+|0416_233110|git bisect good e8eac9fc4832976af800628ba8cbd351edc7f841|
+|0416_233110||/root/laiyi/bisection/bzImage_129245cfbd6d79c6d603f357f428010ccc0f0ee7| does not exist, will make it|
+|0416_233110|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m 129245cfbd6d79c6d603f357f428010ccc0f0ee7 -d /root/laiyi/bisection -o /tmp/kernel -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm > /root/laiyi/vm_bisect/nohup.log|
+|0416_233706|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_129245cfbd6d79c6d603f357f428010ccc0f0ee7, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/129245cfbd6d79c6d603f357f428010ccc0f0ee7_dmesg.log, port:10024, 1 time|
+|0416_233724|It takes 18 seconds to find login:test login: |
+|0416_233724|Boot 1 time: takes 18 seconds to boot up.|
+|0416_233724|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_233727|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_233727|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_233728|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_233728|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_233728|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_233814|/root/laiyi/bisection/bzImage_129245cfbd6d79c6d603f357f428010ccc0f0ee7 contained ext4_update_inline_data:[   22.673881] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   22.683483]  ? ext4_update_inline_data+0x48c/0x500
+[   22.684216]  ? ext4_update_inline_data+0x48c/0x500
+[   22.685318]  ? ext4_update_inline_data+0x1ff/0x500
+[   22.685711]  ? ext4_update_inline_data+0x48c/0x500
+[   22.686103]  ? ext4_update_inline_data+0x48c/0x500
+[   22.686494]  ? ext4_update_inline_data+0x48c/0x500
+[   22.686892]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   22.705988] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   23.666881] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   23.676442]  ? ext4_update_inline_data+0x48c/0x500
+[   23.677166]  ? ext4_update_inline_data+0x48c/0x500
+[   23.678209]  ? ext4_update_inline_data+0x1ff/0x500
+[   23.678600]  ? ext4_update_inline_data+0x48c/0x500
+[   23.678987]  ? ext4_update_inline_data+0x48c/0x500
+[   23.679374]  ? ext4_update_inline_data+0x48c/0x500
+[   23.679768]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   23.700057] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   25.039073] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   25.048709]  ? ext4_update_inline_data+0x48c/0x500
+[   25.049435]  ? ext4_update_inline_data+0x48c/0x500
+[   25.050492]  ? ext4_update_inline_data+0x1ff/0x500
+[   25.050881]  ? ext4_update_inline_data+0x48c/0x500
+[   25.051270]  ? ext4_update_inline_data+0x48c/0x500
+[   25.051665]  ? ext4_update_inline_data+0x48c/0x500
+[   25.052056]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   25.072569] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   25.503380] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   25.512930]  ? ext4_update_inline_data+0x48c/0x500
+[   25.513658]  ? ext4_update_inline_data+0x48c/0x500
+[   25.514702]  ? ext4_update_inline_data+0x1ff/0x500
+[   25.515087]  ? ext4_update_inline_data+0x48c/0x500
+[   25.515478]  ? ext4_update_inline_data+0x48c/0x500
+[   25.515866]  ? ext4_update_inline_data+0x48c/0x500
+[   25.516255]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   25.536623] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   26.537109] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   26.547170]  ? ext4_update_inline_data+0x48c/0x500
+[   26.547901]  ? ext4_update_inline_data+0x48c/0x500
+[   26.548985]  ? ext4_update_inline_data+0x1ff/0x500
+[   26.549375]  ? ext4_update_inline_data+0x48c/0x500
+[   26.549768]  ? ext4_update_inline_data+0x48c/0x500
+[   26.550158]  ? ext4_update_inline_data+0x48c/0x500
+[   26.550558]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   26.571574] RIP: 0010:ext4_update_inline_data+0x48c/0x500, FAIL|
+|0416_233814|git bisect bad 129245cfbd6d79c6d603f357f428010ccc0f0ee7|
+|0416_233814||/root/laiyi/bisection/bzImage_08be56fec0588972f6fd4a3ce4ced3265de43dd8| does not exist, will make it|
+|0416_233814|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m 08be56fec0588972f6fd4a3ce4ced3265de43dd8 -d /root/laiyi/bisection -o /tmp/kernel -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm > /root/laiyi/vm_bisect/nohup.log|
+|0416_234409|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_08be56fec0588972f6fd4a3ce4ced3265de43dd8, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/08be56fec0588972f6fd4a3ce4ced3265de43dd8_dmesg.log, port:10024, 1 time|
+|0416_234427|It takes 18 seconds to find login:test login: |
+|0416_234427|Boot 1 time: takes 18 seconds to boot up.|
+|0416_234427|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_234430|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_234430|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_234431|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_234431|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_234431|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_234517|/root/laiyi/bisection/bzImage_08be56fec0588972f6fd4a3ce4ced3265de43dd8 contained ext4_update_inline_data:[   23.063734] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   23.073178]  ? ext4_update_inline_data+0x48c/0x500
+[   23.073945]  ? ext4_update_inline_data+0x48c/0x500
+[   23.074989]  ? ext4_update_inline_data+0x1ff/0x500
+[   23.075378]  ? ext4_update_inline_data+0x48c/0x500
+[   23.075764]  ? ext4_update_inline_data+0x48c/0x500
+[   23.076146]  ? ext4_update_inline_data+0x48c/0x500
+[   23.076538]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   23.095297] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   23.898585] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   23.909480]  ? ext4_update_inline_data+0x48c/0x500
+[   23.910236]  ? ext4_update_inline_data+0x48c/0x500
+[   23.911288]  ? ext4_update_inline_data+0x1ff/0x500
+[   23.911681]  ? ext4_update_inline_data+0x48c/0x500
+[   23.912063]  ? ext4_update_inline_data+0x48c/0x500
+[   23.912462]  ? ext4_update_inline_data+0x48c/0x500
+[   23.912853]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   23.932885] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   24.897381] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   24.910353]  ? ext4_update_inline_data+0x48c/0x500
+[   24.911067]  ? ext4_update_inline_data+0x48c/0x500
+[   24.912097]  ? ext4_update_inline_data+0x1ff/0x500
+[   24.912486]  ? ext4_update_inline_data+0x48c/0x500
+[   24.912870]  ? ext4_update_inline_data+0x48c/0x500
+[   24.913250]  ? ext4_update_inline_data+0x48c/0x500
+[   24.913643]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   24.933669] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   27.838917] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   27.848456]  ? ext4_update_inline_data+0x48c/0x500
+[   27.849176]  ? ext4_update_inline_data+0x48c/0x500
+[   27.850271]  ? ext4_update_inline_data+0x1ff/0x500
+[   27.850656]  ? ext4_update_inline_data+0x48c/0x500
+[   27.851039]  ? ext4_update_inline_data+0x48c/0x500
+[   27.851433]  ? ext4_update_inline_data+0x48c/0x500
+[   27.851820]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   27.872023] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   30.248692] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   30.258424]  ? ext4_update_inline_data+0x48c/0x500
+[   30.259155]  ? ext4_update_inline_data+0x48c/0x500
+[   30.260218]  ? ext4_update_inline_data+0x1ff/0x500
+[   30.260616]  ? ext4_update_inline_data+0x48c/0x500
+[   30.261006]  ? ext4_update_inline_data+0x48c/0x500
+[   30.261405]  ? ext4_update_inline_data+0x48c/0x500
+[   30.261842]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   30.282584] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   30.900299] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   30.909788]  ? ext4_update_inline_data+0x48c/0x500
+[   30.910500]  ? ext4_update_inline_data+0x48c/0x500
+[   30.911538]  ? ext4_update_inline_data+0x1ff/0x500
+[   30.911931]  ? ext4_update_inline_data+0x48c/0x500
+[   30.912327]  ? ext4_update_inline_data+0x48c/0x500
+[   30.912725]  ? ext4_update_inline_data+0x48c/0x500
+[   30.913110]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   30.933299] RIP: 0010:ext4_update_inline_data+0x48c/0x500, FAIL|
+|0416_234517|git bisect bad 08be56fec0588972f6fd4a3ce4ced3265de43dd8|
+|0416_234517||/root/laiyi/bisection/bzImage_a662f3c03b754e1f97a2781fa242e95bdb139798| does not exist, will make it|
+|0416_234517|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m a662f3c03b754e1f97a2781fa242e95bdb139798 -d /root/laiyi/bisection -o /tmp/kernel -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm > /root/laiyi/vm_bisect/nohup.log|
+|0416_235112|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_a662f3c03b754e1f97a2781fa242e95bdb139798, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/a662f3c03b754e1f97a2781fa242e95bdb139798_dmesg.log, port:10024, 1 time|
+|0416_235131|It takes 19 seconds to find login:test login: |
+|0416_235131|Boot 1 time: takes 19 seconds to boot up.|
+|0416_235131|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_235133|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_235133|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_235134|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_235135|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_235135|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_235221|/root/laiyi/bisection/bzImage_a662f3c03b754e1f97a2781fa242e95bdb139798 didn't contain ext4_update_inline_data: in dmesg, pass|
+|0416_235221|git bisect good a662f3c03b754e1f97a2781fa242e95bdb139798|
+|0416_235221||/root/laiyi/bisection/bzImage_69f3a3039b0d0003de008659cafd5a1eaaa0a7a4| does not exist, will make it|
+|0416_235221|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m 69f3a3039b0d0003de008659cafd5a1eaaa0a7a4 -d /root/laiyi/bisection -o /tmp/kernel -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm > /root/laiyi/vm_bisect/nohup.log|
+|0416_235817|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_69f3a3039b0d0003de008659cafd5a1eaaa0a7a4, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/69f3a3039b0d0003de008659cafd5a1eaaa0a7a4_dmesg.log, port:10024, 1 time|
+|0416_235837|It takes 19 seconds to find login:test login: |
+|0416_235837|Boot 1 time: takes 19 seconds to boot up.|
+|0416_235837|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0416_235839|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0416_235839|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0416_235840|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0416_235840|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0416_235840|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0416_235926|/root/laiyi/bisection/bzImage_69f3a3039b0d0003de008659cafd5a1eaaa0a7a4 didn't contain ext4_update_inline_data: in dmesg, pass|
+|0416_235926|git bisect good 69f3a3039b0d0003de008659cafd5a1eaaa0a7a4|
+|0416_235927||/root/laiyi/bisection/bzImage_7e91ae31e2d264155dfd102101afc2de7bd74a64| does not exist, will make it|
+|0416_235927|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m 7e91ae31e2d264155dfd102101afc2de7bd74a64 -d /root/laiyi/bisection -o /tmp/kernel -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm > /root/laiyi/vm_bisect/nohup.log|
+|0417_000521|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_7e91ae31e2d264155dfd102101afc2de7bd74a64, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/7e91ae31e2d264155dfd102101afc2de7bd74a64_dmesg.log, port:10024, 1 time|
+|0417_000540|It takes 19 seconds to find login:test login: |
+|0417_000540|Boot 1 time: takes 19 seconds to boot up.|
+|0417_000540|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0417_000542|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0417_000542|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0417_000543|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0417_000543|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0417_000543|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0417_000629|/root/laiyi/bisection/bzImage_7e91ae31e2d264155dfd102101afc2de7bd74a64 contained ext4_update_inline_data:[   22.441120] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   22.452086]  ? ext4_update_inline_data+0x48c/0x500
+[   22.452808]  ? ext4_update_inline_data+0x48c/0x500
+[   22.454216]  ? ext4_update_inline_data+0x1ff/0x500
+[   22.454612]  ? ext4_update_inline_data+0x48c/0x500
+[   22.455000]  ? ext4_update_inline_data+0x48c/0x500
+[   22.455388]  ? ext4_update_inline_data+0x48c/0x500
+[   22.456643]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   22.476845] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   23.472046] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   23.481615]  ? ext4_update_inline_data+0x48c/0x500
+[   23.482341]  ? ext4_update_inline_data+0x48c/0x500
+[   23.483388]  ? ext4_update_inline_data+0x1ff/0x500
+[   23.483780]  ? ext4_update_inline_data+0x48c/0x500
+[   23.484169]  ? ext4_update_inline_data+0x48c/0x500
+[   23.484553]  ? ext4_update_inline_data+0x48c/0x500
+[   23.484948]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   23.505669] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   24.571883] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   24.581442]  ? ext4_update_inline_data+0x48c/0x500
+[   24.582170]  ? ext4_update_inline_data+0x48c/0x500
+[   24.583217]  ? ext4_update_inline_data+0x1ff/0x500
+[   24.583609]  ? ext4_update_inline_data+0x48c/0x500
+[   24.583996]  ? ext4_update_inline_data+0x48c/0x500
+[   24.584385]  ? ext4_update_inline_data+0x48c/0x500
+[   24.584776]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   24.605004] RIP: 0010:ext4_update_inline_data+0x48c/0x500, FAIL|
+|0417_000630|git bisect bad 7e91ae31e2d264155dfd102101afc2de7bd74a64|
+|0417_000630||/root/laiyi/bisection/bzImage_5701875f9609b000d91351eaa6bfd97fe2f157f4| does not exist, will make it|
+|0417_000630|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m 5701875f9609b000d91351eaa6bfd97fe2f157f4 -d /root/laiyi/bisection -o /tmp/kernel -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm > /root/laiyi/vm_bisect/nohup.log|
+|0417_001226|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_5701875f9609b000d91351eaa6bfd97fe2f157f4, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/5701875f9609b000d91351eaa6bfd97fe2f157f4_dmesg.log, port:10024, 1 time|
+|0417_001244|It takes 18 seconds to find login:test login: |
+|0417_001244|Boot 1 time: takes 18 seconds to boot up.|
+|0417_001244|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0417_001246|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0417_001246|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0417_001247|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0417_001247|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0417_001247|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0417_001333|/root/laiyi/bisection/bzImage_5701875f9609b000d91351eaa6bfd97fe2f157f4 contained ext4_update_inline_data:[   21.482739] RIP: 0010:ext4_update_inline_data+0x48c/0x500
+[   21.492644]  ? ext4_update_inline_data+0x48c/0x500
+[   21.493370]  ? ext4_update_inline_data+0x48c/0x500
+[   21.494417]  ? ext4_update_inline_data+0x1ff/0x500
+[   21.495074]  ? ext4_update_inline_data+0x48c/0x500
+[   21.495492]  ? ext4_update_inline_data+0x48c/0x500
+[   21.495902]  ? ext4_update_inline_data+0x48c/0x500
+[   21.496293]  ? __pfx_ext4_update_inline_data+0x10/0x10
+[   21.515684] RIP: 0010:ext4_update_inline_data+0x48c/0x500, FAIL|
+|0417_001333|git bisect bad 5701875f9609b000d91351eaa6bfd97fe2f157f4|
+|0417_001333|Bisect PASS: find bad commit: 5701875f9609b000d91351eaa6bfd97fe2f157f4 is the first bad commit
+commit 5701875f9609b000d91351eaa6bfd97fe2f157f4
+Author: Ye Bin <yebin10@huawei.com>
+Date:   Sat Feb 8 14:31:41 2025 +0800
+
+    ext4: fix out-of-bound read in ext4_xattr_inode_dec_ref_all()
+    
+    There's issue as follows:
+    BUG: KASAN: use-after-free in ext4_xattr_inode_dec_ref_all+0x6ff/0x790
+    Read of size 4 at addr ffff88807b003000 by task syz-executor.0/15172
+    
+    CPU: 3 PID: 15172 Comm: syz-executor.0
+    Call Trace:
+     __dump_stack lib/dump_stack.c:82 [inline]
+     dump_stack+0xbe/0xfd lib/dump_stack.c:123
+     print_address_description.constprop.0+0x1e/0x280 mm/kasan/report.c:400
+     __kasan_report.cold+0x6c/0x84 mm/kasan/report.c:560
+     kasan_report+0x3a/0x50 mm/kasan/report.c:585
+     ext4_xattr_inode_dec_ref_all+0x6ff/0x790 fs/ext4/xattr.c:1137
+     ext4_xattr_delete_inode+0x4c7/0xda0 fs/ext4/xattr.c:2896
+     ext4_evict_inode+0xb3b/0x1670 fs/ext4/inode.c:323
+     evict+0x39f/0x880 fs/inode.c:622
+     iput_final fs/inode.c:1746 [inline]
+     iput fs/inode.c:1772 [inline]
+     iput+0x525/0x6c0 fs/inode.c:1758
+     ext4_orphan_cleanup fs/ext4/super.c:3298 [inline]
+     ext4_fill_super+0x8c57/0xba40 fs/ext4/super.c:5300
+     mount_bdev+0x355/0x410 fs/super.c:1446
+     legacy_get_tree+0xfe/0x220 fs/fs_context.c:611
+     vfs_get_tree+0x8d/0x2f0 fs/super.c:1576
+     do_new_mount fs/namespace.c:2983 [inline]
+     path_mount+0x119a/0x1ad0 fs/namespace.c:3316
+     do_mount+0xfc/0x110 fs/namespace.c:3329
+     __do_sys_mount fs/namespace.c:3540 [inline]
+     __se_sys_mount+0x219/0x2e0 fs/namespace.c:3514
+     do_syscall_64+0x33/0x40 arch/x86/entry/common.c:46
+     entry_SYSCALL_64_after_hwframe+0x67/0xd1
+    
+    Memory state around the buggy address:
+     ffff88807b002f00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+     ffff88807b002f80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+    >ffff88807b003000: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+                       ^
+     ffff88807b003080: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+     ffff88807b003100: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+    
+    Above issue happens as ext4_xattr_delete_inode() isn't check xattr
+    is valid if xattr is in inode.
+    To solve above issue call xattr_check_inode() check if xattr if valid
+    in inode. In fact, we can directly verify in ext4_iget_extra_inode(),
+    so that there is no divergent verification.
+    
+    Fixes: e50e5129f384 ("ext4: xattr-in-inode support")
+    Signed-off-by: Ye Bin <yebin10@huawei.com>
+    Reviewed-by: Jan Kara <jack@suse.cz>
+    Link: https://patch.msgid.link/20250208063141.1539283-3-yebin@huaweicloud.com
+    Signed-off-by: Theodore Ts'o <tytso@mit.edu>
+
+ fs/ext4/inode.c |  5 +++++
+ fs/ext4/xattr.c | 26 +-------------------------
+ fs/ext4/xattr.h |  7 +++++++
+ 3 files changed, 13 insertions(+), 25 deletions(-)|
+|0417_001333|cmd=git bisect log >> /root/laiyi/bisection/bi.log|
+|0417_001333|cmd=git bisect log >> /root/laiyi/bisection/0416_221056_ext4_update_inline_data/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [8ffd015db85fea3e15a77027fda6c02ced4d2444] Linux 6.15-rc2
+git bisect bad 8ffd015db85fea3e15a77027fda6c02ced4d2444
+# status: waiting for good commit(s), bad commit known
+# good: [9f4ad9e425a1d3b6a34617b8ea226d56a119a717] Linux 5.12
+git bisect good 9f4ad9e425a1d3b6a34617b8ea226d56a119a717
+# good: [4ea956963f4fca59050a22fcc65f00a85d586e63] Merge tag 'media/v6.4-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+git bisect good 4ea956963f4fca59050a22fcc65f00a85d586e63
+# good: [e09bf86f3d53ecf4da61163d88036c4c16419d70] Merge tag 'usb-6.9-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb
+git bisect good e09bf86f3d53ecf4da61163d88036c4c16419d70
+# good: [0181f8c809d6116a8347d8beb25a8c35ed22f7d7] Merge tag 'for_linus' of git://git.kernel.org/pub/scm/linux/kernel/git/mst/vhost
+git bisect good 0181f8c809d6116a8347d8beb25a8c35ed22f7d7
+# good: [0ad9617c78acbc71373fb341a6f75d4012b01d69] Merge tag 'net-next-6.14' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+git bisect good 0ad9617c78acbc71373fb341a6f75d4012b01d69
+# good: [d48b663f410f8b35b8ba9bd597bafaa00f53293b] arm64/crc-t10dif: fix use of out-of-scope array in crc_t10dif_arch()
+git bisect good d48b663f410f8b35b8ba9bd597bafaa00f53293b
+# bad: [390513642ee6763c7ada07f0a1470474986e6c1c] io_uring: always do atomic put from iowq
+git bisect bad 390513642ee6763c7ada07f0a1470474986e6c1c
+# good: [023b1e9d265ca0662111a9df23d22b4632717a8a] Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good 023b1e9d265ca0662111a9df23d22b4632717a8a
+# good: [980a573621ea4b5032123937df0115bdbec6b2de] tpm: Make chip->{status,cancel,req_canceled} opt
+git bisect good 980a573621ea4b5032123937df0115bdbec6b2de
+# good: [b2e7b0ffa56185d04871c6fe317b36d30ce2861d] Merge tag 'erofs-for-6.15-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs
+git bisect good b2e7b0ffa56185d04871c6fe317b36d30ce2861d
+# good: [4a4b30ea80d8cb5e8c4c62bb86201f4ea0d9b030] Merge tag 'bcachefs-2025-03-24' of git://evilpiepirate.org/bcachefs
+git bisect good 4a4b30ea80d8cb5e8c4c62bb86201f4ea0d9b030
+# bad: [a7e135fe59a516b2a981fc5820e7a1e2118b427e] Merge tag 'probes-v6.15' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+git bisect bad a7e135fe59a516b2a981fc5820e7a1e2118b427e
+# bad: [31eb415bf6f06c90fdd9b635caf3a6c5110a38b6] Merge tag 'ftrace-v6.15' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+git bisect bad 31eb415bf6f06c90fdd9b635caf3a6c5110a38b6
+# good: [e8eac9fc4832976af800628ba8cbd351edc7f841] ext4: remove unneeded forward declaration in namei.c
+git bisect good e8eac9fc4832976af800628ba8cbd351edc7f841
+# bad: [129245cfbd6d79c6d603f357f428010ccc0f0ee7] ext4: correct the error handle in ext4_fallocate()
+git bisect bad 129245cfbd6d79c6d603f357f428010ccc0f0ee7
+# bad: [08be56fec0588972f6fd4a3ce4ced3265de43dd8] ext4: remove references to bh->b_page
+git bisect bad 08be56fec0588972f6fd4a3ce4ced3265de43dd8
+# good: [a662f3c03b754e1f97a2781fa242e95bdb139798] jbd2: do not try to recover wiped journal
+git bisect good a662f3c03b754e1f97a2781fa242e95bdb139798
+# good: [69f3a3039b0d0003de008659cafd5a1eaaa0a7a4] ext4: introduce ITAIL helper
+git bisect good 69f3a3039b0d0003de008659cafd5a1eaaa0a7a4
+# bad: [7e91ae31e2d264155dfd102101afc2de7bd74a64] ext4: goto right label 'out_mmap_sem' in ext4_setattr()
+git bisect bad 7e91ae31e2d264155dfd102101afc2de7bd74a64
+# bad: [5701875f9609b000d91351eaa6bfd97fe2f157f4] ext4: fix out-of-bound read in ext4_xattr_inode_dec_ref_all()
+git bisect bad 5701875f9609b000d91351eaa6bfd97fe2f157f4
+# first bad commit: [5701875f9609b000d91351eaa6bfd97fe2f157f4] ext4: fix out-of-bound read in ext4_xattr_inode_dec_ref_all()
+|0417_001333|nohup /root/laiyi/vm_bisect/make_bz.sh -k /root/laiyi/linux -m v6.15-rc2 -b 5701875f9609b000d91351eaa6bfd97fe2f157f4 -d /root/laiyi/bisection -o /tmp/kernel -f /root/laiyi/bisection/bzImage_v6.15-rc2_5701875f9609b000d91351eaa6bfd97fe2f157f4_revert -c /root/laiyi/vm_bisect/config-5.18rc4i_kvm  > /root/laiyi/vm_bisect/nohup.log|
+|0417_001926|1st base commit:v5.12!|
+|0417_001926|BOOT_VM:/root/laiyi/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_v6.15-rc2_5701875f9609b000d91351eaa6bfd97fe2f157f4_revert, /root/laiyi/bisection/0416_221056_ext4_update_inline_data/v6.15-rc2_5701875f9609b000d91351eaa6bfd97fe2f157f4_revert_dmesg.log, port:10024, 1 time|
+|0417_001944|It takes 18 seconds to find login:test login: |
+|0417_001944|Boot 1 time: takes 18 seconds to boot up.|
+|0417_001944|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0417_001946|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0417_001946|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0416_221056_ext4_update_inline_data/repro_ext4 root@localhost:/root/repro|
+|0417_001947|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0417_001948|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0417_001948|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0417_002034|/root/laiyi/bisection/bzImage_v6.15-rc2_5701875f9609b000d91351eaa6bfd97fe2f157f4_revert didn't contain ext4_update_inline_data: in dmesg, pass|
+|0417_002034|Bisect successfully! v6.15-rc2_5701875f9609b000d91351eaa6bfd97fe2f157f4_revert bzimage passed!|
+|0417_002034|cmd=cd /root/laiyi/linux|
+|0417_002034|ISSUE:bisection  EMAIL status after check:Email_not_sent|

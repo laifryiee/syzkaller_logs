@@ -1,0 +1,47 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [8ffd015db85fea3e15a77027fda6c02ced4d2444] Linux 6.15-rc2
+git bisect bad 8ffd015db85fea3e15a77027fda6c02ced4d2444
+# status: waiting for good commit(s), bad commit known
+# good: [9f4ad9e425a1d3b6a34617b8ea226d56a119a717] Linux 5.12
+git bisect good 9f4ad9e425a1d3b6a34617b8ea226d56a119a717
+# good: [4ea956963f4fca59050a22fcc65f00a85d586e63] Merge tag 'media/v6.4-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+git bisect good 4ea956963f4fca59050a22fcc65f00a85d586e63
+# good: [e09bf86f3d53ecf4da61163d88036c4c16419d70] Merge tag 'usb-6.9-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb
+git bisect good e09bf86f3d53ecf4da61163d88036c4c16419d70
+# good: [0181f8c809d6116a8347d8beb25a8c35ed22f7d7] Merge tag 'for_linus' of git://git.kernel.org/pub/scm/linux/kernel/git/mst/vhost
+git bisect good 0181f8c809d6116a8347d8beb25a8c35ed22f7d7
+# good: [0ad9617c78acbc71373fb341a6f75d4012b01d69] Merge tag 'net-next-6.14' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+git bisect good 0ad9617c78acbc71373fb341a6f75d4012b01d69
+# good: [d48b663f410f8b35b8ba9bd597bafaa00f53293b] arm64/crc-t10dif: fix use of out-of-scope array in crc_t10dif_arch()
+git bisect good d48b663f410f8b35b8ba9bd597bafaa00f53293b
+# bad: [390513642ee6763c7ada07f0a1470474986e6c1c] io_uring: always do atomic put from iowq
+git bisect bad 390513642ee6763c7ada07f0a1470474986e6c1c
+# good: [023b1e9d265ca0662111a9df23d22b4632717a8a] Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good 023b1e9d265ca0662111a9df23d22b4632717a8a
+# good: [980a573621ea4b5032123937df0115bdbec6b2de] tpm: Make chip->{status,cancel,req_canceled} opt
+git bisect good 980a573621ea4b5032123937df0115bdbec6b2de
+# good: [b2e7b0ffa56185d04871c6fe317b36d30ce2861d] Merge tag 'erofs-for-6.15-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs
+git bisect good b2e7b0ffa56185d04871c6fe317b36d30ce2861d
+# good: [4a4b30ea80d8cb5e8c4c62bb86201f4ea0d9b030] Merge tag 'bcachefs-2025-03-24' of git://evilpiepirate.org/bcachefs
+git bisect good 4a4b30ea80d8cb5e8c4c62bb86201f4ea0d9b030
+# bad: [a7e135fe59a516b2a981fc5820e7a1e2118b427e] Merge tag 'probes-v6.15' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+git bisect bad a7e135fe59a516b2a981fc5820e7a1e2118b427e
+# bad: [31eb415bf6f06c90fdd9b635caf3a6c5110a38b6] Merge tag 'ftrace-v6.15' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+git bisect bad 31eb415bf6f06c90fdd9b635caf3a6c5110a38b6
+# good: [e8eac9fc4832976af800628ba8cbd351edc7f841] ext4: remove unneeded forward declaration in namei.c
+git bisect good e8eac9fc4832976af800628ba8cbd351edc7f841
+# bad: [129245cfbd6d79c6d603f357f428010ccc0f0ee7] ext4: correct the error handle in ext4_fallocate()
+git bisect bad 129245cfbd6d79c6d603f357f428010ccc0f0ee7
+# bad: [08be56fec0588972f6fd4a3ce4ced3265de43dd8] ext4: remove references to bh->b_page
+git bisect bad 08be56fec0588972f6fd4a3ce4ced3265de43dd8
+# good: [a662f3c03b754e1f97a2781fa242e95bdb139798] jbd2: do not try to recover wiped journal
+git bisect good a662f3c03b754e1f97a2781fa242e95bdb139798
+# good: [69f3a3039b0d0003de008659cafd5a1eaaa0a7a4] ext4: introduce ITAIL helper
+git bisect good 69f3a3039b0d0003de008659cafd5a1eaaa0a7a4
+# bad: [7e91ae31e2d264155dfd102101afc2de7bd74a64] ext4: goto right label 'out_mmap_sem' in ext4_setattr()
+git bisect bad 7e91ae31e2d264155dfd102101afc2de7bd74a64
+# bad: [5701875f9609b000d91351eaa6bfd97fe2f157f4] ext4: fix out-of-bound read in ext4_xattr_inode_dec_ref_all()
+git bisect bad 5701875f9609b000d91351eaa6bfd97fe2f157f4
+# first bad commit: [5701875f9609b000d91351eaa6bfd97fe2f157f4] ext4: fix out-of-bound read in ext4_xattr_inode_dec_ref_all()
+|0417_002034|Bisect successfully! v6.15-rc2_5701875f9609b000d91351eaa6bfd97fe2f157f4_revert bzimage passed!|
