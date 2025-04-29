@@ -1,0 +1,171 @@
+==================================================================
+BUG: KASAN: use-after-free in ipv6_addr_prefix include/net/ipv6.h:616 [inline]
+BUG: KASAN: use-after-free in ip6_route_info_create+0xb84/0xc30 net/ipv6/route.c:3814
+Read of size 1 at addr ffff8880156d8a94 by task syz-executor339/701
+
+CPU: 0 UID: 0 PID: 701 Comm: syz-executor339 Not tainted 6.15.0-rc4-next-20250428-33035b665157 #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:408 [inline]
+ print_report+0xce/0x660 mm/kasan/report.c:521
+ kasan_report+0xd6/0x110 mm/kasan/report.c:634
+ __asan_report_load1_noabort+0x18/0x20 mm/kasan/report_generic.c:378
+ ipv6_addr_prefix include/net/ipv6.h:616 [inline]
+ ip6_route_info_create+0xb84/0xc30 net/ipv6/route.c:3814
+ ip6_route_add+0x32/0x320 net/ipv6/route.c:3902
+ ipv6_route_ioctl+0x414/0x5a0 net/ipv6/route.c:4539
+ inet6_ioctl+0x265/0x2b0 net/ipv6/af_inet6.c:577
+ sock_do_ioctl+0xde/0x260 net/socket.c:1190
+ sock_ioctl+0x23e/0x6a0 net/socket.c:1311
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:907 [inline]
+ __se_sys_ioctl fs/ioctl.c:893 [inline]
+ __x64_sys_ioctl+0x1bc/0x220 fs/ioctl.c:893
+ x64_sys_call+0x122e/0x2150 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x150 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fadc4e3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fff49950068 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fadc4e3ee5d
+RDX: 00000000200015c0 RSI: 000000000000890b RDI: 0000000000000003
+RBP: 0000000000000001 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fff49950188
+R13: 0000000000401050 R14: 0000000000403e08 R15: 00007fadc5063000
+ </TASK>
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0xffff8880156dd500 pfn:0x156d8
+flags: 0xfffffc0000000(node=0|zone=1|lastcpupid=0x1fffff)
+raw: 000fffffc0000000 ffffea000060ea08 ffffea000063d208 0000000000000000
+raw: ffff8880156dd500 0000000000070000 00000000ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff8880156d8980: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ ffff8880156d8a00: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+>ffff8880156d8a80: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+                         ^
+ ffff8880156d8b00: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ ffff8880156d8b80: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+==================================================================
+Oops: general protection fault, probably for non-canonical address 0xdffffc00200000c0: 0000 [#1] SMP KASAN NOPTI
+KASAN: probably user-memory-access in range [0x0000000100000600-0x0000000100000607]
+CPU: 0 UID: 0 PID: 701 Comm: syz-executor339 Tainted: G    B               6.15.0-rc4-next-20250428-33035b665157 #1 PREEMPT(voluntary) 
+Tainted: [B]=BAD_PAGE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:__dev_put include/linux/netdevice.h:4311 [inline]
+RIP: 0010:netdev_put include/linux/netdevice.h:4372 [inline]
+RIP: 0010:fib_nh_common_release+0x63/0x350 net/ipv4/fib_semantics.c:204
+Code: e6 02 00 00 4c 8b 23 4d 85 e4 74 33 e8 96 04 1c fc 49 8d bc 24 08 06 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 <80> 3c 02 00 0f 85 ac 02 00 00 49 8b 84 24 08 06 00 00 65 ff 08 e8
+RSP: 0018:ffff8880156d7768 EFLAGS: 00010207
+RAX: dffffc0000000000 RBX: ffff88801a17bcc8 RCX: ffffffff8588e633
+RDX: 00000000200000c0 RSI: ffffffff856c425a RDI: 0000000100000607
+RBP: ffff8880156d77a0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 6e696c6261736944 R12: 00000000ffffffff
+R13: 0000000000000000 R14: 00000000ffffffed R15: 0000000000000000
+FS:  00007fadc501a600(0000) GS:ffff8880e3581000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000200015c0 CR3: 000000002c67b006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ fib6_nh_init+0xb56/0x1c80 net/ipv6/route.c:3684
+ ip6_route_info_create_nh+0x443/0xc70 net/ipv6/route.c:3859
+ ip6_route_add+0xac/0x320 net/ipv6/route.c:3908
+ ipv6_route_ioctl+0x414/0x5a0 net/ipv6/route.c:4539
+ inet6_ioctl+0x265/0x2b0 net/ipv6/af_inet6.c:577
+ sock_do_ioctl+0xde/0x260 net/socket.c:1190
+ sock_ioctl+0x23e/0x6a0 net/socket.c:1311
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:907 [inline]
+ __se_sys_ioctl fs/ioctl.c:893 [inline]
+ __x64_sys_ioctl+0x1bc/0x220 fs/ioctl.c:893
+ x64_sys_call+0x122e/0x2150 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x150 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fadc4e3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fff49950068 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fadc4e3ee5d
+RDX: 00000000200015c0 RSI: 000000000000890b RDI: 0000000000000003
+RBP: 0000000000000001 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fff49950188
+R13: 0000000000401050 R14: 0000000000403e08 R15: 00007fadc5063000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:__dev_put include/linux/netdevice.h:4311 [inline]
+RIP: 0010:netdev_put include/linux/netdevice.h:4372 [inline]
+RIP: 0010:fib_nh_common_release+0x63/0x350 net/ipv4/fib_semantics.c:204
+Code: e6 02 00 00 4c 8b 23 4d 85 e4 74 33 e8 96 04 1c fc 49 8d bc 24 08 06 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 <80> 3c 02 00 0f 85 ac 02 00 00 49 8b 84 24 08 06 00 00 65 ff 08 e8
+RSP: 0018:ffff8880156d7768 EFLAGS: 00010207
+RAX: dffffc0000000000 RBX: ffff88801a17bcc8 RCX: ffffffff8588e633
+RDX: 00000000200000c0 RSI: ffffffff856c425a RDI: 0000000100000607
+RBP: ffff8880156d77a0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 6e696c6261736944 R12: 00000000ffffffff
+R13: 0000000000000000 R14: 00000000ffffffed R15: 0000000000000000
+FS:  00007fadc501a600(0000) GS:ffff8880e3581000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000200015c0 CR3: 000000002c67b006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+BUG: sleeping function called from invalid context at ./include/linux/percpu-rwsem.h:51
+in_atomic(): 0, irqs_disabled(): 0, non_block: 0, pid: 701, name: syz-executor339
+preempt_count: 0, expected: 0
+RCU nest depth: 1, expected: 0
+INFO: lockdep is turned off.
+CPU: 0 UID: 0 PID: 701 Comm: syz-executor339 Tainted: G    B D             6.15.0-rc4-next-20250428-33035b665157 #1 PREEMPT(voluntary) 
+Tainted: [B]=BAD_PAGE, [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0x121/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ __might_resched+0x37b/0x5a0 kernel/sched/core.c:8826
+ __might_sleep+0xa3/0x170 kernel/sched/core.c:8755
+ percpu_down_read_internal include/linux/percpu-rwsem.h:51 [inline]
+ percpu_down_read include/linux/percpu-rwsem.h:77 [inline]
+ cgroup_threadgroup_change_begin include/linux/cgroup-defs.h:817 [inline]
+ exit_signals+0x2f/0x990 kernel/signal.c:3125
+ do_exit+0x33e/0x2880 kernel/exit.c:912
+ make_task_dead+0x181/0x3c0 kernel/exit.c:1066
+ rewind_stack_and_make_dead+0x16/0x20 arch/x86/entry/entry_64.S:1493
+RIP: 0033:0x7fadc4e3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fff49950068 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fadc4e3ee5d
+RDX: 00000000200015c0 RSI: 000000000000890b RDI: 0000000000000003
+RBP: 0000000000000001 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fff49950188
+R13: 0000000000401050 R14: 0000000000403e08 R15: 00007fadc5063000
+ </TASK>
+----------------
+Code disassembly (best guess):
+   0:	e6 02                	out    %al,$0x2
+   2:	00 00                	add    %al,(%rax)
+   4:	4c 8b 23             	mov    (%rbx),%r12
+   7:	4d 85 e4             	test   %r12,%r12
+   a:	74 33                	je     0x3f
+   c:	e8 96 04 1c fc       	callq  0xfc1c04a7
+  11:	49 8d bc 24 08 06 00 	lea    0x608(%r12),%rdi
+  18:	00
+  19:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  20:	fc ff df
+  23:	48 89 fa             	mov    %rdi,%rdx
+  26:	48 c1 ea 03          	shr    $0x3,%rdx
+* 2a:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1) <-- trapping instruction
+  2e:	0f 85 ac 02 00 00    	jne    0x2e0
+  34:	49 8b 84 24 08 06 00 	mov    0x608(%r12),%rax
+  3b:	00
+  3c:	65 ff 08             	decl   %gs:(%rax)
+  3f:	e8                   	.byte 0xe8

@@ -1,0 +1,34 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [33035b665157558254b3c21c3f049fd728e72368] Add linux-next specific files for 20250428
+git bisect bad 33035b665157558254b3c21c3f049fd728e72368
+# status: waiting for good commit(s), bad commit known
+# good: [b4432656b36e5cc1d50a1f2dc15357543add530e] Linux 6.15-rc4
+git bisect good b4432656b36e5cc1d50a1f2dc15357543add530e
+# bad: [eeb7738554e5a17dae164b08b3aeca454974eb12] Merge branch 'master' of git://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git
+git bisect bad eeb7738554e5a17dae164b08b3aeca454974eb12
+# good: [c98d0f1ada00dff9a1cd070db74b7f81c88dacde] Merge branch 'fs-next' of linux-next
+git bisect good c98d0f1ada00dff9a1cd070db74b7f81c88dacde
+# good: [237062fbf61d924aa4ba9212246cf0dc352954b8] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/rdma/rdma.git
+git bisect good 237062fbf61d924aa4ba9212246cf0dc352954b8
+# bad: [4ce3ade36f251e47fc6b0345afb73a09794fb2e9] io_uring/zcrx: selftests: set hds_thresh to 0
+git bisect bad 4ce3ade36f251e47fc6b0345afb73a09794fb2e9
+# good: [72d02a9f9410a292c3be8a4b17060115610f638d] net: stmmac: sti: use phy_interface_mode_is_rgmii()
+git bisect good 72d02a9f9410a292c3be8a4b17060115610f638d
+# good: [1f763fa808e92a67feea8364ef80ca3065d74702] vxlan: Convert FDB table to rhashtable
+git bisect good 1f763fa808e92a67feea8364ef80ca3065d74702
+# good: [a484fe88062d08ba71ce84e2718ca85730ec6a10] Merge branch 'enable-multiple-irq-lines-support-in-airoha_eth-driver'
+git bisect good a484fe88062d08ba71ce84e2718ca85730ec6a10
+# bad: [71c0efb6d12f4c734b2a894c17e84ebab49b4c60] ipv6: Factorise ip6_route_multipath_add().
+git bisect bad 71c0efb6d12f4c734b2a894c17e84ebab49b4c60
+# good: [3fec58f5a455411393f9f72314a6cb6327a26bd1] Merge branch '1GbE' of git://git.kernel.org/pub/scm/linux/kernel/git/tnguy/next-queue
+git bisect good 3fec58f5a455411393f9f72314a6cb6327a26bd1
+# bad: [fa76c1674f2ebafb5cc8ab6fc3a3b0c0d09e9321] ipv6: Move some validation from ip6_route_info_create() to rtm_to_fib6_config().
+git bisect bad fa76c1674f2ebafb5cc8ab6fc3a3b0c0d09e9321
+# good: [f41f3edf0b15d7ce0b0f71c00a6125e8d7ca735f] net/mlx5: HWS, Disallow matcher IP version mixing
+git bisect good f41f3edf0b15d7ce0b0f71c00a6125e8d7ca735f
+# good: [4cb4861d8c3b3b4da478573dc6c03899b526bf08] ipv6: Validate RTA_GATEWAY of RTA_MULTIPATH in rtm_to_fib6_config().
+git bisect good 4cb4861d8c3b3b4da478573dc6c03899b526bf08
+# good: [bd11ff421d36abdb585b9104fa70057bf01b3110] ipv6: Get rid of RTNL for SIOCDELRT and RTM_DELROUTE.
+git bisect good bd11ff421d36abdb585b9104fa70057bf01b3110
+# first bad commit: [fa76c1674f2ebafb5cc8ab6fc3a3b0c0d09e9321] ipv6: Move some validation from ip6_route_info_create() to rtm_to_fib6_config().
