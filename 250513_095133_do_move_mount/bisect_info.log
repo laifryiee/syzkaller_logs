@@ -1,0 +1,47 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [82f2b0b97b36ee3fcddf0f0780a9a0825d52fec3] Linux 6.15-rc6
+git bisect bad 82f2b0b97b36ee3fcddf0f0780a9a0825d52fec3
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [5ca26d6039a6b42341f7f5cc8d10d30ca1561a7b] Merge tag 'net-6.3-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good 5ca26d6039a6b42341f7f5cc8d10d30ca1561a7b
+# good: [1bbeaf83dd7b5e3628b98bec66ff8fe2646e14aa] Merge tag 'perf-tools-for-v6.9-2024-03-13' of git://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools
+git bisect good 1bbeaf83dd7b5e3628b98bec66ff8fe2646e14aa
+# good: [17ea56b752b6ba58fdd1fcfd24f0fd2fa2b0ade2] io_uring: fix casts to io_req_flags_t
+git bisect good 17ea56b752b6ba58fdd1fcfd24f0fd2fa2b0ade2
+# good: [abdebb2837ffbf3187791e92b68a7d80eec0e773] Merge tag 'i2c-for-6.14-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux
+git bisect good abdebb2837ffbf3187791e92b68a7d80eec0e773
+# good: [22093997ac9220d3c606313efbf4ce564962d095] Merge tag 'ata-6.15-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/libata/linux
+git bisect good 22093997ac9220d3c606313efbf4ce564962d095
+# good: [7d06015d936c861160803e020f68f413b5c3cd9d] Merge tag 'pci-v6.15-changes' of git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci
+git bisect good 7d06015d936c861160803e020f68f413b5c3cd9d
+# good: [915873752ccf72877dfa80e558be359629090287] Merge branch '1GbE' of git://git.kernel.org/pub/scm/linux/kernel/git/tnguy/net-queue
+git bisect good 915873752ccf72877dfa80e558be359629090287
+# good: [c1336865c4c90fcc649df0435a7c86c30030a723] Merge tag 'devicetree-fixes-for-6.15-1' of git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux
+git bisect good c1336865c4c90fcc649df0435a7c86c30030a723
+# good: [f1a3944c860b0615d0513110d8cf62bb94adbb41] Merge tag 'bpf-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf
+git bisect good f1a3944c860b0615d0513110d8cf62bb94adbb41
+# good: [3d84c97a8df80a7fcef8d051c24356e4f005b1be] Merge tag 'x86-urgent-2025-05-04' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect good 3d84c97a8df80a7fcef8d051c24356e4f005b1be
+# good: [50358c251eae19a2b2fc54b6944e362ef2fefff0] Merge tag 'arm64-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux
+git bisect good 50358c251eae19a2b2fc54b6944e362ef2fefff0
+# bad: [067dd5875d9cdc86c8db6671c695be4f72692196] Merge tag 'staging-6.15-rc6' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging
+git bisect bad 067dd5875d9cdc86c8db6671c695be4f72692196
+# good: [1a33418a69cc801d48c59d7d803af5c9cd291be2] Merge tag '6.15-rc5-smb3-client-fixes' of git://git.samba.org/sfrench/cifs-2.6
+git bisect good 1a33418a69cc801d48c59d7d803af5c9cd291be2
+# good: [2e922956277187655ed9bedf7b5c28906e51708f] staging: iio: adc: ad7816: Correct conditional logic for store mode
+git bisect good 2e922956277187655ed9bedf7b5c28906e51708f
+# bad: [ed36b437d9b16b073f53f3a61550df0e2e987b52] Merge tag 'i2c-for-6.15-rc6' of git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux
+git bisect bad ed36b437d9b16b073f53f3a61550df0e2e987b52
+# bad: [acbf235235e2b33a0b73802c14c2a1a28a3a3f04] Merge tag 'pull-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+git bisect bad acbf235235e2b33a0b73802c14c2a1a28a3a3f04
+# good: [65781e19dcfcb4aed1167d87a3ffcc2a0c071d47] do_umount(): add missing barrier before refcount checks in sync case
+git bisect good 65781e19dcfcb4aed1167d87a3ffcc2a0c071d47
+# bad: [d1ddc6f1d9f0cf887834eb54a5a68bbfeec1bb77] fix IS_MNT_PROPAGATING uses
+git bisect bad d1ddc6f1d9f0cf887834eb54a5a68bbfeec1bb77
+# bad: [267fc3a06a37bec30cc5b4d97fb8409102bc7a9d] do_move_mount(): don't leak MNTNS_PROPAGATING on failures
+git bisect bad 267fc3a06a37bec30cc5b4d97fb8409102bc7a9d
+# first bad commit: [267fc3a06a37bec30cc5b4d97fb8409102bc7a9d] do_move_mount(): don't leak MNTNS_PROPAGATING on failures
+|0513_173201|Bisect successfully! 82f2b0b97b36ee3fcddf0f0780a9a0825d52fec3_267fc3a06a37bec30cc5b4d97fb8409102bc7a9d_revert bzimage passed!|
