@@ -1,0 +1,159 @@
+Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+==================================================================
+BUG: KASAN: slab-out-of-bounds in __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+BUG: KASAN: slab-out-of-bounds in _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+Read of size 1 at addr ffff888010fd34e0 by task syz-executor202/728
+
+CPU: 0 UID: 0 PID: 728 Comm: syz-executor202 Not tainted 6.15.0-next-20250527-fefff2755f2a #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:408 [inline]
+ print_report+0xce/0x660 mm/kasan/report.c:521
+ kasan_report+0xd6/0x110 mm/kasan/report.c:634
+ __kasan_check_byte+0x41/0x50 mm/kasan/common.c:557
+ kasan_check_byte include/linux/kasan.h:399 [inline]
+ lock_acquire kernel/locking/lockdep.c:5845 [inline]
+ lock_acquire+0xea/0x310 kernel/locking/lockdep.c:5828
+ __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+ _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+ spin_lock include/linux/spinlock.h:351 [inline]
+ futex_rehash_private kernel/futex/core.c:213 [inline]
+ __futex_pivot_hash+0x24c/0x520 kernel/futex/core.c:251
+ futex_hash_allocate+0xb26/0x10b0 kernel/futex/core.c:1662
+ futex_hash_prctl+0x20c/0x650 kernel/futex/core.c:1757
+ __do_sys_prctl+0x1a0d/0x2170 kernel/sys.c:2825
+ __se_sys_prctl kernel/sys.c:2474 [inline]
+ __x64_sys_prctl+0xc6/0x150 kernel/sys.c:2474
+ x64_sys_call+0x1a25/0x2150 arch/x86/include/generated/asm/syscalls_64.h:158
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x2e0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fcd55a3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fcd55c66d78 EFLAGS: 00000246 ORIG_RAX: 000000000000009d
+RAX: ffffffffffffffda RBX: 00000000004061f8 RCX: 00007fcd55a3ee5d
+RDX: 0000000000000000 RSI: 0000000000000001 RDI: 000000000000004e
+RBP: 00000000004061f0 R08: 0000000000000000 R09: 00007fcd55c67640
+R10: 0000000000000000 R11: 0000000000000246 R12: 00000000004061fc
+R13: 0000000000000013 R14: 00007fcd55a9f560 R15: 0000000000000000
+ </TASK>
+
+Allocated by task 727:
+ kasan_save_stack+0x2c/0x60 mm/kasan/common.c:47
+ kasan_save_track+0x18/0x40 mm/kasan/common.c:68
+ kasan_save_alloc_info+0x3c/0x50 mm/kasan/generic.c:562
+ poison_kmalloc_redzone mm/kasan/common.c:377 [inline]
+ __kasan_kmalloc+0x88/0xa0 mm/kasan/common.c:394
+ kasan_kmalloc include/linux/kasan.h:260 [inline]
+ __do_kmalloc_node mm/slub.c:4328 [inline]
+ __kvmalloc_node_noprof+0x20e/0x660 mm/slub.c:5015
+ futex_hash_allocate+0x4c0/0x10b0 kernel/futex/core.c:1601
+ futex_hash_prctl+0x20c/0x650 kernel/futex/core.c:1757
+ __do_sys_prctl+0x1a0d/0x2170 kernel/sys.c:2825
+ __se_sys_prctl kernel/sys.c:2474 [inline]
+ __x64_sys_prctl+0xc6/0x150 kernel/sys.c:2474
+ x64_sys_call+0x1a25/0x2150 arch/x86/include/generated/asm/syscalls_64.h:158
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x2e0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+The buggy address belongs to the object at ffff888010fd3480
+ which belongs to the cache kmalloc-cg-64 of size 64
+The buggy address is located 32 bytes to the right of
+ allocated 64-byte region [ffff888010fd3480, ffff888010fd34c0)
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x10fd3
+memcg:ffff8880161bb601
+flags: 0xfffffc0000000(node=0|zone=1|lastcpupid=0x1fffff)
+page_type: f5(slab)
+raw: 000fffffc0000000 ffff88800d449c80 ffffea0000448380 0000000000000004
+raw: 0000000000000000 0000000080200020 00000000f5000000 ffff8880161bb601
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff888010fd3380: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+ ffff888010fd3400: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+>ffff888010fd3480: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
+                                                       ^
+ ffff888010fd3500: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+ ffff888010fd3580: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+==================================================================
+Oops: general protection fault, probably for non-canonical address 0xe03c7c1a00000036: 0000 [#1] SMP KASAN NOPTI
+KASAN: maybe wild-memory-access in range [0x01e400d0000001b0-0x01e400d0000001b7]
+CPU: 0 UID: 0 PID: 728 Comm: syz-executor202 Tainted: G    B               6.15.0-next-20250527-fefff2755f2a #1 PREEMPT(voluntary) 
+Tainted: [B]=BAD_PAGE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:futex_rehash_private kernel/futex/core.c:214 [inline]
+RIP: 0010:__futex_pivot_hash+0x271/0x520 kernel/futex/core.c:251
+Code: e8 84 a5 58 04 48 8b 45 d0 48 c1 e8 03 42 80 3c 28 00 0f 85 5e 02 00 00 48 8b 45 d0 4c 8b 30 4c 89 f0 49 8d 5e e8 48 c1 e8 03 <42> 80 3c 28 00 0f 85 34 02 00 00 49 8b 06 4c 8d 60 e8 4c 39 75 d0
+RSP: 0018:ffff888016a77c80 EFLAGS: 00010206
+RAX: 003c801a00000036 RBX: 01e400d000000199 RCX: ffffffff81799536
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffff888010fd3508
+RBP: ffff888016a77cf8 R08: 0000000000000001 R09: ffffed1002d4ef7d
+R10: 0000000000000003 R11: 6e696c6261736944 R12: ffff88801a200d68
+R13: dffffc0000000000 R14: 01e400d0000001b1 R15: ffff88801a200a80
+FS:  00007fcd55c67640(0000) GS:ffff8880e355f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fcd55c66e38 CR3: 000000002c549006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ futex_hash_allocate+0xb26/0x10b0 kernel/futex/core.c:1662
+ futex_hash_prctl+0x20c/0x650 kernel/futex/core.c:1757
+ __do_sys_prctl+0x1a0d/0x2170 kernel/sys.c:2825
+ __se_sys_prctl kernel/sys.c:2474 [inline]
+ __x64_sys_prctl+0xc6/0x150 kernel/sys.c:2474
+ x64_sys_call+0x1a25/0x2150 arch/x86/include/generated/asm/syscalls_64.h:158
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x2e0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fcd55a3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fcd55c66d78 EFLAGS: 00000246 ORIG_RAX: 000000000000009d
+RAX: ffffffffffffffda RBX: 00000000004061f8 RCX: 00007fcd55a3ee5d
+RDX: 0000000000000000 RSI: 0000000000000001 RDI: 000000000000004e
+RBP: 00000000004061f0 R08: 0000000000000000 R09: 00007fcd55c67640
+R10: 0000000000000000 R11: 0000000000000246 R12: 00000000004061fc
+R13: 0000000000000013 R14: 00007fcd55a9f560 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:futex_rehash_private kernel/futex/core.c:214 [inline]
+RIP: 0010:__futex_pivot_hash+0x271/0x520 kernel/futex/core.c:251
+Code: e8 84 a5 58 04 48 8b 45 d0 48 c1 e8 03 42 80 3c 28 00 0f 85 5e 02 00 00 48 8b 45 d0 4c 8b 30 4c 89 f0 49 8d 5e e8 48 c1 e8 03 <42> 80 3c 28 00 0f 85 34 02 00 00 49 8b 06 4c 8d 60 e8 4c 39 75 d0
+RSP: 0018:ffff888016a77c80 EFLAGS: 00010206
+RAX: 003c801a00000036 RBX: 01e400d000000199 RCX: ffffffff81799536
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffff888010fd3508
+RBP: ffff888016a77cf8 R08: 0000000000000001 R09: ffffed1002d4ef7d
+R10: 0000000000000003 R11: 6e696c6261736944 R12: ffff88801a200d68
+R13: dffffc0000000000 R14: 01e400d0000001b1 R15: ffff88801a200a80
+FS:  00007fcd55c67640(0000) GS:ffff8880e355f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fcd55c66e38 CR3: 000000002c549006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor202[728] exited with preempt_count 1
+----------------
+Code disassembly (best guess):
+   0:	e8 84 a5 58 04       	callq  0x458a589
+   5:	48 8b 45 d0          	mov    -0x30(%rbp),%rax
+   9:	48 c1 e8 03          	shr    $0x3,%rax
+   d:	42 80 3c 28 00       	cmpb   $0x0,(%rax,%r13,1)
+  12:	0f 85 5e 02 00 00    	jne    0x276
+  18:	48 8b 45 d0          	mov    -0x30(%rbp),%rax
+  1c:	4c 8b 30             	mov    (%rax),%r14
+  1f:	4c 89 f0             	mov    %r14,%rax
+  22:	49 8d 5e e8          	lea    -0x18(%r14),%rbx
+  26:	48 c1 e8 03          	shr    $0x3,%rax
+* 2a:	42 80 3c 28 00       	cmpb   $0x0,(%rax,%r13,1) <-- trapping instruction
+  2f:	0f 85 34 02 00 00    	jne    0x269
+  35:	49 8b 06             	mov    (%r14),%rax
+  38:	4c 8d 60 e8          	lea    -0x18(%rax),%r12
+  3c:	4c 39 75 d0          	cmp    %r14,-0x30(%rbp)

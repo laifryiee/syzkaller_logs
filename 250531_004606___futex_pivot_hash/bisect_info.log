@@ -1,0 +1,34 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [fefff2755f2aa4125dce2a1edfe7e545c7c621f2] Add linux-next specific files for 20250527
+git bisect bad fefff2755f2aa4125dce2a1edfe7e545c7c621f2
+# status: waiting for good commit(s), bad commit known
+# good: [0ff41df1cb268fc69e703a08a57ee14ae967d0ca] Linux 6.15
+git bisect good 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
+# good: [13aa56bc0d70b969e61a52f6e90b569e1a064d9c] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/rdma/rdma.git
+git bisect good 13aa56bc0d70b969e61a52f6e90b569e1a064d9c
+# good: [284403b8eb5df697356a9a024b3a42b3aeab28d4] Merge branch 'for-mfd-next' of git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git
+git bisect good 284403b8eb5df697356a9a024b3a42b3aeab28d4
+# bad: [c7aac11d3c9e574d835c2a91ba95af76ca883f82] Merge branch 'driver-core-next' of git://git.kernel.org/pub/scm/linux/kernel/git/driver-core/driver-core.git
+git bisect bad c7aac11d3c9e574d835c2a91ba95af76ca883f82
+# bad: [f22368a9e2e82d809deb53599697d547b8468d6b] Merge branch into tip/master: 'x86/sgx'
+git bisect bad f22368a9e2e82d809deb53599697d547b8468d6b
+# good: [ad29891c2a6699eed252b3a9226c425ccdcb4420] Merge branch into tip/master: 'x86/merge'
+git bisect good ad29891c2a6699eed252b3a9226c425ccdcb4420
+# good: [dfc37f9a62d492a047affe94b7d5f533059c41eb] Merge branch into tip/master: 'irq/drivers'
+git bisect good dfc37f9a62d492a047affe94b7d5f533059c41eb
+# bad: [dfee667c29f6737a4f621a666bed0edd938f782e] Merge branch into tip/master: 'perf/core'
+git bisect bad dfee667c29f6737a4f621a666bed0edd938f782e
+# bad: [94ec70880fd376dd5cc60ba2bd7ddf830b3d4f28] Merge branch 'locking/futex' into locking/core, to pick up pending futex changes
+git bisect bad 94ec70880fd376dd5cc60ba2bd7ddf830b3d4f28
+# bad: [f25051dce97cfd7a945add0c9e273e624e060624] tools headers: Synchronize prctl.h ABI header
+git bisect bad f25051dce97cfd7a945add0c9e273e624e060624
+# good: [fe00e88d217a7bf7a4d0268d08f51e624d40ee53] futex: Decrease the waiter count before the unlock operation
+git bisect good fe00e88d217a7bf7a4d0268d08f51e624d40ee53
+# good: [7c4f75a21f636486d2969d9b6680403ea8483539] futex: Allow automatic allocation of process wide futex hash
+git bisect good 7c4f75a21f636486d2969d9b6680403ea8483539
+# bad: [63e8595c060a1fef421e3eecfc05ad882dafb8ac] futex: Allow to make the private hash immutable
+git bisect bad 63e8595c060a1fef421e3eecfc05ad882dafb8ac
+# bad: [bd54df5ea7cadac520e346d5f0fe5d58e635b6ba] futex: Allow to resize the private local hash
+git bisect bad bd54df5ea7cadac520e346d5f0fe5d58e635b6ba
+# first bad commit: [bd54df5ea7cadac520e346d5f0fe5d58e635b6ba] futex: Allow to resize the private local hash

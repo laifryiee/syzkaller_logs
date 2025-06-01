@@ -1,0 +1,1031 @@
+Extracting prog: 1m9.568802918s
+Minimizing prog: 10m20.875345969s
+Simplifying prog options: 0s
+Extracting C: 20.180524991s
+Simplifying C: 2m15.761906695s
+
+
+48 programs, 3 VMs, timeouts [15s 1m40s 6m0s]
+extracting reproducer from 48 programs
+single: executing 8 programs separately with timeout 15s
+testing program (duration=15s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$tty1-setresuid-perf_event_open-write-fsopen-ioctl$TIOCVHANGUP-unshare-select-openat-perf_event_open-acct
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+setresuid(0x0, 0x0, 0x0)
+r1 = perf_event_open(&(0x7f0000000000)={0x2, 0x80, 0x5b, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={0x0}, 0x0, 0x0, 0x0, 0x0, 0xfffffffffffffffc, 0xfffffffe}, 0x0, 0x0, 0xffffffffffffffff, 0x0)
+write(r1, 0x0, 0x0)
+fsopen(&(0x7f0000000080)='erofs\x00', 0x0)
+ioctl$TIOCVHANGUP(r0, 0x5437, 0x0)
+unshare(0x40480)
+select(0x40, &(0x7f0000000100)={0x9}, 0x0, 0x0, 0x0)
+openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+perf_event_open(&(0x7f0000000000)={0x2, 0x80, 0x5d, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_config_ext}, 0x0, 0x0, 0xffffffffffffffff, 0x0)
+acct(&(0x7f00000000c0)='./file1\x00')
+
+program did not crash
+testing program (duration=15s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): pwritev-perf_event_open-pkey_mprotect-setsockopt$SO_ATTACH_FILTER-inotify_init1-fanotify_init-bpf$PROG_LOAD-creat-fanotify_mark-socket$inet_tcp-setsockopt$inet_group_source_req-syz_mount_image$xfs-llistxattr-perf_event_open-pkey_mprotect-syz_open_procfs-fstat-socket$unix-ioctl$sock_SIOCETHTOOL-syz_open_dev$sg-ioctl$SG_EMULATED_HOST-socket$nl_route-syz_open_dev$sg-pkey_mprotect-openat-unlink-perf_event_open-socket$inet6-sendmmsg$inet6-syz_emit_ethernet
+detailed listing:
+executing program 0:
+pwritev(0xffffffffffffffff, &(0x7f0000001480)=[{0x0}], 0x1, 0x0, 0x0) (async)
+perf_event_open(&(0x7f0000000000)={0x2, 0x80, 0x5a, 0x1, 0x0, 0x0, 0x0, 0x0, 0x88840, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_bp={&(0x7f0000000100), 0x3}, 0x0, 0x0, 0x0, 0x8}, 0x0, 0x5, 0xffffffffffffffff, 0x0) (async)
+pkey_mprotect(&(0x7f0000000000/0x1000)=nil, 0x1002, 0x3, 0xffffffffffffffff)
+setsockopt$SO_ATTACH_FILTER(0xffffffffffffffff, 0x1, 0x1a, 0x0, 0x0)
+inotify_init1(0x0) (async)
+r0 = fanotify_init(0x0, 0x0)
+bpf$PROG_LOAD(0x5, &(0x7f00000009c0)={0x7, 0x4, &(0x7f0000000a80)=ANY=[@ANYBLOB="18000000000000000000000000ffffffc311a8000000000095"], &(0x7f0000000ac0)='GPL\x00', 0x0, 0x0, 0x0, 0x0, 0x0, '\x00', 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, 0x90) (async)
+r1 = creat(&(0x7f0000000000)='./file1\x00', 0x0)
+fanotify_mark(r0, 0x0, 0xa, r1, 0x0) (async)
+r2 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$inet_group_source_req(r2, 0x0, 0x2e, &(0x7f0000000180)={0x1, {{0x2, 0x4e20, @loopback}}, {{0x2, 0x4e21, @multicast1}}}, 0x108) (async)
+syz_mount_image$xfs(&(0x7f0000000140), &(0x7f0000009640)='./file0\x00', 0x8004, &(0x7f0000000300)={[], [{@mask={'mask', 0x3d, '^MAY_EXEC'}}, {@subj_type={'subj_type', 0x3d, 'trusted.overlay.upper\x00'}}, {@uid_lt}, {@seclabel}, {@smackfshat={'smackfshat', 0x3d, 'uid<'}}]}, 0x1, 0x960b, &(0x7f0000012cc0)="$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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+yb7exdZaFH8fvbusY+/NPRlxwGZpscqGQCLPdQ8YLwiZjWx1043kMcHRrNzbabXYddgXcw4tJhPAgySRLlChbhhJmQiMxEKwgokEXNdHgAyAKUTROhKBb4mLNaU9Le+waz1Wva1E+nxc9577Pfve2Jt/d9wIDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+Cc7cCAAAAAAAOT/2ghVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV2IFjAQAAAABh/tZB9G4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAF8BAAD//4bY3MU=")
+llistxattr(0x0, 0x0, 0x0)
+r3 = perf_event_open(&(0x7f0000000000)={0x2, 0x80, 0x5d, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_config_ext}, 0x0, 0xffffffffffffffff, 0xffffffffffffffff, 0x0) (async)
+pkey_mprotect(&(0x7f0000000000/0x1000)=nil, 0x1000, 0xc, 0xffffffffffffffff) (async)
+r4 = syz_open_procfs(0xffffffffffffffff, &(0x7f0000000040)='fd\x00')
+fstat(r4, 0x0) (async)
+r5 = socket$unix(0x1, 0x1, 0x0)
+ioctl$sock_SIOCETHTOOL(r5, 0x8914, &(0x7f0000001cc0)={'lo\x00', 0x0}) (async)
+r6 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x0)
+ioctl$SG_EMULATED_HOST(r6, 0x2203, &(0x7f0000000580))
+socket$nl_route(0x10, 0x3, 0x0) (async)
+syz_open_dev$sg(&(0x7f0000000000), 0x0, 0x102) (async)
+pkey_mprotect(&(0x7f0000000000/0x1000)=nil, 0x1000, 0xc, 0xffffffffffffffff) (async)
+openat(0xffffffffffffff9c, &(0x7f0000000000)='./file1\x00', 0x105042, 0x0) (async)
+unlink(&(0x7f0000000000)='./file2\x00') (async)
+perf_event_open(&(0x7f0000000000)={0x2, 0x80, 0x5d, 0x1, 0x2, 0x0, 0x0, 0x0, 0x561e2ec646607e03, 0x3, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x80, 0x0, @perf_bp={&(0x7f00000000c0), 0x6}, 0x88, 0xa6, 0x0, 0x0, 0x9, 0x0, 0x0, 0x0, 0x1, 0x0, 0xffffffffffffffff}, 0x0, 0x1, r3, 0x0) (async)
+r7 = socket$inet6(0xa, 0x2, 0x0)
+sendmmsg$inet6(r7, &(0x7f0000000080)=[{{&(0x7f00000002c0)={0xa, 0x4620, 0x0, @dev}, 0x1c, 0x0}}], 0x1, 0x0)
+syz_emit_ethernet(0x56, &(0x7f0000000040)=ANY=[@ANYBLOB="bbbbbbbbbbbbaaaaaaaaaa0086dd60fe000000203afffc000000000000000000000000000000ff0200000000000000000000000000018800907800000000fe80000000000000000000000000000012010411b5ec4f61"], 0x0)
+
+program did not crash
+testing program (duration=15s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-io_uring_setup-io_uring_enter-ioctl$IOC_PR_PREEMPT-ioctl$LOOP_CONFIGURE-ioctl$LOOP_CONFIGURE-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-syz_genetlink_get_family_id$nl80211-sendmsg$NL80211_CMD_DEL_NAN_FUNCTION-sendmsg$NL80211_CMD_DEL_NAN_FUNCTION-sendmsg$nl_route-perf_event_open$cgroup-epoll_ctl$EPOLL_CTL_MOD-pselect6-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+r1 = syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r2 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r2, 0x0, 0x0) (async)
+sendmsg$nl_route(r2, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r3 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r3, 0x29, 0xd1, 0x0, 0x0)
+r4 = creat(0x0, 0x0)
+r5 = io_uring_setup(0x1a66, &(0x7f0000000340))
+io_uring_enter(r5, 0x0, 0xcbffffff, 0xb, &(0x7f00000003c0)={[0x8]}, 0x18)
+ioctl$IOC_PR_PREEMPT(r4, 0x401870cb, 0x0)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}}) (async)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}})
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0) (async)
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0)
+r6 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000040), r4)
+sendmsg$NL80211_CMD_DEL_NAN_FUNCTION(r4, &(0x7f0000000180)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x80}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, r6, 0x2, 0x70bd25, 0x25dfdbff, {{}, {@void, @val={0xc, 0x99, {0xffffffff, 0x7a}}}}, [@NL80211_ATTR_COOKIE={0xc, 0x58, 0x4c}, @NL80211_ATTR_COOKIE={0xc, 0x58, 0x39}]}, 0x38}, 0x1, 0x0, 0x0, 0x94}, 0x8004) (async)
+sendmsg$NL80211_CMD_DEL_NAN_FUNCTION(r4, &(0x7f0000000180)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x80}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, r6, 0x2, 0x70bd25, 0x25dfdbff, {{}, {@void, @val={0xc, 0x99, {0xffffffff, 0x7a}}}}, [@NL80211_ATTR_COOKIE={0xc, 0x58, 0x4c}, @NL80211_ATTR_COOKIE={0xc, 0x58, 0x39}]}, 0x38}, 0x1, 0x0, 0x0, 0x94}, 0x8004)
+sendmsg$nl_route(r2, 0x0, 0x40081)
+perf_event_open$cgroup(0x0, 0xffffffffffffffff, 0x0, 0xffffffffffffffff, 0x0)
+epoll_ctl$EPOLL_CTL_MOD(0xffffffffffffffff, 0x3, 0xffffffffffffffff, &(0x7f00000007c0))
+pselect6(0x40, &(0x7f0000000300), 0x0, &(0x7f0000000480)={0x8, 0x8}, &(0x7f00000004c0)={0x0, 0x3938700}, 0x0)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+single: successfully extracted reproducer
+found reproducer with 28 syscalls
+minimizing guilty program
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-io_uring_setup-io_uring_enter-ioctl$IOC_PR_PREEMPT-ioctl$LOOP_CONFIGURE-ioctl$LOOP_CONFIGURE-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-syz_genetlink_get_family_id$nl80211-sendmsg$NL80211_CMD_DEL_NAN_FUNCTION-sendmsg$NL80211_CMD_DEL_NAN_FUNCTION-sendmsg$nl_route-perf_event_open$cgroup-epoll_ctl$EPOLL_CTL_MOD-pselect6-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+r1 = syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r2 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r2, 0x0, 0x0) (async)
+sendmsg$nl_route(r2, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r3 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r3, 0x29, 0xd1, 0x0, 0x0)
+r4 = creat(0x0, 0x0)
+r5 = io_uring_setup(0x1a66, &(0x7f0000000340))
+io_uring_enter(r5, 0x0, 0xcbffffff, 0xb, &(0x7f00000003c0)={[0x8]}, 0x18)
+ioctl$IOC_PR_PREEMPT(r4, 0x401870cb, 0x0)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}}) (async)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}})
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0) (async)
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0)
+r6 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000040), r4)
+sendmsg$NL80211_CMD_DEL_NAN_FUNCTION(r4, &(0x7f0000000180)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x80}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, r6, 0x2, 0x70bd25, 0x25dfdbff, {{}, {@void, @val={0xc, 0x99, {0xffffffff, 0x7a}}}}, [@NL80211_ATTR_COOKIE={0xc, 0x58, 0x4c}, @NL80211_ATTR_COOKIE={0xc, 0x58, 0x39}]}, 0x38}, 0x1, 0x0, 0x0, 0x94}, 0x8004) (async)
+sendmsg$NL80211_CMD_DEL_NAN_FUNCTION(r4, &(0x7f0000000180)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x80}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, r6, 0x2, 0x70bd25, 0x25dfdbff, {{}, {@void, @val={0xc, 0x99, {0xffffffff, 0x7a}}}}, [@NL80211_ATTR_COOKIE={0xc, 0x58, 0x4c}, @NL80211_ATTR_COOKIE={0xc, 0x58, 0x39}]}, 0x38}, 0x1, 0x0, 0x0, 0x94}, 0x8004)
+sendmsg$nl_route(r2, 0x0, 0x40081)
+perf_event_open$cgroup(0x0, 0xffffffffffffffff, 0x0, 0xffffffffffffffff, 0x0)
+epoll_ctl$EPOLL_CTL_MOD(0xffffffffffffffff, 0x3, 0xffffffffffffffff, &(0x7f00000007c0))
+pselect6(0x40, &(0x7f0000000300), 0x0, &(0x7f0000000480)={0x8, 0x8}, &(0x7f00000004c0)={0x0, 0x3938700}, 0x0)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-io_uring_setup-io_uring_enter-ioctl$IOC_PR_PREEMPT-ioctl$LOOP_CONFIGURE-ioctl$LOOP_CONFIGURE-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-syz_genetlink_get_family_id$nl80211-sendmsg$NL80211_CMD_DEL_NAN_FUNCTION-sendmsg$NL80211_CMD_DEL_NAN_FUNCTION-sendmsg$nl_route-perf_event_open$cgroup-epoll_ctl$EPOLL_CTL_MOD-pselect6-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+r1 = syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r2 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r2, 0x0, 0x0) (async)
+sendmsg$nl_route(r2, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r3 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r3, 0x29, 0xd1, 0x0, 0x0)
+r4 = creat(0x0, 0x0)
+r5 = io_uring_setup(0x1a66, &(0x7f0000000340))
+io_uring_enter(r5, 0x0, 0xcbffffff, 0xb, &(0x7f00000003c0)={[0x8]}, 0x18)
+ioctl$IOC_PR_PREEMPT(r4, 0x401870cb, 0x0)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}}) (async)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}})
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0) (async)
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0)
+r6 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000040), r4)
+sendmsg$NL80211_CMD_DEL_NAN_FUNCTION(r4, &(0x7f0000000180)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x80}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, r6, 0x2, 0x70bd25, 0x25dfdbff, {{}, {@void, @val={0xc, 0x99, {0xffffffff, 0x7a}}}}, [@NL80211_ATTR_COOKIE={0xc, 0x58, 0x4c}, @NL80211_ATTR_COOKIE={0xc, 0x58, 0x39}]}, 0x38}, 0x1, 0x0, 0x0, 0x94}, 0x8004) (async)
+sendmsg$NL80211_CMD_DEL_NAN_FUNCTION(r4, &(0x7f0000000180)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x80}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, r6, 0x2, 0x70bd25, 0x25dfdbff, {{}, {@void, @val={0xc, 0x99, {0xffffffff, 0x7a}}}}, [@NL80211_ATTR_COOKIE={0xc, 0x58, 0x4c}, @NL80211_ATTR_COOKIE={0xc, 0x58, 0x39}]}, 0x38}, 0x1, 0x0, 0x0, 0x94}, 0x8004)
+sendmsg$nl_route(r2, 0x0, 0x40081)
+perf_event_open$cgroup(0x0, 0xffffffffffffffff, 0x0, 0xffffffffffffffff, 0x0)
+epoll_ctl$EPOLL_CTL_MOD(0xffffffffffffffff, 0x3, 0xffffffffffffffff, &(0x7f00000007c0))
+pselect6(0x40, &(0x7f0000000300), 0x0, &(0x7f0000000480)={0x8, 0x8}, &(0x7f00000004c0)={0x0, 0x3938700}, 0x0)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-io_uring_setup-io_uring_enter-ioctl$IOC_PR_PREEMPT-ioctl$LOOP_CONFIGURE-ioctl$LOOP_CONFIGURE-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-syz_genetlink_get_family_id$nl80211-sendmsg$NL80211_CMD_DEL_NAN_FUNCTION-sendmsg$NL80211_CMD_DEL_NAN_FUNCTION-sendmsg$nl_route-perf_event_open$cgroup-epoll_ctl$EPOLL_CTL_MOD-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+r1 = syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r2 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r2, 0x0, 0x0) (async)
+sendmsg$nl_route(r2, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r3 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r3, 0x29, 0xd1, 0x0, 0x0)
+r4 = creat(0x0, 0x0)
+r5 = io_uring_setup(0x1a66, &(0x7f0000000340))
+io_uring_enter(r5, 0x0, 0xcbffffff, 0xb, &(0x7f00000003c0)={[0x8]}, 0x18)
+ioctl$IOC_PR_PREEMPT(r4, 0x401870cb, 0x0)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}}) (async)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}})
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0) (async)
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0)
+r6 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000040), r4)
+sendmsg$NL80211_CMD_DEL_NAN_FUNCTION(r4, &(0x7f0000000180)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x80}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, r6, 0x2, 0x70bd25, 0x25dfdbff, {{}, {@void, @val={0xc, 0x99, {0xffffffff, 0x7a}}}}, [@NL80211_ATTR_COOKIE={0xc, 0x58, 0x4c}, @NL80211_ATTR_COOKIE={0xc, 0x58, 0x39}]}, 0x38}, 0x1, 0x0, 0x0, 0x94}, 0x8004) (async)
+sendmsg$NL80211_CMD_DEL_NAN_FUNCTION(r4, &(0x7f0000000180)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x80}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, r6, 0x2, 0x70bd25, 0x25dfdbff, {{}, {@void, @val={0xc, 0x99, {0xffffffff, 0x7a}}}}, [@NL80211_ATTR_COOKIE={0xc, 0x58, 0x4c}, @NL80211_ATTR_COOKIE={0xc, 0x58, 0x39}]}, 0x38}, 0x1, 0x0, 0x0, 0x94}, 0x8004)
+sendmsg$nl_route(r2, 0x0, 0x40081)
+perf_event_open$cgroup(0x0, 0xffffffffffffffff, 0x0, 0xffffffffffffffff, 0x0)
+epoll_ctl$EPOLL_CTL_MOD(0xffffffffffffffff, 0x3, 0xffffffffffffffff, &(0x7f00000007c0))
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-io_uring_setup-io_uring_enter-ioctl$IOC_PR_PREEMPT-ioctl$LOOP_CONFIGURE-ioctl$LOOP_CONFIGURE-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-syz_genetlink_get_family_id$nl80211-sendmsg$NL80211_CMD_DEL_NAN_FUNCTION-sendmsg$NL80211_CMD_DEL_NAN_FUNCTION-sendmsg$nl_route-perf_event_open$cgroup-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+r1 = syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r2 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r2, 0x0, 0x0) (async)
+sendmsg$nl_route(r2, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r3 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r3, 0x29, 0xd1, 0x0, 0x0)
+r4 = creat(0x0, 0x0)
+r5 = io_uring_setup(0x1a66, &(0x7f0000000340))
+io_uring_enter(r5, 0x0, 0xcbffffff, 0xb, &(0x7f00000003c0)={[0x8]}, 0x18)
+ioctl$IOC_PR_PREEMPT(r4, 0x401870cb, 0x0)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}}) (async)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}})
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0) (async)
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0)
+r6 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000040), r4)
+sendmsg$NL80211_CMD_DEL_NAN_FUNCTION(r4, &(0x7f0000000180)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x80}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, r6, 0x2, 0x70bd25, 0x25dfdbff, {{}, {@void, @val={0xc, 0x99, {0xffffffff, 0x7a}}}}, [@NL80211_ATTR_COOKIE={0xc, 0x58, 0x4c}, @NL80211_ATTR_COOKIE={0xc, 0x58, 0x39}]}, 0x38}, 0x1, 0x0, 0x0, 0x94}, 0x8004) (async)
+sendmsg$NL80211_CMD_DEL_NAN_FUNCTION(r4, &(0x7f0000000180)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x80}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, r6, 0x2, 0x70bd25, 0x25dfdbff, {{}, {@void, @val={0xc, 0x99, {0xffffffff, 0x7a}}}}, [@NL80211_ATTR_COOKIE={0xc, 0x58, 0x4c}, @NL80211_ATTR_COOKIE={0xc, 0x58, 0x39}]}, 0x38}, 0x1, 0x0, 0x0, 0x94}, 0x8004)
+sendmsg$nl_route(r2, 0x0, 0x40081)
+perf_event_open$cgroup(0x0, 0xffffffffffffffff, 0x0, 0xffffffffffffffff, 0x0)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-io_uring_setup-io_uring_enter-ioctl$IOC_PR_PREEMPT-ioctl$LOOP_CONFIGURE-ioctl$LOOP_CONFIGURE-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-syz_genetlink_get_family_id$nl80211-sendmsg$NL80211_CMD_DEL_NAN_FUNCTION-sendmsg$NL80211_CMD_DEL_NAN_FUNCTION-sendmsg$nl_route-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+r1 = syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r2 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r2, 0x0, 0x0) (async)
+sendmsg$nl_route(r2, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r3 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r3, 0x29, 0xd1, 0x0, 0x0)
+r4 = creat(0x0, 0x0)
+r5 = io_uring_setup(0x1a66, &(0x7f0000000340))
+io_uring_enter(r5, 0x0, 0xcbffffff, 0xb, &(0x7f00000003c0)={[0x8]}, 0x18)
+ioctl$IOC_PR_PREEMPT(r4, 0x401870cb, 0x0)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}}) (async)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}})
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0) (async)
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0)
+r6 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000040), r4)
+sendmsg$NL80211_CMD_DEL_NAN_FUNCTION(r4, &(0x7f0000000180)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x80}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, r6, 0x2, 0x70bd25, 0x25dfdbff, {{}, {@void, @val={0xc, 0x99, {0xffffffff, 0x7a}}}}, [@NL80211_ATTR_COOKIE={0xc, 0x58, 0x4c}, @NL80211_ATTR_COOKIE={0xc, 0x58, 0x39}]}, 0x38}, 0x1, 0x0, 0x0, 0x94}, 0x8004) (async)
+sendmsg$NL80211_CMD_DEL_NAN_FUNCTION(r4, &(0x7f0000000180)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x80}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, r6, 0x2, 0x70bd25, 0x25dfdbff, {{}, {@void, @val={0xc, 0x99, {0xffffffff, 0x7a}}}}, [@NL80211_ATTR_COOKIE={0xc, 0x58, 0x4c}, @NL80211_ATTR_COOKIE={0xc, 0x58, 0x39}]}, 0x38}, 0x1, 0x0, 0x0, 0x94}, 0x8004)
+sendmsg$nl_route(r2, 0x0, 0x40081)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-io_uring_setup-io_uring_enter-ioctl$IOC_PR_PREEMPT-ioctl$LOOP_CONFIGURE-ioctl$LOOP_CONFIGURE-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-syz_genetlink_get_family_id$nl80211-sendmsg$NL80211_CMD_DEL_NAN_FUNCTION-sendmsg$NL80211_CMD_DEL_NAN_FUNCTION-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+r1 = syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r2 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r2, 0x0, 0x0) (async)
+sendmsg$nl_route(r2, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r3 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r3, 0x29, 0xd1, 0x0, 0x0)
+r4 = creat(0x0, 0x0)
+r5 = io_uring_setup(0x1a66, &(0x7f0000000340))
+io_uring_enter(r5, 0x0, 0xcbffffff, 0xb, &(0x7f00000003c0)={[0x8]}, 0x18)
+ioctl$IOC_PR_PREEMPT(r4, 0x401870cb, 0x0)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}}) (async)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}})
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0) (async)
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0)
+r6 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000040), r4)
+sendmsg$NL80211_CMD_DEL_NAN_FUNCTION(r4, &(0x7f0000000180)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x80}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, r6, 0x2, 0x70bd25, 0x25dfdbff, {{}, {@void, @val={0xc, 0x99, {0xffffffff, 0x7a}}}}, [@NL80211_ATTR_COOKIE={0xc, 0x58, 0x4c}, @NL80211_ATTR_COOKIE={0xc, 0x58, 0x39}]}, 0x38}, 0x1, 0x0, 0x0, 0x94}, 0x8004) (async)
+sendmsg$NL80211_CMD_DEL_NAN_FUNCTION(r4, &(0x7f0000000180)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x80}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, r6, 0x2, 0x70bd25, 0x25dfdbff, {{}, {@void, @val={0xc, 0x99, {0xffffffff, 0x7a}}}}, [@NL80211_ATTR_COOKIE={0xc, 0x58, 0x4c}, @NL80211_ATTR_COOKIE={0xc, 0x58, 0x39}]}, 0x38}, 0x1, 0x0, 0x0, 0x94}, 0x8004)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-io_uring_setup-io_uring_enter-ioctl$IOC_PR_PREEMPT-ioctl$LOOP_CONFIGURE-ioctl$LOOP_CONFIGURE-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-syz_genetlink_get_family_id$nl80211-sendmsg$NL80211_CMD_DEL_NAN_FUNCTION-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+r1 = syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r2 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r2, 0x0, 0x0) (async)
+sendmsg$nl_route(r2, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r3 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r3, 0x29, 0xd1, 0x0, 0x0)
+r4 = creat(0x0, 0x0)
+r5 = io_uring_setup(0x1a66, &(0x7f0000000340))
+io_uring_enter(r5, 0x0, 0xcbffffff, 0xb, &(0x7f00000003c0)={[0x8]}, 0x18)
+ioctl$IOC_PR_PREEMPT(r4, 0x401870cb, 0x0)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}}) (async)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}})
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0) (async)
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0)
+r6 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000040), r4)
+sendmsg$NL80211_CMD_DEL_NAN_FUNCTION(r4, &(0x7f0000000180)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x80}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, r6, 0x2, 0x70bd25, 0x25dfdbff, {{}, {@void, @val={0xc, 0x99, {0xffffffff, 0x7a}}}}, [@NL80211_ATTR_COOKIE={0xc, 0x58, 0x4c}, @NL80211_ATTR_COOKIE={0xc, 0x58, 0x39}]}, 0x38}, 0x1, 0x0, 0x0, 0x94}, 0x8004) (async)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-io_uring_setup-io_uring_enter-ioctl$IOC_PR_PREEMPT-ioctl$LOOP_CONFIGURE-ioctl$LOOP_CONFIGURE-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-syz_genetlink_get_family_id$nl80211-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+r1 = syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r2 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r2, 0x0, 0x0) (async)
+sendmsg$nl_route(r2, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r3 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r3, 0x29, 0xd1, 0x0, 0x0)
+r4 = creat(0x0, 0x0)
+r5 = io_uring_setup(0x1a66, &(0x7f0000000340))
+io_uring_enter(r5, 0x0, 0xcbffffff, 0xb, &(0x7f00000003c0)={[0x8]}, 0x18)
+ioctl$IOC_PR_PREEMPT(r4, 0x401870cb, 0x0)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}}) (async)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}})
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0) (async)
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0)
+syz_genetlink_get_family_id$nl80211(&(0x7f0000000040), r4)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-io_uring_setup-io_uring_enter-ioctl$IOC_PR_PREEMPT-ioctl$LOOP_CONFIGURE-ioctl$LOOP_CONFIGURE-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+r1 = syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r2 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r2, 0x0, 0x0) (async)
+sendmsg$nl_route(r2, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r3 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r3, 0x29, 0xd1, 0x0, 0x0)
+r4 = creat(0x0, 0x0)
+r5 = io_uring_setup(0x1a66, &(0x7f0000000340))
+io_uring_enter(r5, 0x0, 0xcbffffff, 0xb, &(0x7f00000003c0)={[0x8]}, 0x18)
+ioctl$IOC_PR_PREEMPT(r4, 0x401870cb, 0x0)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}}) (async)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}})
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0) (async)
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-io_uring_setup-io_uring_enter-ioctl$IOC_PR_PREEMPT-ioctl$LOOP_CONFIGURE-ioctl$LOOP_CONFIGURE-ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+r1 = syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r2 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r2, 0x0, 0x0) (async)
+sendmsg$nl_route(r2, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r3 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r3, 0x29, 0xd1, 0x0, 0x0)
+r4 = creat(0x0, 0x0)
+r5 = io_uring_setup(0x1a66, &(0x7f0000000340))
+io_uring_enter(r5, 0x0, 0xcbffffff, 0xb, &(0x7f00000003c0)={[0x8]}, 0x18)
+ioctl$IOC_PR_PREEMPT(r4, 0x401870cb, 0x0)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}}) (async)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}})
+ioctl$sock_ipv6_tunnel_SIOCADDTUNNEL(r4, 0x89f1, 0x0) (async)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-io_uring_setup-io_uring_enter-ioctl$IOC_PR_PREEMPT-ioctl$LOOP_CONFIGURE-ioctl$LOOP_CONFIGURE-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+r1 = syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r2 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r2, 0x0, 0x0) (async)
+sendmsg$nl_route(r2, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r3 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r3, 0x29, 0xd1, 0x0, 0x0)
+r4 = creat(0x0, 0x0)
+r5 = io_uring_setup(0x1a66, &(0x7f0000000340))
+io_uring_enter(r5, 0x0, 0xcbffffff, 0xb, &(0x7f00000003c0)={[0x8]}, 0x18)
+ioctl$IOC_PR_PREEMPT(r4, 0x401870cb, 0x0)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}}) (async)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}})
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-io_uring_setup-io_uring_enter-ioctl$IOC_PR_PREEMPT-ioctl$LOOP_CONFIGURE-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+r1 = syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r2 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r2, 0x0, 0x0) (async)
+sendmsg$nl_route(r2, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r3 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r3, 0x29, 0xd1, 0x0, 0x0)
+r4 = creat(0x0, 0x0)
+r5 = io_uring_setup(0x1a66, &(0x7f0000000340))
+io_uring_enter(r5, 0x0, 0xcbffffff, 0xb, &(0x7f00000003c0)={[0x8]}, 0x18)
+ioctl$IOC_PR_PREEMPT(r4, 0x401870cb, 0x0)
+ioctl$LOOP_CONFIGURE(r1, 0x4c0a, &(0x7f0000002340)={r4, 0x0, {0x0, 0x0, 0x0, 0xffffffffffffffff, 0x0, 0x0, 0x0, 0x16, 0x0, "0ca02d6f3657405910a1356192dcf5717ea94c554ad6c46b8e53c282688b4447280df1df9e075016a62bb80caec4f74234bf9b9bad1364938c438aa3fee8dbcf", "f4ef60e36caebd43cb86ea18bd13894749c5436e44afcf89c84104a61edbf135df03a685d6743fd2a45a036c7954980ea58088df48613a1e683946f640b1b2d2", "050000006308fc5513a0f25cc4c12a3c0b5d9c631a86c3afd4974f372708c6a9"}}) (async)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-io_uring_setup-io_uring_enter-ioctl$IOC_PR_PREEMPT-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r1 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r1, 0x0, 0x0) (async)
+sendmsg$nl_route(r1, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r2 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r2, 0x29, 0xd1, 0x0, 0x0)
+r3 = creat(0x0, 0x0)
+r4 = io_uring_setup(0x1a66, &(0x7f0000000340))
+io_uring_enter(r4, 0x0, 0xcbffffff, 0xb, &(0x7f00000003c0)={[0x8]}, 0x18)
+ioctl$IOC_PR_PREEMPT(r3, 0x401870cb, 0x0)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-io_uring_setup-io_uring_enter-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r1 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r1, 0x0, 0x0) (async)
+sendmsg$nl_route(r1, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r2 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r2, 0x29, 0xd1, 0x0, 0x0)
+creat(0x0, 0x0)
+r3 = io_uring_setup(0x1a66, &(0x7f0000000340))
+io_uring_enter(r3, 0x0, 0xcbffffff, 0xb, &(0x7f00000003c0)={[0x8]}, 0x18)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-io_uring_setup-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r1 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r1, 0x0, 0x0) (async)
+sendmsg$nl_route(r1, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r2 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r2, 0x29, 0xd1, 0x0, 0x0)
+creat(0x0, 0x0)
+io_uring_setup(0x1a66, &(0x7f0000000340))
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-creat-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r1 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r1, 0x0, 0x0) (async)
+sendmsg$nl_route(r1, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r2 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r2, 0x29, 0xd1, 0x0, 0x0)
+creat(0x0, 0x0)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-setsockopt$inet6_buf-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r1 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r1, 0x0, 0x0) (async)
+sendmsg$nl_route(r1, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+r2 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+setsockopt$inet6_buf(r2, 0x29, 0xd1, 0x0, 0x0)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-lseek-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r1 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r1, 0x0, 0x0) (async)
+sendmsg$nl_route(r1, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+lseek(0xffffffffffffffff, 0xfffffffffffff35e, 0x3)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-socket$inet6_icmp_raw-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r1 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r1, 0x0, 0x0) (async)
+sendmsg$nl_route(r1, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-socket$inet6_icmp_raw-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r1 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r1, 0x0, 0x0) (async)
+sendmsg$nl_route(r1, 0x0, 0x0)
+socket$inet6_icmp_raw(0xa, 0x3, 0x3a) (async)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-sendmsg$nl_route-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r1 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r1, 0x0, 0x0) (async)
+sendmsg$nl_route(r1, 0x0, 0x0)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-sendmsg$nl_route-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+r1 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route(r1, 0x0, 0x0) (async)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-socket$nl_route-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+socket$nl_route(0x10, 0x3, 0x0)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-syz_open_dev$loop-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-syz_open_dev$loop-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+syz_open_dev$loop(&(0x7f00000022c0), 0x0, 0x0) (async)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-write-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+r0 = syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+write(r0, &(0x7f0000000140)="dcdfaa16240000004541667e8cd4b61a6c6ed38222e0e337ea635c44f64bc0cc412a7d3a8a91d7b33fcde3897bd479eddb76b765", 0x34)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_open_dev$sg-prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+syz_open_dev$sg(&(0x7f0000000080), 0x0, 0x802)
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+prctl$PR_SET_TSC(0x4e, 0x1) (async)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+prctl$PR_SET_TSC(0x4e, 0x1)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): prctl$PR_SET_TSC-prctl$PR_SET_TSC
+detailed listing:
+executing program 0:
+prctl$PR_SET_TSC(0x4e, 0x1)
+prctl$PR_SET_TSC(0x4e, 0x1)
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): prctl$PR_SET_TSC-prctl$PR_SET_TSC
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+simplifying C reproducer
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): prctl$PR_SET_TSC-prctl$PR_SET_TSC
+program did not crash
+testing compiled C program (duration=22.5s, {Threaded:true Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): prctl$PR_SET_TSC-prctl$PR_SET_TSC
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing compiled C program (duration=22.5s, {Threaded:true Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:false UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): prctl$PR_SET_TSC-prctl$PR_SET_TSC
+program did not crash
+testing compiled C program (duration=22.5s, {Threaded:true Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): prctl$PR_SET_TSC-prctl$PR_SET_TSC
+program did not crash
+testing compiled C program (duration=22.5s, {Threaded:true Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:false NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): prctl$PR_SET_TSC-prctl$PR_SET_TSC
+program crashed: KASAN: slab-out-of-bounds Read in __futex_pivot_hash
+testing compiled C program (duration=22.5s, {Threaded:true Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): prctl$PR_SET_TSC-prctl$PR_SET_TSC
+program did not crash
+testing compiled C program (duration=22.5s, {Threaded:true Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:false NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): prctl$PR_SET_TSC-prctl$PR_SET_TSC
+program did not crash
+testing compiled C program (duration=22.5s, {Threaded:true Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:false NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:false HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): prctl$PR_SET_TSC-prctl$PR_SET_TSC
+program did not crash
+testing compiled C program (duration=22.5s, {Threaded:true Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:false NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:false Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): prctl$PR_SET_TSC-prctl$PR_SET_TSC
+program did not crash
+testing compiled C program (duration=22.5s, {Threaded:true Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:false NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:false Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): prctl$PR_SET_TSC-prctl$PR_SET_TSC
+program did not crash
+testing compiled C program (duration=22.5s, {Threaded:true Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:false NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:false UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): prctl$PR_SET_TSC-prctl$PR_SET_TSC
+program did not crash
+reproducing took 14m6.386853505s
+repro crashed as (corrupted=false):
+Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+==================================================================
+BUG: KASAN: slab-out-of-bounds in __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+BUG: KASAN: slab-out-of-bounds in _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+Read of size 1 at addr ffff888010fd34e0 by task syz-executor202/728
+
+CPU: 0 UID: 0 PID: 728 Comm: syz-executor202 Not tainted 6.15.0-next-20250527-fefff2755f2a #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:408 [inline]
+ print_report+0xce/0x660 mm/kasan/report.c:521
+ kasan_report+0xd6/0x110 mm/kasan/report.c:634
+ __kasan_check_byte+0x41/0x50 mm/kasan/common.c:557
+ kasan_check_byte include/linux/kasan.h:399 [inline]
+ lock_acquire kernel/locking/lockdep.c:5845 [inline]
+ lock_acquire+0xea/0x310 kernel/locking/lockdep.c:5828
+ __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+ _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+ spin_lock include/linux/spinlock.h:351 [inline]
+ futex_rehash_private kernel/futex/core.c:213 [inline]
+ __futex_pivot_hash+0x24c/0x520 kernel/futex/core.c:251
+ futex_hash_allocate+0xb26/0x10b0 kernel/futex/core.c:1662
+ futex_hash_prctl+0x20c/0x650 kernel/futex/core.c:1757
+ __do_sys_prctl+0x1a0d/0x2170 kernel/sys.c:2825
+ __se_sys_prctl kernel/sys.c:2474 [inline]
+ __x64_sys_prctl+0xc6/0x150 kernel/sys.c:2474
+ x64_sys_call+0x1a25/0x2150 arch/x86/include/generated/asm/syscalls_64.h:158
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x2e0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fcd55a3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fcd55c66d78 EFLAGS: 00000246 ORIG_RAX: 000000000000009d
+RAX: ffffffffffffffda RBX: 00000000004061f8 RCX: 00007fcd55a3ee5d
+RDX: 0000000000000000 RSI: 0000000000000001 RDI: 000000000000004e
+RBP: 00000000004061f0 R08: 0000000000000000 R09: 00007fcd55c67640
+R10: 0000000000000000 R11: 0000000000000246 R12: 00000000004061fc
+R13: 0000000000000013 R14: 00007fcd55a9f560 R15: 0000000000000000
+ </TASK>
+
+Allocated by task 727:
+ kasan_save_stack+0x2c/0x60 mm/kasan/common.c:47
+ kasan_save_track+0x18/0x40 mm/kasan/common.c:68
+ kasan_save_alloc_info+0x3c/0x50 mm/kasan/generic.c:562
+ poison_kmalloc_redzone mm/kasan/common.c:377 [inline]
+ __kasan_kmalloc+0x88/0xa0 mm/kasan/common.c:394
+ kasan_kmalloc include/linux/kasan.h:260 [inline]
+ __do_kmalloc_node mm/slub.c:4328 [inline]
+ __kvmalloc_node_noprof+0x20e/0x660 mm/slub.c:5015
+ futex_hash_allocate+0x4c0/0x10b0 kernel/futex/core.c:1601
+ futex_hash_prctl+0x20c/0x650 kernel/futex/core.c:1757
+ __do_sys_prctl+0x1a0d/0x2170 kernel/sys.c:2825
+ __se_sys_prctl kernel/sys.c:2474 [inline]
+ __x64_sys_prctl+0xc6/0x150 kernel/sys.c:2474
+ x64_sys_call+0x1a25/0x2150 arch/x86/include/generated/asm/syscalls_64.h:158
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x2e0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+The buggy address belongs to the object at ffff888010fd3480
+ which belongs to the cache kmalloc-cg-64 of size 64
+The buggy address is located 32 bytes to the right of
+ allocated 64-byte region [ffff888010fd3480, ffff888010fd34c0)
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x10fd3
+memcg:ffff8880161bb601
+flags: 0xfffffc0000000(node=0|zone=1|lastcpupid=0x1fffff)
+page_type: f5(slab)
+raw: 000fffffc0000000 ffff88800d449c80 ffffea0000448380 0000000000000004
+raw: 0000000000000000 0000000080200020 00000000f5000000 ffff8880161bb601
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff888010fd3380: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+ ffff888010fd3400: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+>ffff888010fd3480: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
+                                                       ^
+ ffff888010fd3500: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+ ffff888010fd3580: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+==================================================================
+Oops: general protection fault, probably for non-canonical address 0xe03c7c1a00000036: 0000 [#1] SMP KASAN NOPTI
+KASAN: maybe wild-memory-access in range [0x01e400d0000001b0-0x01e400d0000001b7]
+CPU: 0 UID: 0 PID: 728 Comm: syz-executor202 Tainted: G    B               6.15.0-next-20250527-fefff2755f2a #1 PREEMPT(voluntary) 
+Tainted: [B]=BAD_PAGE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:futex_rehash_private kernel/futex/core.c:214 [inline]
+RIP: 0010:__futex_pivot_hash+0x271/0x520 kernel/futex/core.c:251
+Code: e8 84 a5 58 04 48 8b 45 d0 48 c1 e8 03 42 80 3c 28 00 0f 85 5e 02 00 00 48 8b 45 d0 4c 8b 30 4c 89 f0 49 8d 5e e8 48 c1 e8 03 <42> 80 3c 28 00 0f 85 34 02 00 00 49 8b 06 4c 8d 60 e8 4c 39 75 d0
+RSP: 0018:ffff888016a77c80 EFLAGS: 00010206
+RAX: 003c801a00000036 RBX: 01e400d000000199 RCX: ffffffff81799536
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffff888010fd3508
+RBP: ffff888016a77cf8 R08: 0000000000000001 R09: ffffed1002d4ef7d
+R10: 0000000000000003 R11: 6e696c6261736944 R12: ffff88801a200d68
+R13: dffffc0000000000 R14: 01e400d0000001b1 R15: ffff88801a200a80
+FS:  00007fcd55c67640(0000) GS:ffff8880e355f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fcd55c66e38 CR3: 000000002c549006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ futex_hash_allocate+0xb26/0x10b0 kernel/futex/core.c:1662
+ futex_hash_prctl+0x20c/0x650 kernel/futex/core.c:1757
+ __do_sys_prctl+0x1a0d/0x2170 kernel/sys.c:2825
+ __se_sys_prctl kernel/sys.c:2474 [inline]
+ __x64_sys_prctl+0xc6/0x150 kernel/sys.c:2474
+ x64_sys_call+0x1a25/0x2150 arch/x86/include/generated/asm/syscalls_64.h:158
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x2e0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fcd55a3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fcd55c66d78 EFLAGS: 00000246 ORIG_RAX: 000000000000009d
+RAX: ffffffffffffffda RBX: 00000000004061f8 RCX: 00007fcd55a3ee5d
+RDX: 0000000000000000 RSI: 0000000000000001 RDI: 000000000000004e
+RBP: 00000000004061f0 R08: 0000000000000000 R09: 00007fcd55c67640
+R10: 0000000000000000 R11: 0000000000000246 R12: 00000000004061fc
+R13: 0000000000000013 R14: 00007fcd55a9f560 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:futex_rehash_private kernel/futex/core.c:214 [inline]
+RIP: 0010:__futex_pivot_hash+0x271/0x520 kernel/futex/core.c:251
+Code: e8 84 a5 58 04 48 8b 45 d0 48 c1 e8 03 42 80 3c 28 00 0f 85 5e 02 00 00 48 8b 45 d0 4c 8b 30 4c 89 f0 49 8d 5e e8 48 c1 e8 03 <42> 80 3c 28 00 0f 85 34 02 00 00 49 8b 06 4c 8d 60 e8 4c 39 75 d0
+RSP: 0018:ffff888016a77c80 EFLAGS: 00010206
+RAX: 003c801a00000036 RBX: 01e400d000000199 RCX: ffffffff81799536
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffff888010fd3508
+RBP: ffff888016a77cf8 R08: 0000000000000001 R09: ffffed1002d4ef7d
+R10: 0000000000000003 R11: 6e696c6261736944 R12: ffff88801a200d68
+R13: dffffc0000000000 R14: 01e400d0000001b1 R15: ffff88801a200a80
+FS:  00007fcd55c67640(0000) GS:ffff8880e355f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fcd55c66e38 CR3: 000000002c549006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor202[728] exited with preempt_count 1
+----------------
+Code disassembly (best guess):
+   0:	e8 84 a5 58 04       	callq  0x458a589
+   5:	48 8b 45 d0          	mov    -0x30(%rbp),%rax
+   9:	48 c1 e8 03          	shr    $0x3,%rax
+   d:	42 80 3c 28 00       	cmpb   $0x0,(%rax,%r13,1)
+  12:	0f 85 5e 02 00 00    	jne    0x276
+  18:	48 8b 45 d0          	mov    -0x30(%rbp),%rax
+  1c:	4c 8b 30             	mov    (%rax),%r14
+  1f:	4c 89 f0             	mov    %r14,%rax
+  22:	49 8d 5e e8          	lea    -0x18(%r14),%rbx
+  26:	48 c1 e8 03          	shr    $0x3,%rax
+* 2a:	42 80 3c 28 00       	cmpb   $0x0,(%rax,%r13,1) <-- trapping instruction
+  2f:	0f 85 34 02 00 00    	jne    0x269
+  35:	49 8b 06             	mov    (%r14),%rax
+  38:	4c 8d 60 e8          	lea    -0x18(%rax),%r12
+  3c:	4c 39 75 d0          	cmp    %r14,-0x30(%rbp)
+
+final repro crashed as (corrupted=false):
+Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+==================================================================
+BUG: KASAN: slab-out-of-bounds in __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+BUG: KASAN: slab-out-of-bounds in _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+Read of size 1 at addr ffff888010fd34e0 by task syz-executor202/728
+
+CPU: 0 UID: 0 PID: 728 Comm: syz-executor202 Not tainted 6.15.0-next-20250527-fefff2755f2a #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:408 [inline]
+ print_report+0xce/0x660 mm/kasan/report.c:521
+ kasan_report+0xd6/0x110 mm/kasan/report.c:634
+ __kasan_check_byte+0x41/0x50 mm/kasan/common.c:557
+ kasan_check_byte include/linux/kasan.h:399 [inline]
+ lock_acquire kernel/locking/lockdep.c:5845 [inline]
+ lock_acquire+0xea/0x310 kernel/locking/lockdep.c:5828
+ __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+ _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+ spin_lock include/linux/spinlock.h:351 [inline]
+ futex_rehash_private kernel/futex/core.c:213 [inline]
+ __futex_pivot_hash+0x24c/0x520 kernel/futex/core.c:251
+ futex_hash_allocate+0xb26/0x10b0 kernel/futex/core.c:1662
+ futex_hash_prctl+0x20c/0x650 kernel/futex/core.c:1757
+ __do_sys_prctl+0x1a0d/0x2170 kernel/sys.c:2825
+ __se_sys_prctl kernel/sys.c:2474 [inline]
+ __x64_sys_prctl+0xc6/0x150 kernel/sys.c:2474
+ x64_sys_call+0x1a25/0x2150 arch/x86/include/generated/asm/syscalls_64.h:158
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x2e0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fcd55a3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fcd55c66d78 EFLAGS: 00000246 ORIG_RAX: 000000000000009d
+RAX: ffffffffffffffda RBX: 00000000004061f8 RCX: 00007fcd55a3ee5d
+RDX: 0000000000000000 RSI: 0000000000000001 RDI: 000000000000004e
+RBP: 00000000004061f0 R08: 0000000000000000 R09: 00007fcd55c67640
+R10: 0000000000000000 R11: 0000000000000246 R12: 00000000004061fc
+R13: 0000000000000013 R14: 00007fcd55a9f560 R15: 0000000000000000
+ </TASK>
+
+Allocated by task 727:
+ kasan_save_stack+0x2c/0x60 mm/kasan/common.c:47
+ kasan_save_track+0x18/0x40 mm/kasan/common.c:68
+ kasan_save_alloc_info+0x3c/0x50 mm/kasan/generic.c:562
+ poison_kmalloc_redzone mm/kasan/common.c:377 [inline]
+ __kasan_kmalloc+0x88/0xa0 mm/kasan/common.c:394
+ kasan_kmalloc include/linux/kasan.h:260 [inline]
+ __do_kmalloc_node mm/slub.c:4328 [inline]
+ __kvmalloc_node_noprof+0x20e/0x660 mm/slub.c:5015
+ futex_hash_allocate+0x4c0/0x10b0 kernel/futex/core.c:1601
+ futex_hash_prctl+0x20c/0x650 kernel/futex/core.c:1757
+ __do_sys_prctl+0x1a0d/0x2170 kernel/sys.c:2825
+ __se_sys_prctl kernel/sys.c:2474 [inline]
+ __x64_sys_prctl+0xc6/0x150 kernel/sys.c:2474
+ x64_sys_call+0x1a25/0x2150 arch/x86/include/generated/asm/syscalls_64.h:158
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x2e0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+The buggy address belongs to the object at ffff888010fd3480
+ which belongs to the cache kmalloc-cg-64 of size 64
+The buggy address is located 32 bytes to the right of
+ allocated 64-byte region [ffff888010fd3480, ffff888010fd34c0)
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x10fd3
+memcg:ffff8880161bb601
+flags: 0xfffffc0000000(node=0|zone=1|lastcpupid=0x1fffff)
+page_type: f5(slab)
+raw: 000fffffc0000000 ffff88800d449c80 ffffea0000448380 0000000000000004
+raw: 0000000000000000 0000000080200020 00000000f5000000 ffff8880161bb601
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff888010fd3380: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+ ffff888010fd3400: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+>ffff888010fd3480: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
+                                                       ^
+ ffff888010fd3500: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+ ffff888010fd3580: fa fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+==================================================================
+Oops: general protection fault, probably for non-canonical address 0xe03c7c1a00000036: 0000 [#1] SMP KASAN NOPTI
+KASAN: maybe wild-memory-access in range [0x01e400d0000001b0-0x01e400d0000001b7]
+CPU: 0 UID: 0 PID: 728 Comm: syz-executor202 Tainted: G    B               6.15.0-next-20250527-fefff2755f2a #1 PREEMPT(voluntary) 
+Tainted: [B]=BAD_PAGE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:futex_rehash_private kernel/futex/core.c:214 [inline]
+RIP: 0010:__futex_pivot_hash+0x271/0x520 kernel/futex/core.c:251
+Code: e8 84 a5 58 04 48 8b 45 d0 48 c1 e8 03 42 80 3c 28 00 0f 85 5e 02 00 00 48 8b 45 d0 4c 8b 30 4c 89 f0 49 8d 5e e8 48 c1 e8 03 <42> 80 3c 28 00 0f 85 34 02 00 00 49 8b 06 4c 8d 60 e8 4c 39 75 d0
+RSP: 0018:ffff888016a77c80 EFLAGS: 00010206
+RAX: 003c801a00000036 RBX: 01e400d000000199 RCX: ffffffff81799536
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffff888010fd3508
+RBP: ffff888016a77cf8 R08: 0000000000000001 R09: ffffed1002d4ef7d
+R10: 0000000000000003 R11: 6e696c6261736944 R12: ffff88801a200d68
+R13: dffffc0000000000 R14: 01e400d0000001b1 R15: ffff88801a200a80
+FS:  00007fcd55c67640(0000) GS:ffff8880e355f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fcd55c66e38 CR3: 000000002c549006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ futex_hash_allocate+0xb26/0x10b0 kernel/futex/core.c:1662
+ futex_hash_prctl+0x20c/0x650 kernel/futex/core.c:1757
+ __do_sys_prctl+0x1a0d/0x2170 kernel/sys.c:2825
+ __se_sys_prctl kernel/sys.c:2474 [inline]
+ __x64_sys_prctl+0xc6/0x150 kernel/sys.c:2474
+ x64_sys_call+0x1a25/0x2150 arch/x86/include/generated/asm/syscalls_64.h:158
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x2e0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fcd55a3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fcd55c66d78 EFLAGS: 00000246 ORIG_RAX: 000000000000009d
+RAX: ffffffffffffffda RBX: 00000000004061f8 RCX: 00007fcd55a3ee5d
+RDX: 0000000000000000 RSI: 0000000000000001 RDI: 000000000000004e
+RBP: 00000000004061f0 R08: 0000000000000000 R09: 00007fcd55c67640
+R10: 0000000000000000 R11: 0000000000000246 R12: 00000000004061fc
+R13: 0000000000000013 R14: 00007fcd55a9f560 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:futex_rehash_private kernel/futex/core.c:214 [inline]
+RIP: 0010:__futex_pivot_hash+0x271/0x520 kernel/futex/core.c:251
+Code: e8 84 a5 58 04 48 8b 45 d0 48 c1 e8 03 42 80 3c 28 00 0f 85 5e 02 00 00 48 8b 45 d0 4c 8b 30 4c 89 f0 49 8d 5e e8 48 c1 e8 03 <42> 80 3c 28 00 0f 85 34 02 00 00 49 8b 06 4c 8d 60 e8 4c 39 75 d0
+RSP: 0018:ffff888016a77c80 EFLAGS: 00010206
+RAX: 003c801a00000036 RBX: 01e400d000000199 RCX: ffffffff81799536
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffff888010fd3508
+RBP: ffff888016a77cf8 R08: 0000000000000001 R09: ffffed1002d4ef7d
+R10: 0000000000000003 R11: 6e696c6261736944 R12: ffff88801a200d68
+R13: dffffc0000000000 R14: 01e400d0000001b1 R15: ffff88801a200a80
+FS:  00007fcd55c67640(0000) GS:ffff8880e355f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fcd55c66e38 CR3: 000000002c549006 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor202[728] exited with preempt_count 1
+----------------
+Code disassembly (best guess):
+   0:	e8 84 a5 58 04       	callq  0x458a589
+   5:	48 8b 45 d0          	mov    -0x30(%rbp),%rax
+   9:	48 c1 e8 03          	shr    $0x3,%rax
+   d:	42 80 3c 28 00       	cmpb   $0x0,(%rax,%r13,1)
+  12:	0f 85 5e 02 00 00    	jne    0x276
+  18:	48 8b 45 d0          	mov    -0x30(%rbp),%rax
+  1c:	4c 8b 30             	mov    (%rax),%r14
+  1f:	4c 89 f0             	mov    %r14,%rax
+  22:	49 8d 5e e8          	lea    -0x18(%r14),%rbx
+  26:	48 c1 e8 03          	shr    $0x3,%rax
+* 2a:	42 80 3c 28 00       	cmpb   $0x0,(%rax,%r13,1) <-- trapping instruction
+  2f:	0f 85 34 02 00 00    	jne    0x269
+  35:	49 8b 06             	mov    (%r14),%rax
+  38:	4c 8d 60 e8          	lea    -0x18(%rax),%r12
+  3c:	4c 39 75 d0          	cmp    %r14,-0x30(%rbp)
+

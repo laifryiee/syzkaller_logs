@@ -1,0 +1,1100 @@
+|0531_004606|cmd=cd /root/linux-next|
+|0531_004606|git log fefff2755f2aa4125dce2a1edfe7e545c7c621f2 check_result:commit fefff2755f2aa4125dce2a1edfe7e545c7c621f2|
+|0531_004606|git log 0ff41df1cb268fc69e703a08a57ee14ae967d0ca check_result:commit 0ff41df1cb268fc69e703a08a57ee14ae967d0ca|
+|0531_004606|There was old bisect log:git bisect start
+# status: waiting for both good and bad commits
+# bad: [fefff2755f2aa4125dce2a1edfe7e545c7c621f2] Add linux-next specific files for 20250527
+git bisect bad fefff2755f2aa4125dce2a1edfe7e545c7c621f2
+# status: waiting for good commit(s), bad commit known
+# good: [0ff41df1cb268fc69e703a08a57ee14ae967d0ca] Linux 6.15
+git bisect good 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
+# good: [13aa56bc0d70b969e61a52f6e90b569e1a064d9c] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/rdma/rdma.git
+git bisect good 13aa56bc0d70b969e61a52f6e90b569e1a064d9c
+# good: [284403b8eb5df697356a9a024b3a42b3aeab28d4] Merge branch 'for-mfd-next' of git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git
+git bisect good 284403b8eb5df697356a9a024b3a42b3aeab28d4
+# good: [c7aac11d3c9e574d835c2a91ba95af76ca883f82] Merge branch 'driver-core-next' of git://git.kernel.org/pub/scm/linux/kernel/git/driver-core/driver-core.git
+git bisect good c7aac11d3c9e574d835c2a91ba95af76ca883f82
+# good: [3ec05570459b5b2b469a27494c1e19661dc753d5] Merge branch 'staging-next' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git
+git bisect good 3ec05570459b5b2b469a27494c1e19661dc753d5
+# good: [12b13ebd452f2981c14b36b3ef49e315eacde7a3] Merge branch 'pwm/for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git
+git bisect good 12b13ebd452f2981c14b36b3ef49e315eacde7a3
+# good: [fd10c4e910b1e7c6ff0c1efedc562a7d25068215] Merge branch 'master' of git://git.kernel.org/pub/scm/linux/kernel/git/crng/random.git
+git bisect good fd10c4e910b1e7c6ff0c1efedc562a7d25068215
+# good: [06958edb5e4ea6cfdb2cfcaa213f1f958d16caf4] Merge branch 'for-next/kspp' of git://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git
+git bisect good 06958edb5e4ea6cfdb2cfcaa213f1f958d16caf4
+# good: [801f020b5f3d6159826ca38f63cd55e5536b35dd] tools/nolibc: add getrandom()
+git bisect good 801f020b5f3d6159826ca38f63cd55e5536b35dd
+# good: [73a3cde97677933f292d678fcc84bae5d9ac2651] selftests: harness: Implement test timeouts through pidfd
+git bisect good 73a3cde97677933f292d678fcc84bae5d9ac2651
+# good: [9d948b8804096d940022b1a3c483a5beb8b46574] Merge branch 'for-6.16/tsm-mr' into tsm-next
+git bisect good 9d948b8804096d940022b1a3c483a5beb8b46574
+# good: [cf347f85f70418a8498e97d228c37e6a56982754] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/nolibc/linux-nolibc.git
+git bisect good cf347f85f70418a8498e97d228c37e6a56982754
+# good: [dfc8d7e6caa24ea4f359b2881d339905242c2503] ipe: use SHA-256 library API instead of crypto_shash API
+git bisect good dfc8d7e6caa24ea4f359b2881d339905242c2503
+# good: [c31a891170ddf1be78026acc3bb90cb5899684db] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/lenb/linux.git
+git bisect good c31a891170ddf1be78026acc3bb90cb5899684db
+# good: [c00296f11a65d3dda43d69c498d0aea79ab596b6] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/devsec/tsm.git
+git bisect good c00296f11a65d3dda43d69c498d0aea79ab596b6
+# first bad commit: [fefff2755f2aa4125dce2a1edfe7e545c7c621f2] Add linux-next specific files for 20250527, will clean it|
+|0531_004606|cmd=git bisect reset|
+|0531_004606|cmd=git checkout -f fefff2755f2aa4125dce2a1edfe7e545c7c621f2|
+|0531_004606|cmd=cd /root/linux-next|
+|0531_004606||/var/www/html/bzimage/bzImage_fefff2755f2aa4125dce2a1edfe7e545c7c621f2| exist, no need make|
+|0531_004606|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0531_004606|Run /var/www/html/bzimage/bzImage_fefff2755f2aa4125dce2a1edfe7e545c7c621f2 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0531_004620|It takes 14 seconds to find login:test login: |
+|0531_004620|Boot 1 time: takes 14 seconds to boot up.|
+|0531_004620|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0531_004621|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0531_004622|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.cprog root@localhost:/root/repro.c|
+|0531_004623|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0531_004624|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0531_004634|/var/www/html/bzimage/bzImage_fefff2755f2aa4125dce2a1edfe7e545c7c621f2 contained __futex_pivot_hash:[   17.401042]  ? __futex_pivot_hash+0x24c/0x520
+[   17.401054]  __futex_pivot_hash+0x24c/0x520
+[   17.426643]  __futex_pivot_hash+0x2b0/0x520
+[   18.298917] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   18.663165] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   18.880099]  __futex_pivot_hash+0x2b0/0x520
+[   19.519218] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.803072] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.467233] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.703132] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   22.460280]  __futex_pivot_hash+0x2b0/0x520
+[   22.849087] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   24.339142] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   25.043400] RIP: 0010:__futex_pivot_hash+0x271/0x520, FAIL|
+|0531_004634|Found time:17 in /var/www/html/bzimage/0531_004606___futex_pivot_hash/fefff2755f2aa4125dce2a1edfe7e545c7c621f2_dmesg.log|
+|0531_004634|Logic: |<=25: +25|25-100 +180|>100 +1800| Set TIME:42|
+|0531_004634|-END- commit fefff2755f2aa4125dce2a1edfe7e545c7c621f2 FAIL bad|
+|0531_004634|cmd=rm -rf /var/www/html//syzkaller/2025_05_31/cb2787e7e48640fb2456cbcc8be1621840de1270|
+|0531_004634|cmd=mkdir -p /var/www/html//syzkaller/2025_05_31/cb2787e7e48640fb2456cbcc8be1621840de1270|
+|0531_004634|cmd=cp -rf /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.cprog /var/www/html//syzkaller/2025_05_31/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.c|
+|0531_004634|gcc -pthread /var/www/html//syzkaller/2025_05_31/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.c -o /var/www/html//syzkaller/2025_05_31/cb2787e7e48640fb2456cbcc8be1621840de1270/repro|
+|0531_004634|cmd=cp -rf /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/description /var/www/html//syzkaller/2025_05_31/cb2787e7e48640fb2456cbcc8be1621840de1270|
+|0531_004634|cp -rf /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/mount_* /var/www/html/bzimage/0531_004606___futex_pivot_hash/|
+|0531_004636|wget https://raw.githubusercontent.com/xupengfe/kconfig_diff/main/config-5.18rc4i_kvm -O /var/www/html/bzimage/0531_004606___futex_pivot_hash/kconfig_origin:0|
+|0531_004636|cmd=cd /root/linux-next|
+|0531_004636||/var/www/html/bzimage/bzImage_0ff41df1cb268fc69e703a08a57ee14ae967d0ca| exist, no need make|
+|0531_004636|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0531_004636|Run /var/www/html/bzimage/bzImage_0ff41df1cb268fc69e703a08a57ee14ae967d0ca with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0531_004651|It takes 15 seconds to find login:test login: |
+|0531_004651|Boot 1 time: takes 15 seconds to boot up.|
+|0531_004651|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0531_004652|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0531_004653|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.cprog root@localhost:/root/repro.c|
+|0531_004655|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0531_004655|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0531_004737|/var/www/html/bzimage/bzImage_0ff41df1cb268fc69e703a08a57ee14ae967d0ca didn't contain __futex_pivot_hash: in dmesg, pass|
+|0531_004737|Start commit 0ff41df1cb268fc69e703a08a57ee14ae967d0ca PASS good|
+|0531_004737|cmd=git checkout -f fefff2755f2aa4125dce2a1edfe7e545c7c621f2|
+|0531_004737|cmd=git bisect start|
+|0531_004737|cmd=git bisect bad fefff2755f2aa4125dce2a1edfe7e545c7c621f2|
+|0531_004737|Bisect first start commit:0ff41df1cb268fc69e703a08a57ee14ae967d0ca|
+|0531_004737|git bisect good 0ff41df1cb268fc69e703a08a57ee14ae967d0ca|
+|0531_004739||/var/www/html/bzimage/bzImage_13aa56bc0d70b969e61a52f6e90b569e1a064d9c| exist, no need make|
+|0531_004739|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0531_004739|Run /var/www/html/bzimage/bzImage_13aa56bc0d70b969e61a52f6e90b569e1a064d9c with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0531_004754|It takes 15 seconds to find login:test login: |
+|0531_004754|Boot 1 time: takes 15 seconds to boot up.|
+|0531_004754|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0531_004755|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0531_004756|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.cprog root@localhost:/root/repro.c|
+|0531_004758|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0531_004758|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0531_004840|/var/www/html/bzimage/bzImage_13aa56bc0d70b969e61a52f6e90b569e1a064d9c didn't contain __futex_pivot_hash: in dmesg, pass|
+|0531_004840|git bisect good 13aa56bc0d70b969e61a52f6e90b569e1a064d9c|
+|0531_004841||/var/www/html/bzimage/bzImage_284403b8eb5df697356a9a024b3a42b3aeab28d4| exist, no need make|
+|0531_004841|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0531_004841|Run /var/www/html/bzimage/bzImage_284403b8eb5df697356a9a024b3a42b3aeab28d4 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0531_004856|It takes 15 seconds to find login:test login: |
+|0531_004856|Boot 1 time: takes 15 seconds to boot up.|
+|0531_004856|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0531_004857|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0531_004858|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.cprog root@localhost:/root/repro.c|
+|0531_004900|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0531_004900|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0531_004942|/var/www/html/bzimage/bzImage_284403b8eb5df697356a9a024b3a42b3aeab28d4 didn't contain __futex_pivot_hash: in dmesg, pass|
+|0531_004942|git bisect good 284403b8eb5df697356a9a024b3a42b3aeab28d4|
+|0531_004943||/var/www/html/bzimage/bzImage_c7aac11d3c9e574d835c2a91ba95af76ca883f82| exist, no need make|
+|0531_004943|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0531_004943|Run /var/www/html/bzimage/bzImage_c7aac11d3c9e574d835c2a91ba95af76ca883f82 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0531_004958|It takes 15 seconds to find login:test login: |
+|0531_004958|Boot 1 time: takes 15 seconds to boot up.|
+|0531_004958|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0531_004959|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0531_005000|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.cprog root@localhost:/root/repro.c|
+|0531_005002|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0531_005002|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0531_005044|/var/www/html/bzimage/bzImage_c7aac11d3c9e574d835c2a91ba95af76ca883f82 contained __futex_pivot_hash:[   20.437992]  ? __futex_pivot_hash+0x24c/0x520
+[   20.438008]  __futex_pivot_hash+0x24c/0x520
+[   20.464370]  __futex_pivot_hash+0x2b0/0x520
+[   21.574986] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   21.794899] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   23.364932] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   24.402801]  __futex_pivot_hash+0x2b0/0x520
+[   25.140991] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   25.617839] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   25.853940] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   27.421709] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   28.297846] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   28.632855] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   28.847943] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.083579] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   30.449885] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   30.668914] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   30.900916] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   31.482105] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   31.978010] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   32.554902]  __futex_pivot_hash+0x2b0/0x520
+[   34.197064] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.828329] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   35.857905] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   36.336546] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   36.659813] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   38.687007] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   39.659041] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   42.382238] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   42.669219] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   45.849259] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   46.570149] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   48.518951] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   49.707219] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   51.359634] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   52.625252] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   53.791007] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   54.111720] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   55.106153] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   55.415136] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   56.002959] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   58.549845] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   58.871754] RIP: 0010:__futex_pivot_hash+0x271/0x520, FAIL|
+|0531_005044|git bisect bad c7aac11d3c9e574d835c2a91ba95af76ca883f82|
+|0531_005046|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m f22368a9e2e82d809deb53599697d547b8468d6b -d /var/www/html/bzimage -o /tmp/kernel|
+|0531_011152|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0531_011152|Run /var/www/html/bzimage/bzImage_f22368a9e2e82d809deb53599697d547b8468d6b with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0531_011206|It takes 14 seconds to find login:test login: |
+|0531_011206|Boot 1 time: takes 14 seconds to boot up.|
+|0531_011206|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0531_011207|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0531_011208|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.cprog root@localhost:/root/repro.c|
+|0531_011209|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0531_011210|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0531_011252|/var/www/html/bzimage/bzImage_f22368a9e2e82d809deb53599697d547b8468d6b contained __futex_pivot_hash:[   19.789147]  ? __futex_pivot_hash+0x24c/0x520
+[   19.789165]  __futex_pivot_hash+0x24c/0x520
+[   19.810963] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.822514] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.119707] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.131387] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.482660] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.494037] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.711984] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.723518] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   21.505045] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   21.516795] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   21.791241] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   21.814787] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   22.401072] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   22.412568] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   22.830054]  __futex_pivot_hash+0x2b0/0x520
+[   22.836780] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   23.097058] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   23.108526] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   23.813142] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   23.824713] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   24.656661] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   24.672379] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   25.235141] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   25.247784] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   25.586881] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   25.599667] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   26.575286] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   26.588913] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   28.744432] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   28.770038] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.108193] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.121313] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.600775] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.622181] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.839170] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.851716] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   31.158147] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   31.170016] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   32.537222] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   32.548729] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.041700] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.053405] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.859147] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.871736] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   36.341805] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   36.354259] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   36.835398] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   36.847361] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   37.048961] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   37.060712] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   37.619985] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   37.631651] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   38.912864] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   38.924389] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   39.758802] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   39.770421] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   40.877079] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   40.888462] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   41.178091] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   41.190064] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   41.460016] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   41.471472] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   42.564111] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   42.575441] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   43.859142] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   43.871114] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   45.310813] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   45.322308] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   45.875052] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   45.886655] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   46.462029] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   46.473446] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   46.732206] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   46.743700] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   47.517901] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   47.529694] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   49.111098] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   49.122981] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   50.084992] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   50.096313] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   50.426110] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   50.437665] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   50.829107] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   50.840711] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   51.326084] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   51.337642] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   51.929142] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   51.940575] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   53.286832] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   53.298076] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   53.782170]  __futex_pivot_hash+0x2b0/0x520
+[   53.788944] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   54.881007] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   54.892403] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   57.997124] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   58.008480] RIP: 0010:__futex_pivot_hash+0x271/0x520, FAIL|
+|0531_011252|git bisect bad f22368a9e2e82d809deb53599697d547b8468d6b|
+|0531_011253|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m ad29891c2a6699eed252b3a9226c425ccdcb4420 -d /var/www/html/bzimage -o /tmp/kernel|
+|0531_013404|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0531_013404|Run /var/www/html/bzimage/bzImage_ad29891c2a6699eed252b3a9226c425ccdcb4420 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0531_013418|It takes 14 seconds to find login:test login: |
+|0531_013418|Boot 1 time: takes 14 seconds to boot up.|
+|0531_013418|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0531_013419|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0531_013420|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.cprog root@localhost:/root/repro.c|
+|0531_013421|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0531_013422|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0531_013504|/var/www/html/bzimage/bzImage_ad29891c2a6699eed252b3a9226c425ccdcb4420 didn't contain __futex_pivot_hash: in dmesg, pass|
+|0531_013504|git bisect good ad29891c2a6699eed252b3a9226c425ccdcb4420|
+|0531_013504|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m dfc37f9a62d492a047affe94b7d5f533059c41eb -d /var/www/html/bzimage -o /tmp/kernel|
+|0531_015544|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0531_015544|Run /var/www/html/bzimage/bzImage_dfc37f9a62d492a047affe94b7d5f533059c41eb with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0531_015558|It takes 14 seconds to find login:test login: |
+|0531_015558|Boot 1 time: takes 14 seconds to boot up.|
+|0531_015558|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0531_015559|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0531_015601|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.cprog root@localhost:/root/repro.c|
+|0531_015602|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0531_015602|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0531_015644|/var/www/html/bzimage/bzImage_dfc37f9a62d492a047affe94b7d5f533059c41eb didn't contain __futex_pivot_hash: in dmesg, pass|
+|0531_015644|git bisect good dfc37f9a62d492a047affe94b7d5f533059c41eb|
+|0531_015645|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m dfee667c29f6737a4f621a666bed0edd938f782e -d /var/www/html/bzimage -o /tmp/kernel|
+|0531_021735|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0531_021735|Run /var/www/html/bzimage/bzImage_dfee667c29f6737a4f621a666bed0edd938f782e with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0531_021749|It takes 14 seconds to find login:test login: |
+|0531_021749|Boot 1 time: takes 14 seconds to boot up.|
+|0531_021749|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0531_021750|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0531_021751|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.cprog root@localhost:/root/repro.c|
+|0531_021752|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0531_021753|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0531_021835|/var/www/html/bzimage/bzImage_dfee667c29f6737a4f621a666bed0edd938f782e contained __futex_pivot_hash:[   17.599215]  ? __futex_pivot_hash+0x24c/0x520
+[   17.599227]  __futex_pivot_hash+0x24c/0x520
+[   17.620567] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   17.632066] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   18.091258] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   18.102764] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.110112]  __futex_pivot_hash+0x2b0/0x520
+[   19.116727] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.461202] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.472751] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.687186] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.698619] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.452412]  __futex_pivot_hash+0x2b0/0x520
+[   20.459193] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.779545] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.790979] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.999841] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   21.011136] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   21.459074] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   21.470502] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   21.866259] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   21.877782] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   22.374838] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   22.390470] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   22.769208] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   22.780511] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   23.974531] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   23.986275] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   25.121226] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   25.133180] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   26.269202] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   26.280806] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   27.585401] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   27.597010] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   30.250291] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   30.261985] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   30.790266] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   30.802063] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   31.063423] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   31.074906] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   31.279561] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   31.290952] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   33.067190]  __futex_pivot_hash+0x2b0/0x520
+[   33.073843] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   33.482302] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   33.493842] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.226968] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.238363] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.585293] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.596850] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.795293] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.806899] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   35.225114] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   35.236531] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   35.578276] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   35.589776] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   35.835012] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   35.846517] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   36.149585] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   36.161047] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   36.966358] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   36.977856] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   37.509212] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   37.520506] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   38.159970] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   38.171270] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   38.770157] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   38.781612] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   39.241103] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   39.252469] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   39.699485] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   39.710977] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   42.185053] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   42.196231] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   42.611886] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   42.623189] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   44.789114] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   44.800326] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   45.478114] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   45.489092] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   46.086197]  __futex_pivot_hash+0x2b0/0x520
+[   46.092686] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   46.948977] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   46.960331] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   49.238178] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   49.249698] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   49.682992] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   49.694233] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   52.038160] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   52.049370] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   52.885152] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   52.896331] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   54.178153] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   54.189295] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   54.630105] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   54.641362] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   55.077196] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   55.088404] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   57.283485] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   57.294808] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   57.486191] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   57.497499] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   58.321072] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   58.332064] RIP: 0010:__futex_pivot_hash+0x271/0x520, FAIL|
+|0531_021835|git bisect bad dfee667c29f6737a4f621a666bed0edd938f782e|
+|0531_021836|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 94ec70880fd376dd5cc60ba2bd7ddf830b3d4f28 -d /var/www/html/bzimage -o /tmp/kernel|
+|0531_023859|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0531_023859|Run /var/www/html/bzimage/bzImage_94ec70880fd376dd5cc60ba2bd7ddf830b3d4f28 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0531_023912|It takes 13 seconds to find login:test login: |
+|0531_023912|Boot 1 time: takes 13 seconds to boot up.|
+|0531_023912|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0531_023912|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0531_023914|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.cprog root@localhost:/root/repro.c|
+|0531_023915|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0531_023915|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0531_023957|/var/www/html/bzimage/bzImage_94ec70880fd376dd5cc60ba2bd7ddf830b3d4f28 contained __futex_pivot_hash:[   18.719151]  ? __futex_pivot_hash+0x24c/0x520
+[   18.719162]  __futex_pivot_hash+0x24c/0x520
+[   18.740008] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   18.751047] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.027099] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.037480] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.347141] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.358466] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.718407] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.729224] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.949342] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.960035] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.791041] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.802032] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   21.519057] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   21.530342] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   23.460101] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   23.471380] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   23.667763] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   23.678740] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   24.646928] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   24.658594] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   25.531740] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   25.543166] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   27.820754] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   27.834089] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.066379] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.077973] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.723193] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.734644] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   30.263463] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   30.274968] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   30.961412] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   30.972705] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   31.167161] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   31.178632] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   32.074328] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   32.085736] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   32.285534] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   32.297094] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   32.564650] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   32.576210] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   33.231454] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   33.242952] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   33.558126] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   33.569718] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.031306] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.042912] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   35.377396] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   35.388929] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   36.655400] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   36.666757] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   36.883089] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   36.894256] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   39.190658] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   39.201681] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   40.067375] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   40.078441] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   40.368540] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   40.379844] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   40.976029]  __futex_pivot_hash+0x2b0/0x520
+[   40.982470] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   41.815556] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   41.826733] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   42.734411] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   42.745572] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   43.323039] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   43.334167] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   43.721508] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   43.732836] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   44.171443] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   44.182654] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   44.896470] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   44.907289] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   45.670385] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   45.681282] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   46.471256] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   46.482337] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   46.886520] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   46.897547] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   47.675075] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   47.686283] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   47.886314] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   47.897589] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   48.105383] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   48.116595] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   48.331539] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   48.342736] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   48.659100] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   48.670184] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   49.843296] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   49.854345] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   51.323503] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   51.334688] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   52.603605] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   52.614852] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   53.451504] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   53.462659] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   54.972265] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   54.983589] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   56.962846] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   56.974247] RIP: 0010:__futex_pivot_hash+0x271/0x520, FAIL|
+|0531_023957|git bisect bad 94ec70880fd376dd5cc60ba2bd7ddf830b3d4f28|
+|0531_023958|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m f25051dce97cfd7a945add0c9e273e624e060624 -d /var/www/html/bzimage -o /tmp/kernel|
+|0531_030020|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0531_030020|Run /var/www/html/bzimage/bzImage_f25051dce97cfd7a945add0c9e273e624e060624 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0531_030033|It takes 13 seconds to find login:test login: |
+|0531_030033|Boot 1 time: takes 13 seconds to boot up.|
+|0531_030033|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0531_030034|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0531_030035|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.cprog root@localhost:/root/repro.c|
+|0531_030036|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0531_030037|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0531_030119|/var/www/html/bzimage/bzImage_f25051dce97cfd7a945add0c9e273e624e060624 contained __futex_pivot_hash:[   17.279112]  ? __futex_pivot_hash+0x24c/0x520
+[   17.279124]  __futex_pivot_hash+0x24c/0x520
+[   17.300302] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   17.311694] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   17.819296] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   17.830548] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   18.216066] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   18.227332] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   18.695338] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   18.706561] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   18.925468] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   18.936945] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.655314] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.666661] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.868014] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   19.879124] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.535327] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.546751] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.811357] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   20.822711] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   21.023292] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   21.034371] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   22.695790] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   22.706799] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   23.095565] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   23.106717] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   23.871584] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   23.882913] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   24.295982] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   24.307214] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   24.510307] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   24.521608] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   24.731435] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   24.743053] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   25.579684] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   25.590948] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   26.311307] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   26.322500] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   26.514095] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   26.525185] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   26.785219] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   26.796596] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   27.183229] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   27.194508] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   27.475575] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   27.486752] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   28.191693] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   28.203069] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   28.727211] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   28.738541] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.051311] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.062484] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.575756] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.586682] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.895385] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   29.906691] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   30.324468] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   30.335838] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   31.855783] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   31.866928] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   32.503905] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   32.514770] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   33.944710]  __futex_pivot_hash+0x2b0/0x520
+[   33.951242] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.503542] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.514318] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.877443] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   34.888914] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   35.742230] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   35.753813] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   36.809488] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   36.820779] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   37.613035]  __futex_pivot_hash+0x2b0/0x520
+[   37.619659] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   38.101250] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   38.112669] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   38.364733] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   38.376098] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   39.262339] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   39.273994] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   40.075912]  __futex_pivot_hash+0x2b0/0x520
+[   40.082624] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   40.511175] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   40.522328] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   41.399783] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   41.411248] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   43.059340] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   43.070692] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   43.331798] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   43.343294] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   44.308440]  __futex_pivot_hash+0x2b0/0x520
+[   44.315053] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   44.775508] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   44.787026] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   45.472402] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   45.483918] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   45.763849] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   45.775411] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   46.241438] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   46.253045] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   46.545010]  __futex_pivot_hash+0x2b0/0x520
+[   46.551628] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   47.067874] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   47.079327] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   47.535823] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   47.547272] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   48.860596]  __futex_pivot_hash+0x2b0/0x520
+[   48.867125] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   49.284077] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   49.295514] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   49.951757] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   49.963153] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   50.280416] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   50.292929] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   51.563616] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   51.575098] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   51.915091] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   51.926403] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   52.177238] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   52.188470] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   52.466465] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   52.478253] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   52.727236] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   52.738631] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   53.047926] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   53.059488] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   53.270273] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   53.281831] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   54.172134] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   54.183667] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   54.887225] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   54.898508] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   55.160650] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   55.172115] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   55.576103] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   55.587530] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   56.031540] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   56.043033] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   56.588359]  __futex_pivot_hash+0x2b0/0x520
+[   56.594949] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   56.795938] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   56.807375] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   57.091053] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   57.102407] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   57.305412] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   57.317054] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   57.506401] RIP: 0010:__futex_pivot_hash+0x271/0x520
+[   57.518043] RIP: 0010:__futex_pivot_hash+0x271/0x520, FAIL|
+|0531_030119|git bisect bad f25051dce97cfd7a945add0c9e273e624e060624|
+|0531_030119|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m fe00e88d217a7bf7a4d0268d08f51e624d40ee53 -d /var/www/html/bzimage -o /tmp/kernel|
+|0531_032133|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0531_032133|Run /var/www/html/bzimage/bzImage_fe00e88d217a7bf7a4d0268d08f51e624d40ee53 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0531_032146|It takes 13 seconds to find login:test login: |
+|0531_032146|Boot 1 time: takes 13 seconds to boot up.|
+|0531_032146|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0531_032147|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0531_032148|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.cprog root@localhost:/root/repro.c|
+|0531_032149|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0531_032150|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0531_032232|/var/www/html/bzimage/bzImage_fe00e88d217a7bf7a4d0268d08f51e624d40ee53 didn't contain __futex_pivot_hash: in dmesg, pass|
+|0531_032232|git bisect good fe00e88d217a7bf7a4d0268d08f51e624d40ee53|
+|0531_032232|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 7c4f75a21f636486d2969d9b6680403ea8483539 -d /var/www/html/bzimage -o /tmp/kernel|
+|0531_034304|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0531_034304|Run /var/www/html/bzimage/bzImage_7c4f75a21f636486d2969d9b6680403ea8483539 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0531_034318|It takes 14 seconds to find login:test login: |
+|0531_034318|Boot 1 time: takes 14 seconds to boot up.|
+|0531_034318|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0531_034319|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0531_034320|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.cprog root@localhost:/root/repro.c|
+|0531_034322|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0531_034322|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0531_034404|/var/www/html/bzimage/bzImage_7c4f75a21f636486d2969d9b6680403ea8483539 didn't contain __futex_pivot_hash: in dmesg, pass|
+|0531_034404|git bisect good 7c4f75a21f636486d2969d9b6680403ea8483539|
+|0531_034404|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 63e8595c060a1fef421e3eecfc05ad882dafb8ac -d /var/www/html/bzimage -o /tmp/kernel|
+|0531_040433|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0531_040433|Run /var/www/html/bzimage/bzImage_63e8595c060a1fef421e3eecfc05ad882dafb8ac with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0531_040446|It takes 13 seconds to find login:test login: |
+|0531_040446|Boot 1 time: takes 13 seconds to boot up.|
+|0531_040446|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0531_040447|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0531_040448|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.cprog root@localhost:/root/repro.c|
+|0531_040450|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0531_040450|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0531_040532|/var/www/html/bzimage/bzImage_63e8595c060a1fef421e3eecfc05ad882dafb8ac contained __futex_pivot_hash:[   17.433868]  ? __futex_pivot_hash+0x24d/0x6f0
+[   17.433878]  __futex_pivot_hash+0x24d/0x6f0
+[   17.454284] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   17.465255] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   17.644773] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   17.656009] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   18.142817] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   18.154185] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   19.695465] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   19.706832] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   19.909716] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   19.921088] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   20.439312] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   20.450681] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   20.746945] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   20.758269] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   20.975059] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   20.986418] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   21.919285] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   21.930706] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   23.295446] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   23.306765] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   23.559191] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   23.570749] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   23.824979] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   23.836634] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   25.005651] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   25.017647] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   26.094172]  __futex_pivot_hash+0x339/0x6f0
+[   26.101029] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   26.623755] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   26.635424] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   27.187449] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   27.199133] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   28.072034]  __futex_pivot_hash+0x339/0x6f0
+[   28.078607] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   28.627601] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   28.639022] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   29.274606]  __futex_pivot_hash+0x339/0x6f0
+[   29.281285] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   29.491013] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   29.502258] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   29.888507]  __futex_pivot_hash+0x339/0x6f0
+[   29.895174] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   30.278447] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   30.290007] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   30.607852] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   30.619354] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   31.040721] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   31.051966] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   31.759549] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   31.770926] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   31.983067] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   31.994524] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   32.250792] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   32.261850] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   33.196594] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   33.207863] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   34.690928] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   34.702181] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   35.067565] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   35.078823] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   35.631096] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   35.642480] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   35.871003] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   35.882298] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   36.604051] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   36.615567] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   38.095522] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   38.107024] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   39.234907] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   39.246189] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   40.099508] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   40.110500] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   40.605657] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   40.616705] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   40.811652] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   40.816566]  ? __futex_pivot_hash+0xf/0x6f0
+[   40.822979] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   41.013643] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   41.024646] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   41.370484] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   41.381930] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   41.975663] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   41.987289] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   42.288540] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   42.299643] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   42.585674] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   42.596691] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   43.734704] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   43.745871] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   44.007746]  __futex_pivot_hash+0x339/0x6f0
+[   44.014444] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   44.562740] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   44.574077] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   44.775417] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   44.787243] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   44.985709] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   44.996992] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   45.807174] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   45.818455] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   47.746842] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   47.757909] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   48.050788] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   48.062012] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   48.798911] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   48.809892] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   49.101661] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   49.112562] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   49.404585] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   49.415674] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   49.799246] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   49.810815] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   50.589763] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   50.601093] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   50.911209]  __futex_pivot_hash+0x339/0x6f0
+[   50.917824] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   51.159066] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   51.170454] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   51.974756] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   51.985998] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   52.228625] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   52.239971] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   54.514914] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   54.526486] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   54.810784] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   54.822098] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   55.413724] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   55.425274] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   55.622193] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   55.634652] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   55.849003] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   55.860605] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   56.271662]  __futex_pivot_hash+0x339/0x6f0
+[   56.278429] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   56.613928] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   56.625505] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   57.803138] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   57.814474] RIP: 0010:__futex_pivot_hash+0x272/0x6f0, FAIL|
+|0531_040532|git bisect bad 63e8595c060a1fef421e3eecfc05ad882dafb8ac|
+|0531_040532|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m bd54df5ea7cadac520e346d5f0fe5d58e635b6ba -d /var/www/html/bzimage -o /tmp/kernel|
+|0531_042542|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0531_042542|Run /var/www/html/bzimage/bzImage_bd54df5ea7cadac520e346d5f0fe5d58e635b6ba with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0531_042556|It takes 13 seconds to find login:test login: |
+|0531_042556|Boot 1 time: takes 13 seconds to boot up.|
+|0531_042556|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0531_042556|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0531_042558|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/cb2787e7e48640fb2456cbcc8be1621840de1270/repro.cprog root@localhost:/root/repro.c|
+|0531_042559|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0531_042559|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0531_042641|/var/www/html/bzimage/bzImage_bd54df5ea7cadac520e346d5f0fe5d58e635b6ba contained __futex_pivot_hash:[   17.848243]  ? __futex_pivot_hash+0x24d/0x6f0
+[   17.848254]  __futex_pivot_hash+0x24d/0x6f0
+[   17.869626] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   17.881172] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   18.427794] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   18.439348] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   18.640256]  __futex_pivot_hash+0x339/0x6f0
+[   18.647284] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   19.003189] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   19.014724] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   19.199102] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   19.210821] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   20.144961] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   20.156601] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   21.772156] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   21.783823] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   22.519555] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   22.531058] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   22.779409] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   22.790905] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   24.423520] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   24.435084] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   25.716515]  __futex_pivot_hash+0x339/0x6f0
+[   25.723310] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   26.654972] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   26.666390] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   26.895863] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   26.907473] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   27.209944] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   27.221525] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   29.349097] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   29.360808] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   31.015993]  __futex_pivot_hash+0x339/0x6f0
+[   31.022911] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   31.311547] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   31.323086] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   31.632377]  __futex_pivot_hash+0x339/0x6f0
+[   31.639243] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   33.159733]  __futex_pivot_hash+0x339/0x6f0
+[   33.166615] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   34.756423]  __futex_pivot_hash+0x339/0x6f0
+[   34.763262] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   35.115363] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   35.127028] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   35.347174] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   35.358740] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   35.566976] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   35.578478] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   36.337022] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   36.348670] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   36.747677] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   36.759327] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   37.417017] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   37.428762] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   38.016465]  __futex_pivot_hash+0x339/0x6f0
+[   38.023213] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   38.938811] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   38.950352] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   39.431039] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   39.442430] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   39.707317] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   39.719079] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   40.433980] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   40.445549] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   40.659320] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   40.670841] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   41.144952] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   41.156629] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   42.399380] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   42.410988] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   43.723192] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   43.734707] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   44.380835] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   44.392255] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   45.054090] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   45.065717] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   46.029470] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   46.041047] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   46.652416]  __futex_pivot_hash+0x339/0x6f0
+[   46.659153] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   47.242825] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   47.254245] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   47.711029] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   47.722629] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   47.990939] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   48.002585] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   48.252711] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   48.264619] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   48.609172] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   48.632675] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   48.939390] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   48.951168] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   49.387399] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   49.399145] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   49.743413] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   49.754992] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   49.959445] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   49.970921] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   50.237767] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   50.249525] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   51.279520] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   51.290868] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   51.909078] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   51.920655] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   52.215499] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   52.227120] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   52.528460]  __futex_pivot_hash+0x339/0x6f0
+[   52.535365] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   53.316271] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   53.328121] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   53.803517] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   53.815333] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   54.123125] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   54.134847] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   54.446005] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   54.457519] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   54.999290] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   55.011149] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   55.331263] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   55.342919] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   56.275131] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   56.287002] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   56.504353] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   56.515929] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   56.836081] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   56.847788] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   57.053915] RIP: 0010:__futex_pivot_hash+0x272/0x6f0
+[   57.065548] RIP: 0010:__futex_pivot_hash+0x272/0x6f0, FAIL|
+|0531_042641|git bisect bad bd54df5ea7cadac520e346d5f0fe5d58e635b6ba|
+|0531_042641|Bisect PASS: find bad commit: bd54df5ea7cadac520e346d5f0fe5d58e635b6ba is the first bad commit
+commit bd54df5ea7cadac520e346d5f0fe5d58e635b6ba
+Author: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Date:   Wed Apr 16 18:29:14 2025 +0200
+
+    futex: Allow to resize the private local hash
+    
+    The mm_struct::futex_hash_lock guards the futex_hash_bucket assignment/
+    replacement. The futex_hash_allocate()/ PR_FUTEX_HASH_SET_SLOTS
+    operation can now be invoked at runtime and resize an already existing
+    internal private futex_hash_bucket to another size.
+    
+    The reallocation is based on an idea by Thomas Gleixner: The initial
+    allocation of struct futex_private_hash sets the reference count
+    to one. Every user acquires a reference on the local hash before using
+    it and drops it after it enqueued itself on the hash bucket. There is no
+    reference held while the task is scheduled out while waiting for the
+    wake up.
+    The resize process allocates a new struct futex_private_hash and drops
+    the initial reference. Synchronized with mm_struct::futex_hash_lock it
+    is checked if the reference counter for the currently used
+    mm_struct::futex_phash is marked as DEAD. If so, then all users enqueued
+    on the current private hash are requeued on the new private hash and the
+    new private hash is set to mm_struct::futex_phash. Otherwise the newly
+    allocated private hash is saved as mm_struct::futex_phash_new and the
+    rehashing and reassigning is delayed to the futex_hash() caller once the
+    reference counter is marked DEAD.
+    The replacement is not performed at rcuref_put() time because certain
+    callers, such as futex_wait_queue(), drop their reference after changing
+    the task state. This change will be destroyed once the futex_hash_lock
+    is acquired.
+    
+    The user can change the number slots with PR_FUTEX_HASH_SET_SLOTS
+    multiple times. An increase and decrease is allowed and request blocks
+    until the assignment is done.
+    
+    The private hash allocated at thread creation is changed from 16 to
+      16 <= 4 * number_of_threads <= global_hash_size
+    where number_of_threads can not exceed the number of online CPUs. Should
+    the user PR_FUTEX_HASH_SET_SLOTS then the auto scaling is disabled.
+    
+    [peterz: reorganize the code to avoid state tracking and simplify new
+    object handling, block the user until changes are in effect, allow
+    increase and decrease of the hash].
+    
+    Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+    Signed-off-by: Peter Zijlstra (Intel) <peterz@infradead.org>
+    Link: https://lore.kernel.org/r/20250416162921.513656-15-bigeasy@linutronix.de
+
+ include/linux/futex.h    |   3 +-
+ include/linux/mm_types.h |   4 +-
+ kernel/futex/core.c      | 290 +++++++++++++++++++++++++++++++++++++++++++----
+ kernel/futex/requeue.c   |   5 +
+ 4 files changed, 281 insertions(+), 21 deletions(-)|
+|0531_042641|cmd=git bisect log >> /var/www/html/bzimage/bi.log|
+|0531_042641|cmd=git bisect log >> /var/www/html/bzimage/0531_004606___futex_pivot_hash/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [fefff2755f2aa4125dce2a1edfe7e545c7c621f2] Add linux-next specific files for 20250527
+git bisect bad fefff2755f2aa4125dce2a1edfe7e545c7c621f2
+# status: waiting for good commit(s), bad commit known
+# good: [0ff41df1cb268fc69e703a08a57ee14ae967d0ca] Linux 6.15
+git bisect good 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
+# good: [13aa56bc0d70b969e61a52f6e90b569e1a064d9c] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/rdma/rdma.git
+git bisect good 13aa56bc0d70b969e61a52f6e90b569e1a064d9c
+# good: [284403b8eb5df697356a9a024b3a42b3aeab28d4] Merge branch 'for-mfd-next' of git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git
+git bisect good 284403b8eb5df697356a9a024b3a42b3aeab28d4
+# bad: [c7aac11d3c9e574d835c2a91ba95af76ca883f82] Merge branch 'driver-core-next' of git://git.kernel.org/pub/scm/linux/kernel/git/driver-core/driver-core.git
+git bisect bad c7aac11d3c9e574d835c2a91ba95af76ca883f82
+# bad: [f22368a9e2e82d809deb53599697d547b8468d6b] Merge branch into tip/master: 'x86/sgx'
+git bisect bad f22368a9e2e82d809deb53599697d547b8468d6b
+# good: [ad29891c2a6699eed252b3a9226c425ccdcb4420] Merge branch into tip/master: 'x86/merge'
+git bisect good ad29891c2a6699eed252b3a9226c425ccdcb4420
+# good: [dfc37f9a62d492a047affe94b7d5f533059c41eb] Merge branch into tip/master: 'irq/drivers'
+git bisect good dfc37f9a62d492a047affe94b7d5f533059c41eb
+# bad: [dfee667c29f6737a4f621a666bed0edd938f782e] Merge branch into tip/master: 'perf/core'
+git bisect bad dfee667c29f6737a4f621a666bed0edd938f782e
+# bad: [94ec70880fd376dd5cc60ba2bd7ddf830b3d4f28] Merge branch 'locking/futex' into locking/core, to pick up pending futex changes
+git bisect bad 94ec70880fd376dd5cc60ba2bd7ddf830b3d4f28
+# bad: [f25051dce97cfd7a945add0c9e273e624e060624] tools headers: Synchronize prctl.h ABI header
+git bisect bad f25051dce97cfd7a945add0c9e273e624e060624
+# good: [fe00e88d217a7bf7a4d0268d08f51e624d40ee53] futex: Decrease the waiter count before the unlock operation
+git bisect good fe00e88d217a7bf7a4d0268d08f51e624d40ee53
+# good: [7c4f75a21f636486d2969d9b6680403ea8483539] futex: Allow automatic allocation of process wide futex hash
+git bisect good 7c4f75a21f636486d2969d9b6680403ea8483539
+# bad: [63e8595c060a1fef421e3eecfc05ad882dafb8ac] futex: Allow to make the private hash immutable
+git bisect bad 63e8595c060a1fef421e3eecfc05ad882dafb8ac
+# bad: [bd54df5ea7cadac520e346d5f0fe5d58e635b6ba] futex: Allow to resize the private local hash
+git bisect bad bd54df5ea7cadac520e346d5f0fe5d58e635b6ba
+# first bad commit: [bd54df5ea7cadac520e346d5f0fe5d58e635b6ba] futex: Allow to resize the private local hash
+|0531_042641|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m fefff2755f2aa4125dce2a1edfe7e545c7c621f2 -b bd54df5ea7cadac520e346d5f0fe5d58e635b6ba -d /var/www/html/bzimage -o /tmp/kernel -f /var/www/html/bzimage/bzImage_fefff2755f2aa4125dce2a1edfe7e545c7c621f2_bd54df5ea7cadac520e346d5f0fe5d58e635b6ba_revert|
+|0531_042715|1st base commit:0ff41df1cb268fc69e703a08a57ee14ae967d0ca!|
+|0531_042715|FAIL|bzImage:/var/www/html/bzimage/bzImage_fefff2755f2aa4125dce2a1edfe7e545c7c621f2_bd54df5ea7cadac520e346d5f0fe5d58e635b6ba_revert does not exist:|
+|0531_042715|1st base commit:0ff41df1cb268fc69e703a08a57ee14ae967d0ca!|
+|0531_042715|ISSUE:cb2787e7e48640fb2456cbcc8be1621840de1270  EMAIL status after check:Email_not_sent|
