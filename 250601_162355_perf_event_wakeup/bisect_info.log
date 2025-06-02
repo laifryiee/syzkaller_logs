@@ -1,0 +1,46 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [3a83b350b5be4b4f6bd895eecf9a92080200ee5d] Add linux-next specific files for 20250530
+git bisect bad 3a83b350b5be4b4f6bd895eecf9a92080200ee5d
+# status: waiting for good commit(s), bad commit known
+# good: [9f4ad9e425a1d3b6a34617b8ea226d56a119a717] Linux 5.12
+git bisect good 9f4ad9e425a1d3b6a34617b8ea226d56a119a717
+# good: [e81507acdc19d91df4121f409871f3e4e055f6c2] Merge tag 'clk-for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux
+git bisect good e81507acdc19d91df4121f409871f3e4e055f6c2
+# good: [ea5f6ad9ad9645733b72ab53a98e719b460d36a6] Merge tag 'platform-drivers-x86-v6.10-1' of git://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86
+git bisect good ea5f6ad9ad9645733b72ab53a98e719b460d36a6
+# good: [b50ecc5aca4d18f1f0c4942f5c797bc85edef144] Merge tag 'perf-tools-for-v6.13-2024-11-24' of git://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools
+git bisect good b50ecc5aca4d18f1f0c4942f5c797bc85edef144
+# bad: [81d8e5e2132215d21f2cddffcd2b16d08c0389fa] Merge tag 'f2fs-for-6.15-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs
+git bisect bad 81d8e5e2132215d21f2cddffcd2b16d08c0389fa
+# good: [184a0997fb77f4a9527fc867fcd16806776c27ce] Merge tag 'media/v6.14-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+git bisect good 184a0997fb77f4a9527fc867fcd16806776c27ce
+# good: [90c80211559ee8e9b6104cb3cb519a6ac3155a2a] Merge tag 'mt76-next-2025-03-19' of https://github.com/nbd168/wireless
+git bisect good 90c80211559ee8e9b6104cb3cb519a6ac3155a2a
+# bad: [c84907a1459588c883ef84a35bb69d46ca37e4e7] Merge tag 'auxdisplay-v6.15-1' of git://git.kernel.org/pub/scm/linux/kernel/git/andy/linux-auxdisplay
+git bisect bad c84907a1459588c883ef84a35bb69d46ca37e4e7
+# bad: [e34c38057a131d14e47b4acb461564d9f351b9f7] Merge tag 'x86-core-2025-03-22' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect bad e34c38057a131d14e47b4acb461564d9f351b9f7
+# good: [06961fbbbd7a832a5943413447d2813a714a3c82] Merge tag 'move-lib-kunit-v6.15-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/kees/linux
+git bisect good 06961fbbbd7a832a5943413447d2813a714a3c82
+# good: [3ba7dfb8da62c43ea02bc278863367c2b0427cc1] Merge tag 'rcu-next-v6.15' of git://git.kernel.org/pub/scm/linux/kernel/git/rcu/linux
+git bisect good 3ba7dfb8da62c43ea02bc278863367c2b0427cc1
+# good: [4476e7f81467b2c1b0aea7383e657181a3f9e652] x86/amd_node: Add a smn_read_register() helper
+git bisect good 4476e7f81467b2c1b0aea7383e657181a3f9e652
+# good: [32b22538bea83bd48f00ab1403e5a4dbce41f0d0] Merge tag 'sched-core-2025-03-22' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect good 32b22538bea83bd48f00ab1403e5a4dbce41f0d0
+# bad: [cb4369129339060218baca718a578bb0b826e734] perf: Save PMU specific data in task_struct
+git bisect bad cb4369129339060218baca718a578bb0b826e734
+# good: [8f4c4963d28349cbf1920ab71edea8276f6ac4c5] perf/core: Simplify the perf_pmu_register() error path
+git bisect good 8f4c4963d28349cbf1920ab71edea8276f6ac4c5
+# good: [4eabf533fb1886089ef57e0c8ec52048b1741e39] perf/core: Detach 'struct perf_cpu_pmu_context' and 'struct pmu' lifetimes
+git bisect good 4eabf533fb1886089ef57e0c8ec52048b1741e39
+# good: [fa6192adc32f4fdfe5b74edd5b210e12afd6ecc0] uprobes/x86: Harden uretprobe syscall trampoline check
+git bisect good fa6192adc32f4fdfe5b74edd5b210e12afd6ecc0
+# good: [b6ecb57f1fec114cfa19b1bf06f25f904ca928f9] perf/core: Use sysfs_emit() instead of scnprintf()
+git bisect good b6ecb57f1fec114cfa19b1bf06f25f904ca928f9
+# bad: [c96fff391c095c11dc87dab35be72dee7d217cde] perf/ring_buffer: Allow the EPOLLRDNORM flag for poll
+git bisect bad c96fff391c095c11dc87dab35be72dee7d217cde
+# bad: [f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6] perf/core: Use POLLHUP for pinned events in error
+git bisect bad f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6
+# first bad commit: [f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6] perf/core: Use POLLHUP for pinned events in error

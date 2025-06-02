@@ -1,0 +1,391 @@
+|0601_162355|cmd=cd /root/linux-next|
+|0601_162355|git log next-20250530 check_result:commit 3a83b350b5be4b4f6bd895eecf9a92080200ee5d|
+|0601_162355|git log v5.12 check_result:commit 9f4ad9e425a1d3b6a34617b8ea226d56a119a717|
+|0601_162355|cmd=git checkout -f next-20250530|
+|0601_162358|sshpass is already installed|
+|0601_162358|cmd=cd /root/linux-next|
+|0601_162358|ISSUE_FOLDER alreayd exist:/var/www/html//syzkaller/2025_06_01/ly_bisection|
+|0601_162358|cmd=cp -rf /root/vm_bisect/config-5.18rc4i_kvm /root/laiyi/bisection/0601_162355_perf_event_wakeup/kconfig_origin|
+|0601_162358|cmd=cp -rf /root/vm_bisect/repro.sh /root/laiyi/bisection/0601_162355_perf_event_wakeup|
+|0601_162358|/root/ly_bisection/repro is not .c or .cprog file|
+|0601_162358||/root/laiyi/bisection/bzImage_next-20250530| does not exist, will make it|
+|0601_162358|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m next-20250530 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_163751|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_next-20250530, /root/laiyi/bisection/0601_162355_perf_event_wakeup/next-20250530_dmesg.log, port:10024, 1 time|
+|0601_163821|It takes 29 seconds to find login:test login: |
+|0601_163821|Boot 1 time: takes 29 seconds to boot up.|
+|0601_163821|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_163824|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_163824|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_163826|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_163827|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_163827|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_163837|/root/laiyi/bisection/bzImage_next-20250530 contained perf_event_wakeup:[   39.921819]  #3: ffffffff8725cd00 (rcu_read_lock){....}-{1:3}, at: perf_event_wakeup+0x6c/0x470
+[   39.923537]  perf_event_wakeup+0x14a/0x470, FAIL|
+|0601_163837|Found time:39 in /root/laiyi/bisection/0601_162355_perf_event_wakeup/next-20250530_dmesg.log|
+|0601_163837|Logic: |<=50: +50|50-100 +180|>100 +1800| Set TIME:219|
+|0601_163837|-END- commit next-20250530 FAIL bad|
+|0601_163837|cmd=cd /root/linux-next|
+|0601_163837||/root/laiyi/bisection/bzImage_v5.12| does not exist, will make it|
+|0601_163837|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m v5.12 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_164942|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_v5.12, /root/laiyi/bisection/0601_162355_perf_event_wakeup/v5.12_dmesg.log, port:10024, 1 time|
+|0601_164959|It takes 17 seconds to find login:test login: |
+|0601_164959|Boot 1 time: takes 17 seconds to boot up.|
+|0601_164959|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_165002|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_165002|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_165003|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_165004|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_165004|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_165343|/root/laiyi/bisection/bzImage_v5.12 didn't contain perf_event_wakeup: in dmesg, pass|
+|0601_165343|Start commit v5.12 PASS good|
+|0601_165343|cmd=git checkout -f next-20250530|
+|0601_165343|cmd=git bisect start|
+|0601_165343|cmd=git bisect bad next-20250530|
+|0601_165343|Bisect first start commit:v5.12|
+|0601_165343|git bisect good v5.12|
+|0601_165639||/root/laiyi/bisection/bzImage_e81507acdc19d91df4121f409871f3e4e055f6c2| does not exist, will make it|
+|0601_165639|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m e81507acdc19d91df4121f409871f3e4e055f6c2 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_171013|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_e81507acdc19d91df4121f409871f3e4e055f6c2, /root/laiyi/bisection/0601_162355_perf_event_wakeup/e81507acdc19d91df4121f409871f3e4e055f6c2_dmesg.log, port:10024, 1 time|
+|0601_171053|Boot 1 time: takes 41 seconds > 40, retry|
+|0601_171053|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_e81507acdc19d91df4121f409871f3e4e055f6c2, /root/laiyi/bisection/0601_162355_perf_event_wakeup/e81507acdc19d91df4121f409871f3e4e055f6c2_dmesg.log, port:10024, 2 time|
+|0601_171121|It takes 28 seconds to find login:test login: |
+|0601_171121|Boot 2 time: takes 28 seconds to boot up.|
+|0601_171121|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_171126|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_171126|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_171128|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_171129|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_171129|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_171508|/root/laiyi/bisection/bzImage_e81507acdc19d91df4121f409871f3e4e055f6c2 didn't contain perf_event_wakeup: in dmesg, pass|
+|0601_171508|git bisect good e81507acdc19d91df4121f409871f3e4e055f6c2|
+|0601_171632||/root/laiyi/bisection/bzImage_ea5f6ad9ad9645733b72ab53a98e719b460d36a6| does not exist, will make it|
+|0601_171632|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m ea5f6ad9ad9645733b72ab53a98e719b460d36a6 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_173145|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_ea5f6ad9ad9645733b72ab53a98e719b460d36a6, /root/laiyi/bisection/0601_162355_perf_event_wakeup/ea5f6ad9ad9645733b72ab53a98e719b460d36a6_dmesg.log, port:10024, 1 time|
+|0601_173214|It takes 29 seconds to find login:test login: |
+|0601_173214|Boot 1 time: takes 29 seconds to boot up.|
+|0601_173214|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_173219|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_173219|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_173221|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_173222|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_173222|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_173601|/root/laiyi/bisection/bzImage_ea5f6ad9ad9645733b72ab53a98e719b460d36a6 didn't contain perf_event_wakeup: in dmesg, pass|
+|0601_173601|git bisect good ea5f6ad9ad9645733b72ab53a98e719b460d36a6|
+|0601_173629||/root/laiyi/bisection/bzImage_b50ecc5aca4d18f1f0c4942f5c797bc85edef144| does not exist, will make it|
+|0601_173629|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m b50ecc5aca4d18f1f0c4942f5c797bc85edef144 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_175149|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_b50ecc5aca4d18f1f0c4942f5c797bc85edef144, /root/laiyi/bisection/0601_162355_perf_event_wakeup/b50ecc5aca4d18f1f0c4942f5c797bc85edef144_dmesg.log, port:10024, 1 time|
+|0601_175218|It takes 28 seconds to find login:test login: |
+|0601_175218|Boot 1 time: takes 28 seconds to boot up.|
+|0601_175218|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_175222|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_175222|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_175223|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_175224|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_175224|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_175603|/root/laiyi/bisection/bzImage_b50ecc5aca4d18f1f0c4942f5c797bc85edef144 didn't contain perf_event_wakeup: in dmesg, pass|
+|0601_175603|git bisect good b50ecc5aca4d18f1f0c4942f5c797bc85edef144|
+|0601_175623||/root/laiyi/bisection/bzImage_81d8e5e2132215d21f2cddffcd2b16d08c0389fa| does not exist, will make it|
+|0601_175623|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 81d8e5e2132215d21f2cddffcd2b16d08c0389fa -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_181112|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_81d8e5e2132215d21f2cddffcd2b16d08c0389fa, /root/laiyi/bisection/0601_162355_perf_event_wakeup/81d8e5e2132215d21f2cddffcd2b16d08c0389fa_dmesg.log, port:10024, 1 time|
+|0601_181138|It takes 26 seconds to find login:test login: |
+|0601_181138|Boot 1 time: takes 26 seconds to boot up.|
+|0601_181138|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_181142|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_181142|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_181143|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_181144|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_181144|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_181523|/root/laiyi/bisection/bzImage_81d8e5e2132215d21f2cddffcd2b16d08c0389fa contained perf_event_wakeup:[   33.698897]  #4: ffffffff8725d300 (rcu_read_lock){....}-{1:3}, at: perf_event_wakeup+0x6c/0x470
+[   33.700583]  perf_event_wakeup+0x14a/0x470, FAIL|
+|0601_181523|git bisect bad 81d8e5e2132215d21f2cddffcd2b16d08c0389fa|
+|0601_181529||/root/laiyi/bisection/bzImage_184a0997fb77f4a9527fc867fcd16806776c27ce| does not exist, will make it|
+|0601_181529|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 184a0997fb77f4a9527fc867fcd16806776c27ce -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_183030|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_184a0997fb77f4a9527fc867fcd16806776c27ce, /root/laiyi/bisection/0601_162355_perf_event_wakeup/184a0997fb77f4a9527fc867fcd16806776c27ce_dmesg.log, port:10024, 1 time|
+|0601_183058|It takes 28 seconds to find login:test login: |
+|0601_183058|Boot 1 time: takes 28 seconds to boot up.|
+|0601_183059|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_183103|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_183103|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_183104|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_183105|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_183105|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_183444|/root/laiyi/bisection/bzImage_184a0997fb77f4a9527fc867fcd16806776c27ce didn't contain perf_event_wakeup: in dmesg, pass|
+|0601_183444|git bisect good 184a0997fb77f4a9527fc867fcd16806776c27ce|
+|0601_183447||/root/laiyi/bisection/bzImage_90c80211559ee8e9b6104cb3cb519a6ac3155a2a| does not exist, will make it|
+|0601_183447|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 90c80211559ee8e9b6104cb3cb519a6ac3155a2a -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_184944|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_90c80211559ee8e9b6104cb3cb519a6ac3155a2a, /root/laiyi/bisection/0601_162355_perf_event_wakeup/90c80211559ee8e9b6104cb3cb519a6ac3155a2a_dmesg.log, port:10024, 1 time|
+|0601_185012|It takes 28 seconds to find login:test login: |
+|0601_185012|Boot 1 time: takes 28 seconds to boot up.|
+|0601_185012|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_185016|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_185016|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_185018|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_185019|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_185019|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_185358|/root/laiyi/bisection/bzImage_90c80211559ee8e9b6104cb3cb519a6ac3155a2a didn't contain perf_event_wakeup: in dmesg, pass|
+|0601_185358|git bisect good 90c80211559ee8e9b6104cb3cb519a6ac3155a2a|
+|0601_185359||/root/laiyi/bisection/bzImage_c84907a1459588c883ef84a35bb69d46ca37e4e7| does not exist, will make it|
+|0601_185359|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m c84907a1459588c883ef84a35bb69d46ca37e4e7 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_190847|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_c84907a1459588c883ef84a35bb69d46ca37e4e7, /root/laiyi/bisection/0601_162355_perf_event_wakeup/c84907a1459588c883ef84a35bb69d46ca37e4e7_dmesg.log, port:10024, 1 time|
+|0601_190913|It takes 26 seconds to find login:test login: |
+|0601_190913|Boot 1 time: takes 26 seconds to boot up.|
+|0601_190913|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_190917|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_190917|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_190918|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_190919|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_190919|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_191258|/root/laiyi/bisection/bzImage_c84907a1459588c883ef84a35bb69d46ca37e4e7 contained perf_event_wakeup:[   39.561762]  #3: ffffffff8705d940 (rcu_read_lock){....}-{1:3}, at: perf_event_wakeup+0x6c/0x470
+[   39.563439]  perf_event_wakeup+0x14a/0x470, FAIL|
+|0601_191258|git bisect bad c84907a1459588c883ef84a35bb69d46ca37e4e7|
+|0601_191259||/root/laiyi/bisection/bzImage_e34c38057a131d14e47b4acb461564d9f351b9f7| does not exist, will make it|
+|0601_191259|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m e34c38057a131d14e47b4acb461564d9f351b9f7 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_192750|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_e34c38057a131d14e47b4acb461564d9f351b9f7, /root/laiyi/bisection/0601_162355_perf_event_wakeup/e34c38057a131d14e47b4acb461564d9f351b9f7_dmesg.log, port:10024, 1 time|
+|0601_192816|It takes 26 seconds to find login:test login: |
+|0601_192816|Boot 1 time: takes 26 seconds to boot up.|
+|0601_192816|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_192820|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_192820|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_192821|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_192822|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_192822|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_193201|/root/laiyi/bisection/bzImage_e34c38057a131d14e47b4acb461564d9f351b9f7 contained perf_event_wakeup:[   33.447842]  #6: ffffffff8705b5c0 (rcu_read_lock){....}-{1:3}, at: perf_event_wakeup+0x6c/0x470
+[   33.449542]  perf_event_wakeup+0x14a/0x470, FAIL|
+|0601_193201|git bisect bad e34c38057a131d14e47b4acb461564d9f351b9f7|
+|0601_193202||/root/laiyi/bisection/bzImage_06961fbbbd7a832a5943413447d2813a714a3c82| does not exist, will make it|
+|0601_193202|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 06961fbbbd7a832a5943413447d2813a714a3c82 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_194658|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_06961fbbbd7a832a5943413447d2813a714a3c82, /root/laiyi/bisection/0601_162355_perf_event_wakeup/06961fbbbd7a832a5943413447d2813a714a3c82_dmesg.log, port:10024, 1 time|
+|0601_194726|It takes 28 seconds to find login:test login: |
+|0601_194726|Boot 1 time: takes 28 seconds to boot up.|
+|0601_194726|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_194730|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_194730|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_194732|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_194733|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_194733|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_195112|/root/laiyi/bisection/bzImage_06961fbbbd7a832a5943413447d2813a714a3c82 didn't contain perf_event_wakeup: in dmesg, pass|
+|0601_195112|git bisect good 06961fbbbd7a832a5943413447d2813a714a3c82|
+|0601_195112||/root/laiyi/bisection/bzImage_3ba7dfb8da62c43ea02bc278863367c2b0427cc1| does not exist, will make it|
+|0601_195112|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 3ba7dfb8da62c43ea02bc278863367c2b0427cc1 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_200613|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_3ba7dfb8da62c43ea02bc278863367c2b0427cc1, /root/laiyi/bisection/0601_162355_perf_event_wakeup/3ba7dfb8da62c43ea02bc278863367c2b0427cc1_dmesg.log, port:10024, 1 time|
+|0601_200641|It takes 28 seconds to find login:test login: |
+|0601_200641|Boot 1 time: takes 28 seconds to boot up.|
+|0601_200641|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_200645|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_200645|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_200647|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_200648|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_200648|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_201027|/root/laiyi/bisection/bzImage_3ba7dfb8da62c43ea02bc278863367c2b0427cc1 didn't contain perf_event_wakeup: in dmesg, pass|
+|0601_201027|git bisect good 3ba7dfb8da62c43ea02bc278863367c2b0427cc1|
+|0601_201028||/root/laiyi/bisection/bzImage_4476e7f81467b2c1b0aea7383e657181a3f9e652| does not exist, will make it|
+|0601_201028|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 4476e7f81467b2c1b0aea7383e657181a3f9e652 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_202512|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_4476e7f81467b2c1b0aea7383e657181a3f9e652, /root/laiyi/bisection/0601_162355_perf_event_wakeup/4476e7f81467b2c1b0aea7383e657181a3f9e652_dmesg.log, port:10024, 1 time|
+|0601_202540|It takes 28 seconds to find login:test login: |
+|0601_202540|Boot 1 time: takes 28 seconds to boot up.|
+|0601_202540|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_202544|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_202544|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_202546|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_202547|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_202547|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_202926|/root/laiyi/bisection/bzImage_4476e7f81467b2c1b0aea7383e657181a3f9e652 didn't contain perf_event_wakeup: in dmesg, pass|
+|0601_202926|git bisect good 4476e7f81467b2c1b0aea7383e657181a3f9e652|
+|0601_202927||/root/laiyi/bisection/bzImage_32b22538bea83bd48f00ab1403e5a4dbce41f0d0| does not exist, will make it|
+|0601_202927|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 32b22538bea83bd48f00ab1403e5a4dbce41f0d0 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_204425|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_32b22538bea83bd48f00ab1403e5a4dbce41f0d0, /root/laiyi/bisection/0601_162355_perf_event_wakeup/32b22538bea83bd48f00ab1403e5a4dbce41f0d0_dmesg.log, port:10024, 1 time|
+|0601_204451|It takes 26 seconds to find login:test login: |
+|0601_204451|Boot 1 time: takes 26 seconds to boot up.|
+|0601_204451|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_204455|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_204455|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_204456|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_204457|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_204457|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_204836|/root/laiyi/bisection/bzImage_32b22538bea83bd48f00ab1403e5a4dbce41f0d0 didn't contain perf_event_wakeup: in dmesg, pass|
+|0601_204836|git bisect good 32b22538bea83bd48f00ab1403e5a4dbce41f0d0|
+|0601_204837||/root/laiyi/bisection/bzImage_cb4369129339060218baca718a578bb0b826e734| does not exist, will make it|
+|0601_204837|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m cb4369129339060218baca718a578bb0b826e734 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_210333|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_cb4369129339060218baca718a578bb0b826e734, /root/laiyi/bisection/0601_162355_perf_event_wakeup/cb4369129339060218baca718a578bb0b826e734_dmesg.log, port:10024, 1 time|
+|0601_210402|It takes 28 seconds to find login:test login: |
+|0601_210402|Boot 1 time: takes 28 seconds to boot up.|
+|0601_210402|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_210406|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_210406|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_210407|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_210408|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_210408|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_210747|/root/laiyi/bisection/bzImage_cb4369129339060218baca718a578bb0b826e734 contained perf_event_wakeup:[   39.498214]  #3: ffffffff8705f640 (rcu_read_lock){....}-{1:3}, at: perf_event_wakeup+0x6c/0x470
+[   39.500012]  perf_event_wakeup+0x14a/0x470, FAIL|
+|0601_210747|git bisect bad cb4369129339060218baca718a578bb0b826e734|
+|0601_210748||/root/laiyi/bisection/bzImage_8f4c4963d28349cbf1920ab71edea8276f6ac4c5| does not exist, will make it|
+|0601_210748|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 8f4c4963d28349cbf1920ab71edea8276f6ac4c5 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_212245|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_8f4c4963d28349cbf1920ab71edea8276f6ac4c5, /root/laiyi/bisection/0601_162355_perf_event_wakeup/8f4c4963d28349cbf1920ab71edea8276f6ac4c5_dmesg.log, port:10024, 1 time|
+|0601_212314|It takes 28 seconds to find login:test login: |
+|0601_212314|Boot 1 time: takes 28 seconds to boot up.|
+|0601_212314|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_212317|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_212317|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_212319|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_212320|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_212320|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_212659|/root/laiyi/bisection/bzImage_8f4c4963d28349cbf1920ab71edea8276f6ac4c5 didn't contain perf_event_wakeup: in dmesg, pass|
+|0601_212659|git bisect good 8f4c4963d28349cbf1920ab71edea8276f6ac4c5|
+|0601_212659||/root/laiyi/bisection/bzImage_4eabf533fb1886089ef57e0c8ec52048b1741e39| does not exist, will make it|
+|0601_212659|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 4eabf533fb1886089ef57e0c8ec52048b1741e39 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_214157|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_4eabf533fb1886089ef57e0c8ec52048b1741e39, /root/laiyi/bisection/0601_162355_perf_event_wakeup/4eabf533fb1886089ef57e0c8ec52048b1741e39_dmesg.log, port:10024, 1 time|
+|0601_214225|It takes 28 seconds to find login:test login: |
+|0601_214225|Boot 1 time: takes 28 seconds to boot up.|
+|0601_214225|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_214229|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_214229|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_214231|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_214232|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_214232|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_214611|/root/laiyi/bisection/bzImage_4eabf533fb1886089ef57e0c8ec52048b1741e39 didn't contain perf_event_wakeup: in dmesg, pass|
+|0601_214611|git bisect good 4eabf533fb1886089ef57e0c8ec52048b1741e39|
+|0601_214611||/root/laiyi/bisection/bzImage_fa6192adc32f4fdfe5b74edd5b210e12afd6ecc0| does not exist, will make it|
+|0601_214611|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m fa6192adc32f4fdfe5b74edd5b210e12afd6ecc0 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_220107|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_fa6192adc32f4fdfe5b74edd5b210e12afd6ecc0, /root/laiyi/bisection/0601_162355_perf_event_wakeup/fa6192adc32f4fdfe5b74edd5b210e12afd6ecc0_dmesg.log, port:10024, 1 time|
+|0601_220137|It takes 29 seconds to find login:test login: |
+|0601_220137|Boot 1 time: takes 29 seconds to boot up.|
+|0601_220137|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_220141|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_220141|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_220142|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_220143|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_220143|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_220522|/root/laiyi/bisection/bzImage_fa6192adc32f4fdfe5b74edd5b210e12afd6ecc0 didn't contain perf_event_wakeup: in dmesg, pass|
+|0601_220522|git bisect good fa6192adc32f4fdfe5b74edd5b210e12afd6ecc0|
+|0601_220523||/root/laiyi/bisection/bzImage_b6ecb57f1fec114cfa19b1bf06f25f904ca928f9| does not exist, will make it|
+|0601_220523|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m b6ecb57f1fec114cfa19b1bf06f25f904ca928f9 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_222022|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_b6ecb57f1fec114cfa19b1bf06f25f904ca928f9, /root/laiyi/bisection/0601_162355_perf_event_wakeup/b6ecb57f1fec114cfa19b1bf06f25f904ca928f9_dmesg.log, port:10024, 1 time|
+|0601_222050|It takes 28 seconds to find login:test login: |
+|0601_222050|Boot 1 time: takes 28 seconds to boot up.|
+|0601_222050|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_222054|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_222054|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_222055|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_222056|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_222056|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_222435|/root/laiyi/bisection/bzImage_b6ecb57f1fec114cfa19b1bf06f25f904ca928f9 didn't contain perf_event_wakeup: in dmesg, pass|
+|0601_222436|git bisect good b6ecb57f1fec114cfa19b1bf06f25f904ca928f9|
+|0601_222436||/root/laiyi/bisection/bzImage_c96fff391c095c11dc87dab35be72dee7d217cde| does not exist, will make it|
+|0601_222436|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m c96fff391c095c11dc87dab35be72dee7d217cde -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_223934|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_c96fff391c095c11dc87dab35be72dee7d217cde, /root/laiyi/bisection/0601_162355_perf_event_wakeup/c96fff391c095c11dc87dab35be72dee7d217cde_dmesg.log, port:10024, 1 time|
+|0601_224002|It takes 28 seconds to find login:test login: |
+|0601_224002|Boot 1 time: takes 28 seconds to boot up.|
+|0601_224002|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_224006|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_224006|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_224008|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_224009|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_224009|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_224348|/root/laiyi/bisection/bzImage_c96fff391c095c11dc87dab35be72dee7d217cde contained perf_event_wakeup:[   38.731974]  #3: ffffffff8705f640 (rcu_read_lock){....}-{1:3}, at: perf_event_wakeup+0x6c/0x470
+[   38.733835]  perf_event_wakeup+0x14a/0x470, FAIL|
+|0601_224348|git bisect bad c96fff391c095c11dc87dab35be72dee7d217cde|
+|0601_224348||/root/laiyi/bisection/bzImage_f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6| does not exist, will make it|
+|0601_224348|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6 -d /root/laiyi/bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0601_225844|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bisection/bzImage_f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6, /root/laiyi/bisection/0601_162355_perf_event_wakeup/f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6_dmesg.log, port:10024, 1 time|
+|0601_225913|It takes 29 seconds to find login:test login: |
+|0601_225913|Boot 1 time: takes 29 seconds to boot up.|
+|0601_225913|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0601_225918|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0601_225918|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/bisection/0601_162355_perf_event_wakeup/repro root@localhost:/root/repro|
+|0601_225919|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0601_225921|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0601_225921|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0601_230300|/root/laiyi/bisection/bzImage_f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6 contained perf_event_wakeup:[   40.538858]  #4: ffffffff8705f640 (rcu_read_lock){....}-{1:3}, at: perf_event_wakeup+0x6c/0x470
+[   40.540741]  perf_event_wakeup+0x14a/0x470, FAIL|
+|0601_230300|git bisect bad f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6|
+|0601_230300|Bisect PASS: find bad commit: f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6 is the first bad commit
+commit f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6
+Author: Namhyung Kim <namhyung@kernel.org>
+Date:   Sun Mar 16 23:17:45 2025 -0700
+
+    perf/core: Use POLLHUP for pinned events in error
+    
+    Pinned performance events can enter an error state when they fail to be
+    scheduled in the context due to a failed constraint or some other conflict
+    or condition.
+    
+    In error state these events won't generate any samples anymore and are
+    silently ignored until they are recovered by PERF_EVENT_IOC_ENABLE,
+    or the condition can also change so that they can be scheduled in.
+    
+    Tooling should be allowed to know about the state change, but
+    currently there's no mechanism to notify tooling when events enter
+    an error state.
+    
+    One way to do this is to issue a POLLHUP event to poll(2) to handle this.
+    Reading events in an error state would return 0 (EOF) and it matches to
+    the behavior of POLLHUP according to the man page.
+    
+    Tooling should remove the fd of the event from pollfd after getting
+    POLLHUP, otherwise it'll be returned repeatedly.
+    
+    [ mingo: Clarified the changelog ]
+    
+    Signed-off-by: Namhyung Kim <namhyung@kernel.org>
+    Signed-off-by: Ingo Molnar <mingo@kernel.org>
+    Cc: Peter Zijlstra <peterz@infradead.org>
+    Cc: Arnaldo Carvalho de Melo <acme@redhat.com>
+    Cc: "H. Peter Anvin" <hpa@zytor.com>
+    Cc: Linus Torvalds <torvalds@linux-foundation.org>
+    Link: https://lore.kernel.org/r/20250317061745.1777584-1-namhyung@kernel.org
+
+ kernel/events/core.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)|
+|0601_230300|cmd=git bisect log >> /root/laiyi/bisection/bi.log|
+|0601_230300|cmd=git bisect log >> /root/laiyi/bisection/0601_162355_perf_event_wakeup/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [3a83b350b5be4b4f6bd895eecf9a92080200ee5d] Add linux-next specific files for 20250530
+git bisect bad 3a83b350b5be4b4f6bd895eecf9a92080200ee5d
+# status: waiting for good commit(s), bad commit known
+# good: [9f4ad9e425a1d3b6a34617b8ea226d56a119a717] Linux 5.12
+git bisect good 9f4ad9e425a1d3b6a34617b8ea226d56a119a717
+# good: [e81507acdc19d91df4121f409871f3e4e055f6c2] Merge tag 'clk-for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux
+git bisect good e81507acdc19d91df4121f409871f3e4e055f6c2
+# good: [ea5f6ad9ad9645733b72ab53a98e719b460d36a6] Merge tag 'platform-drivers-x86-v6.10-1' of git://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86
+git bisect good ea5f6ad9ad9645733b72ab53a98e719b460d36a6
+# good: [b50ecc5aca4d18f1f0c4942f5c797bc85edef144] Merge tag 'perf-tools-for-v6.13-2024-11-24' of git://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools
+git bisect good b50ecc5aca4d18f1f0c4942f5c797bc85edef144
+# bad: [81d8e5e2132215d21f2cddffcd2b16d08c0389fa] Merge tag 'f2fs-for-6.15-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs
+git bisect bad 81d8e5e2132215d21f2cddffcd2b16d08c0389fa
+# good: [184a0997fb77f4a9527fc867fcd16806776c27ce] Merge tag 'media/v6.14-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+git bisect good 184a0997fb77f4a9527fc867fcd16806776c27ce
+# good: [90c80211559ee8e9b6104cb3cb519a6ac3155a2a] Merge tag 'mt76-next-2025-03-19' of https://github.com/nbd168/wireless
+git bisect good 90c80211559ee8e9b6104cb3cb519a6ac3155a2a
+# bad: [c84907a1459588c883ef84a35bb69d46ca37e4e7] Merge tag 'auxdisplay-v6.15-1' of git://git.kernel.org/pub/scm/linux/kernel/git/andy/linux-auxdisplay
+git bisect bad c84907a1459588c883ef84a35bb69d46ca37e4e7
+# bad: [e34c38057a131d14e47b4acb461564d9f351b9f7] Merge tag 'x86-core-2025-03-22' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect bad e34c38057a131d14e47b4acb461564d9f351b9f7
+# good: [06961fbbbd7a832a5943413447d2813a714a3c82] Merge tag 'move-lib-kunit-v6.15-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/kees/linux
+git bisect good 06961fbbbd7a832a5943413447d2813a714a3c82
+# good: [3ba7dfb8da62c43ea02bc278863367c2b0427cc1] Merge tag 'rcu-next-v6.15' of git://git.kernel.org/pub/scm/linux/kernel/git/rcu/linux
+git bisect good 3ba7dfb8da62c43ea02bc278863367c2b0427cc1
+# good: [4476e7f81467b2c1b0aea7383e657181a3f9e652] x86/amd_node: Add a smn_read_register() helper
+git bisect good 4476e7f81467b2c1b0aea7383e657181a3f9e652
+# good: [32b22538bea83bd48f00ab1403e5a4dbce41f0d0] Merge tag 'sched-core-2025-03-22' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect good 32b22538bea83bd48f00ab1403e5a4dbce41f0d0
+# bad: [cb4369129339060218baca718a578bb0b826e734] perf: Save PMU specific data in task_struct
+git bisect bad cb4369129339060218baca718a578bb0b826e734
+# good: [8f4c4963d28349cbf1920ab71edea8276f6ac4c5] perf/core: Simplify the perf_pmu_register() error path
+git bisect good 8f4c4963d28349cbf1920ab71edea8276f6ac4c5
+# good: [4eabf533fb1886089ef57e0c8ec52048b1741e39] perf/core: Detach 'struct perf_cpu_pmu_context' and 'struct pmu' lifetimes
+git bisect good 4eabf533fb1886089ef57e0c8ec52048b1741e39
+# good: [fa6192adc32f4fdfe5b74edd5b210e12afd6ecc0] uprobes/x86: Harden uretprobe syscall trampoline check
+git bisect good fa6192adc32f4fdfe5b74edd5b210e12afd6ecc0
+# good: [b6ecb57f1fec114cfa19b1bf06f25f904ca928f9] perf/core: Use sysfs_emit() instead of scnprintf()
+git bisect good b6ecb57f1fec114cfa19b1bf06f25f904ca928f9
+# bad: [c96fff391c095c11dc87dab35be72dee7d217cde] perf/ring_buffer: Allow the EPOLLRDNORM flag for poll
+git bisect bad c96fff391c095c11dc87dab35be72dee7d217cde
+# bad: [f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6] perf/core: Use POLLHUP for pinned events in error
+git bisect bad f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6
+# first bad commit: [f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6] perf/core: Use POLLHUP for pinned events in error
+|0601_230300|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m next-20250530 -b f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6 -d /root/laiyi/bisection -o /tmp/kernel -f /root/laiyi/bisection/bzImage_next-20250530_f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6_revert -c /root/vm_bisect/config-5.18rc4i_kvm  > /root/vm_bisect/nohup.log|
+|0601_230358|1st base commit:v5.12!|
+|0601_230359|FAIL|bzImage:/root/laiyi/bisection/bzImage_next-20250530_f4b07fd62d4d11d57a15cb4ae01b3833282eb8f6_revert does not exist:|
+|0601_230359|1st base commit:v5.12!|
+|0601_230359|ISSUE:ly_bisection  EMAIL status after check:Email_not_sent|
