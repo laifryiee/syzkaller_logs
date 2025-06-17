@@ -1,0 +1,54 @@
+BUG: sleeping function called from invalid context at ./include/linux/pagemap.h:1112
+in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 702, name: syz-executor400
+preempt_count: 1, expected: 0
+RCU nest depth: 1, expected: 0
+4 locks held by syz-executor400/702:
+ #0: ffff8880177396e0 (&mm->mmap_lock){++++}-{4:4}, at: mmap_write_lock_killable include/linux/mmap_lock.h:374 [inline]
+ #0: ffff8880177396e0 (&mm->mmap_lock){++++}-{4:4}, at: do_mremap mm/mremap.c:2371 [inline]
+ #0: ffff8880177396e0 (&mm->mmap_lock){++++}-{4:4}, at: __do_sys_mremap+0x42e/0x1620 mm/mremap.c:2453
+ #1: ffff888010f8a078 (&anon_vma->rwsem/1){+.+.}-{4:4}, at: anon_vma_lock_write include/linux/rmap.h:122 [inline]
+ #1: ffff888010f8a078 (&anon_vma->rwsem/1){+.+.}-{4:4}, at: lock_new_anon_vma mm/mremap.c:1728 [inline]
+ #1: ffff888010f8a078 (&anon_vma->rwsem/1){+.+.}-{4:4}, at: copy_vma_and_data+0x541/0x1790 mm/mremap.c:1781
+ #2: ffffffff8725c7c0 (rcu_read_lock){....}-{1:3}, at: rcu_lock_acquire include/linux/rcupdate.h:331 [inline]
+ #2: ffffffff8725c7c0 (rcu_read_lock){....}-{1:3}, at: rcu_read_lock include/linux/rcupdate.h:841 [inline]
+ #2: ffffffff8725c7c0 (rcu_read_lock){....}-{1:3}, at: ___pte_offset_map+0x3f/0x6c0 mm/pgtable-generic.c:287
+ #3: ffff8880126a4198 (ptlock_ptr(ptdesc)#2){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:351 [inline]
+ #3: ffff8880126a4198 (ptlock_ptr(ptdesc)#2){+.+.}-{3:3}, at: __pte_offset_map_lock+0x1a2/0x3c0 mm/pgtable-generic.c:402
+Preemption disabled at:
+[<ffffffff81e14222>] spin_lock include/linux/spinlock.h:351 [inline]
+[<ffffffff81e14222>] __pte_offset_map_lock+0x1a2/0x3c0 mm/pgtable-generic.c:402
+CPU: 1 UID: 0 PID: 702 Comm: syz-executor400 Not tainted 6.16.0-rc2-next-20250616-050f8ad7b58d #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0x121/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ __might_resched+0x37b/0x5a0 kernel/sched/core.c:8687
+ __might_sleep+0xa3/0x170 kernel/sched/core.c:8616
+ folio_lock include/linux/pagemap.h:1112 [inline]
+ relocate_anon_pte mm/mremap.c:1042 [inline]
+ relocate_anon_ptes mm/mremap.c:1189 [inline]
+ __relocate_anon_folios+0xf97/0x2960 mm/mremap.c:1274
+ relocate_anon_folios mm/mremap.c:1287 [inline]
+ copy_vma_and_data+0x606/0x1790 mm/mremap.c:1784
+ move_vma+0x689/0x1a60 mm/mremap.c:1913
+ expand_vma mm/mremap.c:2320 [inline]
+ mremap_at mm/mremap.c:2351 [inline]
+ do_mremap mm/mremap.c:2396 [inline]
+ __do_sys_mremap+0xeb4/0x1620 mm/mremap.c:2453
+ __se_sys_mremap mm/mremap.c:2421 [inline]
+ __x64_sys_mremap+0xc7/0x150 mm/mremap.c:2421
+ x64_sys_call+0x1933/0x2150 arch/x86/include/generated/asm/syscalls_64.h:26
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x2e0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f1b1aa3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffe3b808858 EFLAGS: 00000246 ORIG_RAX: 0000000000000019
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f1b1aa3ee5d
+RDX: 0000000000002000 RSI: 0000000000002000 RDI: 000000002022e000
+RBP: 0000000000000001 R08: 000000002038d000 R09: 0000000000000000
+R10: 000000000000000f R11: 0000000000000246 R12: 00007ffe3b808988
+R13: 0000000000401050 R14: 0000000000403e08 R15: 00007f1b1acba000
+ </TASK>

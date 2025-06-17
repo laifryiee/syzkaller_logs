@@ -1,0 +1,1195 @@
+|0617_015846|cmd=cd /root/linux-next|
+|0617_015846|git log 050f8ad7b58d9079455af171ac279c4b9b828c11 check_result:commit 050f8ad7b58d9079455af171ac279c4b9b828c11|
+|0617_015846|git log e04c78d86a9699d136910cfc0bdcf01087e3267e check_result:commit e04c78d86a9699d136910cfc0bdcf01087e3267e|
+|0617_015846|cmd=git checkout -f 050f8ad7b58d9079455af171ac279c4b9b828c11|
+|0617_015847|cmd=cd /root/linux-next|
+|0617_015847||/var/www/html/bzimage/bzImage_050f8ad7b58d9079455af171ac279c4b9b828c11| exist, no need make|
+|0617_015847|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0617_015847|Run /var/www/html/bzimage/bzImage_050f8ad7b58d9079455af171ac279c4b9b828c11 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0617_015903|It takes 16 seconds to find login:test login: |
+|0617_015903|Boot 1 time: takes 16 seconds to boot up.|
+|0617_015903|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0617_015904|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0617_015905|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/repro.cprog root@localhost:/root/repro.c|
+|0617_015906|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0617_015907|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0617_015917|/var/www/html/bzimage/bzImage_050f8ad7b58d9079455af171ac279c4b9b828c11 contained __relocate_anon_folios:[   19.691226]  __relocate_anon_folios+0xf97/0x2960
+[   19.691262]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   20.697150]  __relocate_anon_folios+0xf97/0x2960
+[   20.697180]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   21.733821]  __relocate_anon_folios+0xf97/0x2960
+[   21.733851]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   22.751202]  __relocate_anon_folios+0xf97/0x2960
+[   22.751231]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   23.756453]  __relocate_anon_folios+0xf97/0x2960
+[   23.756481]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   24.775389]  __relocate_anon_folios+0xf97/0x2960
+[   24.775418]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   25.779172]  __relocate_anon_folios+0xf97/0x2960
+[   25.779200]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   26.779884]  __relocate_anon_folios+0xf97/0x2960
+[   26.779913]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   27.800544]  __relocate_anon_folios+0xf97/0x2960
+[   27.800573]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   28.805230]  __relocate_anon_folios+0xf97/0x2960
+[   28.805260]  ? __pfx___relocate_anon_folios+0x10/0x10, FAIL|
+|0617_015917|Found time:19 in /var/www/html/bzimage/0617_015846___relocate_anon_folios/050f8ad7b58d9079455af171ac279c4b9b828c11_dmesg.log|
+|0617_015917|Logic: |<=25: +25|25-100 +180|>100 +1800| Set TIME:44|
+|0617_015917|-END- commit 050f8ad7b58d9079455af171ac279c4b9b828c11 FAIL bad|
+|0617_015917|cmd=rm -rf /var/www/html//syzkaller/2025_06_17/b106e74e53ea90c1f1e0922769f8535764916a19|
+|0617_015917|cmd=mkdir -p /var/www/html//syzkaller/2025_06_17/b106e74e53ea90c1f1e0922769f8535764916a19|
+|0617_015917|cmd=cp -rf /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/repro.cprog /var/www/html//syzkaller/2025_06_17/b106e74e53ea90c1f1e0922769f8535764916a19/repro.c|
+|0617_015917|gcc -pthread /var/www/html//syzkaller/2025_06_17/b106e74e53ea90c1f1e0922769f8535764916a19/repro.c -o /var/www/html//syzkaller/2025_06_17/b106e74e53ea90c1f1e0922769f8535764916a19/repro|
+|0617_015917|cmd=cp -rf /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/description /var/www/html//syzkaller/2025_06_17/b106e74e53ea90c1f1e0922769f8535764916a19|
+|0617_015917|cp -rf /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/mount_* /var/www/html/bzimage/0617_015846___relocate_anon_folios/|
+|0617_015919|wget https://raw.githubusercontent.com/xupengfe/kconfig_diff/main/config-5.18rc4i_kvm -O /var/www/html/bzimage/0617_015846___relocate_anon_folios/kconfig_origin:0|
+|0617_015919|cmd=cd /root/linux-next|
+|0617_015919|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m e04c78d86a9699d136910cfc0bdcf01087e3267e -d /var/www/html/bzimage -o /tmp/kernel|
+|0617_022013|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0617_022013|Run /var/www/html/bzimage/bzImage_e04c78d86a9699d136910cfc0bdcf01087e3267e with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0617_022027|It takes 14 seconds to find login:test login: |
+|0617_022027|Boot 1 time: takes 14 seconds to boot up.|
+|0617_022027|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0617_022028|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0617_022029|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/repro.cprog root@localhost:/root/repro.c|
+|0617_022031|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0617_022031|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0617_022115|/var/www/html/bzimage/bzImage_e04c78d86a9699d136910cfc0bdcf01087e3267e didn't contain __relocate_anon_folios: in dmesg, pass|
+|0617_022115|Start commit e04c78d86a9699d136910cfc0bdcf01087e3267e PASS good|
+|0617_022115|cmd=git checkout -f 050f8ad7b58d9079455af171ac279c4b9b828c11|
+|0617_022115|cmd=git bisect start|
+|0617_022115|cmd=git bisect bad 050f8ad7b58d9079455af171ac279c4b9b828c11|
+|0617_022115|Bisect first start commit:e04c78d86a9699d136910cfc0bdcf01087e3267e|
+|0617_022115|git bisect good e04c78d86a9699d136910cfc0bdcf01087e3267e|
+|0617_022116|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 29f8085153f559d02b6a156b2aad7bd4396bdab8 -d /var/www/html/bzimage -o /tmp/kernel|
+|0617_024209|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0617_024209|Run /var/www/html/bzimage/bzImage_29f8085153f559d02b6a156b2aad7bd4396bdab8 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0617_024223|It takes 14 seconds to find login:test login: |
+|0617_024223|Boot 1 time: takes 14 seconds to boot up.|
+|0617_024223|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0617_024224|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0617_024225|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/repro.cprog root@localhost:/root/repro.c|
+|0617_024227|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0617_024227|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0617_024311|/var/www/html/bzimage/bzImage_29f8085153f559d02b6a156b2aad7bd4396bdab8 contained __relocate_anon_folios:[   17.380840]  __relocate_anon_folios+0xf97/0x2960
+[   17.380872]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   18.394858]  __relocate_anon_folios+0xf97/0x2960
+[   18.394886]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   19.394379]  __relocate_anon_folios+0xf97/0x2960
+[   19.394407]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   20.405495]  __relocate_anon_folios+0xf97/0x2960
+[   20.405523]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   21.412347]  __relocate_anon_folios+0xf97/0x2960
+[   21.412377]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   22.434408]  __relocate_anon_folios+0xf97/0x2960
+[   22.434436]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   23.454128]  __relocate_anon_folios+0xf97/0x2960
+[   23.454155]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   24.462055]  __relocate_anon_folios+0xf97/0x2960
+[   24.462084]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   25.472689]  __relocate_anon_folios+0xf97/0x2960
+[   25.472717]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   26.495548]  __relocate_anon_folios+0xf97/0x2960
+[   26.495576]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   27.494960]  __relocate_anon_folios+0xf97/0x2960
+[   27.494990]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   28.509557]  __relocate_anon_folios+0xf97/0x2960
+[   28.509586]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   29.516310]  __relocate_anon_folios+0xf97/0x2960
+[   29.516338]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   30.530115]  __relocate_anon_folios+0xf97/0x2960
+[   30.530143]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   31.530968]  __relocate_anon_folios+0xf97/0x2960
+[   31.530995]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   32.529870]  __relocate_anon_folios+0xf97/0x2960
+[   32.529899]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   33.556001]  __relocate_anon_folios+0xf97/0x2960
+[   33.556027]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   34.573750]  __relocate_anon_folios+0xf97/0x2960
+[   34.573777]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   35.593614]  __relocate_anon_folios+0xf97/0x2960
+[   35.593641]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   36.601846]  __relocate_anon_folios+0xf97/0x2960
+[   36.601874]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   37.611864]  __relocate_anon_folios+0xf97/0x2960
+[   37.611891]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   38.632033]  __relocate_anon_folios+0xf97/0x2960
+[   38.632061]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   39.636592]  __relocate_anon_folios+0xf97/0x2960
+[   39.636620]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   40.652512]  __relocate_anon_folios+0xf97/0x2960
+[   40.652540]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   41.673091]  __relocate_anon_folios+0xf97/0x2960
+[   41.673118]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   42.679293]  __relocate_anon_folios+0xf97/0x2960
+[   42.679323]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   43.678566]  __relocate_anon_folios+0xf97/0x2960
+[   43.678593]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   44.703850]  __relocate_anon_folios+0xf97/0x2960
+[   44.703878]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   45.709404]  __relocate_anon_folios+0xf97/0x2960
+[   45.709432]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   46.725246]  __relocate_anon_folios+0xf97/0x2960
+[   46.725283]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   47.743986]  __relocate_anon_folios+0xf97/0x2960
+[   47.744012]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   48.745280]  __relocate_anon_folios+0xf97/0x2960
+[   48.745315]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   49.750141]  __relocate_anon_folios+0xf97/0x2960
+[   49.750170]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   50.749165]  __relocate_anon_folios+0xf97/0x2960
+[   50.749191]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   51.752256]  __relocate_anon_folios+0xf97/0x2960
+[   51.752284]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   52.761383]  __relocate_anon_folios+0xf97/0x2960
+[   52.761411]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   53.762192]  __relocate_anon_folios+0xf97/0x2960
+[   53.762220]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   54.768559]  __relocate_anon_folios+0xf97/0x2960
+[   54.768586]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   55.778697]  __relocate_anon_folios+0xf97/0x2960
+[   55.778724]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   56.785952]  __relocate_anon_folios+0xf97/0x2960
+[   56.785980]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   57.797704]  __relocate_anon_folios+0xf97/0x2960
+[   57.797732]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   58.798293]  __relocate_anon_folios+0xf97/0x2960
+[   58.798321]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   59.813587]  __relocate_anon_folios+0xf97/0x2960
+[   59.813616]  ? __pfx___relocate_anon_folios+0x10/0x10, FAIL|
+|0617_024311|git bisect bad 29f8085153f559d02b6a156b2aad7bd4396bdab8|
+|0617_024312|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 4b8b5e749745739d31284b1cf6b41b20c6d8bd79 -d /var/www/html/bzimage -o /tmp/kernel|
+|0617_030349|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0617_030349|Run /var/www/html/bzimage/bzImage_4b8b5e749745739d31284b1cf6b41b20c6d8bd79 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0617_030404|It takes 15 seconds to find login:test login: |
+|0617_030404|Boot 1 time: takes 15 seconds to boot up.|
+|0617_030404|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0617_030405|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0617_030406|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/repro.cprog root@localhost:/root/repro.c|
+|0617_030407|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0617_030407|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0617_030451|/var/www/html/bzimage/bzImage_4b8b5e749745739d31284b1cf6b41b20c6d8bd79 contained __relocate_anon_folios:[   18.431275]  __relocate_anon_folios+0xf97/0x2960
+[   18.431308]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   19.440560]  __relocate_anon_folios+0xf97/0x2960
+[   19.440587]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   20.446875]  __relocate_anon_folios+0xf97/0x2960
+[   20.446913]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   21.452271]  __relocate_anon_folios+0xf97/0x2960
+[   21.452298]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   22.473644]  __relocate_anon_folios+0xf97/0x2960
+[   22.473671]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   23.490863]  __relocate_anon_folios+0xf97/0x2960
+[   23.490889]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   24.506846]  __relocate_anon_folios+0xf97/0x2960
+[   24.506872]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   25.520598]  __relocate_anon_folios+0xf97/0x2960
+[   25.520626]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   26.536891]  __relocate_anon_folios+0xf97/0x2960
+[   26.536918]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   27.549799]  __relocate_anon_folios+0xf97/0x2960
+[   27.549827]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   28.560573]  __relocate_anon_folios+0xf97/0x2960
+[   28.560600]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   29.566844]  __relocate_anon_folios+0xf97/0x2960
+[   29.566871]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   30.570709]  __relocate_anon_folios+0xf97/0x2960
+[   30.570736]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   31.587489]  __relocate_anon_folios+0xf97/0x2960
+[   31.587516]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   32.602839]  __relocate_anon_folios+0xf97/0x2960
+[   32.602866]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   33.608061]  __relocate_anon_folios+0xf97/0x2960
+[   33.608089]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   34.614709]  __relocate_anon_folios+0xf97/0x2960
+[   34.614736]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   35.637063]  __relocate_anon_folios+0xf97/0x2960
+[   35.637091]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   36.648129]  __relocate_anon_folios+0xf97/0x2960
+[   36.648157]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   37.672205]  __relocate_anon_folios+0xf97/0x2960
+[   37.672233]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   38.695987]  __relocate_anon_folios+0xf97/0x2960
+[   38.696027]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   39.718571]  __relocate_anon_folios+0xf97/0x2960
+[   39.718598]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   40.723588]  __relocate_anon_folios+0xf97/0x2960
+[   40.723616]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   41.733658]  __relocate_anon_folios+0xf97/0x2960
+[   41.733686]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   42.735347]  __relocate_anon_folios+0xf97/0x2960
+[   42.735384]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   43.741127]  __relocate_anon_folios+0xf97/0x2960
+[   43.741156]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   44.765446]  __relocate_anon_folios+0xf97/0x2960
+[   44.765477]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   45.792879]  __relocate_anon_folios+0xf97/0x2960
+[   45.792910]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   46.805601]  __relocate_anon_folios+0xf97/0x2960
+[   46.805632]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   47.833426]  __relocate_anon_folios+0xf97/0x2960
+[   47.833459]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   48.834321]  __relocate_anon_folios+0xf97/0x2960
+[   48.834352]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   49.835307]  __relocate_anon_folios+0xf97/0x2960
+[   49.835348]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   50.840367]  __relocate_anon_folios+0xf97/0x2960
+[   50.840397]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   51.865025]  __relocate_anon_folios+0xf97/0x2960
+[   51.865057]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   52.889887]  __relocate_anon_folios+0xf97/0x2960
+[   52.889916]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   53.918014]  __relocate_anon_folios+0xf97/0x2960
+[   53.918044]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   54.917596]  __relocate_anon_folios+0xf97/0x2960
+[   54.917627]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   55.937041]  __relocate_anon_folios+0xf97/0x2960
+[   55.937073]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   56.967212]  __relocate_anon_folios+0xf97/0x2960
+[   56.967244]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   57.984027]  __relocate_anon_folios+0xf97/0x2960
+[   57.984057]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   58.983786]  __relocate_anon_folios+0xf97/0x2960
+[   58.983816]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   59.999439]  __relocate_anon_folios+0xf97/0x2960
+[   59.999466]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   61.026886]  __relocate_anon_folios+0xf97/0x2960
+[   61.026915]  ? __pfx___relocate_anon_folios+0x10/0x10, FAIL|
+|0617_030451|git bisect bad 4b8b5e749745739d31284b1cf6b41b20c6d8bd79|
+|0617_030452|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 5091252d7c0bb144d359fbfb5838adcea29f5601 -d /var/www/html/bzimage -o /tmp/kernel|
+|0617_032531|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0617_032531|Run /var/www/html/bzimage/bzImage_5091252d7c0bb144d359fbfb5838adcea29f5601 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0617_032547|It takes 16 seconds to find login:test login: |
+|0617_032547|Boot 1 time: takes 16 seconds to boot up.|
+|0617_032547|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0617_032548|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0617_032549|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/repro.cprog root@localhost:/root/repro.c|
+|0617_032551|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0617_032551|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0617_032635|/var/www/html/bzimage/bzImage_5091252d7c0bb144d359fbfb5838adcea29f5601 contained __relocate_anon_folios:[   19.373572]  __relocate_anon_folios+0xf97/0x2960
+[   19.373603]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   20.377136]  __relocate_anon_folios+0xf97/0x2960
+[   20.377163]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   21.398185]  __relocate_anon_folios+0xf97/0x2960
+[   21.398213]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   22.417141]  __relocate_anon_folios+0xf97/0x2960
+[   22.417169]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   23.424394]  __relocate_anon_folios+0xf97/0x2960
+[   23.424422]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   24.437100]  __relocate_anon_folios+0xf97/0x2960
+[   24.437127]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   25.435819]  __relocate_anon_folios+0xf97/0x2960
+[   25.435846]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   26.437338]  __relocate_anon_folios+0xf97/0x2960
+[   26.437365]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   27.454712]  __relocate_anon_folios+0xf97/0x2960
+[   27.454742]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   28.474531]  __relocate_anon_folios+0xf97/0x2960
+[   28.474559]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   29.475507]  __relocate_anon_folios+0xf97/0x2960
+[   29.475534]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   30.494085]  __relocate_anon_folios+0xf97/0x2960
+[   30.494114]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   31.511972]  __relocate_anon_folios+0xf97/0x2960
+[   31.512000]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   32.523446]  __relocate_anon_folios+0xf97/0x2960
+[   32.523473]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   33.536759]  __relocate_anon_folios+0xf97/0x2960
+[   33.536787]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   34.535756]  __relocate_anon_folios+0xf97/0x2960
+[   34.535784]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   35.536833]  __relocate_anon_folios+0xf97/0x2960
+[   35.536861]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   36.543659]  __relocate_anon_folios+0xf97/0x2960
+[   36.543690]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   37.566550]  __relocate_anon_folios+0xf97/0x2960
+[   37.566578]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   38.586098]  __relocate_anon_folios+0xf97/0x2960
+[   38.586126]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   39.591992]  __relocate_anon_folios+0xf97/0x2960
+[   39.592020]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   40.606434]  __relocate_anon_folios+0xf97/0x2960
+[   40.606462]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   41.622938]  __relocate_anon_folios+0xf97/0x2960
+[   41.622966]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   42.638495]  __relocate_anon_folios+0xf97/0x2960
+[   42.638523]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   43.646712]  __relocate_anon_folios+0xf97/0x2960
+[   43.646740]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   44.656247]  __relocate_anon_folios+0xf97/0x2960
+[   44.656277]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   45.676198]  __relocate_anon_folios+0xf97/0x2960
+[   45.676226]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   46.685666]  __relocate_anon_folios+0xf97/0x2960
+[   46.685694]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   47.697512]  __relocate_anon_folios+0xf97/0x2960
+[   47.697539]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   48.708575]  __relocate_anon_folios+0xf97/0x2960
+[   48.708603]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   49.718708]  __relocate_anon_folios+0xf97/0x2960
+[   49.718736]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   50.722914]  __relocate_anon_folios+0xf97/0x2960
+[   50.722942]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   51.732326]  __relocate_anon_folios+0xf97/0x2960
+[   51.732354]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   52.733961]  __relocate_anon_folios+0xf97/0x2960
+[   52.733995]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   53.748365]  __relocate_anon_folios+0xf97/0x2960
+[   53.748392]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   54.767406]  __relocate_anon_folios+0xf97/0x2960
+[   54.767433]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   55.769495]  __relocate_anon_folios+0xf97/0x2960
+[   55.769522]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   56.782099]  __relocate_anon_folios+0xf97/0x2960
+[   56.782127]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   57.798276]  __relocate_anon_folios+0xf97/0x2960
+[   57.798303]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   58.799927]  __relocate_anon_folios+0xf97/0x2960
+[   58.799954]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   59.808643]  __relocate_anon_folios+0xf97/0x2960
+[   59.808674]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   60.805635]  __relocate_anon_folios+0xf97/0x2960
+[   60.805669]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   61.831472]  __relocate_anon_folios+0xf97/0x2960
+[   61.831502]  ? __pfx___relocate_anon_folios+0x10/0x10, FAIL|
+|0617_032635|git bisect bad 5091252d7c0bb144d359fbfb5838adcea29f5601|
+|0617_032635|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 08af10b361819fd2fecf576f0878cf6fb982067d -d /var/www/html/bzimage -o /tmp/kernel|
+|0617_034637|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0617_034637|Run /var/www/html/bzimage/bzImage_08af10b361819fd2fecf576f0878cf6fb982067d with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0617_034651|It takes 14 seconds to find login:test login: |
+|0617_034651|Boot 1 time: takes 14 seconds to boot up.|
+|0617_034651|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0617_034652|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0617_034653|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/repro.cprog root@localhost:/root/repro.c|
+|0617_034654|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0617_034655|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0617_034739|/var/www/html/bzimage/bzImage_08af10b361819fd2fecf576f0878cf6fb982067d didn't contain __relocate_anon_folios: in dmesg, pass|
+|0617_034739|git bisect good 08af10b361819fd2fecf576f0878cf6fb982067d|
+|0617_034739|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 28179c61ddd0e753673553514dfa380f8953a879 -d /var/www/html/bzimage -o /tmp/kernel|
+|0617_040804|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0617_040804|Run /var/www/html/bzimage/bzImage_28179c61ddd0e753673553514dfa380f8953a879 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0617_040818|It takes 14 seconds to find login:test login: |
+|0617_040818|Boot 1 time: takes 14 seconds to boot up.|
+|0617_040818|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0617_040819|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0617_040820|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/repro.cprog root@localhost:/root/repro.c|
+|0617_040821|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0617_040822|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0617_040906|/var/www/html/bzimage/bzImage_28179c61ddd0e753673553514dfa380f8953a879 didn't contain __relocate_anon_folios: in dmesg, pass|
+|0617_040906|git bisect good 28179c61ddd0e753673553514dfa380f8953a879|
+|0617_040906|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m f97971f859dd7d22e63982a493aec85d9e75a69e -d /var/www/html/bzimage -o /tmp/kernel|
+|0617_042930|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0617_042930|Run /var/www/html/bzimage/bzImage_f97971f859dd7d22e63982a493aec85d9e75a69e with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0617_042945|It takes 15 seconds to find login:test login: |
+|0617_042945|Boot 1 time: takes 15 seconds to boot up.|
+|0617_042945|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0617_042946|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0617_042947|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/repro.cprog root@localhost:/root/repro.c|
+|0617_042948|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0617_042949|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0617_043033|/var/www/html/bzimage/bzImage_f97971f859dd7d22e63982a493aec85d9e75a69e contained __relocate_anon_folios:[   18.464729]  __relocate_anon_folios+0xf97/0x2960
+[   18.464762]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   19.477522]  __relocate_anon_folios+0xf97/0x2960
+[   19.477563]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   20.495209]  __relocate_anon_folios+0xf97/0x2960
+[   20.495239]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   21.504001]  __relocate_anon_folios+0xf97/0x2960
+[   21.504031]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   22.522654]  __relocate_anon_folios+0xf97/0x2960
+[   22.522684]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   23.542263]  __relocate_anon_folios+0xf97/0x2960
+[   23.542294]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   24.545963]  __relocate_anon_folios+0xf97/0x2960
+[   24.545992]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   25.571376]  __relocate_anon_folios+0xf97/0x2960
+[   25.571405]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   26.583809]  __relocate_anon_folios+0xf97/0x2960
+[   26.583848]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   27.593002]  __relocate_anon_folios+0xf97/0x2960
+[   27.593031]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   28.604143]  __relocate_anon_folios+0xf97/0x2960
+[   28.604171]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   29.602972]  __relocate_anon_folios+0xf97/0x2960
+[   29.603001]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   30.629993]  __relocate_anon_folios+0xf97/0x2960
+[   30.630024]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   31.648799]  __relocate_anon_folios+0xf97/0x2960
+[   31.648827]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   32.661978]  __relocate_anon_folios+0xf97/0x2960
+[   32.662006]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   33.682491]  __relocate_anon_folios+0xf97/0x2960
+[   33.682524]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   34.685065]  __relocate_anon_folios+0xf97/0x2960
+[   34.685095]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   35.695543]  __relocate_anon_folios+0xf97/0x2960
+[   35.695572]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   36.702339]  __relocate_anon_folios+0xf97/0x2960
+[   36.702370]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   37.703845]  __relocate_anon_folios+0xf97/0x2960
+[   37.703876]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   38.704824]  __relocate_anon_folios+0xf97/0x2960
+[   38.704854]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   39.702698]  __relocate_anon_folios+0xf97/0x2960
+[   39.702727]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   40.704998]  __relocate_anon_folios+0xf97/0x2960
+[   40.705026]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   41.721692]  __relocate_anon_folios+0xf97/0x2960
+[   41.721723]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   42.731601]  __relocate_anon_folios+0xf97/0x2960
+[   42.731631]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   43.745182]  __relocate_anon_folios+0xf97/0x2960
+[   43.745211]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   44.762372]  __relocate_anon_folios+0xf97/0x2960
+[   44.762401]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   45.770450]  __relocate_anon_folios+0xf97/0x2960
+[   45.770481]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   46.790126]  __relocate_anon_folios+0xf97/0x2960
+[   46.790162]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   47.801526]  __relocate_anon_folios+0xf97/0x2960
+[   47.801554]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   48.804188]  __relocate_anon_folios+0xf97/0x2960
+[   48.804220]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   49.807958]  __relocate_anon_folios+0xf97/0x2960
+[   49.807985]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   50.814733]  __relocate_anon_folios+0xf97/0x2960
+[   50.814761]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   51.831334]  __relocate_anon_folios+0xf97/0x2960
+[   51.831361]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   52.837363]  __relocate_anon_folios+0xf97/0x2960
+[   52.837390]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   53.846617]  __relocate_anon_folios+0xf97/0x2960
+[   53.846644]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   54.860460]  __relocate_anon_folios+0xf97/0x2960
+[   54.860487]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   55.868948]  __relocate_anon_folios+0xf97/0x2960
+[   55.868975]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   56.888015]  __relocate_anon_folios+0xf97/0x2960
+[   56.888042]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   57.905865]  __relocate_anon_folios+0xf97/0x2960
+[   57.905892]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   58.913279]  __relocate_anon_folios+0xf97/0x2960
+[   58.913308]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   59.910030]  __relocate_anon_folios+0xf97/0x2960
+[   59.910066]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   60.925624]  __relocate_anon_folios+0xf97/0x2960
+[   60.925655]  ? __pfx___relocate_anon_folios+0x10/0x10, FAIL|
+|0617_043033|git bisect bad f97971f859dd7d22e63982a493aec85d9e75a69e|
+|0617_043033|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 24d3f236a397defa6c82c6388dd691414a4a8c39 -d /var/www/html/bzimage -o /tmp/kernel|
+|0617_045039|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0617_045039|Run /var/www/html/bzimage/bzImage_24d3f236a397defa6c82c6388dd691414a4a8c39 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0617_045053|It takes 14 seconds to find login:test login: |
+|0617_045053|Boot 1 time: takes 14 seconds to boot up.|
+|0617_045053|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0617_045054|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0617_045055|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/repro.cprog root@localhost:/root/repro.c|
+|0617_045056|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0617_045057|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0617_045141|/var/www/html/bzimage/bzImage_24d3f236a397defa6c82c6388dd691414a4a8c39 contained __relocate_anon_folios:[   17.312450]  __relocate_anon_folios+0xf97/0x2960
+[   17.312483]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   18.335864]  __relocate_anon_folios+0xf97/0x2960
+[   18.335905]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   19.342806]  __relocate_anon_folios+0xf97/0x2960
+[   19.342872]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   20.358707]  __relocate_anon_folios+0xf97/0x2960
+[   20.358735]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   21.367398]  __relocate_anon_folios+0xf97/0x2960
+[   21.367427]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   22.384811]  __relocate_anon_folios+0xf97/0x2960
+[   22.384840]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   23.407783]  __relocate_anon_folios+0xf97/0x2960
+[   23.407811]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   24.432199]  __relocate_anon_folios+0xf97/0x2960
+[   24.432226]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   25.456187]  __relocate_anon_folios+0xf97/0x2960
+[   25.456218]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   26.470778]  __relocate_anon_folios+0xf97/0x2960
+[   26.470806]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   27.476283]  __relocate_anon_folios+0xf97/0x2960
+[   27.476311]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   28.497412]  __relocate_anon_folios+0xf97/0x2960
+[   28.497441]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   29.505862]  __relocate_anon_folios+0xf97/0x2960
+[   29.505891]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   30.525824]  __relocate_anon_folios+0xf97/0x2960
+[   30.525855]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   31.537788]  __relocate_anon_folios+0xf97/0x2960
+[   31.537816]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   32.560284]  __relocate_anon_folios+0xf97/0x2960
+[   32.560313]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   33.582783]  __relocate_anon_folios+0xf97/0x2960
+[   33.582814]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   34.600770]  __relocate_anon_folios+0xf97/0x2960
+[   34.600800]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   35.607712]  __relocate_anon_folios+0xf97/0x2960
+[   35.607740]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   36.618048]  __relocate_anon_folios+0xf97/0x2960
+[   36.618076]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   37.640753]  __relocate_anon_folios+0xf97/0x2960
+[   37.640781]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   38.649308]  __relocate_anon_folios+0xf97/0x2960
+[   38.649336]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   39.654703]  __relocate_anon_folios+0xf97/0x2960
+[   39.654730]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   40.680124]  __relocate_anon_folios+0xf97/0x2960
+[   40.680152]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   41.700845]  __relocate_anon_folios+0xf97/0x2960
+[   41.700875]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   42.721876]  __relocate_anon_folios+0xf97/0x2960
+[   42.721903]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   43.740776]  __relocate_anon_folios+0xf97/0x2960
+[   43.740804]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   44.740287]  __relocate_anon_folios+0xf97/0x2960
+[   44.740315]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   45.749983]  __relocate_anon_folios+0xf97/0x2960
+[   45.750011]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   46.768797]  __relocate_anon_folios+0xf97/0x2960
+[   46.768824]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   47.790463]  __relocate_anon_folios+0xf97/0x2960
+[   47.790491]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   48.804827]  __relocate_anon_folios+0xf97/0x2960
+[   48.804860]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   49.823421]  __relocate_anon_folios+0xf97/0x2960
+[   49.823448]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   50.831578]  __relocate_anon_folios+0xf97/0x2960
+[   50.831606]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   51.840721]  __relocate_anon_folios+0xf97/0x2960
+[   51.840749]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   52.849559]  __relocate_anon_folios+0xf97/0x2960
+[   52.849595]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   53.860436]  __relocate_anon_folios+0xf97/0x2960
+[   53.860465]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   54.881043]  __relocate_anon_folios+0xf97/0x2960
+[   54.881071]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   55.884380]  __relocate_anon_folios+0xf97/0x2960
+[   55.884412]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   56.895047]  __relocate_anon_folios+0xf97/0x2960
+[   56.895075]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   57.903464]  __relocate_anon_folios+0xf97/0x2960
+[   57.903492]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   58.917402]  __relocate_anon_folios+0xf97/0x2960
+[   58.917430]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   59.934987]  __relocate_anon_folios+0xf97/0x2960
+[   59.935017]  ? __pfx___relocate_anon_folios+0x10/0x10, FAIL|
+|0617_045141|git bisect bad 24d3f236a397defa6c82c6388dd691414a4a8c39|
+|0617_045141|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m a7fc0d8bd77dfae66948ca20e6c2195a7d67f1a8 -d /var/www/html/bzimage -o /tmp/kernel|
+|0617_051208|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0617_051208|Run /var/www/html/bzimage/bzImage_a7fc0d8bd77dfae66948ca20e6c2195a7d67f1a8 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0617_051223|It takes 15 seconds to find login:test login: |
+|0617_051223|Boot 1 time: takes 15 seconds to boot up.|
+|0617_051223|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0617_051223|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0617_051225|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/repro.cprog root@localhost:/root/repro.c|
+|0617_051226|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0617_051226|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0617_051310|/var/www/html/bzimage/bzImage_a7fc0d8bd77dfae66948ca20e6c2195a7d67f1a8 contained __relocate_anon_folios:[   18.135830]  __relocate_anon_folios+0xf97/0x2960
+[   18.135861]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   19.150369]  __relocate_anon_folios+0xf97/0x2960
+[   19.150396]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   20.164246]  __relocate_anon_folios+0xf97/0x2960
+[   20.164273]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   21.184064]  __relocate_anon_folios+0xf97/0x2960
+[   21.184097]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   22.197256]  __relocate_anon_folios+0xf97/0x2960
+[   22.197284]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   23.201338]  __relocate_anon_folios+0xf97/0x2960
+[   23.201365]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   24.212428]  __relocate_anon_folios+0xf97/0x2960
+[   24.212456]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   25.233823]  __relocate_anon_folios+0xf97/0x2960
+[   25.233850]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   26.237168]  __relocate_anon_folios+0xf97/0x2960
+[   26.237196]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   27.254045]  __relocate_anon_folios+0xf97/0x2960
+[   27.254072]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   28.261076]  __relocate_anon_folios+0xf97/0x2960
+[   28.261105]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   29.277728]  __relocate_anon_folios+0xf97/0x2960
+[   29.277757]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   30.283016]  __relocate_anon_folios+0xf97/0x2960
+[   30.283044]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   31.307699]  __relocate_anon_folios+0xf97/0x2960
+[   31.307730]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   32.310651]  __relocate_anon_folios+0xf97/0x2960
+[   32.310680]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   33.317275]  __relocate_anon_folios+0xf97/0x2960
+[   33.317304]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   34.323490]  __relocate_anon_folios+0xf97/0x2960
+[   34.323521]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   35.349392]  __relocate_anon_folios+0xf97/0x2960
+[   35.349419]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   36.355718]  __relocate_anon_folios+0xf97/0x2960
+[   36.355746]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   37.355805]  __relocate_anon_folios+0xf97/0x2960
+[   37.355848]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   38.368087]  __relocate_anon_folios+0xf97/0x2960
+[   38.368122]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   39.387247]  __relocate_anon_folios+0xf97/0x2960
+[   39.387276]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   40.408191]  __relocate_anon_folios+0xf97/0x2960
+[   40.408221]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   41.410902]  __relocate_anon_folios+0xf97/0x2960
+[   41.410933]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   42.420805]  __relocate_anon_folios+0xf97/0x2960
+[   42.420834]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   43.422967]  __relocate_anon_folios+0xf97/0x2960
+[   43.422997]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   44.447291]  __relocate_anon_folios+0xf97/0x2960
+[   44.447319]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   45.453451]  __relocate_anon_folios+0xf97/0x2960
+[   45.453481]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   46.453968]  __relocate_anon_folios+0xf97/0x2960
+[   46.454000]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   47.452790]  __relocate_anon_folios+0xf97/0x2960
+[   47.452819]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   48.464104]  __relocate_anon_folios+0xf97/0x2960
+[   48.464133]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   49.489984]  __relocate_anon_folios+0xf97/0x2960
+[   49.490015]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   50.503526]  __relocate_anon_folios+0xf97/0x2960
+[   50.503555]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   51.523741]  __relocate_anon_folios+0xf97/0x2960
+[   51.523786]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   52.530692]  __relocate_anon_folios+0xf97/0x2960
+[   52.530722]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   53.532004]  __relocate_anon_folios+0xf97/0x2960
+[   53.532048]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   54.534312]  __relocate_anon_folios+0xf97/0x2960
+[   54.534342]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   55.554042]  __relocate_anon_folios+0xf97/0x2960
+[   55.554071]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   56.579168]  __relocate_anon_folios+0xf97/0x2960
+[   56.579199]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   57.606079]  __relocate_anon_folios+0xf97/0x2960
+[   57.606109]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   58.621783]  __relocate_anon_folios+0xf97/0x2960
+[   58.621812]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   59.637108]  __relocate_anon_folios+0xf97/0x2960
+[   59.637139]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   60.646970]  __relocate_anon_folios+0xf97/0x2960
+[   60.647011]  ? __pfx___relocate_anon_folios+0x10/0x10, FAIL|
+|0617_051310|git bisect bad a7fc0d8bd77dfae66948ca20e6c2195a7d67f1a8|
+|0617_051311|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 5019c72e035686dc274cc2bd7e3f5f8a494a45e2 -d /var/www/html/bzimage -o /tmp/kernel|
+|0617_053342|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0617_053342|Run /var/www/html/bzimage/bzImage_5019c72e035686dc274cc2bd7e3f5f8a494a45e2 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0617_053357|It takes 14 seconds to find login:test login: |
+|0617_053357|Boot 1 time: takes 14 seconds to boot up.|
+|0617_053357|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0617_053357|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0617_053359|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/repro.cprog root@localhost:/root/repro.c|
+|0617_053400|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0617_053400|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0617_053444|/var/www/html/bzimage/bzImage_5019c72e035686dc274cc2bd7e3f5f8a494a45e2 didn't contain __relocate_anon_folios: in dmesg, pass|
+|0617_053444|git bisect good 5019c72e035686dc274cc2bd7e3f5f8a494a45e2|
+|0617_053444|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 5f5f5eeafa5d3073138a14f2d56c459f04a8a105 -d /var/www/html/bzimage -o /tmp/kernel|
+|0617_055458|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0617_055458|Run /var/www/html/bzimage/bzImage_5f5f5eeafa5d3073138a14f2d56c459f04a8a105 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0617_055513|It takes 14 seconds to find login:test login: |
+|0617_055513|Boot 1 time: takes 14 seconds to boot up.|
+|0617_055513|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0617_055513|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0617_055515|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/repro.cprog root@localhost:/root/repro.c|
+|0617_055516|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0617_055516|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0617_055600|/var/www/html/bzimage/bzImage_5f5f5eeafa5d3073138a14f2d56c459f04a8a105 didn't contain __relocate_anon_folios: in dmesg, pass|
+|0617_055600|git bisect good 5f5f5eeafa5d3073138a14f2d56c459f04a8a105|
+|0617_055600|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m fc347ad239ab393017eca72d6ba450888ea34ac5 -d /var/www/html/bzimage -o /tmp/kernel|
+|0617_061615|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0617_061615|Run /var/www/html/bzimage/bzImage_fc347ad239ab393017eca72d6ba450888ea34ac5 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0617_061630|It takes 15 seconds to find login:test login: |
+|0617_061630|Boot 1 time: takes 15 seconds to boot up.|
+|0617_061630|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0617_061631|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0617_061633|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/repro.cprog root@localhost:/root/repro.c|
+|0617_061634|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0617_061634|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0617_061718|/var/www/html/bzimage/bzImage_fc347ad239ab393017eca72d6ba450888ea34ac5 contained __relocate_anon_folios:[   18.354843]  __relocate_anon_folios+0x7bd/0x11a0
+[   18.354858]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   19.358055]  __relocate_anon_folios+0x7bd/0x11a0
+[   19.358070]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   20.374990]  __relocate_anon_folios+0x7bd/0x11a0
+[   20.375005]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   21.385558]  __relocate_anon_folios+0x7bd/0x11a0
+[   21.385573]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   22.399197]  __relocate_anon_folios+0x7bd/0x11a0
+[   22.399212]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   23.410629]  __relocate_anon_folios+0x7bd/0x11a0
+[   23.410644]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   24.430588]  __relocate_anon_folios+0x7bd/0x11a0
+[   24.430603]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   25.435838]  __relocate_anon_folios+0x7bd/0x11a0
+[   25.435853]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   26.446143]  __relocate_anon_folios+0x7bd/0x11a0
+[   26.446159]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   27.464883]  __relocate_anon_folios+0x7bd/0x11a0
+[   27.464898]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   28.478433]  __relocate_anon_folios+0x7bd/0x11a0
+[   28.478448]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   29.496986]  __relocate_anon_folios+0x7bd/0x11a0
+[   29.497000]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   30.517274]  __relocate_anon_folios+0x7bd/0x11a0
+[   30.517289]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   31.522168]  __relocate_anon_folios+0x7bd/0x11a0
+[   31.522182]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   32.528657]  __relocate_anon_folios+0x7bd/0x11a0
+[   32.528671]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   33.534964]  __relocate_anon_folios+0x7bd/0x11a0
+[   33.534979]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   34.535861]  __relocate_anon_folios+0x7bd/0x11a0
+[   34.535877]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   35.554738]  __relocate_anon_folios+0x7bd/0x11a0
+[   35.554754]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   36.561372]  __relocate_anon_folios+0x7bd/0x11a0
+[   36.561387]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   37.559824]  __relocate_anon_folios+0x7bd/0x11a0
+[   37.559838]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   38.561024]  __relocate_anon_folios+0x7bd/0x11a0
+[   38.561039]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   39.573395]  __relocate_anon_folios+0x7bd/0x11a0
+[   39.573410]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   40.590838]  __relocate_anon_folios+0x7bd/0x11a0
+[   40.590853]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   41.595779]  __relocate_anon_folios+0x7bd/0x11a0
+[   41.595794]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   42.608229]  __relocate_anon_folios+0x7bd/0x11a0
+[   42.608243]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   43.610761]  __relocate_anon_folios+0x7bd/0x11a0
+[   43.610776]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   44.635666]  __relocate_anon_folios+0x7bd/0x11a0
+[   44.635681]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   45.642649]  __relocate_anon_folios+0x7bd/0x11a0
+[   45.642663]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   46.647918]  __relocate_anon_folios+0x7bd/0x11a0
+[   46.647932]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   47.672213]  __relocate_anon_folios+0x7bd/0x11a0
+[   47.672227]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   48.693734]  __relocate_anon_folios+0x7bd/0x11a0
+[   48.693748]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   49.692712]  __relocate_anon_folios+0x7bd/0x11a0
+[   49.692727]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   50.691608]  __relocate_anon_folios+0x7bd/0x11a0
+[   50.691623]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   51.697337]  __relocate_anon_folios+0x7bd/0x11a0
+[   51.697352]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   52.718527]  __relocate_anon_folios+0x7bd/0x11a0
+[   52.718545]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   53.725237]  __relocate_anon_folios+0x7bd/0x11a0
+[   53.725251]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   54.732474]  __relocate_anon_folios+0x7bd/0x11a0
+[   54.732494]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   55.738560]  __relocate_anon_folios+0x7bd/0x11a0
+[   55.738579]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   56.740425]  __relocate_anon_folios+0x7bd/0x11a0
+[   56.740439]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   57.747828]  __relocate_anon_folios+0x7bd/0x11a0
+[   57.747843]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   58.766925]  __relocate_anon_folios+0x7bd/0x11a0
+[   58.766940]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   59.774446]  __relocate_anon_folios+0x7bd/0x11a0
+[   59.774465]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   60.791517]  __relocate_anon_folios+0x7bd/0x11a0
+[   60.791531]  ? __pfx___relocate_anon_folios+0x10/0x10, FAIL|
+|0617_061718|git bisect bad fc347ad239ab393017eca72d6ba450888ea34ac5|
+|0617_061718|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m aaf5c23bf6a474f11f48f03bd6a9b551f4e7d45a -d /var/www/html/bzimage -o /tmp/kernel|
+|0617_063729|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0617_063729|Run /var/www/html/bzimage/bzImage_aaf5c23bf6a474f11f48f03bd6a9b551f4e7d45a with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0617_063743|It takes 14 seconds to find login:test login: |
+|0617_063743|Boot 1 time: takes 14 seconds to boot up.|
+|0617_063743|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0617_063744|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0617_063745|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/b106e74e53ea90c1f1e0922769f8535764916a19/repro.cprog root@localhost:/root/repro.c|
+|0617_063747|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0617_063747|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0617_063831|/var/www/html/bzimage/bzImage_aaf5c23bf6a474f11f48f03bd6a9b551f4e7d45a contained __relocate_anon_folios:[   17.806931]  __relocate_anon_folios+0x7bd/0x11a0
+[   17.806945]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   18.816184]  __relocate_anon_folios+0x7bd/0x11a0
+[   18.816199]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   19.841417]  __relocate_anon_folios+0x7bd/0x11a0
+[   19.841432]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   20.853672]  __relocate_anon_folios+0x7bd/0x11a0
+[   20.853691]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   21.857309]  __relocate_anon_folios+0x7bd/0x11a0
+[   21.857324]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   22.882851]  __relocate_anon_folios+0x7bd/0x11a0
+[   22.882867]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   23.908189]  __relocate_anon_folios+0x7bd/0x11a0
+[   23.908204]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   24.921111]  __relocate_anon_folios+0x7bd/0x11a0
+[   24.921126]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   25.918342]  __relocate_anon_folios+0x7bd/0x11a0
+[   25.918357]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   26.940322]  __relocate_anon_folios+0x7bd/0x11a0
+[   26.940337]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   27.947917]  __relocate_anon_folios+0x7bd/0x11a0
+[   27.947933]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   28.973452]  __relocate_anon_folios+0x7bd/0x11a0
+[   28.973467]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   29.977521]  __relocate_anon_folios+0x7bd/0x11a0
+[   29.977536]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   30.994128]  __relocate_anon_folios+0x7bd/0x11a0
+[   30.994143]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   32.011323]  __relocate_anon_folios+0x7bd/0x11a0
+[   32.011339]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   33.028052]  __relocate_anon_folios+0x7bd/0x11a0
+[   33.028067]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   34.049583]  __relocate_anon_folios+0x7bd/0x11a0
+[   34.049598]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   35.062783]  __relocate_anon_folios+0x7bd/0x11a0
+[   35.062798]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   36.085920]  __relocate_anon_folios+0x7bd/0x11a0
+[   36.085939]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   37.106426]  __relocate_anon_folios+0x7bd/0x11a0
+[   37.106442]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   38.110816]  __relocate_anon_folios+0x7bd/0x11a0
+[   38.110831]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   39.136296]  __relocate_anon_folios+0x7bd/0x11a0
+[   39.136311]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   40.142570]  __relocate_anon_folios+0x7bd/0x11a0
+[   40.142585]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   41.144888]  __relocate_anon_folios+0x7bd/0x11a0
+[   41.144903]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   42.146822]  __relocate_anon_folios+0x7bd/0x11a0
+[   42.146838]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   43.158233]  __relocate_anon_folios+0x7bd/0x11a0
+[   43.158247]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   44.175258]  __relocate_anon_folios+0x7bd/0x11a0
+[   44.175280]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   45.183923]  __relocate_anon_folios+0x7bd/0x11a0
+[   45.183937]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   46.195036]  __relocate_anon_folios+0x7bd/0x11a0
+[   46.195051]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   47.213225]  __relocate_anon_folios+0x7bd/0x11a0
+[   47.213241]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   48.219094]  __relocate_anon_folios+0x7bd/0x11a0
+[   48.219109]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   49.242313]  __relocate_anon_folios+0x7bd/0x11a0
+[   49.242330]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   50.252548]  __relocate_anon_folios+0x7bd/0x11a0
+[   50.252564]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   51.263443]  __relocate_anon_folios+0x7bd/0x11a0
+[   51.263458]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   52.288387]  __relocate_anon_folios+0x7bd/0x11a0
+[   52.288402]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   53.307418]  __relocate_anon_folios+0x7bd/0x11a0
+[   53.307434]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   54.326186]  __relocate_anon_folios+0x7bd/0x11a0
+[   54.326201]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   55.350467]  __relocate_anon_folios+0x7bd/0x11a0
+[   55.350482]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   56.373931]  __relocate_anon_folios+0x7bd/0x11a0
+[   56.373951]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   57.374155]  __relocate_anon_folios+0x7bd/0x11a0
+[   57.374170]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   58.379234]  __relocate_anon_folios+0x7bd/0x11a0
+[   58.379250]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   59.383976]  __relocate_anon_folios+0x7bd/0x11a0
+[   59.383991]  ? __pfx___relocate_anon_folios+0x10/0x10
+[   60.382062]  __relocate_anon_folios+0x7bd/0x11a0
+[   60.382078]  ? __pfx___relocate_anon_folios+0x10/0x10, FAIL|
+|0617_063831|git bisect bad aaf5c23bf6a474f11f48f03bd6a9b551f4e7d45a|
+|0617_063831|Bisect PASS: find bad commit: aaf5c23bf6a474f11f48f03bd6a9b551f4e7d45a is the first bad commit
+commit aaf5c23bf6a474f11f48f03bd6a9b551f4e7d45a
+Author: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Date:   Mon Jun 9 14:26:35 2025 +0100
+
+    mm/mremap: introduce more mergeable mremap via MREMAP_RELOCATE_ANON
+    
+    Patch series "mm/mremap: introduce more mergeable mremap via
+    MREMAP_RELOCATE_ANON".
+    
+    A longstanding issue with VMA merging of anonymous VMAs is the requirement
+    to maintain both vma->vm_pgoff and anon_vma compatibility between merge
+    candidates.
+    
+    For anonymous mappings, vma->vm_pgoff (and consequently, folio->index)
+    refer to virtual page offsets, that is, va >> PAGE_SHIFT.
+    
+    However upon mremap() of an anonymous mapping that has been faulted (that
+    is, where vma->anon_vma != NULL), we would then need to walk page tables
+    to be able to access let alone manipulate folio->index, mapping fields to
+    permit an update of this virtual page offset.
+    
+    Therefore in these instances, we do not do so, instead retaining the
+    virtual page offset the VMA was first faulted in at as it's vma->vm_pgoff
+    field, and of course consequently folio->index.
+    
+    On each occasion we use linear_page_index() to determine the appropriate
+    offset, cleverly offset the vma->vm_pgoff field by the difference between
+    the virtual address and actual VMA start.
+    
+    Doing so in effect fragments the virtual address space, meaning that we
+    are no longer able to merge these VMAs with adjacent ones that could, at
+    least theoretically, be merged.
+    
+    This also creates a difference in behaviour, often surprising to users,
+    between mappings which are faulted and those which are not - as for the
+    latter we adjust vma->vm_pgoff upon mremap() to aid mergeability.
+    
+    This is problematic firstly because this proliferates kernel allocations
+    that are pure memory pressure - unreclaimable and unmovable - i.e.
+    vm_area_struct, anon_vma, anon_vma_chain objects that need not exist.
+    
+    Secondly, mremap() exhibits an implicit uAPI in that it does not permit
+    remaps which span multiple VMAs (though it does permit remaps that
+    constitute a part of a single VMA).
+    
+    This means that a user must concern themselves with whether merges succeed
+    or not should they wish to use mremap() in such a way which causes
+    multiple mremap() calls to be performed upon mappings.
+    
+    This series provides users with an option to accept the overhead of
+    actually updating the VMA and underlying folios via the
+    MREMAP_RELOCATE_ANON flag.
+    
+    If MREMAP_RELOCATE_ANON is specified, but an ordinary merge would result
+    in the mremap() succeeding, then no attempt is made at relocation of
+    folios as this is not required.
+    
+    Even if no merge is possible upon moving of the region, vma->vm_pgoff and
+    folio->index fields are appropriately updated in order that subsequent
+    mremap() or mprotect() calls will succeed in merging.
+    
+    This flag falls back to the ordinary means of mremap() should the
+    operation not be feasible.  It also transparently undoes the operation,
+    carefully holding rmap locks such that no racing rmap operation encounters
+    incorrect or missing VMAs.
+    
+    In addition, the MREMAP_MUST_RELOCATE_ANON flag is supplied in case the
+    user needs to know whether or not the operation succeeded - this flag is
+    identical to MREMAP_RELOCATE_ANON, only if the operation cannot succeed,
+    the mremap() fails with -EFAULT.
+    
+    Note that no-op mremap() operations (such as an unpopulated range, or a
+    merge that would trivially succeed already) will succeed under
+    MREMAP_MUST_RELOCATE_ANON.
+    
+    mremap() already walks page tables, so it isn't an order of magntitude
+    increase in workload, but constitutes the need to walk to page table leaf
+    level and manipulate folios.
+    
+    The operations all succeed under THP and in general are compatible with
+    underlying large folios of any size.  In fact, the larger the folio, the
+    more efficient the operation is.
+    
+    Performance testing indicate that time taken using MREMAP_RELOCATE_ANON is
+    on the same order of magnitude of ordinary mremap() operations, with both
+    exhibiting time to the proportion of the mapping which is populated.
+    
+    Of course, mremap() operations that are entirely aligned are significantly
+    faster as they need only move a VMA and a smaller number of higher order
+    page tables, but this is unavoidable.
+    
+    Previous efforts in this area
+    =============================
+    
+    An approach addressing this issue was previously suggested by Jakub Matena
+    in a series posted a few years ago in [0] (and discussed in a masters
+    thesis).
+    
+    However this was a more general effort which attempted to always make
+    anonymous mappings more mergeable, and therefore was not quite ready for
+    the upstream limelight.  In addition, large folio work which has occurred
+    since requires us to carefully consider and account for this.
+    
+    This series is more conservative and targeted (one must specific a flag to
+    get this behaviour) and additionally goes to great efforts to handle large
+    folios and account all of the nitty gritty locking concerns that might
+    arise in current kernel code.
+    
+    Thanks goes out to Jakub for his efforts however, and hopefully this
+    effort to take a slightly different approach to the same problem is
+    pleasing to him regardless :)
+    
+    [0]:https://lore.kernel.org/all/20220311174602.288010-1-matenajakub@gmail.com/
+    
+    Use-cases
+    =========
+    
+    * ZGC is a concurrent GC shipped with OpenJDK.  A prototype is being
+      worked upon which makes use of extensive mremap() operations to perform
+      defragmentation of objects, taking advantage of the plentiful available
+      virtual address space in a 64-bit system.
+    
+      In instances where one VMA is faulted in and another not, merging is
+      not possible, which leads to significant, unreclaimable, kernel metadata
+      overhead and contention on the vm.max_map_count limit.
+    
+      This series eliminates the issue entirely.
+    
+    * It was indicated that Android similarly moves memory around and
+      encounters the very same issues as ZGC.  * SUSE indicate they have
+      encountered similar issues as pertains to an internal client.
+    
+    Past approaches
+    ===============
+    
+    In discussions at LSF/MM/BPF It was suggested that we could make this an
+    madvise() operation, however at this point it will be too late to
+    correctly perform the merge, requiring an unmap/remap which would be
+    egregious.
+    
+    It was further suggested that we simply defer the operation to the point
+    at which an mremap() is attempted on multiple immediately adjacent VMAs
+    (that is - to allow VMA fragmentation up until the point where it might
+    cause perceptible issues with uAPI).
+    
+    This is problematic in that in the first instance - you accrue
+    fragmentation, and only if you were to try to move the fragmented objects
+    again would you resolve it.
+    
+    Additionally you would not be able to handle the mprotect() case, and
+    you'd have the same issue as the madvise() approach in that you'd need to
+    essentially re-map each VMA.
+    
+    Additionally it would become non-trivial to correctly merge the VMAs - if
+    there were more than 3, we would need to invent a new merging mechanism
+    specifically for this, hold locks carefully over each to avoid them
+    disappearing from beneath us and introduce a great deal of non-optional
+    complexity.
+    
+    While imperfect, the mremap flag approach seems the least invasive most
+    workable solution (until further rework of the anon_vma mechanism can be
+    achieved!)
+    
+    Testing
+    =======
+    
+    * Significantly expanded self-tests, all of which are passing.
+    * Explicit testing of forked cases including anon_vma reuse, all passing
+      correctly.
+    * Ran all self tests with MREMAP_RELOCATE_ANON forced on for all anonymous
+      mremap()'s.
+    * Ran heavy workloads with MREMAP_RELOCATE_ANON forced on on real hardware
+      (kernel compilation, etc.)
+    * Ran stress-ng --mremap 32 for an hour with MREMAP_RELOCATE_ANON forced on
+      on real hardware.
+    
+    
+    This patch (of 11):
+    
+    When mremap() moves a mapping around in memory, it goes to great lengths
+    to avoid having to walk page tables as this is expensive and
+    time-consuming.
+    
+    Rather, if the VMA was faulted (that is vma->anon_vma != NULL), the
+    virtual page offset stored in the VMA at vma->vm_pgoff will remain the
+    same, as well all the folio indexes pointed at the associated anon_vma
+    object.
+    
+    This means the VMA and page tables can simply be moved and this affects
+    the change (and if we can move page tables at a higher page table level,
+    this is even faster).
+    
+    While this is efficient, it does lead to big problems with VMA merging -
+    in essence it causes faulted anonymous VMAs to not be mergeable under many
+    circumstances once moved.
+    
+    This is limiting and leads to both a proliferation of unreclaimable,
+    unmovable kernel metadata (VMAs, anon_vma's, anon_vma_chain's) and has an
+    impact on further use of mremap(), which has a requirement that the VMA
+    moved (which can also be a partial range within a VMA) may span only a
+    single VMA.
+    
+    This makes the mergeability or not of VMAs in effect a uAPI concern.
+    
+    In some use cases, users may wish to accept the overhead of actually going
+    to the trouble of updating VMAs and folios to affect mremap() moves.
+    Let's provide them with the choice.
+    
+    This patch add a new MREMAP_RELOCATE_ANON flag to do just that, which
+    attempts to perform such an operation.  If it is unable to do so, it
+    cleanly falls back to the usual method.
+    
+    It carefully takes the rmap locks such that at no time will a racing rmap
+    user encounter incorrect or missing VMAs.
+    
+    It is also designed to interact cleanly with the existing mremap() error
+    fallback mechanism (inverting the remap should the page table move fail).
+    
+    Also, if we could merge cleanly without such a change, we do so, avoiding
+    the overhead of the operation if it is not required.
+    
+    In the instance that no merge may occur when the move is performed, we
+    still perform the folio and VMA updates to ensure that future mremap() or
+    mprotect() calls will result in merges.
+    
+    In this implementation, we simply give up if we encounter large folios.  A
+    subsequent commit will extend the functionality to allow for these cases.
+    
+    We restrict this flag to purely anonymous memory only.
+    
+    We separate out the vma_had_uncowed_parents() helper function for checking
+    in should_relocate_anon() and introduce a new function
+    vma_maybe_has_shared_anon_folios() which combines a check against this and
+    any forked child anon_vma's.
+    
+    We carefully check for pinned folios in case a caller who holds a pin
+    might make assumptions about index, mapping fields which we are about to
+    manipulate.
+    
+    Link: https://lkml.kernel.org/r/cover.1749473726.git.lorenzo.stoakes@oracle.com
+    Link: https://lkml.kernel.org/r/22a80f22ba2082b28ee0b0a925eb3dbb37c2a786.1749473726.git.lorenzo.stoakes@oracle.com
+    Signed-off-by: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+    Cc: Baolin Wang <baolin.wang@linux.alibaba.com>
+    Cc: Barry Song <baohua@kernel.org>
+    Cc: David Hildenbrand <david@redhat.com>
+    Cc: Dev Jain <dev.jain@arm.com>
+    Cc: Jakub Matěna <matenajakub@gmail.com>
+    Cc: Jann Horn <jannh@google.com>
+    Cc: Liam Howlett <liam.howlett@oracle.com>
+    Cc: Mariano Pache <npache@redhat.com>
+    Cc: Matthew Wilcox (Oracle) <willy@infradead.org>
+    Cc: Rik van Riel <riel@surriel.com>
+    Cc: Ryan Roberts <ryan.roberts@arm.com>
+    Cc: Suren Baghdasaryan <surenb@google.com>
+    Cc: Vlastimil Babka <vbabka@suse.cz>
+    Cc: Wei Yang <richard.weiyang@gmail.com>
+    Cc: Zi Yan <ziy@nvidia.com>
+    Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+
+ include/linux/rmap.h             |   4 +
+ include/uapi/linux/mman.h        |   1 +
+ mm/internal.h                    |   1 +
+ mm/mremap.c                      | 403 +++++++++++++++++++++++++++++++++++++--
+ mm/vma.c                         |  79 ++++++--
+ mm/vma.h                         |  36 +++-
+ tools/testing/vma/vma.c          |   5 +-
+ tools/testing/vma/vma_internal.h |  38 ++++
+ 8 files changed, 522 insertions(+), 45 deletions(-)|
+|0617_063831|cmd=git bisect log >> /var/www/html/bzimage/bi.log|
+|0617_063831|cmd=git bisect log >> /var/www/html/bzimage/0617_015846___relocate_anon_folios/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [050f8ad7b58d9079455af171ac279c4b9b828c11] Add linux-next specific files for 20250616
+git bisect bad 050f8ad7b58d9079455af171ac279c4b9b828c11
+# status: waiting for good commit(s), bad commit known
+# good: [e04c78d86a9699d136910cfc0bdcf01087e3267e] Linux 6.16-rc2
+git bisect good e04c78d86a9699d136910cfc0bdcf01087e3267e
+# bad: [29f8085153f559d02b6a156b2aad7bd4396bdab8] Merge branch 'master' of git://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth-next.git
+git bisect bad 29f8085153f559d02b6a156b2aad7bd4396bdab8
+# bad: [4b8b5e749745739d31284b1cf6b41b20c6d8bd79] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/jenswi/linux-tee.git
+git bisect bad 4b8b5e749745739d31284b1cf6b41b20c6d8bd79
+# bad: [5091252d7c0bb144d359fbfb5838adcea29f5601] Merge branch 'mm-nonmm-unstable' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+git bisect bad 5091252d7c0bb144d359fbfb5838adcea29f5601
+# good: [08af10b361819fd2fecf576f0878cf6fb982067d] Merge branch 'tip/urgent' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git
+git bisect good 08af10b361819fd2fecf576f0878cf6fb982067d
+# good: [28179c61ddd0e753673553514dfa380f8953a879] lib/test_hmm: reduce stack usage
+git bisect good 28179c61ddd0e753673553514dfa380f8953a879
+# bad: [f97971f859dd7d22e63982a493aec85d9e75a69e] mm/huge_memory: don't mark refcounted folios special in vmf_insert_folio_pud()
+git bisect bad f97971f859dd7d22e63982a493aec85d9e75a69e
+# bad: [24d3f236a397defa6c82c6388dd691414a4a8c39] mm/memory-tier: fix abstract distance calculation overflow
+git bisect bad 24d3f236a397defa6c82c6388dd691414a4a8c39
+# bad: [a7fc0d8bd77dfae66948ca20e6c2195a7d67f1a8] mm/mremap: add MREMAP[_MUST]_RELOCATE_ANON support for large folios
+git bisect bad a7fc0d8bd77dfae66948ca20e6c2195a7d67f1a8
+# good: [5019c72e035686dc274cc2bd7e3f5f8a494a45e2] gup-optimize-longterm-pin_user_pages-for-large-folio-fix
+git bisect good 5019c72e035686dc274cc2bd7e3f5f8a494a45e2
+# good: [5f5f5eeafa5d3073138a14f2d56c459f04a8a105] alloc_tag: keep codetag iterator active between read()
+git bisect good 5f5f5eeafa5d3073138a14f2d56c459f04a8a105
+# bad: [fc347ad239ab393017eca72d6ba450888ea34ac5] mm/mremap: add MREMAP_MUST_RELOCATE_ANON
+git bisect bad fc347ad239ab393017eca72d6ba450888ea34ac5
+# bad: [aaf5c23bf6a474f11f48f03bd6a9b551f4e7d45a] mm/mremap: introduce more mergeable mremap via MREMAP_RELOCATE_ANON
+git bisect bad aaf5c23bf6a474f11f48f03bd6a9b551f4e7d45a
+# first bad commit: [aaf5c23bf6a474f11f48f03bd6a9b551f4e7d45a] mm/mremap: introduce more mergeable mremap via MREMAP_RELOCATE_ANON
+|0617_063831|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 050f8ad7b58d9079455af171ac279c4b9b828c11 -b aaf5c23bf6a474f11f48f03bd6a9b551f4e7d45a -d /var/www/html/bzimage -o /tmp/kernel -f /var/www/html/bzimage/bzImage_050f8ad7b58d9079455af171ac279c4b9b828c11_aaf5c23bf6a474f11f48f03bd6a9b551f4e7d45a_revert|
+|0617_063904|1st base commit:e04c78d86a9699d136910cfc0bdcf01087e3267e!|
+|0617_063904|FAIL|bzImage:/var/www/html/bzimage/bzImage_050f8ad7b58d9079455af171ac279c4b9b828c11_aaf5c23bf6a474f11f48f03bd6a9b551f4e7d45a_revert does not exist:|
+|0617_063904|1st base commit:e04c78d86a9699d136910cfc0bdcf01087e3267e!|
+|0617_063904|ISSUE:b106e74e53ea90c1f1e0922769f8535764916a19  EMAIL status after check:Email_not_sent|

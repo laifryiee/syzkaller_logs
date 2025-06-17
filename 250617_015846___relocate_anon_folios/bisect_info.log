@@ -1,0 +1,32 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [050f8ad7b58d9079455af171ac279c4b9b828c11] Add linux-next specific files for 20250616
+git bisect bad 050f8ad7b58d9079455af171ac279c4b9b828c11
+# status: waiting for good commit(s), bad commit known
+# good: [e04c78d86a9699d136910cfc0bdcf01087e3267e] Linux 6.16-rc2
+git bisect good e04c78d86a9699d136910cfc0bdcf01087e3267e
+# bad: [29f8085153f559d02b6a156b2aad7bd4396bdab8] Merge branch 'master' of git://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth-next.git
+git bisect bad 29f8085153f559d02b6a156b2aad7bd4396bdab8
+# bad: [4b8b5e749745739d31284b1cf6b41b20c6d8bd79] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/jenswi/linux-tee.git
+git bisect bad 4b8b5e749745739d31284b1cf6b41b20c6d8bd79
+# bad: [5091252d7c0bb144d359fbfb5838adcea29f5601] Merge branch 'mm-nonmm-unstable' of git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
+git bisect bad 5091252d7c0bb144d359fbfb5838adcea29f5601
+# good: [08af10b361819fd2fecf576f0878cf6fb982067d] Merge branch 'tip/urgent' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git
+git bisect good 08af10b361819fd2fecf576f0878cf6fb982067d
+# good: [28179c61ddd0e753673553514dfa380f8953a879] lib/test_hmm: reduce stack usage
+git bisect good 28179c61ddd0e753673553514dfa380f8953a879
+# bad: [f97971f859dd7d22e63982a493aec85d9e75a69e] mm/huge_memory: don't mark refcounted folios special in vmf_insert_folio_pud()
+git bisect bad f97971f859dd7d22e63982a493aec85d9e75a69e
+# bad: [24d3f236a397defa6c82c6388dd691414a4a8c39] mm/memory-tier: fix abstract distance calculation overflow
+git bisect bad 24d3f236a397defa6c82c6388dd691414a4a8c39
+# bad: [a7fc0d8bd77dfae66948ca20e6c2195a7d67f1a8] mm/mremap: add MREMAP[_MUST]_RELOCATE_ANON support for large folios
+git bisect bad a7fc0d8bd77dfae66948ca20e6c2195a7d67f1a8
+# good: [5019c72e035686dc274cc2bd7e3f5f8a494a45e2] gup-optimize-longterm-pin_user_pages-for-large-folio-fix
+git bisect good 5019c72e035686dc274cc2bd7e3f5f8a494a45e2
+# good: [5f5f5eeafa5d3073138a14f2d56c459f04a8a105] alloc_tag: keep codetag iterator active between read()
+git bisect good 5f5f5eeafa5d3073138a14f2d56c459f04a8a105
+# bad: [fc347ad239ab393017eca72d6ba450888ea34ac5] mm/mremap: add MREMAP_MUST_RELOCATE_ANON
+git bisect bad fc347ad239ab393017eca72d6ba450888ea34ac5
+# bad: [aaf5c23bf6a474f11f48f03bd6a9b551f4e7d45a] mm/mremap: introduce more mergeable mremap via MREMAP_RELOCATE_ANON
+git bisect bad aaf5c23bf6a474f11f48f03bd6a9b551f4e7d45a
+# first bad commit: [aaf5c23bf6a474f11f48f03bd6a9b551f4e7d45a] mm/mremap: introduce more mergeable mremap via MREMAP_RELOCATE_ANON
