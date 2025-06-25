@@ -1,0 +1,151 @@
+Oops: general protection fault, probably for non-canonical address 0xdffffc0000000000: 0000 [#1] SMP KASAN NOPTI
+KASAN: null-ptr-deref in range [0x0000000000000000-0x0000000000000007]
+CPU: 1 UID: 0 PID: 5860 Comm: syz-executor.4 Not tainted 6.16.0-rc3-next-20250623-f817b6dd2b62 #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:ptep_get include/linux/pgtable.h:340 [inline]
+RIP: 0010:try_to_unmap_one+0x4ef/0x3860 mm/rmap.c:1961
+Code: 75 a5 ff 48 8b 9d 78 ff ff ff 49 8d 46 18 48 89 85 70 fe ff ff 48 85 db 0f 84 96 1a 00 00 e8 e8 74 a5 ff 48 89 d8 48 c1 e8 03 <42> 80 3c 38 00 0f 85 19 2e 00 00 48 8b 03 48 89 85 c8 fe ff ff 48
+RSP: 0018:ffff88801775eb00 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffc9000424f000
+RDX: 0000000000040000 RSI: ffffffff81e20108 RDI: 0000000000000005
+RBP: ffff88801775ecd0 R08: 0000000000000001 R09: ffffed1002eebd23
+R10: 0000000000000000 R11: ffff88802fb38e58 R12: 0000000020e00000
+R13: ffffea0001070000 R14: ffffea0001070000 R15: dffffc0000000000
+FS:  00007fa5dd72e640(0000) GS:ffff8880e3658000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b3373f000 CR3: 000000004f5b7002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __rmap_walk_file+0x2a2/0x4a0 mm/rmap.c:2897
+ rmap_walk_file mm/rmap.c:2930 [inline]
+ rmap_walk_file mm/rmap.c:2916 [inline]
+ rmap_walk+0x16b/0x1f0 mm/rmap.c:2941
+ try_to_unmap+0x12f/0x140 mm/rmap.c:2263
+ unmap_poisoned_folio+0x130/0x500 mm/memory-failure.c:1610
+ shrink_folio_list+0x44f/0x4520 mm/vmscan.c:1134
+ reclaim_folio_list+0xe2/0x4c0 mm/vmscan.c:2225
+ reclaim_pages+0x393/0x560 mm/vmscan.c:2262
+ madvise_cold_or_pageout_pte_range+0x1cac/0x2800 mm/madvise.c:420
+ walk_pmd_range mm/pagewalk.c:130 [inline]
+ walk_pud_range mm/pagewalk.c:226 [inline]
+ walk_p4d_range mm/pagewalk.c:264 [inline]
+ walk_pgd_range+0xe2a/0x2420 mm/pagewalk.c:305
+ __walk_page_range+0x177/0x810 mm/pagewalk.c:412
+ walk_page_range_vma+0x2c4/0x6d0 mm/pagewalk.c:707
+ madvise_pageout_page_range mm/madvise.c:604 [inline]
+ madvise_pageout+0x256/0x580 mm/madvise.c:631
+ madvise_vma_behavior+0x7f1/0x2190 mm/madvise.c:1274
+ madvise_walk_vmas mm/madvise.c:1589 [inline]
+ madvise_do_behavior+0x461/0xe90 mm/madvise.c:1848
+ do_madvise+0x1a2/0x270 mm/madvise.c:1941
+ __do_sys_madvise mm/madvise.c:1950 [inline]
+ __se_sys_madvise mm/madvise.c:1948 [inline]
+ __x64_sys_madvise+0xb2/0x120 mm/madvise.c:1948
+ x64_sys_call+0x19ac/0x2150 arch/x86/include/generated/asm/syscalls_64.h:29
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x2e0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fa5dd43ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fa5dd72dcc8 EFLAGS: 00000246 ORIG_RAX: 000000000000001c
+RAX: ffffffffffffffda RBX: 00000000004bc120 RCX: 00007fa5dd43ee5d
+RDX: 0000000000000015 RSI: 0000000000c00000 RDI: 0000000020400000
+RBP: 00000000004bc120 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 000000000000006e R14: 00007fa5dd49f560 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:ptep_get include/linux/pgtable.h:340 [inline]
+RIP: 0010:try_to_unmap_one+0x4ef/0x3860 mm/rmap.c:1961
+Code: 75 a5 ff 48 8b 9d 78 ff ff ff 49 8d 46 18 48 89 85 70 fe ff ff 48 85 db 0f 84 96 1a 00 00 e8 e8 74 a5 ff 48 89 d8 48 c1 e8 03 <42> 80 3c 38 00 0f 85 19 2e 00 00 48 8b 03 48 89 85 c8 fe ff ff 48
+RSP: 0018:ffff88801775eb00 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffc9000424f000
+RDX: 0000000000040000 RSI: ffffffff81e20108 RDI: 0000000000000005
+RBP: ffff88801775ecd0 R08: 0000000000000001 R09: ffffed1002eebd23
+R10: 0000000000000000 R11: ffff88802fb38e58 R12: 0000000020e00000
+R13: ffffea0001070000 R14: ffffea0001070000 R15: dffffc0000000000
+FS:  00007fa5dd72e640(0000) GS:ffff8880e3658000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b3373f000 CR3: 000000004f5b7002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+note: syz-executor.4[5860] exited with preempt_count 1
+------------[ cut here ]------------
+WARNING: kernel/exit.c:897 at do_exit+0x1c1c/0x28c0 kernel/exit.c:897, CPU#1: syz-executor.4/5860
+Modules linked in:
+CPU: 1 UID: 0 PID: 5860 Comm: syz-executor.4 Tainted: G      D             6.16.0-rc3-next-20250623-f817b6dd2b62 #1 PREEMPT(voluntary) 
+Tainted: [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:do_exit+0x1c1c/0x28c0 kernel/exit.c:897
+Code: ce 09 00 00 41 c7 45 18 00 00 00 00 e9 52 e6 ff ff e8 08 fd 3f 00 bf 02 24 00 00 e8 2e 25 0c 00 e9 41 ff ff ff e8 f4 fc 3f 00 <0f> 0b e9 b0 e4 ff ff e8 e8 fc 3f 00 48 89 de bf 05 06 00 00 e8 5b
+RSP: 0018:ffff88801775fe28 EFLAGS: 00010246
+RAX: 0000000000040000 RBX: 000000000000000b RCX: ffffc9000424f000
+RDX: 0000000000040000 RSI: ffffffff814778fc RDI: ffff88802fb395e8
+RBP: ffff88801775ff10 R08: 0000000000000001 R09: fffffbfff11ed4ec
+R10: 0000000000000200 R11: 7973203a65746f6e R12: ffff88802fb38000
+R13: 0000000000000200 R14: 0000000000002710 R15: dffffc0000000000
+FS:  00007fa5dd72e640(0000) GS:ffff8880e3658000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b3373f000 CR3: 000000004f5b7002 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ make_task_dead+0x181/0x3c0 kernel/exit.c:1062
+ rewind_stack_and_make_dead+0x16/0x20 arch/x86/entry/entry_64.S:1493
+RIP: 0033:0x7fa5dd43ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fa5dd72dcc8 EFLAGS: 00000246 ORIG_RAX: 000000000000001c
+RAX: ffffffffffffffda RBX: 00000000004bc120 RCX: 00007fa5dd43ee5d
+RDX: 0000000000000015 RSI: 0000000000c00000 RDI: 0000000020400000
+RBP: 00000000004bc120 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 000000000000006e R14: 00007fa5dd49f560 R15: 0000000000000000
+ </TASK>
+irq event stamp: 569
+hardirqs last  enabled at (569): [<ffffffff812f01bb>] cond_local_irq_enable arch/x86/include/asm/traps.h:51 [inline]
+hardirqs last  enabled at (569): [<ffffffff812f01bb>] cond_local_irq_enable.isra.0+0x3b/0x50 arch/x86/include/asm/traps.h:48
+hardirqs last disabled at (568): [<ffffffff85d14406>] exc_general_protection+0x36/0x340 arch/x86/kernel/traps.c:792
+softirqs last  enabled at (0): [<ffffffff81457c3f>] copy_process+0x1d6f/0x6fa0 kernel/fork.c:2114
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+loop1: detected capacity change from 0 to 32768
+loop5: detected capacity change from 0 to 512
+XFS (loop1): DAX unsupported by block device. Turning off DAX.
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+EXT4-fs error (device loop5): ext4_do_update_inode:5568: inode #11: comm syz-executor.5: corrupted inode contents
+EXT4-fs error (device loop5): ext4_dirty_inode:6459: inode #11: comm syz-executor.5: mark_inode_dirty error
+EXT4-fs error (device loop5): ext4_do_update_inode:5568: inode #11: comm syz-executor.5: corrupted inode contents
+EXT4-fs error (device loop5): __ext4_ext_dirty:206: inode #11: comm syz-executor.5: mark_inode_dirty error
+EXT4-fs error (device loop5): ext4_do_update_inode:5568: inode #11: comm syz-executor.5: corrupted inode contents
+EXT4-fs error (device loop5): __ext4_ext_dirty:206: inode #11: comm syz-executor.5: mark_inode_dirty error
+EXT4-fs error (device loop5): ext4_do_update_inode:5568: inode #11: comm syz-executor.5: corrupted inode contents
+EXT4-fs error (device loop5): ext4_truncate:4597: inode #11: comm syz-executor.5: mark_inode_dirty error
+EXT4-fs error (device loop5): ext4_evict_inode:263: comm syz-executor.5: couldn't truncate inode 11 (err -117)
+EXT4-fs (loop5): 1 orphan inode deleted
+ext4 filesystem being mounted at /syzkaller-testdir3963067079/syzkaller.QLcVwO/47/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+XFS (loop1): Ending clean mount
+XFS (loop1): Quotacheck needed: Please wait.
+XFS (loop1): Quotacheck: Done.
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+----------------
+Code disassembly (best guess), 3 bytes skipped:
+   0:	48 8b 9d 78 ff ff ff 	mov    -0x88(%rbp),%rbx
+   7:	49 8d 46 18          	lea    0x18(%r14),%rax
+   b:	48 89 85 70 fe ff ff 	mov    %rax,-0x190(%rbp)
+  12:	48 85 db             	test   %rbx,%rbx
+  15:	0f 84 96 1a 00 00    	je     0x1ab1
+  1b:	e8 e8 74 a5 ff       	callq  0xffa57508
+  20:	48 89 d8             	mov    %rbx,%rax
+  23:	48 c1 e8 03          	shr    $0x3,%rax
+* 27:	42 80 3c 38 00       	cmpb   $0x0,(%rax,%r15,1) <-- trapping instruction
+  2c:	0f 85 19 2e 00 00    	jne    0x2e4b
+  32:	48 8b 03             	mov    (%rbx),%rax
+  35:	48 89 85 c8 fe ff ff 	mov    %rax,-0x138(%rbp)
+  3c:	48                   	rex.W

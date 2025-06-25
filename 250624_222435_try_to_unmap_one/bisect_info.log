@@ -1,0 +1,45 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [86731a2a651e58953fc949573895f2fa6d456841] Linux 6.16-rc3
+git bisect bad 86731a2a651e58953fc949573895f2fa6d456841
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [0cfd8703e7da687924371e9bc77a025bdeba9637] Merge tag 'pm-6.4-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+git bisect good 0cfd8703e7da687924371e9bc77a025bdeba9637
+# good: [1b294a1f35616977caddaddf3e9d28e576a1adbc] Merge tag 'net-next-6.10' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+git bisect good 1b294a1f35616977caddaddf3e9d28e576a1adbc
+# good: [42d9e8b7ccddee75989283cf7477305cfe3776ff] Merge tag 'powerpc-6.13-1' of git://git.kernel.org/pub/scm/linux/kernel/git/powerpc/linux
+git bisect good 42d9e8b7ccddee75989283cf7477305cfe3776ff
+# good: [2f24482304ebd32c5aa374f31465b9941a860b92] Merge tag 'soc-dt-6.15' of git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
+git bisect good 2f24482304ebd32c5aa374f31465b9941a860b92
+# good: [d48d8380d92ba2db4fcf81c566093276dbbb4ebc] Merge tag 'chrome-platform-v6.16' of git://git.kernel.org/pub/scm/linux/kernel/git/chrome-platform/linux
+git bisect good d48d8380d92ba2db4fcf81c566093276dbbb4ebc
+# bad: [3536049822060347c8cb5a923186a8d65a8f7a48] Merge tag 'vfio-v6.16-rc1' of https://github.com/awilliam/linux-vfio
+git bisect bad 3536049822060347c8cb5a923186a8d65a8f7a48
+# good: [b08494a8f7416e5f09907318c5460ad6f6e2a548] Merge tag 'drm-next-2025-05-28' of https://gitlab.freedesktop.org/drm/kernel
+git bisect good b08494a8f7416e5f09907318c5460ad6f6e2a548
+# good: [ed73728fd14e14714a86b4826fb7115d9dade1b6] Merge tag 'mt76-next-2025-05-21' of https://github.com/nbd168/wireless
+git bisect good ed73728fd14e14714a86b4826fb7115d9dade1b6
+# bad: [1b98f357dadd6ea613a435fbaef1a5dd7b35fd21] Merge tag 'net-next-6.16' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+git bisect bad 1b98f357dadd6ea613a435fbaef1a5dd7b35fd21
+# good: [34d26315db39d26666736478f8ea0ed9dae5418a] Merge tag 'linux-can-next-for-6.16-20250522' of git://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next
+git bisect good 34d26315db39d26666736478f8ea0ed9dae5418a
+# bad: [bbff27b54e4271a42ea1dba93a76e51165f2dbaa] Merge tag 'nios2_updates_for_v6.16' of git://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux
+git bisect bad bbff27b54e4271a42ea1dba93a76e51165f2dbaa
+# bad: [d87d73895fcdbe6e45813efc473544433862364f] Merge tag 'ext4_for_linus-6.16-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/tytso/ext4
+git bisect bad d87d73895fcdbe6e45813efc473544433862364f
+# good: [cd9f76de6ae9a5a0ca6201b1f06cf116a6a3e3a2] ext4: make the writeback path support large folios
+git bisect good cd9f76de6ae9a5a0ca6201b1f06cf116a6a3e3a2
+# bad: [797ac3ca24ca1af396e84d16c79c523cfefe1737] ext4: Simplify last in leaf check in ext4_map_query_blocks
+git bisect bad 797ac3ca24ca1af396e84d16c79c523cfefe1737
+# bad: [1c972b1d13dde34c9897d991283e2c54209b44e9] ext4: Check if inode uses extents in ext4_inode_can_atomic_write()
+git bisect bad 1c972b1d13dde34c9897d991283e2c54209b44e9
+# bad: [6017dbb7b67a3ca90d339ca32fe6dde425686435] ext4: remove sb argument from ext4_superblock_csum()
+git bisect bad 6017dbb7b67a3ca90d339ca32fe6dde425686435
+# bad: [7ac67301e82f02b77a5c8e7377a1f414ef108b84] ext4: enable large folio for regular file
+git bisect bad 7ac67301e82f02b77a5c8e7377a1f414ef108b84
+# good: [01e807e18fd87937f515926b79152dfa4f13b735] ext4: make online defragmentation support large folios
+git bisect good 01e807e18fd87937f515926b79152dfa4f13b735
+# first bad commit: [7ac67301e82f02b77a5c8e7377a1f414ef108b84] ext4: enable large folio for regular file
+|0625_033513|Bisect successfully! 86731a2a651e58953fc949573895f2fa6d456841_7ac67301e82f02b77a5c8e7377a1f414ef108b84_revert bzimage passed!|
