@@ -1,0 +1,501 @@
+|0803_193026|cmd=cd /root/linux-next|
+|0803_193026|git log next-20250801 check_result:commit b9ddaa95fd283bce7041550ddbbe7e764c477110|
+|0803_193026|git log v5.12 check_result:commit 9f4ad9e425a1d3b6a34617b8ea226d56a119a717|
+|0803_193026|There was old bisect log:git bisect start
+# status: waiting for both good and bad commits
+# bad: [3f804361f3b9af33e00b90ec9cb5afcc96831e60] Add linux-next specific files for 20250701
+git bisect bad 3f804361f3b9af33e00b90ec9cb5afcc96831e60
+# status: waiting for good commit(s), bad commit known
+# good: [9f4ad9e425a1d3b6a34617b8ea226d56a119a717] Linux 5.12
+git bisect good 9f4ad9e425a1d3b6a34617b8ea226d56a119a717
+# good: [d6f1e0bfe532b2ec725d9f768ca305af7aa1029a] Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good d6f1e0bfe532b2ec725d9f768ca305af7aa1029a
+# good: [b1156532bc29ac9a8d1cf71510cabc8f68181540] Merge tag 'for-netdev' of https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next
+git bisect good b1156532bc29ac9a8d1cf71510cabc8f68181540
+# good: [96c84703f1cf6ea43617f9565166681cd71df104] Merge tag 'drm-next-2025-01-17' of https://gitlab.freedesktop.org/drm/kernel
+git bisect good 96c84703f1cf6ea43617f9565166681cd71df104
+# good: [a61ec0dd18de4e98f46dcb95808c7cae0c8e0acc] Merge tag 'io_uring-6.15-20250410' of git://git.kernel.dk/linux
+git bisect good a61ec0dd18de4e98f46dcb95808c7cae0c8e0acc
+# good: [f79749a8e42b3a6dcb980e87f3ef752962b9f094] Merge tag 'soc-defconfig-6.16' of git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
+git bisect good f79749a8e42b3a6dcb980e87f3ef752962b9f094
+# bad: [28aa52b6189f1cc409f96910c63fa1b99370b99e] Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect bad 28aa52b6189f1cc409f96910c63fa1b99370b99e
+# good: [cfc4ca8986bb1f6182da6cd7bb57f228590b4643] Merge tag 'uml-for-linux-6.16-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/uml/linux
+git bisect good cfc4ca8986bb1f6182da6cd7bb57f228590b4643
+# good: [939f15e640f193616691d3bcde0089760e75b0d3] Merge tag 'turbostat-2025.06.08' of git://git.kernel.org/pub/scm/linux/kernel/git/lenb/linux
+git bisect good 939f15e640f193616691d3bcde0089760e75b0d3
+# bad: [e34a79b96ab9d49ed8b605fee11099cf3efbb428] Merge tag 'net-6.16-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect bad e34a79b96ab9d49ed8b605fee11099cf3efbb428
+# good: [5c8013ae2e86ec36b07500ba4cacb14ab4d6f728] Merge tag 'net-6.16-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good 5c8013ae2e86ec36b07500ba4cacb14ab4d6f728
+# good: [75f99f8cf445d577132ed97514032d9a3d3e2758] Merge tag 'v6.16-rc2-smb3-client-fixes-v2' of git://git.samba.org/sfrench/cifs-2.6
+git bisect good 75f99f8cf445d577132ed97514032d9a3d3e2758
+# bad: [5ca7fe213ba3113dde19c4cd46347c16d9e69f81] Merge tag 'for-6.16-rc3-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux
+git bisect bad 5ca7fe213ba3113dde19c4cd46347c16d9e69f81
+# bad: [5c00eca95a9a20e662bd290c3ef3f2e07dfa9baa] Merge tag 'x86_urgent_for_v6.16_rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect bad 5c00eca95a9a20e662bd290c3ef3f2e07dfa9baa
+# good: [73543bad766486c3cdbf6fa9d1faf7d0c4bcc7af] Merge tag 'edac_urgent_for_v6.16_rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/ras/ras
+git bisect good 73543bad766486c3cdbf6fa9d1faf7d0c4bcc7af
+# bad: [17ef32ae66b1afc9fa6dbea40eb18a13edba9c31] Merge tag 'perf_urgent_for_v6.16_rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect bad 17ef32ae66b1afc9fa6dbea40eb18a13edba9c31
+# bad: [bc4394e5e79cdda1b0997e0be1d65e242f523f02] perf: Fix the throttle error of some clock events
+git bisect bad bc4394e5e79cdda1b0997e0be1d65e242f523f02
+# bad: [3b7a34aebbdf2a4b7295205bf0c654294283ec82] perf: Fix dangling cgroup pointer in cpuctx
+git bisect bad 3b7a34aebbdf2a4b7295205bf0c654294283ec82
+# bad: [61988e36dc5457cdff7ae7927e8d9ad1419ee998] perf: Fix cgroup state vs ERROR
+git bisect bad 61988e36dc5457cdff7ae7927e8d9ad1419ee998
+# bad: [4f6fc782128355931527cefe3eb45338abd8ab39] perf: Fix sample vs do_exit()
+git bisect bad 4f6fc782128355931527cefe3eb45338abd8ab39
+# first bad commit: [4f6fc782128355931527cefe3eb45338abd8ab39] perf: Fix sample vs do_exit(), will clean it|
+|0803_193026|cmd=git bisect reset|
+|0803_193031|cmd=git checkout -f next-20250801|
+|0803_193034|sshpass is already installed|
+|0803_193034|cmd=cd /root/linux-next|
+|0803_193034|cmd=rm -rf /var/www/html//syzkaller/2025_08_03/ly_bisection|
+|0803_193034|cmd=mkdir -p /var/www/html//syzkaller/2025_08_03/ly_bisection|
+|0803_193034|cmd=cp -rf /root/vm_bisect/config-5.18rc4i_kvm /root/ly_bisection/0803_193026___pte_offset_map_lock/kconfig_origin|
+|0803_193034|cmd=cp -rf /root/vm_bisect/repro.sh /root/ly_bisection/0803_193026___pte_offset_map_lock|
+|0803_193034|/root/ly_bisection/repro is not .c or .cprog file|
+|0803_193034||/root/ly_bisection/bzImage_next-20250801| does not exist, will make it|
+|0803_193034|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m next-20250801 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0803_194626|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_next-20250801, /root/ly_bisection/0803_193026___pte_offset_map_lock/next-20250801_dmesg.log, port:10024, 1 time|
+|0803_194658|It takes 31 seconds to find login:test login: |
+|0803_194658|Boot 1 time: takes 31 seconds to boot up.|
+|0803_194658|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0803_194701|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0803_194701|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0803_194703|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0803_194704|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0803_194704|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0803_194714|/root/ly_bisection/bzImage_next-20250801 contained __pte_offset_map_lock:[   38.173707]  ? __pte_offset_map_lock+0x1a2/0x3c0
+[   38.174390]  __pte_offset_map_lock+0x1a2/0x3c0
+[   38.174987]  ? __pfx___pte_offset_map_lock+0x10/0x10, FAIL|
+|0803_194714|Found time:38 in /root/ly_bisection/0803_193026___pte_offset_map_lock/next-20250801_dmesg.log|
+|0803_194714|Logic: |<=50: +50|50-100 +180|>100 +1800| Set TIME:218|
+|0803_194714|-END- commit next-20250801 FAIL bad|
+|0803_194714|cmd=cd /root/linux-next|
+|0803_194714||/root/ly_bisection/bzImage_v5.12| exist, no need make|
+|0803_194714|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_v5.12, /root/ly_bisection/0803_193026___pte_offset_map_lock/v5.12_dmesg.log, port:10024, 1 time|
+|0803_194732|It takes 18 seconds to find login:test login: |
+|0803_194732|Boot 1 time: takes 18 seconds to boot up.|
+|0803_194732|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0803_194735|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0803_194735|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0803_194736|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0803_194737|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0803_194737|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0803_195115|/root/ly_bisection/bzImage_v5.12 didn't contain __pte_offset_map_lock: in dmesg, pass|
+|0803_195115|Start commit v5.12 PASS good|
+|0803_195115|cmd=git checkout -f next-20250801|
+|0803_195116|cmd=git bisect start|
+|0803_195116|cmd=git bisect bad next-20250801|
+|0803_195116|Bisect first start commit:v5.12|
+|0803_195116|git bisect good v5.12|
+|0803_200801||/root/ly_bisection/bzImage_6a8cbd9253abc1bd0df4d60c4c24fa555190376d| does not exist, will make it|
+|0803_200801|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 6a8cbd9253abc1bd0df4d60c4c24fa555190376d -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0803_202304|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_6a8cbd9253abc1bd0df4d60c4c24fa555190376d, /root/ly_bisection/0803_193026___pte_offset_map_lock/6a8cbd9253abc1bd0df4d60c4c24fa555190376d_dmesg.log, port:10024, 1 time|
+|0803_202334|It takes 29 seconds to find login:test login: |
+|0803_202334|Boot 1 time: takes 29 seconds to boot up.|
+|0803_202334|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0803_202338|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0803_202338|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0803_202340|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0803_202341|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0803_202341|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0803_202720|/root/ly_bisection/bzImage_6a8cbd9253abc1bd0df4d60c4c24fa555190376d didn't contain __pte_offset_map_lock: in dmesg, pass|
+|0803_202720|git bisect good 6a8cbd9253abc1bd0df4d60c4c24fa555190376d|
+|0803_203026||/root/ly_bisection/bzImage_586f14a6a182bbdb9404dc66464dcd8d0ac175a3| does not exist, will make it|
+|0803_203026|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 586f14a6a182bbdb9404dc66464dcd8d0ac175a3 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0803_204756|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_586f14a6a182bbdb9404dc66464dcd8d0ac175a3, /root/ly_bisection/0803_193026___pte_offset_map_lock/586f14a6a182bbdb9404dc66464dcd8d0ac175a3_dmesg.log, port:10024, 1 time|
+|0803_204827|It takes 30 seconds to find login:test login: |
+|0803_204827|Boot 1 time: takes 30 seconds to boot up.|
+|0803_204827|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0803_204831|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0803_204831|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0803_204833|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0803_204834|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0803_204834|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0803_205212|/root/ly_bisection/bzImage_586f14a6a182bbdb9404dc66464dcd8d0ac175a3 didn't contain __pte_offset_map_lock: in dmesg, pass|
+|0803_205212|git bisect good 586f14a6a182bbdb9404dc66464dcd8d0ac175a3|
+|0803_205323||/root/ly_bisection/bzImage_13845bdc869f136f92ad3d40ea09b867bb4ce467| does not exist, will make it|
+|0803_205323|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 13845bdc869f136f92ad3d40ea09b867bb4ce467 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0803_211006|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_13845bdc869f136f92ad3d40ea09b867bb4ce467, /root/ly_bisection/0803_193026___pte_offset_map_lock/13845bdc869f136f92ad3d40ea09b867bb4ce467_dmesg.log, port:10024, 1 time|
+|0803_211035|It takes 29 seconds to find login:test login: |
+|0803_211035|Boot 1 time: takes 29 seconds to boot up.|
+|0803_211035|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0803_211039|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0803_211039|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0803_211041|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0803_211042|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0803_211042|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0803_211420|/root/ly_bisection/bzImage_13845bdc869f136f92ad3d40ea09b867bb4ce467 didn't contain __pte_offset_map_lock: in dmesg, pass|
+|0803_211420|git bisect good 13845bdc869f136f92ad3d40ea09b867bb4ce467|
+|0803_211441||/root/ly_bisection/bzImage_b08494a8f7416e5f09907318c5460ad6f6e2a548| does not exist, will make it|
+|0803_211441|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m b08494a8f7416e5f09907318c5460ad6f6e2a548 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0803_213045|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_b08494a8f7416e5f09907318c5460ad6f6e2a548, /root/ly_bisection/0803_193026___pte_offset_map_lock/b08494a8f7416e5f09907318c5460ad6f6e2a548_dmesg.log, port:10024, 1 time|
+|0803_213115|It takes 29 seconds to find login:test login: |
+|0803_213115|Boot 1 time: takes 29 seconds to boot up.|
+|0803_213115|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0803_213118|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0803_213118|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0803_213120|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0803_213121|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0803_213121|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0803_213459|/root/ly_bisection/bzImage_b08494a8f7416e5f09907318c5460ad6f6e2a548 didn't contain __pte_offset_map_lock: in dmesg, pass|
+|0803_213459|git bisect good b08494a8f7416e5f09907318c5460ad6f6e2a548|
+|0803_213513||/root/ly_bisection/bzImage_8b5a19b4ff6a2096225d88cf24cfeef03edc1bed| does not exist, will make it|
+|0803_213513|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 8b5a19b4ff6a2096225d88cf24cfeef03edc1bed -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0803_215120|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_8b5a19b4ff6a2096225d88cf24cfeef03edc1bed, /root/ly_bisection/0803_193026___pte_offset_map_lock/8b5a19b4ff6a2096225d88cf24cfeef03edc1bed_dmesg.log, port:10024, 1 time|
+|0803_215150|It takes 29 seconds to find login:test login: |
+|0803_215150|Boot 1 time: takes 29 seconds to boot up.|
+|0803_215150|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0803_215153|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0803_215153|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0803_215155|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0803_215156|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0803_215156|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0803_215534|/root/ly_bisection/bzImage_8b5a19b4ff6a2096225d88cf24cfeef03edc1bed didn't contain __pte_offset_map_lock: in dmesg, pass|
+|0803_215534|git bisect good 8b5a19b4ff6a2096225d88cf24cfeef03edc1bed|
+|0803_215545||/root/ly_bisection/bzImage_63eb28bb1402891b1ad2be02a530f29a9dd7f1cd| does not exist, will make it|
+|0803_215545|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 63eb28bb1402891b1ad2be02a530f29a9dd7f1cd -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0803_221152|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_63eb28bb1402891b1ad2be02a530f29a9dd7f1cd, /root/ly_bisection/0803_193026___pte_offset_map_lock/63eb28bb1402891b1ad2be02a530f29a9dd7f1cd_dmesg.log, port:10024, 1 time|
+|0803_221222|It takes 29 seconds to find login:test login: |
+|0803_221222|Boot 1 time: takes 29 seconds to boot up.|
+|0803_221222|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0803_221225|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0803_221225|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0803_221227|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0803_221227|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0803_221228|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0803_221606|/root/ly_bisection/bzImage_63eb28bb1402891b1ad2be02a530f29a9dd7f1cd didn't contain __pte_offset_map_lock: in dmesg, pass|
+|0803_221606|git bisect good 63eb28bb1402891b1ad2be02a530f29a9dd7f1cd|
+|0803_221615||/root/ly_bisection/bzImage_b33f91c6276255ca0b90c42142828de05496ed1d| does not exist, will make it|
+|0803_221615|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m b33f91c6276255ca0b90c42142828de05496ed1d -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0803_223214|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_b33f91c6276255ca0b90c42142828de05496ed1d, /root/ly_bisection/0803_193026___pte_offset_map_lock/b33f91c6276255ca0b90c42142828de05496ed1d_dmesg.log, port:10024, 1 time|
+|0803_223243|It takes 29 seconds to find login:test login: |
+|0803_223243|Boot 1 time: takes 29 seconds to boot up.|
+|0803_223243|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0803_223247|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0803_223247|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0803_223248|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0803_223249|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0803_223249|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0803_223627|/root/ly_bisection/bzImage_b33f91c6276255ca0b90c42142828de05496ed1d didn't contain __pte_offset_map_lock: in dmesg, pass|
+|0803_223627|git bisect good b33f91c6276255ca0b90c42142828de05496ed1d|
+|0803_223636||/root/ly_bisection/bzImage_6e17e0e245c1c89e35051b59eb82d2d4a1e30b59| does not exist, will make it|
+|0803_223636|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 6e17e0e245c1c89e35051b59eb82d2d4a1e30b59 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0803_225235|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_6e17e0e245c1c89e35051b59eb82d2d4a1e30b59, /root/ly_bisection/0803_193026___pte_offset_map_lock/6e17e0e245c1c89e35051b59eb82d2d4a1e30b59_dmesg.log, port:10024, 1 time|
+|0803_225305|It takes 29 seconds to find login:test login: |
+|0803_225305|Boot 1 time: takes 29 seconds to boot up.|
+|0803_225305|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0803_225308|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0803_225308|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0803_225310|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0803_225311|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0803_225311|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0803_225649|/root/ly_bisection/bzImage_6e17e0e245c1c89e35051b59eb82d2d4a1e30b59 contained __pte_offset_map_lock:[   36.396481]  ? __pte_offset_map_lock+0x1a2/0x3c0
+[   36.397105]  __pte_offset_map_lock+0x1a2/0x3c0
+[   36.397706]  ? __pfx___pte_offset_map_lock+0x10/0x10, FAIL|
+|0803_225649|git bisect bad 6e17e0e245c1c89e35051b59eb82d2d4a1e30b59|
+|0803_225650||/root/ly_bisection/bzImage_150f8f2d462621e6a8aeb3957308af6b0c5624cc| does not exist, will make it|
+|0803_225650|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 150f8f2d462621e6a8aeb3957308af6b0c5624cc -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0803_231247|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_150f8f2d462621e6a8aeb3957308af6b0c5624cc, /root/ly_bisection/0803_193026___pte_offset_map_lock/150f8f2d462621e6a8aeb3957308af6b0c5624cc_dmesg.log, port:10024, 1 time|
+|0803_231315|It takes 28 seconds to find login:test login: |
+|0803_231315|Boot 1 time: takes 28 seconds to boot up.|
+|0803_231315|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0803_231319|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0803_231319|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0803_231320|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0803_231321|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0803_231321|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0803_231659|/root/ly_bisection/bzImage_150f8f2d462621e6a8aeb3957308af6b0c5624cc contained __pte_offset_map_lock:[   37.659626]  ? __pte_offset_map_lock+0x1a2/0x3c0
+[   37.660246]  __pte_offset_map_lock+0x1a2/0x3c0
+[   37.660835]  ? __pfx___pte_offset_map_lock+0x10/0x10, FAIL|
+|0803_231659|git bisect bad 150f8f2d462621e6a8aeb3957308af6b0c5624cc|
+|0803_231701||/root/ly_bisection/bzImage_6aee5aed2edd0a156bf060abce1bdbbc38171c10| does not exist, will make it|
+|0803_231701|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 6aee5aed2edd0a156bf060abce1bdbbc38171c10 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0803_233300|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_6aee5aed2edd0a156bf060abce1bdbbc38171c10, /root/ly_bisection/0803_193026___pte_offset_map_lock/6aee5aed2edd0a156bf060abce1bdbbc38171c10_dmesg.log, port:10024, 1 time|
+|0803_233329|It takes 29 seconds to find login:test login: |
+|0803_233329|Boot 1 time: takes 29 seconds to boot up.|
+|0803_233329|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0803_233333|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0803_233333|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0803_233334|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0803_233335|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0803_233335|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0803_233713|/root/ly_bisection/bzImage_6aee5aed2edd0a156bf060abce1bdbbc38171c10 contained __pte_offset_map_lock:[   38.838547]  ? __pte_offset_map_lock+0x1a2/0x3c0
+[   38.839113]  __pte_offset_map_lock+0x1a2/0x3c0
+[   38.839667]  ? __pfx___pte_offset_map_lock+0x10/0x10, FAIL|
+|0803_233713|git bisect bad 6aee5aed2edd0a156bf060abce1bdbbc38171c10|
+|0803_233716||/root/ly_bisection/bzImage_5799c0ed0aff65989b04ca3f517401e4ee94da10| does not exist, will make it|
+|0803_233716|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 5799c0ed0aff65989b04ca3f517401e4ee94da10 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0803_235333|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_5799c0ed0aff65989b04ca3f517401e4ee94da10, /root/ly_bisection/0803_193026___pte_offset_map_lock/5799c0ed0aff65989b04ca3f517401e4ee94da10_dmesg.log, port:10024, 1 time|
+|0803_235402|It takes 28 seconds to find login:test login: |
+|0803_235402|Boot 1 time: takes 28 seconds to boot up.|
+|0803_235402|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0803_235405|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0803_235405|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0803_235407|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0803_235408|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0803_235408|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0803_235746|/root/ly_bisection/bzImage_5799c0ed0aff65989b04ca3f517401e4ee94da10 contained __pte_offset_map_lock:[   43.261609]  ? __pte_offset_map_lock+0x1a2/0x3c0
+[   43.262303]  __pte_offset_map_lock+0x1a2/0x3c0
+[   43.262916]  ? __pfx___pte_offset_map_lock+0x10/0x10, FAIL|
+|0803_235746|git bisect bad 5799c0ed0aff65989b04ca3f517401e4ee94da10|
+|0803_235746||/root/ly_bisection/bzImage_8a6a984c2e0ea406459b445a3910a454bece3aa1| does not exist, will make it|
+|0803_235746|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 8a6a984c2e0ea406459b445a3910a454bece3aa1 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0804_001356|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_8a6a984c2e0ea406459b445a3910a454bece3aa1, /root/ly_bisection/0803_193026___pte_offset_map_lock/8a6a984c2e0ea406459b445a3910a454bece3aa1_dmesg.log, port:10024, 1 time|
+|0804_001425|It takes 29 seconds to find login:test login: |
+|0804_001425|Boot 1 time: takes 29 seconds to boot up.|
+|0804_001425|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0804_001429|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0804_001429|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0804_001430|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0804_001431|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0804_001431|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0804_001809|/root/ly_bisection/bzImage_8a6a984c2e0ea406459b445a3910a454bece3aa1 contained __pte_offset_map_lock:[   37.184776]  ? __pte_offset_map_lock+0x1a2/0x3c0
+[   37.185414]  __pte_offset_map_lock+0x1a2/0x3c0
+[   37.186016]  ? __pfx___pte_offset_map_lock+0x10/0x10, FAIL|
+|0804_001809|git bisect bad 8a6a984c2e0ea406459b445a3910a454bece3aa1|
+|0804_001810||/root/ly_bisection/bzImage_32dc2d5e3f0de7a62dd85b2ec2be2964449c4796| does not exist, will make it|
+|0804_001810|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 32dc2d5e3f0de7a62dd85b2ec2be2964449c4796 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0804_003406|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_32dc2d5e3f0de7a62dd85b2ec2be2964449c4796, /root/ly_bisection/0803_193026___pte_offset_map_lock/32dc2d5e3f0de7a62dd85b2ec2be2964449c4796_dmesg.log, port:10024, 1 time|
+|0804_003436|It takes 29 seconds to find login:test login: |
+|0804_003436|Boot 1 time: takes 29 seconds to boot up.|
+|0804_003436|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0804_003439|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0804_003439|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0804_003441|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0804_003442|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0804_003442|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0804_003820|/root/ly_bisection/bzImage_32dc2d5e3f0de7a62dd85b2ec2be2964449c4796 contained __pte_offset_map_lock:[   41.755797]  ? __pte_offset_map_lock+0x1a2/0x3c0
+[   41.756459]  __pte_offset_map_lock+0x1a2/0x3c0
+[   41.757056]  ? __pfx___pte_offset_map_lock+0x10/0x10, FAIL|
+|0804_003820|git bisect bad 32dc2d5e3f0de7a62dd85b2ec2be2964449c4796|
+|0804_003820||/root/ly_bisection/bzImage_a8fb49c6abbbe5c71e1a8a888ef2c4b3e341d169| does not exist, will make it|
+|0804_003820|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m a8fb49c6abbbe5c71e1a8a888ef2c4b3e341d169 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0804_005430|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_a8fb49c6abbbe5c71e1a8a888ef2c4b3e341d169, /root/ly_bisection/0803_193026___pte_offset_map_lock/a8fb49c6abbbe5c71e1a8a888ef2c4b3e341d169_dmesg.log, port:10024, 1 time|
+|0804_005500|It takes 29 seconds to find login:test login: |
+|0804_005500|Boot 1 time: takes 29 seconds to boot up.|
+|0804_005500|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0804_005503|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0804_005503|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0804_005505|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0804_005506|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0804_005506|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0804_005844|/root/ly_bisection/bzImage_a8fb49c6abbbe5c71e1a8a888ef2c4b3e341d169 didn't contain __pte_offset_map_lock: in dmesg, pass|
+|0804_005844|git bisect good a8fb49c6abbbe5c71e1a8a888ef2c4b3e341d169|
+|0804_005844||/root/ly_bisection/bzImage_5e00e31867d16e235bb693b900c85e86dc2c3464| does not exist, will make it|
+|0804_005844|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 5e00e31867d16e235bb693b900c85e86dc2c3464 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0804_011452|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_5e00e31867d16e235bb693b900c85e86dc2c3464, /root/ly_bisection/0803_193026___pte_offset_map_lock/5e00e31867d16e235bb693b900c85e86dc2c3464_dmesg.log, port:10024, 1 time|
+|0804_011521|It takes 29 seconds to find login:test login: |
+|0804_011521|Boot 1 time: takes 29 seconds to boot up.|
+|0804_011521|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0804_011525|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0804_011525|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0804_011526|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0804_011527|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0804_011527|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0804_011905|/root/ly_bisection/bzImage_5e00e31867d16e235bb693b900c85e86dc2c3464 didn't contain __pte_offset_map_lock: in dmesg, pass|
+|0804_011905|git bisect good 5e00e31867d16e235bb693b900c85e86dc2c3464|
+|0804_011906||/root/ly_bisection/bzImage_18ebe55a9236b33d519fcc8669730cd02386a2dc| does not exist, will make it|
+|0804_011906|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 18ebe55a9236b33d519fcc8669730cd02386a2dc -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0804_013208|git bisect skip 18ebe55a9236b33d519fcc8669730cd02386a2dc|
+|0804_013208||/root/ly_bisection/bzImage_f5e8b140cd1324cf2c9c17487b8f444098624797| does not exist, will make it|
+|0804_013208|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m f5e8b140cd1324cf2c9c17487b8f444098624797 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0804_014442|git bisect skip f5e8b140cd1324cf2c9c17487b8f444098624797|
+|0804_014442||/root/ly_bisection/bzImage_7e43195c609f0499e46c6bfa9472e39c76af445b| does not exist, will make it|
+|0804_014442|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 7e43195c609f0499e46c6bfa9472e39c76af445b -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0804_020042|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_7e43195c609f0499e46c6bfa9472e39c76af445b, /root/ly_bisection/0803_193026___pte_offset_map_lock/7e43195c609f0499e46c6bfa9472e39c76af445b_dmesg.log, port:10024, 1 time|
+|0804_020112|It takes 30 seconds to find login:test login: |
+|0804_020112|Boot 1 time: takes 30 seconds to boot up.|
+|0804_020112|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0804_020116|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0804_020116|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0804_020117|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0804_020118|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0804_020118|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0804_020456|/root/ly_bisection/bzImage_7e43195c609f0499e46c6bfa9472e39c76af445b contained __pte_offset_map_lock:[   40.589048]  ? __pte_offset_map_lock+0x1a2/0x3c0
+[   40.589665]  __pte_offset_map_lock+0x1a2/0x3c0
+[   40.590271]  ? __pfx___pte_offset_map_lock+0x10/0x10, FAIL|
+|0804_020456|git bisect bad 7e43195c609f0499e46c6bfa9472e39c76af445b|
+|0804_020457||/root/ly_bisection/bzImage_bdb86f6b87633cc020f8225ae09d336da7826724| does not exist, will make it|
+|0804_020457|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m bdb86f6b87633cc020f8225ae09d336da7826724 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0804_022104|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_bdb86f6b87633cc020f8225ae09d336da7826724, /root/ly_bisection/0803_193026___pte_offset_map_lock/bdb86f6b87633cc020f8225ae09d336da7826724_dmesg.log, port:10024, 1 time|
+|0804_022133|It takes 29 seconds to find login:test login: |
+|0804_022133|Boot 1 time: takes 29 seconds to boot up.|
+|0804_022133|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0804_022137|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0804_022137|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0804_022139|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0804_022140|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0804_022140|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0804_022518|/root/ly_bisection/bzImage_bdb86f6b87633cc020f8225ae09d336da7826724 contained __pte_offset_map_lock:[   48.955432]  ? __pte_offset_map_lock+0x1a2/0x3c0
+[   48.956055]  __pte_offset_map_lock+0x1a2/0x3c0
+[   48.956717]  ? __pfx___pte_offset_map_lock+0x10/0x10, FAIL|
+|0804_022518|git bisect bad bdb86f6b87633cc020f8225ae09d336da7826724|
+|0804_022518||/root/ly_bisection/bzImage_1e6b17b4237dacb02e9cfeaed35d889bbc9e8a84| does not exist, will make it|
+|0804_022518|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 1e6b17b4237dacb02e9cfeaed35d889bbc9e8a84 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0804_024115|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_1e6b17b4237dacb02e9cfeaed35d889bbc9e8a84, /root/ly_bisection/0803_193026___pte_offset_map_lock/1e6b17b4237dacb02e9cfeaed35d889bbc9e8a84_dmesg.log, port:10024, 1 time|
+|0804_024143|It takes 28 seconds to find login:test login: |
+|0804_024143|Boot 1 time: takes 28 seconds to boot up.|
+|0804_024143|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0804_024147|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0804_024147|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0804_024148|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0804_024149|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0804_024149|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0804_024527|/root/ly_bisection/bzImage_1e6b17b4237dacb02e9cfeaed35d889bbc9e8a84 contained __pte_offset_map_lock:[   45.712414]  ? __pte_offset_map_lock+0x1a2/0x3c0
+[   45.713034]  __pte_offset_map_lock+0x1a2/0x3c0
+[   45.713627]  ? __pfx___pte_offset_map_lock+0x10/0x10, FAIL|
+|0804_024527|git bisect bad 1e6b17b4237dacb02e9cfeaed35d889bbc9e8a84|
+|0804_024527||/root/ly_bisection/bzImage_a6fde7add78d122f5e09cb6280f99c4b5ead7d56| does not exist, will make it|
+|0804_024527|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m a6fde7add78d122f5e09cb6280f99c4b5ead7d56 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0804_030132|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_a6fde7add78d122f5e09cb6280f99c4b5ead7d56, /root/ly_bisection/0803_193026___pte_offset_map_lock/a6fde7add78d122f5e09cb6280f99c4b5ead7d56_dmesg.log, port:10024, 1 time|
+|0804_030201|It takes 29 seconds to find login:test login: |
+|0804_030201|Boot 1 time: takes 29 seconds to boot up.|
+|0804_030201|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0804_030205|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0804_030205|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0803_193026___pte_offset_map_lock/repro root@localhost:/root/repro|
+|0804_030206|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0804_030207|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0804_030207|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0804_030545|/root/ly_bisection/bzImage_a6fde7add78d122f5e09cb6280f99c4b5ead7d56 contained __pte_offset_map_lock:[   59.313521]  ? __pte_offset_map_lock+0x1a2/0x3c0
+[   59.314141]  __pte_offset_map_lock+0x1a2/0x3c0
+[   59.314754]  ? __pfx___pte_offset_map_lock+0x10/0x10, FAIL|
+|0804_030545|git bisect bad a6fde7add78d122f5e09cb6280f99c4b5ead7d56|
+|0804_030545|Bisect PASS: find bad commit: a6fde7add78d122f5e09cb6280f99c4b5ead7d56 is the first bad commit
+commit a6fde7add78d122f5e09cb6280f99c4b5ead7d56
+Author: Barry Song <baohua@kernel.org>
+Date:   Sun Jun 8 10:01:50 2025 +1200
+
+    mm: use per_vma lock for MADV_DONTNEED
+    
+    Certain madvise operations, especially MADV_DONTNEED, occur far more
+    frequently than other madvise options, particularly in native and Java
+    heaps for dynamic memory management.
+    
+    Currently, the mmap_lock is always held during these operations, even when
+    unnecessary.  This causes lock contention and can lead to severe priority
+    inversion, where low-priority threads—such as Android's
+    HeapTaskDaemon— hold the lock and block higher-priority threads.
+    
+    This patch enables the use of per-VMA locks when the advised range lies
+    entirely within a single VMA, avoiding the need for full VMA traversal.
+    In practice, userspace heaps rarely issue MADV_DONTNEED across multiple
+    VMAs.
+    
+    Tangquan's testing shows that over 99.5% of memory reclaimed by Android
+    benefits from this per-VMA lock optimization.  After extended runtime,
+    217,735 madvise calls from HeapTaskDaemon used the per-VMA path, while
+    only 1,231 fell back to mmap_lock.
+    
+    To simplify handling, the implementation falls back to the standard
+    mmap_lock if userfaultfd is enabled on the VMA, avoiding the complexity of
+    userfaultfd_remove().
+    
+    Many thanks to Lorenzo's work[1] on "mm/madvise: support VMA read locks
+    for MADV_DONTNEED[_LOCKED]"
+    
+    Then use this mechanism to permit VMA locking to be done later in the
+    madvise() logic and also to allow altering of the locking mode to permit
+    falling back to an mmap read lock if required."
+    
+    One important point, as pointed out by Jann[2], is that
+    untagged_addr_remote() requires holding mmap_lock.  This is because
+    address tagging on x86 and RISC-V is quite complex.
+    
+    Until untagged_addr_remote() becomes atomic—which seems unlikely in the
+    near future—we cannot support per-VMA locks for remote processes.  So
+    for now, only local processes are supported.
+    
+    Lance said:
+    
+    : Just to put some numbers on it, I ran a micro-benchmark with 100
+    : parallel threads, where each thread calls madvise() on its own 1GiB
+    : chunk of 64KiB mTHP-backed memory.  The performance gain is huge:
+    :
+    : 1) MADV_DONTNEED saw its average time drop from 0.0508s to 0.0270s
+    :    (~47% faster)
+    :
+    : 2) MADV_FREE saw its average time drop from 0.3078s to 0.1095s (~64%
+    :    faster)
+    
+    [lorenzo.stoakes@oracle.com: avoid any chance of uninitialised pointer deref]
+      Link: https://lkml.kernel.org/r/309d22ca-6cd9-4601-8402-d441a07d9443@lucifer.local
+    Link: https://lore.kernel.org/all/0b96ce61-a52c-4036-b5b6-5c50783db51f@lucifer.local/ [1]
+    Link: https://lore.kernel.org/all/CAG48ez11zi-1jicHUZtLhyoNPGGVB+ROeAJCUw48bsjk4bbEkA@mail.gmail.com/ [2]
+    Link: https://lkml.kernel.org/r/20250607220150.2980-1-21cnbao@gmail.com
+    Signed-off-by: Barry Song <v-songbaohua@oppo.com>
+    Signed-off-by: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+    Reviewed-by: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+    Acked-by: Qi Zheng <zhengqi.arch@bytedance.com>
+    Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
+    Cc: David Hildenbrand <david@redhat.com>
+    Cc: Vlastimil Babka <vbabka@suse.cz>
+    Cc: Jann Horn <jannh@google.com>
+    Cc: Suren Baghdasaryan <surenb@google.com>
+    Cc: Lokesh Gidra <lokeshgidra@google.com>
+    Cc: Tangquan Zheng <zhengtangquan@oppo.com>
+    Cc: Lance Yang <ioworker0@gmail.com>
+    Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+
+ mm/madvise.c | 198 ++++++++++++++++++++++++++++++++++++++++++++---------------
+ 1 file changed, 150 insertions(+), 48 deletions(-)|
+|0804_030545|cmd=git bisect log >> /root/ly_bisection/bi.log|
+|0804_030545|cmd=git bisect log >> /root/ly_bisection/0803_193026___pte_offset_map_lock/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [b9ddaa95fd283bce7041550ddbbe7e764c477110] Add linux-next specific files for 20250801
+git bisect bad b9ddaa95fd283bce7041550ddbbe7e764c477110
+# status: waiting for good commit(s), bad commit known
+# good: [9f4ad9e425a1d3b6a34617b8ea226d56a119a717] Linux 5.12
+git bisect good 9f4ad9e425a1d3b6a34617b8ea226d56a119a717
+# good: [6a8cbd9253abc1bd0df4d60c4c24fa555190376d] Merge tag 'v6.5-rc1-sysctl-next' of git://git.kernel.org/pub/scm/linux/kernel/git/mcgrof/linux
+git bisect good 6a8cbd9253abc1bd0df4d60c4c24fa555190376d
+# good: [586f14a6a182bbdb9404dc66464dcd8d0ac175a3] Merge tag 'erofs-for-6.11-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs
+git bisect good 586f14a6a182bbdb9404dc66464dcd8d0ac175a3
+# good: [13845bdc869f136f92ad3d40ea09b867bb4ce467] Merge tag 'char-misc-6.14-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc
+git bisect good 13845bdc869f136f92ad3d40ea09b867bb4ce467
+# good: [b08494a8f7416e5f09907318c5460ad6f6e2a548] Merge tag 'drm-next-2025-05-28' of https://gitlab.freedesktop.org/drm/kernel
+git bisect good b08494a8f7416e5f09907318c5460ad6f6e2a548
+# good: [8b5a19b4ff6a2096225d88cf24cfeef03edc1bed] Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good 8b5a19b4ff6a2096225d88cf24cfeef03edc1bed
+# good: [63eb28bb1402891b1ad2be02a530f29a9dd7f1cd] Merge tag 'for-linus' of git://git.kernel.org/pub/scm/virt/kvm/kvm
+git bisect good 63eb28bb1402891b1ad2be02a530f29a9dd7f1cd
+# good: [b33f91c6276255ca0b90c42142828de05496ed1d] exfat: optimize allocation bitmap loading time
+git bisect good b33f91c6276255ca0b90c42142828de05496ed1d
+# bad: [6e17e0e245c1c89e35051b59eb82d2d4a1e30b59] Merge branch 'fs-next' of linux-next
+git bisect bad 6e17e0e245c1c89e35051b59eb82d2d4a1e30b59
+# bad: [150f8f2d462621e6a8aeb3957308af6b0c5624cc] Merge branch 'dev' of git://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs.git
+git bisect bad 150f8f2d462621e6a8aeb3957308af6b0c5624cc
+# bad: [6aee5aed2edd0a156bf060abce1bdbbc38171c10] Merge tag 'cgroup-for-6.17' of git://git.kernel.org/pub/scm/linux/kernel/git/tj/cgroup
+git bisect bad 6aee5aed2edd0a156bf060abce1bdbbc38171c10
+# bad: [5799c0ed0aff65989b04ca3f517401e4ee94da10] mm/page-alloc: remove PageMappingFlags()
+git bisect bad 5799c0ed0aff65989b04ca3f517401e4ee94da10
+# bad: [8a6a984c2e0ea406459b445a3910a454bece3aa1] mm: remove redundant pXd_devmap calls
+git bisect bad 8a6a984c2e0ea406459b445a3910a454bece3aa1
+# bad: [32dc2d5e3f0de7a62dd85b2ec2be2964449c4796] selftests/mm: don't compare return values to in cow
+git bisect bad 32dc2d5e3f0de7a62dd85b2ec2be2964449c4796
+# good: [a8fb49c6abbbe5c71e1a8a888ef2c4b3e341d169] mm: remove the for_reclaim field from struct writeback_control
+git bisect good a8fb49c6abbbe5c71e1a8a888ef2c4b3e341d169
+# good: [5e00e31867d16e235bb693b900c85e86dc2c3464] userfaultfd: remove UFFD_CLOEXEC, UFFD_NONBLOCK, and UFFD_FLAGS_SET
+git bisect good 5e00e31867d16e235bb693b900c85e86dc2c3464
+# skip: [18ebe55a9236b33d519fcc8669730cd02386a2dc] mm/readahead: terminate async readahead on natural boundary
+git bisect skip 18ebe55a9236b33d519fcc8669730cd02386a2dc
+# skip: [f5e8b140cd1324cf2c9c17487b8f444098624797] mm/readahead: make space in struct file_ra_state
+git bisect skip f5e8b140cd1324cf2c9c17487b8f444098624797
+# bad: [7e43195c609f0499e46c6bfa9472e39c76af445b] alloc_tag: remove empty module tag section
+git bisect bad 7e43195c609f0499e46c6bfa9472e39c76af445b
+# bad: [bdb86f6b87633cc020f8225ae09d336da7826724] mm/readahead: honour new_order in page_cache_ra_order()
+git bisect bad bdb86f6b87633cc020f8225ae09d336da7826724
+# bad: [1e6b17b4237dacb02e9cfeaed35d889bbc9e8a84] xarray: add a BUG_ON() to ensure caller is not sibling
+git bisect bad 1e6b17b4237dacb02e9cfeaed35d889bbc9e8a84
+# bad: [a6fde7add78d122f5e09cb6280f99c4b5ead7d56] mm: use per_vma lock for MADV_DONTNEED
+git bisect bad a6fde7add78d122f5e09cb6280f99c4b5ead7d56
+# first bad commit: [a6fde7add78d122f5e09cb6280f99c4b5ead7d56] mm: use per_vma lock for MADV_DONTNEED
+|0804_030546|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m next-20250801 -b a6fde7add78d122f5e09cb6280f99c4b5ead7d56 -d /root/ly_bisection -o /tmp/kernel -f /root/ly_bisection/bzImage_next-20250801_a6fde7add78d122f5e09cb6280f99c4b5ead7d56_revert -c /root/vm_bisect/config-5.18rc4i_kvm  > /root/vm_bisect/nohup.log|
+|0804_030659|1st base commit:v5.12!|
+|0804_030700|FAIL|bzImage:/root/ly_bisection/bzImage_next-20250801_a6fde7add78d122f5e09cb6280f99c4b5ead7d56_revert does not exist:|
+|0804_030700|1st base commit:v5.12!|
+|0804_030700|ISSUE:ly_bisection  EMAIL status after check:Email_not_sent|

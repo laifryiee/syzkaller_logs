@@ -1,0 +1,208 @@
+loop0: detected capacity change from 0 to 65536
+loop0: detected capacity change from 0 to 65536
+loop0: detected capacity change from 0 to 65536
+loop0: detected capacity change from 0 to 65536
+Oops: general protection fault, probably for non-canonical address 0xdffffc0000000003: 0000 [#1] SMP KASAN NOPTI
+KASAN: null-ptr-deref in range [0x0000000000000018-0x000000000000001f]
+CPU: 0 UID: 0 PID: 740 Comm: syz-executor399 Not tainted 6.16.0-next-20250728-0b90c3b6d76e #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:kasan_byte_accessible+0x15/0x30 mm/kasan/generic.c:199
+Code: cc 0f 1f 40 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 66 0f 1f 00 48 b8 00 00 00 00 00 fc ff df 48 c1 ef 03 48 01 c7 <0f> b6 07 3c 07 0f 96 c0 e9 3e 92 e5 03 66 66 2e 0f 1f 84 00 00 00
+RSP: 0018:ffff888016cbf678 EFLAGS: 00010286
+RAX: dffffc0000000000 RBX: 0000000000000001 RCX: 1ffffffff0dde80c
+RDX: 0000000000000000 RSI: ffffffff85da8e08 RDI: dffffc0000000003
+RBP: ffff888016cbf698 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: ffff88801ae33398 R12: 0000000000000018
+R13: 0000000000000018 R14: ffffffff85da8e08 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8880e353f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fca31f4c3f4 CR3: 0000000029980002 CR4: 0000000000770ef0
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ kasan_check_byte include/linux/kasan.h:399 [inline]
+ lock_acquire kernel/locking/lockdep.c:5842 [inline]
+ lock_acquire+0xea/0x310 kernel/locking/lockdep.c:5825
+ __raw_spin_lock include/linux/spinlock_api_smp.h:133 [inline]
+ _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+ spin_lock include/linux/spinlock.h:351 [inline]
+ __pte_offset_map_lock+0x1a2/0x3c0 mm/pgtable-generic.c:401
+ pte_offset_map_lock include/linux/mm.h:3052 [inline]
+ zap_pte_range mm/memory.c:1712 [inline]
+ zap_pmd_range mm/memory.c:1818 [inline]
+ zap_pud_range mm/memory.c:1847 [inline]
+ zap_p4d_range mm/memory.c:1868 [inline]
+ unmap_page_range+0xb60/0x43e0 mm/memory.c:1889
+ unmap_single_vma.constprop.0+0x15b/0x250 mm/memory.c:1932
+ unmap_vmas+0x1fa/0x460 mm/memory.c:1976
+ exit_mmap+0x1a2/0xb40 mm/mmap.c:1280
+ __mmput kernel/fork.c:1129 [inline]
+ mmput+0x132/0x370 kernel/fork.c:1152
+ exit_mm kernel/exit.c:582 [inline]
+ do_exit+0x7e7/0x28c0 kernel/exit.c:949
+ do_group_exit+0xe4/0x2c0 kernel/exit.c:1102
+ __do_sys_exit_group kernel/exit.c:1113 [inline]
+ __se_sys_exit_group kernel/exit.c:1111 [inline]
+ __x64_sys_exit_group+0x4d/0x60 kernel/exit.c:1111
+ x64_sys_call+0x2174/0x2180 arch/x86/include/generated/asm/syscalls_64.h:232
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x2e0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fca31d18a4d
+Code: Unable to access opcode bytes at 0x7fca31d18a23.
+RSP: 002b:00007ffe96d98068 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 00007fca31df69e0 RCX: 00007fca31d18a4d
+RDX: 00000000000000e7 RSI: ffffffffffffff80 RDI: 0000000000000000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000020
+R10: 00007ffe96d97f10 R11: 0000000000000246 R12: 00007fca31df69e0
+R13: 00007fca31dfbf00 R14: 0000000000000001 R15: 00007fca31dfbee8
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:kasan_byte_accessible+0x15/0x30 mm/kasan/generic.c:199
+Code: cc 0f 1f 40 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 66 0f 1f 00 48 b8 00 00 00 00 00 fc ff df 48 c1 ef 03 48 01 c7 <0f> b6 07 3c 07 0f 96 c0 e9 3e 92 e5 03 66 66 2e 0f 1f 84 00 00 00
+RSP: 0018:ffff888016cbf678 EFLAGS: 00010286
+RAX: dffffc0000000000 RBX: 0000000000000001 RCX: 1ffffffff0dde80c
+RDX: 0000000000000000 RSI: ffffffff85da8e08 RDI: dffffc0000000003
+RBP: ffff888016cbf698 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: ffff88801ae33398 R12: 0000000000000018
+R13: 0000000000000018 R14: ffffffff85da8e08 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8880e353f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fca31f4c3f4 CR3: 0000000029980002 CR4: 0000000000770ef0
+PKRU: 55555554
+note: syz-executor399[740] exited with preempt_count 1
+Fixing recursive fault but reboot is needed!
+BUG: using smp_processor_id() in preemptible [00000000] code: syz-executor399/740
+caller is debug_smp_processor_id+0x20/0x30 lib/smp_processor_id.c:58
+CPU: 0 UID: 0 PID: 740 Comm: syz-executor399 Tainted: G      D             6.16.0-next-20250728-0b90c3b6d76e #1 PREEMPT(voluntary) 
+Tainted: [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0x121/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ check_preemption_disabled+0x168/0x180 lib/smp_processor_id.c:47
+ debug_smp_processor_id+0x20/0x30 lib/smp_processor_id.c:58
+ __schedule+0xd4/0x3830 kernel/sched/core.c:6827
+ do_task_dead+0xe6/0x120 kernel/sched/core.c:6975
+ make_task_dead+0x384/0x3c0 kernel/exit.c:1061
+ rewind_stack_and_make_dead+0x16/0x20 arch/x86/entry/entry_64.S:1493
+RIP: 0033:0x7fca31d18a4d
+Code: Unable to access opcode bytes at 0x7fca31d18a23.
+RSP: 002b:00007ffe96d98068 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 00007fca31df69e0 RCX: 00007fca31d18a4d
+RDX: 00000000000000e7 RSI: ffffffffffffff80 RDI: 0000000000000000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000020
+R10: 00007ffe96d97f10 R11: 0000000000000246 R12: 00007fca31df69e0
+R13: 00007fca31dfbf00 R14: 0000000000000001 R15: 00007fca31dfbee8
+ </TASK>
+BUG: scheduling while atomic: syz-executor399/740/0x00000000
+INFO: lockdep is turned off.
+Modules linked in:
+Preemption disabled at:
+[<ffffffff81552a36>] do_task_dead+0x26/0x120 kernel/sched/core.c:6970
+CPU: 0 UID: 0 PID: 740 Comm: syz-executor399 Tainted: G      D             6.16.0-next-20250728-0b90c3b6d76e #1 PREEMPT(voluntary) 
+Tainted: [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0x121/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ __schedule_bug+0x12d/0x180 kernel/sched/core.c:5901
+ schedule_debug kernel/sched/core.c:5928 [inline]
+ __schedule+0x2775/0x3830 kernel/sched/core.c:6831
+ do_task_dead+0xe6/0x120 kernel/sched/core.c:6975
+ make_task_dead+0x384/0x3c0 kernel/exit.c:1061
+ rewind_stack_and_make_dead+0x16/0x20 arch/x86/entry/entry_64.S:1493
+RIP: 0033:0x7fca31d18a4d
+Code: Unable to access opcode bytes at 0x7fca31d18a23.
+RSP: 002b:00007ffe96d98068 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 00007fca31df69e0 RCX: 00007fca31d18a4d
+RDX: 00000000000000e7 RSI: ffffffffffffff80 RDI: 0000000000000000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000020
+R10: 00007ffe96d97f10 R11: 0000000000000246 R12: 00007fca31df69e0
+R13: 00007fca31dfbf00 R14: 0000000000000001 R15: 00007fca31dfbee8
+ </TASK>
+------------[ cut here ]------------
+Voluntary context switch within RCU read-side critical section!
+WARNING: kernel/rcu/tree_plugin.h:332 at rcu_note_context_switch+0xc6f/0x1900 kernel/rcu/tree_plugin.h:332, CPU#0: syz-executor399/740
+Modules linked in:
+CPU: 0 UID: 0 PID: 740 Comm: syz-executor399 Tainted: G      D W           6.16.0-next-20250728-0b90c3b6d76e #1 PREEMPT(voluntary) 
+Tainted: [D]=DIE, [W]=WARN
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:rcu_note_context_switch+0xc6f/0x1900 kernel/rcu/tree_plugin.h:332
+Code: 8b 45 a0 4c 8b 55 a8 48 c7 c2 44 b7 ef 87 44 8b 4d b0 e9 0f 03 00 00 48 c7 c7 c0 5e ed 85 c6 05 ee 8d 79 06 01 e8 11 8a d8 ff <0f> 0b e9 96 f4 ff ff 65 48 8b 3d 2a 08 81 07 e8 ed 69 fd ff e9 00
+RSP: 0018:ffff888016cbfd28 EFLAGS: 00010096
+RAX: 0000000000000000 RBX: ffff88806c4450c0 RCX: ffffffff81461362
+RDX: ffff88801ae32540 RSI: ffffffff8146136f RDI: 0000000000000001
+RBP: ffff888016cbfd98 R08: 0000000000000001 R09: ffffed100d8859b9
+R10: 0000000000000000 R11: 000000002d2d2d2d R12: ffff88801ae32540
+R13: 0000000000000000 R14: ffff88801ae32540 R15: ffff888016cb8000
+FS:  0000000000000000(0000) GS:ffff8880e353f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fca31f4c3f4 CR3: 0000000029980002 CR4: 0000000000770ef0
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ __schedule+0x257/0x3830 kernel/sched/core.c:6839
+ do_task_dead+0xe6/0x120 kernel/sched/core.c:6975
+ make_task_dead+0x384/0x3c0 kernel/exit.c:1061
+ rewind_stack_and_make_dead+0x16/0x20 arch/x86/entry/entry_64.S:1493
+RIP: 0033:0x7fca31d18a4d
+Code: Unable to access opcode bytes at 0x7fca31d18a23.
+RSP: 002b:00007ffe96d98068 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 00007fca31df69e0 RCX: 00007fca31d18a4d
+RDX: 00000000000000e7 RSI: ffffffffffffff80 RDI: 0000000000000000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000020
+R10: 00007ffe96d97f10 R11: 0000000000000246 R12: 00007fca31df69e0
+R13: 00007fca31dfbf00 R14: 0000000000000001 R15: 00007fca31dfbee8
+ </TASK>
+irq event stamp: 551
+hardirqs last  enabled at (551): [<ffffffff812f087b>] cond_local_irq_enable arch/x86/include/asm/traps.h:51 [inline]
+hardirqs last  enabled at (551): [<ffffffff812f087b>] cond_local_irq_enable.isra.0+0x3b/0x50 arch/x86/include/asm/traps.h:48
+hardirqs last disabled at (550): [<ffffffff85d74ba6>] exc_general_protection+0x36/0x340 arch/x86/kernel/traps.c:792
+softirqs last  enabled at (466): [<ffffffff8132639c>] local_bh_enable include/linux/bottom_half.h:33 [inline]
+softirqs last  enabled at (466): [<ffffffff8132639c>] fpregs_unlock arch/x86/include/asm/fpu/api.h:77 [inline]
+softirqs last  enabled at (466): [<ffffffff8132639c>] fpu_clone+0x10c/0x710 arch/x86/kernel/fpu/core.c:692
+softirqs last disabled at (464): [<ffffffff8132632f>] local_bh_disable include/linux/bottom_half.h:20 [inline]
+softirqs last disabled at (464): [<ffffffff8132632f>] fpregs_lock arch/x86/include/asm/fpu/api.h:69 [inline]
+softirqs last disabled at (464): [<ffffffff8132632f>] fpu_clone+0x9f/0x710 arch/x86/kernel/fpu/core.c:688
+---[ end trace 0000000000000000 ]---
+----------------
+Code disassembly (best guess):
+   0:	cc                   	int3
+   1:	0f 1f 40 00          	nopl   0x0(%rax)
+   5:	90                   	nop
+   6:	90                   	nop
+   7:	90                   	nop
+   8:	90                   	nop
+   9:	90                   	nop
+   a:	90                   	nop
+   b:	90                   	nop
+   c:	90                   	nop
+   d:	90                   	nop
+   e:	90                   	nop
+   f:	90                   	nop
+  10:	90                   	nop
+  11:	90                   	nop
+  12:	90                   	nop
+  13:	90                   	nop
+  14:	90                   	nop
+  15:	66 0f 1f 00          	nopw   (%rax)
+  19:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  20:	fc ff df
+  23:	48 c1 ef 03          	shr    $0x3,%rdi
+  27:	48 01 c7             	add    %rax,%rdi
+* 2a:	0f b6 07             	movzbl (%rdi),%eax <-- trapping instruction
+  2d:	3c 07                	cmp    $0x7,%al
+  2f:	0f 96 c0             	setbe  %al
+  32:	e9 3e 92 e5 03       	jmpq   0x3e59275
+  37:	66                   	data16
+  38:	66                   	data16
+  39:	2e                   	cs
+  3a:	0f                   	.byte 0xf
+  3b:	1f                   	(bad)
+  3c:	84 00                	test   %al,(%rax)

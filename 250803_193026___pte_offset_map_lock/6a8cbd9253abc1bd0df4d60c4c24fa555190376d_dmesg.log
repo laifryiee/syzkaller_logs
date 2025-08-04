@@ -1,0 +1,1567 @@
+c[?7l[2J[0mSeaBIOS (version rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org)
+
+
+iPXE (http://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+7EFD0C90+7EF30C90 CA00
+Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
+
+
+Booting from ROM...
+c[?7l[2J[    0.000000] Linux version 6.4.0-6a8cbd9253ab+ (root@localhost.localdomain) (gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-2), GNU ld version 2.35.2-54.el9) #1 SMP PREEMPT_DYNAMIC Sun Aug  3 20:20:46 CST 2025
+[    0.000000] Command line: console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0 thunderbolt.dyndbg
+[    0.000000] KERNEL supported cpus:
+[    0.000000]   Intel GenuineIntel
+[    0.000000]   AMD AuthenticAMD
+[    0.000000]   Hygon HygonGenuine
+[    0.000000]   Centaur CentaurHauls
+[    0.000000]   zhaoxin   Shanghai  
+[    0.000000] BIOS-provided physical RAM map:
+[    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
+[    0.000000] BIOS-e820: [mem 0x000000000009fc00-0x000000000009ffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000000f0000-0x00000000000fffff] reserved
+[    0.000000] BIOS-e820: [mem 0x0000000000100000-0x000000007ffdffff] usable
+[    0.000000] BIOS-e820: [mem 0x000000007ffe0000-0x000000007fffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000feffc000-0x00000000feffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000fffc0000-0x00000000ffffffff] reserved
+[    0.000000] printk: bootconsole [earlyser0] enabled
+[    0.000000] NX (Execute Disable) protection: active
+[    0.000000] SMBIOS 2.8 present.
+[    0.000000] DMI: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[    0.000000] Hypervisor detected: KVM
+[    0.000000] kvm-clock: Using msrs 4b564d01 and 4b564d00
+[    0.000005] kvm-clock: using sched offset of 673031681 cycles
+[    0.000828] clocksource: kvm-clock: mask: 0xffffffffffffffff max_cycles: 0x1cd42e4dffb, max_idle_ns: 881590591483 ns
+[    0.003376] tsc: Detected 2095.076 MHz processor
+[    0.011155] last_pfn = 0x7ffe0 max_arch_pfn = 0x400000000
+[    0.012050] MTRR map: 4 entries (3 fixed + 1 variable; max 19), built from 8 variable MTRRs
+[    0.013384] x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT  
+[    0.025267] found SMP MP-table at [mem 0x000f5480-0x000f548f]
+[    0.026220] Using GB pages for direct mapping
+[    0.028443] ACPI: Early table checksum verification disabled
+[    0.029318] ACPI: RSDP 0x00000000000F52A0 000014 (v00 BOCHS )
+[    0.030217] ACPI: RSDT 0x000000007FFE2390 000034 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.031532] ACPI: FACP 0x000000007FFE223C 000074 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.032841] ACPI: DSDT 0x000000007FFE0040 0021FC (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.034155] ACPI: FACS 0x000000007FFE0000 000040
+[    0.034875] ACPI: APIC 0x000000007FFE22B0 000080 (v03 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.036185] ACPI: HPET 0x000000007FFE2330 000038 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.037498] ACPI: WAET 0x000000007FFE2368 000028 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.038795] ACPI: Reserving FACP table memory at [mem 0x7ffe223c-0x7ffe22af]
+[    0.039862] ACPI: Reserving DSDT table memory at [mem 0x7ffe0040-0x7ffe223b]
+[    0.040969] ACPI: Reserving FACS table memory at [mem 0x7ffe0000-0x7ffe003f]
+[    0.042079] ACPI: Reserving APIC table memory at [mem 0x7ffe22b0-0x7ffe232f]
+[    0.043191] ACPI: Reserving HPET table memory at [mem 0x7ffe2330-0x7ffe2367]
+[    0.044300] ACPI: Reserving WAET table memory at [mem 0x7ffe2368-0x7ffe238f]
+[    0.047043] No NUMA configuration found
+[    0.047661] Faking a node at [mem 0x0000000000000000-0x000000007ffdffff]
+[    0.048784] NODE_DATA(0) allocated [mem 0x7ffb5000-0x7ffdffff]
+[    0.052594] Zone ranges:
+[    0.052994]   DMA      [mem 0x0000000000001000-0x0000000000ffffff]
+[    0.053967]   DMA32    [mem 0x0000000001000000-0x000000007ffdffff]
+[    0.054937]   Normal   empty
+[    0.055399]   Device   empty
+[    0.055854] Movable zone start for each node
+[    0.056536] Early memory node ranges
+[    0.057095]   node   0: [mem 0x0000000000001000-0x000000000009efff]
+[    0.058077]   node   0: [mem 0x0000000000100000-0x000000007ffdffff]
+[    0.059062] Initmem setup node 0 [mem 0x0000000000001000-0x000000007ffdffff]
+[    0.060563] On node 0, zone DMA: 1 pages in unavailable ranges
+[    0.060818] On node 0, zone DMA: 97 pages in unavailable ranges
+[    0.099597] On node 0, zone DMA32: 32 pages in unavailable ranges
+[    0.167050] kasan: KernelAddressSanitizer initialized
+[    0.169153] ACPI: PM-Timer IO Port: 0x608
+[    0.169802] ACPI: LAPIC_NMI (acpi_id[0xff] dfl dfl lint[0x1])
+[    0.170748] IOAPIC[0]: apic_id 0, version 17, address 0xfec00000, GSI 0-23
+[    0.171811] ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+[    0.172775] ACPI: INT_SRC_OVR (bus 0 bus_irq 5 global_irq 5 high level)
+[    0.173778] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+[    0.174778] ACPI: INT_SRC_OVR (bus 0 bus_irq 10 global_irq 10 high level)
+[    0.175808] ACPI: INT_SRC_OVR (bus 0 bus_irq 11 global_irq 11 high level)
+[    0.176853] ACPI: Using ACPI (MADT) for SMP configuration information
+[    0.177828] ACPI: HPET id: 0x8086a201 base: 0xfed00000
+[    0.178618] TSC deadline timer available
+[    0.179210] smpboot: Allowing 2 CPUs, 0 hotplug CPUs
+[    0.180017] kvm-guest: KVM setup pv remote TLB flush
+[    0.180770] kvm-guest: setup PV sched yield
+[    0.181461] PM: hibernation: Registered nosave memory: [mem 0x00000000-0x00000fff]
+[    0.182664] PM: hibernation: Registered nosave memory: [mem 0x0009f000-0x0009ffff]
+[    0.183868] PM: hibernation: Registered nosave memory: [mem 0x000a0000-0x000effff]
+[    0.185071] PM: hibernation: Registered nosave memory: [mem 0x000f0000-0x000fffff]
+[    0.186284] [mem 0x80000000-0xfeffbfff] available for PCI devices
+[    0.187258] Booting paravirtualized kernel on KVM
+[    0.188007] clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645519600211568 ns
+[    0.189679] setup_percpu: NR_CPUS:8192 nr_cpumask_bits:2 nr_cpu_ids:2 nr_node_ids:1
+[    0.191465] percpu: Embedded 82 pages/cpu s299008 r8192 d28672 u1048576
+[    0.192699] kvm-guest: PV spinlocks enabled
+[    0.193373] PV qspinlock hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    0.194534] Kernel command line: net.ifnames=0 console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0 thunderbolt.dyndbg
+[    0.196700] random: crng init done
+[    0.197731] Dentry cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.199080] Inode-cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    0.200588] Fallback order for Node 0: 0 
+[    0.200601] Built 1 zonelists, mobility grouping on.  Total pages: 515808
+[    0.202245] Policy zone: DMA32
+[    0.202718] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.203668] stackdepot: allocating hash table via alloc_large_system_hash
+[    0.206578] stackdepot hash table entries: 1048576 (order: 11, 8388608 bytes, linear)
+[    0.242262] Memory: 1620320K/2096632K available (71680K kernel code, 13914K rwdata, 16092K rodata, 14476K init, 32772K bss, 476056K reserved, 0K cma-reserved)
+[    0.245381] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+[    0.246389] kmemleak: Kernel memory leak detector disabled
+[    0.247278] Kernel/User page tables isolation: enabled
+[    0.248377] ftrace: allocating 66974 entries in 262 pages
+[    0.273559] ftrace: allocated 262 pages with 3 groups
+[    0.278449] Dynamic Preempt: voluntary
+[    0.279385] Running RCU self tests
+[    0.279893] Running RCU synchronous self tests
+[    0.280560] rcu: Preemptible hierarchical RCU implementation.
+[    0.281409] rcu: 	RCU lockdep checking is enabled.
+[    0.282113] rcu: 	RCU restricting CPUs from NR_CPUS=8192 to nr_cpu_ids=2.
+[    0.283118] 	Trampoline variant of Tasks RCU enabled.
+[    0.283865] 	Rude variant of Tasks RCU enabled.
+[    0.284541] 	Tracing variant of Tasks RCU enabled.
+[    0.285265] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.286504] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+[    0.287661] Running RCU synchronous self tests
+[    0.328237] NR_IRQS: 524544, nr_irqs: 440, preallocated irqs: 16
+[    0.329679] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.342783] Console: colour VGA+ 80x25
+[    0.343427] printk: console [ttyS0] enabled
+[    0.343427] printk: console [ttyS0] enabled
+[    0.344702] printk: bootconsole [earlyser0] disabled
+[    0.344702] printk: bootconsole [earlyser0] disabled
+[    0.346220] Lock dependency validator: Copyright (c) 2006 Red Hat, Inc., Ingo Molnar
+[    0.347400] ... MAX_LOCKDEP_SUBCLASSES:  8
+[    0.348031] ... MAX_LOCK_DEPTH:          48
+[    0.348677] ... MAX_LOCKDEP_KEYS:        8192
+[    0.349350] ... CLASSHASH_SIZE:          4096
+[    0.350104] ... MAX_LOCKDEP_ENTRIES:     32768
+[    0.352045] ... MAX_LOCKDEP_CHAINS:      65536
+[    0.352844] ... CHAINHASH_SIZE:          32768
+[    0.353615]  memory used by lock dependency info: 6493 kB
+[    0.354543]  memory used for stack traces: 4224 kB
+[    0.355282]  per task-struct memory footprint: 1920 bytes
+[    0.356390] ACPI: Core revision 20230331
+[    0.357674] clocksource: hpet: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604467 ns
+[    0.359673] APIC: Switch to symmetric I/O mode setup
+[    0.360857] x2apic enabled
+[    0.361659] Switched APIC routing to physical x2apic.
+[    0.362448] kvm-guest: setup PV IPIs
+[    0.364837] ..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+[    0.365830] clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x1e33052aadd, max_idle_ns: 440795310221 ns
+[    0.367625] Calibrating delay loop (skipped) preset value.. 4190.15 BogoMIPS (lpj=8380304)
+[    0.369095] x86/cpu: User Mode Instruction Prevention (UMIP) activated
+[    0.370309] Last level iTLB entries: 4KB 0, 2MB 0, 4MB 0
+[    0.371251] Last level dTLB entries: 4KB 0, 2MB 0, 4MB 0, 1GB 0
+[    0.371602] Spectre V1 : Mitigation: usercopy/swapgs barriers and __user pointer sanitization
+[    0.372951] Spectre V2 : Mitigation: IBRS
+[    0.373620] Spectre V2 : Spectre v2 / SpectreRSB mitigation: Filling RSB on context switch
+[    0.375577] Spectre V2 : Spectre v2 / SpectreRSB : Filling RSB on VMEXIT
+[    0.376750] RETBleed: Mitigation: IBRS
+[    0.377438] Spectre V2 : mitigation: Enabling conditional Indirect Branch Prediction Barrier
+[    0.378872] Speculative Store Bypass: Mitigation: Speculative Store Bypass disabled via prctl
+[    0.379637] MDS: Mitigation: Clear CPU buffers
+[    0.380358] TAA: Mitigation: Clear CPU buffers
+[    0.381091] MMIO Stale Data: Mitigation: Clear CPU buffers
+[    0.382054] x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'
+[    0.383576] x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'
+[    0.384593] x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'
+[    0.385676] x86/fpu: Supporting XSAVE feature 0x008: 'MPX bounds registers'
+[    0.387577] x86/fpu: Supporting XSAVE feature 0x010: 'MPX CSR'
+[    0.388604] x86/fpu: Supporting XSAVE feature 0x020: 'AVX-512 opmask'
+[    0.389623] x86/fpu: Supporting XSAVE feature 0x040: 'AVX-512 Hi256'
+[    0.390629] x86/fpu: Supporting XSAVE feature 0x080: 'AVX-512 ZMM_Hi256'
+[    0.391576] x86/fpu: Supporting XSAVE feature 0x200: 'Protection Keys User registers'
+[    0.392822] x86/fpu: xstate_offset[2]:  576, xstate_sizes[2]:  256
+[    0.393812] x86/fpu: xstate_offset[3]:  832, xstate_sizes[3]:   64
+[    0.394800] x86/fpu: xstate_offset[4]:  896, xstate_sizes[4]:   64
+[    0.395576] x86/fpu: xstate_offset[5]:  960, xstate_sizes[5]:   64
+[    0.396572] x86/fpu: xstate_offset[6]: 1024, xstate_sizes[6]:  512
+[    0.397565] x86/fpu: xstate_offset[7]: 1536, xstate_sizes[7]: 1024
+[    0.398556] x86/fpu: xstate_offset[9]: 2560, xstate_sizes[9]:    8
+[    0.399576] x86/fpu: Enabled xstate features 0x2ff, context size is 2568 bytes, using 'compacted' format.
+[    0.665632] Freeing SMP alternatives memory: 52K
+[    0.666473] pid_max: default: 32768 minimum: 301
+[    0.667633] LSM: initializing lsm=capability,yama,integrity
+[    0.668591] Yama: becoming mindful.
+[    0.669598] Mount-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.670893] Mountpoint-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.673861] Running RCU synchronous self tests
+[    0.674640] Running RCU synchronous self tests
+[    0.676163] smpboot: CPU0: Genuine Intel(R) CPU 0000%@ (family: 0x6, model: 0x55, stepping: 0x4)
+[    0.679190] RCU Tasks: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1.
+[    0.679733] RCU Tasks Rude: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1.
+[    0.681097] RCU Tasks Trace: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1.
+[    0.682620] Running RCU-tasks wait API self tests
+[    0.788581] Performance Events: Skylake events, 32-deep LBR, full-width counters, Intel PMU driver.
+[    0.791645] ... version:                2
+[    0.793802] ... bit width:              48
+[    0.795605] ... generic registers:      4
+[    0.797748] ... value mask:             0000ffffffffffff
+[    0.799590] ... max period:             00007fffffffffff
+[    0.801355] ... fixed-purpose events:   3
+[    0.802694] ... event mask:             000000070000000f
+[    0.805130] signal: max sigframe size: 3632
+[    0.807167] rcu: Hierarchical SRCU implementation.
+[    0.807585] rcu: 	Max phase no-delay instances is 1000.
+[    0.811687] Callback from call_rcu_tasks_trace() invoked.
+[    0.821721] smp: Bringing up secondary CPUs ...
+[    0.823758] smpboot: x86: Booting SMP configuration:
+[    0.824566] .... node  #0, CPUs:      #1
+[    0.824933] smp: Brought up 1 node, 2 CPUs
+[    0.828223] smpboot: Max logical packages: 1
+[    0.828940] smpboot: Total of 2 processors activated (8380.30 BogoMIPS)
+[    0.832731] devtmpfs: initialized
+[    0.836101] x86/mm: Memory block size: 128MB
+[    0.850150] Running RCU synchronous self tests
+[    0.851612] Running RCU synchronous self tests
+[    0.852588] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.854186] futex hash table entries: 512 (order: 4, 65536 bytes, linear)
+[    0.855914] pinctrl core: initialized pinctrl subsystem
+[    0.859147] 
+[    0.859409] *************************************************************
+[    0.859579] **     NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE    **
+[    0.860628] **                                                         **
+[    0.861678] **  IOMMU DebugFS SUPPORT HAS BEEN ENABLED IN THIS KERNEL  **
+[    0.862724] **                                                         **
+[    0.863579] ** This means that this kernel is built to expose internal **
+[    0.864729] ** IOMMU data structures, which may compromise security on **
+[    0.865773] ** your system.                                            **
+[    0.866920] **                                                         **
+[    0.867580] ** If you see this message and you are not debugging the   **
+[    0.868643] ** kernel, report this immediately to your vendor!         **
+[    0.869714] **                                                         **
+[    0.870813] **     NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE    **
+[    0.871614] *************************************************************
+[    0.872798] PM: RTC time: 12:23:06, date: 2025-08-03
+[    0.878516] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.882082] DMA: preallocated 256 KiB GFP_KERNEL pool for atomic allocations
+[    0.883324] DMA: preallocated 256 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    0.883615] DMA: preallocated 256 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.885032] audit: initializing netlink subsys (disabled)
+[    0.886443] audit: type=2000 audit(1754223786.547:1): state=initialized audit_enabled=0 res=1
+[    0.889045] thermal_sys: Registered thermal governor 'fair_share'
+[    0.891321] thermal_sys: Registered thermal governor 'bang_bang'
+[    0.891821] thermal_sys: Registered thermal governor 'step_wise'
+[    0.892588] Callback from call_rcu_tasks_rude() invoked.
+[    0.892956] thermal_sys: Registered thermal governor 'user_space'
+[    0.896550] cpuidle: using governor ladder
+[    0.898183] cpuidle: using governor menu
+[    0.899458] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+[    0.900652] PCI: Using configuration type 1 for base access
+[    0.903851] kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.
+[    1.358251] Callback from call_rcu_tasks() invoked.
+[    1.360114] HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+[    1.361339] HugeTLB: 16380 KiB vmemmap can be freed for a 1.00 GiB page
+[    1.362398] HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+[    1.363479] HugeTLB: 28 KiB vmemmap can be freed for a 2.00 MiB page
+[    1.370178] ACPI: Added _OSI(Module Device)
+[    1.370859] ACPI: Added _OSI(Processor Device)
+[    1.371564] ACPI: Added _OSI(3.0 _SCP Extensions)
+[    1.372344] ACPI: Added _OSI(Processor Aggregator Device)
+[    1.412692] ACPI: 1 ACPI AML tables successfully acquired and loaded
+[    1.425893] ACPI: Interpreter enabled
+[    1.426754] ACPI: PM: (supports S0 S3 S4 S5)
+[    1.427451] ACPI: Using IOAPIC for interrupt routing
+[    1.427773] PCI: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
+[    1.429336] PCI: Using E820 reservations for host bridge windows
+[    1.432939] ACPI: Enabled 2 GPEs in block 00 to 0F
+[    1.509796] ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-ff])
+[    1.510918] acpi PNP0A03:00: _OSC: OS supports [ASPM ClockPM Segments MSI EDR HPX-Type3]
+[    1.511590] acpi PNP0A03:00: _OSC: not requesting OS control; OS requires [ExtendedConfig ASPM ClockPM MSI]
+[    1.513611] acpi PNP0A03:00: fail to add MMCONFIG information, can't access extended configuration space under this bridge
+[    1.527042] acpiphp: Slot [3] registered
+[    1.527864] acpiphp: Slot [4] registered
+[    1.528790] acpiphp: Slot [5] registered
+[    1.529721] acpiphp: Slot [6] registered
+[    1.530672] acpiphp: Slot [7] registered
+[    1.531602] acpiphp: Slot [8] registered
+[    1.532539] acpiphp: Slot [9] registered
+[    1.533468] acpiphp: Slot [10] registered
+[    1.534434] acpiphp: Slot [11] registered
+[    1.535366] acpiphp: Slot [12] registered
+[    1.535861] acpiphp: Slot [13] registered
+[    1.536802] acpiphp: Slot [14] registered
+[    1.537741] acpiphp: Slot [15] registered
+[    1.538697] acpiphp: Slot [16] registered
+[    1.539632] acpiphp: Slot [17] registered
+[    1.540577] acpiphp: Slot [18] registered
+[    1.541510] acpiphp: Slot [19] registered
+[    1.542440] acpiphp: Slot [20] registered
+[    1.543366] acpiphp: Slot [21] registered
+[    1.543866] acpiphp: Slot [22] registered
+[    1.544797] acpiphp: Slot [23] registered
+[    1.545767] acpiphp: Slot [24] registered
+[    1.546702] acpiphp: Slot [25] registered
+[    1.547649] acpiphp: Slot [26] registered
+[    1.548602] acpiphp: Slot [27] registered
+[    1.549567] acpiphp: Slot [28] registered
+[    1.550496] acpiphp: Slot [29] registered
+[    1.551436] acpiphp: Slot [30] registered
+[    1.551854] acpiphp: Slot [31] registered
+[    1.552656] PCI host bridge to bus 0000:00
+[    1.553323] pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7 window]
+[    1.554419] pci_bus 0000:00: root bus resource [io  0x0d00-0xffff window]
+[    1.555507] pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff window]
+[    1.555585] pci_bus 0000:00: root bus resource [mem 0x80000000-0xfebfffff window]
+[    1.556792] pci_bus 0000:00: root bus resource [mem 0x100000000-0x17fffffff window]
+[    1.558024] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    1.559252] pci 0000:00:00.0: [8086:1237] type 00 class 0x060000
+[    1.562255] pci 0000:00:01.0: [8086:7000] type 00 class 0x060100
+[    1.565760] pci 0000:00:01.1: [8086:7010] type 00 class 0x010180
+[    1.568811] pci 0000:00:01.1: reg 0x20: [io  0xc040-0xc04f]
+[    1.570723] pci 0000:00:01.1: legacy IDE quirk: reg 0x10: [io  0x01f0-0x01f7]
+[    1.571583] pci 0000:00:01.1: legacy IDE quirk: reg 0x14: [io  0x03f6]
+[    1.572633] pci 0000:00:01.1: legacy IDE quirk: reg 0x18: [io  0x0170-0x0177]
+[    1.573778] pci 0000:00:01.1: legacy IDE quirk: reg 0x1c: [io  0x0376]
+[    1.576763] pci 0000:00:01.3: [8086:7113] type 00 class 0x068000
+[    1.579036] pci 0000:00:01.3: quirk: [io  0x0600-0x063f] claimed by PIIX4 ACPI
+[    1.579592] pci 0000:00:01.3: quirk: [io  0x0700-0x070f] claimed by PIIX4 SMB
+[    1.582645] pci 0000:00:02.0: [1234:1111] type 00 class 0x030000
+[    1.585627] pci 0000:00:02.0: reg 0x10: [mem 0xfd000000-0xfdffffff pref]
+[    1.588906] pci 0000:00:02.0: reg 0x18: [mem 0xfebf0000-0xfebf0fff]
+[    1.594797] pci 0000:00:02.0: reg 0x30: [mem 0xfebe0000-0xfebeffff pref]
+[    1.595896] pci 0000:00:02.0: Video device with shadowed ROM at [mem 0x000c0000-0x000dffff]
+[    1.600757] pci 0000:00:03.0: [8086:100e] type 00 class 0x020000
+[    1.602688] pci 0000:00:03.0: reg 0x10: [mem 0xfebc0000-0xfebdffff]
+[    1.604242] pci 0000:00:03.0: reg 0x14: [io  0xc000-0xc03f]
+[    1.609211] pci 0000:00:03.0: reg 0x30: [mem 0xfeb80000-0xfebbffff pref]
+[    1.652925] ACPI: PCI: Interrupt link LNKA configured for IRQ 10
+[    1.655956] ACPI: PCI: Interrupt link LNKB configured for IRQ 10
+[    1.659009] ACPI: PCI: Interrupt link LNKC configured for IRQ 11
+[    1.661573] ACPI: PCI: Interrupt link LNKD configured for IRQ 11
+[    1.663341] ACPI: PCI: Interrupt link LNKS configured for IRQ 9
+[    1.670849] iommu: Default domain type: Translated 
+[    1.671586] iommu: DMA domain TLB invalidation policy: lazy mode 
+[    1.676350] SCSI subsystem initialized
+[    1.677759] ACPI: bus type USB registered
+[    1.678621] usbcore: registered new interface driver usbfs
+[    1.679672] usbcore: registered new interface driver hub
+[    1.680627] usbcore: registered new device driver usb
+[    1.681812] pps_core: LinuxPPS API ver. 1 registered
+[    1.682589] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    1.683648] PTP clock support registered
+[    1.684874] EDAC MC: Ver: 3.0.0
+[    1.690641] NetLabel: Initializing
+[    1.691193] NetLabel:  domain hash size = 128
+[    1.691579] NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+[    1.692712] NetLabel:  unlabeled traffic allowed by default
+[    1.694558] PCI: Using ACPI for IRQ routing
+[    1.695849] pci 0000:00:02.0: vgaarb: setting as boot VGA device
+[    1.696816] pci 0000:00:02.0: vgaarb: bridge control possible
+[    1.697714] pci 0000:00:02.0: vgaarb: VGA device added: decodes=io+mem,owns=io+mem,locks=none
+[    1.699080] vgaarb: loaded
+[    1.700370] hpet0: at MMIO 0xfed00000, IRQs 2, 8, 0
+[    1.701184] hpet0: 3 comparators, 64-bit 100.000000 MHz counter
+[    6.719749] clocksource: Switched to clocksource kvm-clock
+[    7.255438] VFS: Disk quotas dquot_6.6.0
+[    7.258334] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    7.263571] pnp: PnP ACPI init
+[    7.278022] pnp: PnP ACPI: found 6 devices
+[    7.318471] clocksource: acpi_pm: mask: 0xffffff max_cycles: 0xffffff, max_idle_ns: 2085701024 ns
+[    7.321119] NET: Registered PF_INET protocol family
+[    7.322268] IP idents hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    7.326932] tcp_listen_portaddr_hash hash table entries: 1024 (order: 4, 73728 bytes, linear)
+[    7.328497] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    7.330145] TCP established hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    7.332302] TCP bind hash table entries: 16384 (order: 9, 2359296 bytes, linear)
+[    7.336186] TCP: Hash tables configured (established 16384 bind 16384)
+[    7.337594] UDP hash table entries: 1024 (order: 5, 163840 bytes, linear)
+[    7.338975] UDP-Lite hash table entries: 1024 (order: 5, 163840 bytes, linear)
+[    7.340863] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    7.344068] RPC: Registered named UNIX socket transport module.
+[    7.345176] RPC: Registered udp transport module.
+[    7.346029] RPC: Registered tcp transport module.
+[    7.346852] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    7.348038] pci_bus 0000:00: resource 4 [io  0x0000-0x0cf7 window]
+[    7.349147] pci_bus 0000:00: resource 5 [io  0x0d00-0xffff window]
+[    7.350259] pci_bus 0000:00: resource 6 [mem 0x000a0000-0x000bffff window]
+[    7.351461] pci_bus 0000:00: resource 7 [mem 0x80000000-0xfebfffff window]
+[    7.352666] pci_bus 0000:00: resource 8 [mem 0x100000000-0x17fffffff window]
+[    7.354821] pci 0000:00:01.0: PIIX3: Enabling Passive Release
+[    7.355855] pci 0000:00:00.0: Limiting direct PCI/PCI transfers
+[    7.357153] PCI: CLS 0 bytes, default 64
+[    7.357993] ACPI: bus type thunderbolt registered
+[    7.359646] clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x1e33052aadd, max_idle_ns: 440795310221 ns
+[    7.373777] Initialise system trusted keyrings
+[    7.374814] Key type blacklist registered
+[    7.376528] workingset: timestamp_bits=36 max_order=19 bucket_order=0
+[    7.380625] zbud: loaded
+[    7.389952] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    7.396396] NFS: Registering the id_resolver key type
+[    7.398306] Key type id_resolver registered
+[    7.399395] Key type id_legacy registered
+[    7.400550] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    7.402417] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    7.405635] fuse: init (API version 7.38)
+[    7.408658] SGI XFS with ACLs, security attributes, realtime, quota, no debug enabled
+[    7.412997] 9p: Installing v9fs 9p2000 file system support
+[    7.428678] Key type asymmetric registered
+[    7.429448] Asymmetric key parser 'x509' registered
+[    7.430482] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 243)
+[    7.432615] io scheduler mq-deadline registered
+[    7.435694] io scheduler bfq registered
+[    7.441871] shpchp: Standard Hot Plug PCI Controller Driver version: 0.4
+[    7.448626] unchecked MSR access error: RDMSR from 0xe2 at rIP: 0xffffffff811c703c (native_read_msr+0xc/0x40)
+[    7.452431] Call Trace:
+[    7.453175]  <TASK>
+[    7.453819]  ? show_stack_regs+0x27/0x30
+[    7.455001]  ? ex_handler_msr+0x3a7/0x560
+[    7.456189]  ? __sanitizer_cov_trace_switch+0x20/0xa0
+[    7.457702]  ? fixup_exception+0x115/0xce0
+[    7.458962]  ? gp_try_fixup_and_notify.constprop.0+0x28/0x140
+[    7.460616]  ? exc_general_protection+0xef/0x250
+[    7.461852]  ? asm_exc_general_protection+0x2b/0x30
+[    7.462833]  ? intel_idle_init_cstates_icpu.constprop.0+0x127c/0x1640
+[    7.464086]  ? native_read_msr+0xc/0x40
+[    7.464855]  intel_idle_init_cstates_icpu.constprop.0+0x1286/0x1640
+[    7.466132]  ? pcpu_memcg_post_alloc_hook+0x177/0x320
+[    7.467120]  ? debug_smp_processor_id+0x20/0x30
+[    7.468017]  ? __alloc_percpu+0x2e/0x40
+[    7.468772]  ? __pfx_intel_idle_init_cstates_icpu.constprop.0+0x10/0x10
+[    7.470139]  intel_idle_init+0x831/0xc60
+[    7.470939]  ? __pfx_intel_idle_init+0x10/0x10
+[    7.471769]  ? add_device_randomness+0xbe/0xf0
+[    7.472574]  ? __pfx_add_device_randomness+0x10/0x10
+[    7.473494]  ? __pfx_intel_idle_init+0x10/0x10
+[    7.474349]  ? __pfx_intel_idle_init+0x10/0x10
+[    7.475165]  do_one_initcall+0x109/0x590
+[    7.475894]  ? __pfx_do_one_initcall+0x10/0x10
+[    7.476701]  ? parameq+0x170/0x170
+[    7.477403]  ? debug_smp_processor_id+0x20/0x30
+[    7.478281]  kernel_init_freeable+0xb0e/0x10f0
+[    7.479101]  ? __pfx_kernel_init+0x10/0x10
+[    7.479848]  kernel_init+0x28/0x2e0
+[    7.480484]  ? __pfx_kernel_init+0x10/0x10
+[    7.481248]  ret_from_fork+0x29/0x50
+[    7.481973]  </TASK>
+[    7.484731] IPMI message handler: version 39.2
+[    7.485766] ipmi device interface
+[    7.500815] input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0
+[    7.505503] ACPI: button: Power Button [PWRF]
+[    7.511470] ERST DBG: ERST support is disabled.
+[    7.516490] Serial: 8250/16550 driver, 32 ports, IRQ sharing enabled
+[    7.519891] 00:04: ttyS0 at I/O 0x3f8 (irq = 4, base_baud = 115200) is a 16550A
+[    7.564024] Linux agpgart interface v0.103
+[    7.569668] ACPI: bus type drm_connector registered
+[    7.632004] brd: module loaded
+[    7.660537] loop: module loaded
+[    7.691410] scsi host0: ata_piix
+[    7.695802] scsi host1: ata_piix
+[    7.697579] ata1: PATA max MWDMA2 cmd 0x1f0 ctl 0x3f6 bmdma 0xc040 irq 14
+[    7.699101] ata2: PATA max MWDMA2 cmd 0x170 ctl 0x376 bmdma 0xc048 irq 15
+[    7.705876] tun: Universal TUN/TAP device driver, 1.6
+[    7.707765] e100: Intel(R) PRO/100 Network Driver
+[    7.708588] e100: Copyright(c) 1999-2006 Intel Corporation
+[    7.709709] e1000: Intel(R) PRO/1000 Network Driver
+[    7.710591] e1000: Copyright (c) 1999-2006 Intel Corporation.
+[    7.749148] ACPI: \_SB_.LNKC: Enabled at IRQ 11
+[    7.861651] ata1: found unknown device (class 0)
+[    7.866074] ata2: found unknown device (class 0)
+[    7.870457] ata1.00: ATA-7: QEMU HARDDISK, 2.5+, max UDMA/100
+[    7.873321] ata1.00: 17196647 sectors, multi 16: LBA48 
+[    7.876232] ata2.00: ATAPI: QEMU DVD-ROM, 2.5+, max UDMA/100
+[    7.882589] scsi 0:0:0:0: Direct-Access     ATA      QEMU HARDDISK    2.5+ PQ: 0 ANSI: 5
+[    7.890339] sd 0:0:0:0: [sda] 17196647 512-byte logical blocks: (8.80 GB/8.20 GiB)
+[    7.892222] sd 0:0:0:0: [sda] Write Protect is off
+[    7.893452] sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[    7.894069] scsi 1:0:0:0: CD-ROM            QEMU     QEMU DVD-ROM     2.5+ PQ: 0 ANSI: 5
+[    7.895233] sd 0:0:0:0: [sda] Preferred minimum I/O size 512 bytes
+[    7.910637] sd 0:0:0:0: [sda] Attached SCSI disk
+[    8.107728] e1000 0000:00:03.0 eth0: (PCI:33MHz:32-bit) 52:54:00:12:34:56
+[    8.109071] e1000 0000:00:03.0 eth0: Intel(R) PRO/1000 Network Connection
+[    8.110536] e1000e: Intel(R) PRO/1000 Network Driver
+[    8.111398] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    8.112603] igb: Intel(R) Gigabit Ethernet Network Driver
+[    8.113568] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    8.114953] PPP generic driver version 2.4.2
+[    8.117835] VFIO - User Level meta-driver version: 0.3
+[    8.124254] usbcore: registered new interface driver uas
+[    8.125361] usbcore: registered new interface driver usb-storage
+[    8.126966] i8042: PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
+[    8.130815] serio: i8042 KBD port at 0x60,0x64 irq 1
+[    8.132124] serio: i8042 AUX port at 0x60,0x64 irq 12
+[    8.136844] mousedev: PS/2 mouse device common for all mice
+[    8.141709] input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input1
+[    8.144049] rtc_cmos 00:05: RTC can wake from S4
+[    8.147399] input: VirtualPS/2 VMware VMMouse as /devices/platform/i8042/serio1/input/input4
+[    8.151366] input: VirtualPS/2 VMware VMMouse as /devices/platform/i8042/serio1/input/input3
+[    8.154953] rtc_cmos 00:05: registered as rtc0
+[    8.157202] rtc_cmos 00:05: setting system clock to 2025-08-03T12:23:13 UTC (1754223793)
+[    8.161140] rtc_cmos 00:05: alarms up to one day, y3k, 242 bytes nvram, hpet irqs
+[    8.163971] i2c_dev: i2c /dev entries driver
+[    8.165869] device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
+[    8.168778] device-mapper: uevent: version 1.0.3
+[    8.170855] device-mapper: ioctl: 4.48.0-ioctl (2023-03-01) initialised: dm-devel@redhat.com
+[    8.172781] intel_pstate: CPU model not supported
+[    8.174452] sdhci: Secure Digital Host Controller Interface driver
+[    8.175848] sdhci: Copyright(c) Pierre Ossman
+[    8.176940] sdhci-pltfm: SDHCI platform and OF driver helper
+[    8.178141] ledtrig-cpu: registered to indicate activity on CPUs
+[    8.181019] drop_monitor: Initializing network drop monitor service
+[    8.182815] NET: Registered PF_INET6 protocol family
+[    8.196046] Segment Routing with IPv6
+[    8.196974] In-situ OAM (IOAM) with IPv6
+[    8.197986] NET: Registered PF_PACKET protocol family
+[    8.199802] 9pnet: Installing 9P2000 support
+[    8.202035] Key type dns_resolver registered
+[    8.208819] No MBM correction factor available
+[    8.210684] IPI shorthand broadcast: enabled
+[    8.285001] sched_clock: Marking stable (8256008625, 28865288)->(8330108135, -45234222)
+[    8.288667] registered taskstats version 1
+[    8.290368] Loading compiled-in X.509 certificates
+[    8.376573] Key type .fscrypt registered
+[    8.378869] Key type fscrypt-provisioning registered
+[    8.387569] Key type encrypted registered
+[    8.388545] ima: No TPM chip found, activating TPM-bypass!
+[    8.389723] ima: Allocated hash algorithm: sha1
+[    8.391034] ima: No architecture policies found
+[    8.392611] evm: Initialising EVM extended attributes:
+[    8.394069] evm: security.selinux
+[    8.394987] evm: security.SMACK64
+[    8.395901] evm: security.SMACK64EXEC
+[    8.396924] evm: security.SMACK64TRANSMUTE
+[    8.398074] evm: security.SMACK64MMAP
+[    8.399070] evm: security.apparmor
+[    8.399993] evm: security.ima
+[    8.400744] evm: security.capability
+[    8.401401] evm: HMAC attrs: 0x1
+[    8.407036] PM:   Magic number: 5:332:379
+[    8.411544] RAS: Correctable Errors collector initialized.
+[    8.418069] clk: Disabling unused clocks
+[    8.420476] md: Waiting for all devices to be available before autodetect
+[    8.421546] md: If you don't use raid, use raid=noautodetect
+[    8.422457] md: Autodetecting RAID arrays.
+[    8.423125] md: autorun ...
+[    8.423583] md: ... autorun DONE.
+[    8.434176] EXT4-fs (sda): INFO: recovery required on readonly filesystem
+[    8.435066] EXT4-fs (sda): write access will be enabled during recovery
+[    8.556821] EXT4-fs (sda): recovery complete
+[    8.560328] EXT4-fs (sda): mounted filesystem 088740a9-c8b4-422c-999d-a804eb68a4da ro with ordered data mode. Quota mode: none.
+[    8.562017] VFS: Mounted root (ext4 filesystem) readonly on device 8:0.
+[    8.567464] devtmpfs: mounted
+[    8.594745] Freeing unused decrypted memory: 2036K
+[    8.604287] Freeing unused kernel image (initmem) memory: 14476K
+[    8.605754] Write protecting the kernel read-only data: 88064k
+[    8.610153] Freeing unused kernel image (rodata/data gap) memory: 292K
+[    8.844262] x86/mm: Checked W+X mappings: passed, no W+X pages found.
+[    8.845139] x86/mm: Checking user space page tables
+[    9.082982] x86/mm: Checked W+X mappings: passed, no W+X pages found.
+[    9.083869] Run /sbin/init as init process
+[    9.358727] systemd[1]: systemd 252-15.el9 running in system mode (+PAM +AUDIT +SELINUX -APPARMOR +IMA +SMACK +SECCOMP +GCRYPT +GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS -FIDO2 +IDN2 -IDN -IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY +P11KIT -QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK +XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+[    9.362849] systemd[1]: Detected virtualization kvm.
+[    9.363502] systemd[1]: Detected architecture x86-64.
+
+Welcome to [0;31mCentOS Stream 9[0m!
+
+[    9.373823] systemd[1]: Hostname set to <test>.
+[   10.049537] systemd-rc-local-generator[118]: /etc/rc.d/rc.local is not marked executable, skipping.
+[   10.514907] systemd[1]: Queued start job for default target Multi-User System.
+[   10.542444] systemd[1]: Created slice Virtual Machine and Container Slice.
+[[0;32m  OK  [0m] Created slice [0;1;39mVirtual Machine and Container Slice[0m.
+[   10.559283] systemd[1]: Created slice Slice /system/getty.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/getty[0m.
+[   10.566844] systemd[1]: Created slice Slice /system/modprobe.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/modprobe[0m.
+[   10.575047] systemd[1]: Created slice Slice /system/serial-getty.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/serial-getty[0m.
+[   10.583060] systemd[1]: Created slice Slice /system/sshd-keygen.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/sshd-keygen[0m.
+[   10.590648] systemd[1]: Created slice User and Session Slice.
+[[0;32m  OK  [0m] Created slice [0;1;39mUser and Session Slice[0m.
+[   10.595388] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[[0;32m  OK  [0m] Started [0;1;39mForward Password R…uests to Wall Directory Watch[0m.
+[   10.602773] systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+[[0;32m  OK  [0m] Set up automount [0;1;39mArbitrary…s File System Automount Point[0m.
+[   10.608016] systemd[1]: Reached target Local Integrity Protected Volumes.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal Integrity Protected Volumes[0m.
+[   10.612611] systemd[1]: Reached target Slice Units.
+[[0;32m  OK  [0m] Reached target [0;1;39mSlice Units[0m.
+[   10.616069] systemd[1]: Reached target Swaps.
+[[0;32m  OK  [0m] Reached target [0;1;39mSwaps[0m.
+[   10.619381] systemd[1]: Reached target Local Verity Protected Volumes.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal Verity Protected Volumes[0m.
+[   10.624277] systemd[1]: Listening on Device-mapper event daemon FIFOs.
+[[0;32m  OK  [0m] Listening on [0;1;39mDevice-mapper event daemon FIFOs[0m.
+[   10.630109] systemd[1]: Listening on LVM2 poll daemon socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mLVM2 poll daemon socket[0m.
+[   10.634568] systemd[1]: multipathd control socket was skipped because of an unmet condition check (ConditionPathExists=/etc/multipath.conf).
+[   10.857265] systemd[1]: Listening on RPCbind Server Activation Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mRPCbind Server Activation Socket[0m.
+[   10.865280] systemd[1]: Reached target RPC Port Mapper.
+[[0;32m  OK  [0m] Reached target [0;1;39mRPC Port Mapper[0m.
+[   10.880633] systemd[1]: Listening on Process Core Dump Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mProcess Core Dump Socket[0m.
+[   10.884608] systemd[1]: Listening on initctl Compatibility Named Pipe.
+[[0;32m  OK  [0m] Listening on [0;1;39minitctl Compatibility Named Pipe[0m.
+[   10.889901] systemd[1]: Listening on Journal Socket (/dev/log).
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Socket (/dev/log)[0m.
+[   10.894207] systemd[1]: Listening on Journal Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Socket[0m.
+[   10.897868] systemd[1]: Listening on udev Control Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mudev Control Socket[0m.
+[   10.900836] systemd[1]: Listening on udev Kernel Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mudev Kernel Socket[0m.
+[   10.941916] systemd[1]: Mounting Huge Pages File System...
+         Mounting [0;1;39mHuge Pages File System[0m...
+[   10.965609] systemd[1]: Mounting POSIX Message Queue File System...
+         Mounting [0;1;39mPOSIX Message Queue File System[0m...
+[   10.983055] systemd[1]: Mounting Kernel Debug File System...
+         Mounting [0;1;39mKernel Debug File System[0m...
+[   11.015884] systemd[1]: Mounting Kernel Trace File System...
+         Mounting [0;1;39mKernel Trace File System[0m...
+[   11.018452] systemd[1]: Kernel Module supporting RPCSEC_GSS was skipped because of an unmet condition check (ConditionPathExists=/etc/krb5.keytab).
+[   11.020266] systemd[1]: Create List of Static Device Nodes was skipped because of an unmet condition check (ConditionFileNotEmpty=/lib/modules/6.4.0-6a8cbd9253ab+/modules.devname).
+[   11.070453] systemd[1]: Starting Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+         Starting [0;1;39mMonitoring of LVM…meventd or progress polling[0m...
+[   11.094415] systemd[1]: Starting Load Kernel Module configfs...
+         Starting [0;1;39mLoad Kernel Module configfs[0m...
+[   11.111839] systemd[1]: Starting Load Kernel Module drm...
+         Starting [0;1;39mLoad Kernel Module drm[0m...
+[   11.145678] systemd[1]: Starting Load Kernel Module fuse...
+         Starting [0;1;39mLoad Kernel Module fuse[0m...
+[   11.180698] systemd[1]: Starting Read and set NIS domainname from /etc/sysconfig/network...
+         Starting [0;1;39mRead and set NIS …from /etc/sysconfig/network[0m...
+[   11.255426] systemd[1]: Starting Journal Service...
+         Starting [0;1;39mJournal Service[0m...
+[   11.311268] systemd[1]: Starting Load Kernel Modules...
+         Starting [0;1;39mLoad Kernel Modules[0m...
+[   11.366075] systemd[1]: Starting Generate network units from Kernel command line...
+         Starting [0;1;39mGenerate network …ts from Kernel command line[0m...
+[   11.421907] systemd[1]: Starting Remount Root and Kernel File Systems...
+         Starting [0;1;39mRemount Root and Kernel File Systems[0m...
+[   11.427505] systemd[1]: Repartition Root Disk was skipped because no trigger condition checks were met.
+[   11.501836] systemd[1]: Starting Coldplug All udev Devices...
+         Starting [0;1;39mColdplug All udev Devices[0m...
+[   11.552653] systemd[1]: Mounted Huge Pages File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mHuge Pages File System[0m.
+[   11.559574] systemd[1]: Mounted POSIX Message Queue File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mPOSIX Message Queue File System[0m.
+[   11.562755] systemd[1]: Mounted Kernel Debug File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Debug File System[0m.
+[   11.565734] systemd[1]: Mounted Kernel Trace File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Trace File System[0m.
+[   11.571590] systemd[1]: Finished Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling.
+[[0;32m  OK  [0m] Finished [0;1;39mMonitoring of LVM… dmeventd or progress polling[0m.
+[   11.578573] systemd[1]: modprobe@configfs.service: Deactivated successfully.
+[   11.581726] systemd[1]: Finished Load Kernel Module configfs.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module configfs[0m.
+[   11.588088] systemd[1]: modprobe@drm.service: Deactivated successfully.
+[   11.590952] systemd[1]: Finished Load Kernel Module drm.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module drm[0m.
+[   11.596985] systemd[1]: modprobe@fuse.service: Deactivated successfully.
+[   11.599820] systemd[1]: Finished Load Kernel Module fuse.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module fuse[0m.
+[   11.615824] systemd[1]: Finished Read and set NIS domainname from /etc/sysconfig/network.
+[[0;32m  OK  [0m] Finished [0;1;39mRead and set NIS …e from /etc/sysconfig/network[0m.
+[   11.623739] systemd[1]: systemd-modules-load.service: Main process exited, code=exited, status=1/FAILURE
+[   11.631783] systemd[1]: systemd-modules-load.service: Failed with result 'exit-code'.
+[   11.640570] systemd[1]: Failed to start Load Kernel Modules.
+[[0;1;31mFAILED[0m] Failed to start [0;1;39mLoad Kernel Modules[0m.
+See 'systemctl status systemd-modules-load.service' for details.
+[   11.647449] systemd[1]: Finished Generate network units from Kernel command line.
+[[0;32m  OK  [0m] Finished [0;1;39mGenerate network units from Kernel command line[0m.[   11.651036] EXT4-fs (sda): re-mounted 088740a9-c8b4-422c-999d-a804eb68a4da r/w. Quota mode: none.
+
+[   11.667873] systemd[1]: Reached target Preparation for Network.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Network[0m.
+[   11.709868] systemd[1]: Mounting FUSE Control File System...
+         Mounting [0;1;39mFUSE Control File System[0m...
+[   11.747210] systemd[1]: Mounting Kernel Configuration File System...
+         Mounting [0;1;39mKernel Configuration File System[0m...
+[   11.811918] systemd[1]: Starting Apply Kernel Variables...
+         Starting [0;1;39mApply Kernel Variables[0m...
+[   11.820433] systemd[1]: Started Journal Service.
+[[0;32m  OK  [0m] Started [0;1;39mJournal Service[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mRemount Root and Kernel File Systems[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mFUSE Control File System[0m.
+         Starting [0;1;39mFlush Journal to Persistent Storage[0m...
+         Starting [0;1;39mLoad/Save Random Seed[0m...
+         Starting [0;1;39mCreate Static Device Nodes in /dev[0m...
+         Starting [0;1;39mSetup Virtual Console[0m...
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Configuration File System[0m.
+[   12.125442] systemd-journald[136]: Received client request to flush runtime journal.
+[[0;32m  OK  [0m] Finished [0;1;39mApply Kernel Variables[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mFlush Journal to Persistent Storage[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad/Save Random Seed[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate Static Device Nodes in /dev[0m.
+         Starting [0;1;39mRule-based Manage…for Device Events and Files[0m...
+[[0;32m  OK  [0m] Started [0;1;39mRule-based Manager for Device Events and Files[0m.
+         Starting [0;1;39mAuto-connect to s…E devices found during boot[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mAuto-connect to s…VME devices found during boot[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mSetup Virtual Console[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mColdplug All udev Devices[0m.
+         Starting [0;1;39mShow Plymouth Boot Screen[0m...
+         Starting [0;1;39mWait for udev To …plete Device Initialization[0m...
+[2J[3J[-1;-1f[[0;32m  OK  [0m] Started [0;1;39mShow Plymouth Boot Screen[0m.
+[[0;32m  OK  [0m] Started [0;1;39mForward Password R…s to Plymouth Directory Watch[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal Encrypted Volumes[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPath Units[0m.
+[[0;32m  OK  [0m] Found device [0;1;39m/dev/ttyS0[0m.
+[[0m[0;31m*     [0m] A start job is running for Wait for…ice Initialization (5s / no limit)
+M[K[[0;1;31m*[0m[0;31m*    [0m] A start job is running for Wait for…ice Initialization (5s / no limit)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] A start job is running for Wait for…ice Initialization (6s / no limit)
+M[K[[0;32m  OK  [0m] Listening on [0;1;39mLoad/Save RF …itch Status /dev/rfkill Watch[0m.
+[K[[0;32m  OK  [0m] Finished [0;1;39mWait for udev To Complete Device Initialization[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Local File Systems[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal File Systems[0m.
+         Starting [0;1;39mTell Plymouth To Write Out Runtime Data[0m...
+         Starting [0;1;39mAutomatic Boot Loader Update[0m...
+         Starting [0;1;39mCreate Volatile Files and Directories[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mTell Plymouth To Write Out Runtime Data[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mAutomatic Boot Loader Update[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate Volatile Files and Directories[0m.
+         Mounting [0;1;39mRPC Pipe File System[0m...
+         Starting [0;1;39mSecurity Auditing Service[0m...
+         Starting [0;1;39mRPC Bind[0m...
+[[0;32m  OK  [0m] Mounted [0;1;39mRPC Pipe File System[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mrpc_pipefs.target[0m.
+[[0;32m  OK  [0m] Started [0;1;39mRPC Bind[0m.
+[[0;32m  OK  [0m] Started [0;1;39mSecurity Auditing Service[0m.
+         Starting [0;1;39mRecord System Boot/Shutdown in UTMP[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mRecord System Boot/Shutdown in UTMP[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSystem Initialization[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDaily rotation of log files[0m.
+[[0;32m  OK  [0m] Started [0;1;39mUpdates mlocate database every day[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDaily Cleanup of Temporary Directories[0m.
+[[0;32m  OK  [0m] Started [0;1;39mdaily update of the root trust anchor for DNSSEC[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mTimer Units[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mD-Bus System Message Bus Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mOpen-iSCSI iscsid Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mOpen-iSCSI iscsiuio Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mSSSD Kerberos…ache Manager responder socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt interface local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mVirtual machine lock manager socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mVirtual machine log manager socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt network local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt nodedev local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt nwfilter local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt proxy local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt qemu local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt qemu admin socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt qemu local read-only socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt secret local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt storage local socket[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSocket Units[0m.
+         Starting [0;1;39mD-Bus System Message Bus[0m...
+[[0;32m  OK  [0m] Started [0;1;39mD-Bus System Message Bus[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mBasic System[0m.
+[   18.955923] memfd_create() without MFD_EXEC nor MFD_NOEXEC_SEAL, pid=252 'dbus-broker-lau'
+         Starting [0;1;39mNetwork Manager[0m...
+         Starting [0;1;39mNTP client/server[0m...
+         Starting [0;1;39mRestore /run/initramfs on shutdown[0m...
+[[0;32m  OK  [0m] Started [0;1;39mirqbalance daemon[0m.
+[[0;32m  OK  [0m] Started [0;1;39mlibstoragemgmt plug-in server daemon[0m.
+[[0;32m  OK  [0m] Started [0;1;39mMachine Check Exception Logging Daemon[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39msshd-keygen.target[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mUser and Group Name Lookups[0m.
+         Starting [0;1;39mUser Login Management[0m...
+         Starting [0;1;39mVirtual Machine a…tainer Registration Service[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mRestore /run/initramfs on shutdown[0m.
+         Starting [0;1;39mHostname Service[0m...
+[[0;32m  OK  [0m] Started [0;1;39mVirtual Machine an…ontainer Registration Service[0m.
+[[0;32m  OK  [0m] Started [0;1;39mNTP client/server[0m.
+[[0;32m  OK  [0m] Started [0;1;39mUser Login Management[0m.
+[[0;32m  OK  [0m] Started [0;1;39mHostname Service[0m.
+         Starting [0;1;39mNetwork Manager Script Dispatcher Service[0m...
+[[0;32m  OK  [0m] Started [0;1;39mNetwork Manager Script Dispatcher Service[0m.
+[   20.421369] e1000: eth0 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[   20.423057] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+[[0;32m  OK  [0m] Started [0;1;39mNetwork Manager[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNetwork[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNetwork is Online[0m.
+         Starting [0;1;39mGSSAPI Proxy Daemon[0m...
+         Starting [0;1;39mNotify NFS peers of a restart[0m...
+         Starting [0;1;39mSystem Logging Service[0m...
+         Starting [0;1;39mOpenSSH server daemon[0m...
+         Starting [0;1;39mDynamic System Tuning Daemon[0m...
+[[0;32m  OK  [0m] Started [0;1;39mNotify NFS peers of a restart[0m.
+[[0;32m  OK  [0m] Started [0;1;39mGSSAPI Proxy Daemon[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNFS client services[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Remote File Systems[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mRemote File Systems[0m.
+         Starting [0;1;39mPermit User Sessions[0m...
+         Starting [0;1;39mVirtualization qemu daemon[0m...
+[[0;32m  OK  [0m] Started [0;1;39mOpenSSH server daemon[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mPermit User Sessions[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDeferred execution scheduler[0m.
+[[0;32m  OK  [0m] Started [0;1;39mCommand Scheduler[0m.
+         Starting [0;1;39mHold until boot process finishes up[0m...
+         Starting [0;1;39mTerminate Plymouth Boot Screen[0m...
+[[0;32m  OK  [0m] Started [0;1;39mSystem Logging Service[0m.
+
+CentOS Stream 9
+Kernel 6.4.0-6a8cbd9253ab+ on an x86_64
+
+Activate the web console with: systemctl enable --now cockpit.socket
+
+test login: [   38.129379] loop0: detected capacity change from 0 to 65536
+[   38.569515] loop0: detected capacity change from 0 to 65536
+[   39.019767] loop0: detected capacity change from 0 to 65536
+[   39.042531] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   39.474974] loop0: detected capacity change from 0 to 65536
+[   39.929258] loop0: detected capacity change from 0 to 65536
+[   40.371241] loop0: detected capacity change from 0 to 65536
+[   40.835305] loop0: detected capacity change from 0 to 65536
+[   41.281592] loop0: detected capacity change from 0 to 65536
+[   41.739404] loop0: detected capacity change from 0 to 65536
+[   41.761901] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   42.184474] loop0: detected capacity change from 0 to 65536
+[   42.633210] loop0: detected capacity change from 0 to 65536
+[   42.654541] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   43.053324] loop0: detected capacity change from 0 to 65536
+[   43.074082] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   43.465065] loop0: detected capacity change from 0 to 65536
+[   43.485932] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   43.876434] loop0: detected capacity change from 0 to 65536
+[   44.290849] loop0: detected capacity change from 0 to 65536
+[   44.705839] loop0: detected capacity change from 0 to 65536
+[   44.726200] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   45.116243] loop0: detected capacity change from 0 to 65536
+[   45.137946] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   45.556226] loop0: detected capacity change from 0 to 65536
+[   45.578591] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   45.988322] loop0: detected capacity change from 0 to 65536
+[   46.010376] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   46.413372] loop0: detected capacity change from 0 to 65536
+[   46.434790] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   46.837588] loop0: detected capacity change from 0 to 65536
+[   46.858813] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   47.278495] loop0: detected capacity change from 0 to 65536
+[   47.715835] loop0: detected capacity change from 0 to 65536
+[   47.738327] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   48.153728] loop0: detected capacity change from 0 to 65536
+[   48.174205] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   48.590321] loop0: detected capacity change from 0 to 65536
+[   48.610810] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   49.034529] loop0: detected capacity change from 0 to 65536
+[   49.501855] loop0: detected capacity change from 0 to 65536
+[   49.526676] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   49.955125] loop0: detected capacity change from 0 to 65536
+[   50.412408] loop0: detected capacity change from 0 to 65536
+[   50.913208] loop0: detected capacity change from 0 to 65536
+[   50.938067] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   51.365813] loop0: detected capacity change from 0 to 65536
+[   51.834681] loop0: detected capacity change from 0 to 65536
+[   51.858787] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   52.295610] loop0: detected capacity change from 0 to 65536
+[   52.318195] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   52.731133] loop0: detected capacity change from 0 to 65536
+[   53.167678] loop0: detected capacity change from 0 to 65536
+[   53.612671] loop0: detected capacity change from 0 to 65536
+[   54.050006] loop0: detected capacity change from 0 to 65536
+[   54.495638] loop0: detected capacity change from 0 to 65536
+[   54.518127] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   54.933126] loop0: detected capacity change from 0 to 65536
+[   55.364728] loop0: detected capacity change from 0 to 65536
+[   55.386249] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   55.814013] loop0: detected capacity change from 0 to 65536
+[   55.838232] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   56.249504] loop0: detected capacity change from 0 to 65536
+[   56.685724] loop0: detected capacity change from 0 to 65536
+[   57.134163] loop0: detected capacity change from 0 to 65536
+[   57.154432] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   57.570616] loop0: detected capacity change from 0 to 65536
+[   57.998416] loop0: detected capacity change from 0 to 65536
+[   58.435009] loop0: detected capacity change from 0 to 65536
+[   58.858668] loop0: detected capacity change from 0 to 65536
+[   58.882404] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   59.312728] loop0: detected capacity change from 0 to 65536
+[   59.750931] loop0: detected capacity change from 0 to 65536
+[   60.175721] loop0: detected capacity change from 0 to 65536
+[   60.599650] loop0: detected capacity change from 0 to 65536
+[   60.617920] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   61.087724] loop0: detected capacity change from 0 to 65536
+[   61.110688] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   61.509853] loop0: detected capacity change from 0 to 65536
+[   61.938669] loop0: detected capacity change from 0 to 65536
+[   62.362390] loop0: detected capacity change from 0 to 65536
+[   62.774721] loop0: detected capacity change from 0 to 65536
+[   62.798377] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   63.216323] loop0: detected capacity change from 0 to 65536
+[   63.239131] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   63.647883] loop0: detected capacity change from 0 to 65536
+[   63.674857] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   64.091203] loop0: detected capacity change from 0 to 65536
+[   64.518566] loop0: detected capacity change from 0 to 65536
+[   64.542527] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   64.953901] loop0: detected capacity change from 0 to 65536
+[   65.385017] loop0: detected capacity change from 0 to 65536
+[   65.823876] loop0: detected capacity change from 0 to 65536
+[   66.245817] loop0: detected capacity change from 0 to 65536
+[   66.673341] loop0: detected capacity change from 0 to 65536
+[   66.697942] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   67.118815] loop0: detected capacity change from 0 to 65536
+[   67.556606] loop0: detected capacity change from 0 to 65536
+[   67.577786] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   68.008568] loop0: detected capacity change from 0 to 65536
+[   68.034616] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   68.456266] loop0: detected capacity change from 0 to 65536
+[   68.886742] loop0: detected capacity change from 0 to 65536
+[   69.319618] loop0: detected capacity change from 0 to 65536
+[   69.760730] loop0: detected capacity change from 0 to 65536
+[   69.782334] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   70.192093] loop0: detected capacity change from 0 to 65536
+[   70.218608] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   70.630883] loop0: detected capacity change from 0 to 65536
+[   71.065802] loop0: detected capacity change from 0 to 65536
+[   71.090646] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   71.506442] loop0: detected capacity change from 0 to 65536
+[   71.953862] loop0: detected capacity change from 0 to 65536
+[   72.405588] loop0: detected capacity change from 0 to 65536
+[   72.425871] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   72.853241] loop0: detected capacity change from 0 to 65536
+[   73.275404] loop0: detected capacity change from 0 to 65536
+[   73.707253] loop0: detected capacity change from 0 to 65536
+[   73.730858] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   74.146209] loop0: detected capacity change from 0 to 65536
+[   74.573901] loop0: detected capacity change from 0 to 65536
+[   75.001751] loop0: detected capacity change from 0 to 65536
+[   75.450736] loop0: detected capacity change from 0 to 65536
+[   75.885929] loop0: detected capacity change from 0 to 65536
+[   75.910661] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   76.332439] loop0: detected capacity change from 0 to 65536
+[   76.354820] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   76.762041] loop0: detected capacity change from 0 to 65536
+[   76.786825] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   77.206110] loop0: detected capacity change from 0 to 65536
+[   77.230721] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   77.644349] loop0: detected capacity change from 0 to 65536
+[   78.086994] loop0: detected capacity change from 0 to 65536
+[   78.512756] loop0: detected capacity change from 0 to 65536
+[   78.538472] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   78.947523] loop0: detected capacity change from 0 to 65536
+[   79.379706] loop0: detected capacity change from 0 to 65536
+[   79.402513] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   79.810445] loop0: detected capacity change from 0 to 65536
+[   79.834228] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   80.255697] loop0: detected capacity change from 0 to 65536
+[   80.699742] loop0: detected capacity change from 0 to 65536
+[   81.132715] loop0: detected capacity change from 0 to 65536
+[   81.154482] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   81.569106] loop0: detected capacity change from 0 to 65536
+[   82.010010] loop0: detected capacity change from 0 to 65536
+[   82.029845] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   82.441334] loop0: detected capacity change from 0 to 65536
+[   82.871473] loop0: detected capacity change from 0 to 65536
+[   82.894191] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   83.310272] loop0: detected capacity change from 0 to 65536
+[   83.738726] loop0: detected capacity change from 0 to 65536
+[   84.160633] loop0: detected capacity change from 0 to 65536
+[   84.592201] loop0: detected capacity change from 0 to 65536
+[   84.614483] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   85.023295] loop0: detected capacity change from 0 to 65536
+[   85.460206] loop0: detected capacity change from 0 to 65536
+[   85.482289] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   85.895621] loop0: detected capacity change from 0 to 65536
+[   85.914388] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   86.306284] loop0: detected capacity change from 0 to 65536
+[   86.325887] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   86.722043] loop0: detected capacity change from 0 to 65536
+[   86.754354] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   87.164040] loop0: detected capacity change from 0 to 65536
+[   87.571842] loop0: detected capacity change from 0 to 65536
+[   87.598524] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   88.015437] loop0: detected capacity change from 0 to 65536
+[   88.038575] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   88.449397] loop0: detected capacity change from 0 to 65536
+[   88.474304] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   88.893627] loop0: detected capacity change from 0 to 65536
+[   88.913828] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   89.333374] loop0: detected capacity change from 0 to 65536
+[   89.766741] loop0: detected capacity change from 0 to 65536
+[   90.196665] loop0: detected capacity change from 0 to 65536
+[   90.632607] loop0: detected capacity change from 0 to 65536
+[   90.654655] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   91.092692] loop0: detected capacity change from 0 to 65536
+[   91.114418] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   91.534334] loop0: detected capacity change from 0 to 65536
+[   91.975842] loop0: detected capacity change from 0 to 65536
+[   92.382901] loop0: detected capacity change from 0 to 65536
+[   92.406015] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   92.796501] loop0: detected capacity change from 0 to 65536
+[   93.221717] loop0: detected capacity change from 0 to 65536
+[   93.246610] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   93.635234] loop0: detected capacity change from 0 to 65536
+[   93.658043] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   94.051664] loop0: detected capacity change from 0 to 65536
+[   94.074280] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   94.478727] loop0: detected capacity change from 0 to 65536
+[   94.501872] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   94.897933] loop0: detected capacity change from 0 to 65536
+[   94.918198] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   95.310774] loop0: detected capacity change from 0 to 65536
+[   95.334642] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   95.746027] loop0: detected capacity change from 0 to 65536
+[   95.770738] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   96.167511] loop0: detected capacity change from 0 to 65536
+[   96.189335] systemd-udevd: attempt to access beyond end of device
+[   96.189335] loop0: rw=524288, sector=65408, nr_sectors = 8 limit=0
+[   96.599453] loop0: detected capacity change from 0 to 65536
+[   97.026456] loop0: detected capacity change from 0 to 65536
+[   97.046501] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   97.452820] loop0: detected capacity change from 0 to 65536
+[   97.474725] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   97.873800] loop0: detected capacity change from 0 to 65536
+[   97.898459] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   98.297547] loop0: detected capacity change from 0 to 65536
+[   98.317867] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[   98.717011] loop0: detected capacity change from 0 to 65536
+[   99.150053] loop0: detected capacity change from 0 to 65536
+[   99.593052] loop0: detected capacity change from 0 to 65536
+[   99.614631] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  100.020564] loop0: detected capacity change from 0 to 65536
+[  100.046686] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  100.467693] loop0: detected capacity change from 0 to 65536
+[  100.898188] loop0: detected capacity change from 0 to 65536
+[  100.918235] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  101.354737] loop0: detected capacity change from 0 to 65536
+[  101.789397] loop0: detected capacity change from 0 to 65536
+[  101.814709] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  102.236993] loop0: detected capacity change from 0 to 65536
+[  102.678263] loop0: detected capacity change from 0 to 65536
+[  102.702237] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  103.120189] loop0: detected capacity change from 0 to 65536
+[  103.141941] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  103.570577] loop0: detected capacity change from 0 to 65536
+[  103.594144] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  104.013448] loop0: detected capacity change from 0 to 65536
+[  104.034039] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  104.461304] loop0: detected capacity change from 0 to 65536
+[  104.485800] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  104.893215] loop0: detected capacity change from 0 to 65536
+[  105.311191] loop0: detected capacity change from 0 to 65536
+[  105.728572] loop0: detected capacity change from 0 to 65536
+[  105.750860] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  106.153667] loop0: detected capacity change from 0 to 65536
+[  106.174382] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  106.578869] loop0: detected capacity change from 0 to 65536
+[  106.598373] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  107.007214] loop0: detected capacity change from 0 to 65536
+[  107.448592] loop0: detected capacity change from 0 to 65536
+[  107.874315] loop0: detected capacity change from 0 to 65536
+[  108.313440] loop0: detected capacity change from 0 to 65536
+[  108.736239] loop0: detected capacity change from 0 to 65536
+[  108.758300] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  109.155260] loop0: detected capacity change from 0 to 65536
+[  109.582023] loop0: detected capacity change from 0 to 65536
+[  110.004075] loop0: detected capacity change from 0 to 65536
+[  110.026218] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  110.433313] loop0: detected capacity change from 0 to 65536
+[  110.837469] loop0: detected capacity change from 0 to 65536
+[  110.862335] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  111.243780] loop0: detected capacity change from 0 to 65536
+[  111.641164] loop0: detected capacity change from 0 to 65536
+[  111.662999] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  112.073248] loop0: detected capacity change from 0 to 65536
+[  112.093888] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  112.500433] loop0: detected capacity change from 0 to 65536
+[  112.522535] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  112.919232] loop0: detected capacity change from 0 to 65536
+[  113.339766] loop0: detected capacity change from 0 to 65536
+[  113.776532] loop0: detected capacity change from 0 to 65536
+[  113.802769] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  114.233754] loop0: detected capacity change from 0 to 65536
+[  114.254317] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  114.687514] loop0: detected capacity change from 0 to 65536
+[  115.130836] loop0: detected capacity change from 0 to 65536
+[  115.154801] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  115.581117] loop0: detected capacity change from 0 to 65536
+[  116.031691] loop0: detected capacity change from 0 to 65536
+[  116.054361] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  116.478296] loop0: detected capacity change from 0 to 65536
+[  116.906000] loop0: detected capacity change from 0 to 65536
+[  117.317726] loop0: detected capacity change from 0 to 65536
+[  117.342324] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  117.746582] loop0: detected capacity change from 0 to 65536
+[  117.770683] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  118.180029] loop0: detected capacity change from 0 to 65536
+[  118.608590] loop0: detected capacity change from 0 to 65536
+[  118.630482] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  119.051747] loop0: detected capacity change from 0 to 65536
+[  119.498167] loop0: detected capacity change from 0 to 65536
+[  119.950695] loop0: detected capacity change from 0 to 65536
+[  120.379159] loop0: detected capacity change from 0 to 65536
+[  120.856175] loop0: detected capacity change from 0 to 65536
+[  121.287677] loop0: detected capacity change from 0 to 65536
+[  121.725527] loop0: detected capacity change from 0 to 65536
+[  121.746165] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  122.173596] loop0: detected capacity change from 0 to 65536
+[  122.601530] loop0: detected capacity change from 0 to 65536
+[  122.621915] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  123.024450] loop0: detected capacity change from 0 to 65536
+[  123.046018] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  123.443418] loop0: detected capacity change from 0 to 65536
+[  123.895737] loop0: detected capacity change from 0 to 65536
+[  123.917993] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  124.304576] loop0: detected capacity change from 0 to 65536
+[  124.326143] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  124.710297] loop0: detected capacity change from 0 to 65536
+[  124.734306] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  125.159739] loop0: detected capacity change from 0 to 65536
+[  125.181777] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  125.564133] loop0: detected capacity change from 0 to 65536
+[  125.586462] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  125.991762] loop0: detected capacity change from 0 to 65536
+[  126.401785] loop0: detected capacity change from 0 to 65536
+[  126.422796] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  126.811039] loop0: detected capacity change from 0 to 65536
+[  126.830198] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  127.240781] loop0: detected capacity change from 0 to 65536
+[  127.262417] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  127.664492] loop0: detected capacity change from 0 to 65536
+[  127.686329] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  128.092624] loop0: detected capacity change from 0 to 65536
+[  128.506472] loop0: detected capacity change from 0 to 65536
+[  128.525772] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  128.914056] loop0: detected capacity change from 0 to 65536
+[  129.330494] loop0: detected capacity change from 0 to 65536
+[  129.353975] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  129.733102] loop0: detected capacity change from 0 to 65536
+[  130.143067] loop0: detected capacity change from 0 to 65536
+[  130.166244] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  130.554164] loop0: detected capacity change from 0 to 65536
+[  130.958652] loop0: detected capacity change from 0 to 65536
+[  130.977819] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  131.364363] loop0: detected capacity change from 0 to 65536
+[  131.390779] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  131.804367] loop0: detected capacity change from 0 to 65536
+[  131.822108] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  132.208637] loop0: detected capacity change from 0 to 65536
+[  132.230264] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  132.616615] loop0: detected capacity change from 0 to 65536
+[  133.041546] loop0: detected capacity change from 0 to 65536
+[  133.463429] loop0: detected capacity change from 0 to 65536
+[  133.490858] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  133.898358] loop0: detected capacity change from 0 to 65536
+[  134.318930] loop0: detected capacity change from 0 to 65536
+[  134.342643] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  134.742015] loop0: detected capacity change from 0 to 65536
+[  135.150893] loop0: detected capacity change from 0 to 65536
+[  135.169818] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  135.568090] loop0: detected capacity change from 0 to 65536
+[  135.590367] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  135.978335] loop0: detected capacity change from 0 to 65536
+[  136.381164] loop0: detected capacity change from 0 to 65536
+[  136.406481] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  136.801297] loop0: detected capacity change from 0 to 65536
+[  136.822209] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  137.211842] loop0: detected capacity change from 0 to 65536
+[  137.234429] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  137.626936] loop0: detected capacity change from 0 to 65536
+[  137.646840] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  138.029880] loop0: detected capacity change from 0 to 65536
+[  138.050041] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  138.438315] loop0: detected capacity change from 0 to 65536
+[  138.891294] loop0: detected capacity change from 0 to 65536
+[  139.335885] loop0: detected capacity change from 0 to 65536
+[  139.764483] loop0: detected capacity change from 0 to 65536
+[  139.786417] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  140.219529] loop0: detected capacity change from 0 to 65536
+[  140.632431] loop0: detected capacity change from 0 to 65536
+[  140.654927] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  141.058936] loop0: detected capacity change from 0 to 65536
+[  141.469429] loop0: detected capacity change from 0 to 65536
+[  141.485812] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  141.893982] loop0: detected capacity change from 0 to 65536
+[  141.918166] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  142.307759] loop0: detected capacity change from 0 to 65536
+[  142.329996] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  142.737628] loop0: detected capacity change from 0 to 65536
+[  142.762131] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  143.165675] loop0: detected capacity change from 0 to 65536
+[  143.186089] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  143.581074] loop0: detected capacity change from 0 to 65536
+[  144.025840] loop0: detected capacity change from 0 to 65536
+[  144.441769] loop0: detected capacity change from 0 to 65536
+[  144.465902] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  144.864046] loop0: detected capacity change from 0 to 65536
+[  144.886462] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  145.287541] loop0: detected capacity change from 0 to 65536
+[  145.696000] loop0: detected capacity change from 0 to 65536
+[  145.717916] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  146.116207] loop0: detected capacity change from 0 to 65536
+[  146.137816] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  146.532105] loop0: detected capacity change from 0 to 65536
+[  146.553902] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  146.962528] loop0: detected capacity change from 0 to 65536
+[  146.986038] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  147.374459] loop0: detected capacity change from 0 to 65536
+[  147.799728] loop0: detected capacity change from 0 to 65536
+[  148.220150] loop0: detected capacity change from 0 to 65536
+[  148.241987] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  148.630537] loop0: detected capacity change from 0 to 65536
+[  149.051116] loop0: detected capacity change from 0 to 65536
+[  149.460428] loop0: detected capacity change from 0 to 65536
+[  149.891595] loop0: detected capacity change from 0 to 65536
+[  150.298026] loop0: detected capacity change from 0 to 65536
+[  150.321966] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  150.728830] loop0: detected capacity change from 0 to 65536
+[  150.749930] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  151.152246] loop0: detected capacity change from 0 to 65536
+[  151.174323] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  151.583710] loop0: detected capacity change from 0 to 65536
+[  151.606202] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  152.016950] loop0: detected capacity change from 0 to 65536
+[  152.037955] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  152.489517] loop0: detected capacity change from 0 to 65536
+[  152.909907] loop0: detected capacity change from 0 to 65536
+[  152.930593] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  153.343048] loop0: detected capacity change from 0 to 65536
+[  153.361803] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  153.782410] loop0: detected capacity change from 0 to 65536
+[  153.805977] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  154.251141] loop0: detected capacity change from 0 to 65536
+[  154.269717] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  154.699902] loop0: detected capacity change from 0 to 65536
+[  155.142127] loop0: detected capacity change from 0 to 65536
+[  155.161586] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  155.589006] loop0: detected capacity change from 0 to 65536
+[  155.610004] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  155.997400] loop0: detected capacity change from 0 to 65536
+[  156.017740] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  156.414919] loop0: detected capacity change from 0 to 65536
+[  156.828134] loop0: detected capacity change from 0 to 65536
+[  157.267177] loop0: detected capacity change from 0 to 65536
+[  157.289641] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  157.687796] loop0: detected capacity change from 0 to 65536
+[  157.709955] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  158.129820] loop0: detected capacity change from 0 to 65536
+[  158.538590] loop0: detected capacity change from 0 to 65536
+[  158.562004] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  158.951114] loop0: detected capacity change from 0 to 65536
+[  158.973580] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  159.359135] loop0: detected capacity change from 0 to 65536
+[  159.767493] loop0: detected capacity change from 0 to 65536
+[  159.790008] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  160.173111] loop0: detected capacity change from 0 to 65536
+[  160.589625] loop0: detected capacity change from 0 to 65536
+[  160.610333] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  160.997702] loop0: detected capacity change from 0 to 65536
+[  161.404291] loop0: detected capacity change from 0 to 65536
+[  161.425450] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  161.807787] loop0: detected capacity change from 0 to 65536
+[  162.212675] loop0: detected capacity change from 0 to 65536
+[  162.233851] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  162.623078] loop0: detected capacity change from 0 to 65536
+[  162.645632] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  163.030529] loop0: detected capacity change from 0 to 65536
+[  163.480343] loop0: detected capacity change from 0 to 65536
+[  163.501901] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  163.953608] loop0: detected capacity change from 0 to 65536
+[  163.973779] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  164.422706] loop0: detected capacity change from 0 to 65536
+[  164.445796] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  164.869006] loop0: detected capacity change from 0 to 65536
+[  165.287041] loop0: detected capacity change from 0 to 65536
+[  165.701668] loop0: detected capacity change from 0 to 65536
+[  166.130693] loop0: detected capacity change from 0 to 65536
+[  166.150296] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  166.560099] loop0: detected capacity change from 0 to 65536
+[  166.582251] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  167.009221] loop0: detected capacity change from 0 to 65536
+[  167.443058] loop0: detected capacity change from 0 to 65536
+[  167.465877] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  167.888997] loop0: detected capacity change from 0 to 65536
+[  167.909925] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  168.310342] loop0: detected capacity change from 0 to 65536
+[  168.333792] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  168.756594] loop0: detected capacity change from 0 to 65536
+[  168.778235] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  169.204044] loop0: detected capacity change from 0 to 65536
+[  169.656744] loop0: detected capacity change from 0 to 65536
+[  170.091963] loop0: detected capacity change from 0 to 65536
+[  170.556791] loop0: detected capacity change from 0 to 65536
+[  170.981826] loop0: detected capacity change from 0 to 65536
+[  171.001941] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  171.406724] loop0: detected capacity change from 0 to 65536
+[  171.430312] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  171.856360] loop0: detected capacity change from 0 to 65536
+[  171.877871] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  172.304106] loop0: detected capacity change from 0 to 65536
+[  172.326228] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  172.740957] loop0: detected capacity change from 0 to 65536
+[  172.762151] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  173.189379] loop0: detected capacity change from 0 to 65536
+[  173.601325] loop0: detected capacity change from 0 to 65536
+[  174.025584] loop0: detected capacity change from 0 to 65536
+[  174.049689] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  174.473195] loop0: detected capacity change from 0 to 65536
+[  174.915481] loop0: detected capacity change from 0 to 65536
+[  175.369809] loop0: detected capacity change from 0 to 65536
+[  175.393764] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  175.832557] loop0: detected capacity change from 0 to 65536
+[  175.857997] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  176.272332] loop0: detected capacity change from 0 to 65536
+[  176.729806] loop0: detected capacity change from 0 to 65536
+[  176.754313] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  177.188105] loop0: detected capacity change from 0 to 65536
+[  177.210771] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  177.615312] loop0: detected capacity change from 0 to 65536
+[  177.638305] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  178.032301] loop0: detected capacity change from 0 to 65536
+[  178.053729] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  178.465250] loop0: detected capacity change from 0 to 65536
+[  178.490065] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  178.894053] loop0: detected capacity change from 0 to 65536
+[  178.914246] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  179.360415] loop0: detected capacity change from 0 to 65536
+[  179.802440] loop0: detected capacity change from 0 to 65536
+[  179.826022] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  180.316712] loop0: detected capacity change from 0 to 65536
+[  180.771707] loop0: detected capacity change from 0 to 65536
+[  181.210626] loop0: detected capacity change from 0 to 65536
+[  181.631434] loop0: detected capacity change from 0 to 65536
+[  181.654027] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  182.072234] loop0: detected capacity change from 0 to 65536
+[  182.093802] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  182.502438] loop0: detected capacity change from 0 to 65536
+[  182.918139] loop0: detected capacity change from 0 to 65536
+[  183.346053] loop0: detected capacity change from 0 to 65536
+[  183.365711] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  183.758833] loop0: detected capacity change from 0 to 65536
+[  183.782163] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  184.185069] loop0: detected capacity change from 0 to 65536
+[  184.589597] loop0: detected capacity change from 0 to 65536
+[  185.014257] loop0: detected capacity change from 0 to 65536
+[  185.435372] loop0: detected capacity change from 0 to 65536
+[  185.838173] loop0: detected capacity change from 0 to 65536
+[  186.254747] loop0: detected capacity change from 0 to 65536
+[  186.671193] loop0: detected capacity change from 0 to 65536
+[  186.694084] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  187.107931] loop0: detected capacity change from 0 to 65536
+[  187.129912] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  187.554047] loop0: detected capacity change from 0 to 65536
+[  187.578238] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  187.978354] loop0: detected capacity change from 0 to 65536
+[  187.998211] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  188.393813] loop0: detected capacity change from 0 to 65536
+[  188.414003] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  188.832425] loop0: detected capacity change from 0 to 65536
+[  189.240514] loop0: detected capacity change from 0 to 65536
+[  189.262232] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  189.654662] loop0: detected capacity change from 0 to 65536
+[  190.068023] loop0: detected capacity change from 0 to 65536
+[  190.475464] loop0: detected capacity change from 0 to 65536
+[  190.497744] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  190.905405] loop0: detected capacity change from 0 to 65536
+[  190.925996] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  191.355076] loop0: detected capacity change from 0 to 65536
+[  191.796796] loop0: detected capacity change from 0 to 65536
+[  191.822044] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  192.229253] loop0: detected capacity change from 0 to 65536
+[  192.253917] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  192.672033] loop0: detected capacity change from 0 to 65536
+[  193.108329] loop0: detected capacity change from 0 to 65536
+[  193.129815] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  193.546219] loop0: detected capacity change from 0 to 65536
+[  193.570019] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  193.997846] loop0: detected capacity change from 0 to 65536
+[  194.425354] loop0: detected capacity change from 0 to 65536
+[  194.869498] loop0: detected capacity change from 0 to 65536
+[  195.270409] loop0: detected capacity change from 0 to 65536
+[  195.692633] loop0: detected capacity change from 0 to 65536
+[  195.713662] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  196.123319] loop0: detected capacity change from 0 to 65536
+[  196.560218] loop0: detected capacity change from 0 to 65536
+[  196.582043] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  197.020628] loop0: detected capacity change from 0 to 65536
+[  197.041931] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  197.470365] loop0: detected capacity change from 0 to 65536
+[  197.494008] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  197.901026] loop0: detected capacity change from 0 to 65536
+[  198.321676] loop0: detected capacity change from 0 to 65536
+[  198.341857] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  198.748599] loop0: detected capacity change from 0 to 65536
+[  198.770069] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  199.185254] loop0: detected capacity change from 0 to 65536
+[  199.615010] loop0: detected capacity change from 0 to 65536
+[  199.638211] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  200.065820] loop0: detected capacity change from 0 to 65536
+[  200.085726] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  200.497783] loop0: detected capacity change from 0 to 65536
+[  200.522063] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  200.918865] loop0: detected capacity change from 0 to 65536
+[  201.326683] loop0: detected capacity change from 0 to 65536
+[  201.736532] loop0: detected capacity change from 0 to 65536
+[  201.758152] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  202.171670] loop0: detected capacity change from 0 to 65536
+[  202.194168] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  202.599119] loop0: detected capacity change from 0 to 65536
+[  202.622192] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  203.024084] loop0: detected capacity change from 0 to 65536
+[  203.045919] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  203.435395] loop0: detected capacity change from 0 to 65536
+[  203.846044] loop0: detected capacity change from 0 to 65536
+[  203.866250] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  204.271564] loop0: detected capacity change from 0 to 65536
+[  204.685775] loop0: detected capacity change from 0 to 65536
+[  204.709643] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  205.099131] loop0: detected capacity change from 0 to 65536
+[  205.121925] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  205.526179] loop0: detected capacity change from 0 to 65536
+[  205.549799] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  205.941100] loop0: detected capacity change from 0 to 65536
+[  206.356593] loop0: detected capacity change from 0 to 65536
+[  206.377910] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  206.765844] loop0: detected capacity change from 0 to 65536
+[  206.789661] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  207.182520] loop0: detected capacity change from 0 to 65536
+[  207.602815] loop0: detected capacity change from 0 to 65536
+[  208.006975] loop0: detected capacity change from 0 to 65536
+[  208.413040] loop0: detected capacity change from 0 to 65536
+[  208.433926] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  208.823440] loop0: detected capacity change from 0 to 65536
+[  208.845682] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  209.238707] loop0: detected capacity change from 0 to 65536
+[  209.262094] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  209.654770] loop0: detected capacity change from 0 to 65536
+[  210.066578] loop0: detected capacity change from 0 to 65536
+[  210.479416] loop0: detected capacity change from 0 to 65536
+[  210.884830] loop0: detected capacity change from 0 to 65536
+[  210.905943] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  211.335387] loop0: detected capacity change from 0 to 65536
+[  211.357601] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  211.781629] loop0: detected capacity change from 0 to 65536
+[  211.801721] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  212.208132] loop0: detected capacity change from 0 to 65536
+[  212.638796] loop0: detected capacity change from 0 to 65536
+[  212.661963] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  213.080576] loop0: detected capacity change from 0 to 65536
+[  213.105961] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  213.525205] loop0: detected capacity change from 0 to 65536
+[  213.967884] loop0: detected capacity change from 0 to 65536
+[  214.413951] loop0: detected capacity change from 0 to 65536
+[  214.858705] loop0: detected capacity change from 0 to 65536
+[  214.881684] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  215.307438] loop0: detected capacity change from 0 to 65536
+[  215.329860] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  215.766103] loop0: detected capacity change from 0 to 65536
+[  216.198269] loop0: detected capacity change from 0 to 65536
+[  216.222401] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  216.631464] loop0: detected capacity change from 0 to 65536
+[  217.058077] loop0: detected capacity change from 0 to 65536
+[  217.490112] loop0: detected capacity change from 0 to 65536
+[  217.910627] loop0: detected capacity change from 0 to 65536
+[  217.929746] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  218.345112] loop0: detected capacity change from 0 to 65536
+[  218.366272] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  218.765055] loop0: detected capacity change from 0 to 65536
+[  218.785733] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  219.204183] loop0: detected capacity change from 0 to 65536
+[  219.226075] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  219.624161] loop0: detected capacity change from 0 to 65536
+[  219.653332] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  220.052149] loop0: detected capacity change from 0 to 65536
+[  220.081951] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  220.491544] loop0: detected capacity change from 0 to 65536
+[  220.912503] loop0: detected capacity change from 0 to 65536
+[  220.933690] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  221.327522] loop0: detected capacity change from 0 to 65536
+[  221.349964] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  221.776308] loop0: detected capacity change from 0 to 65536
+[  221.798069] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  222.227209] loop0: detected capacity change from 0 to 65536
+[  222.249911] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  222.651646] loop0: detected capacity change from 0 to 65536
+[  223.073953] loop0: detected capacity change from 0 to 65536
+[  223.097625] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  223.510567] loop0: detected capacity change from 0 to 65536
+[  223.926308] loop0: detected capacity change from 0 to 65536
+[  223.945986] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  224.344065] loop0: detected capacity change from 0 to 65536
+[  224.758453] loop0: detected capacity change from 0 to 65536
+[  225.174318] loop0: detected capacity change from 0 to 65536
+[  225.198190] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  225.615050] loop0: detected capacity change from 0 to 65536
+[  226.051830] loop0: detected capacity change from 0 to 65536
+[  226.475041] loop0: detected capacity change from 0 to 65536
+[  226.893859] loop0: detected capacity change from 0 to 65536
+[  226.913847] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  227.300185] loop0: detected capacity change from 0 to 65536
+[  227.321770] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  227.740917] loop0: detected capacity change from 0 to 65536
+[  227.761888] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  228.160217] loop0: detected capacity change from 0 to 65536
+[  228.182092] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  228.604999] loop0: detected capacity change from 0 to 65536
+[  229.045599] loop0: detected capacity change from 0 to 65536
+[  229.069891] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  229.475670] loop0: detected capacity change from 0 to 65536
+[  229.497803] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  229.902261] loop0: detected capacity change from 0 to 65536
+[  229.925945] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  230.315796] loop0: detected capacity change from 0 to 65536
+[  230.727151] loop0: detected capacity change from 0 to 65536
+[  230.749568] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  231.159803] loop0: detected capacity change from 0 to 65536
+[  231.585755] loop0: detected capacity change from 0 to 65536
+[  232.018886] loop0: detected capacity change from 0 to 65536
+[  232.454888] loop0: detected capacity change from 0 to 65536
+[  232.891992] loop0: detected capacity change from 0 to 65536
+[  233.318769] loop0: detected capacity change from 0 to 65536
+[  233.773809] loop0: detected capacity change from 0 to 65536
+[  234.213950] loop0: detected capacity change from 0 to 65536
+[  234.238390] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  234.665618] loop0: detected capacity change from 0 to 65536
+[  234.686128] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  235.100837] loop0: detected capacity change from 0 to 65536
+[  235.511321] loop0: detected capacity change from 0 to 65536
+[  235.934478] loop0: detected capacity change from 0 to 65536
+[  236.344956] loop0: detected capacity change from 0 to 65536
+[  236.365828] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  236.794464] loop0: detected capacity change from 0 to 65536
+[  237.206272] loop0: detected capacity change from 0 to 65536
+[  237.616780] loop0: detected capacity change from 0 to 65536
+[  237.637745] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  238.035776] loop0: detected capacity change from 0 to 65536
+[  238.460749] loop0: detected capacity change from 0 to 65536
+[  238.876967] loop0: detected capacity change from 0 to 65536
+[  238.897828] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  239.294820] loop0: detected capacity change from 0 to 65536
+[  239.710691] loop0: detected capacity change from 0 to 65536
+[  240.125596] loop0: detected capacity change from 0 to 65536
+[  240.554831] loop0: detected capacity change from 0 to 65536
+[  240.994460] loop0: detected capacity change from 0 to 65536
+[  241.410794] loop0: detected capacity change from 0 to 65536
+[  241.823775] loop0: detected capacity change from 0 to 65536
+[  242.231802] loop0: detected capacity change from 0 to 65536
+[  242.254028] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  242.656403] loop0: detected capacity change from 0 to 65536
+[  242.677738] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  243.079565] loop0: detected capacity change from 0 to 65536
+[  243.485939] loop0: detected capacity change from 0 to 65536
+[  243.509667] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  243.913676] loop0: detected capacity change from 0 to 65536
+[  244.349823] loop0: detected capacity change from 0 to 65536
+[  244.766644] loop0: detected capacity change from 0 to 65536
+[  245.209531] loop0: detected capacity change from 0 to 65536
+[  245.233592] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  245.636136] loop0: detected capacity change from 0 to 65536
+[  245.662158] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  246.072210] loop0: detected capacity change from 0 to 65536
+[  246.094093] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  246.503444] loop0: detected capacity change from 0 to 65536
+[  246.921427] loop0: detected capacity change from 0 to 65536
+[  246.941807] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  247.354791] loop0: detected capacity change from 0 to 65536
+[  247.795253] loop0: detected capacity change from 0 to 65536
+[  248.237877] loop0: detected capacity change from 0 to 65536
+[  248.669076] loop0: detected capacity change from 0 to 65536
+[  248.693799] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  249.110254] loop0: detected capacity change from 0 to 65536
+[  249.543629] loop0: detected capacity change from 0 to 65536
+[  249.570237] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  250.000562] loop0: detected capacity change from 0 to 65536
+[  250.021972] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  250.424427] loop0: detected capacity change from 0 to 65536
+[  250.839194] loop0: detected capacity change from 0 to 65536
+[  251.261846] loop0: detected capacity change from 0 to 65536
+[  251.282081] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  251.702537] loop0: detected capacity change from 0 to 65536
+[  251.721953] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  252.114251] loop0: detected capacity change from 0 to 65536
+[  252.526627] loop0: detected capacity change from 0 to 65536
+[  252.550053] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  252.958317] loop0: detected capacity change from 0 to 65536
+[  253.369261] loop0: detected capacity change from 0 to 65536
+[  253.788361] loop0: detected capacity change from 0 to 65536
+[  253.809704] I/O error, dev loop0, sector 65408 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 2
+[  254.221172] loop0: detected capacity change from 0 to 65536

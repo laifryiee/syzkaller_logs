@@ -1,0 +1,50 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [b9ddaa95fd283bce7041550ddbbe7e764c477110] Add linux-next specific files for 20250801
+git bisect bad b9ddaa95fd283bce7041550ddbbe7e764c477110
+# status: waiting for good commit(s), bad commit known
+# good: [9f4ad9e425a1d3b6a34617b8ea226d56a119a717] Linux 5.12
+git bisect good 9f4ad9e425a1d3b6a34617b8ea226d56a119a717
+# good: [6a8cbd9253abc1bd0df4d60c4c24fa555190376d] Merge tag 'v6.5-rc1-sysctl-next' of git://git.kernel.org/pub/scm/linux/kernel/git/mcgrof/linux
+git bisect good 6a8cbd9253abc1bd0df4d60c4c24fa555190376d
+# good: [586f14a6a182bbdb9404dc66464dcd8d0ac175a3] Merge tag 'erofs-for-6.11-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs
+git bisect good 586f14a6a182bbdb9404dc66464dcd8d0ac175a3
+# good: [13845bdc869f136f92ad3d40ea09b867bb4ce467] Merge tag 'char-misc-6.14-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc
+git bisect good 13845bdc869f136f92ad3d40ea09b867bb4ce467
+# good: [b08494a8f7416e5f09907318c5460ad6f6e2a548] Merge tag 'drm-next-2025-05-28' of https://gitlab.freedesktop.org/drm/kernel
+git bisect good b08494a8f7416e5f09907318c5460ad6f6e2a548
+# good: [8b5a19b4ff6a2096225d88cf24cfeef03edc1bed] Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good 8b5a19b4ff6a2096225d88cf24cfeef03edc1bed
+# good: [63eb28bb1402891b1ad2be02a530f29a9dd7f1cd] Merge tag 'for-linus' of git://git.kernel.org/pub/scm/virt/kvm/kvm
+git bisect good 63eb28bb1402891b1ad2be02a530f29a9dd7f1cd
+# good: [b33f91c6276255ca0b90c42142828de05496ed1d] exfat: optimize allocation bitmap loading time
+git bisect good b33f91c6276255ca0b90c42142828de05496ed1d
+# bad: [6e17e0e245c1c89e35051b59eb82d2d4a1e30b59] Merge branch 'fs-next' of linux-next
+git bisect bad 6e17e0e245c1c89e35051b59eb82d2d4a1e30b59
+# bad: [150f8f2d462621e6a8aeb3957308af6b0c5624cc] Merge branch 'dev' of git://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs.git
+git bisect bad 150f8f2d462621e6a8aeb3957308af6b0c5624cc
+# bad: [6aee5aed2edd0a156bf060abce1bdbbc38171c10] Merge tag 'cgroup-for-6.17' of git://git.kernel.org/pub/scm/linux/kernel/git/tj/cgroup
+git bisect bad 6aee5aed2edd0a156bf060abce1bdbbc38171c10
+# bad: [5799c0ed0aff65989b04ca3f517401e4ee94da10] mm/page-alloc: remove PageMappingFlags()
+git bisect bad 5799c0ed0aff65989b04ca3f517401e4ee94da10
+# bad: [8a6a984c2e0ea406459b445a3910a454bece3aa1] mm: remove redundant pXd_devmap calls
+git bisect bad 8a6a984c2e0ea406459b445a3910a454bece3aa1
+# bad: [32dc2d5e3f0de7a62dd85b2ec2be2964449c4796] selftests/mm: don't compare return values to in cow
+git bisect bad 32dc2d5e3f0de7a62dd85b2ec2be2964449c4796
+# good: [a8fb49c6abbbe5c71e1a8a888ef2c4b3e341d169] mm: remove the for_reclaim field from struct writeback_control
+git bisect good a8fb49c6abbbe5c71e1a8a888ef2c4b3e341d169
+# good: [5e00e31867d16e235bb693b900c85e86dc2c3464] userfaultfd: remove UFFD_CLOEXEC, UFFD_NONBLOCK, and UFFD_FLAGS_SET
+git bisect good 5e00e31867d16e235bb693b900c85e86dc2c3464
+# skip: [18ebe55a9236b33d519fcc8669730cd02386a2dc] mm/readahead: terminate async readahead on natural boundary
+git bisect skip 18ebe55a9236b33d519fcc8669730cd02386a2dc
+# skip: [f5e8b140cd1324cf2c9c17487b8f444098624797] mm/readahead: make space in struct file_ra_state
+git bisect skip f5e8b140cd1324cf2c9c17487b8f444098624797
+# bad: [7e43195c609f0499e46c6bfa9472e39c76af445b] alloc_tag: remove empty module tag section
+git bisect bad 7e43195c609f0499e46c6bfa9472e39c76af445b
+# bad: [bdb86f6b87633cc020f8225ae09d336da7826724] mm/readahead: honour new_order in page_cache_ra_order()
+git bisect bad bdb86f6b87633cc020f8225ae09d336da7826724
+# bad: [1e6b17b4237dacb02e9cfeaed35d889bbc9e8a84] xarray: add a BUG_ON() to ensure caller is not sibling
+git bisect bad 1e6b17b4237dacb02e9cfeaed35d889bbc9e8a84
+# bad: [a6fde7add78d122f5e09cb6280f99c4b5ead7d56] mm: use per_vma lock for MADV_DONTNEED
+git bisect bad a6fde7add78d122f5e09cb6280f99c4b5ead7d56
+# first bad commit: [a6fde7add78d122f5e09cb6280f99c4b5ead7d56] mm: use per_vma lock for MADV_DONTNEED

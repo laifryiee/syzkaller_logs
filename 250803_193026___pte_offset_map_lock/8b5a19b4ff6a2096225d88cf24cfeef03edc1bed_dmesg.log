@@ -1,0 +1,1423 @@
+c[?7l[2J[0mSeaBIOS (version rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org)
+
+
+iPXE (http://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+7EFD0C90+7EF30C90 CA00
+Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
+
+
+Booting from ROM...
+c[?7l[2J[    0.000000] Linux version 6.16.0-rc7-8b5a19b4ff6a+ (root@localhost.localdomain) (gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-2), GNU ld version 2.35.2-54.el9) #1 SMP PREEMPT_DYNAMIC Sun Aug  3 21:48:45 CST 2025
+[    0.000000] Command line: console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0 thunderbolt.dyndbg
+[    0.000000] KERNEL supported cpus:
+[    0.000000]   Intel GenuineIntel
+[    0.000000]   AMD AuthenticAMD
+[    0.000000]   Hygon HygonGenuine
+[    0.000000]   Centaur CentaurHauls
+[    0.000000]   zhaoxin   Shanghai  
+[    0.000000] BIOS-provided physical RAM map:
+[    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
+[    0.000000] BIOS-e820: [mem 0x000000000009fc00-0x000000000009ffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000000f0000-0x00000000000fffff] reserved
+[    0.000000] BIOS-e820: [mem 0x0000000000100000-0x000000007ffdffff] usable
+[    0.000000] BIOS-e820: [mem 0x000000007ffe0000-0x000000007fffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000feffc000-0x00000000feffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000fffc0000-0x00000000ffffffff] reserved
+[    0.000000] printk: legacy bootconsole [earlyser0] enabled
+[    0.000000] NX (Execute Disable) protection: active
+[    0.000000] APIC: Static calls initialized
+[    0.000000] SMBIOS 2.8 present.
+[    0.000000] DMI: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[    0.000000] DMI: Memory slots populated: 1/1
+[    0.000000] Hypervisor detected: KVM
+[    0.000000] kvm-clock: Using msrs 4b564d01 and 4b564d00
+[    0.000004] kvm-clock: using sched offset of 711938472 cycles
+[    0.000900] clocksource: kvm-clock: mask: 0xffffffffffffffff max_cycles: 0x1cd42e4dffb, max_idle_ns: 881590591483 ns
+[    0.003677] tsc: Detected 2095.076 MHz processor
+[    0.013973] last_pfn = 0x7ffe0 max_arch_pfn = 0x400000000
+[    0.014924] MTRR map: 4 entries (3 fixed + 1 variable; max 19), built from 8 variable MTRRs
+[    0.016348] x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT  
+[    0.028617] found SMP MP-table at [mem 0x000f5480-0x000f548f]
+[    0.029590] Using GB pages for direct mapping
+[    0.033291] ACPI: Early table checksum verification disabled
+[    0.034225] ACPI: RSDP 0x00000000000F52A0 000014 (v00 BOCHS )
+[    0.035142] ACPI: RSDT 0x000000007FFE2390 000034 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.036430] ACPI: FACP 0x000000007FFE223C 000074 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.037819] ACPI: DSDT 0x000000007FFE0040 0021FC (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.039193] ACPI: FACS 0x000000007FFE0000 000040
+[    0.039899] ACPI: APIC 0x000000007FFE22B0 000080 (v03 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.041182] ACPI: HPET 0x000000007FFE2330 000038 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.042470] ACPI: WAET 0x000000007FFE2368 000028 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.043754] ACPI: Reserving FACP table memory at [mem 0x7ffe223c-0x7ffe22af]
+[    0.044800] ACPI: Reserving DSDT table memory at [mem 0x7ffe0040-0x7ffe223b]
+[    0.045842] ACPI: Reserving FACS table memory at [mem 0x7ffe0000-0x7ffe003f]
+[    0.046898] ACPI: Reserving APIC table memory at [mem 0x7ffe22b0-0x7ffe232f]
+[    0.047953] ACPI: Reserving HPET table memory at [mem 0x7ffe2330-0x7ffe2367]
+[    0.049008] ACPI: Reserving WAET table memory at [mem 0x7ffe2368-0x7ffe238f]
+[    0.051511] No NUMA configuration found
+[    0.052098] Faking a node at [mem 0x0000000000000000-0x000000007ffdffff]
+[    0.053233] NODE_DATA(0) allocated [mem 0x7ffb4e80-0x7ffdfc7f]
+[    0.055054] Zone ranges:
+[    0.055500]   DMA      [mem 0x0000000000001000-0x0000000000ffffff]
+[    0.056579]   DMA32    [mem 0x0000000001000000-0x000000007ffdffff]
+[    0.057562]   Normal   empty
+[    0.058054]   Device   empty
+[    0.058573] Movable zone start for each node
+[    0.059336] Early memory node ranges
+[    0.059978]   node   0: [mem 0x0000000000001000-0x000000000009efff]
+[    0.061103]   node   0: [mem 0x0000000000100000-0x000000007ffdffff]
+[    0.062228] Initmem setup node 0 [mem 0x0000000000001000-0x000000007ffdffff]
+[    0.063717] On node 0, zone DMA: 1 pages in unavailable ranges
+[    0.064891] On node 0, zone DMA: 97 pages in unavailable ranges
+[    0.103664] On node 0, zone DMA32: 32 pages in unavailable ranges
+[    0.172122] kasan: KernelAddressSanitizer initialized
+[    0.173299] ACPI: PM-Timer IO Port: 0x608
+[    0.173939] ACPI: LAPIC_NMI (acpi_id[0xff] dfl dfl lint[0x1])
+[    0.174860] IOAPIC[0]: apic_id 0, version 17, address 0xfec00000, GSI 0-23
+[    0.175900] ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+[    0.176849] ACPI: INT_SRC_OVR (bus 0 bus_irq 5 global_irq 5 high level)
+[    0.177840] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+[    0.178828] ACPI: INT_SRC_OVR (bus 0 bus_irq 10 global_irq 10 high level)
+[    0.179846] ACPI: INT_SRC_OVR (bus 0 bus_irq 11 global_irq 11 high level)
+[    0.180877] ACPI: Using ACPI (MADT) for SMP configuration information
+[    0.181832] ACPI: HPET id: 0x8086a201 base: 0xfed00000
+[    0.182602] TSC deadline timer available
+[    0.183204] CPU topo: Max. logical packages:   1
+[    0.183901] CPU topo: Max. logical dies:       1
+[    0.184593] CPU topo: Max. dies per package:   1
+[    0.185299] CPU topo: Max. threads per core:   1
+[    0.185995] CPU topo: Num. cores per package:     2
+[    0.186724] CPU topo: Num. threads per package:   2
+[    0.187454] CPU topo: Allowing 2 present CPUs plus 0 hotplug CPUs
+[    0.188427] kvm-guest: APIC: eoi() replaced with kvm_guest_apic_eoi_write()
+[    0.189494] kvm-guest: KVM setup pv remote TLB flush
+[    0.190240] kvm-guest: setup PV sched yield
+[    0.190929] PM: hibernation: Registered nosave memory: [mem 0x00000000-0x00000fff]
+[    0.192054] PM: hibernation: Registered nosave memory: [mem 0x0009f000-0x000fffff]
+[    0.193191] [mem 0x80000000-0xfeffbfff] available for PCI devices
+[    0.194132] Booting paravirtualized kernel on KVM
+[    0.194874] clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645519600211568 ns
+[    0.196510] setup_percpu: NR_CPUS:8192 nr_cpumask_bits:2 nr_cpu_ids:2 nr_node_ids:1
+[    0.198277] percpu: Embedded 80 pages/cpu s290816 r8192 d28672 u1048576
+[    0.199533] kvm-guest: PV spinlocks enabled
+[    0.200213] PV qspinlock hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    0.201375] Kernel command line: net.ifnames=0 console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0 thunderbolt.dyndbg
+[    0.203505] random: crng init done
+[    0.204037] printk: log buffer data + meta data: 262144 + 917504 = 1179648 bytes
+[    0.205675] Dentry cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.207013] Inode-cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    0.208576] Fallback order for Node 0: 0 
+[    0.208599] Built 1 zonelists, mobility grouping on.  Total pages: 524158
+[    0.210286] Policy zone: DMA32
+[    0.210795] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.211752] stackdepot: allocating hash table via alloc_large_system_hash
+[    0.212785] stackdepot hash table entries: 1048576 (order: 12, 16777216 bytes, linear)
+[    0.248487] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+[    0.249524] kmemleak: Kernel memory leak detector disabled
+[    0.250450] Kernel/User page tables isolation: enabled
+[    0.293315] ftrace: allocating 73968 entries in 292 pages
+[    0.294238] ftrace: allocated 292 pages with 3 groups
+[    0.302220] Dynamic Preempt: voluntary
+[    0.303550] Running RCU self tests
+[    0.304076] Running RCU synchronous self tests
+[    0.304741] rcu: Preemptible hierarchical RCU implementation.
+[    0.305573] rcu: 	RCU lockdep checking is enabled.
+[    0.306273] rcu: 	RCU restricting CPUs from NR_CPUS=8192 to nr_cpu_ids=2.
+[    0.307279] 	Trampoline variant of Tasks RCU enabled.
+[    0.308021] 	Rude variant of Tasks RCU enabled.
+[    0.308685] 	Tracing variant of Tasks RCU enabled.
+[    0.309393] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.310495] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+[    0.311556] Running RCU synchronous self tests
+[    0.312266] RCU Tasks: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.
+[    0.313662] RCU Tasks Rude: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.
+[    0.315061] RCU Tasks Trace: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.
+[    0.402231] NR_IRQS: 524544, nr_irqs: 440, preallocated irqs: 16
+[    0.403849] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.417117] Console: colour VGA+ 80x25
+[    0.417809] printk: legacy console [ttyS0] enabled
+[    0.417809] printk: legacy console [ttyS0] enabled
+[    0.419234] printk: legacy bootconsole [earlyser0] disabled
+[    0.419234] printk: legacy bootconsole [earlyser0] disabled
+[    0.420911] Lock dependency validator: Copyright (c) 2006 Red Hat, Inc., Ingo Molnar
+[    0.422064] ... MAX_LOCKDEP_SUBCLASSES:  8
+[    0.422686] ... MAX_LOCK_DEPTH:          48
+[    0.423332] ... MAX_LOCKDEP_KEYS:        8192
+[    0.424040] ... CLASSHASH_SIZE:          4096
+[    0.424785] ... MAX_LOCKDEP_ENTRIES:     32768
+[    0.425544] ... MAX_LOCKDEP_CHAINS:      65536
+[    0.426277] ... CHAINHASH_SIZE:          32768
+[    0.426947]  memory used by lock dependency info: 6429 kB
+[    0.427767]  memory used for stack traces: 4224 kB
+[    0.428493]  per task-struct memory footprint: 1920 bytes
+[    0.429431] ACPI: Core revision 20250404
+[    0.430665] clocksource: hpet: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604467 ns
+[    0.432672] APIC: Switch to symmetric I/O mode setup
+[    0.433829] x2apic enabled
+[    0.434864] APIC: Switched APIC routing to: physical x2apic
+[    0.435808] kvm-guest: APIC: send_IPI_mask() replaced with kvm_send_ipi_mask()
+[    0.437153] kvm-guest: APIC: send_IPI_mask_allbutself() replaced with kvm_send_ipi_mask_allbutself()
+[    0.438639] kvm-guest: setup PV IPIs
+[    0.440933] ..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+[    0.441983] clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x1e33052aadd, max_idle_ns: 440795310221 ns
+[    0.443700] Calibrating delay loop (skipped) preset value.. 4190.15 BogoMIPS (lpj=8380304)
+[    0.447905] x86/cpu: User Mode Instruction Prevention (UMIP) activated
+[    0.449200] Last level iTLB entries: 4KB 0, 2MB 0, 4MB 0
+[    0.450091] Last level dTLB entries: 4KB 0, 2MB 0, 4MB 0, 1GB 0
+[    0.451127] Speculative Store Bypass: Mitigation: Speculative Store Bypass disabled via prctl
+[    0.451697] Spectre V2 : Mitigation: IBRS
+[    0.452333] RETBleed: Mitigation: IBRS
+[    0.452965] ITS: Mitigation: Aligned branch/return thunks
+[    0.453856] MDS: Mitigation: Clear CPU buffers
+[    0.455691] TAA: Mitigation: Clear CPU buffers
+[    0.456463] MMIO Stale Data: Mitigation: Clear CPU buffers
+[    0.457383] Spectre V1 : Mitigation: usercopy/swapgs barriers and __user pointer sanitization
+[    0.458800] Spectre V2 : Spectre v2 / SpectreRSB: Filling RSB on context switch and VMEXIT
+[    0.459703] Spectre V2 : mitigation: Enabling conditional Indirect Branch Prediction Barrier
+[    0.461084] Spectre V2 : Spectre BHI mitigation: SW BHB clearing on syscall and VM exit
+[    0.462398] x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'
+[    0.463693] x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'
+[    0.464708] x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'
+[    0.465719] x86/fpu: Supporting XSAVE feature 0x008: 'MPX bounds registers'
+[    0.467694] x86/fpu: Supporting XSAVE feature 0x010: 'MPX CSR'
+[    0.468687] x86/fpu: Supporting XSAVE feature 0x020: 'AVX-512 opmask'
+[    0.469696] x86/fpu: Supporting XSAVE feature 0x040: 'AVX-512 Hi256'
+[    0.470704] x86/fpu: Supporting XSAVE feature 0x080: 'AVX-512 ZMM_Hi256'
+[    0.471694] x86/fpu: Supporting XSAVE feature 0x200: 'Protection Keys User registers'
+[    0.472976] x86/fpu: xstate_offset[2]:  576, xstate_sizes[2]:  256
+[    0.473955] x86/fpu: xstate_offset[3]:  832, xstate_sizes[3]:   64
+[    0.474940] x86/fpu: xstate_offset[4]:  896, xstate_sizes[4]:   64
+[    0.475694] x86/fpu: xstate_offset[5]:  960, xstate_sizes[5]:   64
+[    0.476689] x86/fpu: xstate_offset[6]: 1024, xstate_sizes[6]:  512
+[    0.477671] x86/fpu: xstate_offset[7]: 1536, xstate_sizes[7]: 1024
+[    0.479693] x86/fpu: xstate_offset[9]: 2560, xstate_sizes[9]:    8
+[    0.480674] x86/fpu: Enabled xstate features 0x2ff, context size is 2568 bytes, using 'compacted' format.
+[    0.862632] Freeing SMP alternatives memory: 60K
+[    0.863407] pid_max: default: 32768 minimum: 301
+[    0.864091] LSM: initializing lsm=capability,yama,ima,evm
+[    0.865201] Yama: becoming mindful.
+[    0.866600] Mount-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.867702] Mountpoint-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.872547] Running RCU synchronous self tests
+[    0.873261] Running RCU synchronous self tests
+[    0.874413] smpboot: CPU0: Genuine Intel(R) CPU 0000%@ (family: 0x6, model: 0x55, stepping: 0x4)
+[    0.875685] Performance Events: Skylake events, 32-deep LBR, full-width counters, Intel PMU driver.
+[    0.875710] ... version:                2
+[    0.876358] ... bit width:              48
+[    0.877060] ... generic registers:      4
+[    0.877695] ... value mask:             0000ffffffffffff
+[    0.878530] ... max period:             00007fffffffffff
+[    0.879367] ... fixed-purpose events:   3
+[    0.879696] ... event mask:             000000070000000f
+[    0.881444] signal: max sigframe size: 3632
+[    0.882363] rcu: Hierarchical SRCU implementation.
+[    0.883135] rcu: 	Max phase no-delay instances is 1000.
+[    0.884085] Timer migration: 1 hierarchy levels; 8 children per group; 1 crossnode level
+[    0.920654] smp: Bringing up secondary CPUs ...
+[    0.922756] smpboot: x86: Booting SMP configuration:
+[    0.923554] .... node  #0, CPUs:      #1
+[    0.924954] smp: Brought up 1 node, 2 CPUs
+[    0.927710] smpboot: Total of 2 processors activated (8380.30 BogoMIPS)
+[    0.930017] Memory: 1598508K/2096632K available (79074K kernel code, 15342K rwdata, 18356K rodata, 16084K init, 21512K bss, 486476K reserved, 0K cma-reserved)
+[    0.932749] devtmpfs: initialized
+[    0.939493] x86/mm: Memory block size: 128MB
+[    0.977211] Running RCU synchronous self tests
+[    0.979608] Running RCU synchronous self tests
+[    0.980037] Running RCU Tasks wait API self tests
+[    0.980563] Running RCU Tasks Rude wait API self tests
+[    0.980573] Running RCU Tasks Trace wait API self tests
+[    1.003830] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    1.007895] posixtimers hash table entries: 1024 (order: 4, 73728 bytes, linear)
+[    1.011818] futex hash table entries: 512 (65536 bytes on 1 NUMA nodes, total 64 KiB, linear).
+[    1.015417] pinctrl core: initialized pinctrl subsystem
+[    1.019824] Callback from call_rcu_tasks_trace() invoked.
+[    1.015685] 
+[    1.015685] *************************************************************
+[    1.023699] **     NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE    **
+[    1.024904] **                                                         **
+[    1.026157] **  IOMMU DebugFS SUPPORT HAS BEEN ENABLED IN THIS KERNEL  **
+[    1.027349] **                                                         **
+[    1.027696] ** This means that this kernel is built to expose internal **
+[    1.028939] ** IOMMU data structures, which may compromise security on **
+[    1.030147] ** your system.                                            **
+[    1.031353] **                                                         **
+[    1.031698] ** If you see this message and you are not debugging the   **
+[    1.032796] ** kernel, report this immediately to your vendor!         **
+[    1.033888] **                                                         **
+[    1.034991] **     NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE    **
+[    1.035694] *************************************************************
+[    1.036897] PM: RTC time: 13:51:21, date: 2025-08-03
+[    1.042780] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    1.046889] DMA: preallocated 256 KiB GFP_KERNEL pool for atomic allocations
+[    1.047730] DMA: preallocated 256 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    1.049069] DMA: preallocated 256 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    1.050561] audit: initializing netlink subsys (disabled)
+[    1.055827] audit: type=2000 audit(1754229082.551:1): state=initialized audit_enabled=0 res=1
+[    1.055717] thermal_sys: Registered thermal governor 'fair_share'
+[    1.055717] thermal_sys: Registered thermal governor 'bang_bang'
+[    1.056654] thermal_sys: Registered thermal governor 'step_wise'
+[    1.057636] thermal_sys: Registered thermal governor 'user_space'
+[    1.059794] cpuidle: using governor ladder
+[    1.064353] cpuidle: using governor menu
+[    1.065060] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+[    1.065060] PCI: Using configuration type 1 for base access
+[    1.068148] kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.
+[    1.304365] HugeTLB: allocation took 0ms with hugepage_allocation_threads=1
+[    1.305623] HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+[    1.306749] HugeTLB: 16380 KiB vmemmap can be freed for a 1.00 GiB page
+[    1.307702] HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+[    1.311699] HugeTLB: 28 KiB vmemmap can be freed for a 2.00 MiB page
+[    1.583013] ACPI: Added _OSI(Module Device)
+[    1.583706] ACPI: Added _OSI(Processor Device)
+[    1.584473] ACPI: Added _OSI(Processor Aggregator Device)
+[    1.625623] ACPI: 1 ACPI AML tables successfully acquired and loaded
+[    1.639283] ACPI: Interpreter enabled
+[    1.639963] ACPI: PM: (supports S0 S3 S4 S5)
+[    1.640712] ACPI: Using IOAPIC for interrupt routing
+[    1.641786] PCI: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
+[    1.643399] PCI: Using E820 reservations for host bridge windows
+[    1.646453] ACPI: Enabled 2 GPEs in block 00 to 0F
+[    1.732662] ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-ff])
+[    1.733875] acpi PNP0A03:00: _OSC: OS supports [ASPM ClockPM Segments MSI EDR HPX-Type3]
+[    1.735277] acpi PNP0A03:00: _OSC: not requesting OS control; OS requires [ExtendedConfig ASPM ClockPM MSI]
+[    1.736017] acpi PNP0A03:00: fail to add MMCONFIG information, can't access extended configuration space under this bridge
+[    1.749489] acpiphp: Slot [3] registered
+[    1.750525] acpiphp: Slot [4] registered
+[    1.751531] acpiphp: Slot [5] registered
+[    1.752043] acpiphp: Slot [6] registered
+[    1.753051] acpiphp: Slot [7] registered
+[    1.754055] acpiphp: Slot [8] registered
+[    1.755069] acpiphp: Slot [9] registered
+[    1.756036] acpiphp: Slot [10] registered
+[    1.757057] acpiphp: Slot [11] registered
+[    1.758072] acpiphp: Slot [12] registered
+[    1.759096] acpiphp: Slot [13] registered
+[    1.760033] acpiphp: Slot [14] registered
+[    1.761052] acpiphp: Slot [15] registered
+[    1.762083] acpiphp: Slot [16] registered
+[    1.763110] acpiphp: Slot [17] registered
+[    1.764032] acpiphp: Slot [18] registered
+[    1.765051] acpiphp: Slot [19] registered
+[    1.766078] acpiphp: Slot [20] registered
+[    1.767100] acpiphp: Slot [21] registered
+[    1.768025] acpiphp: Slot [22] registered
+[    1.769054] acpiphp: Slot [23] registered
+[    1.770081] acpiphp: Slot [24] registered
+[    1.771109] acpiphp: Slot [25] registered
+[    1.772030] acpiphp: Slot [26] registered
+[    1.773065] acpiphp: Slot [27] registered
+[    1.774092] acpiphp: Slot [28] registered
+[    1.775116] acpiphp: Slot [29] registered
+[    1.776028] acpiphp: Slot [30] registered
+[    1.777077] acpiphp: Slot [31] registered
+[    1.777907] PCI host bridge to bus 0000:00
+[    1.778745] pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7 window]
+[    1.779708] pci_bus 0000:00: root bus resource [io  0x0d00-0xffff window]
+[    1.780890] pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff window]
+[    1.782178] pci_bus 0000:00: root bus resource [mem 0x80000000-0xfebfffff window]
+[    1.783522] pci_bus 0000:00: root bus resource [mem 0x100000000-0x17fffffff window]
+[    1.783705] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    1.784870] pci 0000:00:00.0: [8086:1237] type 00 class 0x060000 conventional PCI endpoint
+[    1.789694] pci 0000:00:01.0: [8086:7000] type 00 class 0x060100 conventional PCI endpoint
+[    1.794130] pci 0000:00:01.1: [8086:7010] type 00 class 0x010180 conventional PCI endpoint
+[    1.796189] pci 0000:00:01.1: BAR 4 [io  0xc040-0xc04f]
+[    1.797153] pci 0000:00:01.1: BAR 0 [io  0x01f0-0x01f7]: legacy IDE quirk
+[    1.798376] pci 0000:00:01.1: BAR 1 [io  0x03f6]: legacy IDE quirk
+[    1.799454] pci 0000:00:01.1: BAR 2 [io  0x0170-0x0177]: legacy IDE quirk
+[    1.799700] pci 0000:00:01.1: BAR 3 [io  0x0376]: legacy IDE quirk
+[    1.803365] pci 0000:00:01.3: [8086:7113] type 00 class 0x068000 conventional PCI endpoint
+[    1.804213] pci 0000:00:01.3: quirk: [io  0x0600-0x063f] claimed by PIIX4 ACPI
+[    1.805480] pci 0000:00:01.3: quirk: [io  0x0700-0x070f] claimed by PIIX4 SMB
+[    1.809198] pci 0000:00:02.0: [1234:1111] type 00 class 0x030000 conventional PCI endpoint
+[    1.812614] pci 0000:00:02.0: BAR 0 [mem 0xfd000000-0xfdffffff pref]
+[    1.813809] pci 0000:00:02.0: BAR 2 [mem 0xfebf0000-0xfebf0fff]
+[    1.814932] pci 0000:00:02.0: ROM [mem 0xfebe0000-0xfebeffff pref]
+[    1.815991] pci 0000:00:02.0: Video device with shadowed ROM at [mem 0x000c0000-0x000dffff]
+[    1.820175] pci 0000:00:03.0: [8086:100e] type 00 class 0x020000 conventional PCI endpoint
+[    1.823097] pci 0000:00:03.0: BAR 0 [mem 0xfebc0000-0xfebdffff]
+[    1.823713] pci 0000:00:03.0: BAR 1 [io  0xc000-0xc03f]
+[    1.824680] pci 0000:00:03.0: ROM [mem 0xfeb80000-0xfebbffff pref]
+[    1.869090] ACPI: PCI: Interrupt link LNKA configured for IRQ 10
+[    1.872278] ACPI: PCI: Interrupt link LNKB configured for IRQ 10
+[    1.875398] ACPI: PCI: Interrupt link LNKC configured for IRQ 11
+[    1.877790] ACPI: PCI: Interrupt link LNKD configured for IRQ 11
+[    1.879728] ACPI: PCI: Interrupt link LNKS configured for IRQ 9
+[    1.888796] iommu: Default domain type: Translated
+[    1.889649] iommu: DMA domain TLB invalidation policy: lazy mode
+[    1.895892] SCSI subsystem initialized
+[    1.897588] ACPI: bus type USB registered
+[    1.898754] usbcore: registered new interface driver usbfs
+[    1.899943] usbcore: registered new interface driver hub
+[    1.901054] usbcore: registered new device driver usb
+[    1.902619] pps_core: LinuxPPS API ver. 1 registered
+[    1.903487] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    1.903752] PTP clock support registered
+[    1.905105] EDAC MC: Ver: 3.0.0
+[    1.912303] NetLabel: Initializing
+[    1.912903] NetLabel:  domain hash size = 128
+[    1.913691] NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+[    1.914933] NetLabel:  unlabeled traffic allowed by default
+[    1.916759] PCI: Using ACPI for IRQ routing
+[    1.918266] pci 0000:00:02.0: vgaarb: setting as boot VGA device
+[    1.919380] pci 0000:00:02.0: vgaarb: bridge control possible
+[    1.919685] pci 0000:00:02.0: vgaarb: VGA device added: decodes=io+mem,owns=io+mem,locks=none
+[    1.919698] vgaarb: loaded
+[    1.921130] hpet0: at MMIO 0xfed00000, IRQs 2, 8, 0
+[    1.922029] hpet0: 3 comparators, 64-bit 100.000000 MHz counter
+[    1.929855] clocksource: Switched to clocksource kvm-clock
+[    1.936165] VFS: Disk quotas dquot_6.6.0
+[    1.936946] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    1.940633] pnp: PnP ACPI init
+[    1.949364] pnp: PnP ACPI: found 6 devices
+[    1.987329] clocksource: acpi_pm: mask: 0xffffff max_cycles: 0xffffff, max_idle_ns: 2085701024 ns
+[    1.989774] NET: Registered PF_INET protocol family
+[    1.990842] IP idents hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    1.995259] tcp_listen_portaddr_hash hash table entries: 1024 (order: 4, 73728 bytes, linear)
+[    1.996792] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    1.998397] TCP established hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    2.000515] TCP bind hash table entries: 16384 (order: 9, 2359296 bytes, linear)
+[    2.003896] TCP: Hash tables configured (established 16384 bind 16384)
+[    2.005180] UDP hash table entries: 1024 (order: 6, 262144 bytes, linear)
+[    2.006574] UDP-Lite hash table entries: 1024 (order: 6, 262144 bytes, linear)
+[    2.008493] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    2.010902] RPC: Registered named UNIX socket transport module.
+[    2.011946] RPC: Registered udp transport module.
+[    2.012776] RPC: Registered tcp transport module.
+[    2.013596] RPC: Registered tcp-with-tls transport module.
+[    2.014601] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    2.015788] pci_bus 0000:00: resource 4 [io  0x0000-0x0cf7 window]
+[    2.016853] pci_bus 0000:00: resource 5 [io  0x0d00-0xffff window]
+[    2.017987] pci_bus 0000:00: resource 6 [mem 0x000a0000-0x000bffff window]
+[    2.019183] pci_bus 0000:00: resource 7 [mem 0x80000000-0xfebfffff window]
+[    2.020359] pci_bus 0000:00: resource 8 [mem 0x100000000-0x17fffffff window]
+[    2.022361] pci 0000:00:01.0: PIIX3: Enabling Passive Release
+[    2.023387] pci 0000:00:00.0: Limiting direct PCI/PCI transfers
+[    2.024652] PCI: CLS 0 bytes, default 64
+[    2.025549] ACPI: bus type thunderbolt registered
+[    2.027318] clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x1e33052aadd, max_idle_ns: 440795310221 ns
+[    8.530272] Initialise system trusted keyrings
+[    8.531351] Key type blacklist registered
+[    8.532599] workingset: timestamp_bits=36 max_order=19 bucket_order=0
+[    8.538384] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    8.542412] NFS: Registering the id_resolver key type
+[    8.543287] Key type id_resolver registered
+[    8.543947] Key type id_legacy registered
+[    8.544653] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    8.545787] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    8.547528] fuse: init (API version 7.44)
+[    8.549533] SGI XFS with ACLs, security attributes, realtime, quota, no debug enabled
+[    8.553817] 9p: Installing v9fs 9p2000 file system support
+[    8.567329] Callback from call_rcu_tasks() invoked.
+[    8.590675] Key type asymmetric registered
+[    8.591366] Asymmetric key parser 'x509' registered
+[    8.592359] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 242)
+[    8.594206] io scheduler mq-deadline registered
+[    8.595196] io scheduler bfq registered
+[    8.596713] ledtrig-cpu: registered to indicate activity on CPUs
+[    8.600671] IPMI message handler: version 39.2
+[    8.601522] ipmi device interface
+[    8.606959] input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0
+[    8.609155] ACPI: button: Power Button [PWRF]
+[    8.614270] ERST DBG: ERST support is disabled.
+[    8.617792] Serial: 8250/16550 driver, 32 ports, IRQ sharing enabled
+[    8.620926] 00:04: ttyS0 at I/O 0x3f8 (irq = 4, base_baud = 115200) is a 16550A
+[    8.684487] Linux agpgart interface v0.103
+[    8.695295] ACPI: bus type drm_connector registered
+[    8.764038] brd: module loaded
+[    8.794204] loop: module loaded
+[    8.826633] scsi host0: ata_piix
+[    8.834688] scsi host1: ata_piix
+[    8.839428] ata1: PATA max MWDMA2 cmd 0x1f0 ctl 0x3f6 bmdma 0xc040 irq 14 lpm-pol 0
+[    8.842790] ata2: PATA max MWDMA2 cmd 0x170 ctl 0x376 bmdma 0xc048 irq 15 lpm-pol 0
+[    8.856238] tun: Universal TUN/TAP device driver, 1.6
+[    8.858481] e100: Intel(R) PRO/100 Network Driver
+[    8.859455] e100: Copyright(c) 1999-2006 Intel Corporation
+[    8.860858] e1000: Intel(R) PRO/1000 Network Driver
+[    8.861874] e1000: Copyright (c) 1999-2006 Intel Corporation.
+[    8.900613] ACPI: \_SB_.LNKC: Enabled at IRQ 11
+[    8.999455] ata2: found unknown device (class 0)
+[    9.004439] ata2.00: ATAPI: QEMU DVD-ROM, 2.5+, max UDMA/100
+[    9.011020] ata1: found unknown device (class 0)
+[    9.014485] ata1.00: ATA-7: QEMU HARDDISK, 2.5+, max UDMA/100
+[    9.016467] ata1.00: 17196647 sectors, multi 16: LBA48 
+[    9.021767] scsi 0:0:0:0: Direct-Access     ATA      QEMU HARDDISK    2.5+ PQ: 0 ANSI: 5
+[    9.029274] sd 0:0:0:0: Attached scsi generic sg0 type 0
+[    9.029479] sd 0:0:0:0: [sda] 17196647 512-byte logical blocks: (8.80 GB/8.20 GiB)
+[    9.032024] sd 0:0:0:0: [sda] Write Protect is off
+[    9.032899] scsi 1:0:0:0: CD-ROM            QEMU     QEMU DVD-ROM     2.5+ PQ: 0 ANSI: 5
+[    9.036528] sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[    9.038389] sd 0:0:0:0: [sda] Preferred minimum I/O size 512 bytes
+[    9.069809] scsi 1:0:0:0: Attached scsi generic sg1 type 5
+[    9.076220] sd 0:0:0:0: [sda] Attached SCSI disk
+[    9.258255] e1000 0000:00:03.0 eth0: (PCI:33MHz:32-bit) 52:54:00:12:34:56
+[    9.259968] e1000 0000:00:03.0 eth0: Intel(R) PRO/1000 Network Connection
+[    9.262044] e1000e: Intel(R) PRO/1000 Network Driver
+[    9.263250] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    9.265063] igb: Intel(R) Gigabit Ethernet Network Driver
+[    9.266037] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    9.267714] PPP generic driver version 2.4.2
+[    9.270794] VFIO - User Level meta-driver version: 0.3
+[    9.280124] usbcore: registered new interface driver uas
+[    9.281457] usbcore: registered new interface driver usb-storage
+[    9.283246] i8042: PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
+[    9.286882] serio: i8042 KBD port at 0x60,0x64 irq 1
+[    9.288209] serio: i8042 AUX port at 0x60,0x64 irq 12
+[    9.292780] mousedev: PS/2 mouse device common for all mice
+[    9.301762] input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input1
+[    9.308669] rtc_cmos 00:05: RTC can wake from S4
+[    9.316547] rtc_cmos 00:05: registered as rtc0
+[    9.318604] rtc_cmos 00:05: setting system clock to 2025-08-03T13:51:30 UTC (1754229090)
+[    9.319065] input: VirtualPS/2 VMware VMMouse as /devices/platform/i8042/serio1/input/input4
+[    9.324142] rtc_cmos 00:05: alarms up to one day, y3k, 242 bytes nvram, hpet irqs
+[    9.326521] input: VirtualPS/2 VMware VMMouse as /devices/platform/i8042/serio1/input/input3
+[    9.326608] i2c_dev: i2c /dev entries driver
+[    9.329048] device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
+[    9.331423] device-mapper: uevent: version 1.0.3
+[    9.333160] device-mapper: ioctl: 4.50.0-ioctl (2025-04-28) initialised: dm-devel@lists.linux.dev
+[    9.334928] intel_pstate: CPU model not supported
+[    9.336371] sdhci: Secure Digital Host Controller Interface driver
+[    9.337355] sdhci: Copyright(c) Pierre Ossman
+[    9.338604] sdhci-pltfm: SDHCI platform and OF driver helper
+[    9.340530] drop_monitor: Initializing network drop monitor service
+[    9.342287] NET: Registered PF_INET6 protocol family
+[    9.349004] Segment Routing with IPv6
+[    9.349805] In-situ OAM (IOAM) with IPv6
+[    9.350607] NET: Registered PF_PACKET protocol family
+[    9.351956] 9pnet: Installing 9P2000 support
+[    9.353652] Key type dns_resolver registered
+[    9.360205] resctrl: No MBM correction factor available
+[    9.362217] IPI shorthand broadcast: enabled
+[    9.493843] sched_clock: Marking stable (9460008860, 30797622)->(9517600531, -26794049)
+[    9.497780] registered taskstats version 1
+[    9.499363] Loading compiled-in X.509 certificates
+[    9.669839] Demotion targets for Node 0: null
+[    9.674790] Key type .fscrypt registered
+[    9.677020] Key type fscrypt-provisioning registered
+[    9.687373] Key type encrypted registered
+[    9.688458] ima: No TPM chip found, activating TPM-bypass!
+[    9.690237] ima: Allocated hash algorithm: sha1
+[    9.691939] ima: No architecture policies found
+[    9.693894] evm: Initialising EVM extended attributes:
+[    9.695675] evm: security.selinux
+[    9.696755] evm: security.SMACK64
+[    9.697889] evm: security.SMACK64EXEC
+[    9.698955] evm: security.SMACK64TRANSMUTE
+[    9.699821] evm: security.SMACK64MMAP
+[    9.700607] evm: security.apparmor
+[    9.701343] evm: security.ima
+[    9.702043] evm: security.capability
+[    9.702817] evm: HMAC attrs: 0x1
+[    9.709017] PM:   Magic number: 5:953:886
+[    9.711745] RAS: Correctable Errors collector initialized.
+[    9.713134] clk: Disabling unused clocks
+[    9.714009] PM: genpd: Disabling unused power domains
+[    9.716750] md: Waiting for all devices to be available before autodetect
+[    9.717646] md: If you don't use raid, use raid=noautodetect
+[    9.718364] md: Autodetecting RAID arrays.
+[    9.718940] md: autorun ...
+[    9.719311] md: ... autorun DONE.
+[    9.729954] EXT4-fs (sda): INFO: recovery required on readonly filesystem
+[    9.730909] EXT4-fs (sda): write access will be enabled during recovery
+[    9.841284] EXT4-fs (sda): recovery complete
+[    9.845144] EXT4-fs (sda): mounted filesystem 088740a9-c8b4-422c-999d-a804eb68a4da ro with ordered data mode. Quota mode: none.
+[    9.846767] VFS: Mounted root (ext4 filesystem) readonly on device 8:0.
+[    9.850976] devtmpfs: mounted
+[    9.878205] Freeing unused decrypted memory: 2028K
+[    9.888507] Freeing unused kernel image (initmem) memory: 16084K
+[    9.890296] Write protecting the kernel read-only data: 98304k
+[    9.895862] Freeing unused kernel image (text/rodata gap) memory: 796K
+[    9.897331] Freeing unused kernel image (rodata/data gap) memory: 76K
+[   10.135366] x86/mm: Checked W+X mappings: passed, no W+X pages found.
+[   10.136116] x86/mm: Checking user space page tables
+[   10.359585] x86/mm: Checked W+X mappings: passed, no W+X pages found.
+[   10.360682] Run /sbin/init as init process
+[   10.669049] systemd[1]: systemd 252-15.el9 running in system mode (+PAM +AUDIT +SELINUX -APPARMOR +IMA +SMACK +SECCOMP +GCRYPT +GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS -FIDO2 +IDN2 -IDN -IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY +P11KIT -QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK +XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+[   10.673361] systemd[1]: Detected virtualization kvm.
+[   10.674029] systemd[1]: Detected architecture x86-64.
+
+Welcome to [0;31mCentOS Stream 9[0m!
+
+[   10.684304] systemd[1]: Hostname set to <test>.
+[   11.250789] systemd-rc-local-generator[123]: /etc/rc.d/rc.local is not marked executable, skipping.
+[   11.696308] systemd[1]: Queued start job for default target Multi-User System.
+[   11.723313] systemd[1]: Created slice Virtual Machine and Container Slice.
+[[0;32m  OK  [0m] Created slice [0;1;39mVirtual Machine and Container Slice[0m.
+[   11.735481] systemd[1]: Created slice Slice /system/getty.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/getty[0m.
+[   11.742007] systemd[1]: Created slice Slice /system/modprobe.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/modprobe[0m.
+[   11.748343] systemd[1]: Created slice Slice /system/serial-getty.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/serial-getty[0m.
+[   11.755399] systemd[1]: Created slice Slice /system/sshd-keygen.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/sshd-keygen[0m.
+[   11.761325] systemd[1]: Created slice User and Session Slice.
+[[0;32m  OK  [0m] Created slice [0;1;39mUser and Session Slice[0m.
+[   11.764166] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[[0;32m  OK  [0m] Started [0;1;39mForward Password R…uests to Wall Directory Watch[0m.
+[   11.768645] systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+[[0;32m  OK  [0m] Set up automount [0;1;39mArbitrary…s File System Automount Point[0m.
+[   11.771557] systemd[1]: Reached target Local Integrity Protected Volumes.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal Integrity Protected Volumes[0m.
+[   11.773933] systemd[1]: Reached target Slice Units.
+[[0;32m  OK  [0m] Reached target [0;1;39mSlice Units[0m.
+[   11.775745] systemd[1]: Reached target Swaps.
+[[0;32m  OK  [0m] Reached target [0;1;39mSwaps[0m.
+[   11.777398] systemd[1]: Reached target Local Verity Protected Volumes.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal Verity Protected Volumes[0m.
+[   11.780244] systemd[1]: Listening on Device-mapper event daemon FIFOs.
+[[0;32m  OK  [0m] Listening on [0;1;39mDevice-mapper event daemon FIFOs[0m.
+[   11.784136] systemd[1]: Listening on LVM2 poll daemon socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mLVM2 poll daemon socket[0m.
+[   11.786548] systemd[1]: multipathd control socket was skipped because of an unmet condition check (ConditionPathExists=/etc/multipath.conf).
+[   12.023909] systemd[1]: Listening on RPCbind Server Activation Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mRPCbind Server Activation Socket[0m.
+[   12.030392] systemd[1]: Reached target RPC Port Mapper.
+[[0;32m  OK  [0m] Reached target [0;1;39mRPC Port Mapper[0m.
+[   12.045832] systemd[1]: Listening on Process Core Dump Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mProcess Core Dump Socket[0m.
+[   12.052081] systemd[1]: Listening on initctl Compatibility Named Pipe.
+[[0;32m  OK  [0m] Listening on [0;1;39minitctl Compatibility Named Pipe[0m.
+[   12.059017] systemd[1]: Listening on Journal Socket (/dev/log).
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Socket (/dev/log)[0m.
+[   12.064866] systemd[1]: Listening on Journal Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Socket[0m.
+[   12.070053] systemd[1]: Listening on udev Control Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mudev Control Socket[0m.
+[   12.075109] systemd[1]: Listening on udev Kernel Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mudev Kernel Socket[0m.
+[   12.103714] systemd[1]: Mounting Huge Pages File System...
+         Mounting [0;1;39mHuge Pages File System[0m...
+[   12.126562] systemd[1]: Mounting POSIX Message Queue File System...
+         Mounting [0;1;39mPOSIX Message Queue File System[0m...
+[   12.151292] systemd[1]: Mounting Kernel Debug File System...
+         Mounting [0;1;39mKernel Debug File System[0m...
+[   12.168188] systemd[1]: Mounting Kernel Trace File System...
+         Mounting [0;1;39mKernel Trace File System[0m...
+[   12.175427] systemd[1]: Kernel Module supporting RPCSEC_GSS was skipped because of an unmet condition check (ConditionPathExists=/etc/krb5.keytab).
+[   12.177313] systemd[1]: Create List of Static Device Nodes was skipped because of an unmet condition check (ConditionFileNotEmpty=/lib/modules/6.16.0-rc7-8b5a19b4ff6a+/modules.devname).
+[   12.209692] systemd[1]: Starting Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+         Starting [0;1;39mMonitoring of LVM…meventd or progress polling[0m...
+[   12.228913] systemd[1]: Starting Load Kernel Module configfs...
+         Starting [0;1;39mLoad Kernel Module configfs[0m...
+[   12.271847] systemd[1]: Starting Load Kernel Module drm...
+         Starting [0;1;39mLoad Kernel Module drm[0m...
+[   12.294100] systemd[1]: Starting Load Kernel Module fuse...
+         Starting [0;1;39mLoad Kernel Module fuse[0m...
+[   12.343942] systemd[1]: Starting Read and set NIS domainname from /etc/sysconfig/network...
+         Starting [0;1;39mRead and set NIS …from /etc/sysconfig/network[0m...
+[   12.382311] systemd[1]: Starting Journal Service...
+         Starting [0;1;39mJournal Service[0m...
+[   12.404316] systemd[1]: Starting Load Kernel Modules...
+         Starting [0;1;39mLoad Kernel Modules[0m...
+[   12.428601] systemd[1]: Starting Generate network units from Kernel command line...
+         Starting [0;1;39mGenerate network …ts from Kernel command line[0m...
+[   12.510099] systemd[1]: Starting Remount Root and Kernel File Systems...
+         Starting [0;1;39mRemount Root and Kernel File Systems[0m...
+[   12.514441] systemd[1]: Repartition Root Disk was skipped because no trigger condition checks were met.
+[   12.528666] systemd[1]: Starting Coldplug All udev Devices...
+         Starting [0;1;39mColdplug All udev Devices[0m...
+[   12.571784] systemd[1]: Mounted Huge Pages File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mHuge Pages File System[0m.
+[   12.574731] systemd[1]: Mounted POSIX Message Queue File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mPOSIX Message Queue File System[0m.
+[   12.581499] systemd[1]: Mounted Kernel Debug File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Debug File System[0m.
+[   12.588105] systemd[1]: Mounted Kernel Trace File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Trace File System[0m.
+[   12.604185] systemd[1]: Finished Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling.
+[[0;32m  OK  [0m] Finished [0;1;39mMonitoring of LVM… dmeventd or progress polling[0m.
+[   12.615187] systemd[1]: modprobe@configfs.service: Deactivated successfully.
+[   12.618478] systemd[1]: Finished Load Kernel Module configfs.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module configfs[0m.
+[   12.633236] systemd[1]: modprobe@drm.service: Deactivated successfully.
+[   12.640518] systemd[1]: Finished Load Kernel Module drm.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module drm[0m.
+[   12.650561] systemd[1]: modprobe@fuse.service: Deactivated successfully.
+[   12.657223] systemd[1]: Finished Load Kernel Module fuse.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module fuse[0m.
+[   12.670330] systemd[1]: Finished Read and set NIS domainname from /etc/sysconfig/network.
+[   12.670440] EXT4-fs (sda): re-mounted 088740a9-c8b4-422c-999d-a804eb68a4da r/w.
+[[0;32m  OK  [0m] Finished [0;1;39mRead and set NIS …e from /etc/sysconfig/network[0m.
+[   12.685457] systemd[1]: systemd-modules-load.service: Main process exited, code=exited, status=1/FAILURE
+[   12.693154] systemd[1]: systemd-modules-load.service: Failed with result 'exit-code'.
+[   12.700631] systemd[1]: Failed to start Load Kernel Modules.
+[[0;1;31mFAILED[0m] Failed to start [0;1;39mLoad Kernel Modules[0m.
+See 'systemctl status systemd-modules-load.service' for details.
+[   12.715791] systemd[1]: Finished Generate network units from Kernel command line.
+[[0;32m  OK  [0m] Finished [0;1;39mGenerate network units from Kernel command line[0m.
+[   12.725729] systemd[1]: Finished Remount Root and Kernel File Systems.
+[[0;32m  OK  [0m] Finished [0;1;39mRemount Root and Kernel File Systems[0m.
+[   12.733880] systemd[1]: Reached target Preparation for Network.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Network[0m.
+[   12.775880] systemd[1]: Mounting FUSE Control File System...
+         Mounting [0;1;39mFUSE Control File System[0m...
+[   12.823372] systemd[1]: Mounting Kernel Configuration File System...
+         Mounting [0;1;39mKernel Configuration File System[0m...
+[   12.825748] systemd[1]: Special handling of early boot iSCSI sessions was skipped because of an unmet condition check (ConditionDirectoryNotEmpty=/sys/class/iscsi_session).
+[   12.835031] systemd[1]: First Boot Wizard was skipped because of an unmet condition check (ConditionFirstBoot=yes).
+[   12.841947] systemd[1]: Rebuild Hardware Database was skipped because of an unmet condition check (ConditionNeedsUpdate=/etc).
+[   12.893495] systemd[1]: Starting Load/Save Random Seed...
+         Starting [0;1;39mLoad/Save Random Seed[0m...
+[   12.918202] systemd[1]: Starting Apply Kernel Variables...
+         Starting [0;1;39mApply Kernel Variables[0m...
+[   12.927221] systemd[1]: Create System Users was skipped because no trigger condition checks were met.
+[   12.967708] systemd[1]: Starting Create Static Device Nodes in /dev...
+         Starting [0;1;39mCreate Static Device Nodes in /dev[0m...
+[   13.004216] systemd[1]: Starting Setup Virtual Console...
+         Starting [0;1;39mSetup Virtual Console[0m...
+[   13.043567] systemd[1]: Started Journal Service.
+[[0;32m  OK  [0m] Started [0;1;39mJournal Service[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mFUSE Control File System[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Configuration File System[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad/Save Random Seed[0m.
+         Starting [0;1;39mFlush Journal to Persistent Storage[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mApply Kernel Variables[0m.
+[   13.269567] systemd-journald[147]: Received client request to flush runtime journal.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate Static Device Nodes in /dev[0m.
+         Starting [0;1;39mRule-based Manage…for Device Events and Files[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mFlush Journal to Persistent Storage[0m.
+[[0;32m  OK  [0m] Started [0;1;39mRule-based Manager for Device Events and Files[0m.
+         Starting [0;1;39mAuto-connect to s…E devices found during boot[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mAuto-connect to s…VME devices found during boot[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mSetup Virtual Console[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mColdplug All udev Devices[0m.
+         Starting [0;1;39mShow Plymouth Boot Screen[0m...
+         Starting [0;1;39mWait for udev To …plete Device Initialization[0m...
+[2J[3J[-1;-1f[[0;32m  OK  [0m] Started [0;1;39mShow Plymouth Boot Screen[0m.
+[[0;32m  OK  [0m] Started [0;1;39mForward Password R…s to Plymouth Directory Watch[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal Encrypted Volumes[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPath Units[0m.
+[[0;32m  OK  [0m] Found device [0;1;39m/dev/ttyS0[0m.
+[[0m[0;31m*     [0m] A start job is running for Wait for…ice Initialization (5s / no limit)
+M[K[[0;1;31m*[0m[0;31m*    [0m] A start job is running for Wait for…ice Initialization (5s / no limit)
+M[K[[0;32m  OK  [0m] Listening on [0;1;39mLoad/Save RF …itch Status /dev/rfkill Watch[0m.
+[K[[0;32m  OK  [0m] Finished [0;1;39mWait for udev To Complete Device Initialization[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Local File Systems[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal File Systems[0m.
+         Starting [0;1;39mTell Plymouth To Write Out Runtime Data[0m...
+         Starting [0;1;39mAutomatic Boot Loader Update[0m...
+         Starting [0;1;39mCreate Volatile Files and Directories[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mTell Plymouth To Write Out Runtime Data[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mAutomatic Boot Loader Update[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate Volatile Files and Directories[0m.
+         Mounting [0;1;39mRPC Pipe File System[0m...
+         Starting [0;1;39mSecurity Auditing Service[0m...
+         Starting [0;1;39mRPC Bind[0m...
+[[0;32m  OK  [0m] Mounted [0;1;39mRPC Pipe File System[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mrpc_pipefs.target[0m.
+[[0;32m  OK  [0m] Started [0;1;39mRPC Bind[0m.
+[[0;32m  OK  [0m] Started [0;1;39mSecurity Auditing Service[0m.
+         Starting [0;1;39mRecord System Boot/Shutdown in UTMP[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mRecord System Boot/Shutdown in UTMP[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSystem Initialization[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDaily rotation of log files[0m.
+[[0;32m  OK  [0m] Started [0;1;39mUpdates mlocate database every day[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDaily Cleanup of Temporary Directories[0m.
+[[0;32m  OK  [0m] Started [0;1;39mdaily update of the root trust anchor for DNSSEC[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mTimer Units[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mD-Bus System Message Bus Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mOpen-iSCSI iscsid Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mOpen-iSCSI iscsiuio Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mSSSD Kerberos…ache Manager responder socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt interface local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mVirtual machine lock manager socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mVirtual machine log manager socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt network local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt nodedev local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt nwfilter local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt proxy local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt qemu local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt qemu admin socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt qemu local read-only socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt secret local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt storage local socket[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSocket Units[0m.
+         Starting [0;1;39mD-Bus System Message Bus[0m...
+[[0;32m  OK  [0m] Started [0;1;39mD-Bus System Message Bus[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mBasic System[0m.
+         Starting [0;1;39mNetwork Manager[0m...
+         Starting [0;1;39mNTP client/server[0m...
+         Starting [0;1;39mRestore /run/initramfs on shutdown[0m...
+[[0;32m  OK  [0m] Started [0;1;39mirqbalance daemon[0m.
+[[0;32m  OK  [0m] Started [0;1;39mlibstoragemgmt plug-in server daemon[0m.
+[[0;32m  OK  [0m] Started [0;1;39mMachine Check Exception Logging Daemon[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39msshd-keygen.target[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mUser and Group Name Lookups[0m.
+         Starting [0;1;39mUser Login Management[0m...
+         Starting [0;1;39mVirtual Machine a…tainer Registration Service[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mRestore /run/initramfs on shutdown[0m.
+         Starting [0;1;39mHostname Service[0m...
+[[0;32m  OK  [0m] Started [0;1;39mVirtual Machine an…ontainer Registration Service[0m.
+[[0;32m  OK  [0m] Started [0;1;39mNTP client/server[0m.
+[[0;32m  OK  [0m] Started [0;1;39mUser Login Management[0m.
+[[0;32m  OK  [0m] Started [0;1;39mHostname Service[0m.
+         Starting [0;1;39mNetwork Manager Script Dispatcher Service[0m...
+[[0;32m  OK  [0m] Started [0;1;39mNetwork Manager Script Dispatcher Service[0m.
+[   20.819123] e1000: eth0 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[[0;32m  OK  [0m] Started [0;1;39mNetwork Manager[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNetwork[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNetwork is Online[0m.
+         Starting [0;1;39mGSSAPI Proxy Daemon[0m...
+         Starting [0;1;39mNotify NFS peers of a restart[0m...
+         Starting [0;1;39mSystem Logging Service[0m...
+         Starting [0;1;39mOpenSSH server daemon[0m...
+         Starting [0;1;39mDynamic System Tuning Daemon[0m...
+[[0;32m  OK  [0m] Started [0;1;39mNotify NFS peers of a restart[0m.
+[[0;32m  OK  [0m] Started [0;1;39mGSSAPI Proxy Daemon[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNFS client services[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Remote File Systems[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mRemote File Systems[0m.
+         Starting [0;1;39mPermit User Sessions[0m...
+         Starting [0;1;39mVirtualization qemu daemon[0m...
+[[0;32m  OK  [0m] Started [0;1;39mOpenSSH server daemon[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mPermit User Sessions[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDeferred execution scheduler[0m.
+[[0;32m  OK  [0m] Started [0;1;39mCommand Scheduler[0m.
+         Starting [0;1;39mHold until boot process finishes up[0m...
+         Starting [0;1;39mTerminate Plymouth Boot Screen[0m...
+[[0;32m  OK  [0m] Started [0;1;39mVirtualization qemu daemon[0m.
+
+CentOS Stream 9
+Kernel 6.16.0-rc7-8b5a19b4ff6a+ on an x86_64
+
+Activate the web console with: systemctl enable --now cockpit.socket
+
+test login: [   35.783975] loop0: detected capacity change from 0 to 65536
+[   36.117973] loop0: detected capacity change from 0 to 65536
+[   36.413332] loop0: detected capacity change from 0 to 65536
+[   36.724556] loop0: detected capacity change from 0 to 65536
+[   37.071647] loop0: detected capacity change from 0 to 65536
+[   37.368892] loop0: detected capacity change from 0 to 65536
+[   37.702026] loop0: detected capacity change from 0 to 65536
+[   38.066964] loop0: detected capacity change from 0 to 65536
+[   38.399766] loop0: detected capacity change from 0 to 65536
+[   38.777939] loop0: detected capacity change from 0 to 65536
+[   39.122914] loop0: detected capacity change from 0 to 65536
+[   39.488082] loop0: detected capacity change from 0 to 65536
+[   39.833779] loop0: detected capacity change from 0 to 65536
+[   40.131114] loop0: detected capacity change from 0 to 65536
+[   40.425268] loop0: detected capacity change from 0 to 65536
+[   40.766183] loop0: detected capacity change from 0 to 65536
+[   41.106791] loop0: detected capacity change from 0 to 65536
+[   41.400103] loop0: detected capacity change from 0 to 65536
+[   41.704979] loop0: detected capacity change from 0 to 65536
+[   42.040035] loop0: detected capacity change from 0 to 65536
+[   42.379732] loop0: detected capacity change from 0 to 65536
+[   42.725321] loop0: detected capacity change from 0 to 65536
+[   43.065307] loop0: detected capacity change from 0 to 65536
+[   43.414195] loop0: detected capacity change from 0 to 65536
+[   43.748174] loop0: detected capacity change from 0 to 65536
+[   44.080954] loop0: detected capacity change from 0 to 65536
+[   44.413442] loop0: detected capacity change from 0 to 65536
+[   44.751351] loop0: detected capacity change from 0 to 65536
+[   45.107927] loop0: detected capacity change from 0 to 65536
+[   45.437608] loop0: detected capacity change from 0 to 65536
+[   45.788536] loop0: detected capacity change from 0 to 65536
+[   46.134527] loop0: detected capacity change from 0 to 65536
+[   46.468343] loop0: detected capacity change from 0 to 65536
+[   46.799401] loop0: detected capacity change from 0 to 65536
+[   47.131265] loop0: detected capacity change from 0 to 65536
+[   47.465250] loop0: detected capacity change from 0 to 65536
+[   47.800117] loop0: detected capacity change from 0 to 65536
+[   48.136481] loop0: detected capacity change from 0 to 65536
+[   48.468381] loop0: detected capacity change from 0 to 65536
+[   48.779388] loop0: detected capacity change from 0 to 65536
+[   49.128540] loop0: detected capacity change from 0 to 65536
+[   49.432308] loop0: detected capacity change from 0 to 65536
+[   49.768313] loop0: detected capacity change from 0 to 65536
+[   50.098271] loop0: detected capacity change from 0 to 65536
+[   50.429656] loop0: detected capacity change from 0 to 65536
+[   50.780342] loop0: detected capacity change from 0 to 65536
+[   51.116158] loop0: detected capacity change from 0 to 65536
+[   51.459096] loop0: detected capacity change from 0 to 65536
+[   51.804023] loop0: detected capacity change from 0 to 65536
+[   52.133904] loop0: detected capacity change from 0 to 65536
+[   52.463035] loop0: detected capacity change from 0 to 65536
+[   52.799789] loop0: detected capacity change from 0 to 65536
+[   53.132590] loop0: detected capacity change from 0 to 65536
+[   53.469399] loop0: detected capacity change from 0 to 65536
+[   53.801950] loop0: detected capacity change from 0 to 65536
+[   54.140258] loop0: detected capacity change from 0 to 65536
+[   54.474341] loop0: detected capacity change from 0 to 65536
+[   54.810371] loop0: detected capacity change from 0 to 65536
+[   55.150087] loop0: detected capacity change from 0 to 65536
+[   55.494031] loop0: detected capacity change from 0 to 65536
+[   55.853852] loop0: detected capacity change from 0 to 65536
+[   56.182331] loop0: detected capacity change from 0 to 65536
+[   56.554885] loop0: detected capacity change from 0 to 65536
+[   56.919865] loop0: detected capacity change from 0 to 65536
+[   57.300139] loop0: detected capacity change from 0 to 65536
+[   57.642384] loop0: detected capacity change from 0 to 65536
+[   57.981430] loop0: detected capacity change from 0 to 65536
+[   58.335690] loop0: detected capacity change from 0 to 65536
+[   58.689705] loop0: detected capacity change from 0 to 65536
+[   59.041744] loop0: detected capacity change from 0 to 65536
+[   59.385254] loop0: detected capacity change from 0 to 65536
+[   59.732006] loop0: detected capacity change from 0 to 65536
+[   60.080101] loop0: detected capacity change from 0 to 65536
+[   60.459673] loop0: detected capacity change from 0 to 65536
+[   60.808673] loop0: detected capacity change from 0 to 65536
+[   61.155158] loop0: detected capacity change from 0 to 65536
+[   61.468630] loop0: detected capacity change from 0 to 65536
+[   61.813338] loop0: detected capacity change from 0 to 65536
+[   62.161697] loop0: detected capacity change from 0 to 65536
+[   62.469855] loop0: detected capacity change from 0 to 65536
+[   62.813664] loop0: detected capacity change from 0 to 65536
+[   63.165650] loop0: detected capacity change from 0 to 65536
+[   63.527538] loop0: detected capacity change from 0 to 65536
+[   63.876339] loop0: detected capacity change from 0 to 65536
+[   64.208682] loop0: detected capacity change from 0 to 65536
+[   64.546526] loop0: detected capacity change from 0 to 65536
+[   64.885148] loop0: detected capacity change from 0 to 65536
+[   65.240709] loop0: detected capacity change from 0 to 65536
+[   65.590288] loop0: detected capacity change from 0 to 65536
+[   65.936008] loop0: detected capacity change from 0 to 65536
+[   66.288369] loop0: detected capacity change from 0 to 65536
+[   66.636863] loop0: detected capacity change from 0 to 65536
+[   66.950639] loop0: detected capacity change from 0 to 65536
+[   67.320359] loop0: detected capacity change from 0 to 65536
+[   67.702228] loop0: detected capacity change from 0 to 65536
+[   68.081083] loop0: detected capacity change from 0 to 65536
+[   68.440914] loop0: detected capacity change from 0 to 65536
+[   68.815520] loop0: detected capacity change from 0 to 65536
+[   69.192483] loop0: detected capacity change from 0 to 65536
+[   69.554938] loop0: detected capacity change from 0 to 65536
+[   69.916135] loop0: detected capacity change from 0 to 65536
+[   70.299252] loop0: detected capacity change from 0 to 65536
+[   70.677502] loop0: detected capacity change from 0 to 65536
+[   71.073415] loop0: detected capacity change from 0 to 65536
+[   71.390870] loop0: detected capacity change from 0 to 65536
+[   71.789484] loop0: detected capacity change from 0 to 65536
+[   72.166265] loop0: detected capacity change from 0 to 65536
+[   72.543242] loop0: detected capacity change from 0 to 65536
+[   72.864635] loop0: detected capacity change from 0 to 65536
+[   73.155398] loop0: detected capacity change from 0 to 65536
+[   73.447375] loop0: detected capacity change from 0 to 65536
+[   73.809897] loop0: detected capacity change from 0 to 65536
+[   74.105177] loop0: detected capacity change from 0 to 65536
+[   74.394266] loop0: detected capacity change from 0 to 65536
+[   74.708203] loop0: detected capacity change from 0 to 65536
+[   75.058593] loop0: detected capacity change from 0 to 65536
+[   75.418861] loop0: detected capacity change from 0 to 65536
+[   75.759545] loop0: detected capacity change from 0 to 65536
+[   76.094185] loop0: detected capacity change from 0 to 65536
+[   76.428499] loop0: detected capacity change from 0 to 65536
+[   76.776726] loop0: detected capacity change from 0 to 65536
+[   77.132882] loop0: detected capacity change from 0 to 65536
+[   77.497525] loop0: detected capacity change from 0 to 65536
+[   77.846354] loop0: detected capacity change from 0 to 65536
+[   78.192879] loop0: detected capacity change from 0 to 65536
+[   78.544406] loop0: detected capacity change from 0 to 65536
+[   78.848700] loop0: detected capacity change from 0 to 65536
+[   79.213755] loop0: detected capacity change from 0 to 65536
+[   79.519334] loop0: detected capacity change from 0 to 65536
+[   79.839311] loop0: detected capacity change from 0 to 65536
+[   80.224871] loop0: detected capacity change from 0 to 65536
+[   80.526185] loop0: detected capacity change from 0 to 65536
+[   80.825093] loop0: detected capacity change from 0 to 65536
+[   81.161111] loop0: detected capacity change from 0 to 65536
+[   81.451383] loop0: detected capacity change from 0 to 65536
+[   81.763550] loop0: detected capacity change from 0 to 65536
+[   82.143806] loop0: detected capacity change from 0 to 65536
+[   82.503006] loop0: detected capacity change from 0 to 65536
+[   82.868642] loop0: detected capacity change from 0 to 65536
+[   83.220446] loop0: detected capacity change from 0 to 65536
+[   83.586331] loop0: detected capacity change from 0 to 65536
+[   83.901828] loop0: detected capacity change from 0 to 65536
+[   84.265941] loop0: detected capacity change from 0 to 65536
+[   84.624357] loop0: detected capacity change from 0 to 65536
+[   84.986160] loop0: detected capacity change from 0 to 65536
+[   85.387493] loop0: detected capacity change from 0 to 65536
+[   85.750976] loop0: detected capacity change from 0 to 65536
+[   86.068476] loop0: detected capacity change from 0 to 65536
+[   86.423506] loop0: detected capacity change from 0 to 65536
+[   86.786441] loop0: detected capacity change from 0 to 65536
+[   87.147682] loop0: detected capacity change from 0 to 65536
+[   87.507422] loop0: detected capacity change from 0 to 65536
+[   87.854572] loop0: detected capacity change from 0 to 65536
+[   88.188092] loop0: detected capacity change from 0 to 65536
+[   88.534845] loop0: detected capacity change from 0 to 65536
+[   88.875135] loop0: detected capacity change from 0 to 65536
+[   89.226750] loop0: detected capacity change from 0 to 65536
+[   89.592233] loop0: detected capacity change from 0 to 65536
+[   89.934165] loop0: detected capacity change from 0 to 65536
+[   90.277384] loop0: detected capacity change from 0 to 65536
+[   90.607704] loop0: detected capacity change from 0 to 65536
+[   90.940476] loop0: detected capacity change from 0 to 65536
+[   91.284464] loop0: detected capacity change from 0 to 65536
+[   91.628403] loop0: detected capacity change from 0 to 65536
+[   91.975256] loop0: detected capacity change from 0 to 65536
+[   92.320841] loop0: detected capacity change from 0 to 65536
+[   92.698889] loop0: detected capacity change from 0 to 65536
+[   93.060876] loop0: detected capacity change from 0 to 65536
+[   93.411345] loop0: detected capacity change from 0 to 65536
+[   93.765892] loop0: detected capacity change from 0 to 65536
+[   94.111888] loop0: detected capacity change from 0 to 65536
+[   94.444565] loop0: detected capacity change from 0 to 65536
+[   94.778940] loop0: detected capacity change from 0 to 65536
+[   95.129677] loop0: detected capacity change from 0 to 65536
+[   95.482214] loop0: detected capacity change from 0 to 65536
+[   95.848483] loop0: detected capacity change from 0 to 65536
+[   96.192948] loop0: detected capacity change from 0 to 65536
+[   96.535808] loop0: detected capacity change from 0 to 65536
+[   96.878569] loop0: detected capacity change from 0 to 65536
+[   97.217815] loop0: detected capacity change from 0 to 65536
+[   97.561509] loop0: detected capacity change from 0 to 65536
+[   97.899434] loop0: detected capacity change from 0 to 65536
+[   98.236404] loop0: detected capacity change from 0 to 65536
+[   98.580724] loop0: detected capacity change from 0 to 65536
+[   98.940156] loop0: detected capacity change from 0 to 65536
+[   99.251992] loop0: detected capacity change from 0 to 65536
+[   99.564211] loop0: detected capacity change from 0 to 65536
+[   99.904702] loop0: detected capacity change from 0 to 65536
+[  100.238105] loop0: detected capacity change from 0 to 65536
+[  100.572277] loop0: detected capacity change from 0 to 65536
+[  100.906371] loop0: detected capacity change from 0 to 65536
+[  101.255194] loop0: detected capacity change from 0 to 65536
+[  101.546289] loop0: detected capacity change from 0 to 65536
+[  101.887079] loop0: detected capacity change from 0 to 65536
+[  102.221488] loop0: detected capacity change from 0 to 65536
+[  102.557644] loop0: detected capacity change from 0 to 65536
+[  102.862335] loop0: detected capacity change from 0 to 65536
+[  103.170600] loop0: detected capacity change from 0 to 65536
+[  103.503603] loop0: detected capacity change from 0 to 65536
+[  103.833856] loop0: detected capacity change from 0 to 65536
+[  104.164562] loop0: detected capacity change from 0 to 65536
+[  104.500404] loop0: detected capacity change from 0 to 65536
+[  104.831881] loop0: detected capacity change from 0 to 65536
+[  105.161331] loop0: detected capacity change from 0 to 65536
+[  105.495444] loop0: detected capacity change from 0 to 65536
+[  105.839150] loop0: detected capacity change from 0 to 65536
+[  106.178064] loop0: detected capacity change from 0 to 65536
+[  106.516475] loop0: detected capacity change from 0 to 65536
+[  106.853346] loop0: detected capacity change from 0 to 65536
+[  107.192279] loop0: detected capacity change from 0 to 65536
+[  107.531482] loop0: detected capacity change from 0 to 65536
+[  107.833679] loop0: detected capacity change from 0 to 65536
+[  108.136116] loop0: detected capacity change from 0 to 65536
+[  108.473909] loop0: detected capacity change from 0 to 65536
+[  108.807404] loop0: detected capacity change from 0 to 65536
+[  109.138215] loop0: detected capacity change from 0 to 65536
+[  109.475688] loop0: detected capacity change from 0 to 65536
+[  109.813441] loop0: detected capacity change from 0 to 65536
+[  110.115270] loop0: detected capacity change from 0 to 65536
+[  110.450503] loop0: detected capacity change from 0 to 65536
+[  110.784228] loop0: detected capacity change from 0 to 65536
+[  111.119656] loop0: detected capacity change from 0 to 65536
+[  111.462173] loop0: detected capacity change from 0 to 65536
+[  111.813393] loop0: detected capacity change from 0 to 65536
+[  112.156428] loop0: detected capacity change from 0 to 65536
+[  112.495304] loop0: detected capacity change from 0 to 65536
+[  112.829999] loop0: detected capacity change from 0 to 65536
+[  113.167449] loop0: detected capacity change from 0 to 65536
+[  113.499748] loop0: detected capacity change from 0 to 65536
+[  113.880957] loop0: detected capacity change from 0 to 65536
+[  114.217432] loop0: detected capacity change from 0 to 65536
+[  114.556222] loop0: detected capacity change from 0 to 65536
+[  114.901144] loop0: detected capacity change from 0 to 65536
+[  115.279502] loop0: detected capacity change from 0 to 65536
+[  115.603950] loop0: detected capacity change from 0 to 65536
+[  115.947217] loop0: detected capacity change from 0 to 65536
+[  116.312535] loop0: detected capacity change from 0 to 65536
+[  116.677062] loop0: detected capacity change from 0 to 65536
+[  117.033823] loop0: detected capacity change from 0 to 65536
+[  117.389872] loop0: detected capacity change from 0 to 65536
+[  117.722549] loop0: detected capacity change from 0 to 65536
+[  118.053922] loop0: detected capacity change from 0 to 65536
+[  118.385185] loop0: detected capacity change from 0 to 65536
+[  118.715583] loop0: detected capacity change from 0 to 65536
+[  119.042453] loop0: detected capacity change from 0 to 65536
+[  119.373067] loop0: detected capacity change from 0 to 65536
+[  119.701608] loop0: detected capacity change from 0 to 65536
+[  120.035334] loop0: detected capacity change from 0 to 65536
+[  120.370905] loop0: detected capacity change from 0 to 65536
+[  120.714524] loop0: detected capacity change from 0 to 65536
+[  121.059870] loop0: detected capacity change from 0 to 65536
+[  121.393070] loop0: detected capacity change from 0 to 65536
+[  121.728761] loop0: detected capacity change from 0 to 65536
+[  122.069153] loop0: detected capacity change from 0 to 65536
+[  122.400319] loop0: detected capacity change from 0 to 65536
+[  122.734327] loop0: detected capacity change from 0 to 65536
+[  123.099914] loop0: detected capacity change from 0 to 65536
+[  123.439736] loop0: detected capacity change from 0 to 65536
+[  123.747912] loop0: detected capacity change from 0 to 65536
+[  124.048425] loop0: detected capacity change from 0 to 65536
+[  124.386636] loop0: detected capacity change from 0 to 65536
+[  124.720622] loop0: detected capacity change from 0 to 65536
+[  125.051640] loop0: detected capacity change from 0 to 65536
+[  125.384536] loop0: detected capacity change from 0 to 65536
+[  125.719015] loop0: detected capacity change from 0 to 65536
+[  126.052383] loop0: detected capacity change from 0 to 65536
+[  126.386460] loop0: detected capacity change from 0 to 65536
+[  126.719466] loop0: detected capacity change from 0 to 65536
+[  127.049010] loop0: detected capacity change from 0 to 65536
+[  127.378065] loop0: detected capacity change from 0 to 65536
+[  127.709676] loop0: detected capacity change from 0 to 65536
+[  128.064825] loop0: detected capacity change from 0 to 65536
+[  128.406625] loop0: detected capacity change from 0 to 65536
+[  128.740114] loop0: detected capacity change from 0 to 65536
+[  129.072144] loop0: detected capacity change from 0 to 65536
+[  129.407331] loop0: detected capacity change from 0 to 65536
+[  129.749553] loop0: detected capacity change from 0 to 65536
+[  130.107618] loop0: detected capacity change from 0 to 65536
+[  130.434832] loop0: detected capacity change from 0 to 65536
+[  130.764651] loop0: detected capacity change from 0 to 65536
+[  131.095735] loop0: detected capacity change from 0 to 65536
+[  131.428842] loop0: detected capacity change from 0 to 65536
+[  131.765568] loop0: detected capacity change from 0 to 65536
+[  132.109749] loop0: detected capacity change from 0 to 65536
+[  132.438493] loop0: detected capacity change from 0 to 65536
+[  132.768819] loop0: detected capacity change from 0 to 65536
+[  133.100769] loop0: detected capacity change from 0 to 65536
+[  133.427715] loop0: detected capacity change from 0 to 65536
+[  133.755066] loop0: detected capacity change from 0 to 65536
+[  134.084304] loop0: detected capacity change from 0 to 65536
+[  134.412927] loop0: detected capacity change from 0 to 65536
+[  134.739665] loop0: detected capacity change from 0 to 65536
+[  135.068192] loop0: detected capacity change from 0 to 65536
+[  135.405165] loop0: detected capacity change from 0 to 65536
+[  135.748821] loop0: detected capacity change from 0 to 65536
+[  136.076529] loop0: detected capacity change from 0 to 65536
+[  136.403821] loop0: detected capacity change from 0 to 65536
+[  136.732403] loop0: detected capacity change from 0 to 65536
+[  137.059881] loop0: detected capacity change from 0 to 65536
+[  137.390021] loop0: detected capacity change from 0 to 65536
+[  137.726144] loop0: detected capacity change from 0 to 65536
+[  138.061538] loop0: detected capacity change from 0 to 65536
+[  138.398231] loop0: detected capacity change from 0 to 65536
+[  138.732794] loop0: detected capacity change from 0 to 65536
+[  139.066189] loop0: detected capacity change from 0 to 65536
+[  139.400228] loop0: detected capacity change from 0 to 65536
+[  139.737896] loop0: detected capacity change from 0 to 65536
+[  140.040505] loop0: detected capacity change from 0 to 65536
+[  140.339443] loop0: detected capacity change from 0 to 65536
+[  140.678953] loop0: detected capacity change from 0 to 65536
+[  141.036758] loop0: detected capacity change from 0 to 65536
+[  141.366408] loop0: detected capacity change from 0 to 65536
+[  141.709377] loop0: detected capacity change from 0 to 65536
+[  142.073142] loop0: detected capacity change from 0 to 65536
+[  142.406433] loop0: detected capacity change from 0 to 65536
+[  142.740172] loop0: detected capacity change from 0 to 65536
+[  143.071865] loop0: detected capacity change from 0 to 65536
+[  143.406441] loop0: detected capacity change from 0 to 65536
+[  143.739188] loop0: detected capacity change from 0 to 65536
+[  144.071155] loop0: detected capacity change from 0 to 65536
+[  144.430160] loop0: detected capacity change from 0 to 65536
+[  144.757006] loop0: detected capacity change from 0 to 65536
+[  145.098924] loop0: detected capacity change from 0 to 65536
+[  145.443962] loop0: detected capacity change from 0 to 65536
+[  145.790223] loop0: detected capacity change from 0 to 65536
+[  146.125986] loop0: detected capacity change from 0 to 65536
+[  146.459091] loop0: detected capacity change from 0 to 65536
+[  146.791855] loop0: detected capacity change from 0 to 65536
+[  147.123726] loop0: detected capacity change from 0 to 65536
+[  147.449473] loop0: detected capacity change from 0 to 65536
+[  147.779134] loop0: detected capacity change from 0 to 65536
+[  148.107242] loop0: detected capacity change from 0 to 65536
+[  148.437242] loop0: detected capacity change from 0 to 65536
+[  148.767502] loop0: detected capacity change from 0 to 65536
+[  149.098120] loop0: detected capacity change from 0 to 65536
+[  149.429867] loop0: detected capacity change from 0 to 65536
+[  149.768184] loop0: detected capacity change from 0 to 65536
+[  150.103509] loop0: detected capacity change from 0 to 65536
+[  150.437031] loop0: detected capacity change from 0 to 65536
+[  150.790493] loop0: detected capacity change from 0 to 65536
+[  151.122904] loop0: detected capacity change from 0 to 65536
+[  151.452501] loop0: detected capacity change from 0 to 65536
+[  151.799552] loop0: detected capacity change from 0 to 65536
+[  152.127863] loop0: detected capacity change from 0 to 65536
+[  152.456019] loop0: detected capacity change from 0 to 65536
+[  152.788631] loop0: detected capacity change from 0 to 65536
+[  153.120624] loop0: detected capacity change from 0 to 65536
+[  153.448274] loop0: detected capacity change from 0 to 65536
+[  153.778625] loop0: detected capacity change from 0 to 65536
+[  154.110106] loop0: detected capacity change from 0 to 65536
+[  154.447827] loop0: detected capacity change from 0 to 65536
+[  154.783489] loop0: detected capacity change from 0 to 65536
+[  155.122331] loop0: detected capacity change from 0 to 65536
+[  155.460844] loop0: detected capacity change from 0 to 65536
+[  155.812166] loop0: detected capacity change from 0 to 65536
+[  156.158891] loop0: detected capacity change from 0 to 65536
+[  156.509836] loop0: detected capacity change from 0 to 65536
+[  156.846111] loop0: detected capacity change from 0 to 65536
+[  157.175953] loop0: detected capacity change from 0 to 65536
+[  157.514849] loop0: detected capacity change from 0 to 65536
+[  157.865754] loop0: detected capacity change from 0 to 65536
+[  158.208771] loop0: detected capacity change from 0 to 65536
+[  158.547250] loop0: detected capacity change from 0 to 65536
+[  158.880371] loop0: detected capacity change from 0 to 65536
+[  159.214292] loop0: detected capacity change from 0 to 65536
+[  159.564050] loop0: detected capacity change from 0 to 65536
+[  159.905916] loop0: detected capacity change from 0 to 65536
+[  160.241313] loop0: detected capacity change from 0 to 65536
+[  160.581943] loop0: detected capacity change from 0 to 65536
+[  160.921443] loop0: detected capacity change from 0 to 65536
+[  161.271382] loop0: detected capacity change from 0 to 65536
+[  161.612878] loop0: detected capacity change from 0 to 65536
+[  161.942147] loop0: detected capacity change from 0 to 65536
+[  162.277965] loop0: detected capacity change from 0 to 65536
+[  162.605216] loop0: detected capacity change from 0 to 65536
+[  162.935662] loop0: detected capacity change from 0 to 65536
+[  163.263959] loop0: detected capacity change from 0 to 65536
+[  163.594168] loop0: detected capacity change from 0 to 65536
+[  163.923598] loop0: detected capacity change from 0 to 65536
+[  164.251222] loop0: detected capacity change from 0 to 65536
+[  164.580974] loop0: detected capacity change from 0 to 65536
+[  164.930735] loop0: detected capacity change from 0 to 65536
+[  165.258687] loop0: detected capacity change from 0 to 65536
+[  165.592901] loop0: detected capacity change from 0 to 65536
+[  165.929500] loop0: detected capacity change from 0 to 65536
+[  166.281665] loop0: detected capacity change from 0 to 65536
+[  166.618139] loop0: detected capacity change from 0 to 65536
+[  166.956707] loop0: detected capacity change from 0 to 65536
+[  167.292929] loop0: detected capacity change from 0 to 65536
+[  167.628186] loop0: detected capacity change from 0 to 65536
+[  167.964658] loop0: detected capacity change from 0 to 65536
+[  168.302404] loop0: detected capacity change from 0 to 65536
+[  168.639317] loop0: detected capacity change from 0 to 65536
+[  168.978109] loop0: detected capacity change from 0 to 65536
+[  169.321548] loop0: detected capacity change from 0 to 65536
+[  169.653144] loop0: detected capacity change from 0 to 65536
+[  169.987995] loop0: detected capacity change from 0 to 65536
+[  170.320922] loop0: detected capacity change from 0 to 65536
+[  170.652094] loop0: detected capacity change from 0 to 65536
+[  170.982373] loop0: detected capacity change from 0 to 65536
+[  171.323235] loop0: detected capacity change from 0 to 65536
+[  171.658371] loop0: detected capacity change from 0 to 65536
+[  172.007015] loop0: detected capacity change from 0 to 65536
+[  172.336059] loop0: detected capacity change from 0 to 65536
+[  172.670408] loop0: detected capacity change from 0 to 65536
+[  172.999305] loop0: detected capacity change from 0 to 65536
+[  173.330247] loop0: detected capacity change from 0 to 65536
+[  173.660416] loop0: detected capacity change from 0 to 65536
+[  173.989124] loop0: detected capacity change from 0 to 65536
+[  174.321891] loop0: detected capacity change from 0 to 65536
+[  174.668381] loop0: detected capacity change from 0 to 65536
+[  174.995655] loop0: detected capacity change from 0 to 65536
+[  175.322306] loop0: detected capacity change from 0 to 65536
+[  175.656098] loop0: detected capacity change from 0 to 65536
+[  175.989867] loop0: detected capacity change from 0 to 65536
+[  176.325584] loop0: detected capacity change from 0 to 65536
+[  176.667911] loop0: detected capacity change from 0 to 65536
+[  177.014471] loop0: detected capacity change from 0 to 65536
+[  177.350908] loop0: detected capacity change from 0 to 65536
+[  177.683536] loop0: detected capacity change from 0 to 65536
+[  178.015721] loop0: detected capacity change from 0 to 65536
+[  178.355313] loop0: detected capacity change from 0 to 65536
+[  178.688760] loop0: detected capacity change from 0 to 65536
+[  179.016647] loop0: detected capacity change from 0 to 65536
+[  179.346384] loop0: detected capacity change from 0 to 65536
+[  179.698327] loop0: detected capacity change from 0 to 65536
+[  180.054472] loop0: detected capacity change from 0 to 65536
+[  180.387543] loop0: detected capacity change from 0 to 65536
+[  180.718197] loop0: detected capacity change from 0 to 65536
+[  181.046627] loop0: detected capacity change from 0 to 65536
+[  181.377438] loop0: detected capacity change from 0 to 65536
+[  181.706791] loop0: detected capacity change from 0 to 65536
+[  182.036424] loop0: detected capacity change from 0 to 65536
+[  182.370545] loop0: detected capacity change from 0 to 65536
+[  182.705164] loop0: detected capacity change from 0 to 65536
+[  183.039021] loop0: detected capacity change from 0 to 65536
+[  183.374990] loop0: detected capacity change from 0 to 65536
+[  183.708764] loop0: detected capacity change from 0 to 65536
+[  184.041233] loop0: detected capacity change from 0 to 65536
+[  184.400604] loop0: detected capacity change from 0 to 65536
+[  184.732673] loop0: detected capacity change from 0 to 65536
+[  185.063344] loop0: detected capacity change from 0 to 65536
+[  185.396210] loop0: detected capacity change from 0 to 65536
+[  185.725011] loop0: detected capacity change from 0 to 65536
+[  186.052927] loop0: detected capacity change from 0 to 65536
+[  186.388007] loop0: detected capacity change from 0 to 65536
+[  186.724607] loop0: detected capacity change from 0 to 65536
+[  187.060126] loop0: detected capacity change from 0 to 65536
+[  187.391658] loop0: detected capacity change from 0 to 65536
+[  187.723581] loop0: detected capacity change from 0 to 65536
+[  188.058767] loop0: detected capacity change from 0 to 65536
+[  188.393594] loop0: detected capacity change from 0 to 65536
+[  188.727693] loop0: detected capacity change from 0 to 65536
+[  189.062742] loop0: detected capacity change from 0 to 65536
+[  189.392680] loop0: detected capacity change from 0 to 65536
+[  189.723749] loop0: detected capacity change from 0 to 65536
+[  190.055332] loop0: detected capacity change from 0 to 65536
+[  190.389759] loop0: detected capacity change from 0 to 65536
+[  190.729938] loop0: detected capacity change from 0 to 65536
+[  191.104411] loop0: detected capacity change from 0 to 65536
+[  191.440462] loop0: detected capacity change from 0 to 65536
+[  191.776464] loop0: detected capacity change from 0 to 65536
+[  192.114998] loop0: detected capacity change from 0 to 65536
+[  192.457988] loop0: detected capacity change from 0 to 65536
+[  192.796971] loop0: detected capacity change from 0 to 65536
+[  193.145027] loop0: detected capacity change from 0 to 65536
+[  193.488156] loop0: detected capacity change from 0 to 65536
+[  193.821391] loop0: detected capacity change from 0 to 65536
+[  194.160447] loop0: detected capacity change from 0 to 65536
+[  194.529326] loop0: detected capacity change from 0 to 65536
+[  194.888987] loop0: detected capacity change from 0 to 65536
+[  195.251225] loop0: detected capacity change from 0 to 65536
+[  195.620450] loop0: detected capacity change from 0 to 65536
+[  195.989531] loop0: detected capacity change from 0 to 65536
+[  196.333725] loop0: detected capacity change from 0 to 65536
+[  196.683867] loop0: detected capacity change from 0 to 65536
+[  197.040375] loop0: detected capacity change from 0 to 65536
+[  197.410401] loop0: detected capacity change from 0 to 65536
+[  197.753197] loop0: detected capacity change from 0 to 65536
+[  198.084966] loop0: detected capacity change from 0 to 65536
+[  198.424792] loop0: detected capacity change from 0 to 65536
+[  198.765913] loop0: detected capacity change from 0 to 65536
+[  199.105526] loop0: detected capacity change from 0 to 65536
+[  199.445559] loop0: detected capacity change from 0 to 65536
+[  199.783669] loop0: detected capacity change from 0 to 65536
+[  200.120548] loop0: detected capacity change from 0 to 65536
+[  200.467942] loop0: detected capacity change from 0 to 65536
+[  200.815585] loop0: detected capacity change from 0 to 65536
+[  201.166611] loop0: detected capacity change from 0 to 65536
+[  201.463935] loop0: detected capacity change from 0 to 65536
+[  201.799955] loop0: detected capacity change from 0 to 65536
+[  202.131283] loop0: detected capacity change from 0 to 65536
+[  202.457709] loop0: detected capacity change from 0 to 65536
+[  202.785960] loop0: detected capacity change from 0 to 65536
+[  203.126910] loop0: detected capacity change from 0 to 65536
+[  203.477281] loop0: detected capacity change from 0 to 65536
+[  203.823029] loop0: detected capacity change from 0 to 65536
+[  204.154162] loop0: detected capacity change from 0 to 65536
+[  204.488246] loop0: detected capacity change from 0 to 65536
+[  204.823271] loop0: detected capacity change from 0 to 65536
+[  205.160515] loop0: detected capacity change from 0 to 65536
+[  205.489364] loop0: detected capacity change from 0 to 65536
+[  205.826182] loop0: detected capacity change from 0 to 65536
+[  206.160607] loop0: detected capacity change from 0 to 65536
+[  206.495211] loop0: detected capacity change from 0 to 65536
+[  206.826751] loop0: detected capacity change from 0 to 65536
+[  207.163156] loop0: detected capacity change from 0 to 65536
+[  207.507939] loop0: detected capacity change from 0 to 65536
+[  207.835509] loop0: detected capacity change from 0 to 65536
+[  208.165898] loop0: detected capacity change from 0 to 65536
+[  208.498790] loop0: detected capacity change from 0 to 65536
+[  208.831048] loop0: detected capacity change from 0 to 65536
+[  209.163058] loop0: detected capacity change from 0 to 65536
+[  209.489421] loop0: detected capacity change from 0 to 65536
+[  209.816415] loop0: detected capacity change from 0 to 65536
+[  210.144894] loop0: detected capacity change from 0 to 65536
+[  210.478594] loop0: detected capacity change from 0 to 65536
+[  210.827635] loop0: detected capacity change from 0 to 65536
+[  211.160728] loop0: detected capacity change from 0 to 65536
+[  211.493387] loop0: detected capacity change from 0 to 65536
+[  211.827516] loop0: detected capacity change from 0 to 65536
+[  212.159209] loop0: detected capacity change from 0 to 65536
+[  212.488750] loop0: detected capacity change from 0 to 65536
+[  212.826079] loop0: detected capacity change from 0 to 65536
+[  213.169293] loop0: detected capacity change from 0 to 65536
+[  213.495336] loop0: detected capacity change from 0 to 65536
+[  213.828144] loop0: detected capacity change from 0 to 65536
+[  214.153090] loop0: detected capacity change from 0 to 65536
+[  214.483543] loop0: detected capacity change from 0 to 65536
+[  214.813168] loop0: detected capacity change from 0 to 65536
+[  215.157925] loop0: detected capacity change from 0 to 65536
+[  215.520463] loop0: detected capacity change from 0 to 65536
+[  215.874993] loop0: detected capacity change from 0 to 65536
+[  216.218856] loop0: detected capacity change from 0 to 65536
+[  216.558699] loop0: detected capacity change from 0 to 65536
+[  216.894612] loop0: detected capacity change from 0 to 65536
+[  217.263562] loop0: detected capacity change from 0 to 65536
+[  217.600409] loop0: detected capacity change from 0 to 65536
+[  217.932955] loop0: detected capacity change from 0 to 65536
+[  218.267666] loop0: detected capacity change from 0 to 65536
+[  218.610034] loop0: detected capacity change from 0 to 65536
+[  218.909514] loop0: detected capacity change from 0 to 65536
+[  219.248451] loop0: detected capacity change from 0 to 65536
+[  219.588536] loop0: detected capacity change from 0 to 65536
+[  219.924101] loop0: detected capacity change from 0 to 65536
+[  220.259686] loop0: detected capacity change from 0 to 65536
+[  220.592559] loop0: detected capacity change from 0 to 65536
+[  220.927745] loop0: detected capacity change from 0 to 65536
+[  221.260551] loop0: detected capacity change from 0 to 65536
+[  221.592629] loop0: detected capacity change from 0 to 65536
+[  221.925437] loop0: detected capacity change from 0 to 65536
+[  222.266951] loop0: detected capacity change from 0 to 65536
+[  222.603109] loop0: detected capacity change from 0 to 65536
+[  222.946951] loop0: detected capacity change from 0 to 65536
+[  223.287259] loop0: detected capacity change from 0 to 65536
+[  223.621470] loop0: detected capacity change from 0 to 65536
+[  223.953881] loop0: detected capacity change from 0 to 65536
+[  224.290281] loop0: detected capacity change from 0 to 65536
+[  224.628381] loop0: detected capacity change from 0 to 65536
+[  224.971935] loop0: detected capacity change from 0 to 65536
+[  225.307866] loop0: detected capacity change from 0 to 65536
+[  225.644598] loop0: detected capacity change from 0 to 65536
+[  225.995068] loop0: detected capacity change from 0 to 65536
+[  226.331983] loop0: detected capacity change from 0 to 65536
+[  226.670343] loop0: detected capacity change from 0 to 65536
+[  227.007633] loop0: detected capacity change from 0 to 65536
+[  227.352134] loop0: detected capacity change from 0 to 65536
+[  227.701582] loop0: detected capacity change from 0 to 65536
+[  228.057039] loop0: detected capacity change from 0 to 65536
+[  228.400995] loop0: detected capacity change from 0 to 65536
+[  228.740589] loop0: detected capacity change from 0 to 65536
+[  229.113095] loop0: detected capacity change from 0 to 65536
+[  229.463535] loop0: detected capacity change from 0 to 65536
+[  229.805662] loop0: detected capacity change from 0 to 65536
+[  230.137574] loop0: detected capacity change from 0 to 65536
+[  230.470784] loop0: detected capacity change from 0 to 65536
+[  230.806001] loop0: detected capacity change from 0 to 65536
+[  231.139311] loop0: detected capacity change from 0 to 65536
+[  231.477294] loop0: detected capacity change from 0 to 65536
+[  231.809716] loop0: detected capacity change from 0 to 65536
+[  232.139691] loop0: detected capacity change from 0 to 65536
+[  232.476690] loop0: detected capacity change from 0 to 65536
+[  232.817182] loop0: detected capacity change from 0 to 65536
+[  233.152428] loop0: detected capacity change from 0 to 65536
+[  233.482502] loop0: detected capacity change from 0 to 65536
+[  233.820491] loop0: detected capacity change from 0 to 65536
+[  234.156988] loop0: detected capacity change from 0 to 65536
+[  234.489298] loop0: detected capacity change from 0 to 65536
+[  234.818320] loop0: detected capacity change from 0 to 65536
+[  235.148872] loop0: detected capacity change from 0 to 65536
+[  235.486792] loop0: detected capacity change from 0 to 65536
+[  235.814787] loop0: detected capacity change from 0 to 65536
+[  236.146549] loop0: detected capacity change from 0 to 65536
+[  236.474082] loop0: detected capacity change from 0 to 65536
+[  236.762886] loop0: detected capacity change from 0 to 65536
+[  237.090121] loop0: detected capacity change from 0 to 65536
+[  237.420325] loop0: detected capacity change from 0 to 65536
+[  237.752011] loop0: detected capacity change from 0 to 65536
+[  238.081506] loop0: detected capacity change from 0 to 65536
+[  238.429619] loop0: detected capacity change from 0 to 65536
+[  238.772699] loop0: detected capacity change from 0 to 65536
+[  239.121399] loop0: detected capacity change from 0 to 65536
+[  239.474792] loop0: detected capacity change from 0 to 65536
+[  239.839184] loop0: detected capacity change from 0 to 65536
+[  240.208067] loop0: detected capacity change from 0 to 65536
+[  240.571545] loop0: detected capacity change from 0 to 65536
+[  240.949626] loop0: detected capacity change from 0 to 65536
+[  241.347346] loop0: detected capacity change from 0 to 65536
+[  241.679449] loop0: detected capacity change from 0 to 65536
+[  242.017168] loop0: detected capacity change from 0 to 65536
+[  242.365783] loop0: detected capacity change from 0 to 65536
+[  242.734017] loop0: detected capacity change from 0 to 65536
+[  243.093275] loop0: detected capacity change from 0 to 65536
+[  243.448167] loop0: detected capacity change from 0 to 65536
+[  243.804237] loop0: detected capacity change from 0 to 65536
+[  244.168810] loop0: detected capacity change from 0 to 65536
+[  244.520220] loop0: detected capacity change from 0 to 65536
+[  244.859727] loop0: detected capacity change from 0 to 65536
+[  245.195024] loop0: detected capacity change from 0 to 65536
+[  245.533124] loop0: detected capacity change from 0 to 65536
+[  245.873870] loop0: detected capacity change from 0 to 65536
+[  246.210267] loop0: detected capacity change from 0 to 65536
+[  246.552717] loop0: detected capacity change from 0 to 65536
+[  246.901304] loop0: detected capacity change from 0 to 65536
+[  247.245606] loop0: detected capacity change from 0 to 65536
+[  247.587018] loop0: detected capacity change from 0 to 65536
+[  247.949239] loop0: detected capacity change from 0 to 65536
+[  248.300336] loop0: detected capacity change from 0 to 65536
+[  248.646631] loop0: detected capacity change from 0 to 65536
+[  248.983783] loop0: detected capacity change from 0 to 65536
+[  249.317856] loop0: detected capacity change from 0 to 65536
+[  249.660384] loop0: detected capacity change from 0 to 65536
+[  250.008363] loop0: detected capacity change from 0 to 65536
+[  250.380561] loop0: detected capacity change from 0 to 65536
+[  250.722511] loop0: detected capacity change from 0 to 65536
+[  251.058104] loop0: detected capacity change from 0 to 65536
+[  251.395567] loop0: detected capacity change from 0 to 65536
+[  251.734552] loop0: detected capacity change from 0 to 65536
+[  252.071684] loop0: detected capacity change from 0 to 65536
+[  252.418434] loop0: detected capacity change from 0 to 65536
