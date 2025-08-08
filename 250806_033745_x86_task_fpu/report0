@@ -1,0 +1,352 @@
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 4684 at arch/x86/kernel/fpu/core.c:61 x86_task_fpu+0x76/0x90 arch/x86/kernel/fpu/core.c:61
+Modules linked in:
+CPU: 1 UID: 0 PID: 4684 Comm: syz-executor.7 Not tainted 6.16.0-9efb9ebfb1fa+ #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:x86_task_fpu+0x76/0x90 arch/x86/kernel/fpu/core.c:61
+Code: 40 20 00 44 89 e6 e8 49 fe 54 00 45 85 e4 75 15 e8 8f 03 55 00 48 8d 83 40 20 00 00 5b 41 5c 5d c3 cc cc cc cc e8 7a 03 55 00 <0f> 0b eb e2 e8 d1 4a c1 00 eb c1 66 66 2e 0f 1f 84 00 00 00 00 00
+RSP: 0018:ffff88800ef27428 EFLAGS: 00010216
+RAX: 0000000000002c4c RBX: ffff8880329bca80 RCX: ffffc90001021000
+RDX: 0000000000040000 RSI: ffffffff813246c6 RDI: 0000000000000005
+RBP: ffff88800ef27438 R08: 0000000000000400 R09: ffff88806c16ffa0
+R10: 0000000000004000 R11: 000000000000000d R12: 0000000000004000
+R13: ffff8880329bca80 R14: 0000000000000200 R15: 0000000000000200
+FS:  00007f6cbc96a640(0000) GS:ffff8880e3653000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000004b8000 CR3: 00000000135db000 CR4: 0000000000750ef0
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ xfpregs_get+0x9c/0x1e0 arch/x86/kernel/fpu/regset.c:74
+ __regset_get kernel/regset.c:23 [inline]
+ regset_get_alloc+0x137/0x200 kernel/regset.c:48
+ fill_thread_core_info fs/binfmt_elf.c:1740 [inline]
+ fill_note_info fs/binfmt_elf.c:1861 [inline]
+ elf_core_dump+0x10e3/0x3800 fs/binfmt_elf.c:1989
+ do_coredump+0x370e/0x5060 fs/coredump.c:950
+ get_signal+0x1ae2/0x2430 kernel/signal.c:3019
+ arch_do_signal_or_restart+0x8d/0x7d0 arch/x86/kernel/signal.c:337
+ exit_to_user_mode_loop+0xad/0x110 kernel/entry/common.c:111
+ exit_to_user_mode_prepare include/linux/entry-common.h:330 [inline]
+ syscall_exit_to_user_mode_work include/linux/entry-common.h:414 [inline]
+ syscall_exit_to_user_mode include/linux/entry-common.h:449 [inline]
+ do_syscall_64+0x284/0x2e0 arch/x86/entry/syscall_64.c:100
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f6cbc63ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007f6cbc969cc8 EFLAGS: 00000246 ORIG_RAX: 000000000000011d
+RAX: ffffffffffffffe5 RBX: 00000000004bbf80 RCX: 00007f6cbc63ee5d
+RDX: 0000000000000007 RSI: 0000000000000000 RDI: 0000000000000007
+RBP: 00000000004bbf80 R08: 0000000000000000 R09: 0000000000000000
+R10: 000000000f000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 000000000000000b R14: 00007f6cbc69f560 R15: 0000000000000000
+ </TASK>
+irq event stamp: 1667
+hardirqs last  enabled at (1675): [<ffffffff81651e25>] __up_console_sem+0x95/0xb0 kernel/printk/printk.c:344
+hardirqs last disabled at (1684): [<ffffffff81651e0a>] __up_console_sem+0x7a/0xb0 kernel/printk/printk.c:342
+softirqs last  enabled at (1586): [<ffffffff8147fa1e>] __do_softirq kernel/softirq.c:613 [inline]
+softirqs last  enabled at (1586): [<ffffffff8147fa1e>] invoke_softirq kernel/softirq.c:453 [inline]
+softirqs last  enabled at (1586): [<ffffffff8147fa1e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:680
+softirqs last disabled at (1581): [<ffffffff8147fa1e>] __do_softirq kernel/softirq.c:613 [inline]
+softirqs last disabled at (1581): [<ffffffff8147fa1e>] invoke_softirq kernel/softirq.c:453 [inline]
+softirqs last disabled at (1581): [<ffffffff8147fa1e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:680
+---[ end trace 0000000000000000 ]---
+loop2: detected capacity change from 0 to 512
+EXT4-fs: Ignoring removed nobh option
+EXT4-fs: Ignoring removed nomblk_io_submit option
+loop5: detected capacity change from 0 to 512
+ext4: Unknown parameter 'Ä	øHËurì	ïâÖ‹ÕÔ—M7®Äß$Q|4åÎÉÑ;∑G3ßE¬F	áólX2Œµˆí'
+[EXT4 FS bs=1024, gc=1, bpg=8192, ipg=32, mo=57e02c, mo2=0002]
+EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir1179655485/syzkaller.Zoj92c/6/file1 supports timestamps until 2038-01-19 (0x7fffffff)
+EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+loop0: detected capacity change from 0 to 65536
+xfs: Unknown parameter './file1'
+loop3: detected capacity change from 0 to 65536
+XFS (loop3): cannot change alignment: superblock does not support data alignment
+loop6: detected capacity change from 0 to 128
+ext4: Unknown parameter 'êWë†hN6˘#'
+loop5: detected capacity change from 0 to 512
+ext4: Unknown parameter 'Ä	øHËurì	ïâÖ‹ÕÔ—M7®Äß$Q|4åÎÉÑ;∑G3ßE¬F	áólX2Œµˆí'
+loop2: detected capacity change from 0 to 512
+loop5: detected capacity change from 0 to 512
+ext4: Unknown parameter 'Ä	øHËurì	ïâÖ‹ÕÔ—M7®Äß$Q|4åÎÉÑ;∑G3ßE¬F	áólX2Œµˆí'
+loop6: detected capacity change from 0 to 128
+ext4: Unknown parameter 'êWë†hN6˘#'
+loop2: detected capacity change from 0 to 512
+EXT4-fs: Ignoring removed nobh option
+EXT4-fs: Ignoring removed nomblk_io_submit option
+[EXT4 FS bs=1024, gc=1, bpg=8192, ipg=32, mo=57e02c, mo2=0002]
+EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir1179655485/syzkaller.Zoj92c/8/file1 supports timestamps until 2038-01-19 (0x7fffffff)
+pimreg: entered allmulticast mode
+EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+loop1: detected capacity change from 0 to 32768
+xfs: Unknown parameter 'ˇ'
+Injecting memory failure for pfn 0x5aa00 at process virtual address 0x20600000
+Memory failure: 0x5aa00: recovery action for unsplit thp: Failed
+loop1: detected capacity change from 0 to 32768
+cgroup: fork rejected by pids controller in /syz5
+Injecting memory failure for pfn 0x5aa00 at process virtual address 0x20600000
+Memory failure: 0x5aa00: already hardware poisoned
+Memory failure: 0x5aa00: Sending SIGBUS to syz-executor.4:4979 due to hardware memory corruption
+Memory failure: 0x5aa00: recovery action for already poisoned: Failed
+Injecting memory failure for pfn 0x5aa00 at process virtual address 0x20600000
+Memory failure: 0x5aa00: already hardware poisoned
+Memory failure: 0x5aa00: Sending SIGBUS to syz-executor.4:4979 due to hardware memory corruption
+Memory failure: 0x5aa00: recovery action for already poisoned: Failed
+cgroup2: Unknown parameter 'nQdelegate'
+loop1: detected capacity change from 0 to 32768
+xfs: Unknown parameter 'ˇ'
+loop5: detected capacity change from 0 to 32768
+xfs: Unknown parameter 'uqnog'
+cgroup2: Unknown parameter 'nQdelegate'
+cgroup2: Unknown parameter 'nQdelegate'
+cgroup2: Unknown parameter 'nQdelegate'
+loop5: detected capacity change from 0 to 32768
+xfs: Unknown parameter 'uqnog'
+loop1: detected capacity change from 0 to 131072
+XFS (loop1): Mounting V5 Filesystem f37484a6-847f-4c37-be64-3b143b6edc4c
+XFS (loop1): Ending clean mount
+loop6: detected capacity change from 0 to 131072
+=======================================================
+WARNING: The mand mount option has been deprecated and
+         and is ignored by this kernel. Remove the mand
+         option from the mount to silence this warning.
+=======================================================
+XFS (loop6): Mounting V5 Filesystem f37484a6-847f-4c37-be64-3b143b6edc4c
+XFS (loop6): Ending clean mount
+XFS (loop6): Unmounting Filesystem f37484a6-847f-4c37-be64-3b143b6edc4c
+fuse: Unknown parameter 'roodmode'
+fuse: Unknown parameter 'roodmode'
+loop5: detected capacity change from 0 to 32768
+xfs: Unknown parameter 'uqnog'
+fuse: Unknown parameter 'roodmode'
+XFS (loop1): Unmounting Filesystem f37484a6-847f-4c37-be64-3b143b6edc4c
+pimreg: left allmulticast mode
+loop6: detected capacity change from 0 to 131072
+XFS (loop6): Mounting V5 Filesystem f37484a6-847f-4c37-be64-3b143b6edc4c
+XFS (loop6): Ending clean mount
+XFS (loop6): Unmounting Filesystem f37484a6-847f-4c37-be64-3b143b6edc4c
+loop1: detected capacity change from 0 to 131072
+XFS (loop1): Mounting V5 Filesystem f37484a6-847f-4c37-be64-3b143b6edc4c
+XFS (loop1): Ending clean mount
+XFS (loop1): Unmounting Filesystem f37484a6-847f-4c37-be64-3b143b6edc4c
+fuse: Bad value for 'fd'
+loop5: detected capacity change from 0 to 256
+mmap: syz-executor.1 (5298) uses deprecated remap_file_pages() syscall. See Documentation/mm/remap_file_pages.rst.
+tmpfs: Unknown parameter 'nr'
+loop5: detected capacity change from 0 to 256
+iommufd_mock iommufd_mock0: Adding to iommu group 0
+tmpfs: Unknown parameter 'nr'
+tmpfs: Unknown parameter 'nr'
+tmpfs: Unknown parameter 'nr'
+iommufd_mock iommufd_mock0: Adding to iommu group 0
+loop4: detected capacity change from 0 to 512
+ext4: Unknown parameter 'nouser_xattr'
+loop4: detected capacity change from 0 to 512
+loop4: detected capacity change from 0 to 512
+ext4: Unknown parameter 'nouser_xattr'
+pimreg: entered allmulticast mode
+loop4: detected capacity change from 0 to 512
+EXT4-fs: Ignoring removed nobh option
+EXT4-fs: Ignoring removed nomblk_io_submit option
+[EXT4 FS bs=1024, gc=1, bpg=8192, ipg=32, mo=8056e02c, mo2=0002]
+EXT4-fs (loop4): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir248793291/syzkaller.rI0IHo/36/file1 supports timestamps until 2038-01-19 (0x7fffffff)
+EXT4-fs (loop4): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+loop2: detected capacity change from 0 to 65536
+XFS (loop2): Mounting V5 Filesystem 4194cad6-cad4-4798-ac4c-c2118f686eb1
+XFS (loop2): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop2): Quotacheck: Done.
+XFS (loop2): Unmounting Filesystem 4194cad6-cad4-4798-ac4c-c2118f686eb1
+loop4: detected capacity change from 0 to 512
+EXT4-fs: Ignoring removed nobh option
+EXT4-fs: Ignoring removed nomblk_io_submit option
+[EXT4 FS bs=1024, gc=1, bpg=8192, ipg=32, mo=8056e02c, mo2=0002]
+EXT4-fs (loop4): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir248793291/syzkaller.rI0IHo/37/file1 supports timestamps until 2038-01-19 (0x7fffffff)
+EXT4-fs (loop4): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+loop2: detected capacity change from 0 to 65536
+XFS (loop2): Mounting V5 Filesystem 4194cad6-cad4-4798-ac4c-c2118f686eb1
+XFS (loop2): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop2): Quotacheck: Done.
+XFS (loop2): Unmounting Filesystem 4194cad6-cad4-4798-ac4c-c2118f686eb1
+loop4: detected capacity change from 0 to 512
+EXT4-fs: Ignoring removed nobh option
+loop1: detected capacity change from 0 to 512
+EXT4-fs: Ignoring removed nomblk_io_submit option
+EXT4-fs: Ignoring removed nobh option
+EXT4-fs: Ignoring removed nomblk_io_submit option
+[EXT4 FS bs=1024, gc=1, bpg=8192, ipg=32, mo=8056e02c, mo2=0002]
+loop0: detected capacity change from 0 to 8
+[EXT4 FS bs=1024, gc=1, bpg=8192, ipg=32, mo=8056e02c, mo2=0002]
+EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir2627661790/syzkaller.keGVRR/33/file1 supports timestamps until 2038-01-19 (0x7fffffff)
+EXT4-fs (loop4): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir248793291/syzkaller.rI0IHo/38/file1 supports timestamps until 2038-01-19 (0x7fffffff)
+EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+EXT4-fs (loop4): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+loop6: detected capacity change from 0 to 65536
+XFS (loop6): Mounting V5 Filesystem 4194cad6-cad4-4798-ac4c-c2118f686eb1
+XFS (loop6): Ending clean mount
+XFS (loop6): Unmounting Filesystem 4194cad6-cad4-4798-ac4c-c2118f686eb1
+loop2: detected capacity change from 0 to 512
+EXT4-fs: Ignoring removed nobh option
+EXT4-fs: Ignoring removed nomblk_io_submit option
+loop0: detected capacity change from 0 to 8
+[EXT4 FS bs=1024, gc=1, bpg=8192, ipg=32, mo=8056e02c, mo2=0002]
+loop1: detected capacity change from 0 to 512
+EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir1179655485/syzkaller.Zoj92c/33/file1 supports timestamps until 2038-01-19 (0x7fffffff)
+EXT4-fs: Ignoring removed nobh option
+EXT4-fs: Ignoring removed nomblk_io_submit option
+pimreg: left allmulticast mode
+[EXT4 FS bs=1024, gc=1, bpg=8192, ipg=32, mo=8056e02c, mo2=0002]
+EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+ext4 filesystem being mounted at /syzkaller-testdir2627661790/syzkaller.keGVRR/34/file1 supports timestamps until 2038-01-19 (0x7fffffff)
+loop4: detected capacity change from 0 to 512
+ext4: Unknown parameter ''
+EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+loop6: detected capacity change from 0 to 65536
+XFS (loop6): Mounting V5 Filesystem 4194cad6-cad4-4798-ac4c-c2118f686eb1
+XFS (loop6): Ending clean mount
+XFS (loop6): Unmounting Filesystem 4194cad6-cad4-4798-ac4c-c2118f686eb1
+loop0: detected capacity change from 0 to 512
+[EXT4 FS bs=1024, gc=1, bpg=8192, ipg=32, mo=a842c01c, mo2=0002]
+System zones: 1-3, 19-19, 35-38
+EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir147770650/syzkaller.emyMnx/33/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+loop1: detected capacity change from 0 to 512
+EXT4-fs: Ignoring removed nobh option
+EXT4-fs: Ignoring removed nomblk_io_submit option
+loop4: detected capacity change from 0 to 512
+[EXT4 FS bs=1024, gc=1, bpg=8192, ipg=32, mo=8056e02c, mo2=0002]
+EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir2627661790/syzkaller.keGVRR/35/file1 supports timestamps until 2038-01-19 (0x7fffffff)
+loop2: detected capacity change from 0 to 512
+EXT4-fs: Ignoring removed nobh option
+EXT4-fs: Ignoring removed nomblk_io_submit option
+[EXT4 FS bs=1024, gc=1, bpg=8192, ipg=32, mo=8056e02c, mo2=0002]
+EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+loop0: detected capacity change from 0 to 512
+EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir1179655485/syzkaller.Zoj92c/35/file1 supports timestamps until 2038-01-19 (0x7fffffff)
+[EXT4 FS bs=1024, gc=1, bpg=8192, ipg=32, mo=a842c01c, mo2=0002]
+System zones: 1-3, 19-19, 35-38
+EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir147770650/syzkaller.emyMnx/34/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+loop6: detected capacity change from 0 to 65536
+XFS (loop6): Mounting V5 Filesystem 4194cad6-cad4-4798-ac4c-c2118f686eb1
+XFS (loop6): Ending clean mount
+EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+XFS (loop6): Unmounting Filesystem 4194cad6-cad4-4798-ac4c-c2118f686eb1
+loop5: detected capacity change from 0 to 8
+loop0: detected capacity change from 0 to 512
+[EXT4 FS bs=1024, gc=1, bpg=8192, ipg=32, mo=a842c01c, mo2=0002]
+System zones: 1-3, 19-19, 35-38
+loop5: detected capacity change from 0 to 8
+EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir147770650/syzkaller.emyMnx/35/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop6: detected capacity change from 0 to 32768
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+Dev loop6 SGI disklabel: csum bad, label corrupted
+Dev loop6 Sun disklabel: Csum bad, label corrupted
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+block device autoloading is deprecated and will be removed.
+loop1: detected capacity change from 0 to 512
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+fuse: Bad value for 'rootmode'
+[EXT4 FS bs=1024, gc=1, bpg=8192, ipg=32, mo=a800c09c, mo2=0102]
+System zones: 1-3, 19-19, 35-38
+EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+loop5: detected capacity change from 0 to 8
+ext4 filesystem being mounted at /syzkaller-testdir2627661790/syzkaller.keGVRR/39/file2 supports timestamps until 2038-01-19 (0x7fffffff)
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop4: detected capacity change from 0 to 2048
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+loop5: detected capacity change from 0 to 8
+Alternate GPT is invalid, using primary GPT.
+ loop4: p2 p3 p7
+loop5: detected capacity change from 0 to 8
+fuse: Unknown parameter ']∆c0x0000000000000006'
+A link change request failed with some changes committed already. Interface lo may have been left with an inconsistent configuration, please check.
+loop2: detected capacity change from 0 to 32768
+xfs: Unknown parameter 'u~noenforce'
+loop6: detected capacity change from 0 to 32768
+A link change request failed with some changes committed already. Interface lo may have been left with an inconsistent configuration, please check.
+A link change request failed with some changes committed already. Interface lo may have been left with an inconsistent configuration, please check.
+Dev loop6 SGI disklabel: csum bad, label corrupted
+Dev loop6 Sun disklabel: Csum bad, label corrupted
+EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+loop4: detected capacity change from 0 to 2048
+loop1: detected capacity change from 0 to 512
+Alternate GPT is invalid, using primary GPT.
+ loop4: p2 p3 p7
+[EXT4 FS bs=1024, gc=1, bpg=8192, ipg=32, mo=a800c09c, mo2=0102]
+System zones: 1-3, 19-19, 35-38
+EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir2627661790/syzkaller.keGVRR/40/file2 supports timestamps until 2038-01-19 (0x7fffffff)
+EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.

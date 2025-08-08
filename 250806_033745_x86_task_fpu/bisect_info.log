@@ -1,0 +1,39 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [9efb9ebfb1faa8aa0315b86eacebee9ba825aa97] 0day head guard for 'devel-hourly-20250729-010517'
+git bisect bad 9efb9ebfb1faa8aa0315b86eacebee9ba825aa97
+# status: waiting for good commit(s), bad commit known
+# good: [038d61fd642278bab63ee8ef722c50d10ab01e8f] Linux 6.16
+git bisect good 038d61fd642278bab63ee8ef722c50d10ab01e8f
+# good: [6a8eb77f053bac2ce3839012ac576ea0d1a577c4] Merge remote-tracking branch 'origin/xe-internal' into rebase-cp-0b8d955bfdcf
+git bisect good 6a8eb77f053bac2ce3839012ac576ea0d1a577c4
+# good: [7c0ef143203da27bbaceae63b7b4a39883148647] drm/xe/xe3p_lpg: Update LRC sizes
+git bisect good 7c0ef143203da27bbaceae63b7b4a39883148647
+# good: [b1d03161d56a94889d45d15f917036e7df3f1aa9] Merge remote-tracking branch 'origin/xe-internal' into tip-rebase-b9431c1a990f
+git bisect good b1d03161d56a94889d45d15f917036e7df3f1aa9
+# good: [edf1e02db3ee749f61589940ab8c317d7711f7eb] Merge 'internal-linux-review/Grzegorz-Nitka/ice-unify-PHY-FW-loading-status-handler-for-E800-devices/20250728-215845' into devel-hourly-20250729-010517
+git bisect good edf1e02db3ee749f61589940ab8c317d7711f7eb
+# good: [be3cd668fffe2a1dc8a9c617b44c5f46fa2e4b96] Merge tag 'drm-misc-next-2025-07-17' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next
+git bisect good be3cd668fffe2a1dc8a9c617b44c5f46fa2e4b96
+# good: [4571b09c3dbc2703d08b4ab2705e8062ae996c16] Merge remote-tracking branch 'xei/for-intel-next' into for-intel-next
+git bisect good 4571b09c3dbc2703d08b4ab2705e8062ae996c16
+# good: [a6d283c526f96595e61a46c7901aecc92645f345] Merge tag 'icc-6.17-rc1' of ssh://gitolite.kernel.org/pub/scm/linux/kernel/git/djakov/icc into char-misc-next
+git bisect good a6d283c526f96595e61a46c7901aecc92645f345
+# bad: [b40cd721b8a994ea9bc74197ad971923019152fc] Merge 'internal-qzhuo/edac-for-intel-next_v40_v6.16-rc2' into devel-hourly-20250729-010517
+git bisect bad b40cd721b8a994ea9bc74197ad971923019152fc
+# bad: [c4a31414e66a34b3929fec5393356f52309a5e3c] Merge 'internal-drivers-qat-qatkernel-hw-enabling/pr_qat_5.1_lin_dev_QAT5X_13581' into devel-hourly-20250729-010517
+git bisect bad c4a31414e66a34b3929fec5393356f52309a5e3c
+# good: [cb8482832fe750837a0af4c6566dd0b15f28a6a6] vfio/qat: add support for intel QAT 6xxx virtual functions
+git bisect good cb8482832fe750837a0af4c6566dd0b15f28a6a6
+# good: [610c300bea8e503e1fb8b216cfa2286a8ac7b291] crypto: qat - enable heartbeat sync timer for QAT Gen6
+git bisect good 610c300bea8e503e1fb8b216cfa2286a8ac7b291
+# good: [59105e05bdcfb4a27fc2b45fecc70666eeefec9c] crypto: qat - add QAT_CAPS_MAJOR and QAT_CAPS_MINOR defines
+git bisect good 59105e05bdcfb4a27fc2b45fecc70666eeefec9c
+# bad: [c944be985d92384ec41cb305be3127bb1f4305f8] Merge 'internal-sohilmeh/fpu-null-deref' into devel-hourly-20250729-010517
+git bisect bad c944be985d92384ec41cb305be3127bb1f4305f8
+# bad: [129499e89736afc5b43a3f558f87e0307f41a431] x86/fpu: Update the debug flow for x86_task_fpu()
+git bisect bad 129499e89736afc5b43a3f558f87e0307f41a431
+# good: [ad2fc80159caccba6bf1d1b04b47bc7d8a048421] x86/fpu: Fix NULL dereference in avx512_status()
+git bisect good ad2fc80159caccba6bf1d1b04b47bc7d8a048421
+# first bad commit: [129499e89736afc5b43a3f558f87e0307f41a431] x86/fpu: Update the debug flow for x86_task_fpu()
+|0806_072718|Bisect successfully! 9efb9ebfb1faa8aa0315b86eacebee9ba825aa97_129499e89736afc5b43a3f558f87e0307f41a431_revert bzimage passed!|

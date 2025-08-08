@@ -1,0 +1,940 @@
+c[?7l[2J[0mSeaBIOS (version rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org)
+
+
+iPXE (http://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+7FF91000+7FEF1000 CA00
+Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
+
+
+Booting from ROM...
+c[?7l[2J[    0.000000] Linux version 6.16.0-rc7-4571b09c3dbc+ (root@p-adls01) (gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-9), GNU ld version 2.35.2-65.el9) #1 SMP PREEMPT_DYNAMIC Fri Aug  1 07:15:41 CST 2025
+[    0.000000] Command line: console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0 plymouth.enable=0
+[    0.000000] KERNEL supported cpus:
+[    0.000000]   Intel GenuineIntel
+[    0.000000]   AMD AuthenticAMD
+[    0.000000]   Hygon HygonGenuine
+[    0.000000]   Centaur CentaurHauls
+[    0.000000]   zhaoxin   Shanghai  
+[    0.000000] BIOS-provided physical RAM map:
+[    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
+[    0.000000] BIOS-e820: [mem 0x000000000009fc00-0x000000000009ffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000000f0000-0x00000000000fffff] reserved
+[    0.000000] BIOS-e820: [mem 0x0000000000100000-0x000000007ffdffff] usable
+[    0.000000] BIOS-e820: [mem 0x000000007ffe0000-0x000000007fffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000feffc000-0x00000000feffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000fffc0000-0x00000000ffffffff] reserved
+[    0.000000] printk: legacy bootconsole [earlyser0] enabled
+[    0.000000] NX (Execute Disable) protection: active
+[    0.000000] APIC: Static calls initialized
+[    0.000000] SMBIOS 2.8 present.
+[    0.000000] DMI: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+[    0.000000] DMI: Memory slots populated: 1/1
+[    0.000000] Hypervisor detected: KVM
+[    0.000000] kvm-clock: Using msrs 4b564d01 and 4b564d00
+[    0.000003] kvm-clock: using sched offset of 788220215 cycles
+[    0.000373] clocksource: kvm-clock: mask: 0xffffffffffffffff max_cycles: 0x1cd42e4dffb, max_idle_ns: 881590591483 ns
+[    0.001519] tsc: Detected 3609.600 MHz processor
+[    0.008867] last_pfn = 0x7ffe0 max_arch_pfn = 0x400000000
+[    0.009309] MTRR map: 4 entries (3 fixed + 1 variable; max 19), built from 8 variable MTRRs
+[    0.009899] x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT  
+[    0.019924] found SMP MP-table at [mem 0x000f5ba0-0x000f5baf]
+[    0.020362] Using GB pages for direct mapping
+[    0.022457] ACPI: Early table checksum verification disabled
+[    0.022862] ACPI: RSDP 0x00000000000F59C0 000014 (v00 BOCHS )
+[    0.023284] ACPI: RSDT 0x000000007FFE1951 000034 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.023897] ACPI: FACP 0x000000007FFE17FD 000074 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.024514] ACPI: DSDT 0x000000007FFE0040 0017BD (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.025127] ACPI: FACS 0x000000007FFE0000 000040
+[    0.025465] ACPI: APIC 0x000000007FFE1871 000080 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.026077] ACPI: HPET 0x000000007FFE18F1 000038 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.026689] ACPI: WAET 0x000000007FFE1929 000028 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.027303] ACPI: Reserving FACP table memory at [mem 0x7ffe17fd-0x7ffe1870]
+[    0.027801] ACPI: Reserving DSDT table memory at [mem 0x7ffe0040-0x7ffe17fc]
+[    0.028298] ACPI: Reserving FACS table memory at [mem 0x7ffe0000-0x7ffe003f]
+[    0.028795] ACPI: Reserving APIC table memory at [mem 0x7ffe1871-0x7ffe18f0]
+[    0.029291] ACPI: Reserving HPET table memory at [mem 0x7ffe18f1-0x7ffe1928]
+[    0.029788] ACPI: Reserving WAET table memory at [mem 0x7ffe1929-0x7ffe1950]
+[    0.030744] No NUMA configuration found
+[    0.031026] Faking a node at [mem 0x0000000000000000-0x000000007ffdffff]
+[    0.031523] NODE_DATA(0) allocated [mem 0x7ffb4e80-0x7ffdfc7f]
+[    0.032517] Zone ranges:
+[    0.032702]   DMA      [mem 0x0000000000001000-0x0000000000ffffff]
+[    0.033142]   DMA32    [mem 0x0000000001000000-0x000000007ffdffff]
+[    0.033580]   Normal   empty
+[    0.033788]   Device   empty
+[    0.033995] Movable zone start for each node
+[    0.034300] Early memory node ranges
+[    0.034552]   node   0: [mem 0x0000000000001000-0x000000000009efff]
+[    0.034997]   node   0: [mem 0x0000000000100000-0x000000007ffdffff]
+[    0.035440] Initmem setup node 0 [mem 0x0000000000001000-0x000000007ffdffff]
+[    0.036619] On node 0, zone DMA: 1 pages in unavailable ranges
+[    0.037311] On node 0, zone DMA: 97 pages in unavailable ranges
+[    0.077164] On node 0, zone DMA32: 32 pages in unavailable ranges
+[    0.281211] kasan: KernelAddressSanitizer initialized
+[    0.281839] ACPI: PM-Timer IO Port: 0x608
+[    0.282154] ACPI: LAPIC_NMI (acpi_id[0xff] dfl dfl lint[0x1])
+[    0.282613] IOAPIC[0]: apic_id 0, version 17, address 0xfec00000, GSI 0-23
+[    0.283117] ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+[    0.283569] ACPI: INT_SRC_OVR (bus 0 bus_irq 5 global_irq 5 high level)
+[    0.284036] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+[    0.284504] ACPI: INT_SRC_OVR (bus 0 bus_irq 10 global_irq 10 high level)
+[    0.284983] ACPI: INT_SRC_OVR (bus 0 bus_irq 11 global_irq 11 high level)
+[    0.285477] ACPI: Using ACPI (MADT) for SMP configuration information
+[    0.285929] ACPI: HPET id: 0x8086a201 base: 0xfed00000
+[    0.286300] TSC deadline timer available
+[    0.286582] CPU topo: Max. logical packages:   1
+[    0.286911] CPU topo: Max. logical dies:       1
+[    0.287242] CPU topo: Max. dies per package:   1
+[    0.287572] CPU topo: Max. threads per core:   1
+[    0.287899] CPU topo: Num. cores per package:     2
+[    0.288244] CPU topo: Num. threads per package:   2
+[    0.288588] CPU topo: Allowing 2 present CPUs plus 0 hotplug CPUs
+[    0.289066] kvm-guest: APIC: eoi() replaced with kvm_guest_apic_eoi_write()
+[    0.289596] kvm-guest: KVM setup pv remote TLB flush
+[    0.289948] kvm-guest: setup PV sched yield
+[    0.290286] PM: hibernation: Registered nosave memory: [mem 0x00000000-0x00000fff]
+[    0.290822] PM: hibernation: Registered nosave memory: [mem 0x0009f000-0x000fffff]
+[    0.291362] [mem 0x80000000-0xfeffbfff] available for PCI devices
+[    0.291792] Booting paravirtualized kernel on KVM
+[    0.292132] clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645519600211568 ns
+[    0.292879] setup_percpu: NR_CPUS:8192 nr_cpumask_bits:2 nr_cpu_ids:2 nr_node_ids:1
+[    0.294626] percpu: Embedded 80 pages/cpu s290816 r8192 d28672 u1048576
+[    0.295259] kvm-guest: PV spinlocks enabled
+[    0.295568] PV qspinlock hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    0.296097] Kernel command line: net.ifnames=0 console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0 plymouth.enable=0
+[    0.297134] random: crng init done
+[    0.297380] printk: log buffer data + meta data: 262144 + 917504 = 1179648 bytes
+[    0.299024] Dentry cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.300046] Inode-cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    0.300900] Fallback order for Node 0: 0 
+[    0.300909] Built 1 zonelists, mobility grouping on.  Total pages: 524158
+[    0.301643] Policy zone: DMA32
+[    0.301854] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.302280] stackdepot: allocating hash table via alloc_large_system_hash
+[    0.302749] stackdepot hash table entries: 1048576 (order: 12, 16777216 bytes, linear)
+[    0.339969] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+[    0.340438] kmemleak: Kernel memory leak detector disabled
+[    0.367712] ftrace: allocating 74058 entries in 292 pages
+[    0.368119] ftrace: allocated 292 pages with 3 groups
+[    0.371460] Dynamic Preempt: voluntary
+[    0.372096] Running RCU self tests
+[    0.372334] Running RCU synchronous self tests
+[    0.372641] rcu: Preemptible hierarchical RCU implementation.
+[    0.373034] rcu: 	RCU lockdep checking is enabled.
+[    0.373362] rcu: 	RCU restricting CPUs from NR_CPUS=8192 to nr_cpu_ids=2.
+[    0.373828] 	Trampoline variant of Tasks RCU enabled.
+[    0.374175] 	Rude variant of Tasks RCU enabled.
+[    0.374485] 	Tracing variant of Tasks RCU enabled.
+[    0.374813] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.375332] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+[    0.375835] Running RCU synchronous self tests
+[    0.376142] RCU Tasks: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.
+[    0.376740] RCU Tasks Rude: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.
+[    0.377364] RCU Tasks Trace: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.
+[    0.430786] NR_IRQS: 524544, nr_irqs: 440, preallocated irqs: 16
+[    0.431704] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.438655] Console: colour VGA+ 80x25
+[    0.438975] printk: legacy console [ttyS0] enabled
+[    0.438975] printk: legacy console [ttyS0] enabled
+[    0.439637] printk: legacy bootconsole [earlyser0] disabled
+[    0.439637] printk: legacy bootconsole [earlyser0] disabled
+[    0.440409] Lock dependency validator: Copyright (c) 2006 Red Hat, Inc., Ingo Molnar
+[    0.440945] ... MAX_LOCKDEP_SUBCLASSES:  8
+[    0.441237] ... MAX_LOCK_DEPTH:          48
+[    0.441532] ... MAX_LOCKDEP_KEYS:        8192
+[    0.441839] ... CLASSHASH_SIZE:          4096
+[    0.442146] ... MAX_LOCKDEP_ENTRIES:     524288
+[    0.442465] ... MAX_LOCKDEP_CHAINS:      524288
+[    0.442784] ... CHAINHASH_SIZE:          262144
+[    0.443106]  memory used by lock dependency info: 54145 kB
+[    0.443490]  memory used for stack traces: 4224 kB
+[    0.443828]  per task-struct memory footprint: 1920 bytes
+[    0.444276] ACPI: Core revision 20250404
+[    0.444863] clocksource: hpet: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604467 ns
+[    0.445621] APIC: Switch to symmetric I/O mode setup
+[    0.446148] x2apic enabled
+[    0.446659] APIC: Switched APIC routing to: physical x2apic
+[    0.447064] kvm-guest: APIC: send_IPI_mask() replaced with kvm_send_ipi_mask()
+[    0.447583] kvm-guest: APIC: send_IPI_mask_allbutself() replaced with kvm_send_ipi_mask_allbutself()
+[    0.448227] kvm-guest: setup PV IPIs
+[    0.449377] ..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+[    0.449848] clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x3407c077a8d, max_idle_ns: 440795342283 ns
+[    0.450595] Calibrating delay loop (skipped) preset value.. 7219.20 BogoMIPS (lpj=14438400)
+[    0.451284] x86/cpu: User Mode Instruction Prevention (UMIP) activated
+[    0.451820] Last level iTLB entries: 4KB 0, 2MB 0, 4MB 0
+[    0.452198] Last level dTLB entries: 4KB 0, 2MB 0, 4MB 0, 1GB 0
+[    0.452646] Speculative Store Bypass: Mitigation: Speculative Store Bypass disabled via prctl
+[    0.453243] Spectre V2 : Mitigation: Enhanced / Automatic IBRS
+[    0.454608] ITS: Mitigation: Aligned branch/return thunks
+[    0.454988] Spectre V1 : Mitigation: usercopy/swapgs barriers and __user pointer sanitization
+[    0.455577] Spectre V2 : WARNING: Unprivileged eBPF is enabled with eIBRS on, data leaks possible via Spectre v2 BHB attacks!
+[    0.456358] Spectre V2 : Spectre v2 / PBRSB-eIBRS: Retire a single CALL on VMEXIT
+[    0.456884] Spectre V2 : mitigation: Enabling conditional Indirect Branch Prediction Barrier
+[    0.457475] Spectre V2 : Spectre BHI mitigation: SW BHB clearing on syscall and VM exit
+[    0.458058] x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'
+[    0.458588] x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'
+[    0.459050] x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'
+[    0.459512] x86/fpu: Supporting XSAVE feature 0x200: 'Protection Keys User registers'
+[    0.460078] x86/fpu: xstate_offset[2]:  576, xstate_sizes[2]:  256
+[    0.460530] x86/fpu: xstate_offset[9]:  832, xstate_sizes[9]:    8
+[    0.460982] x86/fpu: Enabled xstate features 0x207, context size is 840 bytes, using 'compacted' format.
+[    0.603165] Freeing SMP alternatives memory: 60K
+[    0.603578] pid_max: default: 32768 minimum: 301
+[    0.604113] LSM: initializing lsm=capability,yama,ima,evm
+[    0.604606] Yama: becoming mindful.
+[    0.605209] Mount-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.605752] Mountpoint-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.607583] Running RCU synchronous self tests
+[    0.607927] Running RCU synchronous self tests
+[    0.608563] smpboot: CPU0: 12th Gen Intel(R) Core(TM) i7-12700K (family: 0x6, model: 0x97, stepping: 0x2)
+[    0.610068] Performance Events: unsupported CPU family 6 model 151 no PMU driver, software events only.
+[    0.610585] signal: max sigframe size: 3632
+[    0.610585] rcu: Hierarchical SRCU implementation.
+[    0.610585] rcu: 	Max phase no-delay instances is 1000.
+[    0.610585] Timer migration: 1 hierarchy levels; 8 children per group; 1 crossnode level
+[    0.620491] NMI watchdog: Perf NMI watchdog permanently disabled
+[    0.621116] smp: Bringing up secondary CPUs ...
+[    0.622063] smpboot: x86: Booting SMP configuration:
+[    0.622450] .... node  #0, CPUs:      #1
+[    0.622867] smp: Brought up 1 node, 2 CPUs
+[    0.623268] smpboot: Total of 2 processors activated (14438.40 BogoMIPS)
+[    0.623900] Memory: 1545760K/2096632K available (79110K kernel code, 15338K rwdata, 18360K rodata, 16088K init, 68616K bss, 539468K reserved, 0K cma-reserved)
+[    0.626906] devtmpfs: initialized
+[    0.627431] x86/mm: Memory block size: 128MB
+[    0.636906] Running RCU synchronous self tests
+[    0.636906] Running RCU synchronous self tests
+[    0.638680] Running RCU Tasks wait API self tests
+[    0.638994] Running RCU Tasks Rude wait API self tests
+[    0.638994] Running RCU Tasks Trace wait API self tests
+[    0.658619] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.659424] posixtimers hash table entries: 1024 (order: 4, 73728 bytes, linear)
+[    0.660075] futex hash table entries: 512 (65536 bytes on 1 NUMA nodes, total 64 KiB, linear).
+[    0.661108] pinctrl core: initialized pinctrl subsystem
+[    0.662493] 
+[    0.662598] *************************************************************
+[    0.663101] **     NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE    **
+[    0.663602] **                                                         **
+[    0.664102] **  IOMMU DebugFS SUPPORT HAS BEEN ENABLED IN THIS KERNEL  **
+[    0.664603] **                                                         **
+[    0.665112] ** This means that this kernel is built to expose internal **
+[    0.665612] ** IOMMU data structures, which may compromise security on **
+[    0.666112] ** your system.                                            **
+[    0.666590] **                                                         **
+[    0.667090] ** If you see this message and you are not debugging the   **
+[    0.667614] ** kernel, report this immediately to your vendor!         **
+[    0.668115] **                                                         **
+[    0.668615] **     NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE    **
+[    0.669123] *************************************************************
+[    0.669689] PM: RTC time: 19:48:29, date: 2025-08-05
+[    0.673369] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.675085] DMA: preallocated 256 KiB GFP_KERNEL pool for atomic allocations
+[    0.675651] DMA: preallocated 256 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    0.676247] DMA: preallocated 256 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.676916] audit: initializing netlink subsys (disabled)
+[    0.677403] audit: type=2000 audit(1754423309.547:1): state=initialized audit_enabled=0 res=1
+[    0.677403] thermal_sys: Registered thermal governor 'fair_share'
+[    0.677403] thermal_sys: Registered thermal governor 'bang_bang'
+[    0.677403] thermal_sys: Registered thermal governor 'step_wise'
+[    0.677403] thermal_sys: Registered thermal governor 'user_space'
+[    0.678612] cpuidle: using governor ladder
+[    0.679375] cpuidle: using governor menu
+[    0.679375] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+[    0.683332] PCI: Using configuration type 1 for base access
+[    0.684045] kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.
+[    0.700375] Callback from call_rcu_tasks_trace() invoked.
+[    0.833267] HugeTLB: allocation took 0ms with hugepage_allocation_threads=1
+[    0.833855] HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.834350] HugeTLB: 16380 KiB vmemmap can be freed for a 1.00 GiB page
+[    0.834593] HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.835086] HugeTLB: 28 KiB vmemmap can be freed for a 2.00 MiB page
+[    0.844498] ACPI: Added _OSI(Module Device)
+[    0.844498] ACPI: Added _OSI(Processor Device)
+[    0.844717] ACPI: Added _OSI(Processor Aggregator Device)
+[    0.859407] ACPI: 1 ACPI AML tables successfully acquired and loaded
+[    0.874802] ACPI: Interpreter enabled
+[    0.875208] ACPI: PM: (supports S0 S3 S4 S5)
+[    0.875522] ACPI: Using IOAPIC for interrupt routing
+[    0.875986] PCI: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
+[    0.876643] PCI: Using E820 reservations for host bridge windows
+[    0.878041] ACPI: Enabled 2 GPEs in block 00 to 0F
+[    0.921525] ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-ff])
+[    0.922059] acpi PNP0A03:00: _OSC: OS supports [ASPM ClockPM Segments MSI EDR HPX-Type3]
+[    0.922599] acpi PNP0A03:00: _OSC: not requesting OS control; OS requires [ExtendedConfig ASPM ClockPM MSI]
+[    0.923452] acpi PNP0A03:00: fail to add MMCONFIG information, can't access extended configuration space under this bridge
+[    0.928263] acpiphp: Slot [3] registered
+[    0.928682] acpiphp: Slot [4] registered
+[    0.929141] acpiphp: Slot [5] registered
+[    0.929542] acpiphp: Slot [6] registered
+[    0.929943] acpiphp: Slot [7] registered
+[    0.930347] acpiphp: Slot [8] registered
+[    0.930722] acpiphp: Slot [9] registered
+[    0.931124] acpiphp: Slot [10] registered
+[    0.931530] acpiphp: Slot [11] registered
+[    0.931943] acpiphp: Slot [12] registered
+[    0.932374] acpiphp: Slot [13] registered
+[    0.932783] acpiphp: Slot [14] registered
+[    0.933202] acpiphp: Slot [15] registered
+[    0.933617] acpiphp: Slot [16] registered
+[    0.934046] acpiphp: Slot [17] registered
+[    0.934451] acpiphp: Slot [18] registered
+[    0.934699] acpiphp: Slot [19] registered
+[    0.935104] acpiphp: Slot [20] registered
+[    0.935552] acpiphp: Slot [21] registered
+[    0.935964] acpiphp: Slot [22] registered
+[    0.936369] acpiphp: Slot [23] registered
+[    0.936789] acpiphp: Slot [24] registered
+[    0.937218] acpiphp: Slot [25] registered
+[    0.937625] acpiphp: Slot [26] registered
+[    0.938034] acpiphp: Slot [27] registered
+[    0.938443] acpiphp: Slot [28] registered
+[    0.938757] acpiphp: Slot [29] registered
+[    0.939168] acpiphp: Slot [30] registered
+[    0.939573] acpiphp: Slot [31] registered
+[    0.939928] PCI host bridge to bus 0000:00
+[    0.940277] pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7 window]
+[    0.940785] pci_bus 0000:00: root bus resource [io  0x0d00-0xffff window]
+[    0.941282] pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff window]
+[    0.941829] pci_bus 0000:00: root bus resource [mem 0x80000000-0xfebfffff window]
+[    0.942393] pci_bus 0000:00: root bus resource [mem 0x100000000-0x17fffffff window]
+[    0.946595] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    0.947098] pci 0000:00:00.0: [8086:1237] type 00 class 0x060000 conventional PCI endpoint
+[    0.954969] pci 0000:00:01.0: [8086:7000] type 00 class 0x060100 conventional PCI endpoint
+[    0.956705] pci 0000:00:01.1: [8086:7010] type 00 class 0x010180 conventional PCI endpoint
+[    0.957744] pci 0000:00:01.1: BAR 4 [io  0xc040-0xc04f]
+[    0.958149] pci 0000:00:01.1: BAR 0 [io  0x01f0-0x01f7]: legacy IDE quirk
+[    0.958593] pci 0000:00:01.1: BAR 1 [io  0x03f6]: legacy IDE quirk
+[    0.959034] pci 0000:00:01.1: BAR 2 [io  0x0170-0x0177]: legacy IDE quirk
+[    0.959517] pci 0000:00:01.1: BAR 3 [io  0x0376]: legacy IDE quirk
+[    0.960415] pci 0000:00:01.3: [8086:7113] type 00 class 0x068000 conventional PCI endpoint
+[    0.961247] pci 0000:00:01.3: quirk: [io  0x0600-0x063f] claimed by PIIX4 ACPI
+[    0.961767] pci 0000:00:01.3: quirk: [io  0x0700-0x070f] claimed by PIIX4 SMB
+[    0.962743] pci 0000:00:02.0: [1234:1111] type 00 class 0x030000 conventional PCI endpoint
+[    0.971122] pci 0000:00:02.0: BAR 0 [mem 0xfd000000-0xfdffffff pref]
+[    0.971681] pci 0000:00:02.0: BAR 2 [mem 0xfebf0000-0xfebf0fff]
+[    0.972136] pci 0000:00:02.0: ROM [mem 0xfebe0000-0xfebeffff pref]
+[    0.972863] pci 0000:00:02.0: Video device with shadowed ROM at [mem 0x000c0000-0x000dffff]
+[    0.981699] pci 0000:00:03.0: [8086:100e] type 00 class 0x020000 conventional PCI endpoint
+[    0.983070] pci 0000:00:03.0: BAR 0 [mem 0xfebc0000-0xfebdffff]
+[    0.983604] pci 0000:00:03.0: BAR 1 [io  0xc000-0xc03f]
+[    0.984091] pci 0000:00:03.0: ROM [mem 0xfeb80000-0xfebbffff pref]
+[    1.001808] ACPI: PCI: Interrupt link LNKA configured for IRQ 10
+[    1.003065] ACPI: PCI: Interrupt link LNKB configured for IRQ 10
+[    1.004363] ACPI: PCI: Interrupt link LNKC configured for IRQ 11
+[    1.005524] ACPI: PCI: Interrupt link LNKD configured for IRQ 11
+[    1.006283] ACPI: PCI: Interrupt link LNKS configured for IRQ 9
+[    1.013065] iommu: Default domain type: Translated
+[    1.013065] iommu: DMA domain TLB invalidation policy: lazy mode
+[    1.015145] SCSI subsystem initialized
+[    1.019541] ACPI: bus type USB registered
+[    1.019650] usbcore: registered new interface driver usbfs
+[    1.020167] usbcore: registered new interface driver hub
+[    1.020638] usbcore: registered new device driver usb
+[    1.020638] pps_core: LinuxPPS API ver. 1 registered
+[    1.020638] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    1.020638] PTP clock support registered
+[    1.024271] EDAC MC: Ver: 3.0.0
+[    1.029643] NetLabel: Initializing
+[    1.030009] NetLabel:  domain hash size = 128
+[    1.030452] NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+[    1.030864] NetLabel:  unlabeled traffic allowed by default
+[    1.032259] PCI: Using ACPI for IRQ routing
+[    1.033031] pci 0000:00:02.0: vgaarb: setting as boot VGA device
+[    1.033501] pci 0000:00:02.0: vgaarb: bridge control possible
+[    1.033938] pci 0000:00:02.0: vgaarb: VGA device added: decodes=io+mem,owns=io+mem,locks=none
+[    1.034594] vgaarb: loaded
+[    1.039337] hpet0: at MMIO 0xfed00000, IRQs 2, 8, 0
+[    1.039836] hpet0: 3 comparators, 64-bit 100.000000 MHz counter
+[    1.045086] clocksource: Switched to clocksource kvm-clock
+[    1.045560] VFS: Disk quotas dquot_6.6.0
+[    1.045560] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    1.046939] pnp: PnP ACPI init
+[    1.055102] pnp: PnP ACPI: found 6 devices
+[    1.074284] clocksource: acpi_pm: mask: 0xffffff max_cycles: 0xffffff, max_idle_ns: 2085701024 ns
+[    1.075399] NET: Registered PF_INET protocol family
+[    1.076039] IP idents hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    1.077904] tcp_listen_portaddr_hash hash table entries: 1024 (order: 4, 73728 bytes, linear)
+[    1.078620] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    1.079274] TCP established hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    1.080267] TCP bind hash table entries: 16384 (order: 9, 2359296 bytes, linear)
+[    1.082942] TCP: Hash tables configured (established 16384 bind 16384)
+[    1.083662] UDP hash table entries: 1024 (order: 6, 262144 bytes, linear)
+[    1.084380] UDP-Lite hash table entries: 1024 (order: 6, 262144 bytes, linear)
+[    1.085364] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    1.087592] RPC: Registered named UNIX socket transport module.
+[    1.088065] RPC: Registered udp transport module.
+[    1.088425] RPC: Registered tcp transport module.
+[    1.088784] RPC: Registered tcp-with-tls transport module.
+[    1.089201] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    1.089730] pci_bus 0000:00: resource 4 [io  0x0000-0x0cf7 window]
+[    1.090205] pci_bus 0000:00: resource 5 [io  0x0d00-0xffff window]
+[    1.090697] pci_bus 0000:00: resource 6 [mem 0x000a0000-0x000bffff window]
+[    1.091221] pci_bus 0000:00: resource 7 [mem 0x80000000-0xfebfffff window]
+[    1.091746] pci_bus 0000:00: resource 8 [mem 0x100000000-0x17fffffff window]
+[    1.092589] pci 0000:00:01.0: PIIX3: Enabling Passive Release
+[    1.093042] pci 0000:00:00.0: Limiting direct PCI/PCI transfers
+[    1.093596] PCI: CLS 0 bytes, default 64
+[    1.094065] ACPI: bus type thunderbolt registered
+[    1.094898] clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x3407c077a8d, max_idle_ns: 440795342283 ns
+[    3.109182] Initialise system trusted keyrings
+[    3.109660] Key type blacklist registered
+[    3.110801] workingset: timestamp_bits=36 max_order=19 bucket_order=0
+[    3.113220] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    3.115485] NFS: Registering the id_resolver key type
+[    3.115908] Key type id_resolver registered
+[    3.116227] Key type id_legacy registered
+[    3.116579] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    3.117118] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    3.118108] fuse: init (API version 7.44)
+[    3.119036] SGI XFS with ACLs, security attributes, realtime, quota, no debug enabled
+[    3.121008] 9p: Installing v9fs 9p2000 file system support
+[    3.134076] Key type asymmetric registered
+[    3.134446] Asymmetric key parser 'x509' registered
+[    3.134995] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 242)
+[    3.135876] io scheduler mq-deadline registered
+[    3.136376] io scheduler bfq registered
+[    3.137223] ledtrig-cpu: registered to indicate activity on CPUs
+[    3.139216] IPMI message handler: version 39.2
+[    3.139658] ipmi device interface
+[    3.141860] input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0
+[    3.142937] ACPI: button: Power Button [PWRF]
+[    3.144801] ERST DBG: ERST support is disabled.
+[    3.146556] Serial: 8250/16550 driver, 32 ports, IRQ sharing enabled
+[    3.148079] 00:04: ttyS0 at I/O 0x3f8 (irq = 4, base_baud = 115200) is a 16550A
+[    3.155610] Callback from call_rcu_tasks() invoked.
+[    3.177411] Linux agpgart interface v0.103
+[    3.180423] ACPI: bus type drm_connector registered
+[    3.202924] brd: module loaded
+[    3.215287] loop: module loaded
+[    3.223755] scsi host0: ata_piix
+[    3.225138] scsi host1: ata_piix
+[    3.225869] ata1: PATA max MWDMA2 cmd 0x1f0 ctl 0x3f6 bmdma 0xc040 irq 14 lpm-pol 0
+[    3.226561] ata2: PATA max MWDMA2 cmd 0x170 ctl 0x376 bmdma 0xc048 irq 15 lpm-pol 0
+[    3.230117] tun: Universal TUN/TAP device driver, 1.6
+[    3.231272] e100: Intel(R) PRO/100 Network Driver
+[    3.231697] e100: Copyright(c) 1999-2006 Intel Corporation
+[    3.232292] e1000: Intel(R) PRO/1000 Network Driver
+[    3.232722] e1000: Copyright (c) 1999-2006 Intel Corporation.
+[    3.382630] ata1: found unknown device (class 0)
+[    3.383882] ata1.00: ATA-7: QEMU HARDDISK, 2.5+, max UDMA/100
+[    3.384553] ata1.00: 17196647 sectors, multi 16: LBA48 
+[    3.386318] scsi 0:0:0:0: Direct-Access     ATA      QEMU HARDDISK    2.5+ PQ: 0 ANSI: 5
+[    3.386590] ata2: found unknown device (class 0)
+[    3.388196] ata2.00: ATAPI: QEMU DVD-ROM, 2.5+, max UDMA/100
+[    3.388701] scsi 0:0:0:0: Attached scsi generic sg0 type 0
+[    3.390612] sd 0:0:0:0: [sda] 17196647 512-byte logical blocks: (8.80 GB/8.20 GiB)
+[    3.391673] sd 0:0:0:0: [sda] Write Protect is off
+[    3.392326] sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[    3.393445] sd 0:0:0:0: [sda] Preferred minimum I/O size 512 bytes
+[    3.394451] scsi 1:0:0:0: CD-ROM            QEMU     QEMU DVD-ROM     2.5+ PQ: 0 ANSI: 5
+[    3.417366] scsi 1:0:0:0: Attached scsi generic sg1 type 5
+[    3.419905] sd 0:0:0:0: [sda] Attached SCSI disk
+[    3.807607] ACPI: \_SB_.LNKC: Enabled at IRQ 11
+[    4.118369] e1000 0000:00:03.0 eth0: (PCI:33MHz:32-bit) 52:54:00:12:34:56
+[    4.118958] e1000 0000:00:03.0 eth0: Intel(R) PRO/1000 Network Connection
+[    4.119655] e1000e: Intel(R) PRO/1000 Network Driver
+[    4.120035] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    4.120604] igb: Intel(R) Gigabit Ethernet Network Driver
+[    4.121013] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    4.121767] PPP generic driver version 2.4.2
+[    4.123057] VFIO - User Level meta-driver version: 0.3
+[    4.124496] usbcore: registered new interface driver uas
+[    4.125028] usbcore: registered new interface driver usb-storage
+[    4.126458] i8042: PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
+[    4.127978] serio: i8042 KBD port at 0x60,0x64 irq 1
+[    4.128431] serio: i8042 AUX port at 0x60,0x64 irq 12
+[    4.130141] mousedev: PS/2 mouse device common for all mice
+[    4.132081] input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input1
+[    4.134077] input: VirtualPS/2 VMware VMMouse as /devices/platform/i8042/serio1/input/input4
+[    4.134864] rtc_cmos 00:05: RTC can wake from S4
+[    4.135775] input: VirtualPS/2 VMware VMMouse as /devices/platform/i8042/serio1/input/input3
+[    4.137180] rtc_cmos 00:05: registered as rtc0
+[    4.137602] rtc_cmos 00:05: setting system clock to 2025-08-05T19:48:32 UTC (1754423312)
+[    4.138536] rtc_cmos 00:05: alarms up to one day, y3k, 242 bytes nvram, hpet irqs
+[    4.139164] i2c_dev: i2c /dev entries driver
+[    4.139604] device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
+[    4.140536] device-mapper: uevent: version 1.0.3
+[    4.141265] device-mapper: ioctl: 4.50.0-ioctl (2025-04-28) initialised: dm-devel@lists.linux.dev
+[    4.141954] intel_pstate: CPU model not supported
+[    4.142555] sdhci: Secure Digital Host Controller Interface driver
+[    4.143021] sdhci: Copyright(c) Pierre Ossman
+[    4.143541] sdhci-pltfm: SDHCI platform and OF driver helper
+[    4.144498] drop_monitor: Initializing network drop monitor service
+[    4.145321] NET: Registered PF_INET6 protocol family
+[    4.148939] Segment Routing with IPv6
+[    4.149311] In-situ OAM (IOAM) with IPv6
+[    4.149679] NET: Registered PF_PACKET protocol family
+[    4.150276] 9pnet: Installing 9P2000 support
+[    4.150759] Key type dns_resolver registered
+[    4.153135] IPI shorthand broadcast: enabled
+[    4.202212] sched_clock: Marking stable (4184005006, 14407297)->(4204058775, -5646472)
+[    4.203979] registered taskstats version 1
+[    4.204854] Loading compiled-in X.509 certificates
+[    4.268610] Demotion targets for Node 0: null
+[    4.270234] Key type .fscrypt registered
+[    4.270592] Key type fscrypt-provisioning registered
+[    4.273173] Key type encrypted registered
+[    4.273544] ima: No TPM chip found, activating TPM-bypass!
+[    4.273968] ima: Allocated hash algorithm: sha1
+[    4.274369] ima: No architecture policies found
+[    4.274861] evm: Initialising EVM extended attributes:
+[    4.275246] evm: security.selinux
+[    4.275498] evm: security.SMACK64
+[    4.275750] evm: security.SMACK64EXEC
+[    4.276026] evm: security.SMACK64TRANSMUTE
+[    4.276334] evm: security.SMACK64MMAP
+[    4.276610] evm: security.apparmor
+[    4.276869] evm: security.ima
+[    4.277100] evm: security.capability
+[    4.277370] evm: HMAC attrs: 0x1
+[    4.279478] PM:   Magic number: 5:192:849
+[    4.279904] graphics fbcon: hash matches
+[    4.280962] RAS: Correctable Errors collector initialized.
+[    4.281968] clk: Disabling unused clocks
+[    4.282300] PM: genpd: Disabling unused power domains
+[    4.283332] md: Waiting for all devices to be available before autodetect
+[    4.283681] md: If you don't use raid, use raid=noautodetect
+[    4.283973] md: Autodetecting RAID arrays.
+[    4.284195] md: autorun ...
+[    4.284349] md: ... autorun DONE.
+[    4.292468] EXT4-fs (sda): mounted filesystem 088740a9-c8b4-422c-999d-a804eb68a4da ro with ordered data mode. Quota mode: none.
+[    4.293321] VFS: Mounted root (ext4 filesystem) readonly on device 8:0.
+[    4.295852] devtmpfs: mounted
+[    4.315793] Freeing unused decrypted memory: 2028K
+[    4.324674] Freeing unused kernel image (initmem) memory: 16088K
+[    4.325282] Write protecting the kernel read-only data: 98304k
+[    4.327506] Freeing unused kernel image (text/rodata gap) memory: 760K
+[    4.327980] Freeing unused kernel image (rodata/data gap) memory: 72K
+[    4.397266] x86/mm: Checked W+X mappings: passed, no W+X pages found.
+[    4.397682] Run /sbin/init as init process
+[    4.547809] systemd[1]: systemd 252-15.el9 running in system mode (+PAM +AUDIT +SELINUX -APPARMOR +IMA +SMACK +SECCOMP +GCRYPT +GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS -FIDO2 +IDN2 -IDN -IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY +P11KIT -QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK +XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+[    4.549946] systemd[1]: Detected virtualization kvm.
+[    4.550230] systemd[1]: Detected architecture x86-64.
+
+Welcome to [0;31mCentOS Stream 9[0m!
+
+[    4.554874] systemd[1]: Hostname set to <test>.
+[    4.791504] systemd-rc-local-generator[124]: /etc/rc.d/rc.local is not marked executable, skipping.
+[    5.038971] systemd[1]: Queued start job for default target Multi-User System.
+[    5.065012] systemd[1]: Created slice Virtual Machine and Container Slice.
+[[0;32m  OK  [0m] Created slice [0;1;39mVirtual Machine and Container Slice[0m.
+[    5.069506] systemd[1]: Created slice Slice /system/getty.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/getty[0m.
+[    5.072070] systemd[1]: Created slice Slice /system/modprobe.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/modprobe[0m.
+[    5.074549] systemd[1]: Created slice Slice /system/serial-getty.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/serial-getty[0m.
+[    5.076964] systemd[1]: Created slice Slice /system/sshd-keygen.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/sshd-keygen[0m.
+[    5.079255] systemd[1]: Created slice User and Session Slice.
+[[0;32m  OK  [0m] Created slice [0;1;39mUser and Session Slice[0m.
+[    5.080423] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[[0;32m  OK  [0m] Started [0;1;39mForward Password R…uests to Wall Directory Watch[0m.
+[    5.082227] systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+[[0;32m  OK  [0m] Set up automount [0;1;39mArbitrary…s File System Automount Point[0m.
+[    5.083423] systemd[1]: Reached target Local Integrity Protected Volumes.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal Integrity Protected Volumes[0m.
+[    5.084370] systemd[1]: Reached target Slice Units.
+[[0;32m  OK  [0m] Reached target [0;1;39mSlice Units[0m.
+[    5.085096] systemd[1]: Reached target Swaps.
+[[0;32m  OK  [0m] Reached target [0;1;39mSwaps[0m.
+[    5.085758] systemd[1]: Reached target Local Verity Protected Volumes.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal Verity Protected Volumes[0m.
+[    5.087057] systemd[1]: Listening on Device-mapper event daemon FIFOs.
+[[0;32m  OK  [0m] Listening on [0;1;39mDevice-mapper event daemon FIFOs[0m.
+[    5.088493] systemd[1]: Listening on LVM2 poll daemon socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mLVM2 poll daemon socket[0m.
+[    5.089471] systemd[1]: multipathd control socket was skipped because of an unmet condition check (ConditionPathExists=/etc/multipath.conf).
+[    5.114043] systemd[1]: Listening on RPCbind Server Activation Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mRPCbind Server Activation Socket[0m.
+[    5.115393] systemd[1]: Reached target RPC Port Mapper.
+[[0;32m  OK  [0m] Reached target [0;1;39mRPC Port Mapper[0m.
+[    5.118046] systemd[1]: Listening on Process Core Dump Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mProcess Core Dump Socket[0m.
+[    5.119286] systemd[1]: Listening on initctl Compatibility Named Pipe.
+[[0;32m  OK  [0m] Listening on [0;1;39minitctl Compatibility Named Pipe[0m.
+[    5.120734] systemd[1]: Listening on Journal Socket (/dev/log).
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Socket (/dev/log)[0m.
+[    5.122125] systemd[1]: Listening on Journal Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Socket[0m.
+[    5.124153] systemd[1]: Listening on udev Control Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mudev Control Socket[0m.
+[    5.125571] systemd[1]: Listening on udev Kernel Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mudev Kernel Socket[0m.
+[    5.154939] systemd[1]: Mounting Huge Pages File System...
+         Mounting [0;1;39mHuge Pages File System[0m...
+[    5.162948] systemd[1]: Mounting POSIX Message Queue File System...
+         Mounting [0;1;39mPOSIX Message Queue File System[0m...
+[    5.170766] systemd[1]: Mounting Kernel Debug File System...
+         Mounting [0;1;39mKernel Debug File System[0m...
+[    5.190883] systemd[1]: Mounting Kernel Trace File System...
+         Mounting [0;1;39mKernel Trace File System[0m...
+[    5.192448] systemd[1]: Kernel Module supporting RPCSEC_GSS was skipped because of an unmet condition check (ConditionPathExists=/etc/krb5.keytab).
+[    5.193606] systemd[1]: Create List of Static Device Nodes was skipped because of an unmet condition check (ConditionFileNotEmpty=/lib/modules/6.16.0-rc7-4571b09c3dbc+/modules.devname).
+[    5.199450] systemd[1]: Starting Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+         Starting [0;1;39mMonitoring of LVM…meventd or progress polling[0m...
+[    5.206719] systemd[1]: Starting Load Kernel Module configfs...
+         Starting [0;1;39mLoad Kernel Module configfs[0m...
+[    5.212638] systemd[1]: Starting Load Kernel Module drm...
+         Starting [0;1;39mLoad Kernel Module drm[0m...
+[    5.226057] systemd[1]: Starting Load Kernel Module fuse...
+         Starting [0;1;39mLoad Kernel Module fuse[0m...
+[    5.234928] systemd[1]: Starting Read and set NIS domainname from /etc/sysconfig/network...
+         Starting [0;1;39mRead and set NIS …from /etc/sysconfig/network[0m...
+[    5.249965] systemd[1]: Starting Journal Service...
+         Starting [0;1;39mJournal Service[0m...
+[    5.259555] systemd[1]: Starting Load Kernel Modules...
+         Starting [0;1;39mLoad Kernel Modules[0m...
+[    5.271344] systemd[1]: Starting Generate network units from Kernel command line...
+         Starting [0;1;39mGenerate network …ts from Kernel command line[0m...
+[    5.287295] systemd[1]: Starting Remount Root and Kernel File Systems...
+         Starting [0;1;39mRemount Root and Kernel File Systems[0m...
+[    5.290770] systemd[1]: Repartition Root Disk was skipped because no trigger condition checks were met.
+[    5.328222] systemd[1]: Starting Coldplug All udev Devices...
+         Starting [0;1;39mColdplug All udev Devices[0m...
+[    5.340180] systemd[1]: Mounted Huge Pages File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mHuge Pages File System[0m.
+[    5.346982] systemd[1]: Mounted POSIX Message Queue File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mPOSIX Message Queue File System[0m.
+[    5.348264] systemd[1]: Mounted Kernel Debug File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Debug File System[0m.
+[    5.349427] systemd[1]: Mounted Kernel Trace File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Trace File System[0m.
+[    5.352219] systemd[1]: Finished Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling.
+[[0;32m  OK  [0m] Finished [0;1;39mMonitoring of LVM… dmeventd or progress polling[0m.
+[    5.357858] systemd[1]: modprobe@configfs.service: Deactivated successfully.
+[    5.363679] systemd[1]: Finished Load Kernel Module configfs.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module configfs[0m.
+[    5.365755] systemd[1]: modprobe@drm.service: Deactivated successfully.
+[    5.371107] systemd[1]: Finished Load Kernel Module drm.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module drm[0m.
+[    5.373136] systemd[1]: modprobe@fuse.service: Deactivated successfully.
+[    5.378497] systemd[1]: Finished Load Kernel Module fuse.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module fuse[0m.
+[    5.382502] systemd[1]: Finished Read and set NIS domainname from /etc/sysconfig/network.
+[[0;32m  OK  [0m] Finished [0;1;39mRead and set NIS …e from /etc/sysconfig/network[0m.
+[    5.384099] systemd[1]: systemd-modules-load.service: Main process exited, code=exited, status=1/FAILURE
+[    5.385255] systemd[1]: systemd-modules-load.service: Failed with result 'exit-code'.
+[    5.387201] systemd[1]: Failed to start Load Kernel Modules.
+[[0;1;31mFAILED[0m] Failed to start [0;1;39mLoad Kernel Modules[0m.
+See 'systemctl status systemd-modules-load.service' for details.
+[    5.389762] systemd[1]: Finished Generate network units from Kernel command line.
+[[0;32m  OK  [0m] Finished [0;1;39mGenerate network units from Kernel command line[0m.
+[    5.392765] systemd[1]: Reached target Preparation for Network.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Network[0m.
+[    5.399266] EXT4-fs (sda): warning: mounting fs with errors, running e2fsck is recommended
+[    5.410461] EXT4-fs (sda): re-mounted 088740a9-c8b4-422c-999d-a804eb68a4da r/w.
+[    5.423067] systemd[1]: Mounting FUSE Control File System...
+         Mounting [0;1;39mFUSE Control File System[0m...
+[    5.434524] systemd[1]: Mounting Kernel Configuration File System...
+         Mounting [0;1;39mKernel Configuration File System[0m...
+[    5.441067] systemd[1]: Starting Apply Kernel Variables...
+         Starting [0;1;39mApply Kernel Variables[0m...
+[    5.450160] systemd[1]: Started Journal Service.
+[[0;32m  OK  [0m] Started [0;1;39mJournal Service[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mRemount Root and Kernel File Systems[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mFUSE Control File System[0m.
+         Starting [0;1;39mFlush Journal to Persistent Storage[0m...
+         Starting [0;1;39mLoad/Save Random Seed[0m...
+         Starting [0;1;39mCreate Static Device Nodes in /dev[0m...
+[    5.523791] systemd-journald[146]: Received client request to flush runtime journal.
+         Starting [0;1;39mSetup Virtual Console[0m...
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Configuration File System[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mApply Kernel Variables[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mFlush Journal to Persistent Storage[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad/Save Random Seed[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate Static Device Nodes in /dev[0m.
+         Starting [0;1;39mRule-based Manage…for Device Events and Files[0m...
+[[0;32m  OK  [0m] Started [0;1;39mRule-based Manager for Device Events and Files[0m.
+         Starting [0;1;39mAuto-connect to s…E devices found during boot[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mAuto-connect to s…VME devices found during boot[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mSetup Virtual Console[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mColdplug All udev Devices[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDispatch Password …ts to Console Directory Watch[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal Encrypted Volumes[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPath Units[0m.
+         Starting [0;1;39mWait for udev To …plete Device Initialization[0m...
+[[0;32m  OK  [0m] Found device [0;1;39m/dev/ttyS0[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLoad/Save RF …itch Status /dev/rfkill Watch[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mWait for udev To Complete Device Initialization[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Local File Systems[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal File Systems[0m.
+         Starting [0;1;39mTell Plymouth To Write Out Runtime Data[0m...
+         Starting [0;1;39mAutomatic Boot Loader Update[0m...
+         Starting [0;1;39mCreate Volatile Files and Directories[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mTell Plymouth To Write Out Runtime Data[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mAutomatic Boot Loader Update[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate Volatile Files and Directories[0m.
+         Mounting [0;1;39mRPC Pipe File System[0m...
+         Starting [0;1;39mSecurity Auditing Service[0m...
+         Starting [0;1;39mRPC Bind[0m...
+[[0;32m  OK  [0m] Mounted [0;1;39mRPC Pipe File System[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mrpc_pipefs.target[0m.
+[[0;32m  OK  [0m] Started [0;1;39mRPC Bind[0m.
+[[0;32m  OK  [0m] Started [0;1;39mSecurity Auditing Service[0m.
+         Starting [0;1;39mRecord System Boot/Shutdown in UTMP[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mRecord System Boot/Shutdown in UTMP[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSystem Initialization[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDaily rotation of log files[0m.
+[[0;32m  OK  [0m] Started [0;1;39mUpdates mlocate database every day[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDaily Cleanup of Temporary Directories[0m.
+[[0;32m  OK  [0m] Started [0;1;39mdaily update of the root trust anchor for DNSSEC[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mTimer Units[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mD-Bus System Message Bus Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mOpen-iSCSI iscsid Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mOpen-iSCSI iscsiuio Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mSSSD Kerberos…ache Manager responder socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt interface local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mVirtual machine lock manager socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mVirtual machine log manager socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt network local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt nodedev local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt nwfilter local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt proxy local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt qemu local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt qemu admin socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt qemu local read-only socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt secret local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt storage local socket[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSocket Units[0m.
+         Starting [0;1;39mD-Bus System Message Bus[0m...
+[[0;32m  OK  [0m] Started [0;1;39mD-Bus System Message Bus[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mBasic System[0m.
+         Starting [0;1;39mNetwork Manager[0m...
+         Starting [0;1;39mNTP client/server[0m...
+         Starting [0;1;39mRestore /run/initramfs on shutdown[0m...
+[[0;32m  OK  [0m] Started [0;1;39mirqbalance daemon[0m.
+[[0;32m  OK  [0m] Started [0;1;39mlibstoragemgmt plug-in server daemon[0m.
+[[0;32m  OK  [0m] Started [0;1;39mMachine Check Exception Logging Daemon[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39msshd-keygen.target[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mUser and Group Name Lookups[0m.
+         Starting [0;1;39mUser Login Management[0m...
+         Starting [0;1;39mVirtual Machine a…tainer Registration Service[0m...
+         Starting [0;1;39mupdate of the roo…NSSEC validation in unbound[0m...
+         Starting [0;1;39mRotate log files[0m...
+[[0;32m  OK  [0m] Started [0;1;39mUpdate a database for mlocate[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mRestore /run/initramfs on shutdown[0m.
+[[0;32m  OK  [0m] Started [0;1;39mNTP client/server[0m.
+[[0;32m  OK  [0m] Started [0;1;39mVirtual Machine an…ontainer Registration Service[0m.
+         Starting [0;1;39mHostname Service[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mupdate of the roo… DNSSEC validation in unbound[0m.
+[[0;32m  OK  [0m] Started [0;1;39mUser Login Management[0m.
+[[0;32m  OK  [0m] Started [0;1;39mHostname Service[0m.
+         Starting [0;1;39mNetwork Manager Script Dispatcher Service[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mRotate log files[0m.
+[[0;32m  OK  [0m] Started [0;1;39mNetwork Manager Script Dispatcher Service[0m.
+[    8.639082] e1000: eth0 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[[0;32m  OK  [0m] Started [0;1;39mNetwork Manager[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNetwork[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNetwork is Online[0m.
+         Starting [0;1;39mGSSAPI Proxy Daemon[0m...
+         Starting [0;1;39mNotify NFS peers of a restart[0m...
+         Starting [0;1;39mSystem Logging Service[0m...
+         Starting [0;1;39mOpenSSH server daemon[0m...
+         Starting [0;1;39mDynamic System Tuning Daemon[0m...
+[[0;32m  OK  [0m] Started [0;1;39mNotify NFS peers of a restart[0m.
+[[0;32m  OK  [0m] Started [0;1;39mGSSAPI Proxy Daemon[0m.
+[[0;32m  OK  [0m] Started [0;1;39mOpenSSH server daemon[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNFS client services[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Remote File Systems[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mRemote File Systems[0m.
+         Starting [0;1;39mPermit User Sessions[0m...
+         Starting [0;1;39mVirtualization qemu daemon[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mPermit User Sessions[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDeferred execution scheduler[0m.
+[[0;32m  OK  [0m] Started [0;1;39mCommand Scheduler[0m.
+         Starting [0;1;39mHold until boot process finishes up[0m...
+         Starting [0;1;39mTerminate Plymouth Boot Screen[0m...
+[[0;32m  OK  [0m] Started [0;1;39mSystem Logging Service[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mHold until boot process finishes up[0m.
+[[0;32m  OK  [0m] Started [0;1;39mGetty on tty1[0m.
+[[0;32m  OK  [0m] Started [0;1;39mSerial Getty on ttyS0[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mLogin Prompts[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mTerminate Plymouth Boot Screen[0m.
+[[0;32m  OK  [0m] Started [0;1;39mVirtualization qemu daemon[0m.
+         Starting [0;1;39mAuthorization Manager[0m...
+[[0;32m  OK  [0m] Started [0;1;39mAuthorization Manager[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDynamic System Tuning Daemon[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mMulti-User System[0m.
+         Starting [0;1;39mRecord Runlevel Change in UTMP[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mRecord Runlevel Change in UTMP[0m.
+
+CentOS Stream 9
+Kernel 6.16.0-rc7-4571b09c3dbc+ on an x86_64
+
+Activate the web console with: systemctl enable --now cockpit.socket
+
+test login: [   17.426967] repro[730]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   17.427683] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   17.770968] repro[735]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   17.771696] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   18.076647] repro[743]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   18.077658] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   18.406040] repro[751]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   18.406801] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   18.713503] repro[759]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   18.714391] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   19.016039] repro[767]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   19.016759] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   19.342378] repro[777]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   19.343450] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   19.654707] repro[785]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   19.655405] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   19.962033] repro[793]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   19.962823] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   20.274492] repro[801]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   20.275216] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   22.435409] show_signal_msg: 6 callbacks suppressed
+[   22.435422] repro[857]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   22.436779] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   22.761310] repro[865]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   22.762328] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   23.094669] repro[873]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   23.095388] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   23.396074] repro[881]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   23.396874] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   23.692880] repro[889]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   23.693589] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   23.999903] repro[897]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   24.000642] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   24.308186] repro[905]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   24.308894] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   24.637936] repro[913]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   24.638675] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   24.964916] repro[921]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   24.965640] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   25.285807] repro[929]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   25.286599] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   27.506691] show_signal_msg: 6 callbacks suppressed
+[   27.506701] repro[985]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   27.507656] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   27.817111] repro[993]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   27.817887] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   28.131994] repro[1001]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   28.132712] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   28.439945] repro[1009]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   28.440723] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   28.742769] repro[1017]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   28.743655] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   29.067631] repro[1025]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   29.068519] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   29.370446] repro[1033]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   29.371156] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   29.671336] repro[1041]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   29.672062] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   29.982292] repro[1049]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   29.983131] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   30.290861] repro[1057]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   30.291564] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   32.771294] show_signal_msg: 7 callbacks suppressed
+[   32.771303] repro[1121]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   32.772247] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   33.091976] repro[1129]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   33.092697] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   33.421596] repro[1137]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   33.422359] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   33.728781] repro[1145]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   33.729526] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   34.044017] repro[1153]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   34.044722] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   34.346744] repro[1161]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   34.347429] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   34.647100] repro[1169]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   34.647989] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   34.964260] repro[1177]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   34.964985] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   35.301054] repro[1186]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   35.301799] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   35.616812] repro[1194]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   35.617528] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   37.813175] show_signal_msg: 6 callbacks suppressed
+[   37.813187] repro[1250]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   37.814616] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   38.131618] repro[1258]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   38.132331] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   38.447265] repro[1266]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   38.448333] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   38.763809] repro[1276]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   38.764531] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   39.100418] repro[1284]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   39.101148] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   39.412186] repro[1292]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   39.412922] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   39.718999] repro[1300]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   39.719731] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   40.035551] repro[1308]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   40.036275] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   40.345057] repro[1316]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   40.345786] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   40.657159] repro[1324]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   40.657877] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   42.832726] show_signal_msg: 6 callbacks suppressed
+[   42.832736] repro[1380]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   42.833707] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   43.139669] repro[1388]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   43.140429] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   43.450520] repro[1396]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   43.451235] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   43.767918] repro[1404]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   43.768639] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   44.085789] repro[1412]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   44.086544] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   44.390717] repro[1420]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   44.391769] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   44.727295] repro[1428]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   44.728009] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   45.057638] repro[1436]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   45.058350] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   45.371785] repro[1444]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   45.372505] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   45.683630] repro[1452]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   45.684341] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   47.894553] show_signal_msg: 6 callbacks suppressed
+[   47.894563] repro[1508]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   47.895532] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   48.214502] repro[1516]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   48.215216] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   48.520777] repro[1524]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   48.521499] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   48.837188] repro[1532]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   48.838268] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   49.149698] repro[1540]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   49.150464] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   49.456860] repro[1548]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   49.457772] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   49.768761] repro[1556]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   49.769487] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   50.070207] repro[1564]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   50.070944] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   50.378577] repro[1572]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   50.379315] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   50.698300] repro[1580]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   50.699050] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   53.196437] show_signal_msg: 7 callbacks suppressed
+[   53.196446] repro[1644]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   53.197430] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   53.510159] repro[1652]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   53.510910] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   53.826606] repro[1660]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   53.827662] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   54.134648] repro[1668]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   54.135373] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   54.438866] repro[1676]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   54.439578] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   54.757338] repro[1684]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   54.758063] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   55.074561] repro[1692]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   55.075268] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   55.391227] repro[1700]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   55.391961] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   55.727728] repro[1708]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   55.728500] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   56.036472] repro[1716]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   56.037247] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   56.668785] systemd-journald[146]: Data hash table of /run/log/journal/938775788448454bb5b34822d5730c41/system.journal has a fill level at 75.1 (5264 of 7011 items, 4038656 file size, 767 bytes per hash table item), suggesting rotation.
+[   56.669883] systemd-journald[146]: /run/log/journal/938775788448454bb5b34822d5730c41/system.journal: Journal header limits reached or header out-of-date, rotating.
+[   58.219598] show_signal_msg: 6 callbacks suppressed
+[   58.219607] repro[1773]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   58.220647] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   58.528727] repro[1781]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 0 (core 0, socket 0)
+[   58.529442] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41
+[   58.834711] repro[1789]: segfault at 0 ip 000000000040157d sp 00007ffdcba63860 error 6 in repro[157d,401000+1000] likely on CPU 1 (core 1, socket 0)
+[   58.835440] Code: 8b 55 dc 8b 45 d0 41 b9 00 00 00 00 41 89 d0 b9 01 80 00 00 ba 03 00 00 00 48 89 c6 bf 00 00 00 00 e8 57 fb ff ff 48 8b 55 e8 <48> 89 02 48 8b 45 f0 8b 00 c1 e0 06 89 45 cc 8b 55 dc 8b 45 cc 41

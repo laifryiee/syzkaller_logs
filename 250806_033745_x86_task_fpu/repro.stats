@@ -1,0 +1,453 @@
+Extracting prog: 1m11.489063127s
+Minimizing prog: 7m35.527542733s
+Simplifying prog options: 0s
+Extracting C: 21.406715125s
+Simplifying C: 3m2.437558952s
+
+
+84 programs, 3 VMs, timeouts [15s 1m40s 6m0s]
+extracting reproducer from 59 programs
+single: executing 8 programs separately with timeout 15s
+testing program (duration=15s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-bpf$BPF_BTF_LOAD-ioctl$AUTOFS_DEV_IOCTL_CLOSEMOUNT-bpf$BPF_GET_BTF_INFO-openat-ioctl$FS_IOC_RESVSP-ioctl$int_in-openat-ioctl$FS_IOC_SETFLAGS-syz_open_procfs$pagemap-ioctl$AUTOFS_DEV_IOCTL_ISMOUNTPOINT
+detailed listing:
+executing program 0:
+openat(0xffffffffffffffff, &(0x7f0000000080)='./file1\x00', 0x40, 0x12)
+r0 = bpf$BPF_BTF_LOAD(0x12, &(0x7f0000000340)={&(0x7f00000001c0)={{0xeb9f, 0x1, 0x0, 0x18, 0x0, 0xc, 0xc, 0x2, [@union]}}, 0x0, 0x26}, 0x20)
+ioctl$AUTOFS_DEV_IOCTL_CLOSEMOUNT(0xffffffffffffffff, 0xc0189375, &(0x7f0000000380)={{0x1, 0x1, 0x18}, './file0\x00'}) (async)
+bpf$BPF_GET_BTF_INFO(0xf, &(0x7f00000003c0)={r0, 0x20, &(0x7f0000000380)={0x0, 0x0, 0x0, &(0x7f0000000300)=""/22, 0x16}}, 0x10)
+r1 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r1, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9}) (async)
+ioctl$int_in(r1, 0x5421, &(0x7f0000000100)=0xadb2) (async)
+r2 = openat(0xffffffffffffff9c, &(0x7f0000000240)='./file1\x00', 0x0, 0x0)
+ioctl$FS_IOC_SETFLAGS(r2, 0x40086602, &(0x7f00000000c0)) (async)
+r3 = syz_open_procfs$pagemap(0xffffffffffffffff, &(0x7f0000000000))
+ioctl$AUTOFS_DEV_IOCTL_ISMOUNTPOINT(r2, 0xc018937e, &(0x7f0000000040)={{0x1, 0x1, 0x18, r3}, './file0\x00'})
+
+program did not crash
+testing program (duration=15s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): semtimedop-semtimedop
+detailed listing:
+executing program 0:
+semtimedop(0xffffffffffffffff, 0x0, 0x0, 0x0)
+semtimedop(0xffffffffffffffff, 0x0, 0x0, 0x0) (async)
+
+program did not crash
+testing program (duration=15s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-ioctl$FS_IOC_RESVSP-syz_io_uring_setup-pipe2$watch_queue-io_uring_setup-openat-ioctl$FS_IOC_RESVSP-ioctl$FS_IOC_SETFLAGS-socket$nl_sock_diag-ioctl$sock_SIOCOUTQNSD-openat-fallocate-openat-openat-ioctl$sock_SIOCBRADDBR-setsockopt$MRT_DONE
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r0, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a, 0x0, r0}, &(0x7f0000000080), &(0x7f0000000100))
+pipe2$watch_queue(&(0x7f00000001c0)={0xffffffffffffffff, <r1=>0xffffffffffffffff}, 0x80)
+io_uring_setup(0x2135, &(0x7f0000000200)={0x0, 0x8273, 0x200, 0x1, 0x2b9, 0x0, r1})
+r2 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r2, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+ioctl$FS_IOC_SETFLAGS(r2, 0x40086602, &(0x7f0000000280)=0x10000000)
+r3 = socket$nl_sock_diag(0x10, 0x3, 0x4)
+ioctl$sock_SIOCOUTQNSD(r3, 0x894b, &(0x7f00000002c0))
+r4 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r4, 0x0, 0x7, 0xf000000)
+openat(0xffffffffffffff9c, 0x0, 0x14f542, 0x0)
+r5 = openat(0xffffffffffffff9c, &(0x7f0000000140)='\x00', 0x111102, 0xe5)
+ioctl$sock_SIOCBRADDBR(r4, 0x89a0, &(0x7f00000000c0)='veth0\x00')
+setsockopt$MRT_DONE(r5, 0x0, 0xc9, 0x0, 0x0)
+
+program crashed: WARNING in x86_task_fpu
+single: successfully extracted reproducer
+found reproducer with 16 syscalls
+minimizing guilty program
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-ioctl$FS_IOC_RESVSP-syz_io_uring_setup-pipe2$watch_queue-io_uring_setup-openat-ioctl$FS_IOC_RESVSP-ioctl$FS_IOC_SETFLAGS-socket$nl_sock_diag-ioctl$sock_SIOCOUTQNSD-openat-fallocate-openat-openat-ioctl$sock_SIOCBRADDBR
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r0, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a, 0x0, r0}, &(0x7f0000000080), &(0x7f0000000100))
+pipe2$watch_queue(&(0x7f00000001c0)={0xffffffffffffffff, <r1=>0xffffffffffffffff}, 0x80)
+io_uring_setup(0x2135, &(0x7f0000000200)={0x0, 0x8273, 0x200, 0x1, 0x2b9, 0x0, r1})
+r2 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r2, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+ioctl$FS_IOC_SETFLAGS(r2, 0x40086602, &(0x7f0000000280)=0x10000000)
+r3 = socket$nl_sock_diag(0x10, 0x3, 0x4)
+ioctl$sock_SIOCOUTQNSD(r3, 0x894b, &(0x7f00000002c0))
+r4 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r4, 0x0, 0x7, 0xf000000)
+openat(0xffffffffffffff9c, 0x0, 0x14f542, 0x0)
+openat(0xffffffffffffff9c, &(0x7f0000000140)='\x00', 0x111102, 0xe5)
+ioctl$sock_SIOCBRADDBR(r4, 0x89a0, &(0x7f00000000c0)='veth0\x00')
+
+program crashed: WARNING in x86_task_fpu
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-ioctl$FS_IOC_RESVSP-syz_io_uring_setup-pipe2$watch_queue-io_uring_setup-openat-ioctl$FS_IOC_RESVSP-ioctl$FS_IOC_SETFLAGS-socket$nl_sock_diag-ioctl$sock_SIOCOUTQNSD-openat-fallocate-openat-openat
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r0, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a, 0x0, r0}, &(0x7f0000000080), &(0x7f0000000100))
+pipe2$watch_queue(&(0x7f00000001c0)={0xffffffffffffffff, <r1=>0xffffffffffffffff}, 0x80)
+io_uring_setup(0x2135, &(0x7f0000000200)={0x0, 0x8273, 0x200, 0x1, 0x2b9, 0x0, r1})
+r2 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r2, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+ioctl$FS_IOC_SETFLAGS(r2, 0x40086602, &(0x7f0000000280)=0x10000000)
+r3 = socket$nl_sock_diag(0x10, 0x3, 0x4)
+ioctl$sock_SIOCOUTQNSD(r3, 0x894b, &(0x7f00000002c0))
+r4 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r4, 0x0, 0x7, 0xf000000)
+openat(0xffffffffffffff9c, 0x0, 0x14f542, 0x0)
+openat(0xffffffffffffff9c, &(0x7f0000000140)='\x00', 0x111102, 0xe5)
+
+program crashed: WARNING in x86_task_fpu
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-ioctl$FS_IOC_RESVSP-syz_io_uring_setup-pipe2$watch_queue-io_uring_setup-openat-ioctl$FS_IOC_RESVSP-ioctl$FS_IOC_SETFLAGS-socket$nl_sock_diag-ioctl$sock_SIOCOUTQNSD-openat-fallocate-openat
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r0, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a, 0x0, r0}, &(0x7f0000000080), &(0x7f0000000100))
+pipe2$watch_queue(&(0x7f00000001c0)={0xffffffffffffffff, <r1=>0xffffffffffffffff}, 0x80)
+io_uring_setup(0x2135, &(0x7f0000000200)={0x0, 0x8273, 0x200, 0x1, 0x2b9, 0x0, r1})
+r2 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r2, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+ioctl$FS_IOC_SETFLAGS(r2, 0x40086602, &(0x7f0000000280)=0x10000000)
+r3 = socket$nl_sock_diag(0x10, 0x3, 0x4)
+ioctl$sock_SIOCOUTQNSD(r3, 0x894b, &(0x7f00000002c0))
+r4 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r4, 0x0, 0x7, 0xf000000)
+openat(0xffffffffffffff9c, 0x0, 0x14f542, 0x0)
+
+program crashed: WARNING in x86_task_fpu
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-ioctl$FS_IOC_RESVSP-syz_io_uring_setup-pipe2$watch_queue-io_uring_setup-openat-ioctl$FS_IOC_RESVSP-ioctl$FS_IOC_SETFLAGS-socket$nl_sock_diag-ioctl$sock_SIOCOUTQNSD-openat-fallocate
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r0, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a, 0x0, r0}, &(0x7f0000000080), &(0x7f0000000100))
+pipe2$watch_queue(&(0x7f00000001c0)={0xffffffffffffffff, <r1=>0xffffffffffffffff}, 0x80)
+io_uring_setup(0x2135, &(0x7f0000000200)={0x0, 0x8273, 0x200, 0x1, 0x2b9, 0x0, r1})
+r2 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r2, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+ioctl$FS_IOC_SETFLAGS(r2, 0x40086602, &(0x7f0000000280)=0x10000000)
+r3 = socket$nl_sock_diag(0x10, 0x3, 0x4)
+ioctl$sock_SIOCOUTQNSD(r3, 0x894b, &(0x7f00000002c0))
+r4 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r4, 0x0, 0x7, 0xf000000)
+
+program crashed: WARNING in x86_task_fpu
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-ioctl$FS_IOC_RESVSP-syz_io_uring_setup-pipe2$watch_queue-io_uring_setup-openat-ioctl$FS_IOC_RESVSP-ioctl$FS_IOC_SETFLAGS-socket$nl_sock_diag-ioctl$sock_SIOCOUTQNSD-openat
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r0, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a, 0x0, r0}, &(0x7f0000000080), &(0x7f0000000100))
+pipe2$watch_queue(&(0x7f00000001c0)={0xffffffffffffffff, <r1=>0xffffffffffffffff}, 0x80)
+io_uring_setup(0x2135, &(0x7f0000000200)={0x0, 0x8273, 0x200, 0x1, 0x2b9, 0x0, r1})
+r2 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r2, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+ioctl$FS_IOC_SETFLAGS(r2, 0x40086602, &(0x7f0000000280)=0x10000000)
+r3 = socket$nl_sock_diag(0x10, 0x3, 0x4)
+ioctl$sock_SIOCOUTQNSD(r3, 0x894b, &(0x7f00000002c0))
+openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-ioctl$FS_IOC_RESVSP-syz_io_uring_setup-pipe2$watch_queue-io_uring_setup-openat-ioctl$FS_IOC_RESVSP-ioctl$FS_IOC_SETFLAGS-socket$nl_sock_diag-ioctl$sock_SIOCOUTQNSD-fallocate
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r0, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a, 0x0, r0}, &(0x7f0000000080), &(0x7f0000000100))
+pipe2$watch_queue(&(0x7f00000001c0)={0xffffffffffffffff, <r1=>0xffffffffffffffff}, 0x80)
+io_uring_setup(0x2135, &(0x7f0000000200)={0x0, 0x8273, 0x200, 0x1, 0x2b9, 0x0, r1})
+r2 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r2, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+ioctl$FS_IOC_SETFLAGS(r2, 0x40086602, &(0x7f0000000280)=0x10000000)
+r3 = socket$nl_sock_diag(0x10, 0x3, 0x4)
+ioctl$sock_SIOCOUTQNSD(r3, 0x894b, &(0x7f00000002c0))
+fallocate(0xffffffffffffffff, 0x0, 0x7, 0xf000000)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-ioctl$FS_IOC_RESVSP-syz_io_uring_setup-pipe2$watch_queue-io_uring_setup-openat-ioctl$FS_IOC_RESVSP-ioctl$FS_IOC_SETFLAGS-socket$nl_sock_diag-openat-fallocate
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r0, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a, 0x0, r0}, &(0x7f0000000080), &(0x7f0000000100))
+pipe2$watch_queue(&(0x7f00000001c0)={0xffffffffffffffff, <r1=>0xffffffffffffffff}, 0x80)
+io_uring_setup(0x2135, &(0x7f0000000200)={0x0, 0x8273, 0x200, 0x1, 0x2b9, 0x0, r1})
+r2 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r2, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+ioctl$FS_IOC_SETFLAGS(r2, 0x40086602, &(0x7f0000000280)=0x10000000)
+socket$nl_sock_diag(0x10, 0x3, 0x4)
+r3 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r3, 0x0, 0x7, 0xf000000)
+
+program crashed: WARNING in x86_task_fpu
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-ioctl$FS_IOC_RESVSP-syz_io_uring_setup-pipe2$watch_queue-io_uring_setup-openat-ioctl$FS_IOC_RESVSP-ioctl$FS_IOC_SETFLAGS-openat-fallocate
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r0, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a, 0x0, r0}, &(0x7f0000000080), &(0x7f0000000100))
+pipe2$watch_queue(&(0x7f00000001c0)={0xffffffffffffffff, <r1=>0xffffffffffffffff}, 0x80)
+io_uring_setup(0x2135, &(0x7f0000000200)={0x0, 0x8273, 0x200, 0x1, 0x2b9, 0x0, r1})
+r2 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r2, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+ioctl$FS_IOC_SETFLAGS(r2, 0x40086602, &(0x7f0000000280)=0x10000000)
+r3 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r3, 0x0, 0x7, 0xf000000)
+
+program crashed: WARNING in x86_task_fpu
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-ioctl$FS_IOC_RESVSP-syz_io_uring_setup-pipe2$watch_queue-io_uring_setup-openat-ioctl$FS_IOC_RESVSP-openat-fallocate
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r0, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a, 0x0, r0}, &(0x7f0000000080), &(0x7f0000000100))
+pipe2$watch_queue(&(0x7f00000001c0)={0xffffffffffffffff, <r1=>0xffffffffffffffff}, 0x80)
+io_uring_setup(0x2135, &(0x7f0000000200)={0x0, 0x8273, 0x200, 0x1, 0x2b9, 0x0, r1})
+r2 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r2, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+r3 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r3, 0x0, 0x7, 0xf000000)
+
+program crashed: WARNING in x86_task_fpu
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-ioctl$FS_IOC_RESVSP-syz_io_uring_setup-pipe2$watch_queue-io_uring_setup-openat-openat-fallocate
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r0, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a, 0x0, r0}, &(0x7f0000000080), &(0x7f0000000100))
+pipe2$watch_queue(&(0x7f00000001c0)={0xffffffffffffffff, <r1=>0xffffffffffffffff}, 0x80)
+io_uring_setup(0x2135, &(0x7f0000000200)={0x0, 0x8273, 0x200, 0x1, 0x2b9, 0x0, r1})
+openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+r2 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r2, 0x0, 0x7, 0xf000000)
+
+program crashed: WARNING in x86_task_fpu
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-ioctl$FS_IOC_RESVSP-syz_io_uring_setup-pipe2$watch_queue-io_uring_setup-openat-fallocate
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r0, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a, 0x0, r0}, &(0x7f0000000080), &(0x7f0000000100))
+pipe2$watch_queue(&(0x7f00000001c0)={0xffffffffffffffff, <r1=>0xffffffffffffffff}, 0x80)
+io_uring_setup(0x2135, &(0x7f0000000200)={0x0, 0x8273, 0x200, 0x1, 0x2b9, 0x0, r1})
+r2 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r2, 0x0, 0x7, 0xf000000)
+
+program crashed: WARNING in x86_task_fpu
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-ioctl$FS_IOC_RESVSP-syz_io_uring_setup-pipe2$watch_queue-openat-fallocate
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r0, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a, 0x0, r0}, &(0x7f0000000080), &(0x7f0000000100))
+pipe2$watch_queue(&(0x7f00000001c0), 0x80)
+r1 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r1, 0x0, 0x7, 0xf000000)
+
+program crashed: WARNING in x86_task_fpu
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-ioctl$FS_IOC_RESVSP-syz_io_uring_setup-openat-fallocate
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r0, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a, 0x0, r0}, &(0x7f0000000080), &(0x7f0000000100))
+r1 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r1, 0x0, 0x7, 0xf000000)
+
+program crashed: WARNING in x86_task_fpu
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-ioctl$FS_IOC_RESVSP-openat-fallocate
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+ioctl$FS_IOC_RESVSP(r0, 0x40305839, &(0x7f0000000180)={0x0, 0x0, 0x0, 0x8800, 0x0, 0x9})
+r1 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r1, 0x0, 0x7, 0xf000000)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat-syz_io_uring_setup-openat-fallocate
+detailed listing:
+executing program 0:
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x14f542, 0x0)
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a, 0x0, r0}, &(0x7f0000000080), &(0x7f0000000100))
+r1 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r1, 0x0, 0x7, 0xf000000)
+
+program crashed: WARNING in x86_task_fpu
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+detailed listing:
+executing program 0:
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a}, &(0x7f0000000080), &(0x7f0000000100))
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r0, 0x0, 0x7, 0xf000000)
+
+program crashed: WARNING in x86_task_fpu
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+detailed listing:
+executing program 0:
+syz_io_uring_setup(0x482c, 0x0, &(0x7f0000000080), &(0x7f0000000100))
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r0, 0x0, 0x7, 0xf000000)
+
+program did not crash
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+detailed listing:
+executing program 0:
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a}, 0x0, &(0x7f0000000100))
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r0, 0x0, 0x7, 0xf000000)
+
+program crashed: WARNING in x86_task_fpu
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+detailed listing:
+executing program 0:
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a}, 0x0, 0x0)
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x0)
+fallocate(r0, 0x0, 0x7, 0xf000000)
+
+program crashed: WARNING in x86_task_fpu
+testing program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+detailed listing:
+executing program 0:
+syz_io_uring_setup(0x482c, &(0x7f0000000000)={0x0, 0x0, 0x2, 0x200, 0x17a}, 0x0, 0x0)
+r0 = openat(0xffffffffffffff9c, 0x0, 0x42, 0x0)
+fallocate(r0, 0x0, 0x7, 0xf000000)
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=22.5s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+program crashed: WARNING in x86_task_fpu
+simplifying C reproducer
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+program crashed: WARNING in x86_task_fpu
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+program did not crash
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+program crashed: WARNING in x86_task_fpu
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:false UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+program did not crash
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+program crashed: WARNING in x86_task_fpu
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+program crashed: WARNING in x86_task_fpu
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+program crashed: WARNING in x86_task_fpu
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+program crashed: WARNING in x86_task_fpu
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+program crashed: WARNING in x86_task_fpu
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:false HandleSegv:true Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+program crashed: WARNING in x86_task_fpu
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:false HandleSegv:false Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+program crashed: WARNING in x86_task_fpu
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:false Swap:true UseTmpDir:false HandleSegv:false Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+program crashed: WARNING in x86_task_fpu
+testing compiled C program (duration=22.5s, {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:false Swap:false UseTmpDir:false HandleSegv:false Repro:true Trace:false LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): syz_io_uring_setup-openat-fallocate
+program crashed: WARNING in x86_task_fpu
+reproducing took 12m10.860892729s
+repro crashed as (corrupted=false):
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 724 at arch/x86/kernel/fpu/core.c:61 x86_task_fpu+0x76/0x90 arch/x86/kernel/fpu/core.c:61
+Modules linked in:
+CPU: 0 UID: 0 PID: 724 Comm: syz-executor373 Not tainted 6.16.0-9efb9ebfb1fa+ #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:x86_task_fpu+0x76/0x90 arch/x86/kernel/fpu/core.c:61
+Code: 40 20 00 44 89 e6 e8 49 fe 54 00 45 85 e4 75 15 e8 8f 03 55 00 48 8d 83 40 20 00 00 5b 41 5c 5d c3 cc cc cc cc e8 7a 03 55 00 <0f> 0b eb e2 e8 d1 4a c1 00 eb c1 66 66 2e 0f 1f 84 00 00 00 00 00
+RSP: 0018:ffff8880142b7428 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff8880142bca80 RCX: ffffffff813246a7
+RDX: ffff8880142b8000 RSI: ffffffff813246c6 RDI: 0000000000000005
+RBP: ffff8880142b7438 R08: 0000000000000400 R09: ffff88806c16ffa0
+R10: 0000000000004000 R11: 000000000000000d R12: 0000000000004000
+R13: ffff8880142bca80 R14: 0000000000000200 R15: 0000000000000200
+FS:  00007f84007d8740(0000) GS:ffff8880e3553000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fcc67e62430 CR3: 000000002aa04000 CR4: 0000000000750ef0
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ xfpregs_get+0x9c/0x1e0 arch/x86/kernel/fpu/regset.c:74
+ __regset_get kernel/regset.c:23 [inline]
+ regset_get_alloc+0x137/0x200 kernel/regset.c:48
+ fill_thread_core_info fs/binfmt_elf.c:1740 [inline]
+ fill_note_info fs/binfmt_elf.c:1861 [inline]
+ elf_core_dump+0x10e3/0x3800 fs/binfmt_elf.c:1989
+ do_coredump+0x370e/0x5060 fs/coredump.c:950
+ get_signal+0x1ae2/0x2430 kernel/signal.c:3019
+ arch_do_signal_or_restart+0x8d/0x7d0 arch/x86/kernel/signal.c:337
+ exit_to_user_mode_loop+0xad/0x110 kernel/entry/common.c:111
+ exit_to_user_mode_prepare include/linux/entry-common.h:330 [inline]
+ syscall_exit_to_user_mode_work include/linux/entry-common.h:414 [inline]
+ syscall_exit_to_user_mode include/linux/entry-common.h:449 [inline]
+ do_syscall_64+0x284/0x2e0 arch/x86/entry/syscall_64.c:100
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f840043ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffde4ba0078 EFLAGS: 00000246 ORIG_RAX: 000000000000011d
+RAX: ffffffffffffffe5 RBX: 0000000000000003 RCX: 00007f840043ee5d
+RDX: 0000000000000007 RSI: 0000000000000000 RDI: 0000000000000004
+RBP: 00007f84007b7040 R08: 0000000000000008 R09: 0000000000000008
+R10: 000000000f000000 R11: 0000000000000246 R12: 0000000000000003
+R13: 00000000004011e0 R14: 0000000000403e08 R15: 00007f8400825000
+ </TASK>
+irq event stamp: 1937
+hardirqs last  enabled at (1945): [<ffffffff81651e25>] __up_console_sem+0x95/0xb0 kernel/printk/printk.c:344
+hardirqs last disabled at (1952): [<ffffffff81651e0a>] __up_console_sem+0x7a/0xb0 kernel/printk/printk.c:342
+softirqs last  enabled at (1918): [<ffffffff8147fa1e>] __do_softirq kernel/softirq.c:613 [inline]
+softirqs last  enabled at (1918): [<ffffffff8147fa1e>] invoke_softirq kernel/softirq.c:453 [inline]
+softirqs last  enabled at (1918): [<ffffffff8147fa1e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:680
+softirqs last disabled at (1881): [<ffffffff8147fa1e>] __do_softirq kernel/softirq.c:613 [inline]
+softirqs last disabled at (1881): [<ffffffff8147fa1e>] invoke_softirq kernel/softirq.c:453 [inline]
+softirqs last disabled at (1881): [<ffffffff8147fa1e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:680
+---[ end trace 0000000000000000 ]---
+
+final repro crashed as (corrupted=false):
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 724 at arch/x86/kernel/fpu/core.c:61 x86_task_fpu+0x76/0x90 arch/x86/kernel/fpu/core.c:61
+Modules linked in:
+CPU: 0 UID: 0 PID: 724 Comm: syz-executor373 Not tainted 6.16.0-9efb9ebfb1fa+ #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:x86_task_fpu+0x76/0x90 arch/x86/kernel/fpu/core.c:61
+Code: 40 20 00 44 89 e6 e8 49 fe 54 00 45 85 e4 75 15 e8 8f 03 55 00 48 8d 83 40 20 00 00 5b 41 5c 5d c3 cc cc cc cc e8 7a 03 55 00 <0f> 0b eb e2 e8 d1 4a c1 00 eb c1 66 66 2e 0f 1f 84 00 00 00 00 00
+RSP: 0018:ffff8880142b7428 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff8880142bca80 RCX: ffffffff813246a7
+RDX: ffff8880142b8000 RSI: ffffffff813246c6 RDI: 0000000000000005
+RBP: ffff8880142b7438 R08: 0000000000000400 R09: ffff88806c16ffa0
+R10: 0000000000004000 R11: 000000000000000d R12: 0000000000004000
+R13: ffff8880142bca80 R14: 0000000000000200 R15: 0000000000000200
+FS:  00007f84007d8740(0000) GS:ffff8880e3553000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fcc67e62430 CR3: 000000002aa04000 CR4: 0000000000750ef0
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ xfpregs_get+0x9c/0x1e0 arch/x86/kernel/fpu/regset.c:74
+ __regset_get kernel/regset.c:23 [inline]
+ regset_get_alloc+0x137/0x200 kernel/regset.c:48
+ fill_thread_core_info fs/binfmt_elf.c:1740 [inline]
+ fill_note_info fs/binfmt_elf.c:1861 [inline]
+ elf_core_dump+0x10e3/0x3800 fs/binfmt_elf.c:1989
+ do_coredump+0x370e/0x5060 fs/coredump.c:950
+ get_signal+0x1ae2/0x2430 kernel/signal.c:3019
+ arch_do_signal_or_restart+0x8d/0x7d0 arch/x86/kernel/signal.c:337
+ exit_to_user_mode_loop+0xad/0x110 kernel/entry/common.c:111
+ exit_to_user_mode_prepare include/linux/entry-common.h:330 [inline]
+ syscall_exit_to_user_mode_work include/linux/entry-common.h:414 [inline]
+ syscall_exit_to_user_mode include/linux/entry-common.h:449 [inline]
+ do_syscall_64+0x284/0x2e0 arch/x86/entry/syscall_64.c:100
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f840043ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffde4ba0078 EFLAGS: 00000246 ORIG_RAX: 000000000000011d
+RAX: ffffffffffffffe5 RBX: 0000000000000003 RCX: 00007f840043ee5d
+RDX: 0000000000000007 RSI: 0000000000000000 RDI: 0000000000000004
+RBP: 00007f84007b7040 R08: 0000000000000008 R09: 0000000000000008
+R10: 000000000f000000 R11: 0000000000000246 R12: 0000000000000003
+R13: 00000000004011e0 R14: 0000000000403e08 R15: 00007f8400825000
+ </TASK>
+irq event stamp: 1937
+hardirqs last  enabled at (1945): [<ffffffff81651e25>] __up_console_sem+0x95/0xb0 kernel/printk/printk.c:344
+hardirqs last disabled at (1952): [<ffffffff81651e0a>] __up_console_sem+0x7a/0xb0 kernel/printk/printk.c:342
+softirqs last  enabled at (1918): [<ffffffff8147fa1e>] __do_softirq kernel/softirq.c:613 [inline]
+softirqs last  enabled at (1918): [<ffffffff8147fa1e>] invoke_softirq kernel/softirq.c:453 [inline]
+softirqs last  enabled at (1918): [<ffffffff8147fa1e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:680
+softirqs last disabled at (1881): [<ffffffff8147fa1e>] __do_softirq kernel/softirq.c:613 [inline]
+softirqs last disabled at (1881): [<ffffffff8147fa1e>] invoke_softirq kernel/softirq.c:453 [inline]
+softirqs last disabled at (1881): [<ffffffff8147fa1e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:680
+---[ end trace 0000000000000000 ]---
+
