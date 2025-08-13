@@ -1,0 +1,47 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [2674d1eadaa2fd3a918dfcdb6d0bb49efe8a8bb9] Add linux-next specific files for 20250812
+git bisect bad 2674d1eadaa2fd3a918dfcdb6d0bb49efe8a8bb9
+# status: waiting for good commit(s), bad commit known
+# good: [9f4ad9e425a1d3b6a34617b8ea226d56a119a717] Linux 5.12
+git bisect good 9f4ad9e425a1d3b6a34617b8ea226d56a119a717
+# good: [3a8a670eeeaa40d87bd38a587438952741980c18] Merge tag 'net-next-6.5' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+git bisect good 3a8a670eeeaa40d87bd38a587438952741980c18
+# good: [280e36f0d5b997173d014c07484c03a7f7750668] nsfs: use cleanup guard
+git bisect good 280e36f0d5b997173d014c07484c03a7f7750668
+# good: [c06310fd6b1c98f27f51a81637311ad560c614e9] Merge tag 'perf-tools-fixes-for-v6.14-2025-01-30' of git://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools
+git bisect good c06310fd6b1c98f27f51a81637311ad560c614e9
+# good: [2c26b68cd5c51689b8cee9cb6a21abb5d2ab2d0f] Merge tag 'nfsd-6.16' of git://git.kernel.org/pub/scm/linux/kernel/git/cel/linux
+git bisect good 2c26b68cd5c51689b8cee9cb6a21abb5d2ab2d0f
+# good: [c58c18be8850d58fd61b0480d2355df89ce7ee59] Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good c58c18be8850d58fd61b0480d2355df89ce7ee59
+# bad: [63eb28bb1402891b1ad2be02a530f29a9dd7f1cd] Merge tag 'for-linus' of git://git.kernel.org/pub/scm/virt/kvm/kvm
+git bisect bad 63eb28bb1402891b1ad2be02a530f29a9dd7f1cd
+# bad: [91e60731dd605c5d6bab8b9ccac886da1780d5ca] Merge tag 'tty-6.17-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty
+git bisect bad 91e60731dd605c5d6bab8b9ccac886da1780d5ca
+# bad: [e30fc090828e5761defe345b7bfb61bfc46be5bd] Merge tag 'thermal-6.17-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+git bisect bad e30fc090828e5761defe345b7bfb61bfc46be5bd
+# bad: [7031769e102b768b3fa0c4c726faf532cb31e973] Merge tag 'vfs-6.17-rc1.mmap_prepare' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect bad 7031769e102b768b3fa0c4c726faf532cb31e973
+# good: [76a9701325d39d8602695b19c49a9d0828c897ca] Merge tag 'erofs-for-6.17-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs
+git bisect good 76a9701325d39d8602695b19c49a9d0828c897ca
+# good: [953e117bf4aad7e1d01419d4bcc03ab93420387c] Merge tag 'pull-fd' of git://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs
+git bisect good 953e117bf4aad7e1d01419d4bcc03ab93420387c
+# bad: [7879d7aff0ffd969fcb1a59e3f87ebb353e47b7f] Merge tag 'vfs-6.17-rc1.misc' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect bad 7879d7aff0ffd969fcb1a59e3f87ebb353e47b7f
+# good: [0313356520b15deab893cd62da3e2ba9a6e61a1f] propagate_mnt(): fix comment and convert to kernel-doc, while we are at it
+git bisect good 0313356520b15deab893cd62da3e2ba9a6e61a1f
+# good: [048832a3f4003113c3a0f060b08376c103622099] drm/i915: Refactor shmem_pwrite() to use kiocb and write_iter
+git bisect good 048832a3f4003113c3a0f060b08376c103622099
+# bad: [725ab435ff6e31faca26b8234f9f04c19f772b18] get rid of CL_SHARE_TO_SLAVE
+git bisect bad 725ab435ff6e31faca26b8234f9f04c19f772b18
+# good: [94a8d0027606397ce58b00077bf6146f25923965] turn do_make_slave() into transfer_propagation()
+git bisect good 94a8d0027606397ce58b00077bf6146f25923965
+# good: [dd5a4e1d640bf3542c4583491e6b91d25de3b760] change_mnt_propagation(): move ->mnt_master assignment into MS_SLAVE case
+git bisect good dd5a4e1d640bf3542c4583491e6b91d25de3b760
+# bad: [aab771f34e63ef89e195b63d121abcb55eebfde6] take freeing of emptied mnt_namespace to namespace_unlock()
+git bisect bad aab771f34e63ef89e195b63d121abcb55eebfde6
+# bad: [663206854f020ec6fc6bfd3d52f501a28ede1403] copy_tree(): don't link the mounts via mnt_list
+git bisect bad 663206854f020ec6fc6bfd3d52f501a28ede1403
+# first bad commit: [663206854f020ec6fc6bfd3d52f501a28ede1403] copy_tree(): don't link the mounts via mnt_list
+|0813_135414|Bisect successfully! next-20250812_663206854f020ec6fc6bfd3d52f501a28ede1403_revert bzimage passed!|
