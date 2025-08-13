@@ -1,0 +1,53 @@
+loop0: detected capacity change from 0 to 512
+EXT4-fs: Ignoring sb option on remount
+EXT4-fs: Ignoring sb option on remount
+EXT4-fs: Ignoring removed oldalloc option
+watchdog: BUG: soft lockup - CPU#1 stuck for 21s! [syz-executor450:775]
+Modules linked in:
+irq event stamp: 385740
+hardirqs last  enabled at (385739): [<ffffffff85d7654e>] irqentry_exit+0x3e/0xa0 kernel/entry/common.c:200
+hardirqs last disabled at (385740): [<ffffffff85d74a54>] sysvec_apic_timer_interrupt+0x14/0xd0 arch/x86/kernel/apic/apic.c:1050
+softirqs last  enabled at (385720): [<ffffffff8148099e>] __do_softirq kernel/softirq.c:613 [inline]
+softirqs last  enabled at (385720): [<ffffffff8148099e>] invoke_softirq kernel/softirq.c:453 [inline]
+softirqs last  enabled at (385720): [<ffffffff8148099e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:680
+softirqs last disabled at (385715): [<ffffffff8148099e>] __do_softirq kernel/softirq.c:613 [inline]
+softirqs last disabled at (385715): [<ffffffff8148099e>] invoke_softirq kernel/softirq.c:453 [inline]
+softirqs last disabled at (385715): [<ffffffff8148099e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:680
+CPU: 1 UID: 0 PID: 775 Comm: syz-executor450 Not tainted 6.17.0-rc1-2025-08-11-intel-next-92a5969deaf0+ #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:skip_mnt_tree fs/namespace.c:1186 [inline]
+RIP: 0010:commit_tree fs/namespace.c:1201 [inline]
+RIP: 0010:attach_recursive_mnt+0x1076/0x1990 fs/namespace.c:2716
+Code: 85 51 06 00 00 4d 8b 77 68 4d 39 ee 75 08 e9 d4 fe ff ff 49 89 c6 e8 69 85 78 ff 49 8d 7e f8 48 89 f8 48 c1 e8 03 80 3c 18 00 <0f> 85 c9 05 00 00 49 8b 46 f8 49 8d 56 f0 4d 8d 7e 90 48 39 d0 75
+RSP: 0018:ff1100001ab47bb0 EFLAGS: 00000246
+RAX: 1fe2200006009c0d RBX: dffffc0000000000 RCX: ffffffff820f5626
+RDX: ff11000015f68000 RSI: ffffffff820f5777 RDI: ff1100003004e068
+RBP: ff1100001ab47cd0 R08: 0000000000000001 R09: 0000000000000001
+R10: ff1100002ebba3c0 R11: ff11000015f68e58 R12: ff1100002ebba3c0
+R13: ff1100002ebba3e0 R14: ff1100003004e070 R15: ff11000032a70c40
+FS:  000000001e2fd480(0000) GS:ff110000e343b000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fdeab9680c8 CR3: 00000000177f8001 CR4: 0000000000771ef0
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ graft_tree+0x190/0x220 fs/namespace.c:2862
+ do_loopback fs/namespace.c:3037 [inline]
+ path_mount+0x1ac0/0x1f20 fs/namespace.c:4114
+ do_mount fs/namespace.c:4133 [inline]
+ __do_sys_mount fs/namespace.c:4344 [inline]
+ __se_sys_mount fs/namespace.c:4321 [inline]
+ __x64_sys_mount+0x2a6/0x330 fs/namespace.c:4321
+ x64_sys_call+0x2127/0x2180 arch/x86/include/generated/asm/syscalls_64.h:166
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x2e0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x4344bd
+Code: 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffd5e7d5d98 EFLAGS: 00000246 ORIG_RAX: 00000000000000a5
+RAX: ffffffffffffffda RBX: 0000000000035410 RCX: 00000000004344bd
+RDX: 0000000000000000 RSI: 0000000020000080 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 0000000000000000 R09: 00007ffd5e7d6038
+R10: 0000000000001400 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 00007ffd5e7d6038 R14: 00000000004b8e50 R15: 0000000000000001
+ </TASK>
