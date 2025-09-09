@@ -1,0 +1,109 @@
+------------[ cut here ]------------
+verifier bug: REG INVARIANTS VIOLATION (true_reg1): range bounds violation u64=[0x1, 0x0] s64=[0x1, 0x0] u32=[0x1, 0x0] s32=[0x1, 0x0] var_off=(0x0, 0x0)(1)
+WARNING: CPU: 1 PID: 50966 at kernel/bpf/verifier.c:2722 reg_bounds_sanity_check+0x671/0x11e0 kernel/bpf/verifier.c:2722
+Modules linked in:
+CPU: 1 UID: 0 PID: 50966 Comm: syz-executor.1 Not tainted 6.17.0-rc5-2209721cd4fa+ #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:reg_bounds_sanity_check+0x671/0x11e0 kernel/bpf/verifier.c:2722
+Code: 50 8b 45 ac 48 8b 95 58 ff ff ff c6 05 97 fe 5f 06 01 48 8b b5 60 ff ff ff 50 8b 45 b4 50 8b 45 b0 50 ff 75 b8 e8 6f 64 9f ff <0f> 0b 48 8b 95 40 ff ff ff 48 83 c4 38 48 b8 00 00 00 00 00 fc ff
+RSP: 0018:ffff888020caf2e0 EFLAGS: 00010282
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffc90001e26000
+RDX: 0000000000040000 RSI: ffffffff8146a14f RDI: 0000000000000001
+RBP: ffff888020caf3d8 R08: 0000000000000001 R09: ffffed100d8a59d9
+R10: 0000000000000001 R11: ffff88800f8558d8 R12: 0000000000000001
+R13: ffff88803d07213c R14: ffff88803d072144 R15: ffff88803d0720f0
+FS:  00007fead2efe640(0000) GS:ffff8880e343b000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000200014c0 CR3: 000000004302f000 CR4: 0000000000750ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ reg_set_min_max kernel/bpf/verifier.c:16334 [inline]
+ reg_set_min_max+0x18c/0x2c0 kernel/bpf/verifier.c:16308
+ check_cond_jmp_op+0x2b97/0x6720 kernel/bpf/verifier.c:16779
+ do_check_insn kernel/bpf/verifier.c:19956 [inline]
+ do_check kernel/bpf/verifier.c:20093 [inline]
+ do_check_common+0x9e2d/0xcac0 kernel/bpf/verifier.c:23260
+ do_check_main kernel/bpf/verifier.c:23343 [inline]
+ bpf_check+0xa1c2/0xd590 kernel/bpf/verifier.c:24703
+ bpf_prog_load+0x14d7/0x2600 kernel/bpf/syscall.c:2979
+ __sys_bpf+0x197f/0x5900 kernel/bpf/syscall.c:6029
+ __do_sys_bpf kernel/bpf/syscall.c:6139 [inline]
+ __se_sys_bpf kernel/bpf/syscall.c:6137 [inline]
+ __x64_sys_bpf+0x7d/0xc0 kernel/bpf/syscall.c:6137
+ x64_sys_call+0x19e5/0x2190 arch/x86/include/generated/asm/syscalls_64.h:322
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x2e0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fead2c3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fead2efdcc8 EFLAGS: 00000246 ORIG_RAX: 0000000000000141
+RAX: ffffffffffffffda RBX: 00000000004bbf80 RCX: 00007fead2c3ee5d
+RDX: 0000000000000090 RSI: 00000000200014c0 RDI: 0000000000000005
+RBP: 00000000004bbf80 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 000000000000000b R14: 00007fead2c9f560 R15: 0000000000000000
+ </TASK>
+irq event stamp: 867
+hardirqs last  enabled at (875): [<ffffffff8165c695>] __up_console_sem+0x95/0xb0 kernel/printk/printk.c:344
+hardirqs last disabled at (882): [<ffffffff8165c67a>] __up_console_sem+0x7a/0xb0 kernel/printk/printk.c:342
+softirqs last  enabled at (800): [<ffffffff8148981e>] __do_softirq kernel/softirq.c:613 [inline]
+softirqs last  enabled at (800): [<ffffffff8148981e>] invoke_softirq kernel/softirq.c:453 [inline]
+softirqs last  enabled at (800): [<ffffffff8148981e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:680
+softirqs last disabled at (783): [<ffffffff8148981e>] __do_softirq kernel/softirq.c:613 [inline]
+softirqs last disabled at (783): [<ffffffff8148981e>] invoke_softirq kernel/softirq.c:453 [inline]
+softirqs last disabled at (783): [<ffffffff8148981e>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:680
+---[ end trace 0000000000000000 ]---
+input: syz1 as /devices/virtual/input/input57
+input: syz1 as /devices/virtual/input/input58
+input: syz1 as /devices/virtual/input/input59
+input: syz1 as /devices/virtual/input/input60
+input: syz1 as /devices/virtual/input/input61
+input: syz1 as /devices/virtual/input/input62
+input: syz1 as /devices/virtual/input/input63
+Injecting memory failure for pfn 0x4267c at process virtual address 0x20600000
+Memory failure: 0x4267c: Sending SIGBUS to syz-executor.3:51106 due to hardware memory corruption
+Memory failure: 0x4267c: recovery action for dirty LRU page: Recovered
+Injecting memory failure for pfn 0x4267d at process virtual address 0x20601000
+Memory failure: 0x4267d: Sending SIGBUS to syz-executor.3:51106 due to hardware memory corruption
+Memory failure: 0x4267d: recovery action for dirty LRU page: Recovered
+Injecting memory failure for pfn 0x4267e at process virtual address 0x20602000
+Memory failure: 0x4267e: Sending SIGBUS to syz-executor.3:51106 due to hardware memory corruption
+Memory failure: 0x4267e: recovery action for dirty LRU page: Recovered
+Injecting memory failure for pfn 0x5ae8d at process virtual address 0x20600000
+Memory failure: 0x5ae8d: Sending SIGBUS to syz-executor.3:51126 due to hardware memory corruption
+Memory failure: 0x5ae8d: recovery action for dirty LRU page: Recovered
+Injecting memory failure for pfn 0x57476 at process virtual address 0x20601000
+Memory failure: 0x57476: Sending SIGBUS to syz-executor.3:51126 due to hardware memory corruption
+Memory failure: 0x57476: recovery action for dirty LRU page: Recovered
+Injecting memory failure for pfn 0x58990 at process virtual address 0x20602000
+Memory failure: 0x58990: Sending SIGBUS to syz-executor.3:51126 due to hardware memory corruption
+Memory failure: 0x58990: recovery action for dirty LRU page: Recovered
+Injecting memory failure for pfn 0x53c0c at process virtual address 0x20600000
+Memory failure: 0x53c0c: Sending SIGBUS to syz-executor.3:51168 due to hardware memory corruption
+Memory failure: 0x53c0c: recovery action for dirty LRU page: Recovered
+Injecting memory failure for pfn 0x54390 at process virtual address 0x20601000
+Memory failure: 0x54390: Sending SIGBUS to syz-executor.3:51168 due to hardware memory corruption
+Memory failure: 0x54390: recovery action for dirty LRU page: Recovered
+Injecting memory failure for pfn 0x551f1 at process virtual address 0x20602000
+Memory failure: 0x551f1: Sending SIGBUS to syz-executor.3:51168 due to hardware memory corruption
+Memory failure: 0x551f1: recovery action for dirty LRU page: Recovered
+Injecting memory failure for pfn 0x52727 at process virtual address 0x20600000
+Memory failure: 0x52727: Sending SIGBUS to syz-executor.3:51187 due to hardware memory corruption
+Memory failure: 0x52727: recovery action for dirty LRU page: Recovered
+Injecting memory failure for pfn 0x5572b at process virtual address 0x20601000
+Memory failure: 0x5572b: Sending SIGBUS to syz-executor.3:51187 due to hardware memory corruption
+Memory failure: 0x5572b: recovery action for dirty LRU page: Recovered
+Injecting memory failure for pfn 0x5225e at process virtual address 0x20602000
+Memory failure: 0x5225e: Sending SIGBUS to syz-executor.3:51187 due to hardware memory corruption
+Memory failure: 0x5225e: recovery action for dirty LRU page: Recovered
+EXT4-fs (sda): re-mounted 088740a9-c8b4-422c-999d-a804eb68a4da.
+EXT4-fs (sda): re-mounted 088740a9-c8b4-422c-999d-a804eb68a4da.
+EXT4-fs (sda): re-mounted 088740a9-c8b4-422c-999d-a804eb68a4da.
+EXT4-fs (sda): re-mounted 088740a9-c8b4-422c-999d-a804eb68a4da.
+netlink: 24 bytes leftover after parsing attributes in process `syz-executor.5'.
+netlink: 24 bytes leftover after parsing attributes in process `syz-executor.5'.
+netlink: 24 bytes leftover after parsing attributes in process `syz-executor.5'.
+netlink: 24 bytes leftover after parsing attributes in process `syz-executor.5'.

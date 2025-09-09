@@ -1,0 +1,46 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [76eeb9b8de9880ca38696b2fb56ac45ac0a25c6c] Linux 6.17-rc5
+git bisect bad 76eeb9b8de9880ca38696b2fb56ac45ac0a25c6c
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [3f2a1903af06672f416efd506f029066b9243cbd] Merge tag 'rtc-6.4' of git://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux
+git bisect good 3f2a1903af06672f416efd506f029066b9243cbd
+# good: [86634fa4e6aeff2e190616c304156899beb4d76b] Merge v6.10-rc6 into drm-next
+git bisect good 86634fa4e6aeff2e190616c304156899beb4d76b
+# good: [08de7f9d4d39fd9aa5e747a13acc891214fa2d5f] Merge tag 'mtd/for-6.14' of git://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux
+git bisect good 08de7f9d4d39fd9aa5e747a13acc891214fa2d5f
+# good: [a61e26038143727d9b0f1bc01b0370f77f2ad7e4] Merge tag 'media/v6.16-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+git bisect good a61e26038143727d9b0f1bc01b0370f77f2ad7e4
+# good: [6e11664f148454a127dd89e8698c3e3e80e5f62f] Merge tag 'for-6.17/block-20250728' of git://git.kernel.dk/linux
+git bisect good 6e11664f148454a127dd89e8698c3e3e80e5f62f
+# bad: [63eb28bb1402891b1ad2be02a530f29a9dd7f1cd] Merge tag 'for-linus' of git://git.kernel.org/pub/scm/virt/kvm/kvm
+git bisect bad 63eb28bb1402891b1ad2be02a530f29a9dd7f1cd
+# good: [909d2bb07dc0e08ea81841f7c901f0f16f965f0e] Merge tag 'stop-machine.2025.07.23a' of git://git.kernel.org/pub/scm/linux/kernel/git/paulmck/linux-rcu
+git bisect good 909d2bb07dc0e08ea81841f7c901f0f16f965f0e
+# good: [55c172c13718b93300d3808b65ec326b5287c766] ssb: use new GPIO line value setter callbacks for the second GPIO chip
+git bisect good 55c172c13718b93300d3808b65ec326b5287c766
+# good: [8be4d31cb8aaeea27bde4b7ddb26e28a89062ebf] Merge tag 'net-next-6.17' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+git bisect good 8be4d31cb8aaeea27bde4b7ddb26e28a89062ebf
+# bad: [d50b07d05ca53fdb6c6d1581b9084c09d4e98f54] Merge tag 'trace-ringbuffer-v6.17' of git://git.kernel.org/pub/scm/linux/kernel/git/trace/linux-trace
+git bisect bad d50b07d05ca53fdb6c6d1581b9084c09d4e98f54
+# bad: [0768e980feb5cffe63920d375bebef3bb4654961] Merge branch 'a-tool-to-verify-the-bpf-memory-model'
+git bisect bad 0768e980feb5cffe63920d375bebef3bb4654961
+# good: [e91370550f1fe6fa3b02e8bf9762e3dc0a02fcad] bpf: Add kfuncs for read-only string operations
+git bisect good e91370550f1fe6fa3b02e8bf9762e3dc0a02fcad
+# bad: [5697683e133d05e6333ee1f12a7e8dd402593258] selftests/bpf: Add tests for prog streams
+git bisect bad 5697683e133d05e6333ee1f12a7e8dd402593258
+# bad: [cce3fee729ee18caa03bade7f4c360343e863bb1] selftests/bpf: Enable dynptr/test_probe_read_user_str_dynptr
+git bisect bad cce3fee729ee18caa03bade7f4c360343e863bb1
+# good: [48d998af99f9e78ac8a8e405c50a7af64a5325a6] Merge branch 'vfs-6.17.bpf' of https://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good 48d998af99f9e78ac8a8e405c50a7af64a5325a6
+# good: [c4b1be928ea05add0e0f9334e5bc44932395782e] selftests/bpf: bpf_rdonly_cast u{8,16,32,64} access tests
+git bisect good c4b1be928ea05add0e0f9334e5bc44932395782e
+# good: [e26d523edf2a62b142d2dd2dd9b87f61ed92f33a] s390/bpf: Describe the frame using a struct instead of constants
+git bisect good e26d523edf2a62b142d2dd2dd9b87f61ed92f33a
+# bad: [0df1a55afa832f463f9ad68ddc5de92230f1bc8a] bpf: Warn on internal verifier errors
+git bisect bad 0df1a55afa832f463f9ad68ddc5de92230f1bc8a
+# good: [26d0e5324677dc0acce4c0fda52316154a1d689e] Merge branch 's390-bpf-describe-the-frame-using-a-struct-instead-of-constants'
+git bisect good 26d0e5324677dc0acce4c0fda52316154a1d689e
+# first bad commit: [0df1a55afa832f463f9ad68ddc5de92230f1bc8a] bpf: Warn on internal verifier errors
