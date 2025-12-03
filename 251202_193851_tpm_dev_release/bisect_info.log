@@ -1,0 +1,27 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [b8b93e380604ce33e41e78522406df011f07aefe] KEYS: trusted: Use tpm_ret_to_err() in trusted_tpm2
+git bisect bad b8b93e380604ce33e41e78522406df011f07aefe
+# status: waiting for good commit(s), bad commit known
+# good: [7d0a66e4bb9081d75c82ec4957c50034cb0ea449] Linux 6.18
+git bisect good 7d0a66e4bb9081d75c82ec4957c50034cb0ea449
+# good: [ebaeabfa5ab711a9b69b686d58329e258fdae75f] Merge tag 'vfs-6.19-rc1.writeback' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good ebaeabfa5ab711a9b69b686d58329e258fdae75f
+# good: [415d34b92c1f921a9ff3c38f56319cbc5536f642] Merge tag 'namespace-6.19-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good 415d34b92c1f921a9ff3c38f56319cbc5536f642
+# good: [c8e00cdc7425d5c60fd1ce6e7f71e5fb1b236991] Merge patch series "credential guards: credential preparation"
+git bisect good c8e00cdc7425d5c60fd1ce6e7f71e5fb1b236991
+# good: [f2e74ecfba1b0d407f04b671a240cc65e309e529] Merge tag 'vfs-6.19-rc1.folio' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good f2e74ecfba1b0d407f04b671a240cc65e309e529
+# good: [73fd0dba0beb1d2d1695ee5452eac8dfabce3f9e] Merge patch series "fs: introduce super write guard"
+git bisect good 73fd0dba0beb1d2d1695ee5452eac8dfabce3f9e
+# good: [4664fb427c8fd0080f40109f5e2b2090a6fb0c84] Merge tag 'vfs-6.19-rc1.minix' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good 4664fb427c8fd0080f40109f5e2b2090a6fb0c84
+# good: [48ec78c1e4ca72f49e39b41f6ff6f3e952793cf8] tpm: add WQ_PERCPU to alloc_workqueue users
+git bisect good 48ec78c1e4ca72f49e39b41f6ff6f3e952793cf8
+# bad: [83f6ace27d21a5833f4b3c6a7ad71036ad40ee24] tpm: Cap the number of PCR banks
+git bisect bad 83f6ace27d21a5833f4b3c6a7ad71036ad40ee24
+# good: [2a52cfb5d67968aff72c0a41fa2f9bd0a0e97ac3] tpm: Remove tpm_find_get_ops
+git bisect good 2a52cfb5d67968aff72c0a41fa2f9bd0a0e97ac3
+# first bad commit: [83f6ace27d21a5833f4b3c6a7ad71036ad40ee24] tpm: Cap the number of PCR banks
+|1202_210744|Bisect successfully! tpmdd-next-6.19-rc1-v3_83f6ace27d21a5833f4b3c6a7ad71036ad40ee24_revert bzimage passed!|

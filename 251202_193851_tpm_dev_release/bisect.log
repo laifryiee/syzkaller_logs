@@ -1,0 +1,240 @@
+|1202_193851|cmd=cd /root/linux-tpmdd|
+|1202_193851|git log tpmdd-next-6.19-rc1-v3 check_result:commit b8b93e380604ce33e41e78522406df011f07aefe|
+|1202_193851|git log 7d0a66e4bb9081d75c82ec4957c50034cb0ea449 check_result:commit 7d0a66e4bb9081d75c82ec4957c50034cb0ea449|
+|1202_193851|cmd=git checkout -f tpmdd-next-6.19-rc1-v3|
+|1202_193852|sshpass is already installed|
+|1202_193852|cmd=cd /root/linux-tpmdd|
+|1202_193852|cmd=rm -rf /var/www/html//syzkaller/2025_12_02/ly_bisection|
+|1202_193852|cmd=mkdir -p /var/www/html//syzkaller/2025_12_02/ly_bisection|
+|1202_193852|cmd=cp -rf /root/vm_bisect/config-5.18rc4i_kvm /root/ly_bisection/1202_193851_tpm_dev_release/kconfig_origin|
+|1202_193852|cmd=cp -rf /root/vm_bisect/repro.sh /root/ly_bisection/1202_193851_tpm_dev_release|
+|1202_193852|/root/ly_bisection/repro is not .c or .cprog file|
+|1202_193852||/root/ly_bisection/bzImage_tpmdd-next-6.19-rc1-v3| does not exist, will make it|
+|1202_193852|nohup /root/vm_bisect/make_bz.sh -k /root/linux-tpmdd -m tpmdd-next-6.19-rc1-v3 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|1202_194508|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_tpmdd-next-6.19-rc1-v3, /root/ly_bisection/1202_193851_tpm_dev_release/tpmdd-next-6.19-rc1-v3_dmesg.log, port:10024, 1 time|
+|1202_194524|It takes 16 seconds to find login:test login: |
+|1202_194524|Boot 1 time: takes 16 seconds to boot up.|
+|1202_194524|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|1202_194526|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|1202_194526|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/1202_193851_tpm_dev_release/repro root@localhost:/root/repro|
+|1202_194526|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|1202_194527|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|1202_194527|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|1202_194537|/root/ly_bisection/bzImage_tpmdd-next-6.19-rc1-v3 contained tpm_dev_release:[   18.406210] BUG: KASAN: invalid-free in tpm_dev_release+0xdc/0x110
+[   18.407220]  ? tpm_dev_release+0xdc/0x110
+[   18.407245]  ? tpm_dev_release+0xdc/0x110
+[   18.407259]  ? tpm_dev_release+0xdc/0x110
+[   18.407300]  ? tpm_dev_release+0xdc/0x110
+[   18.407326]  ? __pfx_tpm_dev_release+0x10/0x10
+[   18.407340]  tpm_dev_release+0xdc/0x110
+[   18.407351]  ? tpm_dev_release+0xdc/0x110, FAIL|
+|1202_194537|Found time:18 in /root/ly_bisection/1202_193851_tpm_dev_release/tpmdd-next-6.19-rc1-v3_dmesg.log|
+|1202_194537|Logic: |<=50: +50|50-100 +180|>100 +1800| Set TIME:43|
+|1202_194537|-END- commit tpmdd-next-6.19-rc1-v3 FAIL bad|
+|1202_194537|cmd=cd /root/linux-tpmdd|
+|1202_194537||/root/ly_bisection/bzImage_7d0a66e4bb9081d75c82ec4957c50034cb0ea449| does not exist, will make it|
+|1202_194537|nohup /root/vm_bisect/make_bz.sh -k /root/linux-tpmdd -m 7d0a66e4bb9081d75c82ec4957c50034cb0ea449 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|1202_195201|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_7d0a66e4bb9081d75c82ec4957c50034cb0ea449, /root/ly_bisection/1202_193851_tpm_dev_release/7d0a66e4bb9081d75c82ec4957c50034cb0ea449_dmesg.log, port:10024, 1 time|
+|1202_195216|It takes 15 seconds to find login:test login: |
+|1202_195216|Boot 1 time: takes 15 seconds to boot up.|
+|1202_195216|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|1202_195217|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|1202_195217|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/1202_193851_tpm_dev_release/repro root@localhost:/root/repro|
+|1202_195218|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|1202_195218|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|1202_195218|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|1202_195301|/root/ly_bisection/bzImage_7d0a66e4bb9081d75c82ec4957c50034cb0ea449 didn't contain tpm_dev_release: in dmesg, pass|
+|1202_195301|Start commit 7d0a66e4bb9081d75c82ec4957c50034cb0ea449 PASS good|
+|1202_195301|cmd=git checkout -f tpmdd-next-6.19-rc1-v3|
+|1202_195301|cmd=git bisect start|
+|1202_195301|cmd=git bisect bad tpmdd-next-6.19-rc1-v3|
+|1202_195301|Bisect first start commit:7d0a66e4bb9081d75c82ec4957c50034cb0ea449|
+|1202_195301|git bisect good 7d0a66e4bb9081d75c82ec4957c50034cb0ea449|
+|1202_195302||/root/ly_bisection/bzImage_ebaeabfa5ab711a9b69b686d58329e258fdae75f| does not exist, will make it|
+|1202_195302|nohup /root/vm_bisect/make_bz.sh -k /root/linux-tpmdd -m ebaeabfa5ab711a9b69b686d58329e258fdae75f -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|1202_195927|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_ebaeabfa5ab711a9b69b686d58329e258fdae75f, /root/ly_bisection/1202_193851_tpm_dev_release/ebaeabfa5ab711a9b69b686d58329e258fdae75f_dmesg.log, port:10024, 1 time|
+|1202_195942|It takes 15 seconds to find login:test login: |
+|1202_195942|Boot 1 time: takes 15 seconds to boot up.|
+|1202_195942|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|1202_195944|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|1202_195944|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/1202_193851_tpm_dev_release/repro root@localhost:/root/repro|
+|1202_195944|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|1202_195945|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|1202_195945|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|1202_200028|/root/ly_bisection/bzImage_ebaeabfa5ab711a9b69b686d58329e258fdae75f didn't contain tpm_dev_release: in dmesg, pass|
+|1202_200028|git bisect good ebaeabfa5ab711a9b69b686d58329e258fdae75f|
+|1202_200028||/root/ly_bisection/bzImage_415d34b92c1f921a9ff3c38f56319cbc5536f642| does not exist, will make it|
+|1202_200028|nohup /root/vm_bisect/make_bz.sh -k /root/linux-tpmdd -m 415d34b92c1f921a9ff3c38f56319cbc5536f642 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|1202_200654|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_415d34b92c1f921a9ff3c38f56319cbc5536f642, /root/ly_bisection/1202_193851_tpm_dev_release/415d34b92c1f921a9ff3c38f56319cbc5536f642_dmesg.log, port:10024, 1 time|
+|1202_200710|It takes 16 seconds to find login:test login: |
+|1202_200710|Boot 1 time: takes 16 seconds to boot up.|
+|1202_200710|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|1202_200711|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|1202_200711|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/1202_193851_tpm_dev_release/repro root@localhost:/root/repro|
+|1202_200712|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|1202_200712|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|1202_200712|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|1202_200755|/root/ly_bisection/bzImage_415d34b92c1f921a9ff3c38f56319cbc5536f642 didn't contain tpm_dev_release: in dmesg, pass|
+|1202_200755|git bisect good 415d34b92c1f921a9ff3c38f56319cbc5536f642|
+|1202_200756||/root/ly_bisection/bzImage_c8e00cdc7425d5c60fd1ce6e7f71e5fb1b236991| does not exist, will make it|
+|1202_200756|nohup /root/vm_bisect/make_bz.sh -k /root/linux-tpmdd -m c8e00cdc7425d5c60fd1ce6e7f71e5fb1b236991 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|1202_201426|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_c8e00cdc7425d5c60fd1ce6e7f71e5fb1b236991, /root/ly_bisection/1202_193851_tpm_dev_release/c8e00cdc7425d5c60fd1ce6e7f71e5fb1b236991_dmesg.log, port:10024, 1 time|
+|1202_201441|It takes 15 seconds to find login:test login: |
+|1202_201441|Boot 1 time: takes 15 seconds to boot up.|
+|1202_201441|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|1202_201442|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|1202_201442|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/1202_193851_tpm_dev_release/repro root@localhost:/root/repro|
+|1202_201443|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|1202_201443|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|1202_201443|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|1202_201526|/root/ly_bisection/bzImage_c8e00cdc7425d5c60fd1ce6e7f71e5fb1b236991 didn't contain tpm_dev_release: in dmesg, pass|
+|1202_201526|git bisect good c8e00cdc7425d5c60fd1ce6e7f71e5fb1b236991|
+|1202_201527||/root/ly_bisection/bzImage_f2e74ecfba1b0d407f04b671a240cc65e309e529| does not exist, will make it|
+|1202_201527|nohup /root/vm_bisect/make_bz.sh -k /root/linux-tpmdd -m f2e74ecfba1b0d407f04b671a240cc65e309e529 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|1202_202153|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_f2e74ecfba1b0d407f04b671a240cc65e309e529, /root/ly_bisection/1202_193851_tpm_dev_release/f2e74ecfba1b0d407f04b671a240cc65e309e529_dmesg.log, port:10024, 1 time|
+|1202_202209|It takes 16 seconds to find login:test login: |
+|1202_202209|Boot 1 time: takes 16 seconds to boot up.|
+|1202_202209|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|1202_202210|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|1202_202210|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/1202_193851_tpm_dev_release/repro root@localhost:/root/repro|
+|1202_202211|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|1202_202211|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|1202_202211|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|1202_202254|/root/ly_bisection/bzImage_f2e74ecfba1b0d407f04b671a240cc65e309e529 didn't contain tpm_dev_release: in dmesg, pass|
+|1202_202254|git bisect good f2e74ecfba1b0d407f04b671a240cc65e309e529|
+|1202_202255||/root/ly_bisection/bzImage_73fd0dba0beb1d2d1695ee5452eac8dfabce3f9e| does not exist, will make it|
+|1202_202255|nohup /root/vm_bisect/make_bz.sh -k /root/linux-tpmdd -m 73fd0dba0beb1d2d1695ee5452eac8dfabce3f9e -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|1202_202922|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_73fd0dba0beb1d2d1695ee5452eac8dfabce3f9e, /root/ly_bisection/1202_193851_tpm_dev_release/73fd0dba0beb1d2d1695ee5452eac8dfabce3f9e_dmesg.log, port:10024, 1 time|
+|1202_202937|It takes 15 seconds to find login:test login: |
+|1202_202937|Boot 1 time: takes 15 seconds to boot up.|
+|1202_202937|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|1202_202938|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|1202_202938|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/1202_193851_tpm_dev_release/repro root@localhost:/root/repro|
+|1202_202939|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|1202_202939|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|1202_202939|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|1202_203022|/root/ly_bisection/bzImage_73fd0dba0beb1d2d1695ee5452eac8dfabce3f9e didn't contain tpm_dev_release: in dmesg, pass|
+|1202_203022|git bisect good 73fd0dba0beb1d2d1695ee5452eac8dfabce3f9e|
+|1202_203023||/root/ly_bisection/bzImage_4664fb427c8fd0080f40109f5e2b2090a6fb0c84| does not exist, will make it|
+|1202_203023|nohup /root/vm_bisect/make_bz.sh -k /root/linux-tpmdd -m 4664fb427c8fd0080f40109f5e2b2090a6fb0c84 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|1202_203651|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_4664fb427c8fd0080f40109f5e2b2090a6fb0c84, /root/ly_bisection/1202_193851_tpm_dev_release/4664fb427c8fd0080f40109f5e2b2090a6fb0c84_dmesg.log, port:10024, 1 time|
+|1202_203706|It takes 15 seconds to find login:test login: |
+|1202_203706|Boot 1 time: takes 15 seconds to boot up.|
+|1202_203706|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|1202_203708|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|1202_203708|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/1202_193851_tpm_dev_release/repro root@localhost:/root/repro|
+|1202_203708|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|1202_203709|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|1202_203709|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|1202_203752|/root/ly_bisection/bzImage_4664fb427c8fd0080f40109f5e2b2090a6fb0c84 didn't contain tpm_dev_release: in dmesg, pass|
+|1202_203752|git bisect good 4664fb427c8fd0080f40109f5e2b2090a6fb0c84|
+|1202_203752||/root/ly_bisection/bzImage_48ec78c1e4ca72f49e39b41f6ff6f3e952793cf8| does not exist, will make it|
+|1202_203752|nohup /root/vm_bisect/make_bz.sh -k /root/linux-tpmdd -m 48ec78c1e4ca72f49e39b41f6ff6f3e952793cf8 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|1202_204419|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_48ec78c1e4ca72f49e39b41f6ff6f3e952793cf8, /root/ly_bisection/1202_193851_tpm_dev_release/48ec78c1e4ca72f49e39b41f6ff6f3e952793cf8_dmesg.log, port:10024, 1 time|
+|1202_204435|It takes 16 seconds to find login:test login: |
+|1202_204435|Boot 1 time: takes 16 seconds to boot up.|
+|1202_204435|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|1202_204437|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|1202_204437|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/1202_193851_tpm_dev_release/repro root@localhost:/root/repro|
+|1202_204438|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|1202_204438|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|1202_204438|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|1202_204521|/root/ly_bisection/bzImage_48ec78c1e4ca72f49e39b41f6ff6f3e952793cf8 didn't contain tpm_dev_release: in dmesg, pass|
+|1202_204521|git bisect good 48ec78c1e4ca72f49e39b41f6ff6f3e952793cf8|
+|1202_204521||/root/ly_bisection/bzImage_83f6ace27d21a5833f4b3c6a7ad71036ad40ee24| does not exist, will make it|
+|1202_204521|nohup /root/vm_bisect/make_bz.sh -k /root/linux-tpmdd -m 83f6ace27d21a5833f4b3c6a7ad71036ad40ee24 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|1202_205150|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_83f6ace27d21a5833f4b3c6a7ad71036ad40ee24, /root/ly_bisection/1202_193851_tpm_dev_release/83f6ace27d21a5833f4b3c6a7ad71036ad40ee24_dmesg.log, port:10024, 1 time|
+|1202_205205|It takes 15 seconds to find login:test login: |
+|1202_205205|Boot 1 time: takes 15 seconds to boot up.|
+|1202_205205|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|1202_205206|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|1202_205206|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/1202_193851_tpm_dev_release/repro root@localhost:/root/repro|
+|1202_205207|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|1202_205207|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|1202_205207|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|1202_205250|/root/ly_bisection/bzImage_83f6ace27d21a5833f4b3c6a7ad71036ad40ee24 contained tpm_dev_release:[   17.394477] BUG: KASAN: invalid-free in tpm_dev_release+0xdc/0x110
+[   17.395832]  ? tpm_dev_release+0xdc/0x110
+[   17.395866]  ? tpm_dev_release+0xdc/0x110
+[   17.395885]  ? tpm_dev_release+0xdc/0x110
+[   17.395942]  ? tpm_dev_release+0xdc/0x110
+[   17.395978]  ? __pfx_tpm_dev_release+0x10/0x10
+[   17.395997]  tpm_dev_release+0xdc/0x110
+[   17.396013]  ? tpm_dev_release+0xdc/0x110, FAIL|
+|1202_205250|git bisect bad 83f6ace27d21a5833f4b3c6a7ad71036ad40ee24|
+|1202_205251||/root/ly_bisection/bzImage_2a52cfb5d67968aff72c0a41fa2f9bd0a0e97ac3| does not exist, will make it|
+|1202_205251|nohup /root/vm_bisect/make_bz.sh -k /root/linux-tpmdd -m 2a52cfb5d67968aff72c0a41fa2f9bd0a0e97ac3 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|1202_205917|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_2a52cfb5d67968aff72c0a41fa2f9bd0a0e97ac3, /root/ly_bisection/1202_193851_tpm_dev_release/2a52cfb5d67968aff72c0a41fa2f9bd0a0e97ac3_dmesg.log, port:10024, 1 time|
+|1202_205932|It takes 15 seconds to find login:test login: |
+|1202_205932|Boot 1 time: takes 15 seconds to boot up.|
+|1202_205932|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|1202_205933|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|1202_205933|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/1202_193851_tpm_dev_release/repro root@localhost:/root/repro|
+|1202_205934|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|1202_205935|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|1202_205935|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|1202_210018|/root/ly_bisection/bzImage_2a52cfb5d67968aff72c0a41fa2f9bd0a0e97ac3 didn't contain tpm_dev_release: in dmesg, pass|
+|1202_210018|git bisect good 2a52cfb5d67968aff72c0a41fa2f9bd0a0e97ac3|
+|1202_210018|Bisect PASS: find bad commit: 83f6ace27d21a5833f4b3c6a7ad71036ad40ee24 is the first bad commit
+commit 83f6ace27d21a5833f4b3c6a7ad71036ad40ee24
+Author: Jarkko Sakkinen <jarkko@kernel.org>
+Date:   Tue Sep 30 15:58:02 2025 +0300
+
+    tpm: Cap the number of PCR banks
+    
+    tpm2_get_pcr_allocation() does not cap any upper limit for the number of
+    banks. Cap the limit to eight banks so that out of bounds values coming
+    from external I/O cause on only limited harm.
+    
+    Cc: stable@vger.kernel.org # v5.10+
+    Fixes: bcfff8384f6c ("tpm: dynamically allocate the allocated_banks array")
+    Reviewed-by: Jonathan McDowell <noodles@meta.com>
+    Reviewed-by: Roberto Sassu <roberto.sassu@huawei.com>
+    Signed-off-by: Jarkko Sakkinen <jarkko.sakkinen@opinsys.com>
+
+ drivers/char/tpm/tpm1-cmd.c | 5 -----
+ drivers/char/tpm/tpm2-cmd.c | 8 +++-----
+ include/linux/tpm.h         | 8 +++++---
+ 3 files changed, 8 insertions(+), 13 deletions(-)|
+|1202_210018|cmd=git bisect log >> /root/ly_bisection/bi.log|
+|1202_210018|cmd=git bisect log >> /root/ly_bisection/1202_193851_tpm_dev_release/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [b8b93e380604ce33e41e78522406df011f07aefe] KEYS: trusted: Use tpm_ret_to_err() in trusted_tpm2
+git bisect bad b8b93e380604ce33e41e78522406df011f07aefe
+# status: waiting for good commit(s), bad commit known
+# good: [7d0a66e4bb9081d75c82ec4957c50034cb0ea449] Linux 6.18
+git bisect good 7d0a66e4bb9081d75c82ec4957c50034cb0ea449
+# good: [ebaeabfa5ab711a9b69b686d58329e258fdae75f] Merge tag 'vfs-6.19-rc1.writeback' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good ebaeabfa5ab711a9b69b686d58329e258fdae75f
+# good: [415d34b92c1f921a9ff3c38f56319cbc5536f642] Merge tag 'namespace-6.19-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good 415d34b92c1f921a9ff3c38f56319cbc5536f642
+# good: [c8e00cdc7425d5c60fd1ce6e7f71e5fb1b236991] Merge patch series "credential guards: credential preparation"
+git bisect good c8e00cdc7425d5c60fd1ce6e7f71e5fb1b236991
+# good: [f2e74ecfba1b0d407f04b671a240cc65e309e529] Merge tag 'vfs-6.19-rc1.folio' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good f2e74ecfba1b0d407f04b671a240cc65e309e529
+# good: [73fd0dba0beb1d2d1695ee5452eac8dfabce3f9e] Merge patch series "fs: introduce super write guard"
+git bisect good 73fd0dba0beb1d2d1695ee5452eac8dfabce3f9e
+# good: [4664fb427c8fd0080f40109f5e2b2090a6fb0c84] Merge tag 'vfs-6.19-rc1.minix' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good 4664fb427c8fd0080f40109f5e2b2090a6fb0c84
+# good: [48ec78c1e4ca72f49e39b41f6ff6f3e952793cf8] tpm: add WQ_PERCPU to alloc_workqueue users
+git bisect good 48ec78c1e4ca72f49e39b41f6ff6f3e952793cf8
+# bad: [83f6ace27d21a5833f4b3c6a7ad71036ad40ee24] tpm: Cap the number of PCR banks
+git bisect bad 83f6ace27d21a5833f4b3c6a7ad71036ad40ee24
+# good: [2a52cfb5d67968aff72c0a41fa2f9bd0a0e97ac3] tpm: Remove tpm_find_get_ops
+git bisect good 2a52cfb5d67968aff72c0a41fa2f9bd0a0e97ac3
+# first bad commit: [83f6ace27d21a5833f4b3c6a7ad71036ad40ee24] tpm: Cap the number of PCR banks
+|1202_210018|nohup /root/vm_bisect/make_bz.sh -k /root/linux-tpmdd -m tpmdd-next-6.19-rc1-v3 -b 83f6ace27d21a5833f4b3c6a7ad71036ad40ee24 -d /root/ly_bisection -o /tmp/kernel -f /root/ly_bisection/bzImage_tpmdd-next-6.19-rc1-v3_83f6ace27d21a5833f4b3c6a7ad71036ad40ee24_revert -c /root/vm_bisect/config-5.18rc4i_kvm  > /root/vm_bisect/nohup.log|
+|1202_210643|1st base commit:7d0a66e4bb9081d75c82ec4957c50034cb0ea449!|
+|1202_210643|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_tpmdd-next-6.19-rc1-v3_83f6ace27d21a5833f4b3c6a7ad71036ad40ee24_revert, /root/ly_bisection/1202_193851_tpm_dev_release/tpmdd-next-6.19-rc1-v3_83f6ace27d21a5833f4b3c6a7ad71036ad40ee24_revert_dmesg.log, port:10024, 1 time|
+|1202_210659|It takes 15 seconds to find login:test login: |
+|1202_210659|Boot 1 time: takes 15 seconds to boot up.|
+|1202_210659|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|1202_210700|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|1202_210700|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/1202_193851_tpm_dev_release/repro root@localhost:/root/repro|
+|1202_210701|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|1202_210701|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|1202_210701|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|1202_210744|/root/ly_bisection/bzImage_tpmdd-next-6.19-rc1-v3_83f6ace27d21a5833f4b3c6a7ad71036ad40ee24_revert didn't contain tpm_dev_release: in dmesg, pass|
+|1202_210744|Bisect successfully! tpmdd-next-6.19-rc1-v3_83f6ace27d21a5833f4b3c6a7ad71036ad40ee24_revert bzimage passed!|
+|1202_210744|cmd=cd /root/linux-tpmdd|
+|1202_210744|ISSUE:ly_bisection  EMAIL status after check:Email_not_sent|

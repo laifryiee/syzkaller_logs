@@ -1,0 +1,624 @@
+tpm tpm0: Operation Canceled
+==================================================================
+BUG: KASAN: invalid-free in tpm_dev_release+0xdc/0x110 drivers/char/tpm/tpm-chip.c:249
+Free of addr ff1100001243ed38 by task syz-executor318/712
+
+CPU: 0 UID: 0 PID: 712 Comm: syz-executor318 Not tainted 6.18.0-2025-12-01-intel-next-e6e97754c61a+ #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:378 [inline]
+ print_report+0xce/0x610 mm/kasan/report.c:482
+ kasan_report_invalid_free+0xa7/0xd0 mm/kasan/report.c:557
+ check_slab_allocation+0x128/0x140 mm/kasan/common.c:229
+ __kasan_slab_pre_free+0xd/0x20 mm/kasan/common.c:260
+ kasan_slab_pre_free include/linux/kasan.h:198 [inline]
+ slab_free_hook mm/slub.c:2488 [inline]
+ slab_free mm/slub.c:6642 [inline]
+ kfree+0x119/0x620 mm/slub.c:6849
+ tpm_dev_release+0xdc/0x110 drivers/char/tpm/tpm-chip.c:249
+ device_release+0xb6/0x260 drivers/base/core.c:2565
+ kobject_cleanup lib/kobject.c:689 [inline]
+ kobject_release lib/kobject.c:720 [inline]
+ kref_put include/linux/kref.h:65 [inline]
+ kobject_put+0x22d/0x550 lib/kobject.c:737
+ put_device+0x29/0x40 drivers/base/core.c:3797
+ vtpm_proxy_delete_proxy_dev drivers/char/tpm/tpm_vtpm_proxy.c:524 [inline]
+ vtpm_proxy_delete_device drivers/char/tpm/tpm_vtpm_proxy.c:606 [inline]
+ vtpm_proxy_fops_release+0x152/0x1e0 drivers/char/tpm/tpm_vtpm_proxy.c:239
+ __fput+0x41f/0xb70 fs/file_table.c:468
+ ____fput+0x22/0x30 fs/file_table.c:496
+ task_work_run+0x19e/0x2b0 kernel/task_work.c:227
+ exit_task_work include/linux/task_work.h:40 [inline]
+ do_exit+0x893/0x28c0 kernel/exit.c:967
+ do_group_exit+0xe4/0x2c0 kernel/exit.c:1108
+ __do_sys_exit_group kernel/exit.c:1119 [inline]
+ __se_sys_exit_group kernel/exit.c:1117 [inline]
+ __x64_sys_exit_group+0x4d/0x60 kernel/exit.c:1117
+ x64_sys_call+0x21a2/0x21b0 arch/x86/include/generated/asm/syscalls_64.h:232
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x4a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x41e3cd
+Code: Unable to access opcode bytes at 0x41e3a3.
+RSP: 002b:00007ffc511e4b18 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 00000000004bb1f0 RCX: 000000000041e3cd
+RDX: 00000000000000e7 RSI: ffffffffffffffd8 RDI: 0000000000000000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 00000000004c11d0
+R10: 00007ffc511e45f0 R11: 0000000000000246 R12: 00000000004bb1f0
+R13: 0000000000401ce0 R14: 0000000000000001 R15: 00000000004bbb60
+ </TASK>
+
+Allocated by task 712:
+ kasan_save_stack+0x2c/0x60 mm/kasan/common.c:56
+ kasan_save_track+0x18/0x40 mm/kasan/common.c:77
+ kasan_save_alloc_info+0x3c/0x50 mm/kasan/generic.c:573
+ poison_kmalloc_redzone mm/kasan/common.c:400 [inline]
+ __kasan_kmalloc+0x88/0xa0 mm/kasan/common.c:417
+ kasan_kmalloc include/linux/kasan.h:262 [inline]
+ __kmalloc_cache_noprof+0x2b1/0x840 mm/slub.c:5771
+ kmalloc_noprof include/linux/slab.h:957 [inline]
+ kzalloc_noprof include/linux/slab.h:1094 [inline]
+ tpm_chip_alloc+0x56/0x4c0 drivers/char/tpm/tpm-chip.c:299
+ vtpm_proxy_create_proxy_dev drivers/char/tpm/tpm_vtpm_proxy.c:502 [inline]
+ vtpm_proxy_create_device drivers/char/tpm/tpm_vtpm_proxy.c:544 [inline]
+ vtpmx_ioc_new_dev drivers/char/tpm/tpm_vtpm_proxy.c:642 [inline]
+ vtpmx_fops_ioctl+0x2d0/0x830 drivers/char/tpm/tpm_vtpm_proxy.c:668
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x1bf/0x220 fs/ioctl.c:583
+ x64_sys_call+0x1280/0x21b0 arch/x86/include/generated/asm/syscalls_64.h:17
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x4a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+The buggy address belongs to the object at ff1100001243e000
+ which belongs to the cache kmalloc-4k of size 4096
+The buggy address is located 3384 bytes inside of
+ 3528-byte region [ff1100001243e000, ff1100001243edc8)
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x12438
+head: order:3 mapcount:0 entire_mapcount:0 nr_pages_mapped:0 pincount:0
+flags: 0xfffffc0000040(head|node=0|zone=1|lastcpupid=0x1fffff)
+page_type: f5(slab)
+raw: 000fffffc0000040 ff1100000d838140 dead000000000100 dead000000000122
+raw: 0000000000000000 0000000080040004 00000000f5000000 0000000000000000
+head: 000fffffc0000040 ff1100000d838140 dead000000000100 dead000000000122
+head: 0000000000000000 0000000080040004 00000000f5000000 0000000000000000
+head: 000fffffc0000003 ffd4000000490e01 00000000ffffffff 00000000ffffffff
+head: ffffffffffffffff 0000000000000000 00000000ffffffff 0000000000000008
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ff1100001243ec00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ff1100001243ec80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>ff1100001243ed00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+                                        ^
+ ff1100001243ed80: 00 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc
+ ff1100001243ee00: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+==================================================================
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled
+tpm tpm0: Operation Canceled

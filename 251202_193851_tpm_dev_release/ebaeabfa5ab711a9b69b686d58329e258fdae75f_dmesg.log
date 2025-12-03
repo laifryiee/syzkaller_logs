@@ -1,0 +1,2805 @@
+c[?7l[2J[0mSeaBIOS (version rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org)
+
+
+iPXE (http://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+7FF91000+7FEF1000 CA00
+Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
+
+
+Booting from ROM..c[?7l[2J[    0.000000] Linux version 6.18.0-ebaeabfa5ab7+ (root@gnr-bkc) (gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-14), GNU ld version 2.35.2-54.el9) #1 SMP PREEMPT_DYNAMIC Tue Dec  2 19:58:09 CST 2025
+[    0.000000] Command line: console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0 thunderbolt.dyndbg
+[    0.000000] KERNEL supported cpus:
+[    0.000000]   Intel GenuineIntel
+[    0.000000]   AMD AuthenticAMD
+[    0.000000]   Hygon HygonGenuine
+[    0.000000]   Centaur CentaurHauls
+[    0.000000]   zhaoxin   Shanghai  
+[    0.000000] x86/split lock detection: #DB: warning on user-space bus_locks
+[    0.000000] BIOS-provided physical RAM map:
+[    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
+[    0.000000] BIOS-e820: [mem 0x000000000009fc00-0x000000000009ffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000000f0000-0x00000000000fffff] reserved
+[    0.000000] BIOS-e820: [mem 0x0000000000100000-0x000000007ffdffff] usable
+[    0.000000] BIOS-e820: [mem 0x000000007ffe0000-0x000000007fffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000feffc000-0x00000000feffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000fffc0000-0x00000000ffffffff] reserved
+[    0.000000] printk: legacy bootconsole [earlyser0] enabled
+[    0.000000] NX (Execute Disable) protection: active
+[    0.000000] APIC: Static calls initialized
+[    0.000000] SMBIOS 2.8 present.
+[    0.000000] DMI: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+[    0.000000] DMI: Memory slots populated: 1/1
+[    0.000000] Hypervisor detected: KVM
+[    0.000000] last_pfn = 0x7ffe0 max_arch_pfn = 0x10000000000
+[    0.000000] kvm-clock: Using msrs 4b564d01 and 4b564d00
+[    0.000002] kvm-clock: using sched offset of 660983272 cycles
+[    0.000520] clocksource: kvm-clock: mask: 0xffffffffffffffff max_cycles: 0x1cd42e4dffb, max_idle_ns: 881590591483 ns
+[    0.002141] tsc: Detected 1700.000 MHz processor
+[    0.009808] last_pfn = 0x7ffe0 max_arch_pfn = 0x10000000000
+[    0.010393] MTRR map: 4 entries (3 fixed + 1 variable; max 19), built from 8 variable MTRRs
+[    0.011224] x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT  
+[    0.017265] found SMP MP-table at [mem 0x000f5ba0-0x000f5baf]
+[    0.017863] Using GB pages for direct mapping
+[    0.020433] ACPI: Early table checksum verification disabled
+[    0.021000] ACPI: RSDP 0x00000000000F59C0 000014 (v00 BOCHS )
+[    0.021584] ACPI: RSDT 0x000000007FFE1951 000034 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.022442] ACPI: FACP 0x000000007FFE17FD 000074 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.023302] ACPI: DSDT 0x000000007FFE0040 0017BD (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.024164] ACPI: FACS 0x000000007FFE0000 000040
+[    0.024633] ACPI: APIC 0x000000007FFE1871 000080 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.025489] ACPI: HPET 0x000000007FFE18F1 000038 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.026345] ACPI: WAET 0x000000007FFE1929 000028 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.027200] ACPI: Reserving FACP table memory at [mem 0x7ffe17fd-0x7ffe1870]
+[    0.027899] ACPI: Reserving DSDT table memory at [mem 0x7ffe0040-0x7ffe17fc]
+[    0.028595] ACPI: Reserving FACS table memory at [mem 0x7ffe0000-0x7ffe003f]
+[    0.029291] ACPI: Reserving APIC table memory at [mem 0x7ffe1871-0x7ffe18f0]
+[    0.029990] ACPI: Reserving HPET table memory at [mem 0x7ffe18f1-0x7ffe1928]
+[    0.030686] ACPI: Reserving WAET table memory at [mem 0x7ffe1929-0x7ffe1950]
+[    0.032205] No NUMA configuration found
+[    0.032585] Faking a node at [mem 0x0000000000000000-0x000000007ffdffff]
+[    0.033300] NODE_DATA(0) allocated [mem 0x7ffb4ec0-0x7ffdfcbf]
+[    0.034979] Zone ranges:
+[    0.035247]   DMA      [mem 0x0000000000001000-0x0000000000ffffff]
+[    0.035865]   DMA32    [mem 0x0000000001000000-0x000000007ffdffff]
+[    0.036479]   Normal   empty
+[    0.036773]   Device   empty
+[    0.037061] Movable zone start for each node
+[    0.037492] Early memory node ranges
+[    0.037847]   node   0: [mem 0x0000000000001000-0x000000000009efff]
+[    0.038461]   node   0: [mem 0x0000000000100000-0x000000007ffdffff]
+[    0.039075] Initmem setup node 0 [mem 0x0000000000001000-0x000000007ffdffff]
+[    0.040069] On node 0, zone DMA: 1 pages in unavailable ranges
+[    0.040832] On node 0, zone DMA: 97 pages in unavailable ranges
+[    0.069006] On node 0, zone DMA32: 32 pages in unavailable ranges
+[    0.123669] KernelAddressSanitizer initialized (generic)
+[    0.124487] ACPI: PM-Timer IO Port: 0x608
+[    0.124914] ACPI: LAPIC_NMI (acpi_id[0xff] dfl dfl lint[0x1])
+[    0.125532] IOAPIC[0]: apic_id 0, version 17, address 0xfec00000, GSI 0-23
+[    0.126222] ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+[    0.126852] ACPI: INT_SRC_OVR (bus 0 bus_irq 5 global_irq 5 high level)
+[    0.127503] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+[    0.128155] ACPI: INT_SRC_OVR (bus 0 bus_irq 10 global_irq 10 high level)
+[    0.128824] ACPI: INT_SRC_OVR (bus 0 bus_irq 11 global_irq 11 high level)
+[    0.129539] ACPI: Using ACPI (MADT) for SMP configuration information
+[    0.130234] ACPI: HPET id: 0x8086a201 base: 0xfed00000
+[    0.130795] TSC deadline timer available
+[    0.131228] CPU topo: Max. logical packages:   1
+[    0.131740] CPU topo: Max. logical dies:       1
+[    0.132248] CPU topo: Max. dies per package:   1
+[    0.132771] CPU topo: Max. threads per core:   1
+[    0.133289] CPU topo: Num. cores per package:     2
+[    0.133825] CPU topo: Num. threads per package:   2
+[    0.134351] CPU topo: Allowing 2 present CPUs plus 0 hotplug CPUs
+[    0.135049] kvm-guest: APIC: eoi() replaced with kvm_guest_apic_eoi_write()
+[    0.135834] kvm-guest: KVM setup pv remote TLB flush
+[    0.136380] kvm-guest: setup PV sched yield
+[    0.136888] PM: hibernation: Registered nosave memory: [mem 0x00000000-0x00000fff]
+[    0.137699] PM: hibernation: Registered nosave memory: [mem 0x0009f000-0x000fffff]
+[    0.138506] [mem 0x80000000-0xfeffbfff] available for PCI devices
+[    0.139157] Booting paravirtualized kernel on KVM
+[    0.139664] clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645519600211568 ns
+[    0.140785] setup_percpu: NR_CPUS:8192 nr_cpumask_bits:2 nr_cpu_ids:2 nr_node_ids:1
+[    0.142101] percpu: Embedded 80 pages/cpu s290816 r8192 d28672 u1048576
+[    0.142933] kvm-guest: PV spinlocks enabled
+[    0.143392] PV qspinlock hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    0.144172] Kernel command line: net.ifnames=0 console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0 thunderbolt.dyndbg
+[    0.145560] random: crng init done
+[    0.145901] printk: log buffer data + meta data: 262144 + 917504 = 1179648 bytes
+[    0.147022] Dentry cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.148148] Inode-cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    0.149181] Fallback order for Node 0: 0 
+[    0.149192] Built 1 zonelists, mobility grouping on.  Total pages: 524158
+[    0.150208] Policy zone: DMA32
+[    0.150501] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.151093] stackdepot: allocating hash table via alloc_large_system_hash
+[    0.151742] stackdepot hash table entries: 1048576 (order: 12, 16777216 bytes, linear)
+[    0.155448] stackdepot: allocating space for 8192 stack pools via memblock
+[    0.191584] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+[    0.192260] kmemleak: Kernel memory leak detector disabled
+[    0.226965] ftrace: allocating 74658 entries in 292 pages
+[    0.227481] ftrace: allocated 292 pages with 3 groups
+[    0.231716] Dynamic Preempt: voluntary
+[    0.232542] Running RCU self tests
+[    0.232868] Running RCU synchronous self tests
+[    0.233286] rcu: Preemptible hierarchical RCU implementation.
+[    0.233827] rcu: 	RCU lockdep checking is enabled.
+[    0.234279] rcu: 	RCU restricting CPUs from NR_CPUS=8192 to nr_cpu_ids=2.
+[    0.234919] 	Trampoline variant of Tasks RCU enabled.
+[    0.235394] 	Rude variant of Tasks RCU enabled.
+[    0.235822] 	Tracing variant of Tasks RCU enabled.
+[    0.236273] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.236985] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+[    0.237697] Running RCU synchronous self tests
+[    0.238119] RCU Tasks: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.
+[    0.238942] RCU Tasks Rude: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.
+[    0.239804] RCU Tasks Trace: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.
+[    0.307905] NR_IRQS: 524544, nr_irqs: 440, preallocated irqs: 16
+[    0.309026] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.318435] Console: colour VGA+ 80x25
+[    0.318875] printk: legacy console [ttyS0] enabled
+[    0.318875] printk: legacy console [ttyS0] enabled
+[    0.319804] printk: legacy bootconsole [earlyser0] disabled
+[    0.319804] printk: legacy bootconsole [earlyser0] disabled
+[    0.320886] Lock dependency validator: Copyright (c) 2006 Red Hat, Inc., Ingo Molnar
+[    0.321631] ... MAX_LOCKDEP_SUBCLASSES:  8
+[    0.322038] ... MAX_LOCK_DEPTH:          48
+[    0.322453] ... MAX_LOCKDEP_KEYS:        8192
+[    0.322885] ... CLASSHASH_SIZE:          4096
+[    0.323314] ... MAX_LOCKDEP_ENTRIES:     32768
+[    0.323755] ... MAX_LOCKDEP_CHAINS:      65536
+[    0.324194] ... CHAINHASH_SIZE:          32768
+[    0.324630]  memory used by lock dependency info: 6429 kB
+[    0.325161]  memory used for stack traces: 4224 kB
+[    0.325628]  per task-struct memory footprint: 1920 bytes
+[    0.326250] ACPI: Core revision 20250807
+[    0.327047] clocksource: hpet: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604467 ns
+[    0.328105] APIC: Switch to symmetric I/O mode setup
+[    0.328880] x2apic enabled
+[    0.329544] APIC: Switched APIC routing to: physical x2apic
+[    0.330101] kvm-guest: APIC: send_IPI_mask() replaced with kvm_send_ipi_mask()
+[    0.330817] kvm-guest: APIC: send_IPI_mask_allbutself() replaced with kvm_send_ipi_mask_allbutself()
+[    0.331709] kvm-guest: setup PV IPIs
+[    0.333318] ..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+[    0.333947] clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x1881273ac8e, max_idle_ns: 440795257284 ns
+[    0.334984] Calibrating delay loop (skipped) preset value.. 3400.00 BogoMIPS (lpj=6800000)
+[    0.335937] x86/cpu: User Mode Instruction Prevention (UMIP) activated
+[    0.339086] Last level iTLB entries: 4KB 0, 2MB 0, 4MB 0
+[    0.339611] Last level dTLB entries: 4KB 0, 2MB 0, 4MB 0, 1GB 0
+[    0.340220] mitigations: Enabled attack vectors: user_kernel, user_user, guest_host, guest_guest, SMT mitigations: auto
+[    0.341280] Speculative Store Bypass: Mitigation: Speculative Store Bypass disabled via prctl
+[    0.342114] Spectre V2 : Mitigation: Enhanced / Automatic IBRS
+[    0.342976] ITS: Mitigation: Aligned branch/return thunks
+[    0.343512] Spectre V1 : Mitigation: usercopy/swapgs barriers and __user pointer sanitization
+[    0.344343] Spectre V2 : WARNING: Unprivileged eBPF is enabled with eIBRS on, data leaks possible via Spectre v2 BHB attacks!
+[    0.345441] Spectre V2 : Spectre v2 / PBRSB-eIBRS: Retire a single CALL on VMEXIT
+[    0.346172] Spectre V2 : mitigation: Enabling conditional Indirect Branch Prediction Barrier
+[    0.346979] active return thunk: its_return_thunk
+[    0.347457] Spectre V2 : Spectre BHI mitigation: SW BHB clearing on syscall and VM exit
+[    0.348284] x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'
+[    0.349031] x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'
+[    0.349657] x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'
+[    0.350284] x86/fpu: Supporting XSAVE feature 0x020: 'AVX-512 opmask'
+[    0.350975] x86/fpu: Supporting XSAVE feature 0x040: 'AVX-512 Hi256'
+[    0.351602] x86/fpu: Supporting XSAVE feature 0x080: 'AVX-512 ZMM_Hi256'
+[    0.352259] x86/fpu: Supporting XSAVE feature 0x200: 'Protection Keys User registers'
+[    0.353024] x86/fpu: Supporting XSAVE feature 0x20000: 'AMX Tile config'
+[    0.353682] x86/fpu: Supporting XSAVE feature 0x40000: 'AMX Tile data'
+[    0.354976] x86/fpu: xstate_offset[2]:  576, xstate_sizes[2]:  256
+[    0.355604] x86/fpu: xstate_offset[5]:  832, xstate_sizes[5]:   64
+[    0.356211] x86/fpu: xstate_offset[6]:  896, xstate_sizes[6]:  512
+[    0.356826] x86/fpu: xstate_offset[7]: 1408, xstate_sizes[7]: 1024
+[    0.357435] x86/fpu: xstate_offset[9]: 2432, xstate_sizes[9]:    8
+[    0.358049] x86/fpu: xstate_offset[17]: 2496, xstate_sizes[17]:   64
+[    0.358681] x86/fpu: xstate_offset[18]: 2560, xstate_sizes[18]: 8192
+[    0.358975] x86/fpu: Enabled xstate features 0x602e7, context size is 10752 bytes, using 'compacted' format.
+[    0.508453] Freeing SMP alternatives memory: 64K
+[    0.508940] pid_max: default: 32768 minimum: 301
+[    0.509654] LSM: initializing lsm=capability,yama,ima,evm
+[    0.510293] Yama: becoming mindful.
+[    0.511082] Mount-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.511825] Mountpoint-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.514104] Running RCU synchronous self tests
+[    0.514554] Running RCU synchronous self tests
+[    0.515269] smpboot: CPU0: Intel(R) Xeon(R) Gold 6414TDX (family: 0x6, model: 0x8f, stepping: 0x6)
+[    0.516904] Performance Events: PEBS fmt0-, Sapphire Rapids events, full-width counters, Intel PMU driver.
+[    0.517985] ... version:                   2
+[    0.518415] ... bit width:                 48
+[    0.518855] ... generic counters:          8
+[    0.518979] ... generic bitmap:            00000000000000ff
+[    0.519537] ... fixed-purpose counters:    4
+[    0.519967] ... fixed-purpose bitmap:      000000000000000f
+[    0.520523] ... value mask:                0000ffffffffffff
+[    0.521075] ... max period:                00007fffffffffff
+[    0.521636] ... global_ctrl mask:          0000000f000000ff
+[    0.522675] signal: max sigframe size: 11952
+[    0.523124] rcu: Hierarchical SRCU implementation.
+[    0.523603] rcu: 	Max phase no-delay instances is 1000.
+[    0.524327] Timer migration: 1 hierarchy levels; 8 children per group; 1 crossnode level
+[    0.540019] smp: Bringing up secondary CPUs ...
+[    0.541044] smpboot: x86: Booting SMP configuration:
+[    0.541555] .... node  #0, CPUs:      #1
+[    0.541711] smp: Brought up 1 node, 2 CPUs
+[    0.542995] smpboot: Total of 2 processors activated (6800.00 BogoMIPS)
+[    0.544328] Memory: 1591844K/2096632K available (79957K kernel code, 15397K rwdata, 18472K rodata, 16252K init, 21276K bss, 493180K reserved, 0K cma-reserved)
+[    0.546328] devtmpfs: initialized
+[    0.547663] x86/mm: Memory block size: 128MB
+[    0.558548] Running RCU synchronous self tests
+[    0.558998] Running RCU synchronous self tests
+[    0.559538] Running RCU Tasks wait API self tests
+[    0.559538] Running RCU Tasks Rude wait API self tests
+[    0.559538] Running RCU Tasks Trace wait API self tests
+[    0.578994] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.580024] posixtimers hash table entries: 1024 (order: 5, 73728 bytes, linear)
+[    0.583040] futex hash table entries: 512 (65536 bytes on 1 NUMA nodes, total 64 KiB, linear).
+[    0.585252] pinctrl core: initialized pinctrl subsystem
+[    0.587084] 
+[    0.587256] *************************************************************
+[    0.587931] **     NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE    **
+[    0.588606] **                                                         **
+[    0.589287] **  IOMMU DebugFS SUPPORT HAS BEEN ENABLED IN THIS KERNEL  **
+[    0.589963] **                                                         **
+[    0.590637] ** This means that this kernel is built to expose internal **
+[    0.590977] ** IOMMU data structures, which may compromise security on **
+[    0.591653] ** your system.                                            **
+[    0.592327] **                                                         **
+[    0.593090] ** If you see this message and you are not debugging the   **
+[    0.593760] ** kernel, report this immediately to your vendor!         **
+[    0.594435] **                                                         **
+[    0.594977] **     NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE    **
+[    0.595653] *************************************************************
+[    0.596414] PM: RTC time: 11:59:28, date: 2025-12-02
+[    0.599511] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.601634] DMA: preallocated 256 KiB GFP_KERNEL pool for atomic allocations
+[    0.602365] DMA: preallocated 256 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    0.602997] DMA: preallocated 256 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.603874] audit: initializing netlink subsys (disabled)
+[    0.604464] Callback from call_rcu_tasks_trace() invoked.
+[    0.604464] audit: type=2000 audit(1764676768.780:1): state=initialized audit_enabled=0 res=1
+[    0.607278] thermal_sys: Registered thermal governor 'fair_share'
+[    0.607288] thermal_sys: Registered thermal governor 'bang_bang'
+[    0.607913] thermal_sys: Registered thermal governor 'step_wise'
+[    0.608521] thermal_sys: Registered thermal governor 'user_space'
+[    0.609186] cpuidle: using governor ladder
+[    0.609186] cpuidle: using governor menu
+[    0.611078] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+[    0.612644] PCI: Using configuration type 1 for base access
+[    0.613517] kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.
+[    0.790972] HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.790972] HugeTLB: 16380 KiB vmemmap can be freed for a 1.00 GiB page
+[    0.790982] HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.791656] HugeTLB: 28 KiB vmemmap can be freed for a 2.00 MiB page
+[    0.798161] ACPI: Added _OSI(Module Device)
+[    0.798601] ACPI: Added _OSI(Processor Device)
+[    0.798991] ACPI: Added _OSI(Processor Aggregator Device)
+[    0.816569] ACPI: 1 ACPI AML tables successfully acquired and loaded
+[    0.829073] ACPI: Interpreter enabled
+[    0.829612] ACPI: PM: (supports S0 S3 S4 S5)
+[    0.830042] ACPI: Using IOAPIC for interrupt routing
+[    0.830646] PCI: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
+[    0.830979] PCI: Using E820 reservations for host bridge windows
+[    0.832900] ACPI: Enabled 2 GPEs in block 00 to 0F
+[    0.876080] ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-ff])
+[    0.876742] acpi PNP0A03:00: _OSC: OS supports [ASPM ClockPM Segments MSI EDR HPX-Type3]
+[    0.877544] acpi PNP0A03:00: _OSC: not requesting OS control; OS requires [ExtendedConfig ASPM ClockPM MSI]
+[    0.878668] acpi PNP0A03:00: fail to add MMCONFIG information, can't access extended configuration space under this bridge
+[    0.884018] acpiphp: Slot [3] registered
+[    0.884560] acpiphp: Slot [4] registered
+[    0.885107] acpiphp: Slot [5] registered
+[    0.885649] acpiphp: Slot [6] registered
+[    0.886187] acpiphp: Slot [7] registered
+[    0.886721] acpiphp: Slot [8] registered
+[    0.887122] acpiphp: Slot [9] registered
+[    0.887660] acpiphp: Slot [10] registered
+[    0.888208] acpiphp: Slot [11] registered
+[    0.888750] acpiphp: Slot [12] registered
+[    0.889301] acpiphp: Slot [13] registered
+[    0.889846] acpiphp: Slot [14] registered
+[    0.890394] acpiphp: Slot [15] registered
+[    0.890940] acpiphp: Slot [16] registered
+[    0.891127] acpiphp: Slot [17] registered
+[    0.891679] acpiphp: Slot [18] registered
+[    0.892222] acpiphp: Slot [19] registered
+[    0.892767] acpiphp: Slot [20] registered
+[    0.893313] acpiphp: Slot [21] registered
+[    0.893867] acpiphp: Slot [22] registered
+[    0.894409] acpiphp: Slot [23] registered
+[    0.894956] acpiphp: Slot [24] registered
+[    0.895135] acpiphp: Slot [25] registered
+[    0.895679] acpiphp: Slot [26] registered
+[    0.896229] acpiphp: Slot [27] registered
+[    0.896778] acpiphp: Slot [28] registered
+[    0.897326] acpiphp: Slot [29] registered
+[    0.897869] acpiphp: Slot [30] registered
+[    0.898421] acpiphp: Slot [31] registered
+[    0.898891] PCI host bridge to bus 0000:00
+[    0.903054] pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7 window]
+[    0.903730] pci_bus 0000:00: root bus resource [io  0x0d00-0xffff window]
+[    0.904410] pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff window]
+[    0.905158] pci_bus 0000:00: root bus resource [mem 0x80000000-0xfebfffff window]
+[    0.905903] pci_bus 0000:00: root bus resource [mem 0x100000000-0x17fffffff window]
+[    0.906662] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    0.907080] pci 0000:00:00.0: [8086:1237] type 00 class 0x060000 conventional PCI endpoint
+[    0.917716] pci 0000:00:01.0: [8086:7000] type 00 class 0x060100 conventional PCI endpoint
+[    0.919986] pci 0000:00:01.1: [8086:7010] type 00 class 0x010180 conventional PCI endpoint
+[    0.921372] pci 0000:00:01.1: BAR 4 [io  0xc040-0xc04f]
+[    0.921930] pci 0000:00:01.1: BAR 0 [io  0x01f0-0x01f7]: legacy IDE quirk
+[    0.922603] pci 0000:00:01.1: BAR 1 [io  0x03f6]: legacy IDE quirk
+[    0.922979] pci 0000:00:01.1: BAR 2 [io  0x0170-0x0177]: legacy IDE quirk
+[    0.923651] pci 0000:00:01.1: BAR 3 [io  0x0376]: legacy IDE quirk
+[    0.924822] pci 0000:00:01.3: [8086:7113] type 00 class 0x068000 conventional PCI endpoint
+[    0.925960] pci 0000:00:01.3: quirk: [io  0x0600-0x063f] claimed by PIIX4 ACPI
+[    0.926680] pci 0000:00:01.3: quirk: [io  0x0700-0x070f] claimed by PIIX4 SMB
+[    0.927549] pci 0000:00:02.0: [1234:1111] type 00 class 0x030000 conventional PCI endpoint
+[    0.929429] pci 0000:00:02.0: BAR 0 [mem 0xfd000000-0xfdffffff pref]
+[    0.930081] pci 0000:00:02.0: BAR 2 [mem 0xfebf0000-0xfebf0fff]
+[    0.930692] pci 0000:00:02.0: ROM [mem 0xfebe0000-0xfebeffff pref]
+[    0.931078] pci 0000:00:02.0: Video device with shadowed ROM at [mem 0x000c0000-0x000dffff]
+[    0.941121] pci 0000:00:03.0: [8086:100e] type 00 class 0x020000 conventional PCI endpoint
+[    0.942823] pci 0000:00:03.0: BAR 0 [mem 0xfebc0000-0xfebdffff]
+[    0.942987] pci 0000:00:03.0: BAR 1 [io  0xc000-0xc03f]
+[    0.943546] pci 0000:00:03.0: ROM [mem 0xfeb80000-0xfebbffff pref]
+[    0.967210] ACPI: PCI: Interrupt link LNKA configured for IRQ 10
+[    0.968857] ACPI: PCI: Interrupt link LNKB configured for IRQ 10
+[    0.970451] ACPI: PCI: Interrupt link LNKC configured for IRQ 11
+[    0.971966] ACPI: PCI: Interrupt link LNKD configured for IRQ 11
+[    0.972988] ACPI: PCI: Interrupt link LNKS configured for IRQ 9
+[    0.976255] iommu: Default domain type: Translated
+[    0.976747] iommu: DMA domain TLB invalidation policy: lazy mode
+[    0.983780] SCSI subsystem initialized
+[    0.984670] ACPI: bus type USB registered
+[    0.985296] usbcore: registered new interface driver usbfs
+[    0.985943] usbcore: registered new interface driver hub
+[    0.986535] usbcore: registered new device driver usb
+[    0.987328] pps_core: LinuxPPS API ver. 1 registered
+[    0.987821] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.988754] PTP clock support registered
+[    0.990972] EDAC MC: Ver: 3.0.0
+[    0.993232] NetLabel: Initializing
+[    0.993595] NetLabel:  domain hash size = 128
+[    0.994039] NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+[    0.994737] NetLabel:  unlabeled traffic allowed by default
+[    0.995477] PCI: Using ACPI for IRQ routing
+[    0.996279] pci 0000:00:02.0: vgaarb: setting as boot VGA device
+[    0.996889] pci 0000:00:02.0: vgaarb: bridge control possible
+[    0.997466] pci 0000:00:02.0: vgaarb: VGA device added: decodes=io+mem,owns=io+mem,locks=none
+[    0.998307] vgaarb: loaded
+[    1.003404] hpet0: at MMIO 0xfed00000, IRQs 2, 8, 0
+[    1.003939] hpet0: 3 comparators, 64-bit 100.000000 MHz counter
+[    1.008372] clocksource: Switched to clocksource kvm-clock
+[    1.010282] VFS: Disk quotas dquot_6.6.0
+[    1.010723] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    1.011984] pnp: PnP ACPI init
+[    1.016440] pnp: PnP ACPI: found 6 devices
+[    1.036730] clocksource: acpi_pm: mask: 0xffffff max_cycles: 0xffffff, max_idle_ns: 2085701024 ns
+[    1.038106] NET: Registered PF_INET protocol family
+[    1.038796] IP idents hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    1.040964] tcp_listen_portaddr_hash hash table entries: 1024 (order: 5, 73728 bytes, linear)
+[    1.041867] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    1.042732] TCP established hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    1.043865] TCP bind hash table entries: 16384 (order: 10, 2359296 bytes, linear)
+[    1.045793] TCP: Hash tables configured (established 16384 bind 16384)
+[    1.046556] UDP hash table entries: 1024 (order: 6, 262144 bytes, linear)
+[    1.047321] UDP-Lite hash table entries: 1024 (order: 6, 262144 bytes, linear)
+[    1.048376] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    1.049687] RPC: Registered named UNIX socket transport module.
+[    1.050297] RPC: Registered udp transport module.
+[    1.050765] RPC: Registered tcp transport module.
+[    1.051243] RPC: Registered tcp-with-tls transport module.
+[    1.051786] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    1.052445] pci_bus 0000:00: resource 4 [io  0x0000-0x0cf7 window]
+[    1.053067] pci_bus 0000:00: resource 5 [io  0x0d00-0xffff window]
+[    1.053690] pci_bus 0000:00: resource 6 [mem 0x000a0000-0x000bffff window]
+[    1.054379] pci_bus 0000:00: resource 7 [mem 0x80000000-0xfebfffff window]
+[    1.055067] pci_bus 0000:00: resource 8 [mem 0x100000000-0x17fffffff window]
+[    1.056145] pci 0000:00:01.0: PIIX3: Enabling Passive Release
+[    1.056727] pci 0000:00:00.0: Limiting direct PCI/PCI transfers
+[    1.057425] PCI: CLS 0 bytes, default 64
+[    1.057928] ACPI: bus type thunderbolt registered
+[    1.058764] clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x1881273ac8e, max_idle_ns: 440795257284 ns
+[    1.059887] sgx: There are zero EPC sections.
+[    3.310578] Initialise system trusted keyrings
+[    3.311160] Key type blacklist registered
+[    3.311839] workingset: timestamp_bits=36 max_order=19 bucket_order=0
+[    3.314665] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    3.317033] NFS: Registering the id_resolver key type
+[    3.317624] Key type id_resolver registered
+[    3.318070] Key type id_legacy registered
+[    3.318535] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    3.319263] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    3.320308] fuse: init (API version 7.45)
+[    3.321369] SGI XFS with ACLs, security attributes, realtime, quota, no debug enabled
+[    3.323444] 9p: Installing v9fs 9p2000 file system support
+[    3.338952] Key type asymmetric registered
+[    3.339393] Asymmetric key parser 'x509' registered
+[    3.340032] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 241)
+[    3.341621] io scheduler mq-deadline registered
+[    3.342281] io scheduler bfq registered
+[    3.343148] ledtrig-cpu: registered to indicate activity on CPUs
+[    3.345275] IPMI message handler: version 39.2
+[    3.345855] ipmi device interface
+[    3.348090] input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0
+[    3.349392] ACPI: button: Power Button [PWRF]
+[    3.351429] ERST DBG: ERST support is disabled.
+[    3.353369] Serial: 8250/16550 driver, 32 ports, IRQ sharing enabled
+[    3.355615] 00:04: ttyS0 at I/O 0x3f8 (irq = 4, base_baud = 115200) is a 16550A
+[    3.384651] Linux agpgart interface v0.103
+[    3.387721] ACPI: bus type drm_connector registered
+[    3.412898] brd: module loaded
+[    3.428974] loop: module loaded
+[    3.438509] scsi host0: ata_piix
+[    3.440281] scsi host1: ata_piix
+[    3.441165] ata1: PATA max MWDMA2 cmd 0x1f0 ctl 0x3f6 bmdma 0xc040 irq 14 lpm-pol 0
+[    3.441951] ata2: PATA max MWDMA2 cmd 0x170 ctl 0x376 bmdma 0xc048 irq 15 lpm-pol 0
+[    3.445867] tun: Universal TUN/TAP device driver, 1.6
+[    3.446742] e100: Intel(R) PRO/100 Network Driver
+[    3.447216] e100: Copyright(c) 1999-2006 Intel Corporation
+[    3.447893] e1000: Intel(R) PRO/1000 Network Driver
+[    3.448380] e1000: Copyright (c) 1999-2006 Intel Corporation.
+[    3.465344] Callback from call_rcu_tasks() invoked.
+[    3.597435] ata1: found unknown device (class 0)
+[    3.598469] ata1.00: ATA-7: QEMU HARDDISK, 2.5+, max UDMA/100
+[    3.599056] ata1.00: 17196647 sectors, multi 16: LBA48 
+[    3.600657] scsi 0:0:0:0: Direct-Access     ATA      QEMU HARDDISK    2.5+ PQ: 0 ANSI: 5
+[    3.601497] ata2: found unknown device (class 0)
+[    3.602512] ata2.00: ATAPI: QEMU DVD-ROM, 2.5+, max UDMA/100
+[    3.603751] sd 0:0:0:0: Attached scsi generic sg0 type 0
+[    3.604605] sd 0:0:0:0: [sda] 17196647 512-byte logical blocks: (8.80 GB/8.20 GiB)
+[    3.605578] sd 0:0:0:0: [sda] Write Protect is off
+[    3.606206] sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[    3.606209] scsi 1:0:0:0: CD-ROM            QEMU     QEMU DVD-ROM     2.5+ PQ: 0 ANSI: 5
+[    3.607185] sd 0:0:0:0: [sda] Preferred minimum I/O size 512 bytes
+[    3.632059] scsi 1:0:0:0: Attached scsi generic sg1 type 5
+[    3.633446] sd 0:0:0:0: [sda] Attached SCSI disk
+[    4.293235] ACPI: \_SB_.LNKC: Enabled at IRQ 11
+[    4.609872] e1000 0000:00:03.0 eth0: (PCI:33MHz:32-bit) 52:54:00:12:34:56
+[    4.610616] e1000 0000:00:03.0 eth0: Intel(R) PRO/1000 Network Connection
+[    4.611524] e1000e: Intel(R) PRO/1000 Network Driver
+[    4.612049] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    4.612821] igb: Intel(R) Gigabit Ethernet Network Driver
+[    4.613406] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    4.614772] PPP generic driver version 2.4.2
+[    4.616510] VFIO - User Level meta-driver version: 0.3
+[    4.618386] usbcore: registered new interface driver uas
+[    4.619110] usbcore: registered new interface driver usb-storage
+[    4.620012] i8042: PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
+[    4.621891] serio: i8042 KBD port at 0x60,0x64 irq 1
+[    4.622464] serio: i8042 AUX port at 0x60,0x64 irq 12
+[    4.624184] mousedev: PS/2 mouse device common for all mice
+[    4.625996] input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input1
+[    4.627753] rtc_cmos 00:05: RTC can wake from S4
+[    4.629557] input: VirtualPS/2 VMware VMMouse as /devices/platform/i8042/serio1/input/input4
+[    4.630450] rtc_cmos 00:05: registered as rtc0
+[    4.631109] rtc_cmos 00:05: setting system clock to 2025-12-02T11:59:32 UTC (1764676772)
+[    4.632415] rtc_cmos 00:05: alarms up to one day, y3k, 242 bytes nvram, hpet irqs
+[    4.632518] input: VirtualPS/2 VMware VMMouse as /devices/platform/i8042/serio1/input/input3
+[    4.633267] i2c_dev: i2c /dev entries driver
+[    4.634692] device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
+[    4.635962] device-mapper: uevent: version 1.0.3
+[    4.636877] device-mapper: ioctl: 4.50.0-ioctl (2025-04-28) initialised: dm-devel@lists.linux.dev
+[    4.637816] intel_pstate: CPU model not supported
+[    4.638533] sdhci: Secure Digital Host Controller Interface driver
+[    4.639168] sdhci: Copyright(c) Pierre Ossman
+[    4.639821] sdhci-pltfm: SDHCI platform and OF driver helper
+[    4.640969] drop_monitor: Initializing network drop monitor service
+[    4.641983] NET: Registered PF_INET6 protocol family
+[    4.644183] Segment Routing with IPv6
+[    4.644694] In-situ OAM (IOAM) with IPv6
+[    4.645167] NET: Registered PF_PACKET protocol family
+[    4.645927] 9pnet: Installing 9P2000 support
+[    4.646496] Key type dns_resolver registered
+[    4.648490] IPI shorthand broadcast: enabled
+[    4.708297] sched_clock: Marking stable (4688004307, 17278233)->(4707076057, -1793517)
+[    4.711054] registered taskstats version 1
+[    4.712208] Loading compiled-in X.509 certificates
+[    4.793616] Demotion targets for Node 0: null
+[    4.795454] Key type .fscrypt registered
+[    4.795894] Key type fscrypt-provisioning registered
+[    4.798684] Key type encrypted registered
+[    4.799175] ima: No TPM chip found, activating TPM-bypass!
+[    4.799749] ima: Allocated hash algorithm: sha1
+[    4.800271] ima: No architecture policies found
+[    4.800869] evm: Initialising EVM extended attributes:
+[    4.801410] evm: security.selinux
+[    4.801750] evm: security.SMACK64
+[    4.802096] evm: security.SMACK64EXEC
+[    4.802466] evm: security.SMACK64TRANSMUTE
+[    4.802883] evm: security.SMACK64MMAP
+[    4.803256] evm: security.apparmor
+[    4.803601] evm: security.ima
+[    4.803908] evm: security.capability
+[    4.804271] evm: HMAC attrs: 0x1
+[    4.807190] PM:   Magic number: 5:794:983
+[    4.808350] RAS: Correctable Errors collector initialized.
+[    4.809377] clk: Disabling unused clocks
+[    4.809801] PM: genpd: Disabling unused power domains
+[    4.810883] check access for rdinit=/init failed: -2, ignoring
+[    4.811299] md: Waiting for all devices to be available before autodetect
+[    4.811770] md: If you don't use raid, use raid=noautodetect
+[    4.812166] md: Autodetecting RAID arrays.
+[    4.812461] md: autorun ...
+[    4.812664] md: ... autorun DONE.
+[    4.818606] EXT4-fs (sda): INFO: recovery required on readonly filesystem
+[    4.819111] EXT4-fs (sda): write access will be enabled during recovery
+[    4.878550] EXT4-fs (sda): recovery complete
+[    4.880116] EXT4-fs (sda): mounted filesystem 088740a9-c8b4-422c-999d-a804eb68a4da ro with ordered data mode. Quota mode: none.
+[    4.880990] VFS: Mounted root (ext4 filesystem) readonly on device 8:0.
+[    4.883070] devtmpfs: mounted
+[    4.904160] Freeing unused decrypted memory: 2036K
+[    4.909683] Freeing unused kernel image (initmem) memory: 16252K
+[    4.910309] Write protecting the kernel read-only data: 102400k
+[    4.913763] Freeing unused kernel image (text/rodata gap) memory: 1960K
+[    4.915602] Freeing unused kernel image (rodata/data gap) memory: 2008K
+[    5.957424] x86/mm: Checked W+X mappings: passed, no W+X pages found.
+[    5.957932] Run /sbin/init as init process
+[    6.094276] systemd[1]: systemd 252-15.el9 running in system mode (+PAM +AUDIT +SELINUX -APPARMOR +IMA +SMACK +SECCOMP +GCRYPT +GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS -FIDO2 +IDN2 -IDN -IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY +P11KIT -QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK +XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+[    6.096388] systemd[1]: Detected virtualization kvm.
+[    6.096740] systemd[1]: Detected architecture x86-64.
+
+Welcome to [0;31mCentOS Stream 9[0m!
+
+[    6.100638] systemd[1]: Hostname set to <test>.
+[    6.403944] systemd-rc-local-generator[115]: /etc/rc.d/rc.local is not marked executable, skipping.
+[    6.634090] systemd[1]: Queued start job for default target Multi-User System.
+[    6.651843] systemd[1]: Created slice Virtual Machine and Container Slice.
+[[0;32m  OK  [0m] Created slice [0;1;39mVirtual Machine and Container Slice[0m.
+[    6.656971] systemd[1]: Created slice Slice /system/getty.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/getty[0m.
+[    6.659882] systemd[1]: Created slice Slice /system/modprobe.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/modprobe[0m.
+[    6.663016] systemd[1]: Created slice Slice /system/serial-getty.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/serial-getty[0m.
+[    6.666020] systemd[1]: Created slice Slice /system/sshd-keygen.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/sshd-keygen[0m.
+[    6.668851] systemd[1]: Created slice User and Session Slice.
+[[0;32m  OK  [0m] Created slice [0;1;39mUser and Session Slice[0m.
+[    6.670285] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[[0;32m  OK  [0m] Started [0;1;39mForward Password R…uests to Wall Directory Watch[0m.
+[    6.672457] systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+[[0;32m  OK  [0m] Set up automount [0;1;39mArbitrary…s File System Automount Point[0m.
+[    6.674076] systemd[1]: Reached target Local Integrity Protected Volumes.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal Integrity Protected Volumes[0m.
+[    6.675315] systemd[1]: Reached target Slice Units.
+[[0;32m  OK  [0m] Reached target [0;1;39mSlice Units[0m.
+[    6.676235] systemd[1]: Reached target Swaps.
+[[0;32m  OK  [0m] Reached target [0;1;39mSwaps[0m.
+[    6.677089] systemd[1]: Reached target Local Verity Protected Volumes.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal Verity Protected Volumes[0m.
+[    6.678601] systemd[1]: Listening on Device-mapper event daemon FIFOs.
+[[0;32m  OK  [0m] Listening on [0;1;39mDevice-mapper event daemon FIFOs[0m.
+[    6.680313] systemd[1]: Listening on LVM2 poll daemon socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mLVM2 poll daemon socket[0m.
+[    6.681544] systemd[1]: multipathd control socket was skipped because of an unmet condition check (ConditionPathExists=/etc/multipath.conf).
+[    6.710224] systemd[1]: Listening on RPCbind Server Activation Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mRPCbind Server Activation Socket[0m.
+[    6.711526] systemd[1]: Reached target RPC Port Mapper.
+[[0;32m  OK  [0m] Reached target [0;1;39mRPC Port Mapper[0m.
+[    6.714725] systemd[1]: Listening on Process Core Dump Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mProcess Core Dump Socket[0m.
+[    6.716193] systemd[1]: Listening on initctl Compatibility Named Pipe.
+[[0;32m  OK  [0m] Listening on [0;1;39minitctl Compatibility Named Pipe[0m.
+[    6.718705] systemd[1]: Listening on Journal Socket (/dev/log).
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Socket (/dev/log)[0m.
+[    6.720344] systemd[1]: Listening on Journal Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Socket[0m.
+[    6.722064] systemd[1]: Listening on udev Control Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mudev Control Socket[0m.
+[    6.723622] systemd[1]: Listening on udev Kernel Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mudev Kernel Socket[0m.
+[    6.749570] systemd[1]: Mounting Huge Pages File System...
+         Mounting [0;1;39mHuge Pages File System[0m...
+[    6.756449] systemd[1]: Mounting POSIX Message Queue File System...
+         Mounting [0;1;39mPOSIX Message Queue File System[0m...
+[    6.765768] systemd[1]: Mounting Kernel Debug File System...
+         Mounting [0;1;39mKernel Debug File System[0m...
+[    6.772241] systemd[1]: Mounting Kernel Trace File System...
+         Mounting [0;1;39mKernel Trace File System[0m...
+[    6.775858] systemd[1]: Kernel Module supporting RPCSEC_GSS was skipped because of an unmet condition check (ConditionPathExists=/etc/krb5.keytab).
+[    6.776875] systemd[1]: Create List of Static Device Nodes was skipped because of an unmet condition check (ConditionFileNotEmpty=/lib/modules/6.18.0-ebaeabfa5ab7+/modules.devname).
+[    6.783729] systemd[1]: Starting Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+         Starting [0;1;39mMonitoring of LVM…meventd or progress polling[0m...
+[    6.791433] systemd[1]: Starting Load Kernel Module configfs...
+         Starting [0;1;39mLoad Kernel Module configfs[0m...
+[    6.799062] systemd[1]: Starting Load Kernel Module drm...
+         Starting [0;1;39mLoad Kernel Module drm[0m...
+[    6.818008] systemd[1]: Starting Load Kernel Module fuse...
+         Starting [0;1;39mLoad Kernel Module fuse[0m...
+[    6.827158] systemd[1]: Starting Read and set NIS domainname from /etc/sysconfig/network...
+         Starting [0;1;39mRead and set NIS …from /etc/sysconfig/network[0m...
+[    6.839214] systemd[1]: Starting Journal Service...
+         Starting [0;1;39mJournal Service[0m...
+[    6.853763] systemd[1]: Starting Load Kernel Modules...
+         Starting [0;1;39mLoad Kernel Modules[0m...
+[    6.868648] systemd[1]: Starting Generate network units from Kernel command line...
+         Starting [0;1;39mGenerate network …ts from Kernel command line[0m...
+[    6.885842] systemd[1]: Starting Remount Root and Kernel File Systems...
+         Starting [0;1;39mRemount Root and Kernel File Systems[0m...
+[    6.890701] systemd[1]: Repartition Root Disk was skipped because no trigger condition checks were met.
+[    6.920070] systemd[1]: Starting Coldplug All udev Devices...
+         Starting [0;1;39mColdplug All udev Devices[0m...
+[    6.942868] systemd[1]: Mounted Huge Pages File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mHuge Pages File System[0m.
+[    6.944342] systemd[1]: Mounted POSIX Message Queue File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mPOSIX Message Queue File System[0m.
+[    6.950256] systemd[1]: Mounted Kernel Debug File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Debug File System[0m.
+[    6.951710] systemd[1]: Mounted Kernel Trace File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Trace File System[0m.
+[    6.958435] systemd[1]: Finished Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling.
+[[0;32m  OK  [0m] Finished [0;1;39mMonitoring of LVM… dmeventd or progress polling[0m.
+[    6.965321] EXT4-fs (sda): re-mounted 088740a9-c8b4-422c-999d-a804eb68a4da r/w.
+[    6.966112] systemd[1]: modprobe@configfs.service: Deactivated successfully.
+[    6.967707] systemd[1]: Finished Load Kernel Module configfs.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module configfs[0m.
+[    6.975773] systemd[1]: modprobe@drm.service: Deactivated successfully.
+[    6.981913] systemd[1]: Finished Load Kernel Module drm.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module drm[0m.
+[    6.984312] systemd[1]: modprobe@fuse.service: Deactivated successfully.
+[    6.989858] systemd[1]: Finished Load Kernel Module fuse.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module fuse[0m.
+[    6.992245] systemd[1]: Finished Read and set NIS domainname from /etc/sysconfig/network.
+[[0;32m  OK  [0m] Finished [0;1;39mRead and set NIS …e from /etc/sysconfig/network[0m.
+[    6.998044] systemd[1]: systemd-modules-load.service: Main process exited, code=exited, status=1/FAILURE
+[    6.999477] systemd[1]: systemd-modules-load.service: Failed with result 'exit-code'.
+[    7.001125] systemd[1]: Failed to start Load Kernel Modules.
+[[0;1;31mFAILED[0m] Failed to start [0;1;39mLoad Kernel Modules[0m.
+See 'systemctl status systemd-modules-load.service' for details.
+[    7.006648] systemd[1]: Started Journal Service.
+[[0;32m  OK  [0m] Started [0;1;39mJournal Service[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mGenerate network units from Kernel command line[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mRemount Root and Kernel File Systems[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Network[0m.
+         Mounting [0;1;39mFUSE Control File System[0m...
+         Mounting [0;1;39mKernel Configuration File System[0m...
+         Starting [0;1;39mFlush Journal to Persistent Storage[0m...
+         Starting [0;1;39mLoad/Save Random Seed[0m...
+         Starting [0;1;39mApply Kernel Variables[0m...
+[    7.101796] systemd-journald[141]: Received client request to flush runtime journal.
+         Starting [0;1;39mCreate Static Device Nodes in /dev[0m...
+         Starting [0;1;39mSetup Virtual Console[0m...
+[[0;32m  OK  [0m] Mounted [0;1;39mFUSE Control File System[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Configuration File System[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mFlush Journal to Persistent Storage[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad/Save Random Seed[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mApply Kernel Variables[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate Static Device Nodes in /dev[0m.
+         Starting [0;1;39mRule-based Manage…for Device Events and Files[0m...
+[[0;32m  OK  [0m] Started [0;1;39mRule-based Manager for Device Events and Files[0m.
+         Starting [0;1;39mAuto-connect to s…E devices found during boot[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mAuto-connect to s…VME devices found during boot[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mSetup Virtual Console[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mColdplug All udev Devices[0m.
+         Starting [0;1;39mShow Plymouth Boot Screen[0m...
+         Starting [0;1;39mWait for udev To …plete Device Initialization[0m...
+[2J[3J[-1;-1f[[0;32m  OK  [0m] Started [0;1;39mShow Plymouth Boot Screen[0m.
+[[0;32m  OK  [0m] Started [0;1;39mForward Password R…s to Plymouth Directory Watch[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal Encrypted Volumes[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPath Units[0m.
+[[0;32m  OK  [0m] Found device [0;1;39m/dev/ttyS0[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLoad/Save RF …itch Status /dev/rfkill Watch[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mWait for udev To Complete Device Initialization[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Local File Systems[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal File Systems[0m.
+         Starting [0;1;39mTell Plymouth To Write Out Runtime Data[0m...
+         Starting [0;1;39mAutomatic Boot Loader Update[0m...
+         Starting [0;1;39mCreate Volatile Files and Directories[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mTell Plymouth To Write Out Runtime Data[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mAutomatic Boot Loader Update[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate Volatile Files and Directories[0m.
+         Mounting [0;1;39mRPC Pipe File System[0m...
+         Starting [0;1;39mSecurity Auditing Service[0m...
+         Starting [0;1;39mRPC Bind[0m...
+[[0;32m  OK  [0m] Mounted [0;1;39mRPC Pipe File System[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mrpc_pipefs.target[0m.
+[[0;32m  OK  [0m] Started [0;1;39mRPC Bind[0m.
+[[0;32m  OK  [0m] Started [0;1;39mSecurity Auditing Service[0m.
+         Starting [0;1;39mRecord System Boot/Shutdown in UTMP[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mRecord System Boot/Shutdown in UTMP[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSystem Initialization[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDaily rotation of log files[0m.
+[[0;32m  OK  [0m] Started [0;1;39mUpdates mlocate database every day[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDaily Cleanup of Temporary Directories[0m.
+[[0;32m  OK  [0m] Started [0;1;39mdaily update of the root trust anchor for DNSSEC[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mTimer Units[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mD-Bus System Message Bus Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mOpen-iSCSI iscsid Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mOpen-iSCSI iscsiuio Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mSSSD Kerberos…ache Manager responder socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt interface local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mVirtual machine lock manager socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mVirtual machine log manager socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt network local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt nodedev local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt nwfilter local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt proxy local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt qemu local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt qemu admin socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt qemu local read-only socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt secret local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt storage local socket[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSocket Units[0m.
+         Starting [0;1;39mD-Bus System Message Bus[0m...
+[[0;32m  OK  [0m] Started [0;1;39mD-Bus System Message Bus[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mBasic System[0m.
+         Starting [0;1;39mNetwork Manager[0m...
+         Starting [0;1;39mNTP client/server[0m...
+         Starting [0;1;39mRestore /run/initramfs on shutdown[0m...
+[[0;32m  OK  [0m] Started [0;1;39mirqbalance daemon[0m.
+[[0;32m  OK  [0m] Started [0;1;39mlibstoragemgmt plug-in server daemon[0m.
+[[0;32m  OK  [0m] Started [0;1;39mMachine Check Exception Logging Daemon[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39msshd-keygen.target[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mUser and Group Name Lookups[0m.
+         Starting [0;1;39mUser Login Management[0m...
+         Starting [0;1;39mVirtual Machine a…tainer Registration Service[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mRestore /run/initramfs on shutdown[0m.
+         Starting [0;1;39mHostname Service[0m...
+[[0;32m  OK  [0m] Started [0;1;39mVirtual Machine an…ontainer Registration Service[0m.
+[[0;32m  OK  [0m] Started [0;1;39mNTP client/server[0m.
+[[0;32m  OK  [0m] Started [0;1;39mUser Login Management[0m.
+[[0;32m  OK  [0m] Started [0;1;39mHostname Service[0m.
+         Starting [0;1;39mNetwork Manager Script Dispatcher Service[0m...
+[[0;32m  OK  [0m] Started [0;1;39mNetwork Manager Script Dispatcher Service[0m.
+[   10.325536] e1000: eth0 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[[0;32m  OK  [0m] Started [0;1;39mNetwork Manager[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNetwork[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNetwork is Online[0m.
+         Starting [0;1;39mGSSAPI Proxy Daemon[0m...
+         Starting [0;1;39mNotify NFS peers of a restart[0m...
+         Starting [0;1;39mSystem Logging Service[0m...
+         Starting [0;1;39mOpenSSH server daemon[0m...
+         Starting [0;1;39mDynamic System Tuning Daemon[0m...
+[[0;32m  OK  [0m] Started [0;1;39mNotify NFS peers of a restart[0m.
+[[0;32m  OK  [0m] Started [0;1;39mOpenSSH server daemon[0m.
+[[0;32m  OK  [0m] Started [0;1;39mGSSAPI Proxy Daemon[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNFS client services[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Remote File Systems[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mRemote File Systems[0m.
+         Starting [0;1;39mPermit User Sessions[0m...
+         Starting [0;1;39mVirtualization qemu daemon[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mPermit User Sessions[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDeferred execution scheduler[0m.
+[[0;32m  OK  [0m] Started [0;1;39mCommand Scheduler[0m.
+         Starting [0;1;39mHold until boot process finishes up[0m...
+         Starting [0;1;39mTerminate Plymouth Boot Screen[0m...
+[[0;32m  OK  [0m] Started [0;1;39mSystem Logging Service[0m.
+[[0;32m  OK  [0m] Started [0;1;39mVirtualization qemu daemon[0m.
+
+CentOS Stream 9
+Kernel 6.18.0-ebaeabfa5ab7+ on an x86_64
+
+Activate the web console with: systemctl enable --now cockpit.socket
+
+test login: [   17.386694] tpm tpm0: Operation Canceled
+[   17.407371] tpm tpm0: Operation Canceled
+[   17.428398] tpm tpm0: Operation Canceled
+[   17.449744] tpm tpm0: Operation Canceled
+[   17.470770] tpm tpm0: Operation Canceled
+[   17.491768] tpm tpm0: Operation Canceled
+[   17.512800] tpm tpm0: Operation Canceled
+[   17.533865] tpm tpm0: Operation Canceled
+[   17.554904] tpm tpm0: Operation Canceled
+[   17.575955] tpm tpm0: Operation Canceled
+[   17.597003] tpm tpm0: Operation Canceled
+[   17.618062] tpm tpm0: Operation Canceled
+[   17.639055] tpm tpm0: Operation Canceled
+[   17.660057] tpm tpm0: Operation Canceled
+[   17.681099] tpm tpm0: Operation Canceled
+[   17.702117] tpm tpm0: Operation Canceled
+[   17.723197] tpm tpm0: Operation Canceled
+[   17.744173] tpm tpm0: Operation Canceled
+[   17.765211] tpm tpm0: Operation Canceled
+[   17.786228] tpm tpm0: Operation Canceled
+[   17.807321] tpm tpm0: Operation Canceled
+[   17.828357] tpm tpm0: Operation Canceled
+[   17.859922] tpm tpm0: Operation Canceled
+[   17.880973] tpm tpm0: Operation Canceled
+[   17.902005] tpm tpm0: Operation Canceled
+[   17.923454] tpm tpm0: Operation Canceled
+[   17.944442] tpm tpm0: Operation Canceled
+[   17.965309] tpm tpm0: Operation Canceled
+[   17.986587] tpm tpm0: Operation Canceled
+[   18.007620] tpm tpm0: Operation Canceled
+[   18.028631] tpm tpm0: Operation Canceled
+[   18.049676] tpm tpm0: Operation Canceled
+[   18.070716] tpm tpm0: Operation Canceled
+[   18.091735] tpm tpm0: Operation Canceled
+[   18.112860] tpm tpm0: Operation Canceled
+[   18.133851] tpm tpm0: Operation Canceled
+[   18.154984] tpm tpm0: Operation Canceled
+[   18.176028] tpm tpm0: Operation Canceled
+[   18.197306] tpm tpm0: Operation Canceled
+[   18.218556] tpm tpm0: Operation Canceled
+[   18.239576] tpm tpm0: Operation Canceled
+[   18.260620] tpm tpm0: Operation Canceled
+[   18.281702] tpm tpm0: Operation Canceled
+[   18.302763] tpm tpm0: Operation Canceled
+[   18.323783] tpm tpm0: Operation Canceled
+[   18.344840] tpm tpm0: Operation Canceled
+[   18.365906] tpm tpm0: Operation Canceled
+[   18.387009] tpm tpm0: Operation Canceled
+[   18.408021] tpm tpm0: Operation Canceled
+[   18.429078] tpm tpm0: Operation Canceled
+[   18.450178] tpm tpm0: Operation Canceled
+[   18.471252] tpm tpm0: Operation Canceled
+[   18.492240] tpm tpm0: Operation Canceled
+[   18.513297] tpm tpm0: Operation Canceled
+[   18.534330] tpm tpm0: Operation Canceled
+[   18.555353] tpm tpm0: Operation Canceled
+[   18.576345] tpm tpm0: Operation Canceled
+[   18.597305] tpm tpm0: Operation Canceled
+[   18.618487] tpm tpm0: Operation Canceled
+[   18.639472] tpm tpm0: Operation Canceled
+[   18.660547] tpm tpm0: Operation Canceled
+[   18.681896] tpm tpm0: Operation Canceled
+[   18.702947] tpm tpm0: Operation Canceled
+[   18.723986] tpm tpm0: Operation Canceled
+[   18.745030] tpm tpm0: Operation Canceled
+[   18.766057] tpm tpm0: Operation Canceled
+[   18.787150] tpm tpm0: Operation Canceled
+[   18.808162] tpm tpm0: Operation Canceled
+[   18.829240] tpm tpm0: Operation Canceled
+[   18.850713] tpm tpm0: Operation Canceled
+[   18.871695] tpm tpm0: Operation Canceled
+[   18.893052] tpm tpm0: Operation Canceled
+[   18.914094] tpm tpm0: Operation Canceled
+[   18.935240] tpm tpm0: Operation Canceled
+[   18.956246] tpm tpm0: Operation Canceled
+[   18.977306] tpm tpm0: Operation Canceled
+[   18.998372] tpm tpm0: Operation Canceled
+[   19.019376] tpm tpm0: Operation Canceled
+[   19.040401] tpm tpm0: Operation Canceled
+[   19.061309] tpm tpm0: Operation Canceled
+[   19.082537] tpm tpm0: Operation Canceled
+[   19.103565] tpm tpm0: Operation Canceled
+[   19.124552] tpm tpm0: Operation Canceled
+[   19.145619] tpm tpm0: Operation Canceled
+[   19.166668] tpm tpm0: Operation Canceled
+[   19.187666] tpm tpm0: Operation Canceled
+[   19.208950] tpm tpm0: Operation Canceled
+[   19.229956] tpm tpm0: Operation Canceled
+[   19.251018] tpm tpm0: Operation Canceled
+[   19.272378] tpm tpm0: Operation Canceled
+[   19.293305] tpm tpm0: Operation Canceled
+[   19.314499] tpm tpm0: Operation Canceled
+[   19.335548] tpm tpm0: Operation Canceled
+[   19.356565] tpm tpm0: Operation Canceled
+[   19.377649] tpm tpm0: Operation Canceled
+[   19.398671] tpm tpm0: Operation Canceled
+[   19.419712] tpm tpm0: Operation Canceled
+[   19.430329] tpm tpm0: Operation Canceled
+[   19.451309] tpm tpm0: Operation Canceled
+[   19.472363] tpm tpm0: Operation Canceled
+[   19.493305] tpm tpm0: Operation Canceled
+[   19.514841] tpm tpm0: Operation Canceled
+[   19.535926] tpm tpm0: Operation Canceled
+[   19.556935] tpm tpm0: Operation Canceled
+[   19.577976] tpm tpm0: Operation Canceled
+[   19.599066] tpm tpm0: Operation Canceled
+[   19.620150] tpm tpm0: Operation Canceled
+[   19.641304] tpm tpm0: Operation Canceled
+[   19.662817] tpm tpm0: Operation Canceled
+[   19.683601] tpm tpm0: Operation Canceled
+[   19.704613] tpm tpm0: Operation Canceled
+[   19.725969] tpm tpm0: Operation Canceled
+[   19.747035] tpm tpm0: Operation Canceled
+[   19.768120] tpm tpm0: Operation Canceled
+[   19.789130] tpm tpm0: Operation Canceled
+[   19.810130] tpm tpm0: Operation Canceled
+[   19.831544] tpm tpm0: Operation Canceled
+[   19.852692] tpm tpm0: Operation Canceled
+[   19.873695] tpm tpm0: Operation Canceled
+[   19.895242] tpm tpm0: Operation Canceled
+[   19.916589] tpm tpm0: Operation Canceled
+[   19.937683] tpm tpm0: Operation Canceled
+[   19.958707] tpm tpm0: Operation Canceled
+[   19.979672] tpm tpm0: Operation Canceled
+[   19.990327] tpm tpm0: Operation Canceled
+[   20.011239] tpm tpm0: Operation Canceled
+[   20.022335] tpm tpm0: Operation Canceled
+[   20.042868] tpm tpm0: Operation Canceled
+[   20.064013] tpm tpm0: Operation Canceled
+[   20.085309] tpm tpm0: Operation Canceled
+[   20.106744] tpm tpm0: Operation Canceled
+[   20.127575] tpm tpm0: Operation Canceled
+[   20.148607] tpm tpm0: Operation Canceled
+[   20.169652] tpm tpm0: Operation Canceled
+[   20.190668] tpm tpm0: Operation Canceled
+[   20.211999] tpm tpm0: Operation Canceled
+[   20.232913] tpm tpm0: Operation Canceled
+[   20.253904] tpm tpm0: Operation Canceled
+[   20.274934] tpm tpm0: Operation Canceled
+[   20.295989] tpm tpm0: Operation Canceled
+[   20.317064] tpm tpm0: Operation Canceled
+[   20.338012] tpm tpm0: Operation Canceled
+[   20.359016] tpm tpm0: Operation Canceled
+[   20.379969] tpm tpm0: Operation Canceled
+[   20.400928] tpm tpm0: Operation Canceled
+[   20.421941] tpm tpm0: Operation Canceled
+[   20.443148] tpm tpm0: Operation Canceled
+[   20.464254] tpm tpm0: Operation Canceled
+[   20.485263] tpm tpm0: Operation Canceled
+[   20.506151] tpm tpm0: Operation Canceled
+[   20.527468] tpm tpm0: Operation Canceled
+[   20.548579] tpm tpm0: Operation Canceled
+[   20.569617] tpm tpm0: Operation Canceled
+[   20.590739] tpm tpm0: Operation Canceled
+[   20.611923] tpm tpm0: Operation Canceled
+[   20.632989] tpm tpm0: Operation Canceled
+[   20.653965] tpm tpm0: Operation Canceled
+[   20.664463] tpm tpm0: Operation Canceled
+[   20.685308] tpm tpm0: Operation Canceled
+[   20.706454] tpm tpm0: Operation Canceled
+[   20.727568] tpm tpm0: Operation Canceled
+[   20.748580] tpm tpm0: Operation Canceled
+[   20.769984] tpm tpm0: Operation Canceled
+[   20.790572] tpm tpm0: Operation Canceled
+[   20.811538] tpm tpm0: Operation Canceled
+[   20.832538] tpm tpm0: Operation Canceled
+[   20.853309] tpm tpm0: Operation Canceled
+[   20.874625] tpm tpm0: Operation Canceled
+[   20.896010] tpm tpm0: Operation Canceled
+[   20.917085] tpm tpm0: Operation Canceled
+[   20.938509] tpm tpm0: Operation Canceled
+[   20.959023] tpm tpm0: Operation Canceled
+[   20.980013] tpm tpm0: Operation Canceled
+[   21.001026] tpm tpm0: Operation Canceled
+[   21.022056] tpm tpm0: Operation Canceled
+[   21.043137] tpm tpm0: Operation Canceled
+[   21.064149] tpm tpm0: Operation Canceled
+[   21.085073] tpm tpm0: Operation Canceled
+[   21.106263] tpm tpm0: Operation Canceled
+[   21.127380] tpm tpm0: Operation Canceled
+[   21.148365] tpm tpm0: Operation Canceled
+[   21.179865] tpm tpm0: Operation Canceled
+[   21.190406] tpm tpm0: Operation Canceled
+[   21.211462] tpm tpm0: Operation Canceled
+[   21.232592] tpm tpm0: Operation Canceled
+[   21.253309] tpm tpm0: Operation Canceled
+[   21.274834] tpm tpm0: Operation Canceled
+[   21.295841] tpm tpm0: Operation Canceled
+[   21.306367] tpm tpm0: Operation Canceled
+[   21.327394] tpm tpm0: Operation Canceled
+[   21.348366] tpm tpm0: Operation Canceled
+[   21.369310] tpm tpm0: Operation Canceled
+[   21.390250] tpm tpm0: Operation Canceled
+[   21.411331] tpm tpm0: Operation Canceled
+[   21.432227] tpm tpm0: Operation Canceled
+[   21.453308] tpm tpm0: Operation Canceled
+[   21.474343] tpm tpm0: Operation Canceled
+[   21.495308] tpm tpm0: Operation Canceled
+[   21.516458] tpm tpm0: Operation Canceled
+[   21.537308] tpm tpm0: Operation Canceled
+[   21.558590] tpm tpm0: Operation Canceled
+[   21.580179] tpm tpm0: Operation Canceled
+[   21.590276] tpm tpm0: Operation Canceled
+[   21.600821] tpm tpm0: Operation Canceled
+[   21.621802] tpm tpm0: Operation Canceled
+[   21.642855] tpm tpm0: Operation Canceled
+[   21.663850] tpm tpm0: Operation Canceled
+[   21.674384] tpm tpm0: Operation Canceled
+[   21.695667] tpm tpm0: Operation Canceled
+[   21.716529] tpm tpm0: Operation Canceled
+[   21.737678] tpm tpm0: Operation Canceled
+[   21.758691] tpm tpm0: Operation Canceled
+[   21.779652] tpm tpm0: Operation Canceled
+[   21.800707] tpm tpm0: Operation Canceled
+[   21.821636] tpm tpm0: Operation Canceled
+[   21.842690] tpm tpm0: Operation Canceled
+[   21.863664] tpm tpm0: Operation Canceled
+[   21.884708] tpm tpm0: Operation Canceled
+[   21.905651] tpm tpm0: Operation Canceled
+[   21.926674] tpm tpm0: Operation Canceled
+[   21.947563] tpm tpm0: Operation Canceled
+[   21.968586] tpm tpm0: Operation Canceled
+[   21.989307] tpm tpm0: Operation Canceled
+[   22.010810] tpm tpm0: Operation Canceled
+[   22.031754] tpm tpm0: Operation Canceled
+[   22.042402] tpm tpm0: Operation Canceled
+[   22.063332] tpm tpm0: Operation Canceled
+[   22.084310] tpm tpm0: Operation Canceled
+[   22.115862] tpm tpm0: Operation Canceled
+[   22.136940] tpm tpm0: Operation Canceled
+[   22.168423] tpm tpm0: Operation Canceled
+[   22.189306] tpm tpm0: Operation Canceled
+[   22.210392] tpm tpm0: Operation Canceled
+[   22.231438] tpm tpm0: Operation Canceled
+[   22.252378] tpm tpm0: Operation Canceled
+[   22.273305] tpm tpm0: Operation Canceled
+[   22.294264] tpm tpm0: Operation Canceled
+[   22.315352] tpm tpm0: Operation Canceled
+[   22.336336] tpm tpm0: Operation Canceled
+[   22.357297] tpm tpm0: Operation Canceled
+[   22.378167] tpm tpm0: Operation Canceled
+[   22.399256] tpm tpm0: Operation Canceled
+[   22.420261] tpm tpm0: Operation Canceled
+[   22.441250] tpm tpm0: Operation Canceled
+[   22.462266] tpm tpm0: Operation Canceled
+[   22.483273] tpm tpm0: Operation Canceled
+[   22.504202] tpm tpm0: Operation Canceled
+[   22.525189] tpm tpm0: Operation Canceled
+[   22.546170] tpm tpm0: Operation Canceled
+[   22.567216] tpm tpm0: Operation Canceled
+[   22.588158] tpm tpm0: Operation Canceled
+[   22.609029] tpm tpm0: Operation Canceled
+[   22.629990] tpm tpm0: Operation Canceled
+[   22.651128] tpm tpm0: Operation Canceled
+[   22.672083] tpm tpm0: Operation Canceled
+[   22.693065] tpm tpm0: Operation Canceled
+[   22.714013] tpm tpm0: Operation Canceled
+[   22.735091] tpm tpm0: Operation Canceled
+[   22.756012] tpm tpm0: Operation Canceled
+[   22.776997] tpm tpm0: Operation Canceled
+[   22.797995] tpm tpm0: Operation Canceled
+[   22.819007] tpm tpm0: Operation Canceled
+[   22.840010] tpm tpm0: Operation Canceled
+[   22.860977] tpm tpm0: Operation Canceled
+[   22.881894] tpm tpm0: Operation Canceled
+[   22.903008] tpm tpm0: Operation Canceled
+[   22.924029] tpm tpm0: Operation Canceled
+[   22.944981] tpm tpm0: Operation Canceled
+[   22.966110] tpm tpm0: Operation Canceled
+[   22.987252] tpm tpm0: Operation Canceled
+[   23.008141] tpm tpm0: Operation Canceled
+[   23.029309] tpm tpm0: Operation Canceled
+[   23.050174] tpm tpm0: Operation Canceled
+[   23.071147] tpm tpm0: Operation Canceled
+[   23.092046] tpm tpm0: Operation Canceled
+[   23.113148] tpm tpm0: Operation Canceled
+[   23.134066] tpm tpm0: Operation Canceled
+[   23.155119] tpm tpm0: Operation Canceled
+[   23.176117] tpm tpm0: Operation Canceled
+[   23.197294] tpm tpm0: Operation Canceled
+[   23.218111] tpm tpm0: Operation Canceled
+[   23.239091] tpm tpm0: Operation Canceled
+[   23.260088] tpm tpm0: Operation Canceled
+[   23.281105] tpm tpm0: Operation Canceled
+[   23.302095] tpm tpm0: Operation Canceled
+[   23.323080] tpm tpm0: Operation Canceled
+[   23.344057] tpm tpm0: Operation Canceled
+[   23.365186] tpm tpm0: Operation Canceled
+[   23.386158] tpm tpm0: Operation Canceled
+[   23.407202] tpm tpm0: Operation Canceled
+[   23.428159] tpm tpm0: Operation Canceled
+[   23.449126] tpm tpm0: Operation Canceled
+[   23.470093] tpm tpm0: Operation Canceled
+[   23.491123] tpm tpm0: Operation Canceled
+[   23.512062] tpm tpm0: Operation Canceled
+[   23.533325] tpm tpm0: Operation Canceled
+[   23.554336] tpm tpm0: Operation Canceled
+[   23.575270] tpm tpm0: Operation Canceled
+[   23.596580] tpm tpm0: Operation Canceled
+[   23.617313] tpm tpm0: Operation Canceled
+[   23.638593] tpm tpm0: Operation Canceled
+[   23.659530] tpm tpm0: Operation Canceled
+[   23.680532] tpm tpm0: Operation Canceled
+[   23.701686] tpm tpm0: Operation Canceled
+[   23.722673] tpm tpm0: Operation Canceled
+[   23.743628] tpm tpm0: Operation Canceled
+[   23.764613] tpm tpm0: Operation Canceled
+[   23.785310] tpm tpm0: Operation Canceled
+[   23.806673] tpm tpm0: Operation Canceled
+[   23.827583] tpm tpm0: Operation Canceled
+[   23.848605] tpm tpm0: Operation Canceled
+[   23.869844] tpm tpm0: Operation Canceled
+[   23.890990] tpm tpm0: Operation Canceled
+[   23.911790] tpm tpm0: Operation Canceled
+[   23.922331] tpm tpm0: Operation Canceled
+[   23.943295] tpm tpm0: Operation Canceled
+[   23.964287] tpm tpm0: Operation Canceled
+[   23.985262] tpm tpm0: Operation Canceled
+[   24.006254] tpm tpm0: Operation Canceled
+[   24.027271] tpm tpm0: Operation Canceled
+[   24.048213] tpm tpm0: Operation Canceled
+[   24.069178] tpm tpm0: Operation Canceled
+[   24.090373] tpm tpm0: Operation Canceled
+[   24.111319] tpm tpm0: Operation Canceled
+[   24.132368] tpm tpm0: Operation Canceled
+[   24.153314] tpm tpm0: Operation Canceled
+[   24.174622] tpm tpm0: Operation Canceled
+[   24.195651] tpm tpm0: Operation Canceled
+[   24.206378] tpm tpm0: Operation Canceled
+[   24.227211] tpm tpm0: Operation Canceled
+[   24.248256] tpm tpm0: Operation Canceled
+[   24.269246] tpm tpm0: Operation Canceled
+[   24.290220] tpm tpm0: Operation Canceled
+[   24.311188] tpm tpm0: Operation Canceled
+[   24.332163] tpm tpm0: Operation Canceled
+[   24.353127] tpm tpm0: Operation Canceled
+[   24.374145] tpm tpm0: Operation Canceled
+[   24.395149] tpm tpm0: Operation Canceled
+[   24.416128] tpm tpm0: Operation Canceled
+[   24.437068] tpm tpm0: Operation Canceled
+[   24.458054] tpm tpm0: Operation Canceled
+[   24.479076] tpm tpm0: Operation Canceled
+[   24.500057] tpm tpm0: Operation Canceled
+[   24.521307] tpm tpm0: Operation Canceled
+[   24.542635] tpm tpm0: Operation Canceled
+[   24.573890] tpm tpm0: Operation Canceled
+[   24.594874] tpm tpm0: Operation Canceled
+[   24.615880] tpm tpm0: Operation Canceled
+[   24.636838] tpm tpm0: Operation Canceled
+[   24.657844] tpm tpm0: Operation Canceled
+[   24.678968] tpm tpm0: Operation Canceled
+[   24.689312] tpm tpm0: Operation Canceled
+[   24.710731] tpm tpm0: Operation Canceled
+[   24.731358] tpm tpm0: Operation Canceled
+[   24.752349] tpm tpm0: Operation Canceled
+[   24.773305] tpm tpm0: Operation Canceled
+[   24.794725] tpm tpm0: Operation Canceled
+[   24.815553] tpm tpm0: Operation Canceled
+[   24.836484] tpm tpm0: Operation Canceled
+[   24.857308] tpm tpm0: Operation Canceled
+[   24.878520] tpm tpm0: Operation Canceled
+[   24.899517] tpm tpm0: Operation Canceled
+[   24.920453] tpm tpm0: Operation Canceled
+[   24.941337] tpm tpm0: Operation Canceled
+[   24.962674] tpm tpm0: Operation Canceled
+[   24.983483] tpm tpm0: Operation Canceled
+[   25.004426] tpm tpm0: Operation Canceled
+[   25.025314] tpm tpm0: Operation Canceled
+[   25.046610] tpm tpm0: Operation Canceled
+[   25.067632] tpm tpm0: Operation Canceled
+[   25.088655] tpm tpm0: Operation Canceled
+[   25.109639] tpm tpm0: Operation Canceled
+[   25.130637] tpm tpm0: Operation Canceled
+[   25.151601] tpm tpm0: Operation Canceled
+[   25.172609] tpm tpm0: Operation Canceled
+[   25.193313] tpm tpm0: Operation Canceled
+[   25.214621] tpm tpm0: Operation Canceled
+[   25.235732] tpm tpm0: Operation Canceled
+[   25.256733] tpm tpm0: Operation Canceled
+[   25.277725] tpm tpm0: Operation Canceled
+[   25.298720] tpm tpm0: Operation Canceled
+[   25.319694] tpm tpm0: Operation Canceled
+[   25.340898] tpm tpm0: Operation Canceled
+[   25.361923] tpm tpm0: Operation Canceled
+[   25.382884] tpm tpm0: Operation Canceled
+[   25.404057] tpm tpm0: Operation Canceled
+[   25.425008] tpm tpm0: Operation Canceled
+[   25.446006] tpm tpm0: Operation Canceled
+[   25.467014] tpm tpm0: Operation Canceled
+[   25.487980] tpm tpm0: Operation Canceled
+[   25.508954] tpm tpm0: Operation Canceled
+[   25.529980] tpm tpm0: Operation Canceled
+[   25.561697] tpm tpm0: Operation Canceled
+[   25.582533] tpm tpm0: Operation Canceled
+[   25.603494] tpm tpm0: Operation Canceled
+[   25.624482] tpm tpm0: Operation Canceled
+[   25.635062] tpm tpm0: Operation Canceled
+[   25.656033] tpm tpm0: Operation Canceled
+[   25.676970] tpm tpm0: Operation Canceled
+[   25.697938] tpm tpm0: Operation Canceled
+[   25.718927] tpm tpm0: Operation Canceled
+[   25.739942] tpm tpm0: Operation Canceled
+[   25.760935] tpm tpm0: Operation Canceled
+[   25.781923] tpm tpm0: Operation Canceled
+[   25.802972] tpm tpm0: Operation Canceled
+[   25.823966] tpm tpm0: Operation Canceled
+[   25.844979] tpm tpm0: Operation Canceled
+[   25.865971] tpm tpm0: Operation Canceled
+[   25.887056] tpm tpm0: Operation Canceled
+[   25.908196] tpm tpm0: Operation Canceled
+[   25.929082] tpm tpm0: Operation Canceled
+[   25.950013] tpm tpm0: Operation Canceled
+[   25.981706] tpm tpm0: Operation Canceled
+[   26.002565] tpm tpm0: Operation Canceled
+[   26.023547] tpm tpm0: Operation Canceled
+[   26.044515] tpm tpm0: Operation Canceled
+[   26.055078] tpm tpm0: Operation Canceled
+[   26.076054] tpm tpm0: Operation Canceled
+[   26.097091] tpm tpm0: Operation Canceled
+[   26.118040] tpm tpm0: Operation Canceled
+[   26.139023] tpm tpm0: Operation Canceled
+[   26.160023] tpm tpm0: Operation Canceled
+[   26.180994] tpm tpm0: Operation Canceled
+[   26.202026] tpm tpm0: Operation Canceled
+[   26.222992] tpm tpm0: Operation Canceled
+[   26.243946] tpm tpm0: Operation Canceled
+[   26.264975] tpm tpm0: Operation Canceled
+[   26.286198] tpm tpm0: Operation Canceled
+[   26.307144] tpm tpm0: Operation Canceled
+[   26.328159] tpm tpm0: Operation Canceled
+[   26.349117] tpm tpm0: Operation Canceled
+[   26.370133] tpm tpm0: Operation Canceled
+[   26.391185] tpm tpm0: Operation Canceled
+[   26.412172] tpm tpm0: Operation Canceled
+[   26.433176] tpm tpm0: Operation Canceled
+[   26.454156] tpm tpm0: Operation Canceled
+[   26.485636] tpm tpm0: Operation Canceled
+[   26.506663] tpm tpm0: Operation Canceled
+[   26.527631] tpm tpm0: Operation Canceled
+[   26.548593] tpm tpm0: Operation Canceled
+[   26.569605] tpm tpm0: Operation Canceled
+[   26.590623] tpm tpm0: Operation Canceled
+[   26.611607] tpm tpm0: Operation Canceled
+[   26.632574] tpm tpm0: Operation Canceled
+[   26.653631] tpm tpm0: Operation Canceled
+[   26.674584] tpm tpm0: Operation Canceled
+[   26.695533] tpm tpm0: Operation Canceled
+[   26.716518] tpm tpm0: Operation Canceled
+[   26.727077] tpm tpm0: Operation Canceled
+[   26.748053] tpm tpm0: Operation Canceled
+[   26.769213] tpm tpm0: Operation Canceled
+[   26.790162] tpm tpm0: Operation Canceled
+[   26.811455] tpm tpm0: Operation Canceled
+[   26.832438] tpm tpm0: Operation Canceled
+[   26.864023] tpm tpm0: Operation Canceled
+[   26.884974] tpm tpm0: Operation Canceled
+[   26.905957] tpm tpm0: Operation Canceled
+[   26.927031] tpm tpm0: Operation Canceled
+[   26.947966] tpm tpm0: Operation Canceled
+[   26.968956] tpm tpm0: Operation Canceled
+[   26.990184] tpm tpm0: Operation Canceled
+[   27.011168] tpm tpm0: Operation Canceled
+[   27.032161] tpm tpm0: Operation Canceled
+[   27.053103] tpm tpm0: Operation Canceled
+[   27.074355] tpm tpm0: Operation Canceled
+[   27.095285] tpm tpm0: Operation Canceled
+[   27.116291] tpm tpm0: Operation Canceled
+[   27.137205] tpm tpm0: Operation Canceled
+[   27.158243] tpm tpm0: Operation Canceled
+[   27.189685] tpm tpm0: Operation Canceled
+[   27.210698] tpm tpm0: Operation Canceled
+[   27.222348] tpm tpm0: Operation Canceled
+[   27.242381] tpm tpm0: Operation Canceled
+[   27.263347] tpm tpm0: Operation Canceled
+[   27.284352] tpm tpm0: Operation Canceled
+[   27.315917] tpm tpm0: Operation Canceled
+[   27.336871] tpm tpm0: Operation Canceled
+[   27.357849] tpm tpm0: Operation Canceled
+[   27.379066] tpm tpm0: Operation Canceled
+[   27.389319] tpm tpm0: Operation Canceled
+[   27.410555] tpm tpm0: Operation Canceled
+[   27.431499] tpm tpm0: Operation Canceled
+[   27.452485] tpm tpm0: Operation Canceled
+[   27.484078] tpm tpm0: Operation Canceled
+[   27.505233] tpm tpm0: Operation Canceled
+[   27.526205] tpm tpm0: Operation Canceled
+[   27.547243] tpm tpm0: Operation Canceled
+[   27.568217] tpm tpm0: Operation Canceled
+[   27.589221] tpm tpm0: Operation Canceled
+[   27.610194] tpm tpm0: Operation Canceled
+[   27.631404] tpm tpm0: Operation Canceled
+[   27.652400] tpm tpm0: Operation Canceled
+[   27.662985] tpm tpm0: Operation Canceled
+[   27.684103] tpm tpm0: Operation Canceled
+[   27.705055] tpm tpm0: Operation Canceled
+[   27.726039] tpm tpm0: Operation Canceled
+[   27.757620] tpm tpm0: Operation Canceled
+[   27.778584] tpm tpm0: Operation Canceled
+[   27.799526] tpm tpm0: Operation Canceled
+[   27.820518] tpm tpm0: Operation Canceled
+[   27.841312] tpm tpm0: Operation Canceled
+[   27.863023] tpm tpm0: Operation Canceled
+[   27.883753] tpm tpm0: Operation Canceled
+[   27.904723] tpm tpm0: Operation Canceled
+[   27.925728] tpm tpm0: Operation Canceled
+[   27.946914] tpm tpm0: Operation Canceled
+[   27.967687] tpm tpm0: Operation Canceled
+[   27.978332] tpm tpm0: Operation Canceled
+[   27.999240] tpm tpm0: Operation Canceled
+[   28.020208] tpm tpm0: Operation Canceled
+[   28.041177] tpm tpm0: Operation Canceled
+[   28.062194] tpm tpm0: Operation Canceled
+[   28.083503] tpm tpm0: Operation Canceled
+[   28.104347] tpm tpm0: Operation Canceled
+[   28.114915] tpm tpm0: Operation Canceled
+[   28.135982] tpm tpm0: Operation Canceled
+[   28.156940] tpm tpm0: Operation Canceled
+[   28.188402] tpm tpm0: Operation Canceled
+[   28.219963] tpm tpm0: Operation Canceled
+[   28.241225] tpm tpm0: Operation Canceled
+[   28.262206] tpm tpm0: Operation Canceled
+[   28.283181] tpm tpm0: Operation Canceled
+[   28.304189] tpm tpm0: Operation Canceled
+[   28.325143] tpm tpm0: Operation Canceled
+[   28.346138] tpm tpm0: Operation Canceled
+[   28.367150] tpm tpm0: Operation Canceled
+[   28.388134] tpm tpm0: Operation Canceled
+[   28.409295] tpm tpm0: Operation Canceled
+[   28.430242] tpm tpm0: Operation Canceled
+[   28.451237] tpm tpm0: Operation Canceled
+[   28.472218] tpm tpm0: Operation Canceled
+[   28.503717] tpm tpm0: Operation Canceled
+[   28.524670] tpm tpm0: Operation Canceled
+[   28.545703] tpm tpm0: Operation Canceled
+[   28.566869] tpm tpm0: Operation Canceled
+[   28.587680] tpm tpm0: Operation Canceled
+[   28.608626] tpm tpm0: Operation Canceled
+[   28.629632] tpm tpm0: Operation Canceled
+[   28.650618] tpm tpm0: Operation Canceled
+[   28.671584] tpm tpm0: Operation Canceled
+[   28.692598] tpm tpm0: Operation Canceled
+[   28.713312] tpm tpm0: Operation Canceled
+[   28.734618] tpm tpm0: Operation Canceled
+[   28.755797] tpm tpm0: Operation Canceled
+[   28.776814] tpm tpm0: Operation Canceled
+[   28.797782] tpm tpm0: Operation Canceled
+[   28.818807] tpm tpm0: Operation Canceled
+[   28.839816] tpm tpm0: Operation Canceled
+[   28.860819] tpm tpm0: Operation Canceled
+[   28.881790] tpm tpm0: Operation Canceled
+[   28.902785] tpm tpm0: Operation Canceled
+[   28.924028] tpm tpm0: Operation Canceled
+[   28.944808] tpm tpm0: Operation Canceled
+[   28.965809] tpm tpm0: Operation Canceled
+[   28.986784] tpm tpm0: Operation Canceled
+[   29.007759] tpm tpm0: Operation Canceled
+[   29.028755] tpm tpm0: Operation Canceled
+[   29.049765] tpm tpm0: Operation Canceled
+[   29.070733] tpm tpm0: Operation Canceled
+[   29.091712] tpm tpm0: Operation Canceled
+[   29.102328] tpm tpm0: Operation Canceled
+[   29.123256] tpm tpm0: Operation Canceled
+[   29.144208] tpm tpm0: Operation Canceled
+[   29.175676] tpm tpm0: Operation Canceled
+[   29.196647] tpm tpm0: Operation Canceled
+[   29.217659] tpm tpm0: Operation Canceled
+[   29.238702] tpm tpm0: Operation Canceled
+[   29.259644] tpm tpm0: Operation Canceled
+[   29.280647] tpm tpm0: Operation Canceled
+[   29.301631] tpm tpm0: Operation Canceled
+[   29.322657] tpm tpm0: Operation Canceled
+[   29.343529] tpm tpm0: Operation Canceled
+[   29.364540] tpm tpm0: Operation Canceled
+[   29.385307] tpm tpm0: Operation Canceled
+[   29.406565] tpm tpm0: Operation Canceled
+[   29.427764] tpm tpm0: Operation Canceled
+[   29.448718] tpm tpm0: Operation Canceled
+[   29.469713] tpm tpm0: Operation Canceled
+[   29.490866] tpm tpm0: Operation Canceled
+[   29.511704] tpm tpm0: Operation Canceled
+[   29.532658] tpm tpm0: Operation Canceled
+[   29.553688] tpm tpm0: Operation Canceled
+[   29.574867] tpm tpm0: Operation Canceled
+[   29.595697] tpm tpm0: Operation Canceled
+[   29.616680] tpm tpm0: Operation Canceled
+[   29.637667] tpm tpm0: Operation Canceled
+[   29.658817] tpm tpm0: Operation Canceled
+[   29.679647] tpm tpm0: Operation Canceled
+[   29.700572] tpm tpm0: Operation Canceled
+[   29.721305] tpm tpm0: Operation Canceled
+[   29.742607] tpm tpm0: Operation Canceled
+[   29.763554] tpm tpm0: Operation Canceled
+[   29.784587] tpm tpm0: Operation Canceled
+[   29.805309] tpm tpm0: Operation Canceled
+[   29.826567] tpm tpm0: Operation Canceled
+[   29.847498] tpm tpm0: Operation Canceled
+[   29.868553] tpm tpm0: Operation Canceled
+[   29.879093] tpm tpm0: Operation Canceled
+[   29.900043] tpm tpm0: Operation Canceled
+[   29.921033] tpm tpm0: Operation Canceled
+[   29.942010] tpm tpm0: Operation Canceled
+[   29.963313] tpm tpm0: Operation Canceled
+[   29.984252] tpm tpm0: Operation Canceled
+[   30.005256] tpm tpm0: Operation Canceled
+[   30.026249] tpm tpm0: Operation Canceled
+[   30.047256] tpm tpm0: Operation Canceled
+[   30.068261] tpm tpm0: Operation Canceled
+[   30.089213] tpm tpm0: Operation Canceled
+[   30.110232] tpm tpm0: Operation Canceled
+[   30.131616] tpm tpm0: Operation Canceled
+[   30.152376] tpm tpm0: Operation Canceled
+[   30.162897] tpm tpm0: Operation Canceled
+[   30.183851] tpm tpm0: Operation Canceled
+[   30.204828] tpm tpm0: Operation Canceled
+[   30.225807] tpm tpm0: Operation Canceled
+[   30.257309] tpm tpm0: Operation Canceled
+[   30.278368] tpm tpm0: Operation Canceled
+[   30.299343] tpm tpm0: Operation Canceled
+[   30.320319] tpm tpm0: Operation Canceled
+[   30.330912] tpm tpm0: Operation Canceled
+[   30.351851] tpm tpm0: Operation Canceled
+[   30.372866] tpm tpm0: Operation Canceled
+[   30.393938] tpm tpm0: Operation Canceled
+[   30.414936] tpm tpm0: Operation Canceled
+[   30.435883] tpm tpm0: Operation Canceled
+[   30.456889] tpm tpm0: Operation Canceled
+[   30.477871] tpm tpm0: Operation Canceled
+[   30.519931] tpm tpm0: Operation Canceled
+[   30.540907] tpm tpm0: Operation Canceled
+[   30.561915] tpm tpm0: Operation Canceled
+[   30.582974] tpm tpm0: Operation Canceled
+[   30.603876] tpm tpm0: Operation Canceled
+[   30.624878] tpm tpm0: Operation Canceled
+[   30.645886] tpm tpm0: Operation Canceled
+[   30.666906] tpm tpm0: Operation Canceled
+[   30.688016] tpm tpm0: Operation Canceled
+[   30.708948] tpm tpm0: Operation Canceled
+[   30.729925] tpm tpm0: Operation Canceled
+[   30.750954] tpm tpm0: Operation Canceled
+[   30.771913] tpm tpm0: Operation Canceled
+[   30.792946] tpm tpm0: Operation Canceled
+[   30.813904] tpm tpm0: Operation Canceled
+[   30.834885] tpm tpm0: Operation Canceled
+[   30.856076] tpm tpm0: Operation Canceled
+[   30.877035] tpm tpm0: Operation Canceled
+[   30.898050] tpm tpm0: Operation Canceled
+[   30.919073] tpm tpm0: Operation Canceled
+[   30.940042] tpm tpm0: Operation Canceled
+[   30.961035] tpm tpm0: Operation Canceled
+[   30.982055] tpm tpm0: Operation Canceled
+[   31.003076] tpm tpm0: Operation Canceled
+[   31.024038] tpm tpm0: Operation Canceled
+[   31.045026] tpm tpm0: Operation Canceled
+[   31.066008] tpm tpm0: Operation Canceled
+[   31.087101] tpm tpm0: Operation Canceled
+[   31.108026] tpm tpm0: Operation Canceled
+[   31.128993] tpm tpm0: Operation Canceled
+[   31.149958] tpm tpm0: Operation Canceled
+[   31.171015] tpm tpm0: Operation Canceled
+[   31.192184] tpm tpm0: Operation Canceled
+[   31.213150] tpm tpm0: Operation Canceled
+[   31.234136] tpm tpm0: Operation Canceled
+[   31.255157] tpm tpm0: Operation Canceled
+[   31.276111] tpm tpm0: Operation Canceled
+[   31.297075] tpm tpm0: Operation Canceled
+[   31.318060] tpm tpm0: Operation Canceled
+[   31.339142] tpm tpm0: Operation Canceled
+[   31.360297] tpm tpm0: Operation Canceled
+[   31.381047] tpm tpm0: Operation Canceled
+[   31.402012] tpm tpm0: Operation Canceled
+[   31.423080] tpm tpm0: Operation Canceled
+[   31.444059] tpm tpm0: Operation Canceled
+[   31.464987] tpm tpm0: Operation Canceled
+[   31.485989] tpm tpm0: Operation Canceled
+[   31.506994] tpm tpm0: Operation Canceled
+[   31.528176] tpm tpm0: Operation Canceled
+[   31.549104] tpm tpm0: Operation Canceled
+[   31.570253] tpm tpm0: Operation Canceled
+[   31.591242] tpm tpm0: Operation Canceled
+[   31.612204] tpm tpm0: Operation Canceled
+[   31.633218] tpm tpm0: Operation Canceled
+[   31.654175] tpm tpm0: Operation Canceled
+[   31.675167] tpm tpm0: Operation Canceled
+[   31.696364] tpm tpm0: Operation Canceled
+[   31.706974] tpm tpm0: Operation Canceled
+[   31.727937] tpm tpm0: Operation Canceled
+[   31.748860] tpm tpm0: Operation Canceled
+[   31.769810] tpm tpm0: Operation Canceled
+[   31.790783] tpm tpm0: Operation Canceled
+[   31.811787] tpm tpm0: Operation Canceled
+[   31.822332] tpm tpm0: Operation Canceled
+[   31.843249] tpm tpm0: Operation Canceled
+[   31.864244] tpm tpm0: Operation Canceled
+[   31.885263] tpm tpm0: Operation Canceled
+[   31.906201] tpm tpm0: Operation Canceled
+[   31.927181] tpm tpm0: Operation Canceled
+[   31.948142] tpm tpm0: Operation Canceled
+[   31.969106] tpm tpm0: Operation Canceled
+[   31.990124] tpm tpm0: Operation Canceled
+[   32.011083] tpm tpm0: Operation Canceled
+[   32.032077] tpm tpm0: Operation Canceled
+[   32.053032] tpm tpm0: Operation Canceled
+[   32.074066] tpm tpm0: Operation Canceled
+[   32.095154] tpm tpm0: Operation Canceled
+[   32.116168] tpm tpm0: Operation Canceled
+[   32.137309] tpm tpm0: Operation Canceled
+[   32.158405] tpm tpm0: Operation Canceled
+[   32.189807] tpm tpm0: Operation Canceled
+[   32.210899] tpm tpm0: Operation Canceled
+[   32.231822] tpm tpm0: Operation Canceled
+[   32.252796] tpm tpm0: Operation Canceled
+[   32.273779] tpm tpm0: Operation Canceled
+[   32.294824] tpm tpm0: Operation Canceled
+[   32.315783] tpm tpm0: Operation Canceled
+[   32.326440] tpm tpm0: Operation Canceled
+[   32.347263] tpm tpm0: Operation Canceled
+[   32.368216] tpm tpm0: Operation Canceled
+[   32.389220] tpm tpm0: Operation Canceled
+[   32.410200] tpm tpm0: Operation Canceled
+[   32.431216] tpm tpm0: Operation Canceled
+[   32.452192] tpm tpm0: Operation Canceled
+[   32.473175] tpm tpm0: Operation Canceled
+[   32.494178] tpm tpm0: Operation Canceled
+[   32.515213] tpm tpm0: Operation Canceled
+[   32.536225] tpm tpm0: Operation Canceled
+[   32.557170] tpm tpm0: Operation Canceled
+[   32.578163] tpm tpm0: Operation Canceled
+[   32.599178] tpm tpm0: Operation Canceled
+[   32.620166] tpm tpm0: Operation Canceled
+[   32.641127] tpm tpm0: Operation Canceled
+[   32.662139] tpm tpm0: Operation Canceled
+[   32.683163] tpm tpm0: Operation Canceled
+[   32.704181] tpm tpm0: Operation Canceled
+[   32.725122] tpm tpm0: Operation Canceled
+[   32.746101] tpm tpm0: Operation Canceled
+[   32.767119] tpm tpm0: Operation Canceled
+[   32.788083] tpm tpm0: Operation Canceled
+[   32.809102] tpm tpm0: Operation Canceled
+[   32.830046] tpm tpm0: Operation Canceled
+[   32.851028] tpm tpm0: Operation Canceled
+[   32.872006] tpm tpm0: Operation Canceled
+[   32.893220] tpm tpm0: Operation Canceled
+[   32.914177] tpm tpm0: Operation Canceled
+[   32.935198] tpm tpm0: Operation Canceled
+[   32.956165] tpm tpm0: Operation Canceled
+[   32.977185] tpm tpm0: Operation Canceled
+[   32.998152] tpm tpm0: Operation Canceled
+[   33.019172] tpm tpm0: Operation Canceled
+[   33.040138] tpm tpm0: Operation Canceled
+[   33.061139] tpm tpm0: Operation Canceled
+[   33.082139] tpm tpm0: Operation Canceled
+[   33.103096] tpm tpm0: Operation Canceled
+[   33.124074] tpm tpm0: Operation Canceled
+[   33.145060] tpm tpm0: Operation Canceled
+[   33.176519] tpm tpm0: Operation Canceled
+[   33.197306] tpm tpm0: Operation Canceled
+[   33.218570] tpm tpm0: Operation Canceled
+[   33.239669] tpm tpm0: Operation Canceled
+[   33.260713] tpm tpm0: Operation Canceled
+[   33.281684] tpm tpm0: Operation Canceled
+[   33.302683] tpm tpm0: Operation Canceled
+[   33.323626] tpm tpm0: Operation Canceled
+[   33.344609] tpm tpm0: Operation Canceled
+[   33.365646] tpm tpm0: Operation Canceled
+[   33.386623] tpm tpm0: Operation Canceled
+[   33.407760] tpm tpm0: Operation Canceled
+[   33.428735] tpm tpm0: Operation Canceled
+[   33.449729] tpm tpm0: Operation Canceled
+[   33.470676] tpm tpm0: Operation Canceled
+[   33.491668] tpm tpm0: Operation Canceled
+[   33.512641] tpm tpm0: Operation Canceled
+[   33.533657] tpm tpm0: Operation Canceled
+[   33.554858] tpm tpm0: Operation Canceled
+[   33.575574] tpm tpm0: Operation Canceled
+[   33.596553] tpm tpm0: Operation Canceled
+[   33.617305] tpm tpm0: Operation Canceled
+[   33.638561] tpm tpm0: Operation Canceled
+[   33.659489] tpm tpm0: Operation Canceled
+[   33.680491] tpm tpm0: Operation Canceled
+[   33.701309] tpm tpm0: Operation Canceled
+[   33.722679] tpm tpm0: Operation Canceled
+[   33.743630] tpm tpm0: Operation Canceled
+[   33.764604] tpm tpm0: Operation Canceled
+[   33.785600] tpm tpm0: Operation Canceled
+[   33.806648] tpm tpm0: Operation Canceled
+[   33.827582] tpm tpm0: Operation Canceled
+[   33.848549] tpm tpm0: Operation Canceled
+[   33.869306] tpm tpm0: Operation Canceled
+[   33.890807] tpm tpm0: Operation Canceled
+[   33.911808] tpm tpm0: Operation Canceled
+[   33.932773] tpm tpm0: Operation Canceled
+[   33.953713] tpm tpm0: Operation Canceled
+[   33.974722] tpm tpm0: Operation Canceled
+[   33.995720] tpm tpm0: Operation Canceled
+[   34.016647] tpm tpm0: Operation Canceled
+[   34.037678] tpm tpm0: Operation Canceled
+[   34.058799] tpm tpm0: Operation Canceled
+[   34.079778] tpm tpm0: Operation Canceled
+[   34.090328] tpm tpm0: Operation Canceled
+[   34.111235] tpm tpm0: Operation Canceled
+[   34.132246] tpm tpm0: Operation Canceled
+[   34.163672] tpm tpm0: Operation Canceled
+[   34.184705] tpm tpm0: Operation Canceled
+[   34.205688] tpm tpm0: Operation Canceled
+[   34.226954] tpm tpm0: Operation Canceled
+[   34.247636] tpm tpm0: Operation Canceled
+[   34.268626] tpm tpm0: Operation Canceled
+[   34.289813] tpm tpm0: Operation Canceled
+[   34.310810] tpm tpm0: Operation Canceled
+[   34.331832] tpm tpm0: Operation Canceled
+[   34.342372] tpm tpm0: Operation Canceled
+[   34.363294] tpm tpm0: Operation Canceled
+[   34.384405] tpm tpm0: Operation Canceled
+[   34.415943] tpm tpm0: Operation Canceled
+[   34.436889] tpm tpm0: Operation Canceled
+[   34.457854] tpm tpm0: Operation Canceled
+[   34.478971] tpm tpm0: Operation Canceled
+[   34.489311] tpm tpm0: Operation Canceled
+[   34.510473] tpm tpm0: Operation Canceled
+[   34.531630] tpm tpm0: Operation Canceled
+[   34.552584] tpm tpm0: Operation Canceled
+[   34.573307] tpm tpm0: Operation Canceled
+[   34.594634] tpm tpm0: Operation Canceled
+[   34.615569] tpm tpm0: Operation Canceled
+[   34.636578] tpm tpm0: Operation Canceled
+[   34.657310] tpm tpm0: Operation Canceled
+[   34.678740] tpm tpm0: Operation Canceled
+[   34.699514] tpm tpm0: Operation Canceled
+[   34.720488] tpm tpm0: Operation Canceled
+[   34.741307] tpm tpm0: Operation Canceled
+[   34.762520] tpm tpm0: Operation Canceled
+[   34.783464] tpm tpm0: Operation Canceled
+[   34.804428] tpm tpm0: Operation Canceled
+[   34.836240] tpm tpm0: Operation Canceled
+[   34.857189] tpm tpm0: Operation Canceled
+[   34.878173] tpm tpm0: Operation Canceled
+[   34.899173] tpm tpm0: Operation Canceled
+[   34.920133] tpm tpm0: Operation Canceled
+[   34.941239] tpm tpm0: Operation Canceled
+[   34.962260] tpm tpm0: Operation Canceled
+[   34.983305] tpm tpm0: Operation Canceled
+[   35.004363] tpm tpm0: Operation Canceled
+[   35.025309] tpm tpm0: Operation Canceled
+[   35.046617] tpm tpm0: Operation Canceled
+[   35.067583] tpm tpm0: Operation Canceled
+[   35.088512] tpm tpm0: Operation Canceled
+[   35.109329] tpm tpm0: Operation Canceled
+[   35.130527] tpm tpm0: Operation Canceled
+[   35.162008] tpm tpm0: Operation Canceled
+[   35.182972] tpm tpm0: Operation Canceled
+[   35.204106] tpm tpm0: Operation Canceled
+[   35.225213] tpm tpm0: Operation Canceled
+[   35.246162] tpm tpm0: Operation Canceled
+[   35.267191] tpm tpm0: Operation Canceled
+[   35.288166] tpm tpm0: Operation Canceled
+[   35.309108] tpm tpm0: Operation Canceled
+[   35.330166] tpm tpm0: Operation Canceled
+[   35.351154] tpm tpm0: Operation Canceled
+[   35.372325] tpm tpm0: Operation Canceled
+[   35.393309] tpm tpm0: Operation Canceled
+[   35.414400] tpm tpm0: Operation Canceled
+[   35.435404] tpm tpm0: Operation Canceled
+[   35.456421] tpm tpm0: Operation Canceled
+[   35.466897] tpm tpm0: Operation Canceled
+[   35.487876] tpm tpm0: Operation Canceled
+[   35.508954] tpm tpm0: Operation Canceled
+[   35.530083] tpm tpm0: Operation Canceled
+[   35.551248] tpm tpm0: Operation Canceled
+[   35.572345] tpm tpm0: Operation Canceled
+[   35.593296] tpm tpm0: Operation Canceled
+[   35.614315] tpm tpm0: Operation Canceled
+[   35.635285] tpm tpm0: Operation Canceled
+[   35.656373] tpm tpm0: Operation Canceled
+[   35.677308] tpm tpm0: Operation Canceled
+[   35.698405] tpm tpm0: Operation Canceled
+[   35.719360] tpm tpm0: Operation Canceled
+[   35.740370] tpm tpm0: Operation Canceled
+[   35.761307] tpm tpm0: Operation Canceled
+[   35.782240] tpm tpm0: Operation Canceled
+[   35.803314] tpm tpm0: Operation Canceled
+[   35.824299] tpm tpm0: Operation Canceled
+[   35.845307] tpm tpm0: Operation Canceled
+[   35.866270] tpm tpm0: Operation Canceled
+[   35.887304] tpm tpm0: Operation Canceled
+[   35.908277] tpm tpm0: Operation Canceled
+[   35.929312] tpm tpm0: Operation Canceled
+[   35.950157] tpm tpm0: Operation Canceled
+[   35.971319] tpm tpm0: Operation Canceled
+[   35.992235] tpm tpm0: Operation Canceled
+[   36.013306] tpm tpm0: Operation Canceled
+[   36.034352] tpm tpm0: Operation Canceled
+[   36.055364] tpm tpm0: Operation Canceled
+[   36.076470] tpm tpm0: Operation Canceled
+[   36.097636] tpm tpm0: Operation Canceled
+[   36.118717] tpm tpm0: Operation Canceled
+[   36.139691] tpm tpm0: Operation Canceled
+[   36.150620] tpm tpm0: Operation Canceled
+[   36.171280] tpm tpm0: Operation Canceled
+[   36.192216] tpm tpm0: Operation Canceled
+[   36.213307] tpm tpm0: Operation Canceled
+[   36.234402] tpm tpm0: Operation Canceled
+[   36.255378] tpm tpm0: Operation Canceled
+[   36.276350] tpm tpm0: Operation Canceled
+[   36.297310] tpm tpm0: Operation Canceled
+[   36.318315] tpm tpm0: Operation Canceled
+[   36.339293] tpm tpm0: Operation Canceled
+[   36.360268] tpm tpm0: Operation Canceled
+[   36.381306] tpm tpm0: Operation Canceled
+[   36.402356] tpm tpm0: Operation Canceled
+[   36.423384] tpm tpm0: Operation Canceled
+[   36.444371] tpm tpm0: Operation Canceled
+[   36.465312] tpm tpm0: Operation Canceled
+[   36.486795] tpm tpm0: Operation Canceled
+[   36.507555] tpm tpm0: Operation Canceled
+[   36.528555] tpm tpm0: Operation Canceled
+[   36.549308] tpm tpm0: Operation Canceled
+[   36.570583] tpm tpm0: Operation Canceled
+[   36.591485] tpm tpm0: Operation Canceled
+[   36.612363] tpm tpm0: Operation Canceled
+[   36.643988] tpm tpm0: Operation Canceled
+[   36.664938] tpm tpm0: Operation Canceled
+[   36.685950] tpm tpm0: Operation Canceled
+[   36.706989] tpm tpm0: Operation Canceled
+[   36.727971] tpm tpm0: Operation Canceled
+[   36.749163] tpm tpm0: Operation Canceled
+[   36.770166] tpm tpm0: Operation Canceled
+[   36.791138] tpm tpm0: Operation Canceled
+[   36.812119] tpm tpm0: Operation Canceled
+[   36.833085] tpm tpm0: Operation Canceled
+[   36.854093] tpm tpm0: Operation Canceled
+[   36.875099] tpm tpm0: Operation Canceled
+[   36.896054] tpm tpm0: Operation Canceled
+[   36.917018] tpm tpm0: Operation Canceled
+[   36.937991] tpm tpm0: Operation Canceled
+[   36.959066] tpm tpm0: Operation Canceled
+[   36.979950] tpm tpm0: Operation Canceled
+[   37.000974] tpm tpm0: Operation Canceled
+[   37.021958] tpm tpm0: Operation Canceled
+[   37.043080] tpm tpm0: Operation Canceled
+[   37.064223] tpm tpm0: Operation Canceled
+[   37.085212] tpm tpm0: Operation Canceled
+[   37.106228] tpm tpm0: Operation Canceled
+[   37.127322] tpm tpm0: Operation Canceled
+[   37.148226] tpm tpm0: Operation Canceled
+[   37.179725] tpm tpm0: Operation Canceled
+[   37.200682] tpm tpm0: Operation Canceled
+[   37.221874] tpm tpm0: Operation Canceled
+[   37.243015] tpm tpm0: Operation Canceled
+[   37.263863] tpm tpm0: Operation Canceled
+[   37.284855] tpm tpm0: Operation Canceled
+[   37.305816] tpm tpm0: Operation Canceled
+[   37.326997] tpm tpm0: Operation Canceled
+[   37.347805] tpm tpm0: Operation Canceled
+[   37.358390] tpm tpm0: Operation Canceled
+[   37.379346] tpm tpm0: Operation Canceled
+[   37.400285] tpm tpm0: Operation Canceled
+[   37.421243] tpm tpm0: Operation Canceled
+[   37.442256] tpm tpm0: Operation Canceled
+[   37.463352] tpm tpm0: Operation Canceled
+[   37.484242] tpm tpm0: Operation Canceled
+[   37.505212] tpm tpm0: Operation Canceled
+[   37.526228] tpm tpm0: Operation Canceled
+[   37.547231] tpm tpm0: Operation Canceled
+[   37.568214] tpm tpm0: Operation Canceled
+[   37.589130] tpm tpm0: Operation Canceled
+[   37.610131] tpm tpm0: Operation Canceled
+[   37.631485] tpm tpm0: Operation Canceled
+[   37.652357] tpm tpm0: Operation Canceled
+[   37.673674] tpm tpm0: Operation Canceled
+[   37.694729] tpm tpm0: Operation Canceled
+[   37.715895] tpm tpm0: Operation Canceled
+[   37.736847] tpm tpm0: Operation Canceled
+[   37.757806] tpm tpm0: Operation Canceled
+[   37.778984] tpm tpm0: Operation Canceled
+[   37.799783] tpm tpm0: Operation Canceled
+[   37.820733] tpm tpm0: Operation Canceled
+[   37.841753] tpm tpm0: Operation Canceled
+[   37.862914] tpm tpm0: Operation Canceled
+[   37.883810] tpm tpm0: Operation Canceled
+[   37.904822] tpm tpm0: Operation Canceled
+[   37.925823] tpm tpm0: Operation Canceled
+[   37.946874] tpm tpm0: Operation Canceled
+[   37.967788] tpm tpm0: Operation Canceled
+[   37.988969] tpm tpm0: Operation Canceled
+[   38.009943] tpm tpm0: Operation Canceled
+[   38.030922] tpm tpm0: Operation Canceled
+[   38.041320] tpm tpm0: Operation Canceled
+[   38.062581] tpm tpm0: Operation Canceled
+[   38.083543] tpm tpm0: Operation Canceled
+[   38.104431] tpm tpm0: Operation Canceled
+[   38.125309] tpm tpm0: Operation Canceled
+[   38.146568] tpm tpm0: Operation Canceled
+[   38.167515] tpm tpm0: Operation Canceled
+[   38.188510] tpm tpm0: Operation Canceled
+[   38.209313] tpm tpm0: Operation Canceled
+[   38.230889] tpm tpm0: Operation Canceled
+[   38.251753] tpm tpm0: Operation Canceled
+[   38.272959] tpm tpm0: Operation Canceled
+[   38.293937] tpm tpm0: Operation Canceled
+[   38.314995] tpm tpm0: Operation Canceled
+[   38.335977] tpm tpm0: Operation Canceled
+[   38.356907] tpm tpm0: Operation Canceled
+[   38.377943] tpm tpm0: Operation Canceled
+[   38.399021] tpm tpm0: Operation Canceled
+[   38.420097] tpm tpm0: Operation Canceled
+[   38.441032] tpm tpm0: Operation Canceled
+[   38.462026] tpm tpm0: Operation Canceled
+[   38.483043] tpm tpm0: Operation Canceled
+[   38.504050] tpm tpm0: Operation Canceled
+[   38.524975] tpm tpm0: Operation Canceled
+[   38.545897] tpm tpm0: Operation Canceled
+[   38.567583] tpm tpm0: Operation Canceled
+[   38.588521] tpm tpm0: Operation Canceled
+[   38.609307] tpm tpm0: Operation Canceled
+[   38.630422] tpm tpm0: Operation Canceled
+[   38.651461] tpm tpm0: Operation Canceled
+[   38.672430] tpm tpm0: Operation Canceled
+[   38.703917] tpm tpm0: Operation Canceled
+[   38.724995] tpm tpm0: Operation Canceled
+[   38.746092] tpm tpm0: Operation Canceled
+[   38.767057] tpm tpm0: Operation Canceled
+[   38.788119] tpm tpm0: Operation Canceled
+[   38.809143] tpm tpm0: Operation Canceled
+[   38.830088] tpm tpm0: Operation Canceled
+[   38.851091] tpm tpm0: Operation Canceled
+[   38.872067] tpm tpm0: Operation Canceled
+[   38.893074] tpm tpm0: Operation Canceled
+[   38.914020] tpm tpm0: Operation Canceled
+[   38.934998] tpm tpm0: Operation Canceled
+[   38.955965] tpm tpm0: Operation Canceled
+[   38.976993] tpm tpm0: Operation Canceled
+[   38.997968] tpm tpm0: Operation Canceled
+[   39.018972] tpm tpm0: Operation Canceled
+[   39.039928] tpm tpm0: Operation Canceled
+[   39.050477] tpm tpm0: Operation Canceled
+[   39.071392] tpm tpm0: Operation Canceled
+[   39.092358] tpm tpm0: Operation Canceled
+[   39.113306] tpm tpm0: Operation Canceled
+[   39.134384] tpm tpm0: Operation Canceled
+[   39.165917] tpm tpm0: Operation Canceled
+[   39.187043] tpm tpm0: Operation Canceled
+[   39.208069] tpm tpm0: Operation Canceled
+[   39.229296] tpm tpm0: Operation Canceled
+[   39.250321] tpm tpm0: Operation Canceled
+[   39.271287] tpm tpm0: Operation Canceled
+[   39.292319] tpm tpm0: Operation Canceled
+[   39.313306] tpm tpm0: Operation Canceled
+[   39.334294] tpm tpm0: Operation Canceled
+[   39.355285] tpm tpm0: Operation Canceled
+[   39.376237] tpm tpm0: Operation Canceled
+[   39.397227] tpm tpm0: Operation Canceled
+[   39.418134] tpm tpm0: Operation Canceled
+[   39.439268] tpm tpm0: Operation Canceled
+[   39.460209] tpm tpm0: Operation Canceled
+[   39.481212] tpm tpm0: Operation Canceled
+[   39.502279] tpm tpm0: Operation Canceled
+[   39.523246] tpm tpm0: Operation Canceled
+[   39.544438] tpm tpm0: Operation Canceled
+[   39.565631] tpm tpm0: Operation Canceled
+[   39.586554] tpm tpm0: Operation Canceled
+[   39.607541] tpm tpm0: Operation Canceled
+[   39.628574] tpm tpm0: Operation Canceled
+[   39.649314] tpm tpm0: Operation Canceled
+[   39.670643] tpm tpm0: Operation Canceled
+[   39.691563] tpm tpm0: Operation Canceled
+[   39.702366] tpm tpm0: Operation Canceled
+[   39.723299] tpm tpm0: Operation Canceled
+[   39.744324] tpm tpm0: Operation Canceled
+[   39.765312] tpm tpm0: Operation Canceled
+[   39.786961] tpm tpm0: Operation Canceled
+[   39.807307] tpm tpm0: Operation Canceled
+[   39.828313] tpm tpm0: Operation Canceled
+[   39.849309] tpm tpm0: Operation Canceled
+[   39.870409] tpm tpm0: Operation Canceled
+[   39.891475] tpm tpm0: Operation Canceled
+[   39.912411] tpm tpm0: Operation Canceled
+[   39.922888] tpm tpm0: Operation Canceled
+[   39.943970] tpm tpm0: Operation Canceled
+[   39.964959] tpm tpm0: Operation Canceled
+[   39.985849] tpm tpm0: Operation Canceled
+[   40.017700] tpm tpm0: Operation Canceled
+[   40.038736] tpm tpm0: Operation Canceled
+[   40.059686] tpm tpm0: Operation Canceled
+[   40.080748] tpm tpm0: Operation Canceled
+[   40.101886] tpm tpm0: Operation Canceled
+[   40.122923] tpm tpm0: Operation Canceled
+[   40.134339] tpm tpm0: Operation Canceled
+[   40.154415] tpm tpm0: Operation Canceled
+[   40.175501] tpm tpm0: Operation Canceled
+[   40.196481] tpm tpm0: Operation Canceled
+[   40.227925] tpm tpm0: Operation Canceled
+[   40.249015] tpm tpm0: Operation Canceled
+[   40.269965] tpm tpm0: Operation Canceled
+[   40.280904] tpm tpm0: Operation Canceled
+[   40.291894] tpm tpm0: Operation Canceled
+[   40.312638] tpm tpm0: Operation Canceled
+[   40.323741] tpm tpm0: Operation Canceled
+[   40.344753] tpm tpm0: Operation Canceled
+[   40.376209] tpm tpm0: Operation Canceled
+[   40.407730] tpm tpm0: Operation Canceled
+[   40.428694] tpm tpm0: Operation Canceled
+[   40.449678] tpm tpm0: Operation Canceled
+[   40.470844] tpm tpm0: Operation Canceled
+[   40.491688] tpm tpm0: Operation Canceled
+[   40.512629] tpm tpm0: Operation Canceled
+[   40.533649] tpm tpm0: Operation Canceled
+[   40.554807] tpm tpm0: Operation Canceled
+[   40.575639] tpm tpm0: Operation Canceled
+[   40.596638] tpm tpm0: Operation Canceled
+[   40.617601] tpm tpm0: Operation Canceled
+[   40.638782] tpm tpm0: Operation Canceled
+[   40.659557] tpm tpm0: Operation Canceled
+[   40.680597] tpm tpm0: Operation Canceled
+[   40.701311] tpm tpm0: Operation Canceled
+[   40.722855] tpm tpm0: Operation Canceled
+[   40.743856] tpm tpm0: Operation Canceled
+[   40.764884] tpm tpm0: Operation Canceled
+[   40.785818] tpm tpm0: Operation Canceled
+[   40.806810] tpm tpm0: Operation Canceled
+[   40.828058] tpm tpm0: Operation Canceled
+[   40.849044] tpm tpm0: Operation Canceled
+[   40.870076] tpm tpm0: Operation Canceled
+[   40.891109] tpm tpm0: Operation Canceled
+[   40.912087] tpm tpm0: Operation Canceled
+[   40.933088] tpm tpm0: Operation Canceled
+[   40.954106] tpm tpm0: Operation Canceled
+[   40.975156] tpm tpm0: Operation Canceled
+[   40.996172] tpm tpm0: Operation Canceled
+[   41.017136] tpm tpm0: Operation Canceled
+[   41.038148] tpm tpm0: Operation Canceled
+[   41.059150] tpm tpm0: Operation Canceled
+[   41.080403] tpm tpm0: Operation Canceled
+[   41.090998] tpm tpm0: Operation Canceled
+[   41.111996] tpm tpm0: Operation Canceled
+[   41.132930] tpm tpm0: Operation Canceled
+[   41.153911] tpm tpm0: Operation Canceled
+[   41.174952] tpm tpm0: Operation Canceled
+[   41.195985] tpm tpm0: Operation Canceled
+[   41.216948] tpm tpm0: Operation Canceled
+[   41.238125] tpm tpm0: Operation Canceled
+[   41.259130] tpm tpm0: Operation Canceled
+[   41.280148] tpm tpm0: Operation Canceled
+[   41.301135] tpm tpm0: Operation Canceled
+[   41.322188] tpm tpm0: Operation Canceled
+[   41.353697] tpm tpm0: Operation Canceled
+[   41.374735] tpm tpm0: Operation Canceled
+[   41.395722] tpm tpm0: Operation Canceled
+[   41.417295] tpm tpm0: Operation Canceled
+[   41.438319] tpm tpm0: Operation Canceled
+[   41.459225] tpm tpm0: Operation Canceled
+[   41.480217] tpm tpm0: Operation Canceled
+[   41.501215] tpm tpm0: Operation Canceled
+[   41.523020] tpm tpm0: Operation Canceled
+[   41.543924] tpm tpm0: Operation Canceled
+[   41.564929] tpm tpm0: Operation Canceled
+[   41.585863] tpm tpm0: Operation Canceled
+[   41.607015] tpm tpm0: Operation Canceled
+[   41.627922] tpm tpm0: Operation Canceled
+[   41.648890] tpm tpm0: Operation Canceled
+[   41.669902] tpm tpm0: Operation Canceled
+[   41.691044] tpm tpm0: Operation Canceled
+[   41.711763] tpm tpm0: Operation Canceled
+[   41.732743] tpm tpm0: Operation Canceled
+[   41.753779] tpm tpm0: Operation Canceled
+[   41.774681] tpm tpm0: Operation Canceled
+[   41.795724] tpm tpm0: Operation Canceled
+[   41.816712] tpm tpm0: Operation Canceled
+[   41.837740] tpm tpm0: Operation Canceled
+[   41.858879] tpm tpm0: Operation Canceled
+[   41.879630] tpm tpm0: Operation Canceled
+[   41.900617] tpm tpm0: Operation Canceled
+[   41.921611] tpm tpm0: Operation Canceled
+[   41.942671] tpm tpm0: Operation Canceled
+[   41.963554] tpm tpm0: Operation Canceled
+[   41.984515] tpm tpm0: Operation Canceled
+[   42.005308] tpm tpm0: Operation Canceled
+[   42.026728] tpm tpm0: Operation Canceled
+[   42.047448] tpm tpm0: Operation Canceled
+[   42.068465] tpm tpm0: Operation Canceled
+[   42.089313] tpm tpm0: Operation Canceled
+[   42.110509] tpm tpm0: Operation Canceled
+[   42.131432] tpm tpm0: Operation Canceled
+[   42.162927] tpm tpm0: Operation Canceled
+[   42.183930] tpm tpm0: Operation Canceled
+[   42.204887] tpm tpm0: Operation Canceled
+[   42.225822] tpm tpm0: Operation Canceled
+[   42.247105] tpm tpm0: Operation Canceled
+[   42.268128] tpm tpm0: Operation Canceled
+[   42.289299] tpm tpm0: Operation Canceled
+[   42.310369] tpm tpm0: Operation Canceled
+[   42.331300] tpm tpm0: Operation Canceled
+[   42.352297] tpm tpm0: Operation Canceled
+[   42.373270] tpm tpm0: Operation Canceled
+[   42.394260] tpm tpm0: Operation Canceled
+[   42.415237] tpm tpm0: Operation Canceled
+[   42.436235] tpm tpm0: Operation Canceled
+[   42.457219] tpm tpm0: Operation Canceled
+[   42.478200] tpm tpm0: Operation Canceled
+[   42.499211] tpm tpm0: Operation Canceled
+[   42.520159] tpm tpm0: Operation Canceled
+[   42.541124] tpm tpm0: Operation Canceled
+[   42.562089] tpm tpm0: Operation Canceled
+[   42.583127] tpm tpm0: Operation Canceled
+[   42.604083] tpm tpm0: Operation Canceled
+[   42.625079] tpm tpm0: Operation Canceled
+[   42.645956] tpm tpm0: Operation Canceled
+[   42.667026] tpm tpm0: Operation Canceled
+[   42.688050] tpm tpm0: Operation Canceled
+[   42.709029] tpm tpm0: Operation Canceled
+[   42.730021] tpm tpm0: Operation Canceled
+[   42.751049] tpm tpm0: Operation Canceled
+[   42.772066] tpm tpm0: Operation Canceled
+[   42.793042] tpm tpm0: Operation Canceled
+[   42.814036] tpm tpm0: Operation Canceled
+[   42.835089] tpm tpm0: Operation Canceled
+[   42.856033] tpm tpm0: Operation Canceled
+[   42.877308] tpm tpm0: Operation Canceled
+[   42.898356] tpm tpm0: Operation Canceled
+[   42.919371] tpm tpm0: Operation Canceled
+[   42.940675] tpm tpm0: Operation Canceled
+[   42.961308] tpm tpm0: Operation Canceled
+[   42.982358] tpm tpm0: Operation Canceled
+[   43.003309] tpm tpm0: Operation Canceled
+[   43.024287] tpm tpm0: Operation Canceled
+[   43.045279] tpm tpm0: Operation Canceled
+[   43.066267] tpm tpm0: Operation Canceled
+[   43.087323] tpm tpm0: Operation Canceled
+[   43.108483] tpm tpm0: Operation Canceled
+[   43.129310] tpm tpm0: Operation Canceled
+[   43.150501] tpm tpm0: Operation Canceled
+[   43.171333] tpm tpm0: Operation Canceled
+[   43.192561] tpm tpm0: Operation Canceled
+[   43.213307] tpm tpm0: Operation Canceled
+[   43.234573] tpm tpm0: Operation Canceled
+[   43.255499] tpm tpm0: Operation Canceled
+[   43.276476] tpm tpm0: Operation Canceled
+[   43.297312] tpm tpm0: Operation Canceled
+[   43.318517] tpm tpm0: Operation Canceled
+[   43.339429] tpm tpm0: Operation Canceled
+[   43.360416] tpm tpm0: Operation Canceled
+[   43.381315] tpm tpm0: Operation Canceled
+[   43.402697] tpm tpm0: Operation Canceled
+[   43.423397] tpm tpm0: Operation Canceled
+[   43.444398] tpm tpm0: Operation Canceled
+[   43.465312] tpm tpm0: Operation Canceled
+[   43.486710] tpm tpm0: Operation Canceled
+[   43.507418] tpm tpm0: Operation Canceled
+[   43.528402] tpm tpm0: Operation Canceled
+[   43.549310] tpm tpm0: Operation Canceled
+[   43.570730] tpm tpm0: Operation Canceled
+[   43.591678] tpm tpm0: Operation Canceled
+[   43.612737] tpm tpm0: Operation Canceled
+[   43.633708] tpm tpm0: Operation Canceled
+[   43.654849] tpm tpm0: Operation Canceled
+[   43.675563] tpm tpm0: Operation Canceled
+[   43.696559] tpm tpm0: Operation Canceled
+[   43.717705] tpm tpm0: Operation Canceled
+[   43.738740] tpm tpm0: Operation Canceled
+[   43.759861] tpm tpm0: Operation Canceled
+[   43.780794] tpm tpm0: Operation Canceled
+[   43.801803] tpm tpm0: Operation Canceled
+[   43.822809] tpm tpm0: Operation Canceled
+[   43.843770] tpm tpm0: Operation Canceled
+[   43.875327] tpm tpm0: Operation Canceled
+[   43.896193] tpm tpm0: Operation Canceled
+[   43.917313] tpm tpm0: Operation Canceled
+[   43.938607] tpm tpm0: Operation Canceled
+[   43.959395] tpm tpm0: Operation Canceled
+[   43.980406] tpm tpm0: Operation Canceled
+[   44.001316] tpm tpm0: Operation Canceled
+[   44.022640] tpm tpm0: Operation Canceled
+[   44.043497] tpm tpm0: Operation Canceled
+[   44.064427] tpm tpm0: Operation Canceled
+[   44.085868] tpm tpm0: Operation Canceled
+[   44.106928] tpm tpm0: Operation Canceled
+[   44.127819] tpm tpm0: Operation Canceled
+[   44.148965] tpm tpm0: Operation Canceled
+[   44.169925] tpm tpm0: Operation Canceled
+[   44.190845] tpm tpm0: Operation Canceled
+[   44.211927] tpm tpm0: Operation Canceled
+[   44.232911] tpm tpm0: Operation Canceled
+[   44.254091] tpm tpm0: Operation Canceled
+[   44.275216] tpm tpm0: Operation Canceled
+[   44.296194] tpm tpm0: Operation Canceled
+[   44.317235] tpm tpm0: Operation Canceled
+[   44.338165] tpm tpm0: Operation Canceled
+[   44.359260] tpm tpm0: Operation Canceled
+[   44.380333] tpm tpm0: Operation Canceled
+[   44.401305] tpm tpm0: Operation Canceled
+[   44.422321] tpm tpm0: Operation Canceled
+[   44.443280] tpm tpm0: Operation Canceled
+[   44.464196] tpm tpm0: Operation Canceled
+[   44.485275] tpm tpm0: Operation Canceled
+[   44.506286] tpm tpm0: Operation Canceled
+[   44.527271] tpm tpm0: Operation Canceled
+[   44.548317] tpm tpm0: Operation Canceled
+[   44.569308] tpm tpm0: Operation Canceled
+[   44.590284] tpm tpm0: Operation Canceled
+[   44.611270] tpm tpm0: Operation Canceled
+[   44.632256] tpm tpm0: Operation Canceled
+[   44.653265] tpm tpm0: Operation Canceled
+[   44.674173] tpm tpm0: Operation Canceled
+[   44.695274] tpm tpm0: Operation Canceled
+[   44.716231] tpm tpm0: Operation Canceled
+[   44.737212] tpm tpm0: Operation Canceled
+[   44.758207] tpm tpm0: Operation Canceled
+[   44.779229] tpm tpm0: Operation Canceled
+[   44.800069] tpm tpm0: Operation Canceled
+[   44.821178] tpm tpm0: Operation Canceled
+[   44.842120] tpm tpm0: Operation Canceled
+[   44.863258] tpm tpm0: Operation Canceled
+[   44.884220] tpm tpm0: Operation Canceled
+[   44.905170] tpm tpm0: Operation Canceled
+[   44.926166] tpm tpm0: Operation Canceled
+[   44.947230] tpm tpm0: Operation Canceled
+[   44.968231] tpm tpm0: Operation Canceled
+[   44.989166] tpm tpm0: Operation Canceled
+[   45.010073] tpm tpm0: Operation Canceled
+[   45.031179] tpm tpm0: Operation Canceled
+[   45.052208] tpm tpm0: Operation Canceled
+[   45.073174] tpm tpm0: Operation Canceled
+[   45.094197] tpm tpm0: Operation Canceled
+[   45.115178] tpm tpm0: Operation Canceled
+[   45.136221] tpm tpm0: Operation Canceled
+[   45.157147] tpm tpm0: Operation Canceled
+[   45.178130] tpm tpm0: Operation Canceled
+[   45.199215] tpm tpm0: Operation Canceled
+[   45.220227] tpm tpm0: Operation Canceled
+[   45.241228] tpm tpm0: Operation Canceled
+[   45.262189] tpm tpm0: Operation Canceled
+[   45.283218] tpm tpm0: Operation Canceled
+[   45.304206] tpm tpm0: Operation Canceled
+[   45.325257] tpm tpm0: Operation Canceled
+[   45.346210] tpm tpm0: Operation Canceled
+[   45.367262] tpm tpm0: Operation Canceled
+[   45.388254] tpm tpm0: Operation Canceled
+[   45.409253] tpm tpm0: Operation Canceled
+[   45.430201] tpm tpm0: Operation Canceled
+[   45.451221] tpm tpm0: Operation Canceled
+[   45.472227] tpm tpm0: Operation Canceled
+[   45.493195] tpm tpm0: Operation Canceled
+[   45.514126] tpm tpm0: Operation Canceled
+[   45.535221] tpm tpm0: Operation Canceled
+[   45.556173] tpm tpm0: Operation Canceled
+[   45.577267] tpm tpm0: Operation Canceled
+[   45.598295] tpm tpm0: Operation Canceled
+[   45.619247] tpm tpm0: Operation Canceled
+[   45.640263] tpm tpm0: Operation Canceled
+[   45.661252] tpm tpm0: Operation Canceled
+[   45.682274] tpm tpm0: Operation Canceled
+[   45.703232] tpm tpm0: Operation Canceled
+[   45.724254] tpm tpm0: Operation Canceled
+[   45.745205] tpm tpm0: Operation Canceled
+[   45.766118] tpm tpm0: Operation Canceled
+[   45.787233] tpm tpm0: Operation Canceled
+[   45.808177] tpm tpm0: Operation Canceled
+[   45.829164] tpm tpm0: Operation Canceled
+[   45.850166] tpm tpm0: Operation Canceled
+[   45.871279] tpm tpm0: Operation Canceled
+[   45.892223] tpm tpm0: Operation Canceled
+[   45.913222] tpm tpm0: Operation Canceled
+[   45.934357] tpm tpm0: Operation Canceled
+[   45.955434] tpm tpm0: Operation Canceled
+[   45.976398] tpm tpm0: Operation Canceled
+[   45.997319] tpm tpm0: Operation Canceled
+[   46.018394] tpm tpm0: Operation Canceled
+[   46.039622] tpm tpm0: Operation Canceled
+[   46.060318] tpm tpm0: Operation Canceled
+[   46.081308] tpm tpm0: Operation Canceled
+[   46.102344] tpm tpm0: Operation Canceled
+[   46.123319] tpm tpm0: Operation Canceled
+[   46.144306] tpm tpm0: Operation Canceled
+[   46.165293] tpm tpm0: Operation Canceled
+[   46.186193] tpm tpm0: Operation Canceled
+[   46.207459] tpm tpm0: Operation Canceled
+[   46.228484] tpm tpm0: Operation Canceled
+[   46.249673] tpm tpm0: Operation Canceled
+[   46.270615] tpm tpm0: Operation Canceled
+[   46.291635] tpm tpm0: Operation Canceled
+[   46.312618] tpm tpm0: Operation Canceled
+[   46.333686] tpm tpm0: Operation Canceled
+[   46.354655] tpm tpm0: Operation Canceled
+[   46.375658] tpm tpm0: Operation Canceled
+[   46.396748] tpm tpm0: Operation Canceled
+[   46.417777] tpm tpm0: Operation Canceled
+[   46.438773] tpm tpm0: Operation Canceled
+[   46.459742] tpm tpm0: Operation Canceled
+[   46.470351] tpm tpm0: Operation Canceled
+[   46.491311] tpm tpm0: Operation Canceled
+[   46.512298] tpm tpm0: Operation Canceled
+[   46.533310] tpm tpm0: Operation Canceled
+[   46.554446] tpm tpm0: Operation Canceled
+[   46.575407] tpm tpm0: Operation Canceled
+[   46.596284] tpm tpm0: Operation Canceled
+[   46.617310] tpm tpm0: Operation Canceled
+[   46.638348] tpm tpm0: Operation Canceled
+[   46.659353] tpm tpm0: Operation Canceled
+[   46.680311] tpm tpm0: Operation Canceled
+[   46.701310] tpm tpm0: Operation Canceled
+[   46.722278] tpm tpm0: Operation Canceled
+[   46.743288] tpm tpm0: Operation Canceled
+[   46.764267] tpm tpm0: Operation Canceled
+[   46.785300] tpm tpm0: Operation Canceled
+[   46.806182] tpm tpm0: Operation Canceled
+[   46.827286] tpm tpm0: Operation Canceled
+[   46.848261] tpm tpm0: Operation Canceled
+[   46.869312] tpm tpm0: Operation Canceled
+[   46.890366] tpm tpm0: Operation Canceled
+[   46.911309] tpm tpm0: Operation Canceled
+[   46.932268] tpm tpm0: Operation Canceled
+[   46.953237] tpm tpm0: Operation Canceled
+[   46.974280] tpm tpm0: Operation Canceled
+[   46.995184] tpm tpm0: Operation Canceled
+[   47.016177] tpm tpm0: Operation Canceled
+[   47.037504] tpm tpm0: Operation Canceled
+[   47.058523] tpm tpm0: Operation Canceled
+[   47.079437] tpm tpm0: Operation Canceled
+[   47.100407] tpm tpm0: Operation Canceled
+[   47.121309] tpm tpm0: Operation Canceled
+[   47.142377] tpm tpm0: Operation Canceled
+[   47.163425] tpm tpm0: Operation Canceled
+[   47.184605] tpm tpm0: Operation Canceled
+[   47.205667] tpm tpm0: Operation Canceled
+[   47.226741] tpm tpm0: Operation Canceled
+[   47.247736] tpm tpm0: Operation Canceled
+[   47.268667] tpm tpm0: Operation Canceled
+[   47.289707] tpm tpm0: Operation Canceled
+[   47.310864] tpm tpm0: Operation Canceled
+[   47.331688] tpm tpm0: Operation Canceled
+[   47.352660] tpm tpm0: Operation Canceled
+[   47.373683] tpm tpm0: Operation Canceled
+[   47.394684] tpm tpm0: Operation Canceled
+[   47.415632] tpm tpm0: Operation Canceled
+[   47.436661] tpm tpm0: Operation Canceled
+[   47.457655] tpm tpm0: Operation Canceled
+[   47.478671] tpm tpm0: Operation Canceled
+[   47.499624] tpm tpm0: Operation Canceled
+[   47.520620] tpm tpm0: Operation Canceled
+[   47.541663] tpm tpm0: Operation Canceled
+[   47.562812] tpm tpm0: Operation Canceled
+[   47.583690] tpm tpm0: Operation Canceled
+[   47.604725] tpm tpm0: Operation Canceled
+[   47.625777] tpm tpm0: Operation Canceled
+[   47.646759] tpm tpm0: Operation Canceled
+[   47.667711] tpm tpm0: Operation Canceled
+[   47.688718] tpm tpm0: Operation Canceled
+[   47.709753] tpm tpm0: Operation Canceled
+[   47.730795] tpm tpm0: Operation Canceled
+[   47.751671] tpm tpm0: Operation Canceled
+[   47.772648] tpm tpm0: Operation Canceled
+[   47.793630] tpm tpm0: Operation Canceled
+[   47.814689] tpm tpm0: Operation Canceled
+[   47.835674] tpm tpm0: Operation Canceled
+[   47.856595] tpm tpm0: Operation Canceled
+[   47.877637] tpm tpm0: Operation Canceled
+[   47.898723] tpm tpm0: Operation Canceled
+[   47.919651] tpm tpm0: Operation Canceled
+[   47.940627] tpm tpm0: Operation Canceled
+[   47.961651] tpm tpm0: Operation Canceled
+[   47.982709] tpm tpm0: Operation Canceled
+[   48.003652] tpm tpm0: Operation Canceled
+[   48.024551] tpm tpm0: Operation Canceled
+[   48.045606] tpm tpm0: Operation Canceled
+[   48.066668] tpm tpm0: Operation Canceled
+[   48.087620] tpm tpm0: Operation Canceled
+[   48.108802] tpm tpm0: Operation Canceled
+[   48.129931] tpm tpm0: Operation Canceled
+[   48.150860] tpm tpm0: Operation Canceled
+[   48.171894] tpm tpm0: Operation Canceled
+[   48.192909] tpm tpm0: Operation Canceled
+[   48.213892] tpm tpm0: Operation Canceled
+[   48.235054] tpm tpm0: Operation Canceled
+[   48.255923] tpm tpm0: Operation Canceled
+[   48.276788] tpm tpm0: Operation Canceled
+[   48.297860] tpm tpm0: Operation Canceled
+[   48.319052] tpm tpm0: Operation Canceled
+[   48.339866] tpm tpm0: Operation Canceled
+[   48.361017] tpm tpm0: Operation Canceled
+[   48.382103] tpm tpm0: Operation Canceled
+[   48.403154] tpm tpm0: Operation Canceled
+[   48.424425] tpm tpm0: Operation Canceled
+[   48.445308] tpm tpm0: Operation Canceled
+[   48.466413] tpm tpm0: Operation Canceled
+[   48.487360] tpm tpm0: Operation Canceled
+[   48.508356] tpm tpm0: Operation Canceled
+[   48.529310] tpm tpm0: Operation Canceled
+[   48.540020] tpm tpm0: Operation Canceled
+[   48.550378] tpm tpm0: Operation Canceled
+[   48.571341] tpm tpm0: Operation Canceled
+[   48.592326] tpm tpm0: Operation Canceled
+[   48.613309] tpm tpm0: Operation Canceled
+[   48.634291] tpm tpm0: Operation Canceled
+[   48.655380] tpm tpm0: Operation Canceled
+[   48.676313] tpm tpm0: Operation Canceled
+[   48.708199] tpm tpm0: Operation Canceled
+[   48.729153] tpm tpm0: Operation Canceled
+[   48.750158] tpm tpm0: Operation Canceled
+[   48.771181] tpm tpm0: Operation Canceled
+[   48.792079] tpm tpm0: Operation Canceled
+[   48.813181] tpm tpm0: Operation Canceled
+[   48.834152] tpm tpm0: Operation Canceled
+[   48.855141] tpm tpm0: Operation Canceled
+[   48.876119] tpm tpm0: Operation Canceled
+[   48.897135] tpm tpm0: Operation Canceled
+[   48.918111] tpm tpm0: Operation Canceled
+[   48.939141] tpm tpm0: Operation Canceled
+[   48.960116] tpm tpm0: Operation Canceled
+[   48.981128] tpm tpm0: Operation Canceled
+[   49.002129] tpm tpm0: Operation Canceled
+[   49.023228] tpm tpm0: Operation Canceled
+[   49.044275] tpm tpm0: Operation Canceled
+[   49.065263] tpm tpm0: Operation Canceled
+[   49.086317] tpm tpm0: Operation Canceled
+[   49.107261] tpm tpm0: Operation Canceled
+[   49.128257] tpm tpm0: Operation Canceled
+[   49.149218] tpm tpm0: Operation Canceled
+[   49.170258] tpm tpm0: Operation Canceled
+[   49.191517] tpm tpm0: Operation Canceled
+[   49.212532] tpm tpm0: Operation Canceled
+[   49.233308] tpm tpm0: Operation Canceled
+[   49.254650] tpm tpm0: Operation Canceled
+[   49.275517] tpm tpm0: Operation Canceled
+[   49.296522] tpm tpm0: Operation Canceled
+[   49.317312] tpm tpm0: Operation Canceled
+[   49.338562] tpm tpm0: Operation Canceled
+[   49.359685] tpm tpm0: Operation Canceled
+[   49.380623] tpm tpm0: Operation Canceled
+[   49.401657] tpm tpm0: Operation Canceled
+[   49.422711] tpm tpm0: Operation Canceled
+[   49.443684] tpm tpm0: Operation Canceled
+[   49.464622] tpm tpm0: Operation Canceled
+[   49.485704] tpm tpm0: Operation Canceled
+[   49.506645] tpm tpm0: Operation Canceled
+[   49.527712] tpm tpm0: Operation Canceled
+[   49.548648] tpm tpm0: Operation Canceled
+[   49.569676] tpm tpm0: Operation Canceled
+[   49.590696] tpm tpm0: Operation Canceled
+[   49.611599] tpm tpm0: Operation Canceled
+[   49.632614] tpm tpm0: Operation Canceled
+[   49.653611] tpm tpm0: Operation Canceled
+[   49.674529] tpm tpm0: Operation Canceled
+[   49.695618] tpm tpm0: Operation Canceled
+[   49.716735] tpm tpm0: Operation Canceled
+[   49.737709] tpm tpm0: Operation Canceled
+[   49.758790] tpm tpm0: Operation Canceled
+[   49.779703] tpm tpm0: Operation Canceled
+[   49.800733] tpm tpm0: Operation Canceled
+[   49.821680] tpm tpm0: Operation Canceled
+[   49.842685] tpm tpm0: Operation Canceled
+[   49.863651] tpm tpm0: Operation Canceled
+[   49.884596] tpm tpm0: Operation Canceled
+[   49.905640] tpm tpm0: Operation Canceled
+[   49.926632] tpm tpm0: Operation Canceled
+[   49.947552] tpm tpm0: Operation Canceled
+[   49.968545] tpm tpm0: Operation Canceled
+[   49.989307] tpm tpm0: Operation Canceled
+[   50.010554] tpm tpm0: Operation Canceled
+[   50.031537] tpm tpm0: Operation Canceled
+[   50.052511] tpm tpm0: Operation Canceled
+[   50.073311] tpm tpm0: Operation Canceled
+[   50.094460] tpm tpm0: Operation Canceled
+[   50.115491] tpm tpm0: Operation Canceled
+[   50.136490] tpm tpm0: Operation Canceled
+[   50.167986] tpm tpm0: Operation Canceled
+[   50.188982] tpm tpm0: Operation Canceled
+[   50.209991] tpm tpm0: Operation Canceled
+[   50.231047] tpm tpm0: Operation Canceled
+[   50.251986] tpm tpm0: Operation Canceled
+[   50.273210] tpm tpm0: Operation Canceled
+[   50.294181] tpm tpm0: Operation Canceled
+[   50.315261] tpm tpm0: Operation Canceled
+[   50.336237] tpm tpm0: Operation Canceled
+[   50.357250] tpm tpm0: Operation Canceled
+[   50.378179] tpm tpm0: Operation Canceled
+[   50.399172] tpm tpm0: Operation Canceled
+[   50.420163] tpm tpm0: Operation Canceled
+[   50.441152] tpm tpm0: Operation Canceled
+[   50.462178] tpm tpm0: Operation Canceled
+[   50.483133] tpm tpm0: Operation Canceled
+[   50.504102] tpm tpm0: Operation Canceled
+[   50.525095] tpm tpm0: Operation Canceled
+[   50.546107] tpm tpm0: Operation Canceled
+[   50.567115] tpm tpm0: Operation Canceled
+[   50.588135] tpm tpm0: Operation Canceled
+[   50.609091] tpm tpm0: Operation Canceled
+[   50.630145] tpm tpm0: Operation Canceled
+[   50.651095] tpm tpm0: Operation Canceled
+[   50.672083] tpm tpm0: Operation Canceled
+[   50.693049] tpm tpm0: Operation Canceled
+[   50.714037] tpm tpm0: Operation Canceled
+[   50.735074] tpm tpm0: Operation Canceled
+[   50.756015] tpm tpm0: Operation Canceled
+[   50.777036] tpm tpm0: Operation Canceled
+[   50.797950] tpm tpm0: Operation Canceled
+[   50.819041] tpm tpm0: Operation Canceled
+[   50.840096] tpm tpm0: Operation Canceled
+[   50.861095] tpm tpm0: Operation Canceled
+[   50.882082] tpm tpm0: Operation Canceled
+[   50.903168] tpm tpm0: Operation Canceled
+[   50.924111] tpm tpm0: Operation Canceled
+[   50.945078] tpm tpm0: Operation Canceled
+[   50.965976] tpm tpm0: Operation Canceled
+[   50.987187] tpm tpm0: Operation Canceled
+[   51.008203] tpm tpm0: Operation Canceled
+[   51.029155] tpm tpm0: Operation Canceled
+[   51.050120] tpm tpm0: Operation Canceled
+[   51.071139] tpm tpm0: Operation Canceled
+[   51.092164] tpm tpm0: Operation Canceled
+[   51.113108] tpm tpm0: Operation Canceled
+[   51.134149] tpm tpm0: Operation Canceled
+[   51.155356] tpm tpm0: Operation Canceled
+[   51.176474] tpm tpm0: Operation Canceled
+[   51.208243] tpm tpm0: Operation Canceled
+[   51.229198] tpm tpm0: Operation Canceled
+[   51.250208] tpm tpm0: Operation Canceled
+[   51.271245] tpm tpm0: Operation Canceled
+[   51.292235] tpm tpm0: Operation Canceled
+[   51.313191] tpm tpm0: Operation Canceled
+[   51.334228] tpm tpm0: Operation Canceled
+[   51.355302] tpm tpm0: Operation Canceled
+[   51.376226] tpm tpm0: Operation Canceled
+[   51.397264] tpm tpm0: Operation Canceled
+[   51.418286] tpm tpm0: Operation Canceled
+[   51.439293] tpm tpm0: Operation Canceled
+[   51.460281] tpm tpm0: Operation Canceled
+[   51.481265] tpm tpm0: Operation Canceled
+[   51.502238] tpm tpm0: Operation Canceled
+[   51.523315] tpm tpm0: Operation Canceled
+[   51.544278] tpm tpm0: Operation Canceled
+[   51.565303] tpm tpm0: Operation Canceled
+[   51.586150] tpm tpm0: Operation Canceled
+[   51.607273] tpm tpm0: Operation Canceled
+[   51.628248] tpm tpm0: Operation Canceled
+[   51.649245] tpm tpm0: Operation Canceled
+[   51.670255] tpm tpm0: Operation Canceled
+[   51.691354] tpm tpm0: Operation Canceled
+[   51.712311] tpm tpm0: Operation Canceled
+[   51.733310] tpm tpm0: Operation Canceled
+[   51.754292] tpm tpm0: Operation Canceled
+[   51.775302] tpm tpm0: Operation Canceled
+[   51.796195] tpm tpm0: Operation Canceled
+[   51.817299] tpm tpm0: Operation Canceled
+[   51.838279] tpm tpm0: Operation Canceled
+[   51.859224] tpm tpm0: Operation Canceled
+[   51.880204] tpm tpm0: Operation Canceled
+[   51.901170] tpm tpm0: Operation Canceled
+[   51.922210] tpm tpm0: Operation Canceled
+[   51.943165] tpm tpm0: Operation Canceled
+[   51.964169] tpm tpm0: Operation Canceled
+[   51.985311] tpm tpm0: Operation Canceled
+[   52.006189] tpm tpm0: Operation Canceled
+[   52.027053] tpm tpm0: Operation Canceled
+[   52.048119] tpm tpm0: Operation Canceled
+[   52.069125] tpm tpm0: Operation Canceled
+[   52.090254] tpm tpm0: Operation Canceled
+[   52.111344] tpm tpm0: Operation Canceled
+[   52.132630] tpm tpm0: Operation Canceled
+[   52.153674] tpm tpm0: Operation Canceled
+[   52.174737] tpm tpm0: Operation Canceled
+[   52.195731] tpm tpm0: Operation Canceled
+[   52.216576] tpm tpm0: Operation Canceled
+[   52.237685] tpm tpm0: Operation Canceled
+[   52.258671] tpm tpm0: Operation Canceled
+[   52.279662] tpm tpm0: Operation Canceled
+[   52.300625] tpm tpm0: Operation Canceled
+[   52.321864] tpm tpm0: Operation Canceled
+[   52.342944] tpm tpm0: Operation Canceled
+[   52.363772] tpm tpm0: Operation Canceled
+[   52.384783] tpm tpm0: Operation Canceled
+[   52.405763] tpm tpm0: Operation Canceled
+[   52.426768] tpm tpm0: Operation Canceled
+[   52.447873] tpm tpm0: Operation Canceled
+[   52.469004] tpm tpm0: Operation Canceled
+[   52.489986] tpm tpm0: Operation Canceled
+[   52.511123] tpm tpm0: Operation Canceled
+[   52.532106] tpm tpm0: Operation Canceled
+[   52.553108] tpm tpm0: Operation Canceled
+[   52.574047] tpm tpm0: Operation Canceled
+[   52.595104] tpm tpm0: Operation Canceled
+[   52.616090] tpm tpm0: Operation Canceled
+[   52.637056] tpm tpm0: Operation Canceled
+[   52.658347] tpm tpm0: Operation Canceled
+[   52.679688] tpm tpm0: Operation Canceled
+[   52.700666] tpm tpm0: Operation Canceled
+[   52.721689] tpm tpm0: Operation Canceled
+[   52.742729] tpm tpm0: Operation Canceled
+[   52.763888] tpm tpm0: Operation Canceled
+[   52.784943] tpm tpm0: Operation Canceled
+[   52.806028] tpm tpm0: Operation Canceled
+[   52.827055] tpm tpm0: Operation Canceled
+[   52.847843] tpm tpm0: Operation Canceled
+[   52.858409] tpm tpm0: Operation Canceled
+[   52.879400] tpm tpm0: Operation Canceled
+[   52.900348] tpm tpm0: Operation Canceled
+[   52.921314] tpm tpm0: Operation Canceled
+[   52.942369] tpm tpm0: Operation Canceled
+[   52.963373] tpm tpm0: Operation Canceled
+[   52.984384] tpm tpm0: Operation Canceled
+[   53.005311] tpm tpm0: Operation Canceled
+[   53.026328] tpm tpm0: Operation Canceled
+[   53.047252] tpm tpm0: Operation Canceled
+[   53.068405] tpm tpm0: Operation Canceled
+[   53.089331] tpm tpm0: Operation Canceled
+[   53.110609] tpm tpm0: Operation Canceled
+[   53.131595] tpm tpm0: Operation Canceled
+[   53.152614] tpm tpm0: Operation Canceled
+[   53.173322] tpm tpm0: Operation Canceled
+[   53.194593] tpm tpm0: Operation Canceled
+[   53.215566] tpm tpm0: Operation Canceled
+[   53.236571] tpm tpm0: Operation Canceled
+[   53.257686] tpm tpm0: Operation Canceled
+[   53.278836] tpm tpm0: Operation Canceled
+[   53.299660] tpm tpm0: Operation Canceled
+[   53.320635] tpm tpm0: Operation Canceled
+[   53.341716] tpm tpm0: Operation Canceled
+[   53.362762] tpm tpm0: Operation Canceled
+[   53.383748] tpm tpm0: Operation Canceled
+[   53.404928] tpm tpm0: Operation Canceled
+[   53.425943] tpm tpm0: Operation Canceled
+[   53.447001] tpm tpm0: Operation Canceled
+[   53.467967] tpm tpm0: Operation Canceled
+[   53.488997] tpm tpm0: Operation Canceled
+[   53.509962] tpm tpm0: Operation Canceled
+[   53.530974] tpm tpm0: Operation Canceled
+[   53.551980] tpm tpm0: Operation Canceled
+[   53.572986] tpm tpm0: Operation Canceled
+[   53.593967] tpm tpm0: Operation Canceled
+[   53.615216] tpm tpm0: Operation Canceled
+[   53.636289] tpm tpm0: Operation Canceled
+[   53.657316] tpm tpm0: Operation Canceled
+[   53.678203] tpm tpm0: Operation Canceled
+[   53.699507] tpm tpm0: Operation Canceled
+[   53.720504] tpm tpm0: Operation Canceled
+[   53.741313] tpm tpm0: Operation Canceled
+[   53.762589] tpm tpm0: Operation Canceled
+[   53.783575] tpm tpm0: Operation Canceled
+[   53.804653] tpm tpm0: Operation Canceled
+[   53.825673] tpm tpm0: Operation Canceled
+[   53.846711] tpm tpm0: Operation Canceled
+[   53.867668] tpm tpm0: Operation Canceled
+[   53.888700] tpm tpm0: Operation Canceled
+[   53.909692] tpm tpm0: Operation Canceled
+[   53.930993] tpm tpm0: Operation Canceled
+[   53.951700] tpm tpm0: Operation Canceled
+[   53.972670] tpm tpm0: Operation Canceled
+[   53.993609] tpm tpm0: Operation Canceled
+[   54.014698] tpm tpm0: Operation Canceled
+[   54.035698] tpm tpm0: Operation Canceled
+[   54.056585] tpm tpm0: Operation Canceled
+[   54.077674] tpm tpm0: Operation Canceled
+[   54.098869] tpm tpm0: Operation Canceled
+[   54.119969] tpm tpm0: Operation Canceled
+[   54.140980] tpm tpm0: Operation Canceled
+[   54.151392] tpm tpm0: Operation Canceled
+[   54.172514] tpm tpm0: Operation Canceled
+[   54.193319] tpm tpm0: Operation Canceled
+[   54.214749] tpm tpm0: Operation Canceled
+[   54.235528] tpm tpm0: Operation Canceled
+[   54.256552] tpm tpm0: Operation Canceled
+[   54.277322] tpm tpm0: Operation Canceled
+[   54.298602] tpm tpm0: Operation Canceled
+[   54.319531] tpm tpm0: Operation Canceled
+[   54.340575] tpm tpm0: Operation Canceled
+[   54.361321] tpm tpm0: Operation Canceled
+[   54.382780] tpm tpm0: Operation Canceled
+[   54.403542] tpm tpm0: Operation Canceled
+[   54.424724] tpm tpm0: Operation Canceled
+[   54.445825] tpm tpm0: Operation Canceled
+[   54.466958] tpm tpm0: Operation Canceled
+[   54.487813] tpm tpm0: Operation Canceled
+[   54.508798] tpm tpm0: Operation Canceled
+[   54.529862] tpm tpm0: Operation Canceled
+[   54.550947] tpm tpm0: Operation Canceled
+[   54.571925] tpm tpm0: Operation Canceled
+[   54.592860] tpm tpm0: Operation Canceled
+[   54.613849] tpm tpm0: Operation Canceled
+[   54.635043] tpm tpm0: Operation Canceled
+[   54.655875] tpm tpm0: Operation Canceled
+[   54.676738] tpm tpm0: Operation Canceled
+[   54.697904] tpm tpm0: Operation Canceled
+[   54.718986] tpm tpm0: Operation Canceled
+[   54.739971] tpm tpm0: Operation Canceled
+[   54.760953] tpm tpm0: Operation Canceled
+[   54.781960] tpm tpm0: Operation Canceled
+[   54.813318] tpm tpm0: Operation Canceled
+[   54.834413] tpm tpm0: Operation Canceled
+[   54.855493] tpm tpm0: Operation Canceled
+[   54.876479] tpm tpm0: Operation Canceled
+[   54.897321] tpm tpm0: Operation Canceled
+[   54.918731] tpm tpm0: Operation Canceled
+[   54.939539] tpm tpm0: Operation Canceled
+[   54.960420] tpm tpm0: Operation Canceled
+[   54.981317] tpm tpm0: Operation Canceled
+[   55.002595] tpm tpm0: Operation Canceled
+[   55.023583] tpm tpm0: Operation Canceled
+[   55.044553] tpm tpm0: Operation Canceled
+[   55.065314] tpm tpm0: Operation Canceled
+[   55.086607] tpm tpm0: Operation Canceled
+[   55.107823] tpm tpm0: Operation Canceled
+[   55.118385] tpm tpm0: Operation Canceled
+[   55.139383] tpm tpm0: Operation Canceled
+[   55.160391] tpm tpm0: Operation Canceled
+[   55.181415] tpm tpm0: Operation Canceled
+[   55.202357] tpm tpm0: Operation Canceled
+[   55.223380] tpm tpm0: Operation Canceled
+[   55.244373] tpm tpm0: Operation Canceled
+[   55.265316] tpm tpm0: Operation Canceled
+[   55.286381] tpm tpm0: Operation Canceled
+[   55.307488] tpm tpm0: Operation Canceled
+[   55.328459] tpm tpm0: Operation Canceled
+[   55.360124] tpm tpm0: Operation Canceled
+[   55.381016] tpm tpm0: Operation Canceled
+[   55.402039] tpm tpm0: Operation Canceled
+[   55.423080] tpm tpm0: Operation Canceled
+[   55.443988] tpm tpm0: Operation Canceled
+[   55.465070] tpm tpm0: Operation Canceled
+[   55.485978] tpm tpm0: Operation Canceled
+[   55.507125] tpm tpm0: Operation Canceled
+[   55.528108] tpm tpm0: Operation Canceled
+[   55.549122] tpm tpm0: Operation Canceled
+[   55.570049] tpm tpm0: Operation Canceled
+[   55.591159] tpm tpm0: Operation Canceled
+[   55.612414] tpm tpm0: Operation Canceled
+[   55.633252] tpm tpm0: Operation Canceled
+[   55.654149] tpm tpm0: Operation Canceled
+[   55.675177] tpm tpm0: Operation Canceled
+[   55.696291] tpm tpm0: Operation Canceled
+[   55.717270] tpm tpm0: Operation Canceled
+[   55.738352] tpm tpm0: Operation Canceled
+[   55.759322] tpm tpm0: Operation Canceled
+[   55.780914] tpm tpm0: Operation Canceled
+[   55.801652] tpm tpm0: Operation Canceled
+[   55.822711] tpm tpm0: Operation Canceled
+[   55.843676] tpm tpm0: Operation Canceled
+[   55.864726] tpm tpm0: Operation Canceled
+[   55.885695] tpm tpm0: Operation Canceled
+[   55.906713] tpm tpm0: Operation Canceled
+[   55.927702] tpm tpm0: Operation Canceled
+[   55.948702] tpm tpm0: Operation Canceled
+[   55.969677] tpm tpm0: Operation Canceled
+[   55.990786] tpm tpm0: Operation Canceled
+[   56.011678] tpm tpm0: Operation Canceled
+[   56.032682] tpm tpm0: Operation Canceled
+[   56.053847] tpm tpm0: Operation Canceled
+[   56.074982] tpm tpm0: Operation Canceled
+[   56.096466] tpm tpm0: Operation Canceled
+[   56.117297] tpm tpm0: Operation Canceled
+[   56.138700] tpm tpm0: Operation Canceled
+[   56.159537] tpm tpm0: Operation Canceled
+[   56.180370] tpm tpm0: Operation Canceled
+[   56.201310] tpm tpm0: Operation Canceled
+[   56.222841] tpm tpm0: Operation Canceled
+[   56.243520] tpm tpm0: Operation Canceled
+[   56.264631] tpm tpm0: Operation Canceled
+[   56.285622] tpm tpm0: Operation Canceled
+[   56.306659] tpm tpm0: Operation Canceled
+[   56.327751] tpm tpm0: Operation Canceled
+[   56.348711] tpm tpm0: Operation Canceled
+[   56.369749] tpm tpm0: Operation Canceled
+[   56.391248] tpm tpm0: Operation Canceled
+[   56.411970] tpm tpm0: Operation Canceled
+[   56.433199] tpm tpm0: Operation Canceled
+[   56.454230] tpm tpm0: Operation Canceled
+[   56.475275] tpm tpm0: Operation Canceled
+[   56.496328] tpm tpm0: Operation Canceled
+[   56.517309] tpm tpm0: Operation Canceled
+[   56.538317] tpm tpm0: Operation Canceled
+[   56.559336] tpm tpm0: Operation Canceled
+[   56.580462] tpm tpm0: Operation Canceled
+[   56.601306] tpm tpm0: Operation Canceled
+[   56.622424] tpm tpm0: Operation Canceled
+[   56.643528] tpm tpm0: Operation Canceled
+[   56.664523] tpm tpm0: Operation Canceled
+[   56.685612] tpm tpm0: Operation Canceled
+[   56.706616] tpm tpm0: Operation Canceled
+[   56.727586] tpm tpm0: Operation Canceled
+[   56.748617] tpm tpm0: Operation Canceled
+[   56.769650] tpm tpm0: Operation Canceled
+[   56.790862] tpm tpm0: Operation Canceled
+[   56.811695] tpm tpm0: Operation Canceled
+[   56.832687] tpm tpm0: Operation Canceled
+[   56.853730] tpm tpm0: Operation Canceled
+[   56.874844] tpm tpm0: Operation Canceled
+[   56.895791] tpm tpm0: Operation Canceled
+[   56.906421] tpm tpm0: Operation Canceled
+[   56.927682] tpm tpm0: Operation Canceled
+[   56.948637] tpm tpm0: Operation Canceled
+[   56.969682] tpm tpm0: Operation Canceled
+[   56.990923] tpm tpm0: Operation Canceled
+[   57.011686] tpm tpm0: Operation Canceled
+[   57.032664] tpm tpm0: Operation Canceled
+[   57.053787] tpm tpm0: Operation Canceled
+[   57.074849] tpm tpm0: Operation Canceled
+[   57.095884] tpm tpm0: Operation Canceled
+[   57.116944] tpm tpm0: Operation Canceled
+[   57.137928] tpm tpm0: Operation Canceled
+[   57.158973] tpm tpm0: Operation Canceled
+[   57.179963] tpm tpm0: Operation Canceled
+[   57.201067] tpm tpm0: Operation Canceled
+[   57.222019] tpm tpm0: Operation Canceled
+[   57.243011] tpm tpm0: Operation Canceled
+[   57.264377] tpm tpm0: Operation Canceled
+[   57.285034] tpm tpm0: Operation Canceled
+[   57.306112] tpm tpm0: Operation Canceled
+[   57.327122] tpm tpm0: Operation Canceled
+[   57.348184] tpm tpm0: Operation Canceled
+[   57.369198] tpm tpm0: Operation Canceled
+[   57.390144] tpm tpm0: Operation Canceled
+[   57.411440] tpm tpm0: Operation Canceled
+[   57.432497] tpm tpm0: Operation Canceled
+[   57.453311] tpm tpm0: Operation Canceled
+[   57.474355] tpm tpm0: Operation Canceled
+[   57.495378] tpm tpm0: Operation Canceled
+[   57.516233] tpm tpm0: Operation Canceled
+[   57.537321] tpm tpm0: Operation Canceled
+[   57.558391] tpm tpm0: Operation Canceled
+[   57.579631] tpm tpm0: Operation Canceled
+[   57.600805] tpm tpm0: Operation Canceled
+[   57.621817] tpm tpm0: Operation Canceled
+[   57.642827] tpm tpm0: Operation Canceled
+[   57.663838] tpm tpm0: Operation Canceled
+[   57.674365] tpm tpm0: Operation Canceled
+[   57.695338] tpm tpm0: Operation Canceled
+[   57.716330] tpm tpm0: Operation Canceled
+[   57.737307] tpm tpm0: Operation Canceled
+[   57.758369] tpm tpm0: Operation Canceled
+[   57.779321] tpm tpm0: Operation Canceled
+[   57.800397] tpm tpm0: Operation Canceled
+[   57.831992] tpm tpm0: Operation Canceled
+[   57.852974] tpm tpm0: Operation Canceled
+[   57.874117] tpm tpm0: Operation Canceled
+[   57.895069] tpm tpm0: Operation Canceled
+[   57.916124] tpm tpm0: Operation Canceled
+[   57.937261] tpm tpm0: Operation Canceled
+[   57.958145] tpm tpm0: Operation Canceled
+[   57.979240] tpm tpm0: Operation Canceled
+[   58.000104] tpm tpm0: Operation Canceled
+[   58.021136] tpm tpm0: Operation Canceled
+[   58.042180] tpm tpm0: Operation Canceled
+[   58.063260] tpm tpm0: Operation Canceled
+[   58.084343] tpm tpm0: Operation Canceled
+[   58.105502] tpm tpm0: Operation Canceled
+[   58.126364] tpm tpm0: Operation Canceled
+[   58.147548] tpm tpm0: Operation Canceled
+[   58.168674] tpm tpm0: Operation Canceled
+[   58.189658] tpm tpm0: Operation Canceled
+[   58.210659] tpm tpm0: Operation Canceled
+[   58.231628] tpm tpm0: Operation Canceled
+[   58.252939] tpm tpm0: Operation Canceled
+[   58.273615] tpm tpm0: Operation Canceled
+[   58.294786] tpm tpm0: Operation Canceled
+[   58.315731] tpm tpm0: Operation Canceled
+[   58.336788] tpm tpm0: Operation Canceled
+[   58.357751] tpm tpm0: Operation Canceled
+[   58.378807] tpm tpm0: Operation Canceled
+[   58.399797] tpm tpm0: Operation Canceled
+[   58.410374] tpm tpm0: Operation Canceled
+[   58.431382] tpm tpm0: Operation Canceled
+[   58.452521] tpm tpm0: Operation Canceled
+[   58.473309] tpm tpm0: Operation Canceled
+[   58.494509] tpm tpm0: Operation Canceled
+[   58.515422] tpm tpm0: Operation Canceled
+[   58.536425] tpm tpm0: Operation Canceled
+[   58.546886] tpm tpm0: Operation Canceled
+[   58.567999] tpm tpm0: Operation Canceled
+[   58.588999] tpm tpm0: Operation Canceled
+[   58.610026] tpm tpm0: Operation Canceled
+[   58.631011] tpm tpm0: Operation Canceled
+[   58.651905] tpm tpm0: Operation Canceled
+[   58.672932] tpm tpm0: Operation Canceled
+[   58.694029] tpm tpm0: Operation Canceled
+[   58.715126] tpm tpm0: Operation Canceled
+[   58.736118] tpm tpm0: Operation Canceled
+[   58.757136] tpm tpm0: Operation Canceled
+[   58.778140] tpm tpm0: Operation Canceled
+[   58.799106] tpm tpm0: Operation Canceled
+[   58.820159] tpm tpm0: Operation Canceled
+[   58.841097] tpm tpm0: Operation Canceled
+[   58.862189] tpm tpm0: Operation Canceled
+[   58.883331] tpm tpm0: Operation Canceled
+[   58.904383] tpm tpm0: Operation Canceled
+[   58.925619] tpm tpm0: Operation Canceled
+[   58.946638] tpm tpm0: Operation Canceled
+[   58.967618] tpm tpm0: Operation Canceled
+[   58.988655] tpm tpm0: Operation Canceled
+[   59.009680] tpm tpm0: Operation Canceled
+[   59.030870] tpm tpm0: Operation Canceled
+[   59.051676] tpm tpm0: Operation Canceled
+[   59.072879] tpm tpm0: Operation Canceled
+[   59.094219] tpm tpm0: Operation Canceled
+[   59.115215] tpm tpm0: Operation Canceled
+[   59.136218] tpm tpm0: Operation Canceled
+[   59.157258] tpm tpm0: Operation Canceled
+[   59.188732] tpm tpm0: Operation Canceled
+[   59.209818] tpm tpm0: Operation Canceled
+[   59.230881] tpm tpm0: Operation Canceled
+[   59.251815] tpm tpm0: Operation Canceled
+[   59.272719] tpm tpm0: Operation Canceled
+[   59.293860] tpm tpm0: Operation Canceled
+[   59.314876] tpm tpm0: Operation Canceled
+[   59.335746] tpm tpm0: Operation Canceled
+[   59.356843] tpm tpm0: Operation Canceled
+[   59.377881] tpm tpm0: Operation Canceled
+[   59.398904] tpm tpm0: Operation Canceled
+[   59.420314] tpm tpm0: Operation Canceled
+[   59.441332] tpm tpm0: Operation Canceled
+[   59.462360] tpm tpm0: Operation Canceled
+[   59.483409] tpm tpm0: Operation Canceled
+[   59.504435] tpm tpm0: Operation Canceled
+[   59.535963] tpm tpm0: Operation Canceled
+[   59.556966] tpm tpm0: Operation Canceled
+[   59.577981] tpm tpm0: Operation Canceled
+[   59.599441] tpm tpm0: Operation Canceled
+[   59.620105] tpm tpm0: Operation Canceled
+[   59.641116] tpm tpm0: Operation Canceled
+[   59.662149] tpm tpm0: Operation Canceled
+[   59.683276] tpm tpm0: Operation Canceled
+[   59.704255] tpm tpm0: Operation Canceled
+[   59.725308] tpm tpm0: Operation Canceled
+[   59.746323] tpm tpm0: Operation Canceled
+[   59.767609] tpm tpm0: Operation Canceled
+[   59.788620] tpm tpm0: Operation Canceled
+[   59.809638] tpm tpm0: Operation Canceled
+[   59.830701] tpm tpm0: Operation Canceled
+[   59.851691] tpm tpm0: Operation Canceled
+[   59.872690] tpm tpm0: Operation Canceled
+[   59.893715] tpm tpm0: Operation Canceled
+[   59.914817] tpm tpm0: Operation Canceled
+[   59.935916] tpm tpm0: Operation Canceled
+[   59.946514] tpm tpm0: Operation Canceled
+[   59.967749] tpm tpm0: Operation Canceled
+[   59.988748] tpm tpm0: Operation Canceled
+[   60.009774] tpm tpm0: Operation Canceled
+[   60.030784] tpm tpm0: Operation Canceled
+[   60.051806] tpm tpm0: Operation Canceled
+[   60.062337] tpm tpm0: Operation Canceled
