@@ -1,0 +1,159 @@
+XFS (loop5): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop5): Ending clean mount
+loop6: detected capacity change from 0 to 32768
+======================================================
+WARNING: possible circular locking dependency detected
+6.18.0-next-20251203-b2c27842ba85 #1 Not tainted
+------------------------------------------------------
+syz.5.36679/213391 is trying to acquire lock:
+ffffffff8784b580 (fs_reclaim){+.+.}-{0:0}, at: might_alloc include/linux/sched/mm.h:317 [inline]
+ffffffff8784b580 (fs_reclaim){+.+.}-{0:0}, at: slab_pre_alloc_hook mm/slub.c:4899 [inline]
+ffffffff8784b580 (fs_reclaim){+.+.}-{0:0}, at: slab_alloc_node mm/slub.c:5234 [inline]
+ffffffff8784b580 (fs_reclaim){+.+.}-{0:0}, at: __kmalloc_cache_noprof+0x53/0x7e0 mm/slub.c:5766
+
+but task is already holding lock:
+ffff888061f28898 (&xfs_nondir_ilock_class){++++}-{4:4}, at: xfs_ilock+0x30f/0x390 fs/xfs/xfs_inode.c:165
+
+which lock already depends on the new lock.
+
+
+the existing dependency chain (in reverse order) is:
+
+-> #1 (&xfs_nondir_ilock_class){++++}-{4:4}:
+       down_read_nested+0xa4/0x4b0 kernel/locking/rwsem.c:1662
+       xfs_ilock+0x157/0x390 fs/xfs/xfs_inode.c:167
+       xfs_can_free_eofblocks+0x5a7/0x860 fs/xfs/xfs_bmap_util.c:562
+       xfs_inode_needs_inactive+0x4e7/0x5c0 fs/xfs/xfs_inode.c:1340
+       xfs_inode_mark_reclaimable+0x21a/0x1150 fs/xfs/xfs_icache.c:2244
+       xfs_fs_destroy_inode+0x2dd/0x4a0 fs/xfs/xfs_super.c:712
+       destroy_inode+0xd9/0x1d0 fs/inode.c:396
+       evict+0x569/0xae0 fs/inode.c:861
+       dispose_list+0xe4/0x1c0 fs/inode.c:879
+       prune_icache_sb+0xf3/0x160 fs/inode.c:1027
+       super_cache_scan+0x381/0x570 fs/super.c:224
+       do_shrink_slab+0x408/0x1030 mm/shrinker.c:437
+       shrink_slab_memcg mm/shrinker.c:550 [inline]
+       shrink_slab+0xad3/0x12f0 mm/shrinker.c:628
+       shrink_node_memcgs mm/vmscan.c:6021 [inline]
+       shrink_node+0xacc/0x2670 mm/vmscan.c:6060
+       kswapd_shrink_node mm/vmscan.c:6900 [inline]
+       balance_pgdat+0xa2d/0x15c0 mm/vmscan.c:7083
+       kswapd+0x5b9/0xab0 mm/vmscan.c:7353
+       kthread+0x464/0x980 kernel/kthread.c:463
+       ret_from_fork+0x780/0x8f0 arch/x86/kernel/process.c:158
+       ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:246
+
+-> #0 (fs_reclaim){+.+.}-{0:0}:
+       check_prev_add kernel/locking/lockdep.c:3165 [inline]
+       check_prevs_add kernel/locking/lockdep.c:3284 [inline]
+       validate_chain kernel/locking/lockdep.c:3908 [inline]
+       __lock_acquire+0x14d1/0x2210 kernel/locking/lockdep.c:5237
+       lock_acquire kernel/locking/lockdep.c:5868 [inline]
+       lock_acquire+0x170/0x2f0 kernel/locking/lockdep.c:5825
+       __fs_reclaim_acquire mm/page_alloc.c:4301 [inline]
+       fs_reclaim_acquire+0x116/0x160 mm/page_alloc.c:4315
+       might_alloc include/linux/sched/mm.h:317 [inline]
+       slab_pre_alloc_hook mm/slub.c:4899 [inline]
+       slab_alloc_node mm/slub.c:5234 [inline]
+       __kmalloc_cache_noprof+0x53/0x7e0 mm/slub.c:5766
+       kmalloc_noprof include/linux/slab.h:957 [inline]
+       iomap_fill_dirty_folios+0x118/0x2c0 fs/iomap/buffered-io.c:1557
+       xfs_buffered_write_iomap_begin+0xf18/0x2150 fs/xfs/xfs_iomap.c:1857
+       iomap_iter+0x551/0xf40 fs/iomap/iter.c:110
+       iomap_zero_range+0x20b/0xa90 fs/iomap/buffered-io.c:1590
+       xfs_zero_range+0xb5/0x100 fs/xfs/xfs_iomap.c:2289
+       xfs_setattr_size+0xa0f/0xf70 fs/xfs/xfs_iops.c:993
+       xfs_vn_setattr_size+0xda/0x240 fs/xfs/xfs_iops.c:1146
+       xfs_falloc_setsize+0x18f/0x230 fs/xfs/xfs_file.c:1175
+       xfs_falloc_zero_range fs/xfs/xfs_file.c:1292 [inline]
+       __xfs_file_fallocate+0xccc/0xed0 fs/xfs/xfs_file.c:1396
+       xfs_file_fallocate+0x245/0x3e0 fs/xfs/xfs_file.c:1462
+       vfs_fallocate+0x61c/0x10d0 fs/open.c:339
+       ksys_fallocate fs/open.c:363 [inline]
+       __do_sys_fallocate fs/open.c:368 [inline]
+       __se_sys_fallocate fs/open.c:366 [inline]
+       __x64_sys_fallocate+0xe0/0x150 fs/open.c:366
+       x64_sys_call+0x1c17/0x21b0 arch/x86/include/generated/asm/syscalls_64.h:286
+       do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+       do_syscall_64+0x6d/0x1180 arch/x86/entry/syscall_64.c:94
+       entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+other info that might help us debug this:
+
+ Possible unsafe locking scenario:
+
+       CPU0                    CPU1
+       ----                    ----
+  lock(&xfs_nondir_ilock_class);
+                               lock(fs_reclaim);
+                               lock(&xfs_nondir_ilock_class);
+  lock(fs_reclaim);
+
+ *** DEADLOCK ***
+
+4 locks held by syz.5.36679/213391:
+ #0: ffff888012494408 (sb_writers#15){.+.+}-{0:0}, at: ksys_fallocate fs/open.c:363 [inline]
+ #0: ffff888012494408 (sb_writers#15){.+.+}-{0:0}, at: __do_sys_fallocate fs/open.c:368 [inline]
+ #0: ffff888012494408 (sb_writers#15){.+.+}-{0:0}, at: __se_sys_fallocate fs/open.c:366 [inline]
+ #0: ffff888012494408 (sb_writers#15){.+.+}-{0:0}, at: __x64_sys_fallocate+0xe0/0x150 fs/open.c:366
+ #1: ffff888061f28ab0 (&sb->s_type->i_mutex_key#23){++++}-{4:4}, at: xfs_ilock+0x2be/0x390 fs/xfs/xfs_inode.c:149
+ #2: ffff888061f28c50 (mapping.invalidate_lock#3){++++}-{4:4}, at: xfs_ilock+0x351/0x390 fs/xfs/xfs_inode.c:157
+ #3: ffff888061f28898 (&xfs_nondir_ilock_class){++++}-{4:4}, at: xfs_ilock+0x30f/0x390 fs/xfs/xfs_inode.c:165
+
+stack backtrace:
+CPU: 0 UID: 0 PID: 213391 Comm: syz.5.36679 Not tainted 6.18.0-next-20251203-b2c27842ba85 #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ print_circular_bug+0x283/0x350 kernel/locking/lockdep.c:2043
+ check_noncircular+0x12d/0x150 kernel/locking/lockdep.c:2175
+ check_prev_add kernel/locking/lockdep.c:3165 [inline]
+ check_prevs_add kernel/locking/lockdep.c:3284 [inline]
+ validate_chain kernel/locking/lockdep.c:3908 [inline]
+ __lock_acquire+0x14d1/0x2210 kernel/locking/lockdep.c:5237
+ lock_acquire kernel/locking/lockdep.c:5868 [inline]
+ lock_acquire+0x170/0x2f0 kernel/locking/lockdep.c:5825
+ __fs_reclaim_acquire mm/page_alloc.c:4301 [inline]
+ fs_reclaim_acquire+0x116/0x160 mm/page_alloc.c:4315
+ might_alloc include/linux/sched/mm.h:317 [inline]
+ slab_pre_alloc_hook mm/slub.c:4899 [inline]
+ slab_alloc_node mm/slub.c:5234 [inline]
+ __kmalloc_cache_noprof+0x53/0x7e0 mm/slub.c:5766
+ kmalloc_noprof include/linux/slab.h:957 [inline]
+ iomap_fill_dirty_folios+0x118/0x2c0 fs/iomap/buffered-io.c:1557
+ xfs_buffered_write_iomap_begin+0xf18/0x2150 fs/xfs/xfs_iomap.c:1857
+ iomap_iter+0x551/0xf40 fs/iomap/iter.c:110
+ iomap_zero_range+0x20b/0xa90 fs/iomap/buffered-io.c:1590
+ xfs_zero_range+0xb5/0x100 fs/xfs/xfs_iomap.c:2289
+ xfs_setattr_size+0xa0f/0xf70 fs/xfs/xfs_iops.c:993
+ xfs_vn_setattr_size+0xda/0x240 fs/xfs/xfs_iops.c:1146
+ xfs_falloc_setsize+0x18f/0x230 fs/xfs/xfs_file.c:1175
+ xfs_falloc_zero_range fs/xfs/xfs_file.c:1292 [inline]
+ __xfs_file_fallocate+0xccc/0xed0 fs/xfs/xfs_file.c:1396
+ xfs_file_fallocate+0x245/0x3e0 fs/xfs/xfs_file.c:1462
+ vfs_fallocate+0x61c/0x10d0 fs/open.c:339
+ ksys_fallocate fs/open.c:363 [inline]
+ __do_sys_fallocate fs/open.c:368 [inline]
+ __se_sys_fallocate fs/open.c:366 [inline]
+ __x64_sys_fallocate+0xe0/0x150 fs/open.c:366
+ x64_sys_call+0x1c17/0x21b0 arch/x86/include/generated/asm/syscalls_64.h:286
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x1180 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fb5e883ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007fb5e8e6fc78 EFLAGS: 00000246 ORIG_RAX: 000000000000011d
+RAX: ffffffffffffffda RBX: 00000000005c6180 RCX: 00007fb5e883ee5d
+RDX: 0000000004000000 RSI: 0000000000000010 RDI: 000000000000000a
+RBP: 00000000005c6180 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000005c02 R11: 0000000000000246 R12: 0000000000000000
+R13: 00000000005c6218 R14: 00007fb5e889f560 R15: 0000000000000000
+ </TASK>
+XFS (loop5): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop4): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

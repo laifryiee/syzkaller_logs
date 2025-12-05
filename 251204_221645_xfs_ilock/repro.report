@@ -1,0 +1,729 @@
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop0): Quotacheck: Done.
+======================================================
+WARNING: possible circular locking dependency detected
+6.18.0-next-20251203-b2c27842ba85 #1 Not tainted
+------------------------------------------------------
+syz.9.201/6120 is trying to acquire lock:
+ffff888043873598 (&xfs_nondir_ilock_class){++++}-{4:4}, at: xfs_ilock+0x30f/0x390 fs/xfs/xfs_inode.c:165
+
+but task is already holding lock:
+ffffffff8784b580 (fs_reclaim){+.+.}-{0:0}, at: __perform_reclaim mm/page_alloc.c:4374 [inline]
+ffffffff8784b580 (fs_reclaim){+.+.}-{0:0}, at: __alloc_pages_direct_reclaim mm/page_alloc.c:4399 [inline]
+ffffffff8784b580 (fs_reclaim){+.+.}-{0:0}, at: __alloc_pages_slowpath.constprop.0+0x859/0x2230 mm/page_alloc.c:4843
+
+which lock already depends on the new lock.
+
+
+the existing dependency chain (in reverse order) is:
+
+-> #1 (fs_reclaim){+.+.}-{0:0}:
+       __fs_reclaim_acquire mm/page_alloc.c:4301 [inline]
+       fs_reclaim_acquire+0x116/0x160 mm/page_alloc.c:4315
+       might_alloc include/linux/sched/mm.h:317 [inline]
+       slab_pre_alloc_hook mm/slub.c:4899 [inline]
+       slab_alloc_node mm/slub.c:5234 [inline]
+       __kmalloc_cache_noprof+0x53/0x7e0 mm/slub.c:5766
+       kmalloc_noprof include/linux/slab.h:957 [inline]
+       iomap_fill_dirty_folios+0x118/0x2c0 fs/iomap/buffered-io.c:1557
+       xfs_buffered_write_iomap_begin+0xf18/0x2150 fs/xfs/xfs_iomap.c:1857
+       iomap_iter+0x551/0xf40 fs/iomap/iter.c:110
+       iomap_zero_range+0x20b/0xa90 fs/iomap/buffered-io.c:1590
+       xfs_zero_range+0xb5/0x100 fs/xfs/xfs_iomap.c:2289
+       xfs_reflink_zero_posteof fs/xfs/xfs_reflink.c:1619 [inline]
+       xfs_reflink_remap_prep+0x3d3/0xa90 fs/xfs/xfs_reflink.c:1699
+       xfs_file_remap_range+0x23c/0xdc0 fs/xfs/xfs_file.c:1518
+       vfs_clone_file_range+0x2b1/0xda0 fs/remap_range.c:403
+       ioctl_file_clone+0x6e/0x110 fs/ioctl.c:239
+       ioctl_file_clone_range fs/ioctl.c:257 [inline]
+       do_vfs_ioctl+0xcab/0x14d0 fs/ioctl.c:544
+       __do_sys_ioctl fs/ioctl.c:595 [inline]
+       __se_sys_ioctl fs/ioctl.c:583 [inline]
+       __x64_sys_ioctl+0x127/0x220 fs/ioctl.c:583
+       x64_sys_call+0x1280/0x21b0 arch/x86/include/generated/asm/syscalls_64.h:17
+       do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+       do_syscall_64+0x6d/0x1180 arch/x86/entry/syscall_64.c:94
+       entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+-> #0 (&xfs_nondir_ilock_class){++++}-{4:4}:
+       check_prev_add kernel/locking/lockdep.c:3165 [inline]
+       check_prevs_add kernel/locking/lockdep.c:3284 [inline]
+       validate_chain kernel/locking/lockdep.c:3908 [inline]
+       __lock_acquire+0x14d1/0x2210 kernel/locking/lockdep.c:5237
+       lock_acquire kernel/locking/lockdep.c:5868 [inline]
+       lock_acquire+0x170/0x2f0 kernel/locking/lockdep.c:5825
+       down_write_nested+0x9a/0x210 kernel/locking/rwsem.c:1706
+       xfs_ilock+0x30f/0x390 fs/xfs/xfs_inode.c:165
+       xfs_reclaim_inode fs/xfs/xfs_icache.c:1035 [inline]
+       xfs_icwalk_process_inode fs/xfs/xfs_icache.c:1727 [inline]
+       xfs_icwalk_ag+0xaec/0x1b60 fs/xfs/xfs_icache.c:1809
+       xfs_icwalk+0x56/0xc0 fs/xfs/xfs_icache.c:1857
+       xfs_reclaim_inodes_nr+0x1d3/0x2d0 fs/xfs/xfs_icache.c:1101
+       xfs_fs_free_cached_objects+0x6a/0x90 fs/xfs/xfs_super.c:1282
+       super_cache_scan+0x415/0x570 fs/super.c:228
+       do_shrink_slab+0x408/0x1030 mm/shrinker.c:437
+       shrink_slab_memcg mm/shrinker.c:550 [inline]
+       shrink_slab+0xad3/0x12f0 mm/shrinker.c:628
+       shrink_node_memcgs mm/vmscan.c:6021 [inline]
+       shrink_node+0xacc/0x2670 mm/vmscan.c:6060
+       shrink_zones mm/vmscan.c:6299 [inline]
+       do_try_to_free_pages+0x2e3/0x1720 mm/vmscan.c:6361
+       try_to_free_pages+0x2b8/0x6d0 mm/vmscan.c:6607
+       __perform_reclaim mm/page_alloc.c:4377 [inline]
+       __alloc_pages_direct_reclaim mm/page_alloc.c:4399 [inline]
+       __alloc_pages_slowpath.constprop.0+0x900/0x2230 mm/page_alloc.c:4843
+       __alloc_frozen_pages_noprof+0x47f/0x550 mm/page_alloc.c:5223
+       alloc_pages_mpol+0x236/0x4c0 mm/mempolicy.c:2486
+       folio_alloc_mpol_noprof+0x44/0x120 mm/mempolicy.c:2505
+       shmem_alloc_folio+0x128/0x150 mm/shmem.c:1890
+       shmem_alloc_and_add_folio+0x403/0xab0 mm/shmem.c:1932
+       shmem_get_folio_gfp+0x595/0x1350 mm/shmem.c:2556
+       shmem_get_folio mm/shmem.c:2662 [inline]
+       shmem_write_begin+0x1c0/0x510 mm/shmem.c:3315
+       generic_perform_write+0x438/0x920 mm/filemap.c:4314
+       shmem_file_write_iter+0x11b/0x150 mm/shmem.c:3490
+       new_sync_write fs/read_write.c:593 [inline]
+       vfs_write+0xc6d/0x11f0 fs/read_write.c:686
+       ksys_write+0x14e/0x280 fs/read_write.c:738
+       __do_sys_write fs/read_write.c:749 [inline]
+       __se_sys_write fs/read_write.c:746 [inline]
+       __x64_sys_write+0x7b/0xc0 fs/read_write.c:746
+       x64_sys_call+0x1704/0x21b0 arch/x86/include/generated/asm/syscalls_64.h:2
+       do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+       do_syscall_64+0x6d/0x1180 arch/x86/entry/syscall_64.c:94
+       entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+other info that might help us debug this:
+
+ Possible unsafe locking scenario:
+
+       CPU0                    CPU1
+       ----                    ----
+  lock(fs_reclaim);
+                               lock(&xfs_nondir_ilock_class);
+                               lock(fs_reclaim);
+  lock(&xfs_nondir_ilock_class);
+
+ *** DEADLOCK ***
+
+4 locks held by syz.9.201/6120:
+ #0: ffff88800de12408 (sb_writers#7){.+.+}-{0:0}, at: ksys_write+0x14e/0x280 fs/read_write.c:738
+ #1: ffff888016632f18 (&sb->s_type->i_mutex_key#13){+.+.}-{4:4}, at: inode_lock include/linux/fs.h:1027 [inline]
+ #1: ffff888016632f18 (&sb->s_type->i_mutex_key#13){+.+.}-{4:4}, at: shmem_file_write_iter+0x91/0x150 mm/shmem.c:3480
+ #2: ffffffff8784b580 (fs_reclaim){+.+.}-{0:0}, at: __perform_reclaim mm/page_alloc.c:4374 [inline]
+ #2: ffffffff8784b580 (fs_reclaim){+.+.}-{0:0}, at: __alloc_pages_direct_reclaim mm/page_alloc.c:4399 [inline]
+ #2: ffffffff8784b580 (fs_reclaim){+.+.}-{0:0}, at: __alloc_pages_slowpath.constprop.0+0x859/0x2230 mm/page_alloc.c:4843
+ #3: ffff8880165c00e0 (&type->s_umount_key#57){++++}-{4:4}, at: super_trylock_shared fs/super.c:563 [inline]
+ #3: ffff8880165c00e0 (&type->s_umount_key#57){++++}-{4:4}, at: super_cache_scan+0x9f/0x570 fs/super.c:197
+
+stack backtrace:
+CPU: 0 UID: 0 PID: 6120 Comm: syz.9.201 Not tainted 6.18.0-next-20251203-b2c27842ba85 #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ print_circular_bug+0x283/0x350 kernel/locking/lockdep.c:2043
+ check_noncircular+0x12d/0x150 kernel/locking/lockdep.c:2175
+ check_prev_add kernel/locking/lockdep.c:3165 [inline]
+ check_prevs_add kernel/locking/lockdep.c:3284 [inline]
+ validate_chain kernel/locking/lockdep.c:3908 [inline]
+ __lock_acquire+0x14d1/0x2210 kernel/locking/lockdep.c:5237
+ lock_acquire kernel/locking/lockdep.c:5868 [inline]
+ lock_acquire+0x170/0x2f0 kernel/locking/lockdep.c:5825
+ down_write_nested+0x9a/0x210 kernel/locking/rwsem.c:1706
+ xfs_ilock+0x30f/0x390 fs/xfs/xfs_inode.c:165
+ xfs_reclaim_inode fs/xfs/xfs_icache.c:1035 [inline]
+ xfs_icwalk_process_inode fs/xfs/xfs_icache.c:1727 [inline]
+ xfs_icwalk_ag+0xaec/0x1b60 fs/xfs/xfs_icache.c:1809
+ xfs_icwalk+0x56/0xc0 fs/xfs/xfs_icache.c:1857
+ xfs_reclaim_inodes_nr+0x1d3/0x2d0 fs/xfs/xfs_icache.c:1101
+ xfs_fs_free_cached_objects+0x6a/0x90 fs/xfs/xfs_super.c:1282
+ super_cache_scan+0x415/0x570 fs/super.c:228
+ do_shrink_slab+0x408/0x1030 mm/shrinker.c:437
+ shrink_slab_memcg mm/shrinker.c:550 [inline]
+ shrink_slab+0xad3/0x12f0 mm/shrinker.c:628
+ shrink_node_memcgs mm/vmscan.c:6021 [inline]
+ shrink_node+0xacc/0x2670 mm/vmscan.c:6060
+ shrink_zones mm/vmscan.c:6299 [inline]
+ do_try_to_free_pages+0x2e3/0x1720 mm/vmscan.c:6361
+ try_to_free_pages+0x2b8/0x6d0 mm/vmscan.c:6607
+ __perform_reclaim mm/page_alloc.c:4377 [inline]
+ __alloc_pages_direct_reclaim mm/page_alloc.c:4399 [inline]
+ __alloc_pages_slowpath.constprop.0+0x900/0x2230 mm/page_alloc.c:4843
+ __alloc_frozen_pages_noprof+0x47f/0x550 mm/page_alloc.c:5223
+ alloc_pages_mpol+0x236/0x4c0 mm/mempolicy.c:2486
+ folio_alloc_mpol_noprof+0x44/0x120 mm/mempolicy.c:2505
+ shmem_alloc_folio+0x128/0x150 mm/shmem.c:1890
+ shmem_alloc_and_add_folio+0x403/0xab0 mm/shmem.c:1932
+ shmem_get_folio_gfp+0x595/0x1350 mm/shmem.c:2556
+ shmem_get_folio mm/shmem.c:2662 [inline]
+ shmem_write_begin+0x1c0/0x510 mm/shmem.c:3315
+ generic_perform_write+0x438/0x920 mm/filemap.c:4314
+ shmem_file_write_iter+0x11b/0x150 mm/shmem.c:3490
+ new_sync_write fs/read_write.c:593 [inline]
+ vfs_write+0xc6d/0x11f0 fs/read_write.c:686
+ ksys_write+0x14e/0x280 fs/read_write.c:738
+ __do_sys_write fs/read_write.c:749 [inline]
+ __se_sys_write fs/read_write.c:746 [inline]
+ __x64_sys_write+0x7b/0xc0 fs/read_write.c:746
+ x64_sys_call+0x1704/0x21b0 arch/x86/include/generated/asm/syscalls_64.h:2
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x1180 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f041453eb97
+Code: 0b 00 f7 d8 64 89 02 48 c7 c0 ff ff ff ff eb b7 0f 1f 00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 51 c3 48 83 ec 28 48 89 54 24 18 48 89 74 24
+RSP: 002b:00007ffdbc287278 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 00007ffdbc287350 RCX: 00007f041453eb97
+RDX: 0000000001000000 RSI: 00007f040c000000 RDI: 0000000000000003
+RBP: 00007f040c000000 R08: 00000000000095cf R09: 00000000000095cb
+R10: 0000000000000002 R11: 0000000000000246 R12: 0000000000000000
+R13: 0000000000000003 R14: 00007ffdbc287310 R15: 00002000000096c2
+ </TASK>
+loop4: detected capacity change from 0 to 32768
+XFS (loop4): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Ending clean mount
+XFS (loop4): Quotacheck needed: Please wait.
+XFS (loop4): Quotacheck: Done.
+XFS (loop4): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop2): Quotacheck: Done.
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Ending clean mount
+XFS (loop1): Quotacheck needed: Please wait.
+XFS (loop1): Quotacheck: Done.
+kexec: Could not allocate control_code_buffer
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Ending clean mount
+XFS (loop3): Quotacheck needed: Please wait.
+XFS (loop3): Quotacheck: Done.
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop4): Ending clean mount
+XFS (loop4): Quotacheck needed: Please wait.
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Quotacheck: Done.
+XFS (loop4): Quotacheck: Done.
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop2): Quotacheck: Done.
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Ending clean mount
+XFS (loop5): Quotacheck needed: Please wait.
+XFS (loop5): Quotacheck: Done.
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Ending clean mount
+XFS (loop5): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Quotacheck needed: Please wait.
+XFS (loop1): Quotacheck: Done.
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Ending clean mount
+XFS (loop3): Quotacheck needed: Please wait.
+XFS (loop3): Quotacheck: Done.
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop4): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Quotacheck: Done.
+XFS (loop5): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Ending clean mount
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Quotacheck needed: Please wait.
+XFS (loop4): Quotacheck: Done.
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+kexec: Could not allocate control_code_buffer
+XFS (loop2): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop5): Ending clean mount
+XFS (loop5): Quotacheck needed: Please wait.
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Quotacheck: Done.
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Quotacheck: Done.
+XFS (loop1): Ending clean mount
+XFS (loop1): Quotacheck needed: Please wait.
+XFS (loop5): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Quotacheck: Done.
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Ending clean mount
+XFS (loop3): Quotacheck needed: Please wait.
+XFS (loop3): Quotacheck: Done.
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop0): Quotacheck: Done.
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Ending clean mount
+XFS (loop4): Quotacheck needed: Please wait.
+XFS (loop4): Quotacheck: Done.
+XFS (loop4): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Quotacheck: Done.
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Ending clean mount
+XFS (loop5): Quotacheck needed: Please wait.
+XFS (loop3): Ending clean mount
+XFS (loop3): Quotacheck needed: Please wait.
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Quotacheck: Done.
+XFS (loop3): Quotacheck: Done.
+XFS (loop5): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Ending clean mount
+XFS (loop1): Quotacheck needed: Please wait.
+XFS (loop1): Quotacheck: Done.
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop2): Quotacheck: Done.
+XFS (loop4): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+kexec: Could not allocate control_code_buffer
+XFS (loop5): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop0): Quotacheck: Done.
+XFS (loop2): Ending clean mount
+XFS (loop5): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop5): Quotacheck needed: Please wait.
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Ending clean mount
+XFS (loop3): Quotacheck needed: Please wait.
+XFS (loop2): Quotacheck: Done.
+XFS (loop5): Quotacheck: Done.
+XFS (loop5): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Ending clean mount
+XFS (loop3): Quotacheck: Done.
+XFS (loop1): Quotacheck needed: Please wait.
+XFS (loop1): Quotacheck: Done.
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Ending clean mount
+XFS (loop4): Quotacheck needed: Please wait.
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Quotacheck: Done.
+XFS (loop4): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+set_capacity_and_notify: 28 callbacks suppressed
+loop2: detected capacity change from 0 to 32768
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+loop3: detected capacity change from 0 to 32768
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+loop0: detected capacity change from 0 to 32768
+XFS (loop2): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop3): Ending clean mount
+XFS (loop0): Quotacheck: Done.
+XFS (loop2): Quotacheck: Done.
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Quotacheck needed: Please wait.
+XFS (loop3): Quotacheck: Done.
+loop5: detected capacity change from 0 to 32768
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Ending clean mount
+XFS (loop5): Quotacheck needed: Please wait.
+XFS (loop5): Quotacheck: Done.
+XFS (loop5): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+loop1: detected capacity change from 0 to 32768
+loop0: detected capacity change from 0 to 32768
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Ending clean mount
+loop4: detected capacity change from 0 to 32768
+XFS (loop1): Quotacheck needed: Please wait.
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop1): Quotacheck: Done.
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Quotacheck: Done.
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+loop0: detected capacity change from 0 to 32768
+XFS (loop4): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+loop2: detected capacity change from 0 to 32768
+XFS (loop4): Ending clean mount
+XFS (loop4): Quotacheck needed: Please wait.
+XFS (loop4): Quotacheck: Done.
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+loop1: detected capacity change from 0 to 32768
+kexec: Could not allocate control_code_buffer
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Ending clean mount
+XFS (loop1): Quotacheck needed: Please wait.
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Quotacheck: Done.
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop2): Quotacheck: Done.
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Ending clean mount
+XFS (loop3): Quotacheck needed: Please wait.
+XFS (loop3): Quotacheck: Done.
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop0): Quotacheck: Done.
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Ending clean mount
+XFS (loop1): Quotacheck needed: Please wait.
+XFS (loop1): Quotacheck: Done.
+XFS (loop4): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Ending clean mount
+XFS (loop4): Quotacheck needed: Please wait.
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Quotacheck: Done.
+XFS (loop4): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Ending clean mount
+XFS (loop3): Quotacheck needed: Please wait.
+XFS (loop2): Ending clean mount
+XFS (loop3): Quotacheck: Done.
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop5): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Ending clean mount
+XFS (loop2): Quotacheck: Done.
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Quotacheck needed: Please wait.
+XFS (loop5): Quotacheck: Done.
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Ending clean mount
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Quotacheck needed: Please wait.
+XFS (loop1): Quotacheck: Done.
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop0): Quotacheck: Done.
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop2): Quotacheck: Done.
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+kexec: Could not allocate control_code_buffer
+XFS (loop5): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Ending clean mount
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Quotacheck needed: Please wait.
+XFS (loop5): Ending clean mount
+XFS (loop4): Quotacheck: Done.
+XFS (loop5): Quotacheck needed: Please wait.
+XFS (loop3): Ending clean mount
+XFS (loop3): Quotacheck needed: Please wait.
+XFS (loop3): Quotacheck: Done.
+XFS (loop5): Quotacheck: Done.
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Ending clean mount
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop1): Quotacheck needed: Please wait.
+XFS (loop5): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Quotacheck: Done.
+XFS (loop1): Quotacheck: Done.
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Ending clean mount
+XFS (loop4): Quotacheck needed: Please wait.
+XFS (loop4): Quotacheck: Done.
+XFS (loop4): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Ending clean mount
+XFS (loop3): Quotacheck needed: Please wait.
+XFS (loop3): Quotacheck: Done.
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+kexec: Could not allocate control_code_buffer
+XFS (loop4): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Ending clean mount
+XFS (loop1): Ending clean mount
+XFS (loop1): Quotacheck needed: Please wait.
+XFS (loop4): Quotacheck needed: Please wait.
+XFS (loop4): Quotacheck: Done.
+XFS (loop1): Quotacheck: Done.
+XFS (loop4): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Quotacheck: Done.
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop5): Ending clean mount
+XFS (loop5): Quotacheck needed: Please wait.
+XFS (loop0): Quotacheck: Done.
+XFS (loop5): Quotacheck: Done.
+XFS (loop5): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Ending clean mount
+XFS (loop4): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop4): Quotacheck needed: Please wait.
+XFS (loop4): Quotacheck: Done.
+XFS (loop2): Quotacheck: Done.
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+kexec: Could not allocate control_code_buffer
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop5): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Ending clean mount
+XFS (loop0): Quotacheck: Done.
+XFS (loop1): Quotacheck needed: Please wait.
+XFS (loop1): Quotacheck: Done.
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Ending clean mount
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Quotacheck needed: Please wait.
+XFS (loop5): Quotacheck: Done.
+XFS (loop5): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Ending clean mount
+XFS (loop3): Quotacheck needed: Please wait.
+XFS (loop3): Quotacheck: Done.
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop2): Quotacheck: Done.
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Ending clean mount
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Quotacheck needed: Please wait.
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop1): Ending clean mount
+XFS (loop1): Quotacheck needed: Please wait.
+XFS (loop5): Quotacheck: Done.
+XFS (loop1): Quotacheck: Done.
+XFS (loop0): Quotacheck: Done.
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+kexec: Could not allocate control_code_buffer
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Ending clean mount
+XFS (loop3): Quotacheck needed: Please wait.
+XFS (loop3): Quotacheck: Done.
+XFS (loop2): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Quotacheck: Done.
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Ending clean mount
+XFS (loop1): Quotacheck needed: Please wait.
+XFS (loop1): Quotacheck: Done.
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop2): Quotacheck: Done.
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Ending clean mount
+XFS (loop4): Quotacheck needed: Please wait.
+XFS (loop4): Quotacheck: Done.
+XFS (loop4): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop3): Ending clean mount
+XFS (loop0): Quotacheck: Done.
+XFS (loop3): Quotacheck needed: Please wait.
+XFS (loop3): Quotacheck: Done.
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+warn_alloc: 8 callbacks suppressed
+syz.5.318: page allocation failure: order:0, mode:0x10cc0(GFP_KERNEL|__GFP_NORETRY), nodemask=(null),cpuset=/,mems_allowed=0
+CPU: 1 UID: 0 PID: 6909 Comm: syz.5.318 Not tainted 6.18.0-next-20251203-b2c27842ba85 #1 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0x121/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ warn_alloc+0x216/0x360 mm/page_alloc.c:3999
+ __alloc_pages_slowpath.constprop.0+0x1340/0x2230 mm/page_alloc.c:4950
+ __alloc_frozen_pages_noprof+0x47f/0x550 mm/page_alloc.c:5223
+ alloc_pages_mpol+0x236/0x4c0 mm/mempolicy.c:2486
+ alloc_frozen_pages_noprof+0xa9/0x180 mm/mempolicy.c:2557
+ alloc_pages_noprof+0x27/0xa0 mm/mempolicy.c:2577
+ kimage_alloc_pages+0x78/0x240 kernel/kexec_core.c:285
+ kimage_alloc_normal_control_pages kernel/kexec_core.c:359 [inline]
+ kimage_alloc_control_pages+0x1ca/0xa60 kernel/kexec_core.c:472
+ kimage_alloc_init kernel/kexec.c:67 [inline]
+ do_kexec_load+0x39b/0x8c0 kernel/kexec.c:130
+ __do_sys_kexec_load kernel/kexec.c:261 [inline]
+ __se_sys_kexec_load kernel/kexec.c:242 [inline]
+ __x64_sys_kexec_load+0x1cc/0x240 kernel/kexec.c:242
+ x64_sys_call+0x1c90/0x21b0 arch/x86/include/generated/asm/syscalls_64.h:247
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x1180 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f0b2cc3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffcb870c338 EFLAGS: 00000246 ORIG_RAX: 00000000000000f6
+RAX: ffffffffffffffda RBX: 00000000005c5fa0 RCX: 00007f0b2cc3ee5d
+RDX: 0000200000000180 RSI: 0000000000000003 RDI: 0000000000000000
+RBP: 00000000005c5fa0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 0000000000000000 R14: 00000000005c5fac R15: 00000000005c5fa0
+ </TASK>
+Mem-Info:
+active_anon:6798 inactive_anon:49601 isolated_anon:0
+ active_file:8940 inactive_file:2428 isolated_file:0
+ unevictable:0 dirty:113 writeback:0
+ slab_reclaimable:4981 slab_unreclaimable:26199
+ mapped:3135 shmem:9738 pagetables:1581
+ sec_pagetables:0 bounce:0
+ kernel_misc_reclaimable:0
+ free:29496 free_pcp:0 free_cma:0
+Node 0 active_anon:27192kB inactive_anon:198404kB active_file:35760kB inactive_file:9392kB unevictable:0kB isolated(anon):0kB isolated(file):0kB mapped:12540kB dirty:452kB writeback:0kB shmem:38952kB shmem_thp:0kB shmem_pmdmapped:0kB anon_thp:0kB kernel_stack:7296kB pagetables:6324kB sec_pagetables:0kB all_unreclaimable? no Balloon:0kB
+Node 0 DMA free:6472kB boost:0kB min:444kB low:552kB high:660kB reserved_highatomic:0KB free_highatomic:0KB active_anon:0kB inactive_anon:1752kB active_file:108kB inactive_file:24kB unevictable:0kB writepending:0kB zspages:0kB present:15992kB managed:15360kB mlocked:0kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+lowmem_reserve[]: 0 1519 1519 1519 1519
+Node 0 DMA32 free:112016kB boost:69632kB min:114240kB low:125392kB high:136544kB reserved_highatomic:0KB free_highatomic:0KB active_anon:27276kB inactive_anon:196684kB active_file:35652kB inactive_file:9196kB unevictable:0kB writepending:448kB zspages:0kB present:2080640kB managed:1555936kB mlocked:0kB bounce:0kB free_pcp:40kB local_pcp:0kB free_cma:0kB
+lowmem_reserve[]: 0 0 0 0 0
+Node 0 DMA: 0*4kB 1*8kB (U) 0*16kB 1*32kB (M) 1*64kB (U) 2*128kB (UM) 0*256kB 0*512kB 4*1024kB (UM) 1*2048kB (U) 0*4096kB = 6504kB
+Node 0 DMA32: 2654*4kB (UME) 2918*8kB (UME) 835*16kB (UME) 621*32kB (UME) 288*64kB (UME) 116*128kB (ME) 44*256kB (UME) 1*512kB (U) 0*1024kB 0*2048kB 0*4096kB = 112248kB
+Node 0 hugepages_total=0 hugepages_free=0 hugepages_surp=0 hugepages_size=1048576kB
+Node 0 hugepages_total=0 hugepages_free=0 hugepages_surp=0 hugepages_size=2048kB
+29365 total pagecache pages
+8513 pages in swap cache
+Free swap  = 79108kB
+Total swap = 124996kB
+524158 pages RAM
+0 pages HighMem/MovableOnly
+131334 pages reserved
+0 pages cma reserved
+0 pages hwpoisoned
+Memory cgroup min protection 0kB -- low protection 0kB
+kexec: Could not allocate control_code_buffer
+XFS (loop1): Ending clean mount
+XFS (loop1): Quotacheck needed: Please wait.
+XFS (loop4): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Quotacheck: Done.
+XFS (loop2): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop4): Ending clean mount
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Quotacheck needed: Please wait.
+XFS (loop2): Quotacheck: Done.
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop4): Quotacheck: Done.
+XFS (loop3): Ending clean mount
+XFS (loop3): Quotacheck needed: Please wait.
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Quotacheck: Done.
+XFS (loop4): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Quotacheck: Done.
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+set_capacity_and_notify: 44 callbacks suppressed
+loop3: detected capacity change from 0 to 32768
+XFS (loop5): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Ending clean mount
+XFS (loop5): Quotacheck needed: Please wait.
+XFS (loop5): Quotacheck: Done.
+XFS (loop3): Ending clean mount
+XFS (loop3): Quotacheck needed: Please wait.
+XFS (loop5): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Quotacheck: Done.
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+loop4: detected capacity change from 0 to 32768
+loop2: detected capacity change from 0 to 32768
+XFS (loop4): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+loop0: detected capacity change from 0 to 32768
+loop1: detected capacity change from 0 to 32768
+XFS (loop4): Ending clean mount
+XFS (loop4): Quotacheck needed: Please wait.
+XFS (loop4): Quotacheck: Done.
+XFS (loop4): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop2): Ending clean mount
+XFS (loop2): Quotacheck needed: Please wait.
+XFS (loop2): Quotacheck: Done.
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Ending clean mount
+XFS (loop1): Quotacheck needed: Please wait.
+loop3: detected capacity change from 0 to 32768
+loop5: detected capacity change from 0 to 32768
+XFS (loop0): Ending clean mount
+XFS (loop0): Quotacheck needed: Please wait.
+XFS (loop1): Quotacheck: Done.
+XFS (loop3): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop0): Quotacheck: Done.
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop3): Ending clean mount
+XFS (loop3): Quotacheck needed: Please wait.
+XFS (loop3): Quotacheck: Done.
+XFS (loop5): Ending clean mount
+XFS (loop3): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Quotacheck needed: Please wait.
+XFS (loop5): Quotacheck: Done.
+XFS (loop5): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791

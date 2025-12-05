@@ -1,0 +1,35 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [b2c27842ba853508b0da00187a7508eb3a96c8f7] Add linux-next specific files for 20251203
+git bisect bad b2c27842ba853508b0da00187a7508eb3a96c8f7
+# status: waiting for good commit(s), bad commit known
+# good: [7d0a66e4bb9081d75c82ec4957c50034cb0ea449] Linux 6.18
+git bisect good 7d0a66e4bb9081d75c82ec4957c50034cb0ea449
+# bad: [1d85d446f170f5f2c87cdb6315f6fc597a9f9e02] Merge branch 'for-next' of https://git.kernel.org/pub/scm/linux/kernel/git/rdma/rdma.git
+git bisect bad 1d85d446f170f5f2c87cdb6315f6fc597a9f9e02
+# bad: [54b1f91a71b76fcc9e6736277a1d77087c32af84] Merge branch 'for-next/core' of https://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux
+git bisect bad 54b1f91a71b76fcc9e6736277a1d77087c32af84
+# bad: [5777af47305617e9b17af7ff9ef74704af83dd75] Merge branch 'main' of https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git
+git bisect bad 5777af47305617e9b17af7ff9ef74704af83dd75
+# bad: [b53440f8e5a1466870d7a1d255e0f9966e0041fb] Merge tag 'locking-core-2025-12-01' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect bad b53440f8e5a1466870d7a1d255e0f9966e0041fb
+# bad: [212c4053a1502e5117d8cbbbd1c15579ce1839bb] Merge tag 'vfs-6.19-rc1.coredump' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect bad 212c4053a1502e5117d8cbbbd1c15579ce1839bb
+# bad: [ebaeabfa5ab711a9b69b686d58329e258fdae75f] Merge tag 'vfs-6.19-rc1.writeback' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect bad ebaeabfa5ab711a9b69b686d58329e258fdae75f
+# bad: [1885cdbfbb51ede3637166c895d0b8040c9899cc] Merge tag 'vfs-6.19-rc1.iomap' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect bad 1885cdbfbb51ede3637166c895d0b8040c9899cc
+# bad: [39be21386d14974393ac45eda11942989720f81b] iomap: remove old partial eof zeroing optimization
+git bisect bad 39be21386d14974393ac45eda11942989720f81b
+# good: [b2f35ac4146d32d4424aaa941bbc681f12c1b9e6] iomap: add caller-provided callbacks for read and readahead
+git bisect good b2f35ac4146d32d4424aaa941bbc681f12c1b9e6
+# good: [4966b46652680b2d86b8a59319d4f529edf20187] Merge patch series "fuse: use iomap for buffered reads + readahead"
+git bisect good 4966b46652680b2d86b8a59319d4f529edf20187
+# good: [395ed1ef0012e1bb1e4050e84ba0173b3623112a] iomap: optional zero range dirty folio processing
+git bisect good 395ed1ef0012e1bb1e4050e84ba0173b3623112a
+# bad: [77c475692c5e4e72eee9de869056008e62d3733b] xfs: fill dirty folios on zero range of unwritten mappings
+git bisect bad 77c475692c5e4e72eee9de869056008e62d3733b
+# good: [5c13dde963dfe38ad88757e53d1fb8883cd01385] xfs: always trim mapping to requested range for zero range
+git bisect good 5c13dde963dfe38ad88757e53d1fb8883cd01385
+# first bad commit: [77c475692c5e4e72eee9de869056008e62d3733b] xfs: fill dirty folios on zero range of unwritten mappings
+|1205_033228|Bisect successfully! b2c27842ba853508b0da00187a7508eb3a96c8f7_77c475692c5e4e72eee9de869056008e62d3733b_revert bzimage passed!|
