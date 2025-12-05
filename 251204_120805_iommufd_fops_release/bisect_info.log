@@ -1,0 +1,36 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [b2c27842ba853508b0da00187a7508eb3a96c8f7] Add linux-next specific files for 20251203
+git bisect bad b2c27842ba853508b0da00187a7508eb3a96c8f7
+# status: waiting for good commit(s), bad commit known
+# good: [7d0a66e4bb9081d75c82ec4957c50034cb0ea449] Linux 6.18
+git bisect good 7d0a66e4bb9081d75c82ec4957c50034cb0ea449
+# good: [1d85d446f170f5f2c87cdb6315f6fc597a9f9e02] Merge branch 'for-next' of https://git.kernel.org/pub/scm/linux/kernel/git/rdma/rdma.git
+git bisect good 1d85d446f170f5f2c87cdb6315f6fc597a9f9e02
+# good: [c668486eb83c75da5b8d9247c50489c4496268c5] Merge branch 'drm-next' of https://gitlab.freedesktop.org/drm/kernel.git
+git bisect good c668486eb83c75da5b8d9247c50489c4496268c5
+# bad: [875c7541ba08e19cbdb506c67f583467539df811] Merge branch 'driver-core-next' of https://git.kernel.org/pub/scm/linux/kernel/git/driver-core/driver-core.git
+git bisect bad 875c7541ba08e19cbdb506c67f583467539df811
+# good: [d03ad12f92254d1cbeb98faaffce4b04cb6f88e0] Merge branch 'master' of git://www.linux-watchdog.org/linux-watchdog-next.git
+git bisect good d03ad12f92254d1cbeb98faaffce4b04cb6f88e0
+# bad: [6895b46e2fd97f888d820aad0e5ac35ae0405277] Merge branch 'next' of https://git.kernel.org/pub/scm/linux/kernel/git/kvmarm/kvmarm.git
+git bisect bad 6895b46e2fd97f888d820aad0e5ac35ae0405277
+# bad: [ce964a71279841163507e45c2e475efc7ff7aa18] Merge branch 'edac-for-next' of https://git.kernel.org/pub/scm/linux/kernel/git/ras/ras.git
+git bisect bad ce964a71279841163507e45c2e475efc7ff7aa18
+# bad: [f784ee1de825a11c79d42a12680148e6ad4452c2] Merge branch 'next' of https://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/audit.git
+git bisect bad f784ee1de825a11c79d42a12680148e6ad4452c2
+# bad: [6a3908ce56e6879920b44ef136252b2f0c954194] iommu/qcom: fix device leak on of_xlate()
+git bisect bad 6a3908ce56e6879920b44ef136252b2f0c954194
+# bad: [2fdf6db436e3071a8e4c9c3e67674448a13860d4] iommu/amd: Remove AMD io_pgtable support
+git bisect bad 2fdf6db436e3071a8e4c9c3e67674448a13860d4
+# good: [cdb39d9185795b744dab4d4d782f2fe3f5eca10c] iommupt: Add the basic structure of the iommu implementation
+git bisect good cdb39d9185795b744dab4d4d782f2fe3f5eca10c
+# good: [4a00f943489103b4b9edff9f39bd484efbfb15fa] iommupt: Add read_and_clear_dirty op
+git bisect good 4a00f943489103b4b9edff9f39bd484efbfb15fa
+# good: [e93d5945ed5bb086431e83eed7ab98b6c058cc0b] iommufd: Change the selftest to use iommupt instead of xarray
+git bisect good e93d5945ed5bb086431e83eed7ab98b6c058cc0b
+# bad: [789a5913b29c2558a4a80b8740a2523f75285507] iommu/amd: Use the generic iommu page table
+git bisect bad 789a5913b29c2558a4a80b8740a2523f75285507
+# good: [aef5de756ea871ab44e3a1a87be6c944e6587c51] iommupt: Add the x86 64 bit page table format
+git bisect good aef5de756ea871ab44e3a1a87be6c944e6587c51
+# first bad commit: [789a5913b29c2558a4a80b8740a2523f75285507] iommu/amd: Use the generic iommu page table

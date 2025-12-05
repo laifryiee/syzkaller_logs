@@ -1,0 +1,60 @@
+lo: entered promiscuous mode
+program syz.0.26640 is using a deprecated SCSI ioctl, please convert it to SG_IO
+iommufd_mock iommufd_mock0: Adding to iommu group 0
+------------[ cut here ]------------
+WARNING: drivers/iommu/iommufd/main.c:369 at iommufd_fops_release+0x385/0x430 drivers/iommu/iommufd/main.c:369, CPU#1: syz.8.26647/155268
+Modules linked in:
+CPU: 1 UID: 0 PID: 155268 Comm: syz.8.26647 Tainted: G S                  6.18.0-next-20251203-b2c27842ba85 #1 PREEMPT(voluntary) 
+Tainted: [S]=CPU_OUT_OF_SPEC
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:iommufd_fops_release+0x385/0x430 drivers/iommu/iommufd/main.c:369
+Code: 8b 45 d0 65 48 2b 05 82 16 78 05 75 7b 48 81 c4 88 00 00 00 31 c0 5b 41 5c 41 5d 41 5e 41 5f 5d e9 40 19 31 02 e8 0b 52 cb fd <0f> 0b e8 04 52 cb fd e9 b0 fe ff ff e8 fa 51 cb fd 0f 0b e9 ef fe
+RSP: 0018:ffff88801d3cfd10 EFLAGS: 00010212
+RAX: 0000000000000358 RBX: 0000000000000000 RCX: ffffc900154bf000
+RDX: 0000000000080000 RSI: ffffffff83be69a5 RDI: 0000000000000005
+RBP: ffff88801d3cfdc0 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000000 R11: ffff8880409c8e98 R12: 0000000000000000
+R13: ffff888056cfb808 R14: ffff88801d3cfd58 R15: 0000000000000000
+FS:  00007f9954d1e640(0000) GS:ffff8880e31c0000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00002000000a0000 CR3: 000000002c45a001 CR4: 0000000000770ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+PKRU: 80000000
+Call Trace:
+ <TASK>
+ __fput+0x41f/0xb70 fs/file_table.c:468
+ fput_close_sync+0x128/0x230 fs/file_table.c:573
+ __do_sys_close fs/open.c:1573 [inline]
+ __se_sys_close fs/open.c:1558 [inline]
+ __x64_sys_close+0x98/0x130 fs/open.c:1558
+ x64_sys_call+0x1978/0x21b0 arch/x86/include/generated/asm/syscalls_64.h:4
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x1180 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f995463ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007f9954d1dc78 EFLAGS: 00000246 ORIG_RAX: 0000000000000003
+RAX: ffffffffffffffda RBX: 00000000005c5fa0 RCX: 00007f995463ee5d
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000003
+RBP: 00000000005c5fa0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00000000005c6038 R14: 00007f995469f560 R15: 0000000000000000
+ </TASK>
+irq event stamp: 1721
+hardirqs last  enabled at (1729): [<ffffffff81666d75>] __up_console_sem+0x95/0xb0 kernel/printk/printk.c:345
+hardirqs last disabled at (1738): [<ffffffff81666d5a>] __up_console_sem+0x7a/0xb0 kernel/printk/printk.c:343
+softirqs last  enabled at (1694): [<ffffffff8148a2fe>] __do_softirq kernel/softirq.c:660 [inline]
+softirqs last  enabled at (1694): [<ffffffff8148a2fe>] invoke_softirq kernel/softirq.c:496 [inline]
+softirqs last  enabled at (1694): [<ffffffff8148a2fe>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:727
+softirqs last disabled at (1689): [<ffffffff8148a2fe>] __do_softirq kernel/softirq.c:660 [inline]
+softirqs last disabled at (1689): [<ffffffff8148a2fe>] invoke_softirq kernel/softirq.c:496 [inline]
+softirqs last disabled at (1689): [<ffffffff8148a2fe>] __irq_exit_rcu+0x10e/0x170 kernel/softirq.c:727
+---[ end trace 0000000000000000 ]---
+XFS (loop1): Mounting V5 Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop1): Ending clean mount
+XFS (loop1): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop2): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
