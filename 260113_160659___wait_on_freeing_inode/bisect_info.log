@@ -1,0 +1,35 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [0f853ca2a798ead9d24d39cad99b0966815c582a] Add linux-next specific files for 20260113
+git bisect bad 0f853ca2a798ead9d24d39cad99b0966815c582a
+# status: waiting for good commit(s), bad commit known
+# good: [0f61b1860cc3f52aef9036d7235ed1f017632193] Linux 6.19-rc5
+git bisect good 0f61b1860cc3f52aef9036d7235ed1f017632193
+# bad: [80f60a6b0c1e21da3f74ede4c74aa3f38efa31d5] Merge branch 'libcrypto-next' of https://git.kernel.org/pub/scm/linux/kernel/git/ebiggers/linux.git
+git bisect bad 80f60a6b0c1e21da3f74ede4c74aa3f38efa31d5
+# good: [eb27913f85b64c6b67ed30a78665b90a182e3fd5] Merge branch 'for-next' of https://github.com/spacemit-com/linux
+git bisect good eb27913f85b64c6b67ed30a78665b90a182e3fd5
+# bad: [37efe8b1049919e99e63107e075f8bc1d94a1fa1] Merge branch 'hwmon-next' of https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git
+git bisect bad 37efe8b1049919e99e63107e075f8bc1d94a1fa1
+# bad: [1e66a5b24834355f93828396db7e7f4146912603] Merge branch 'for-next' of https://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs.git
+git bisect bad 1e66a5b24834355f93828396db7e7f4146912603
+# good: [f2ae3866f449aabb4c5231f80bf9756dc4fee1c7] Merge branch 'nfsd-next' of https://git.kernel.org/pub/scm/linux/kernel/git/cel/linux
+git bisect good f2ae3866f449aabb4c5231f80bf9756dc4fee1c7
+# bad: [55ffc973331b1a31eaa77da71bb3e17e8f35d86b] Merge branch 'vfs-7.0.nullfs' into vfs.all
+git bisect bad 55ffc973331b1a31eaa77da71bb3e17e8f35d86b
+# bad: [98429de9c029195d736ffea9cc297e2e0f78d1c7] Merge branch 'vfs-7.0.atomic_open' into vfs.all
+git bisect bad 98429de9c029195d736ffea9cc297e2e0f78d1c7
+# bad: [dc44eb5c2c9f97b7d396412fbac857a58886e50d] Merge branch 'vfs-7.0.misc' into vfs.all
+git bisect bad dc44eb5c2c9f97b7d396412fbac857a58886e50d
+# good: [3685744afa4a2e65a4a509f1b782af98e929b83f] chardev: Switch to guard(mutex) and __free(kfree)
+git bisect good 3685744afa4a2e65a4a509f1b782af98e929b83f
+# good: [edecd1ae594abc8b14ed36c438d1a7db729403ba] Merge patch series "vfs kernel-doc fixes for 6.19"
+git bisect good edecd1ae594abc8b14ed36c438d1a7db729403ba
+# bad: [24a4f4e1608f0d1ac2c2692ecb0ce17add0cf6ae] acct(2): begin the deprecation of legacy BSD process accounting
+git bisect bad 24a4f4e1608f0d1ac2c2692ecb0ce17add0cf6ae
+# bad: [2a255acce2e534289a199ebb159c6ff8f82e4d7d] device_cgroup: remove branch hint after code refactor
+git bisect bad 2a255acce2e534289a199ebb159c6ff8f82e4d7d
+# bad: [757b907b3eadd58acafdb2a273e0ee07dc67ea2c] fs: make insert_inode_locked() wait for inode destruction
+git bisect bad 757b907b3eadd58acafdb2a273e0ee07dc67ea2c
+# first bad commit: [757b907b3eadd58acafdb2a273e0ee07dc67ea2c] fs: make insert_inode_locked() wait for inode destruction
+|0114_051446|Bisect successfully! 0f853ca2a798ead9d24d39cad99b0966815c582a_757b907b3eadd58acafdb2a273e0ee07dc67ea2c_revert bzimage passed!|

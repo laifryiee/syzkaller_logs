@@ -1,0 +1,114 @@
+=====================================
+WARNING: bad unlock balance detected!
+6.19.0-rc5-next-20260113-0f853ca2a798 #1 Not tainted
+-------------------------------------
+syz-executor370/752 is trying to release lock (rcu_read_lock) at:
+[<ffffffff821343ea>] rcu_lock_release include/linux/rcupdate.h:322 [inline]
+[<ffffffff821343ea>] rcu_read_unlock include/linux/rcupdate.h:881 [inline]
+[<ffffffff821343ea>] __wait_on_freeing_inode+0x13a/0x3b0 fs/inode.c:2544
+but there are no more locks to release!
+
+other info that might help us debug this:
+4 locks held by syz-executor370/752:
+ #0: ffff8880146d0408 (sb_writers#3){.+.+}-{0:0}, at: filename_create+0x122/0x460 fs/namei.c:4913
+ #1: ffff88802b5a2090 (&type->i_mutex_dir_key#3/1){+.+.}-{4:4}, at: inode_lock_nested include/linux/fs.h:1073 [inline]
+ #1: ffff88802b5a2090 (&type->i_mutex_dir_key#3/1){+.+.}-{4:4}, at: __start_dirop fs/namei.c:2923 [inline]
+ #1: ffff88802b5a2090 (&type->i_mutex_dir_key#3/1){+.+.}-{4:4}, at: start_dirop fs/namei.c:2934 [inline]
+ #1: ffff88802b5a2090 (&type->i_mutex_dir_key#3/1){+.+.}-{4:4}, at: filename_create+0x1e6/0x460 fs/namei.c:4920
+ #2: ffff8880146dc950 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x1042/0x1550 fs/jbd2/transaction.c:444
+ #3: ffffffff87416918 (inode_hash_lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:344 [inline]
+ #3: ffffffff87416918 (inode_hash_lock){+.+.}-{3:3}, at: insert_inode_locked+0xf4/0x860 fs/inode.c:1834
+
+stack backtrace:
+CPU: 0 UID: 0 PID: 752 Comm: syz-executor370 Not tainted 6.19.0-rc5-next-20260113-0f853ca2a798 #1 PREEMPT(lazy) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ print_unlock_imbalance_bug kernel/locking/lockdep.c:5298 [inline]
+ print_unlock_imbalance_bug+0x121/0x140 kernel/locking/lockdep.c:5272
+ __lock_release kernel/locking/lockdep.c:5537 [inline]
+ lock_release+0x211/0x2a0 kernel/locking/lockdep.c:5889
+ rcu_lock_release include/linux/rcupdate.h:322 [inline]
+ rcu_read_unlock include/linux/rcupdate.h:881 [inline]
+ __wait_on_freeing_inode+0x13f/0x3b0 fs/inode.c:2544
+ insert_inode_locked+0x26c/0x860 fs/inode.c:1853
+ __ext4_new_inode+0x1c4a/0x5230 fs/ext4/ialloc.c:1272
+ ext4_mkdir+0x360/0xb70 fs/ext4/namei.c:3005
+ vfs_mkdir+0x6d1/0xbe0 fs/namei.c:5230
+ do_mkdirat+0x48e/0x610 fs/namei.c:5264
+ __do_sys_mkdir fs/namei.c:5289 [inline]
+ __se_sys_mkdir fs/namei.c:5287 [inline]
+ __x64_sys_mkdir+0x70/0x90 fs/namei.c:5287
+ x64_sys_call+0x1f87/0x21b0 arch/x86/include/generated/asm/syscalls_64.h:84
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x1180 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7efd9c03e7bb
+Code: 73 01 c3 48 8b 0d 65 b6 1b 00 f7 d8 64 89 01 48 83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa b8 53 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 35 b6 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffdeebfbca8 EFLAGS: 00000202 ORIG_RAX: 0000000000000053
+RAX: ffffffffffffffda RBX: 0000000000030c34 RCX: 00007efd9c03e7bb
+RDX: 0000000000000000 RSI: 00000000000001ff RDI: 00007ffdeebfbcd0
+RBP: 0000000000005288 R08: 0000000000000000 R09: 00007ffdeebfba44
+R10: 0000000000000a13 R11: 0000000000000202 R12: 0000000000000a13
+R13: 431bde82d7b634db R14: 0000000000403e08 R15: 00007efd9c326000
+ </TASK>
+------------[ cut here ]------------
+WARNING: kernel/rcu/tree_plugin.h:443 at arch_local_irq_enable arch/x86/include/asm/paravirt.h:671 [inline], CPU#0: syz-executor370/752
+WARNING: kernel/rcu/tree_plugin.h:443 at arch_local_irq_restore arch/x86/include/asm/irqflags.h:159 [inline], CPU#0: syz-executor370/752
+WARNING: kernel/rcu/tree_plugin.h:443 at rcu_read_unlock_special kernel/rcu/tree_plugin.h:769 [inline], CPU#0: syz-executor370/752
+WARNING: kernel/rcu/tree_plugin.h:443 at __rcu_read_unlock+0x2da/0x620 kernel/rcu/tree_plugin.h:438, CPU#0: syz-executor370/752
+Modules linked in:
+CPU: 0 UID: 0 PID: 752 Comm: syz-executor370 Not tainted 6.19.0-rc5-next-20260113-0f853ca2a798 #1 PREEMPT(lazy) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:__rcu_read_unlock+0x2da/0x620 kernel/rcu/tree_plugin.h:443
+Code: c7 43 58 01 00 00 00 bf 09 00 00 00 e8 9f d2 d9 ff 4d 85 f6 0f 84 13 fe ff ff e8 21 10 29 00 fb 0f 1f 44 00 00 e9 03 fe ff ff <0f> 0b 5b 41 5c 41 5d 41 5e 41 5f 5d e9 45 30 85 04 e8 20 8a 8c 00
+RSP: 0018:ffff88800ed3f958 EFLAGS: 00010286
+RAX: 00000000ffffffff RBX: ffff8880174c8000 RCX: ffffffff8167cc23
+RDX: 0000000000000000 RSI: 0000000000000001 RDI: ffff8880174c883c
+RBP: ffff88800ed3f980 R08: 0000000000000000 R09: fffffbfff0eaed8c
+R10: 0000000080000001 R11: 6162206b63617473 R12: ffff8880174c8000
+R13: ffff8880174c8000 R14: 0000000000000001 R15: 0000000000000001
+FS:  00007efd9c2d9740(0000) GS:ffff8880e307a000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007efd9c13e7f0 CR3: 000000002b919002 CR4: 0000000000770ef0
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ rcu_read_unlock include/linux/rcupdate.h:883 [inline]
+ __wait_on_freeing_inode+0x144/0x3b0 fs/inode.c:2544
+ insert_inode_locked+0x26c/0x860 fs/inode.c:1853
+ __ext4_new_inode+0x1c4a/0x5230 fs/ext4/ialloc.c:1272
+ ext4_mkdir+0x360/0xb70 fs/ext4/namei.c:3005
+ vfs_mkdir+0x6d1/0xbe0 fs/namei.c:5230
+ do_mkdirat+0x48e/0x610 fs/namei.c:5264
+ __do_sys_mkdir fs/namei.c:5289 [inline]
+ __se_sys_mkdir fs/namei.c:5287 [inline]
+ __x64_sys_mkdir+0x70/0x90 fs/namei.c:5287
+ x64_sys_call+0x1f87/0x21b0 arch/x86/include/generated/asm/syscalls_64.h:84
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x1180 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7efd9c03e7bb
+Code: 73 01 c3 48 8b 0d 65 b6 1b 00 f7 d8 64 89 01 48 83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa b8 53 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 35 b6 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffdeebfbca8 EFLAGS: 00000202 ORIG_RAX: 0000000000000053
+RAX: ffffffffffffffda RBX: 0000000000030c34 RCX: 00007efd9c03e7bb
+RDX: 0000000000000000 RSI: 00000000000001ff RDI: 00007ffdeebfbcd0
+RBP: 0000000000005288 R08: 0000000000000000 R09: 00007ffdeebfba44
+R10: 0000000000000a13 R11: 0000000000000202 R12: 0000000000000a13
+R13: 431bde82d7b634db R14: 0000000000403e08 R15: 00007efd9c326000
+ </TASK>
+irq event stamp: 1906207
+hardirqs last  enabled at (1906207): [<ffffffff85f3bbe5>] __raw_spin_unlock_irqrestore include/linux/spinlock_api_smp.h:178 [inline]
+hardirqs last  enabled at (1906207): [<ffffffff85f3bbe5>] _raw_spin_unlock_irqrestore+0x35/0x70 kernel/locking/spinlock.c:194
+hardirqs last disabled at (1906206): [<ffffffff85f3b890>] __raw_spin_lock_irqsave include/linux/spinlock_api_smp.h:130 [inline]
+hardirqs last disabled at (1906206): [<ffffffff85f3b890>] _raw_spin_lock_irqsave+0x70/0x80 kernel/locking/spinlock.c:162
+softirqs last  enabled at (1906202): [<ffffffff8131c2e1>] local_bh_enable include/linux/bottom_half.h:33 [inline]
+softirqs last  enabled at (1906202): [<ffffffff8131c2e1>] fpregs_unlock arch/x86/include/asm/fpu/api.h:77 [inline]
+softirqs last  enabled at (1906202): [<ffffffff8131c2e1>] kernel_fpu_end+0x71/0x90 arch/x86/kernel/fpu/core.c:506
+softirqs last disabled at (1906200): [<ffffffff8131db8f>] local_bh_disable include/linux/bottom_half.h:20 [inline]
+softirqs last disabled at (1906200): [<ffffffff8131db8f>] fpregs_lock arch/x86/include/asm/fpu/api.h:69 [inline]
+softirqs last disabled at (1906200): [<ffffffff8131db8f>] kernel_fpu_begin_mask+0x1df/0x320 arch/x86/kernel/fpu/core.c:475
+---[ end trace 0000000000000000 ]---

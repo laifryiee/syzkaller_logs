@@ -1,0 +1,317 @@
+|0113_160659|cmd=cd /root/linux-next|
+|0113_160659|git log 0f853ca2a798ead9d24d39cad99b0966815c582a check_result:commit 0f853ca2a798ead9d24d39cad99b0966815c582a|
+|0113_160659|git log 0f61b1860cc3f52aef9036d7235ed1f017632193 check_result:commit 0f61b1860cc3f52aef9036d7235ed1f017632193|
+|0113_160659|cmd=git checkout -f 0f853ca2a798ead9d24d39cad99b0966815c582a|
+|0113_160701|cmd=cd /root/linux-next|
+|0113_160701||/var/www/html/bzimage/bzImage_0f853ca2a798ead9d24d39cad99b0966815c582a| exist, no need make|
+|0113_160701|Run /var/www/html/bzimage/bzImage_0f853ca2a798ead9d24d39cad99b0966815c582a with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0113_160722|It takes 21 seconds to find login:test login: |
+|0113_160722|Boot 1 time: takes 21 seconds to boot up.|
+|0113_160722|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0113_160724|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0113_160725|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog root@localhost:/root/repro.c|
+|0113_160727|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0113_160727|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0113_160807|/var/www/html/bzimage/bzImage_0f853ca2a798ead9d24d39cad99b0966815c582a contained __wait_on_freeing_inode:[   61.242278] [<ffffffff821343ea>] __wait_on_freeing_inode+0x13a/0x3b0
+[   61.246381]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   61.246441]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   61.246465]  __wait_on_freeing_inode+0x13f/0x3b0
+[   61.246477]  ? __pfx___wait_on_freeing_inode+0x10/0x10
+[   61.271573]  __wait_on_freeing_inode+0x144/0x3b0
+[   61.272119]  ? __pfx___wait_on_freeing_inode+0x10/0x10, FAIL|
+|0113_160807|Found time:61 in /var/www/html/bzimage/0113_160659___wait_on_freeing_inode/0f853ca2a798ead9d24d39cad99b0966815c582a_dmesg.log|
+|0113_160807|Logic: |<=25: +25|25-100 +180|>100 +1800| Set TIME:241|
+|0113_160807|-END- commit 0f853ca2a798ead9d24d39cad99b0966815c582a FAIL bad|
+|0113_160807|cmd=rm -rf /var/www/html//syzkaller/2026_01_13/11e22b34046df23a0d0b172a64d1162e55b29750|
+|0113_160807|cmd=mkdir -p /var/www/html//syzkaller/2026_01_13/11e22b34046df23a0d0b172a64d1162e55b29750|
+|0113_160807|cmd=cp -rf /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog /var/www/html//syzkaller/2026_01_13/11e22b34046df23a0d0b172a64d1162e55b29750/repro.c|
+|0113_160807|gcc -pthread /var/www/html//syzkaller/2026_01_13/11e22b34046df23a0d0b172a64d1162e55b29750/repro.c -o /var/www/html//syzkaller/2026_01_13/11e22b34046df23a0d0b172a64d1162e55b29750/repro|
+|0113_160807|cmd=cp -rf /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/description /var/www/html//syzkaller/2026_01_13/11e22b34046df23a0d0b172a64d1162e55b29750|
+|0113_160807|cp -rf /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/mount_* /var/www/html/bzimage/0113_160659___wait_on_freeing_inode/|
+|0113_160818|wget https://raw.githubusercontent.com/xupengfe/kconfig_diff/main/config-5.18rc4i_kvm -O /var/www/html/bzimage/0113_160659___wait_on_freeing_inode/kconfig_origin:0|
+|0113_160818|cmd=cd /root/linux-next|
+|0113_160818|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 0f61b1860cc3f52aef9036d7235ed1f017632193 -d /var/www/html/bzimage -o /tmp/kernel|
+|0113_165222|Run /var/www/html/bzimage/bzImage_0f61b1860cc3f52aef9036d7235ed1f017632193 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0113_165239|It takes 17 seconds to find login:test login: |
+|0113_165239|Boot 1 time: takes 17 seconds to boot up.|
+|0113_165239|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0113_165240|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0113_165242|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog root@localhost:/root/repro.c|
+|0113_165243|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0113_165243|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0113_165644|/var/www/html/bzimage/bzImage_0f61b1860cc3f52aef9036d7235ed1f017632193 didn't contain __wait_on_freeing_inode: in dmesg, pass|
+|0113_165644|Start commit 0f61b1860cc3f52aef9036d7235ed1f017632193 PASS good|
+|0113_165644|cmd=git checkout -f 0f853ca2a798ead9d24d39cad99b0966815c582a|
+|0113_165646|cmd=git bisect start|
+|0113_165646|cmd=git bisect bad 0f853ca2a798ead9d24d39cad99b0966815c582a|
+|0113_165646|Bisect first start commit:0f61b1860cc3f52aef9036d7235ed1f017632193|
+|0113_165646|git bisect good 0f61b1860cc3f52aef9036d7235ed1f017632193|
+|0113_165648|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 80f60a6b0c1e21da3f74ede4c74aa3f38efa31d5 -d /var/www/html/bzimage -o /tmp/kernel|
+|0113_174355|Run /var/www/html/bzimage/bzImage_80f60a6b0c1e21da3f74ede4c74aa3f38efa31d5 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0113_174415|It takes 20 seconds to find login:test login: |
+|0113_174415|Boot 1 time: takes 20 seconds to boot up.|
+|0113_174415|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0113_174417|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0113_174418|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog root@localhost:/root/repro.c|
+|0113_174420|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0113_174421|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0113_174822|/var/www/html/bzimage/bzImage_80f60a6b0c1e21da3f74ede4c74aa3f38efa31d5 contained __wait_on_freeing_inode:[   25.891029] [<ffffffff8213422a>] __wait_on_freeing_inode+0x13a/0x3b0
+[   25.896095]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   25.896141]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   25.896169]  __wait_on_freeing_inode+0x13f/0x3b0
+[   25.896180]  ? __pfx___wait_on_freeing_inode+0x10/0x10
+[   25.927229]  __wait_on_freeing_inode+0x144/0x3b0
+[   25.927855]  ? __pfx___wait_on_freeing_inode+0x10/0x10, FAIL|
+|0113_174822|git bisect bad 80f60a6b0c1e21da3f74ede4c74aa3f38efa31d5|
+|0113_174824|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m eb27913f85b64c6b67ed30a78665b90a182e3fd5 -d /var/www/html/bzimage -o /tmp/kernel|
+|0113_183608|Run /var/www/html/bzimage/bzImage_eb27913f85b64c6b67ed30a78665b90a182e3fd5 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0113_183631|It takes 23 seconds to find login:test login: |
+|0113_183631|Boot 1 time: takes 23 seconds to boot up.|
+|0113_183631|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0113_183632|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0113_183634|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog root@localhost:/root/repro.c|
+|0113_183636|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0113_183636|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0113_184037|/var/www/html/bzimage/bzImage_eb27913f85b64c6b67ed30a78665b90a182e3fd5 didn't contain __wait_on_freeing_inode: in dmesg, pass|
+|0113_184037|git bisect good eb27913f85b64c6b67ed30a78665b90a182e3fd5|
+|0113_184039|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 37efe8b1049919e99e63107e075f8bc1d94a1fa1 -d /var/www/html/bzimage -o /tmp/kernel|
+|0113_193030|Run /var/www/html/bzimage/bzImage_37efe8b1049919e99e63107e075f8bc1d94a1fa1 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0113_193052|It takes 22 seconds to find login:test login: |
+|0113_193052|Boot 1 time: takes 22 seconds to boot up.|
+|0113_193052|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0113_193053|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0113_193055|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog root@localhost:/root/repro.c|
+|0113_193057|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0113_193057|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0113_193458|/var/www/html/bzimage/bzImage_37efe8b1049919e99e63107e075f8bc1d94a1fa1 contained __wait_on_freeing_inode:[   27.348911] [<ffffffff8212e25a>] __wait_on_freeing_inode+0x13a/0x3b0
+[   27.354121]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   27.354180]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   27.354217]  __wait_on_freeing_inode+0x13f/0x3b0
+[   27.354234]  ? __pfx___wait_on_freeing_inode+0x10/0x10
+[   27.392491]  __wait_on_freeing_inode+0x144/0x3b0
+[   27.393148]  ? __pfx___wait_on_freeing_inode+0x10/0x10, FAIL|
+|0113_193458|git bisect bad 37efe8b1049919e99e63107e075f8bc1d94a1fa1|
+|0113_193500|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 1e66a5b24834355f93828396db7e7f4146912603 -d /var/www/html/bzimage -o /tmp/kernel|
+|0113_202429|Run /var/www/html/bzimage/bzImage_1e66a5b24834355f93828396db7e7f4146912603 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0113_202449|It takes 20 seconds to find login:test login: |
+|0113_202449|Boot 1 time: takes 20 seconds to boot up.|
+|0113_202449|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0113_202450|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0113_202452|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog root@localhost:/root/repro.c|
+|0113_202454|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0113_202454|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0113_202855|/var/www/html/bzimage/bzImage_1e66a5b24834355f93828396db7e7f4146912603 contained __wait_on_freeing_inode:[   25.991752] [<ffffffff82126a2a>] __wait_on_freeing_inode+0x13a/0x3b0
+[   25.997190]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   25.997242]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   25.997280]  __wait_on_freeing_inode+0x13f/0x3b0
+[   25.997296]  ? __pfx___wait_on_freeing_inode+0x10/0x10
+[   26.038013]  __wait_on_freeing_inode+0x144/0x3b0
+[   26.039200]  ? __pfx___wait_on_freeing_inode+0x10/0x10, FAIL|
+|0113_202855|git bisect bad 1e66a5b24834355f93828396db7e7f4146912603|
+|0113_202857|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m f2ae3866f449aabb4c5231f80bf9756dc4fee1c7 -d /var/www/html/bzimage -o /tmp/kernel|
+|0113_211356|Run /var/www/html/bzimage/bzImage_f2ae3866f449aabb4c5231f80bf9756dc4fee1c7 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0113_211414|It takes 18 seconds to find login:test login: |
+|0113_211414|Boot 1 time: takes 18 seconds to boot up.|
+|0113_211414|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0113_211415|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0113_211416|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog root@localhost:/root/repro.c|
+|0113_211418|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0113_211418|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0113_211819|/var/www/html/bzimage/bzImage_f2ae3866f449aabb4c5231f80bf9756dc4fee1c7 didn't contain __wait_on_freeing_inode: in dmesg, pass|
+|0113_211819|git bisect good f2ae3866f449aabb4c5231f80bf9756dc4fee1c7|
+|0113_211820|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 55ffc973331b1a31eaa77da71bb3e17e8f35d86b -d /var/www/html/bzimage -o /tmp/kernel|
+|0113_220247|Run /var/www/html/bzimage/bzImage_55ffc973331b1a31eaa77da71bb3e17e8f35d86b with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0113_220306|It takes 19 seconds to find login:test login: |
+|0113_220306|Boot 1 time: takes 19 seconds to boot up.|
+|0113_220306|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0113_220307|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0113_220309|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog root@localhost:/root/repro.c|
+|0113_220310|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0113_220311|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0113_220712|/var/www/html/bzimage/bzImage_55ffc973331b1a31eaa77da71bb3e17e8f35d86b contained __wait_on_freeing_inode:[   24.138418] [<ffffffff821273ba>] __wait_on_freeing_inode+0x13a/0x3b0
+[   24.147200]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   24.147278]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   24.147331]  __wait_on_freeing_inode+0x13f/0x3b0
+[   24.147354]  ? __pfx___wait_on_freeing_inode+0x10/0x10
+[   24.232998]  __wait_on_freeing_inode+0x144/0x3b0
+[   24.239832]  ? __pfx___wait_on_freeing_inode+0x10/0x10, FAIL|
+|0113_220712|git bisect bad 55ffc973331b1a31eaa77da71bb3e17e8f35d86b|
+|0113_220713|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 98429de9c029195d736ffea9cc297e2e0f78d1c7 -d /var/www/html/bzimage -o /tmp/kernel|
+|0113_225631|Run /var/www/html/bzimage/bzImage_98429de9c029195d736ffea9cc297e2e0f78d1c7 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0113_225654|It takes 23 seconds to find login:test login: |
+|0113_225654|Boot 1 time: takes 23 seconds to boot up.|
+|0113_225654|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0113_225656|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0113_225657|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog root@localhost:/root/repro.c|
+|0113_225659|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0113_225659|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0113_230100|/var/www/html/bzimage/bzImage_98429de9c029195d736ffea9cc297e2e0f78d1c7 contained __wait_on_freeing_inode:[   30.325033] [<ffffffff8212721a>] __wait_on_freeing_inode+0x13a/0x3b0
+[   30.330946]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   30.331008]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   30.331051]  __wait_on_freeing_inode+0x13f/0x3b0
+[   30.331070]  ? __pfx___wait_on_freeing_inode+0x10/0x10
+[   30.376986]  __wait_on_freeing_inode+0x144/0x3b0
+[   30.379055]  ? __pfx___wait_on_freeing_inode+0x10/0x10, FAIL|
+|0113_230100|git bisect bad 98429de9c029195d736ffea9cc297e2e0f78d1c7|
+|0113_230101|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m dc44eb5c2c9f97b7d396412fbac857a58886e50d -d /var/www/html/bzimage -o /tmp/kernel|
+|0113_234542|Run /var/www/html/bzimage/bzImage_dc44eb5c2c9f97b7d396412fbac857a58886e50d with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0113_234602|It takes 20 seconds to find login:test login: |
+|0113_234602|Boot 1 time: takes 20 seconds to boot up.|
+|0113_234602|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0113_234604|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0113_234605|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog root@localhost:/root/repro.c|
+|0113_234606|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0113_234607|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0113_235008|/var/www/html/bzimage/bzImage_dc44eb5c2c9f97b7d396412fbac857a58886e50d contained __wait_on_freeing_inode:[   24.709216] [<ffffffff8212668a>] __wait_on_freeing_inode+0x13a/0x3b0
+[   24.714577]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   24.714632]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   24.714672]  __wait_on_freeing_inode+0x13f/0x3b0
+[   24.714690]  ? __pfx___wait_on_freeing_inode+0x10/0x10
+[   24.756728]  __wait_on_freeing_inode+0x144/0x3b0
+[   24.759068]  ? __pfx___wait_on_freeing_inode+0x10/0x10, FAIL|
+|0113_235008|git bisect bad dc44eb5c2c9f97b7d396412fbac857a58886e50d|
+|0113_235009|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 3685744afa4a2e65a4a509f1b782af98e929b83f -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_003900|Run /var/www/html/bzimage/bzImage_3685744afa4a2e65a4a509f1b782af98e929b83f with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_003926|It takes 25 seconds to find login:test login: |
+|0114_003926|Boot 1 time: takes 25 seconds to boot up.|
+|0114_003926|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_003927|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_003929|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog root@localhost:/root/repro.c|
+|0114_003930|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_003931|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_004332|/var/www/html/bzimage/bzImage_3685744afa4a2e65a4a509f1b782af98e929b83f didn't contain __wait_on_freeing_inode: in dmesg, pass|
+|0114_004332|git bisect good 3685744afa4a2e65a4a509f1b782af98e929b83f|
+|0114_004333|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m edecd1ae594abc8b14ed36c438d1a7db729403ba -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_013411|Run /var/www/html/bzimage/bzImage_edecd1ae594abc8b14ed36c438d1a7db729403ba with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_013433|It takes 21 seconds to find login:test login: |
+|0114_013433|Boot 1 time: takes 21 seconds to boot up.|
+|0114_013433|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_013434|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_013436|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog root@localhost:/root/repro.c|
+|0114_013437|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_013438|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_013839|/var/www/html/bzimage/bzImage_edecd1ae594abc8b14ed36c438d1a7db729403ba didn't contain __wait_on_freeing_inode: in dmesg, pass|
+|0114_013839|git bisect good edecd1ae594abc8b14ed36c438d1a7db729403ba|
+|0114_013840|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 24a4f4e1608f0d1ac2c2692ecb0ce17add0cf6ae -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_022853|Run /var/www/html/bzimage/bzImage_24a4f4e1608f0d1ac2c2692ecb0ce17add0cf6ae with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_022913|It takes 20 seconds to find login:test login: |
+|0114_022913|Boot 1 time: takes 20 seconds to boot up.|
+|0114_022913|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_022914|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_022916|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog root@localhost:/root/repro.c|
+|0114_022917|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_022918|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_023319|/var/www/html/bzimage/bzImage_24a4f4e1608f0d1ac2c2692ecb0ce17add0cf6ae contained __wait_on_freeing_inode:[   26.514426] [<ffffffff8212560a>] __wait_on_freeing_inode+0x13a/0x3b0
+[   26.519451]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   26.519509]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   26.519548]  __wait_on_freeing_inode+0x13f/0x3b0
+[   26.519565]  ? __pfx___wait_on_freeing_inode+0x10/0x10
+[   26.557325]  __wait_on_freeing_inode+0x144/0x3b0
+[   26.557915]  ? __pfx___wait_on_freeing_inode+0x10/0x10, FAIL|
+|0114_023319|git bisect bad 24a4f4e1608f0d1ac2c2692ecb0ce17add0cf6ae|
+|0114_023320|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 2a255acce2e534289a199ebb159c6ff8f82e4d7d -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_032311|Run /var/www/html/bzimage/bzImage_2a255acce2e534289a199ebb159c6ff8f82e4d7d with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_032329|It takes 17 seconds to find login:test login: |
+|0114_032329|Boot 1 time: takes 17 seconds to boot up.|
+|0114_032329|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_032330|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_032331|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog root@localhost:/root/repro.c|
+|0114_032333|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_032333|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_032734|/var/www/html/bzimage/bzImage_2a255acce2e534289a199ebb159c6ff8f82e4d7d contained __wait_on_freeing_inode:[   21.573658] [<ffffffff8212560a>] __wait_on_freeing_inode+0x13a/0x3b0
+[   21.579882]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   21.579946]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   21.579982]  __wait_on_freeing_inode+0x13f/0x3b0
+[   21.579998]  ? __pfx___wait_on_freeing_inode+0x10/0x10
+[   21.626315]  __wait_on_freeing_inode+0x144/0x3b0
+[   21.627035]  ? __pfx___wait_on_freeing_inode+0x10/0x10, FAIL|
+|0114_032734|git bisect bad 2a255acce2e534289a199ebb159c6ff8f82e4d7d|
+|0114_032735|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 757b907b3eadd58acafdb2a273e0ee07dc67ea2c -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_041655|Run /var/www/html/bzimage/bzImage_757b907b3eadd58acafdb2a273e0ee07dc67ea2c with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_041718|It takes 23 seconds to find login:test login: |
+|0114_041718|Boot 1 time: takes 23 seconds to boot up.|
+|0114_041718|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_041720|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_041722|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog root@localhost:/root/repro.c|
+|0114_041723|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_041724|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_042125|/var/www/html/bzimage/bzImage_757b907b3eadd58acafdb2a273e0ee07dc67ea2c contained __wait_on_freeing_inode:[   30.280848] [<ffffffff821255fa>] __wait_on_freeing_inode+0x13a/0x3b0
+[   30.290616]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   30.290695]  ? __wait_on_freeing_inode+0x13a/0x3b0
+[   30.290749]  __wait_on_freeing_inode+0x13f/0x3b0
+[   30.290770]  ? __pfx___wait_on_freeing_inode+0x10/0x10
+[   30.339147]  __wait_on_freeing_inode+0x144/0x3b0
+[   30.339880]  ? __pfx___wait_on_freeing_inode+0x10/0x10, FAIL|
+|0114_042125|git bisect bad 757b907b3eadd58acafdb2a273e0ee07dc67ea2c|
+|0114_042125|Bisect PASS: find bad commit: 757b907b3eadd58acafdb2a273e0ee07dc67ea2c is the first bad commit
+commit 757b907b3eadd58acafdb2a273e0ee07dc67ea2c
+Author: Mateusz Guzik <mjguzik@gmail.com>
+Date:   Sun Jan 11 09:38:42 2026 +0100
+
+    fs: make insert_inode_locked() wait for inode destruction
+    
+    This is the only routine which instead skipped instead of waiting.
+    
+    The current behavior is arguably a bug as it results in a corner case
+    where the inode hash can have *two* matching inodes, one of which is on
+    its way out.
+    
+    Ironing out this difference is an incremental step towards sanitizing
+    the API.
+    
+    Signed-off-by: Mateusz Guzik <mjguzik@gmail.com>
+    Link: https://patch.msgid.link/20260111083843.651167-1-mjguzik@gmail.com
+    Signed-off-by: Christian Brauner <brauner@kernel.org>
+
+ fs/inode.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)|
+|0114_042125|cmd=git bisect log >> /var/www/html/bzimage/bi.log|
+|0114_042125|cmd=git bisect log >> /var/www/html/bzimage/0113_160659___wait_on_freeing_inode/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [0f853ca2a798ead9d24d39cad99b0966815c582a] Add linux-next specific files for 20260113
+git bisect bad 0f853ca2a798ead9d24d39cad99b0966815c582a
+# status: waiting for good commit(s), bad commit known
+# good: [0f61b1860cc3f52aef9036d7235ed1f017632193] Linux 6.19-rc5
+git bisect good 0f61b1860cc3f52aef9036d7235ed1f017632193
+# bad: [80f60a6b0c1e21da3f74ede4c74aa3f38efa31d5] Merge branch 'libcrypto-next' of https://git.kernel.org/pub/scm/linux/kernel/git/ebiggers/linux.git
+git bisect bad 80f60a6b0c1e21da3f74ede4c74aa3f38efa31d5
+# good: [eb27913f85b64c6b67ed30a78665b90a182e3fd5] Merge branch 'for-next' of https://github.com/spacemit-com/linux
+git bisect good eb27913f85b64c6b67ed30a78665b90a182e3fd5
+# bad: [37efe8b1049919e99e63107e075f8bc1d94a1fa1] Merge branch 'hwmon-next' of https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git
+git bisect bad 37efe8b1049919e99e63107e075f8bc1d94a1fa1
+# bad: [1e66a5b24834355f93828396db7e7f4146912603] Merge branch 'for-next' of https://git.kernel.org/pub/scm/linux/kernel/git/viro/vfs.git
+git bisect bad 1e66a5b24834355f93828396db7e7f4146912603
+# good: [f2ae3866f449aabb4c5231f80bf9756dc4fee1c7] Merge branch 'nfsd-next' of https://git.kernel.org/pub/scm/linux/kernel/git/cel/linux
+git bisect good f2ae3866f449aabb4c5231f80bf9756dc4fee1c7
+# bad: [55ffc973331b1a31eaa77da71bb3e17e8f35d86b] Merge branch 'vfs-7.0.nullfs' into vfs.all
+git bisect bad 55ffc973331b1a31eaa77da71bb3e17e8f35d86b
+# bad: [98429de9c029195d736ffea9cc297e2e0f78d1c7] Merge branch 'vfs-7.0.atomic_open' into vfs.all
+git bisect bad 98429de9c029195d736ffea9cc297e2e0f78d1c7
+# bad: [dc44eb5c2c9f97b7d396412fbac857a58886e50d] Merge branch 'vfs-7.0.misc' into vfs.all
+git bisect bad dc44eb5c2c9f97b7d396412fbac857a58886e50d
+# good: [3685744afa4a2e65a4a509f1b782af98e929b83f] chardev: Switch to guard(mutex) and __free(kfree)
+git bisect good 3685744afa4a2e65a4a509f1b782af98e929b83f
+# good: [edecd1ae594abc8b14ed36c438d1a7db729403ba] Merge patch series "vfs kernel-doc fixes for 6.19"
+git bisect good edecd1ae594abc8b14ed36c438d1a7db729403ba
+# bad: [24a4f4e1608f0d1ac2c2692ecb0ce17add0cf6ae] acct(2): begin the deprecation of legacy BSD process accounting
+git bisect bad 24a4f4e1608f0d1ac2c2692ecb0ce17add0cf6ae
+# bad: [2a255acce2e534289a199ebb159c6ff8f82e4d7d] device_cgroup: remove branch hint after code refactor
+git bisect bad 2a255acce2e534289a199ebb159c6ff8f82e4d7d
+# bad: [757b907b3eadd58acafdb2a273e0ee07dc67ea2c] fs: make insert_inode_locked() wait for inode destruction
+git bisect bad 757b907b3eadd58acafdb2a273e0ee07dc67ea2c
+# first bad commit: [757b907b3eadd58acafdb2a273e0ee07dc67ea2c] fs: make insert_inode_locked() wait for inode destruction
+|0114_042125|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 0f853ca2a798ead9d24d39cad99b0966815c582a -b 757b907b3eadd58acafdb2a273e0ee07dc67ea2c -d /var/www/html/bzimage -o /tmp/kernel -f /var/www/html/bzimage/bzImage_0f853ca2a798ead9d24d39cad99b0966815c582a_757b907b3eadd58acafdb2a273e0ee07dc67ea2c_revert|
+|0114_051023|1st base commit:0f61b1860cc3f52aef9036d7235ed1f017632193!|
+|0114_051023|Run /var/www/html/bzimage/bzImage_0f853ca2a798ead9d24d39cad99b0966815c582a_757b907b3eadd58acafdb2a273e0ee07dc67ea2c_revert with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_051040|It takes 17 seconds to find login:test login: |
+|0114_051040|Boot 1 time: takes 17 seconds to boot up.|
+|0114_051040|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_051042|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_051043|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/11e22b34046df23a0d0b172a64d1162e55b29750/repro.cprog root@localhost:/root/repro.c|
+|0114_051045|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_051045|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_051446|/var/www/html/bzimage/bzImage_0f853ca2a798ead9d24d39cad99b0966815c582a_757b907b3eadd58acafdb2a273e0ee07dc67ea2c_revert didn't contain __wait_on_freeing_inode: in dmesg, pass|
+|0114_051446|Bisect successfully! 0f853ca2a798ead9d24d39cad99b0966815c582a_757b907b3eadd58acafdb2a273e0ee07dc67ea2c_revert bzimage passed!|
+|0114_051446|cmd=cd /root/linux-next|
+|0114_051446|ISSUE:11e22b34046df23a0d0b172a64d1162e55b29750  EMAIL status after check:Email_not_sent|
