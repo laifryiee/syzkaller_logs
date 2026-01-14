@@ -1,0 +1,333 @@
+Extracting prog: 37.989983596s
+Minimizing prog: 5m43.98841659s
+Simplifying prog options: 0s
+Extracting C: 23.849540257s
+Simplifying C: 3m9.34017618s
+
+
+extracting reproducer from 68 programs
+first checking the prog from the crash report
+single: executing 1 programs separately with timeout 30s
+testing program (duration=30s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): unshare-openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-perf_event_open-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE-close
+detailed listing:
+executing program 0:
+unshare(0x20000000)
+r0 = openat$snapshot(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+ioctl$SNAPSHOT_SET_SWAP_AREA(r0, 0x400c330d, &(0x7f0000000040)={0xb8000, 0x800})
+ioctl$SNAPSHOT_AVAIL_SWAP_SIZE(r0, 0x80083314, 0x0)
+perf_event_open(&(0x7f0000000100)={0x2, 0x80, 0x56, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_config_ext}, 0x0, 0x0, 0xffffffffffffffff, 0x0)
+ioctl$SNAPSHOT_ALLOC_SWAP_PAGE(r0, 0x80083314, 0x0)
+close(0x3)
+
+program crashed: possible deadlock in swap_free_hibernation_slot
+single: successfully extracted reproducer
+found reproducer with 7 syscalls
+minimizing guilty program
+testing program (duration=40.314307929s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): unshare-openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-perf_event_open-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+detailed listing:
+executing program 0:
+unshare(0x20000000)
+r0 = openat$snapshot(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+ioctl$SNAPSHOT_SET_SWAP_AREA(r0, 0x400c330d, &(0x7f0000000040)={0xb8000, 0x800})
+ioctl$SNAPSHOT_AVAIL_SWAP_SIZE(r0, 0x80083314, 0x0)
+perf_event_open(&(0x7f0000000100)={0x2, 0x80, 0x56, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_config_ext}, 0x0, 0x0, 0xffffffffffffffff, 0x0)
+ioctl$SNAPSHOT_ALLOC_SWAP_PAGE(r0, 0x80083314, 0x0)
+
+program crashed: possible deadlock in swap_free_hibernation_slot
+testing program (duration=40.314307929s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): unshare-openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-perf_event_open
+detailed listing:
+executing program 0:
+unshare(0x20000000)
+r0 = openat$snapshot(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+ioctl$SNAPSHOT_SET_SWAP_AREA(r0, 0x400c330d, &(0x7f0000000040)={0xb8000, 0x800})
+ioctl$SNAPSHOT_AVAIL_SWAP_SIZE(r0, 0x80083314, 0x0)
+perf_event_open(&(0x7f0000000100)={0x2, 0x80, 0x56, 0x1, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, @perf_config_ext}, 0x0, 0x0, 0xffffffffffffffff, 0x0)
+
+program did not crash
+testing program (duration=40.314307929s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): unshare-openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+detailed listing:
+executing program 0:
+unshare(0x20000000)
+r0 = openat$snapshot(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+ioctl$SNAPSHOT_SET_SWAP_AREA(r0, 0x400c330d, &(0x7f0000000040)={0xb8000, 0x800})
+ioctl$SNAPSHOT_AVAIL_SWAP_SIZE(r0, 0x80083314, 0x0)
+ioctl$SNAPSHOT_ALLOC_SWAP_PAGE(r0, 0x80083314, 0x0)
+
+program crashed: possible deadlock in swap_free_hibernation_slot
+testing program (duration=40.314307929s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): unshare-openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+detailed listing:
+executing program 0:
+unshare(0x20000000)
+r0 = openat$snapshot(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+ioctl$SNAPSHOT_SET_SWAP_AREA(r0, 0x400c330d, &(0x7f0000000040)={0xb8000, 0x800})
+ioctl$SNAPSHOT_ALLOC_SWAP_PAGE(r0, 0x80083314, 0x0)
+
+program did not crash
+testing program (duration=40.314307929s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): unshare-openat$snapshot-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+detailed listing:
+executing program 0:
+unshare(0x20000000)
+r0 = openat$snapshot(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+ioctl$SNAPSHOT_AVAIL_SWAP_SIZE(r0, 0x80083314, 0x0)
+ioctl$SNAPSHOT_ALLOC_SWAP_PAGE(r0, 0x80083314, 0x0)
+
+program did not crash
+testing program (duration=40.314307929s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): unshare-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+detailed listing:
+executing program 0:
+unshare(0x20000000)
+ioctl$SNAPSHOT_SET_SWAP_AREA(0xffffffffffffffff, 0x400c330d, &(0x7f0000000040)={0xb8000, 0x800})
+ioctl$SNAPSHOT_AVAIL_SWAP_SIZE(0xffffffffffffffff, 0x80083314, 0x0)
+ioctl$SNAPSHOT_ALLOC_SWAP_PAGE(0xffffffffffffffff, 0x80083314, 0x0)
+
+program did not crash
+testing program (duration=40.314307929s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+detailed listing:
+executing program 0:
+r0 = openat$snapshot(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+ioctl$SNAPSHOT_SET_SWAP_AREA(r0, 0x400c330d, &(0x7f0000000040)={0xb8000, 0x800})
+ioctl$SNAPSHOT_AVAIL_SWAP_SIZE(r0, 0x80083314, 0x0)
+ioctl$SNAPSHOT_ALLOC_SWAP_PAGE(r0, 0x80083314, 0x0)
+
+program crashed: possible deadlock in swap_free_hibernation_slot
+testing program (duration=40.314307929s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+detailed listing:
+executing program 0:
+r0 = openat$snapshot(0xffffffffffffff9c, 0x0, 0x0, 0x0)
+ioctl$SNAPSHOT_SET_SWAP_AREA(r0, 0x400c330d, &(0x7f0000000040)={0xb8000, 0x800})
+ioctl$SNAPSHOT_AVAIL_SWAP_SIZE(r0, 0x80083314, 0x0)
+ioctl$SNAPSHOT_ALLOC_SWAP_PAGE(r0, 0x80083314, 0x0)
+
+program did not crash
+testing program (duration=40.314307929s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+detailed listing:
+executing program 0:
+r0 = openat$snapshot(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+ioctl$SNAPSHOT_SET_SWAP_AREA(r0, 0x400c330d, 0x0)
+ioctl$SNAPSHOT_AVAIL_SWAP_SIZE(r0, 0x80083314, 0x0)
+ioctl$SNAPSHOT_ALLOC_SWAP_PAGE(r0, 0x80083314, 0x0)
+
+program did not crash
+extracting C reproducer
+testing compiled C program (duration=40.314307929s, {Threaded:true Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+program crashed: possible deadlock in swap_free_hibernation_slot
+simplifying C reproducer
+testing compiled C program (duration=40.314307929s, {Threaded:false Repeat:true RepeatTimes:0 Procs:8 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+program crashed: possible deadlock in swap_free_hibernation_slot
+testing compiled C program (duration=40.314307929s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+program crashed: possible deadlock in swap_free_hibernation_slot
+testing compiled C program (duration=40.314307929s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox: SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:false UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+program did not crash
+testing compiled C program (duration=40.314307929s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:true NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+program crashed: possible deadlock in swap_free_hibernation_slot
+testing compiled C program (duration=40.314307929s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+program crashed: possible deadlock in swap_free_hibernation_slot
+testing compiled C program (duration=40.314307929s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:false CloseFDs:true KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+program did not crash
+testing compiled C program (duration=40.314307929s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+program crashed: possible deadlock in swap_free_hibernation_slot
+testing compiled C program (duration=40.314307929s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:false HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+program crashed: possible deadlock in swap_free_hibernation_slot
+testing compiled C program (duration=40.314307929s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:true Swap:true UseTmpDir:false HandleSegv:false Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+program crashed: possible deadlock in swap_free_hibernation_slot
+testing compiled C program (duration=40.314307929s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:false Swap:true UseTmpDir:false HandleSegv:false Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+program crashed: possible deadlock in swap_free_hibernation_slot
+testing compiled C program (duration=40.314307929s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:false Swap:false UseTmpDir:false HandleSegv:false Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+program did not crash
+testing program (duration=40.314307929s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:false Swap:true UseTmpDir:false HandleSegv:false Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+detailed listing:
+executing program 0:
+r0 = openat$snapshot(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+ioctl$SNAPSHOT_SET_SWAP_AREA(r0, 0x400c330d, &(0x7f0000000040)={0xb8000, 0x800})
+ioctl$SNAPSHOT_AVAIL_SWAP_SIZE(r0, 0x80083314, 0x0)
+ioctl$SNAPSHOT_ALLOC_SWAP_PAGE(r0, 0x80083314, 0x0)
+
+program crashed: possible deadlock in swap_free_hibernation_slot
+validation run: crashed=true
+testing program (duration=40.314307929s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:false Swap:true UseTmpDir:false HandleSegv:false Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+detailed listing:
+executing program 0:
+r0 = openat$snapshot(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+ioctl$SNAPSHOT_SET_SWAP_AREA(r0, 0x400c330d, &(0x7f0000000040)={0xb8000, 0x800})
+ioctl$SNAPSHOT_AVAIL_SWAP_SIZE(r0, 0x80083314, 0x0)
+ioctl$SNAPSHOT_ALLOC_SWAP_PAGE(r0, 0x80083314, 0x0)
+
+program crashed: possible deadlock in swap_free_hibernation_slot
+validation run: crashed=true
+testing program (duration=40.314307929s, {Threaded:false Repeat:false RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:false NetDevices:false NetReset:false Cgroups:false BinfmtMisc:true CloseFDs:false KCSAN:false DevlinkPCI:false NicVF:false USB:false VhciInjection:false Wifi:false IEEE802154:false Sysctl:false Swap:true UseTmpDir:false HandleSegv:false Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}}): openat$snapshot-ioctl$SNAPSHOT_SET_SWAP_AREA-ioctl$SNAPSHOT_AVAIL_SWAP_SIZE-ioctl$SNAPSHOT_ALLOC_SWAP_PAGE
+detailed listing:
+executing program 0:
+r0 = openat$snapshot(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+ioctl$SNAPSHOT_SET_SWAP_AREA(r0, 0x400c330d, &(0x7f0000000040)={0xb8000, 0x800})
+ioctl$SNAPSHOT_AVAIL_SWAP_SIZE(r0, 0x80083314, 0x0)
+ioctl$SNAPSHOT_ALLOC_SWAP_PAGE(r0, 0x80083314, 0x0)
+
+program crashed: possible deadlock in swap_free_hibernation_slot
+validation run: crashed=true
+reproducing took 11m2.929715839s
+repro crashed as (corrupted=false):
+Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+============================================
+WARNING: possible recursive locking detected
+6.19.0-rc5-next-20260113-0f853ca2a798 #1 Not tainted
+--------------------------------------------
+syz.2.17/1777 is trying to acquire lock:
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:344 [inline]
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: __swap_cluster_lock mm/swap.h:116 [inline]
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_cluster_lock mm/swap.h:131 [inline]
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_entry_swapped mm/swapfile.c:1740 [inline]
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x13e/0x2a0 mm/swapfile.c:1968
+
+but task is already holding lock:
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:344 [inline]
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: __swap_cluster_lock mm/swap.h:116 [inline]
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_cluster_lock mm/swap.h:131 [inline]
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0 mm/swapfile.c:1966
+
+other info that might help us debug this:
+ Possible unsafe locking scenario:
+
+       CPU0
+       ----
+  lock(&cluster_info[i].lock);
+  lock(&cluster_info[i].lock);
+
+ *** DEADLOCK ***
+
+ May be due to missing lock nesting notation
+
+2 locks held by syz.2.17/1777:
+ #0: ffffffff87542e28 (system_transition_mutex){+.+.}-{4:4}, at: lock_system_sleep+0x92/0xb0 kernel/power/main.c:71
+ #1: ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:344 [inline]
+ #1: ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: __swap_cluster_lock mm/swap.h:116 [inline]
+ #1: ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_cluster_lock mm/swap.h:131 [inline]
+ #1: ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0 mm/swapfile.c:1966
+
+stack backtrace:
+CPU: 0 UID: 0 PID: 1777 Comm: syz.2.17 Not tainted 6.19.0-rc5-next-20260113-0f853ca2a798 #1 PREEMPT(lazy) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ print_deadlock_bug+0x22e/0x300 kernel/locking/lockdep.c:3041
+ check_deadlock kernel/locking/lockdep.c:3093 [inline]
+ validate_chain kernel/locking/lockdep.c:3895 [inline]
+ __lock_acquire+0x1325/0x2210 kernel/locking/lockdep.c:5237
+ lock_acquire kernel/locking/lockdep.c:5868 [inline]
+ lock_acquire+0x170/0x2f0 kernel/locking/lockdep.c:5825
+ __raw_spin_lock include/linux/spinlock_api_smp.h:158 [inline]
+ _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+ spin_lock include/linux/spinlock.h:344 [inline]
+ __swap_cluster_lock mm/swap.h:116 [inline]
+ swap_cluster_lock mm/swap.h:131 [inline]
+ swap_entry_swapped mm/swapfile.c:1740 [inline]
+ swap_free_hibernation_slot+0x13e/0x2a0 mm/swapfile.c:1968
+ free_all_swap_pages+0xdd/0x160 kernel/power/swap.c:203
+ snapshot_release+0xac/0x200 kernel/power/user.c:117
+ __fput+0x41f/0xb70 fs/file_table.c:468
+ ____fput+0x22/0x30 fs/file_table.c:496
+ task_work_run+0x19e/0x2b0 kernel/task_work.c:233
+ resume_user_mode_work include/linux/resume_user_mode.h:50 [inline]
+ __exit_to_user_mode_loop kernel/entry/common.c:44 [inline]
+ exit_to_user_mode_loop+0x14a/0x4d0 kernel/entry/common.c:75
+ __exit_to_user_mode_prepare include/linux/irq-entry-common.h:226 [inline]
+ syscall_exit_to_user_mode_prepare include/linux/irq-entry-common.h:256 [inline]
+ syscall_exit_to_user_mode_work include/linux/entry-common.h:159 [inline]
+ syscall_exit_to_user_mode include/linux/entry-common.h:194 [inline]
+ do_syscall_64+0x3c6/0x1180 arch/x86/entry/syscall_64.c:100
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fc27343ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffca5b04e48 EFLAGS: 00000246 ORIG_RAX: 00000000000001b4
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00007fc27343ee5d
+RDX: 0000000000000000 RSI: 000000000000001e RDI: 0000000000000003
+RBP: 00000000005c5fa0 R08: 0000001b2e520082 R09: 0000000000000000
+R10: 0000001b2e920000 R11: 0000000000000246 R12: ffffffffffffffff
+R13: 0000000000000000 R14: 00000000005c5fac R15: 00000000005c5fa0
+ </TASK>
+
+final repro crashed as (corrupted=false):
+Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+============================================
+WARNING: possible recursive locking detected
+6.19.0-rc5-next-20260113-0f853ca2a798 #1 Not tainted
+--------------------------------------------
+syz.2.17/1777 is trying to acquire lock:
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:344 [inline]
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: __swap_cluster_lock mm/swap.h:116 [inline]
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_cluster_lock mm/swap.h:131 [inline]
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_entry_swapped mm/swapfile.c:1740 [inline]
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x13e/0x2a0 mm/swapfile.c:1968
+
+but task is already holding lock:
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:344 [inline]
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: __swap_cluster_lock mm/swap.h:116 [inline]
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_cluster_lock mm/swap.h:131 [inline]
+ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0 mm/swapfile.c:1966
+
+other info that might help us debug this:
+ Possible unsafe locking scenario:
+
+       CPU0
+       ----
+  lock(&cluster_info[i].lock);
+  lock(&cluster_info[i].lock);
+
+ *** DEADLOCK ***
+
+ May be due to missing lock nesting notation
+
+2 locks held by syz.2.17/1777:
+ #0: ffffffff87542e28 (system_transition_mutex){+.+.}-{4:4}, at: lock_system_sleep+0x92/0xb0 kernel/power/main.c:71
+ #1: ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:344 [inline]
+ #1: ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: __swap_cluster_lock mm/swap.h:116 [inline]
+ #1: ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_cluster_lock mm/swap.h:131 [inline]
+ #1: ffff88801c7d8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0 mm/swapfile.c:1966
+
+stack backtrace:
+CPU: 0 UID: 0 PID: 1777 Comm: syz.2.17 Not tainted 6.19.0-rc5-next-20260113-0f853ca2a798 #1 PREEMPT(lazy) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ print_deadlock_bug+0x22e/0x300 kernel/locking/lockdep.c:3041
+ check_deadlock kernel/locking/lockdep.c:3093 [inline]
+ validate_chain kernel/locking/lockdep.c:3895 [inline]
+ __lock_acquire+0x1325/0x2210 kernel/locking/lockdep.c:5237
+ lock_acquire kernel/locking/lockdep.c:5868 [inline]
+ lock_acquire+0x170/0x2f0 kernel/locking/lockdep.c:5825
+ __raw_spin_lock include/linux/spinlock_api_smp.h:158 [inline]
+ _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+ spin_lock include/linux/spinlock.h:344 [inline]
+ __swap_cluster_lock mm/swap.h:116 [inline]
+ swap_cluster_lock mm/swap.h:131 [inline]
+ swap_entry_swapped mm/swapfile.c:1740 [inline]
+ swap_free_hibernation_slot+0x13e/0x2a0 mm/swapfile.c:1968
+ free_all_swap_pages+0xdd/0x160 kernel/power/swap.c:203
+ snapshot_release+0xac/0x200 kernel/power/user.c:117
+ __fput+0x41f/0xb70 fs/file_table.c:468
+ ____fput+0x22/0x30 fs/file_table.c:496
+ task_work_run+0x19e/0x2b0 kernel/task_work.c:233
+ resume_user_mode_work include/linux/resume_user_mode.h:50 [inline]
+ __exit_to_user_mode_loop kernel/entry/common.c:44 [inline]
+ exit_to_user_mode_loop+0x14a/0x4d0 kernel/entry/common.c:75
+ __exit_to_user_mode_prepare include/linux/irq-entry-common.h:226 [inline]
+ syscall_exit_to_user_mode_prepare include/linux/irq-entry-common.h:256 [inline]
+ syscall_exit_to_user_mode_work include/linux/entry-common.h:159 [inline]
+ syscall_exit_to_user_mode include/linux/entry-common.h:194 [inline]
+ do_syscall_64+0x3c6/0x1180 arch/x86/entry/syscall_64.c:100
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7fc27343ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffca5b04e48 EFLAGS: 00000246 ORIG_RAX: 00000000000001b4
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 00007fc27343ee5d
+RDX: 0000000000000000 RSI: 000000000000001e RDI: 0000000000000003
+RBP: 00000000005c5fa0 R08: 0000001b2e520082 R09: 0000000000000000
+R10: 0000001b2e920000 R11: 0000000000000246 R12: ffffffffffffffff
+R13: 0000000000000000 R14: 00000000005c5fac R15: 00000000005c5fa0
+ </TASK>
+

@@ -1,0 +1,86 @@
+XFS (loop0): Quotacheck: Done.
+XFS (loop0): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop7): Unmounting Filesystem 9f1cad42-11bd-4e12-8f0b-f07876b81d9a
+============================================
+WARNING: possible recursive locking detected
+6.19.0-rc5-next-20260113-0f853ca2a798 #1 Tainted: G             L     
+--------------------------------------------
+syz.7.8080/56893 is trying to acquire lock:
+ffff88801f084a98 (&cluster_info[i].lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:344 [inline]
+ffff88801f084a98 (&cluster_info[i].lock){+.+.}-{3:3}, at: __swap_cluster_lock mm/swap.h:116 [inline]
+ffff88801f084a98 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_cluster_lock mm/swap.h:131 [inline]
+ffff88801f084a98 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_entry_swapped mm/swapfile.c:1740 [inline]
+ffff88801f084a98 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x13e/0x2a0 mm/swapfile.c:1968
+
+but task is already holding lock:
+ffff88801f084a98 (&cluster_info[i].lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:344 [inline]
+ffff88801f084a98 (&cluster_info[i].lock){+.+.}-{3:3}, at: __swap_cluster_lock mm/swap.h:116 [inline]
+ffff88801f084a98 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_cluster_lock mm/swap.h:131 [inline]
+ffff88801f084a98 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0 mm/swapfile.c:1966
+
+other info that might help us debug this:
+ Possible unsafe locking scenario:
+
+       CPU0
+       ----
+  lock(&cluster_info[i].lock);
+  lock(&cluster_info[i].lock);
+
+ *** DEADLOCK ***
+
+ May be due to missing lock nesting notation
+
+2 locks held by syz.7.8080/56893:
+ #0: ffffffff87542e28 (system_transition_mutex){+.+.}-{4:4}, at: lock_system_sleep+0x92/0xb0 kernel/power/main.c:71
+ #1: ffff88801f084a98 (&cluster_info[i].lock){+.+.}-{3:3}, at: spin_lock include/linux/spinlock.h:344 [inline]
+ #1: ffff88801f084a98 (&cluster_info[i].lock){+.+.}-{3:3}, at: __swap_cluster_lock mm/swap.h:116 [inline]
+ #1: ffff88801f084a98 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_cluster_lock mm/swap.h:131 [inline]
+ #1: ffff88801f084a98 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0 mm/swapfile.c:1966
+
+stack backtrace:
+CPU: 0 UID: 0 PID: 56893 Comm: syz.7.8080 Tainted: G             L      6.19.0-rc5-next-20260113-0f853ca2a798 #1 PREEMPT(lazy) 
+Tainted: [L]=SOFTLOCKUP
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xea/0x150 lib/dump_stack.c:120
+ dump_stack+0x19/0x20 lib/dump_stack.c:129
+ print_deadlock_bug+0x22e/0x300 kernel/locking/lockdep.c:3041
+ check_deadlock kernel/locking/lockdep.c:3093 [inline]
+ validate_chain kernel/locking/lockdep.c:3895 [inline]
+ __lock_acquire+0x1325/0x2210 kernel/locking/lockdep.c:5237
+ lock_acquire kernel/locking/lockdep.c:5868 [inline]
+ lock_acquire+0x170/0x2f0 kernel/locking/lockdep.c:5825
+ __raw_spin_lock include/linux/spinlock_api_smp.h:158 [inline]
+ _raw_spin_lock+0x38/0x50 kernel/locking/spinlock.c:154
+ spin_lock include/linux/spinlock.h:344 [inline]
+ __swap_cluster_lock mm/swap.h:116 [inline]
+ swap_cluster_lock mm/swap.h:131 [inline]
+ swap_entry_swapped mm/swapfile.c:1740 [inline]
+ swap_free_hibernation_slot+0x13e/0x2a0 mm/swapfile.c:1968
+ free_all_swap_pages+0xdd/0x160 kernel/power/swap.c:203
+ snapshot_release+0xac/0x200 kernel/power/user.c:117
+ __fput+0x41f/0xb70 fs/file_table.c:468
+ fput_close_sync+0x128/0x230 fs/file_table.c:573
+ __do_sys_close fs/open.c:1509 [inline]
+ __se_sys_close fs/open.c:1494 [inline]
+ __x64_sys_close+0x98/0x130 fs/open.c:1494
+ x64_sys_call+0x1978/0x21b0 arch/x86/include/generated/asm/syscalls_64.h:4
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x6d/0x1180 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f0ff2a3ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007f0ff30eac78 EFLAGS: 00000246 ORIG_RAX: 0000000000000003
+RAX: ffffffffffffffda RBX: 00000000005c5fa0 RCX: 00007f0ff2a3ee5d
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000003
+RBP: 00000000005c5fa0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00000000005c6038 R14: 00007f0ff2a9f560 R15: 0000000000000000
+ </TASK>
+XFS (loop1): Unmounting Filesystem 96fa0d02-eac2-4cc4-980a-feab0601d24f
+XFS (loop1): Uncorrected metadata errors detected; please run xfs_repair.
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

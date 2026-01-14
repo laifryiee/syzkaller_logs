@@ -1,0 +1,34 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [0f853ca2a798ead9d24d39cad99b0966815c582a] Add linux-next specific files for 20260113
+git bisect bad 0f853ca2a798ead9d24d39cad99b0966815c582a
+# status: waiting for good commit(s), bad commit known
+# good: [0f61b1860cc3f52aef9036d7235ed1f017632193] Linux 6.19-rc5
+git bisect good 0f61b1860cc3f52aef9036d7235ed1f017632193
+# bad: [80f60a6b0c1e21da3f74ede4c74aa3f38efa31d5] Merge branch 'libcrypto-next' of https://git.kernel.org/pub/scm/linux/kernel/git/ebiggers/linux.git
+git bisect bad 80f60a6b0c1e21da3f74ede4c74aa3f38efa31d5
+# bad: [eb27913f85b64c6b67ed30a78665b90a182e3fd5] Merge branch 'for-next' of https://github.com/spacemit-com/linux
+git bisect bad eb27913f85b64c6b67ed30a78665b90a182e3fd5
+# bad: [dc8343fa367f55e83ee053477e396fca36f90669] Merge branch 'for-next/core' of https://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux
+git bisect bad dc8343fa367f55e83ee053477e396fca36f90669
+# good: [9843d35ffaf3ffbc0e0a05cd36107fe6081e948e] Merge branch 'for-linux-next-fixes' of https://gitlab.freedesktop.org/drm/misc/kernel.git
+git bisect good 9843d35ffaf3ffbc0e0a05cd36107fe6081e948e
+# bad: [a101e602e0837b13f492a8ca60c4113593129165] mm/rmap: remove unnecessary root lock dance in anon_vma clone, unmap
+git bisect bad a101e602e0837b13f492a8ca60c4113593129165
+# good: [eea921fb593506694520e81ba47167653392795a] mm/hugetlb_cgroup: fix -Wformat-truncation warning
+git bisect good eea921fb593506694520e81ba47167653392795a
+# bad: [9923bd0d216c852856db8716aaa81defb267713d] mm-khugepaged-count-small-vmas-towards-scan-limit-fix
+git bisect bad 9923bd0d216c852856db8716aaa81defb267713d
+# bad: [ef67b537ff35db0597944dbd1ed9cb78b217ba50] mm: clarify GFP_ATOMIC/GFP_NOWAIT doc-comment
+git bisect bad ef67b537ff35db0597944dbd1ed9cb78b217ba50
+# good: [5eb90b875d0924922b6ed946125587cf011ffec9] mm, swap: split locked entry duplicating into a standalone helper
+git bisect good 5eb90b875d0924922b6ed946125587cf011ffec9
+# bad: [514b71e2ba50ab1f3c0a6ad129a63f13173235ab] mm, swap: check swap table directly for checking cache
+git bisect bad 514b71e2ba50ab1f3c0a6ad129a63f13173235ab
+# good: [7349f35d4eee93a2a103dd1f8f2a0a5943161265] mm, swap: remove workaround for unsynchronized swap map cache state
+git bisect good 7349f35d4eee93a2a103dd1f8f2a0a5943161265
+# bad: [938b3e25d43f8fafc68ceac90d3d5055bb16d350] mm, swap: add folio to swap cache directly on allocation
+git bisect bad 938b3e25d43f8fafc68ceac90d3d5055bb16d350
+# bad: [33be6f68989d99b75ff07155aba8998481d45ccc] mm, swap: cleanup swap entry management workflow
+git bisect bad 33be6f68989d99b75ff07155aba8998481d45ccc
+# first bad commit: [33be6f68989d99b75ff07155aba8998481d45ccc] mm, swap: cleanup swap entry management workflow

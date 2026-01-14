@@ -1,0 +1,503 @@
+|0114_102849|cmd=cd /root/linux-next|
+|0114_102849|git log 0f853ca2a798ead9d24d39cad99b0966815c582a check_result:commit 0f853ca2a798ead9d24d39cad99b0966815c582a|
+|0114_102849|git log 0f61b1860cc3f52aef9036d7235ed1f017632193 check_result:commit 0f61b1860cc3f52aef9036d7235ed1f017632193|
+|0114_102849|There was old bisect log:git bisect start
+# status: waiting for both good and bad commits
+# bad: [0f61b1860cc3f52aef9036d7235ed1f017632193] Linux 6.19-rc5
+git bisect bad 0f61b1860cc3f52aef9036d7235ed1f017632193
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# bad: [a8d70602b186f3c347e62c59a418be802b71886d] Merge tag 'for_linus' of git://git.kernel.org/pub/scm/linux/kernel/git/mst/vhost
+git bisect bad a8d70602b186f3c347e62c59a418be802b71886d
+# good: [c8227d568ddf2f38a8806fdcd2e20b9e11747d9a] Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good c8227d568ddf2f38a8806fdcd2e20b9e11747d9a
+# good: [a594533df0f6ca391da003f43d53b336a2d23ffa] Merge tag 'drm-next-2022-12-13' of git://anongit.freedesktop.org/drm/drm
+git bisect good a594533df0f6ca391da003f43d53b336a2d23ffa
+# bad: [61d325dcbc05d8fef88110d35ef7776f3ac3f68b] Merge tag 'erofs-for-6.4-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs
+git bisect bad 61d325dcbc05d8fef88110d35ef7776f3ac3f68b
+# bad: [bcf5470eb4a13e5670fefb21525b43ef385c6fc6] Merge tag 's390-6.3-1' of git://git.kernel.org/pub/scm/linux/kernel/git/s390/linux
+git bisect bad bcf5470eb4a13e5670fefb21525b43ef385c6fc6
+# bad: [3367934dd3035afa72ac79ae649f142a530df157] dt-bindings: drop redundant part of title (manual)
+git bisect bad 3367934dd3035afa72ac79ae649f142a530df157
+# bad: [7e68dd7d07a28faa2e6574dd6b9dbd90cdeaae91] Merge tag 'net-next-6.2' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+git bisect bad 7e68dd7d07a28faa2e6574dd6b9dbd90cdeaae91
+# bad: [7db98396ef4581e4ca2f7e7beb766f4d19fc856a] net/mlx5: E-Switch, Implement devlink port function cmds to control RoCE
+git bisect bad 7db98396ef4581e4ca2f7e7beb766f4d19fc856a
+# good: [71b75f0e02ed160ccbb4fe609036abe83aa32054] net/mlx5: Unregister traps on driver unload flow
+git bisect good 71b75f0e02ed160ccbb4fe609036abe83aa32054
+# good: [d6dc62fca6b6a1e75430618bf6d84cf135f1b3d8] Daniel Borkmann says:
+git bisect good d6dc62fca6b6a1e75430618bf6d84cf135f1b3d8
+# bad: [dbadae92728788d61e910506b0cb61986c7fdb4a] tsnep: Rework RX buffer allocation
+git bisect bad dbadae92728788d61e910506b0cb61986c7fdb4a
+# bad: [281f82037cba97c95f9d78ec0e09cadf4d2f865a] Merge branch 'net-devlink-return-the-driver-name-in-devlink_nl_info_fill'
+git bisect bad 281f82037cba97c95f9d78ec0e09cadf4d2f865a
+# bad: [7f0c940be5c5f52b0a7acaf2b55df73337f5c7a8] Merge branch 'mptcp-msg_fastopen-and-tfo-listener-side-support'
+git bisect bad 7f0c940be5c5f52b0a7acaf2b55df73337f5c7a8
+# bad: [39bedc169cff3f9320ba58339e82eec85cee140d] net: lan966x: Add is2 vcap model to vcap API.
+git bisect bad 39bedc169cff3f9320ba58339e82eec85cee140d
+# bad: [b0488c4598a599157ac9b588541c3c6c5055e80f] net: ethernet: mtk_wed: return status value in mtk_wdma_rx_reset
+git bisect bad b0488c4598a599157ac9b588541c3c6c5055e80f
+# bad: [39d1038620153d9c94a47235d061aefe681d3e65] dt-bindings: net: marvell,prestera: Describe PCI devices of the prestera family
+git bisect bad 39d1038620153d9c94a47235d061aefe681d3e65
+# bad: [63b956f9917595f63d3519131317e38ec8c876a7] dt-bindings: net: marvell,dfx-server: Convert to yaml
+git bisect bad 63b956f9917595f63d3519131317e38ec8c876a7
+# good: [98eb05dc99fdbd9c7e3b865b2d2927768832b0ff] Revert "dt-bindings: marvell,prestera: Add description for device-tree bindings"
+git bisect good 98eb05dc99fdbd9c7e3b865b2d2927768832b0ff
+# first bad commit: [63b956f9917595f63d3519131317e38ec8c876a7] dt-bindings: net: marvell,dfx-server: Convert to yaml, will clean it|
+|0114_102849|cmd=git bisect reset|
+|0114_102858|cmd=git checkout -f 0f853ca2a798ead9d24d39cad99b0966815c582a|
+|0114_102900|cmd=cd /root/linux-next|
+|0114_102900||/var/www/html/bzimage/bzImage_0f853ca2a798ead9d24d39cad99b0966815c582a| exist, no need make|
+|0114_102900|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0114_102900|Run /var/www/html/bzimage/bzImage_0f853ca2a798ead9d24d39cad99b0966815c582a with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_102916|It takes 16 seconds to find login:test login: |
+|0114_102916|Boot 1 time: takes 16 seconds to boot up.|
+|0114_102916|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_102917|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_102918|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.cprog root@localhost:/root/repro.c|
+|0114_102919|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_102920|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_102930|/var/www/html/bzimage/bzImage_0f853ca2a798ead9d24d39cad99b0966815c582a contained swap_free_hibernation_slot:[   19.947314] ffff8880135f8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x13e/0x2a0
+[   19.949076] ffff8880135f8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0
+[   19.956064]  #1: ffff8880135f8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0
+[   19.957835]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   19.957872]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   19.957888]  swap_free_hibernation_slot+0x13e/0x2a0
+[   19.957904]  ? __pfx_swap_free_hibernation_slot+0x10/0x10, FAIL|
+|0114_102930|Found time:19 in /var/www/html/bzimage/0114_102849_swap_free_hibernation_slot/0f853ca2a798ead9d24d39cad99b0966815c582a_dmesg.log|
+|0114_102930|Logic: |<=25: +25|25-100 +180|>100 +1800| Set TIME:44|
+|0114_102930|-END- commit 0f853ca2a798ead9d24d39cad99b0966815c582a FAIL bad|
+|0114_102930|cmd=rm -rf /var/www/html//syzkaller/2026_01_14/dcd1d0c9459074d2b69041ee18796d950e82894c|
+|0114_102930|cmd=mkdir -p /var/www/html//syzkaller/2026_01_14/dcd1d0c9459074d2b69041ee18796d950e82894c|
+|0114_102930|cmd=cp -rf /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.cprog /var/www/html//syzkaller/2026_01_14/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.c|
+|0114_102930|gcc -pthread /var/www/html//syzkaller/2026_01_14/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.c -o /var/www/html//syzkaller/2026_01_14/dcd1d0c9459074d2b69041ee18796d950e82894c/repro|
+|0114_102930|cmd=cp -rf /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/description /var/www/html//syzkaller/2026_01_14/dcd1d0c9459074d2b69041ee18796d950e82894c|
+|0114_102930|cp -rf /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/mount_* /var/www/html/bzimage/0114_102849_swap_free_hibernation_slot/|
+|0114_102941|wget https://raw.githubusercontent.com/xupengfe/kconfig_diff/main/config-5.18rc4i_kvm -O /var/www/html/bzimage/0114_102849_swap_free_hibernation_slot/kconfig_origin:0|
+|0114_102941|cmd=cd /root/linux-next|
+|0114_102941||/var/www/html/bzimage/bzImage_0f61b1860cc3f52aef9036d7235ed1f017632193| exist, no need make|
+|0114_102941|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0114_102941|Run /var/www/html/bzimage/bzImage_0f61b1860cc3f52aef9036d7235ed1f017632193 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_102958|It takes 17 seconds to find login:test login: |
+|0114_102958|Boot 1 time: takes 17 seconds to boot up.|
+|0114_102958|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_102959|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_103000|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.cprog root@localhost:/root/repro.c|
+|0114_103002|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_103002|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_103046|/var/www/html/bzimage/bzImage_0f61b1860cc3f52aef9036d7235ed1f017632193 didn't contain swap_free_hibernation_slot: in dmesg, pass|
+|0114_103046|Start commit 0f61b1860cc3f52aef9036d7235ed1f017632193 PASS good|
+|0114_103046|cmd=git checkout -f 0f853ca2a798ead9d24d39cad99b0966815c582a|
+|0114_103046|cmd=git bisect start|
+|0114_103046|cmd=git bisect bad 0f853ca2a798ead9d24d39cad99b0966815c582a|
+|0114_103046|Bisect first start commit:0f61b1860cc3f52aef9036d7235ed1f017632193|
+|0114_103046|git bisect good 0f61b1860cc3f52aef9036d7235ed1f017632193|
+|0114_103047|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 80f60a6b0c1e21da3f74ede4c74aa3f38efa31d5 -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_105437|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0114_105437|Run /var/www/html/bzimage/bzImage_80f60a6b0c1e21da3f74ede4c74aa3f38efa31d5 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_105452|It takes 15 seconds to find login:test login: |
+|0114_105452|Boot 1 time: takes 15 seconds to boot up.|
+|0114_105452|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_105453|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_105454|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.cprog root@localhost:/root/repro.c|
+|0114_105456|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_105456|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_105540|/var/www/html/bzimage/bzImage_80f60a6b0c1e21da3f74ede4c74aa3f38efa31d5 contained swap_free_hibernation_slot:[   18.663761] ffff888013378018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x13e/0x2a0
+[   18.664521] ffff888013378018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0
+[   18.667456]  #1: ffff888013378018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0
+[   18.668255]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   18.668280]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   18.668289]  swap_free_hibernation_slot+0x13e/0x2a0
+[   18.668299]  ? __pfx_swap_free_hibernation_slot+0x10/0x10
+[   44.984445]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   44.984453]  swap_free_hibernation_slot+0x13e/0x2a0
+[   44.984462]  ? __pfx_swap_free_hibernation_slot+0x10/0x10, FAIL|
+|0114_105540|git bisect bad 80f60a6b0c1e21da3f74ede4c74aa3f38efa31d5|
+|0114_105542|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m eb27913f85b64c6b67ed30a78665b90a182e3fd5 -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_111856|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0114_111856|Run /var/www/html/bzimage/bzImage_eb27913f85b64c6b67ed30a78665b90a182e3fd5 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_111911|It takes 15 seconds to find login:test login: |
+|0114_111911|Boot 1 time: takes 15 seconds to boot up.|
+|0114_111911|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_111912|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_111913|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.cprog root@localhost:/root/repro.c|
+|0114_111914|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_111914|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_111958|/var/www/html/bzimage/bzImage_eb27913f85b64c6b67ed30a78665b90a182e3fd5 contained swap_free_hibernation_slot:[   18.345887] ffff888018000018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x13e/0x2a0
+[   18.346637] ffff888018000018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0
+[   18.349513]  #1: ffff888018000018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0
+[   18.350303]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   18.350331]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   18.350340]  swap_free_hibernation_slot+0x13e/0x2a0
+[   18.350349]  ? __pfx_swap_free_hibernation_slot+0x10/0x10
+[   44.836324]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   44.836332]  swap_free_hibernation_slot+0x13e/0x2a0
+[   44.836338]  ? __pfx_swap_free_hibernation_slot+0x10/0x10, FAIL|
+|0114_111958|git bisect bad eb27913f85b64c6b67ed30a78665b90a182e3fd5|
+|0114_111959|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m dc8343fa367f55e83ee053477e396fca36f90669 -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_114346|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0114_114346|Run /var/www/html/bzimage/bzImage_dc8343fa367f55e83ee053477e396fca36f90669 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_114359|It takes 13 seconds to find login:test login: |
+|0114_114359|Boot 1 time: takes 13 seconds to boot up.|
+|0114_114359|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_114400|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_114401|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.cprog root@localhost:/root/repro.c|
+|0114_114402|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_114403|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_114447|/var/www/html/bzimage/bzImage_dc8343fa367f55e83ee053477e396fca36f90669 contained swap_free_hibernation_slot:[   16.614710] ffff8880180e8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x13e/0x2a0
+[   16.616578] ffff8880180e8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0
+[   16.623843]  #1: ffff8880180e8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0
+[   16.625205]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   16.625238]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   16.625248]  swap_free_hibernation_slot+0x13e/0x2a0
+[   16.625259]  ? __pfx_swap_free_hibernation_slot+0x10/0x10
+[   44.496698]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   44.496711]  swap_free_hibernation_slot+0x13e/0x2a0
+[   44.496722]  ? __pfx_swap_free_hibernation_slot+0x10/0x10, FAIL|
+|0114_114447|git bisect bad dc8343fa367f55e83ee053477e396fca36f90669|
+|0114_114448|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 9843d35ffaf3ffbc0e0a05cd36107fe6081e948e -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_120753|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0114_120753|Run /var/www/html/bzimage/bzImage_9843d35ffaf3ffbc0e0a05cd36107fe6081e948e with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_120810|It takes 17 seconds to find login:test login: |
+|0114_120810|Boot 1 time: takes 17 seconds to boot up.|
+|0114_120810|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_120811|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_120812|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.cprog root@localhost:/root/repro.c|
+|0114_120814|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_120814|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_120858|/var/www/html/bzimage/bzImage_9843d35ffaf3ffbc0e0a05cd36107fe6081e948e didn't contain swap_free_hibernation_slot: in dmesg, pass|
+|0114_120858|git bisect good 9843d35ffaf3ffbc0e0a05cd36107fe6081e948e|
+|0114_120859|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m a101e602e0837b13f492a8ca60c4113593129165 -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_123159|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0114_123159|Run /var/www/html/bzimage/bzImage_a101e602e0837b13f492a8ca60c4113593129165 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_123213|It takes 14 seconds to find login:test login: |
+|0114_123213|Boot 1 time: takes 14 seconds to boot up.|
+|0114_123213|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_123214|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_123215|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.cprog root@localhost:/root/repro.c|
+|0114_123217|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_123217|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_123301|/var/www/html/bzimage/bzImage_a101e602e0837b13f492a8ca60c4113593129165 contained swap_free_hibernation_slot:[   17.289304] ffff888016ce4018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x13e/0x2a0
+[   17.290060] ffff888016ce4018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0
+[   17.293018]  #1: ffff888016ce4018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0
+[   17.293822]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   17.293848]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   17.293857]  swap_free_hibernation_slot+0x13e/0x2a0
+[   17.293867]  ? __pfx_swap_free_hibernation_slot+0x10/0x10
+[   44.868956]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   44.868965]  swap_free_hibernation_slot+0x13e/0x2a0
+[   44.868971]  ? __pfx_swap_free_hibernation_slot+0x10/0x10
+[   44.897376]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   44.897619]  swap_free_hibernation_slot+0x13e/0x2a0
+[   44.897853]  ? __pfx_swap_free_hibernation_slot+0x10/0x10, FAIL|
+|0114_123301|git bisect bad a101e602e0837b13f492a8ca60c4113593129165|
+|0114_123301|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m eea921fb593506694520e81ba47167653392795a -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_125652|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0114_125652|Run /var/www/html/bzimage/bzImage_eea921fb593506694520e81ba47167653392795a with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_125708|It takes 16 seconds to find login:test login: |
+|0114_125708|Boot 1 time: takes 16 seconds to boot up.|
+|0114_125708|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_125709|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_125710|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.cprog root@localhost:/root/repro.c|
+|0114_125711|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_125712|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_125756|/var/www/html/bzimage/bzImage_eea921fb593506694520e81ba47167653392795a didn't contain swap_free_hibernation_slot: in dmesg, pass|
+|0114_125756|git bisect good eea921fb593506694520e81ba47167653392795a|
+|0114_125756|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 9923bd0d216c852856db8716aaa81defb267713d -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_132047|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0114_132047|Run /var/www/html/bzimage/bzImage_9923bd0d216c852856db8716aaa81defb267713d with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_132103|It takes 15 seconds to find login:test login: |
+|0114_132103|Boot 1 time: takes 15 seconds to boot up.|
+|0114_132103|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_132103|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_132105|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.cprog root@localhost:/root/repro.c|
+|0114_132106|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_132106|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_132150|/var/www/html/bzimage/bzImage_9923bd0d216c852856db8716aaa81defb267713d contained swap_free_hibernation_slot:[   18.678119] ffff888013164018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x13e/0x2a0
+[   18.679011] ffff888013164018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0
+[   18.682424]  #1: ffff888013164018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0
+[   18.683362]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   18.683391]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   18.683401]  swap_free_hibernation_slot+0x13e/0x2a0
+[   18.683412]  ? __pfx_swap_free_hibernation_slot+0x10/0x10
+[   44.917982]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   44.917991]  swap_free_hibernation_slot+0x13e/0x2a0
+[   44.917997]  ? __pfx_swap_free_hibernation_slot+0x10/0x10
+[   44.946250]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   44.946496]  swap_free_hibernation_slot+0x13e/0x2a0
+[   44.946738]  ? __pfx_swap_free_hibernation_slot+0x10/0x10, FAIL|
+|0114_132150|git bisect bad 9923bd0d216c852856db8716aaa81defb267713d|
+|0114_132151|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m ef67b537ff35db0597944dbd1ed9cb78b217ba50 -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_134435|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0114_134435|Run /var/www/html/bzimage/bzImage_ef67b537ff35db0597944dbd1ed9cb78b217ba50 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_134453|It takes 18 seconds to find login:test login: |
+|0114_134453|Boot 1 time: takes 18 seconds to boot up.|
+|0114_134453|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_134454|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_134455|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.cprog root@localhost:/root/repro.c|
+|0114_134457|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_134457|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_134541|/var/www/html/bzimage/bzImage_ef67b537ff35db0597944dbd1ed9cb78b217ba50 contained swap_free_hibernation_slot:[   21.485170] ffff888023cb8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x13e/0x2a0
+[   21.485954] ffff888023cb8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0
+[   21.488966]  #1: ffff888023cb8018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0xfa/0x2a0
+[   21.489791]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   21.489817]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   21.489829]  swap_free_hibernation_slot+0x13e/0x2a0
+[   21.489838]  ? __pfx_swap_free_hibernation_slot+0x10/0x10
+[   49.071142]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   49.071151]  swap_free_hibernation_slot+0x13e/0x2a0
+[   49.071158]  ? __pfx_swap_free_hibernation_slot+0x10/0x10
+[   49.099429]  ? swap_free_hibernation_slot+0x13e/0x2a0
+[   49.099675]  swap_free_hibernation_slot+0x13e/0x2a0
+[   49.099909]  ? __pfx_swap_free_hibernation_slot+0x10/0x10, FAIL|
+|0114_134541|git bisect bad ef67b537ff35db0597944dbd1ed9cb78b217ba50|
+|0114_134541|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 5eb90b875d0924922b6ed946125587cf011ffec9 -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_140956|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0114_140956|Run /var/www/html/bzimage/bzImage_5eb90b875d0924922b6ed946125587cf011ffec9 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_141012|It takes 16 seconds to find login:test login: |
+|0114_141012|Boot 1 time: takes 16 seconds to boot up.|
+|0114_141013|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_141014|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_141015|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.cprog root@localhost:/root/repro.c|
+|0114_141016|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_141017|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_141101|/var/www/html/bzimage/bzImage_5eb90b875d0924922b6ed946125587cf011ffec9 didn't contain swap_free_hibernation_slot: in dmesg, pass|
+|0114_141101|git bisect good 5eb90b875d0924922b6ed946125587cf011ffec9|
+|0114_141101|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 514b71e2ba50ab1f3c0a6ad129a63f13173235ab -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_143506|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0114_143506|Run /var/www/html/bzimage/bzImage_514b71e2ba50ab1f3c0a6ad129a63f13173235ab with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_143522|It takes 16 seconds to find login:test login: |
+|0114_143522|Boot 1 time: takes 16 seconds to boot up.|
+|0114_143522|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_143523|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_143525|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.cprog root@localhost:/root/repro.c|
+|0114_143526|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_143526|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_143610|/var/www/html/bzimage/bzImage_514b71e2ba50ab1f3c0a6ad129a63f13173235ab contained swap_free_hibernation_slot:[   19.902112] ffff8880131ac018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x250/0x470
+[   19.902987] ffff8880131ac018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x10a/0x470
+[   19.906379]  #1: ffff8880131ac018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x10a/0x470
+[   19.907324]  ? swap_free_hibernation_slot+0x250/0x470
+[   19.907359]  ? swap_free_hibernation_slot+0x250/0x470
+[   19.907370]  swap_free_hibernation_slot+0x250/0x470
+[   19.907382]  ? __pfx_swap_free_hibernation_slot+0x10/0x10
+[   44.965687]  ? swap_free_hibernation_slot+0x250/0x470
+[   44.965695]  swap_free_hibernation_slot+0x250/0x470
+[   44.965706]  ? __pfx_swap_free_hibernation_slot+0x10/0x10
+[   44.997708]  ? swap_free_hibernation_slot+0x250/0x470
+[   44.997976]  swap_free_hibernation_slot+0x250/0x470
+[   44.998238]  ? __pfx_swap_free_hibernation_slot+0x10/0x10, FAIL|
+|0114_143610|git bisect bad 514b71e2ba50ab1f3c0a6ad129a63f13173235ab|
+|0114_143611|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 7349f35d4eee93a2a103dd1f8f2a0a5943161265 -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_145959|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0114_145959|Run /var/www/html/bzimage/bzImage_7349f35d4eee93a2a103dd1f8f2a0a5943161265 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_150015|It takes 16 seconds to find login:test login: |
+|0114_150015|Boot 1 time: takes 16 seconds to boot up.|
+|0114_150015|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_150016|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_150017|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.cprog root@localhost:/root/repro.c|
+|0114_150018|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_150019|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_150103|/var/www/html/bzimage/bzImage_7349f35d4eee93a2a103dd1f8f2a0a5943161265 didn't contain swap_free_hibernation_slot: in dmesg, pass|
+|0114_150103|git bisect good 7349f35d4eee93a2a103dd1f8f2a0a5943161265|
+|0114_150103|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 938b3e25d43f8fafc68ceac90d3d5055bb16d350 -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_152503|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0114_152503|Run /var/www/html/bzimage/bzImage_938b3e25d43f8fafc68ceac90d3d5055bb16d350 with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_152519|It takes 15 seconds to find login:test login: |
+|0114_152519|Boot 1 time: takes 15 seconds to boot up.|
+|0114_152519|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_152519|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_152521|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.cprog root@localhost:/root/repro.c|
+|0114_152522|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_152522|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_152606|/var/www/html/bzimage/bzImage_938b3e25d43f8fafc68ceac90d3d5055bb16d350 contained swap_free_hibernation_slot:[   18.503262] ffff888013344018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x250/0x470
+[   18.504010] ffff888013344018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x10a/0x470
+[   18.506903]  #1: ffff888013344018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x10a/0x470
+[   18.507689]  ? swap_free_hibernation_slot+0x250/0x470
+[   18.507717]  ? swap_free_hibernation_slot+0x250/0x470
+[   18.507726]  swap_free_hibernation_slot+0x250/0x470
+[   18.507736]  ? __pfx_swap_free_hibernation_slot+0x10/0x10
+[   44.996590]  ? swap_free_hibernation_slot+0x250/0x470
+[   44.996600]  swap_free_hibernation_slot+0x250/0x470
+[   44.996612]  ? __pfx_swap_free_hibernation_slot+0x10/0x10
+[   45.049139]  ? swap_free_hibernation_slot+0x250/0x470
+[   45.049390]  swap_free_hibernation_slot+0x250/0x470
+[   45.049638]  ? __pfx_swap_free_hibernation_slot+0x10/0x10, FAIL|
+|0114_152606|git bisect bad 938b3e25d43f8fafc68ceac90d3d5055bb16d350|
+|0114_152607|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 33be6f68989d99b75ff07155aba8998481d45ccc -d /var/www/html/bzimage -o /tmp/kernel|
+|0114_154923|/root/image/centos9_3.img -> /root/image/centos9_2.img|
+|0114_154923|Run /var/www/html/bzimage/bzImage_33be6f68989d99b75ff07155aba8998481d45ccc with image:/root/image/centos9_2.img in local port:10022, 1 time|
+|0114_154939|It takes 16 seconds to find login:test login: |
+|0114_154939|Boot 1 time: takes 16 seconds to boot up.|
+|0114_154939|cmd=ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'rm -rf file*'|
+|0114_154940|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/bzimage_bisect/repro.sh root@localhost:/root/repro.sh|
+|0114_154941|cmd=scp -o 'StrictHostKeyChecking no' -P 10022 /root/syzkaller/workdir/crashes/dcd1d0c9459074d2b69041ee18796d950e82894c/repro.cprog root@localhost:/root/repro.c|
+|0114_154943|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost 'chmod 755 /root/repro.sh'|
+|0114_154943|ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10022 localhost '/root/repro.sh'|
+|0114_155027|/var/www/html/bzimage/bzImage_33be6f68989d99b75ff07155aba8998481d45ccc contained swap_free_hibernation_slot:[   19.811956] ffff8880195e0018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x152/0x2c0
+[   19.812864] ffff8880195e0018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x101/0x2c0
+[   19.816317]  #1: ffff8880195e0018 (&cluster_info[i].lock){+.+.}-{3:3}, at: swap_free_hibernation_slot+0x101/0x2c0
+[   19.817295]  ? swap_free_hibernation_slot+0x152/0x2c0
+[   19.817348]  ? swap_free_hibernation_slot+0x152/0x2c0
+[   19.817359]  swap_free_hibernation_slot+0x152/0x2c0
+[   19.817370]  ? __pfx_swap_free_hibernation_slot+0x10/0x10
+[   44.894582]  ? swap_free_hibernation_slot+0x152/0x2c0
+[   44.894589]  swap_free_hibernation_slot+0x152/0x2c0
+[   44.894596]  ? __pfx_swap_free_hibernation_slot+0x10/0x10
+[   44.926551]  ? swap_free_hibernation_slot+0x152/0x2c0
+[   44.926816]  swap_free_hibernation_slot+0x152/0x2c0
+[   44.927076]  ? __pfx_swap_free_hibernation_slot+0x10/0x10, FAIL|
+|0114_155027|git bisect bad 33be6f68989d99b75ff07155aba8998481d45ccc|
+|0114_155027|Bisect PASS: find bad commit: 33be6f68989d99b75ff07155aba8998481d45ccc is the first bad commit
+commit 33be6f68989d99b75ff07155aba8998481d45ccc
+Author: Kairui Song <kasong@tencent.com>
+Date:   Sat Dec 20 03:43:43 2025 +0800
+
+    mm, swap: cleanup swap entry management workflow
+    
+    The current swap entry allocation/freeing workflow has never had a clear
+    definition.  This makes it hard to debug or add new optimizations.
+    
+    This commit introduces a proper definition of how swap entries would be
+    allocated and freed.  Now, most operations are folio based, so they will
+    never exceed one swap cluster, and we now have a cleaner border between
+    swap and the rest of mm, making it much easier to follow and debug,
+    especially with new added sanity checks.  Also making more optimization
+    possible.
+    
+    Swap entry will be mostly freed and free with a folio bound.  The folio
+    lock will be useful for resolving many swap related races.
+    
+    Now swap allocation (except hibernation) always starts with a folio in the
+    swap cache, and gets duped/freed protected by the folio lock:
+    
+    - folio_alloc_swap() - The only allocation entry point now.
+      Context: The folio must be locked.
+      This allocates one or a set of continuous swap slots for a folio and
+      binds them to the folio by adding the folio to the swap cache. The
+      swap slots' swap count start with zero value.
+    
+    - folio_dup_swap() - Increase the swap count of one or more entries.
+      Context: The folio must be locked and in the swap cache. For now, the
+      caller still has to lock the new swap entry owner (e.g., PTL).
+      This increases the ref count of swap entries allocated to a folio.
+      Newly allocated swap slots' count has to be increased by this helper
+      as the folio got unmapped (and swap entries got installed).
+    
+    - folio_put_swap() - Decrease the swap count of one or more entries.
+      Context: The folio must be locked and in the swap cache. For now, the
+      caller still has to lock the new swap entry owner (e.g., PTL).
+      This decreases the ref count of swap entries allocated to a folio.
+      Typically, swapin will decrease the swap count as the folio got
+      installed back and the swap entry got uninstalled
+    
+      This won't remove the folio from the swap cache and free the
+      slot. Lazy freeing of swap cache is helpful for reducing IO.
+      There is already a folio_free_swap() for immediate cache reclaim.
+      This part could be further optimized later.
+    
+    The above locking constraints could be further relaxed when the swap table
+    is fully implemented.  Currently dup still needs the caller to lock the
+    swap entry container (e.g.  PTL), or a concurrent zap may underflow the
+    swap count.
+    
+    Some swap users need to interact with swap count without involving folio
+    (e.g.  forking/zapping the page table or mapping truncate without swapin).
+    In such cases, the caller has to ensure there is no race condition on
+    whatever owns the swap count and use the below helpers:
+    
+    - swap_put_entries_direct() - Decrease the swap count directly.
+      Context: The caller must lock whatever is referencing the slots to
+      avoid a race.
+    
+      Typically the page table zapping or shmem mapping truncate will need
+      to free swap slots directly. If a slot is cached (has a folio bound),
+      this will also try to release the swap cache.
+    
+    - swap_dup_entry_direct() - Increase the swap count directly.
+      Context: The caller must lock whatever is referencing the entries to
+      avoid race, and the entries must already have a swap count > 1.
+    
+      Typically, forking will need to copy the page table and hence needs to
+      increase the swap count of the entries in the table. The page table is
+      locked while referencing the swap entries, so the entries all have a
+      swap count > 1 and can't be freed.
+    
+    Hibernation subsystem is a bit different, so two special wrappers are here:
+    
+    - swap_alloc_hibernation_slot() - Allocate one entry from one device.
+    - swap_free_hibernation_slot() - Free one entry allocated by the above
+      helper.
+    
+    All hibernation entries are exclusive to the hibernation subsystem and
+    should not interact with ordinary swap routines.
+    
+    By separating the workflows, it will be possible to bind folio more
+    tightly with swap cache and get rid of the SWAP_HAS_CACHE as a temporary
+    pin.
+    
+    This commit should not introduce any behavior change
+    
+    Link: https://lkml.kernel.org/r/20251220-swap-table-p2-v5-14-8862a265a033@tencent.com
+    Signed-off-by: Kairui Song <kasong@tencent.com>
+    Acked-by: Rafael J. Wysocki (Intel) <rafael@kernel.org>
+    Reviewed-by: Baoquan He <bhe@redhat.com>
+    Cc: Baolin Wang <baolin.wang@linux.alibaba.com>
+    Cc: Barry Song <baohua@kernel.org>
+    Cc: Chris Li <chrisl@kernel.org>
+    Cc: Nhat Pham <nphamcs@gmail.com>
+    Cc: Yosry Ahmed <yosry.ahmed@linux.dev>
+    Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+
+ arch/s390/mm/gmap_helpers.c |   2 +-
+ arch/s390/mm/pgtable.c      |   2 +-
+ include/linux/swap.h        |  58 ++++++++---------
+ kernel/power/swap.c         |  10 +--
+ mm/madvise.c                |   2 +-
+ mm/memory.c                 |  15 +++--
+ mm/rmap.c                   |   7 +-
+ mm/shmem.c                  |  10 +--
+ mm/swap.h                   |  37 +++++++++++
+ mm/swapfile.c               | 152 +++++++++++++++++++++++++++++++-------------
+ 10 files changed, 197 insertions(+), 98 deletions(-)|
+|0114_155027|cmd=git bisect log >> /var/www/html/bzimage/bi.log|
+|0114_155027|cmd=git bisect log >> /var/www/html/bzimage/0114_102849_swap_free_hibernation_slot/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [0f853ca2a798ead9d24d39cad99b0966815c582a] Add linux-next specific files for 20260113
+git bisect bad 0f853ca2a798ead9d24d39cad99b0966815c582a
+# status: waiting for good commit(s), bad commit known
+# good: [0f61b1860cc3f52aef9036d7235ed1f017632193] Linux 6.19-rc5
+git bisect good 0f61b1860cc3f52aef9036d7235ed1f017632193
+# bad: [80f60a6b0c1e21da3f74ede4c74aa3f38efa31d5] Merge branch 'libcrypto-next' of https://git.kernel.org/pub/scm/linux/kernel/git/ebiggers/linux.git
+git bisect bad 80f60a6b0c1e21da3f74ede4c74aa3f38efa31d5
+# bad: [eb27913f85b64c6b67ed30a78665b90a182e3fd5] Merge branch 'for-next' of https://github.com/spacemit-com/linux
+git bisect bad eb27913f85b64c6b67ed30a78665b90a182e3fd5
+# bad: [dc8343fa367f55e83ee053477e396fca36f90669] Merge branch 'for-next/core' of https://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux
+git bisect bad dc8343fa367f55e83ee053477e396fca36f90669
+# good: [9843d35ffaf3ffbc0e0a05cd36107fe6081e948e] Merge branch 'for-linux-next-fixes' of https://gitlab.freedesktop.org/drm/misc/kernel.git
+git bisect good 9843d35ffaf3ffbc0e0a05cd36107fe6081e948e
+# bad: [a101e602e0837b13f492a8ca60c4113593129165] mm/rmap: remove unnecessary root lock dance in anon_vma clone, unmap
+git bisect bad a101e602e0837b13f492a8ca60c4113593129165
+# good: [eea921fb593506694520e81ba47167653392795a] mm/hugetlb_cgroup: fix -Wformat-truncation warning
+git bisect good eea921fb593506694520e81ba47167653392795a
+# bad: [9923bd0d216c852856db8716aaa81defb267713d] mm-khugepaged-count-small-vmas-towards-scan-limit-fix
+git bisect bad 9923bd0d216c852856db8716aaa81defb267713d
+# bad: [ef67b537ff35db0597944dbd1ed9cb78b217ba50] mm: clarify GFP_ATOMIC/GFP_NOWAIT doc-comment
+git bisect bad ef67b537ff35db0597944dbd1ed9cb78b217ba50
+# good: [5eb90b875d0924922b6ed946125587cf011ffec9] mm, swap: split locked entry duplicating into a standalone helper
+git bisect good 5eb90b875d0924922b6ed946125587cf011ffec9
+# bad: [514b71e2ba50ab1f3c0a6ad129a63f13173235ab] mm, swap: check swap table directly for checking cache
+git bisect bad 514b71e2ba50ab1f3c0a6ad129a63f13173235ab
+# good: [7349f35d4eee93a2a103dd1f8f2a0a5943161265] mm, swap: remove workaround for unsynchronized swap map cache state
+git bisect good 7349f35d4eee93a2a103dd1f8f2a0a5943161265
+# bad: [938b3e25d43f8fafc68ceac90d3d5055bb16d350] mm, swap: add folio to swap cache directly on allocation
+git bisect bad 938b3e25d43f8fafc68ceac90d3d5055bb16d350
+# bad: [33be6f68989d99b75ff07155aba8998481d45ccc] mm, swap: cleanup swap entry management workflow
+git bisect bad 33be6f68989d99b75ff07155aba8998481d45ccc
+# first bad commit: [33be6f68989d99b75ff07155aba8998481d45ccc] mm, swap: cleanup swap entry management workflow
+|0114_155027|nohup /root/bzimage_bisect/make_bz.sh -k /root/linux-next -m 0f853ca2a798ead9d24d39cad99b0966815c582a -b 33be6f68989d99b75ff07155aba8998481d45ccc -d /var/www/html/bzimage -o /tmp/kernel -f /var/www/html/bzimage/bzImage_0f853ca2a798ead9d24d39cad99b0966815c582a_33be6f68989d99b75ff07155aba8998481d45ccc_revert|
+|0114_155132|1st base commit:0f61b1860cc3f52aef9036d7235ed1f017632193!|
+|0114_155132|FAIL|bzImage:/var/www/html/bzimage/bzImage_0f853ca2a798ead9d24d39cad99b0966815c582a_33be6f68989d99b75ff07155aba8998481d45ccc_revert does not exist:|
+|0114_155132|1st base commit:0f61b1860cc3f52aef9036d7235ed1f017632193!|
+|0114_155132|ISSUE:dcd1d0c9459074d2b69041ee18796d950e82894c  EMAIL status after check:Email_not_sent|
