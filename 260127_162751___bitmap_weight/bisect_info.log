@@ -1,0 +1,45 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [63804fed149a6750ffd28610c5c1c98cce6bd377] Linux 6.19-rc7
+git bisect bad 63804fed149a6750ffd28610c5c1c98cce6bd377
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [15ac468614e5e4fee82e1eb32568f427b0e51adc] Merge tag 'media/v6.5-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+git bisect good 15ac468614e5e4fee82e1eb32568f427b0e51adc
+# good: [9ab27b018649c9504e894496cb4d7d8afcffd897] Merge tag 'clk-for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux
+git bisect good 9ab27b018649c9504e894496cb4d7d8afcffd897
+# good: [47cf96fbe393839b125a9b694a8cfdd3f4216baa] Merge tag 'arm64-upstream' of git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux
+git bisect good 47cf96fbe393839b125a9b694a8cfdd3f4216baa
+# good: [9792d660a4e91d31a6b1af105ae3f1c29107e94b] Merge tag 'devicetree-for-6.18' of git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux
+git bisect good 9792d660a4e91d31a6b1af105ae3f1c29107e94b
+# good: [f2310b6271dc54278337987ec8140175e8df16f4] Merge tag 'nolibc-20251130-for-6.19-1' of git://git.kernel.org/pub/scm/linux/kernel/git/nolibc/linux-nolibc
+git bisect good f2310b6271dc54278337987ec8140175e8df16f4
+# good: [5797d10ea4fade7df0f920c368cad07f705afc63] Merge tag 'cxl-for-6.19' of git://git.kernel.org/pub/scm/linux/kernel/git/cxl/cxl
+git bisect good 5797d10ea4fade7df0f920c368cad07f705afc63
+# good: [edf602a17b03e6bca31c48f34ac8fc3341503ac1] Merge tag 'tty-6.19-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty
+git bisect good edf602a17b03e6bca31c48f34ac8fc3341503ac1
+# good: [fa084c35afa13ab07a860ef0936cd987f9aa0460] Merge tag 'linux_kselftest-kunit-fixes-6.19-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest
+git bisect good fa084c35afa13ab07a860ef0936cd987f9aa0460
+# good: [316a94cb6398ea073790462ddd337da06ad8e1de] Merge tag 'x86-urgent-2026-01-11' of git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip
+git bisect good 316a94cb6398ea073790462ddd337da06ad8e1de
+# bad: [16aca2c98a6fdf071e5a1a765a295995d7c7e346] mm: restore per-memcg proactive reclaim with !CONFIG_NUMA
+git bisect bad 16aca2c98a6fdf071e5a1a765a295995d7c7e346
+# bad: [d81585830017a896a1d6cfc1c626d7faaf9dfa55] Merge tag 'pci-v6.19-fixes-3' of git://git.kernel.org/pub/scm/linux/kernel/git/pci/pci
+git bisect bad d81585830017a896a1d6cfc1c626d7faaf9dfa55
+# good: [9e995c573b63453a904f3157813dc8cde4a6aba4] Merge tag 'net-6.19-rc6' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good 9e995c573b63453a904f3157813dc8cde4a6aba4
+# good: [353c6f43ab690b5746289c057c1701a389b12f98] Merge tag 'xfs-fixes-6.19-rc6' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux
+git bisect good 353c6f43ab690b5746289c057c1701a389b12f98
+# good: [a57d5cc053e9e6491c54e5bcc8d116cc0d7e98b2] ASoC: tlv320adcx140: Merge fixes from Pengutronix
+git bisect good a57d5cc053e9e6491c54e5bcc8d116cc0d7e98b2
+# good: [711673f8dd19cfb907913cb762d4c6c1b9d2a332] Merge tag 'sound-6.19-rc6' of git://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound
+git bisect good 711673f8dd19cfb907913cb762d4c6c1b9d2a332
+# bad: [380ff27af25e49e2cb2ff8fd0ecd7c95be2976ee] PM: EM: Add dump to get-perf-domains in the EM YNL spec
+git bisect bad 380ff27af25e49e2cb2ff8fd0ecd7c95be2976ee
+# good: [ebabc32ddb84caf2c018ae6aeca2ca2989a8056b] PM: EM: Fix yamllint warnings in the EM YNL spec
+git bisect good ebabc32ddb84caf2c018ae6aeca2ca2989a8056b
+# good: [d29b900cf412c31f18bab67d04db619f64acb43d] PM: EM: Change cpus' type from string to u64 array in the EM YNL spec
+git bisect good d29b900cf412c31f18bab67d04db619f64acb43d
+# first bad commit: [380ff27af25e49e2cb2ff8fd0ecd7c95be2976ee] PM: EM: Add dump to get-perf-domains in the EM YNL spec
+|0127_185334|Bisect successfully! v6.19-rc7_380ff27af25e49e2cb2ff8fd0ecd7c95be2976ee_revert bzimage passed!|
