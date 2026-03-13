@@ -1,0 +1,45 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [1f318b96cc84d7c2ab792fcc0bfd42a7ca890681] Linux 7.0-rc3
+git bisect bad 1f318b96cc84d7c2ab792fcc0bfd42a7ca890681
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [bd6c11bc43c496cddfc6cf603b5d45365606dbd5] Merge tag 'net-next-6.6' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+git bisect good bd6c11bc43c496cddfc6cf603b5d45365606dbd5
+# good: [2edc8f933df7dfc7f9f7e0af8aa68c3b9e8cbade] Merge tag 'xfs-6.13-merge-1' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux
+git bisect good 2edc8f933df7dfc7f9f7e0af8aa68c3b9e8cbade
+# good: [69f2970aad93758bea863432e49b564e0ba649ca] Merge tag 'devicetree-for-6.17' of git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux
+git bisect good 69f2970aad93758bea863432e49b564e0ba649ca
+# good: [578d6aab14899ef782e1605b31707219ee710048] Merge tag 'drm-xe-next-fixes-2025-11-21' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next
+git bisect good 578d6aab14899ef782e1605b31707219ee710048
+# good: [5dbeeb268b63ea2d9795b3e5e8ffb48c236f5bb0] Merge tag 'driver-core-6.19-rc7' of git://git.kernel.org/pub/scm/linux/kernel/git/driver-core/driver-core
+git bisect good 5dbeeb268b63ea2d9795b3e5e8ffb48c236f5bb0
+# bad: [148f95f75c513936d466bcc7e6bf73298da2212b] Merge tag 'slab-for-7.0' of git://git.kernel.org/pub/scm/linux/kernel/git/vbabka/slab
+git bisect bad 148f95f75c513936d466bcc7e6bf73298da2212b
+# bad: [60dc45dde44e0b5c433d8db574daf86b59eb6dc3] Merge tag 'soc-arm-7.0' of git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
+git bisect bad 60dc45dde44e0b5c433d8db574daf86b59eb6dc3
+# bad: [9b1b3dcd28c271fc8c4a87e81860f3a34b6d29b7] Merge tag 'pm-6.20-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+git bisect bad 9b1b3dcd28c271fc8c4a87e81860f3a34b6d29b7
+# bad: [b29a7a8eee6a1ca974aaf053c0ffed1173d279c2] fs: fuse: fix max() of incompatible types
+git bisect bad b29a7a8eee6a1ca974aaf053c0ffed1173d279c2
+# good: [8fdb05de0e2db89d8f56144c60ab784812e8c3b7] Merge tag 'net-6.19-rc9' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good 8fdb05de0e2db89d8f56144c60ab784812e8c3b7
+# good: [ef852baaf6a73551cfaa0d082477b50d842b79b8] Merge tag 'rcu.release.v7.0' of git://git.kernel.org/pub/scm/linux/kernel/git/rcu/linux
+git bisect good ef852baaf6a73551cfaa0d082477b50d842b79b8
+# good: [74554251dfc9374ebf1a9dfc54d6745d56bb9265] Merge tag 'vfs-7.0-rc1.nonblocking_timestamps' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good 74554251dfc9374ebf1a9dfc54d6745d56bb9265
+# good: [c84bb79f70c634a95929f21c14340ab2078d7977] Merge tag 'vfs-7.0-rc1.nullfs' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good c84bb79f70c634a95929f21c14340ab2078d7977
+# good: [58ecde96e8b8d85754c664c3d9814e6ffd38a788] Merge patch series "exportfs: Some kernel-doc fixes"
+git bisect good 58ecde96e8b8d85754c664c3d9814e6ffd38a788
+# good: [157d3d6efd5a58466d90be3a134f9667486fe6f9] Merge tag 'vfs-7.0-rc1.namespace' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good 157d3d6efd5a58466d90be3a134f9667486fe6f9
+# good: [3304b3fedddfb1357c7f9e25526b5a7899ee1f13] Merge tag 'vfs-7.0-rc1.iomap' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good 3304b3fedddfb1357c7f9e25526b5a7899ee1f13
+# bad: [88ec797c468097a8ce97694ed11ea9c982598ec0] fs: make insert_inode_locked() wait for inode destruction
+git bisect bad 88ec797c468097a8ce97694ed11ea9c982598ec0
+# good: [aaf76839616a3cff7bfff6a888e1762bc1d0c235] initramfs_test: kunit test for cpio.filesize > PATH_MAX
+git bisect good aaf76839616a3cff7bfff6a888e1762bc1d0c235
+# first bad commit: [88ec797c468097a8ce97694ed11ea9c982598ec0] fs: make insert_inode_locked() wait for inode destruction
+|0313_011546|Bisect successfully! v7.0-rc3_88ec797c468097a8ce97694ed11ea9c982598ec0_revert bzimage passed!|

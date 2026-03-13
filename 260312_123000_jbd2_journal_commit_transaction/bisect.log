@@ -1,0 +1,395 @@
+|0312_123005|cmd=cd /root/laiyi/linux-next|
+|0312_123005|git log v7.0-rc3 check_result:commit 1f318b96cc84d7c2ab792fcc0bfd42a7ca890681|
+|0312_123005|git log f40ddce88593482919761f74910f42f4b84c004b check_result:commit f40ddce88593482919761f74910f42f4b84c004b|
+|0312_123005|cmd=git checkout -f v7.0-rc3|
+|0312_123007|sshpass is already installed|
+|0312_123007|cmd=cd /root/laiyi/linux-next|
+|0312_123007|ISSUE_FOLDER alreayd exist:/var/www/html//syzkaller/2026_03_12/laiyi|
+|0312_123007|cmd=cp -rf /root/vm_bisect/config-5.18rc4i_kvm /root/laiyi/0312_123000_jbd2_journal_commit_transaction/kconfig_origin|
+|0312_123007|cmd=cp -rf /root/vm_bisect/repro.sh /root/laiyi/0312_123000_jbd2_journal_commit_transaction|
+|0312_123007|/root/laiyi/repro is not .c or .cprog file|
+|0312_123007||/root/laiyi/bzImage_v7.0-rc3| exist, no need make|
+|0312_123007|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_123021|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_v7.0-rc3, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/v7.0-rc3_dmesg.log, port:10024, 1 time|
+|0312_123035|It takes 14 seconds to find login:test login: |
+|0312_123035|Boot 1 time: takes 14 seconds to boot up.|
+|0312_123035|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_123037|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_123037|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_123038|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_123038|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_123038|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_123523|/root/laiyi/bzImage_v7.0-rc3 contained jbd2_journal_commit_transaction:[  300.504464]  jbd2_journal_commit_transaction+0x7aa/0x6350
+[  300.505616]  ? __pfx_jbd2_journal_commit_transaction+0x10/0x10, FAIL|
+|0312_123523|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_123536|Found time:300 in /root/laiyi/0312_123000_jbd2_journal_commit_transaction/v7.0-rc3_dmesg.log|
+|0312_123536|Logic: |<=50: +50|50-100 +180|>100 +1800| Set TIME:2100|
+|0312_123536|-END- commit v7.0-rc3 FAIL bad|
+|0312_123536|cmd=cd /root/laiyi/linux-next|
+|0312_123536||/root/laiyi/bzImage_f40ddce88593482919761f74910f42f4b84c004b| exist, no need make|
+|0312_123536|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_123549|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_f40ddce88593482919761f74910f42f4b84c004b, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/f40ddce88593482919761f74910f42f4b84c004b_dmesg.log, port:10024, 1 time|
+|0312_123604|It takes 15 seconds to find login:test login: |
+|0312_123604|Boot 1 time: takes 15 seconds to boot up.|
+|0312_123604|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_123605|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_123605|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_123606|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_123607|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_123607|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_131107|/root/laiyi/bzImage_f40ddce88593482919761f74910f42f4b84c004b didn't contain jbd2_journal_commit_transaction: in dmesg, pass|
+|0312_131107|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_131117|Start commit f40ddce88593482919761f74910f42f4b84c004b PASS good|
+|0312_131117|cmd=git checkout -f v7.0-rc3|
+|0312_131117|cmd=git bisect start|
+|0312_131118|cmd=git bisect bad v7.0-rc3|
+|0312_131118|Bisect first start commit:f40ddce88593482919761f74910f42f4b84c004b|
+|0312_131118|git bisect good f40ddce88593482919761f74910f42f4b84c004b|
+|0312_131413||/root/laiyi/bzImage_bd6c11bc43c496cddfc6cf603b5d45365606dbd5| exist, no need make|
+|0312_131413|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_131423|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_bd6c11bc43c496cddfc6cf603b5d45365606dbd5, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/bd6c11bc43c496cddfc6cf603b5d45365606dbd5_dmesg.log, port:10024, 1 time|
+|0312_131439|It takes 16 seconds to find login:test login: |
+|0312_131439|Boot 1 time: takes 16 seconds to boot up.|
+|0312_131439|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_131441|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_131441|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_131442|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_131442|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_131442|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_134942|/root/laiyi/bzImage_bd6c11bc43c496cddfc6cf603b5d45365606dbd5 didn't contain jbd2_journal_commit_transaction: in dmesg, pass|
+|0312_134942|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_134952|git bisect good bd6c11bc43c496cddfc6cf603b5d45365606dbd5|
+|0312_135150||/root/laiyi/bzImage_2edc8f933df7dfc7f9f7e0af8aa68c3b9e8cbade| exist, no need make|
+|0312_135150|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_135200|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_2edc8f933df7dfc7f9f7e0af8aa68c3b9e8cbade, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/2edc8f933df7dfc7f9f7e0af8aa68c3b9e8cbade_dmesg.log, port:10024, 1 time|
+|0312_135217|It takes 17 seconds to find login:test login: |
+|0312_135217|Boot 1 time: takes 17 seconds to boot up.|
+|0312_135217|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_135219|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_135219|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_135220|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_135220|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_135220|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_142720|/root/laiyi/bzImage_2edc8f933df7dfc7f9f7e0af8aa68c3b9e8cbade didn't contain jbd2_journal_commit_transaction: in dmesg, pass|
+|0312_142720|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_142729|git bisect good 2edc8f933df7dfc7f9f7e0af8aa68c3b9e8cbade|
+|0312_142848||/root/laiyi/bzImage_69f2970aad93758bea863432e49b564e0ba649ca| exist, no need make|
+|0312_142848|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_142859|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_69f2970aad93758bea863432e49b564e0ba649ca, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/69f2970aad93758bea863432e49b564e0ba649ca_dmesg.log, port:10024, 1 time|
+|0312_142915|It takes 16 seconds to find login:test login: |
+|0312_142915|Boot 1 time: takes 16 seconds to boot up.|
+|0312_142915|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_142917|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_142917|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_142917|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_142918|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_142918|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_150418|/root/laiyi/bzImage_69f2970aad93758bea863432e49b564e0ba649ca didn't contain jbd2_journal_commit_transaction: in dmesg, pass|
+|0312_150418|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_150428|git bisect good 69f2970aad93758bea863432e49b564e0ba649ca|
+|0312_150440||/root/laiyi/bzImage_578d6aab14899ef782e1605b31707219ee710048| exist, no need make|
+|0312_150441|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_150452|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_578d6aab14899ef782e1605b31707219ee710048, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/578d6aab14899ef782e1605b31707219ee710048_dmesg.log, port:10024, 1 time|
+|0312_150510|It takes 18 seconds to find login:test login: |
+|0312_150510|Boot 1 time: takes 18 seconds to boot up.|
+|0312_150510|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_150512|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_150512|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_150513|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_150513|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_150513|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_154013|/root/laiyi/bzImage_578d6aab14899ef782e1605b31707219ee710048 didn't contain jbd2_journal_commit_transaction: in dmesg, pass|
+|0312_154013|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_154024|git bisect good 578d6aab14899ef782e1605b31707219ee710048|
+|0312_154030||/root/laiyi/bzImage_5dbeeb268b63ea2d9795b3e5e8ffb48c236f5bb0| exist, no need make|
+|0312_154030|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_154042|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_5dbeeb268b63ea2d9795b3e5e8ffb48c236f5bb0, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/5dbeeb268b63ea2d9795b3e5e8ffb48c236f5bb0_dmesg.log, port:10024, 1 time|
+|0312_154059|It takes 17 seconds to find login:test login: |
+|0312_154059|Boot 1 time: takes 17 seconds to boot up.|
+|0312_154059|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_154101|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_154101|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_154102|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_154102|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_154102|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_161602|/root/laiyi/bzImage_5dbeeb268b63ea2d9795b3e5e8ffb48c236f5bb0 didn't contain jbd2_journal_commit_transaction: in dmesg, pass|
+|0312_161602|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_161612|git bisect good 5dbeeb268b63ea2d9795b3e5e8ffb48c236f5bb0|
+|0312_161615||/root/laiyi/bzImage_148f95f75c513936d466bcc7e6bf73298da2212b| exist, no need make|
+|0312_161615|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_161626|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_148f95f75c513936d466bcc7e6bf73298da2212b, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/148f95f75c513936d466bcc7e6bf73298da2212b_dmesg.log, port:10024, 1 time|
+|0312_161643|It takes 17 seconds to find login:test login: |
+|0312_161643|Boot 1 time: takes 17 seconds to boot up.|
+|0312_161643|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_161645|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_161645|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_161646|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_161646|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_161646|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_165146|/root/laiyi/bzImage_148f95f75c513936d466bcc7e6bf73298da2212b contained jbd2_journal_commit_transaction:[  300.443952]  jbd2_journal_commit_transaction+0x7aa/0x6290
+[  300.445302]  ? __pfx_jbd2_journal_commit_transaction+0x10/0x10, FAIL|
+|0312_165146|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_165158|git bisect bad 148f95f75c513936d466bcc7e6bf73298da2212b|
+|0312_165159||/root/laiyi/bzImage_60dc45dde44e0b5c433d8db574daf86b59eb6dc3| exist, no need make|
+|0312_165159|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_165210|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_60dc45dde44e0b5c433d8db574daf86b59eb6dc3, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/60dc45dde44e0b5c433d8db574daf86b59eb6dc3_dmesg.log, port:10024, 1 time|
+|0312_165227|It takes 16 seconds to find login:test login: |
+|0312_165227|Boot 1 time: takes 16 seconds to boot up.|
+|0312_165227|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_165228|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_165228|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_165229|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_165230|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_165230|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_172730|/root/laiyi/bzImage_60dc45dde44e0b5c433d8db574daf86b59eb6dc3 contained jbd2_journal_commit_transaction:[  300.461725]  jbd2_journal_commit_transaction+0x7aa/0x6290
+[  300.462799]  ? __pfx_jbd2_journal_commit_transaction+0x10/0x10, FAIL|
+|0312_172730|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_172740|git bisect bad 60dc45dde44e0b5c433d8db574daf86b59eb6dc3|
+|0312_172741||/root/laiyi/bzImage_9b1b3dcd28c271fc8c4a87e81860f3a34b6d29b7| exist, no need make|
+|0312_172741|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_172753|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_9b1b3dcd28c271fc8c4a87e81860f3a34b6d29b7, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/9b1b3dcd28c271fc8c4a87e81860f3a34b6d29b7_dmesg.log, port:10024, 1 time|
+|0312_172810|It takes 17 seconds to find login:test login: |
+|0312_172810|Boot 1 time: takes 17 seconds to boot up.|
+|0312_172810|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_172812|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_172812|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_172813|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_172813|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_172813|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_180313|/root/laiyi/bzImage_9b1b3dcd28c271fc8c4a87e81860f3a34b6d29b7 contained jbd2_journal_commit_transaction:[  300.453689]  jbd2_journal_commit_transaction+0x7aa/0x6290
+[  300.454825]  ? __pfx_jbd2_journal_commit_transaction+0x10/0x10, FAIL|
+|0312_180313|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_180325|git bisect bad 9b1b3dcd28c271fc8c4a87e81860f3a34b6d29b7|
+|0312_180326||/root/laiyi/bzImage_b29a7a8eee6a1ca974aaf053c0ffed1173d279c2| exist, no need make|
+|0312_180326|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_180339|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_b29a7a8eee6a1ca974aaf053c0ffed1173d279c2, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/b29a7a8eee6a1ca974aaf053c0ffed1173d279c2_dmesg.log, port:10024, 1 time|
+|0312_180355|It takes 16 seconds to find login:test login: |
+|0312_180355|Boot 1 time: takes 16 seconds to boot up.|
+|0312_180355|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_180356|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_180356|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_180357|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_180358|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_180358|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_183858|/root/laiyi/bzImage_b29a7a8eee6a1ca974aaf053c0ffed1173d279c2 contained jbd2_journal_commit_transaction:[  300.491640]  jbd2_journal_commit_transaction+0x7aa/0x6290
+[  300.492249]  ? __pfx_jbd2_journal_commit_transaction+0x10/0x10, FAIL|
+|0312_183858|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_183908|git bisect bad b29a7a8eee6a1ca974aaf053c0ffed1173d279c2|
+|0312_183908||/root/laiyi/bzImage_8fdb05de0e2db89d8f56144c60ab784812e8c3b7| exist, no need make|
+|0312_183909|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_183919|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_8fdb05de0e2db89d8f56144c60ab784812e8c3b7, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/8fdb05de0e2db89d8f56144c60ab784812e8c3b7_dmesg.log, port:10024, 1 time|
+|0312_183935|It takes 16 seconds to find login:test login: |
+|0312_183935|Boot 1 time: takes 16 seconds to boot up.|
+|0312_183935|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_183937|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_183937|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_183938|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_183938|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_183938|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_191438|/root/laiyi/bzImage_8fdb05de0e2db89d8f56144c60ab784812e8c3b7 didn't contain jbd2_journal_commit_transaction: in dmesg, pass|
+|0312_191438|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_191449|git bisect good 8fdb05de0e2db89d8f56144c60ab784812e8c3b7|
+|0312_191450||/root/laiyi/bzImage_ef852baaf6a73551cfaa0d082477b50d842b79b8| exist, no need make|
+|0312_191450|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_191501|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_ef852baaf6a73551cfaa0d082477b50d842b79b8, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/ef852baaf6a73551cfaa0d082477b50d842b79b8_dmesg.log, port:10024, 1 time|
+|0312_191517|It takes 16 seconds to find login:test login: |
+|0312_191517|Boot 1 time: takes 16 seconds to boot up.|
+|0312_191517|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_191519|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_191519|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_191520|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_191520|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_191520|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_195020|/root/laiyi/bzImage_ef852baaf6a73551cfaa0d082477b50d842b79b8 didn't contain jbd2_journal_commit_transaction: in dmesg, pass|
+|0312_195020|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_195032|git bisect good ef852baaf6a73551cfaa0d082477b50d842b79b8|
+|0312_195032||/root/laiyi/bzImage_74554251dfc9374ebf1a9dfc54d6745d56bb9265| exist, no need make|
+|0312_195032|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_195045|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_74554251dfc9374ebf1a9dfc54d6745d56bb9265, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/74554251dfc9374ebf1a9dfc54d6745d56bb9265_dmesg.log, port:10024, 1 time|
+|0312_195102|It takes 17 seconds to find login:test login: |
+|0312_195102|Boot 1 time: takes 17 seconds to boot up.|
+|0312_195102|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_195103|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_195103|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_195104|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_195105|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_195105|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_202605|/root/laiyi/bzImage_74554251dfc9374ebf1a9dfc54d6745d56bb9265 didn't contain jbd2_journal_commit_transaction: in dmesg, pass|
+|0312_202605|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_202615|git bisect good 74554251dfc9374ebf1a9dfc54d6745d56bb9265|
+|0312_202615||/root/laiyi/bzImage_c84bb79f70c634a95929f21c14340ab2078d7977| does not exist, will make it|
+|0312_202615|nohup /root/vm_bisect/make_bz.sh -k /root/laiyi/linux-next -m c84bb79f70c634a95929f21c14340ab2078d7977 -d /root/laiyi -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_203152|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_203206|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_c84bb79f70c634a95929f21c14340ab2078d7977, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/c84bb79f70c634a95929f21c14340ab2078d7977_dmesg.log, port:10024, 1 time|
+|0312_203223|It takes 17 seconds to find login:test login: |
+|0312_203223|Boot 1 time: takes 17 seconds to boot up.|
+|0312_203223|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_203225|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_203225|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_203225|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_203226|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_203226|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_210726|/root/laiyi/bzImage_c84bb79f70c634a95929f21c14340ab2078d7977 didn't contain jbd2_journal_commit_transaction: in dmesg, pass|
+|0312_210726|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_210737|git bisect good c84bb79f70c634a95929f21c14340ab2078d7977|
+|0312_210738||/root/laiyi/bzImage_58ecde96e8b8d85754c664c3d9814e6ffd38a788| does not exist, will make it|
+|0312_210738|nohup /root/vm_bisect/make_bz.sh -k /root/laiyi/linux-next -m 58ecde96e8b8d85754c664c3d9814e6ffd38a788 -d /root/laiyi -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_211310|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_211323|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_58ecde96e8b8d85754c664c3d9814e6ffd38a788, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/58ecde96e8b8d85754c664c3d9814e6ffd38a788_dmesg.log, port:10024, 1 time|
+|0312_211339|It takes 16 seconds to find login:test login: |
+|0312_211339|Boot 1 time: takes 16 seconds to boot up.|
+|0312_211339|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_211341|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_211341|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_211342|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_211342|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_211342|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_214842|/root/laiyi/bzImage_58ecde96e8b8d85754c664c3d9814e6ffd38a788 didn't contain jbd2_journal_commit_transaction: in dmesg, pass|
+|0312_214842|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_214856|git bisect good 58ecde96e8b8d85754c664c3d9814e6ffd38a788|
+|0312_214857||/root/laiyi/bzImage_157d3d6efd5a58466d90be3a134f9667486fe6f9| does not exist, will make it|
+|0312_214857|nohup /root/vm_bisect/make_bz.sh -k /root/laiyi/linux-next -m 157d3d6efd5a58466d90be3a134f9667486fe6f9 -d /root/laiyi -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_215437|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_215451|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_157d3d6efd5a58466d90be3a134f9667486fe6f9, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/157d3d6efd5a58466d90be3a134f9667486fe6f9_dmesg.log, port:10024, 1 time|
+|0312_215508|It takes 17 seconds to find login:test login: |
+|0312_215508|Boot 1 time: takes 17 seconds to boot up.|
+|0312_215508|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_215510|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_215510|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_215511|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_215511|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_215511|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_223011|/root/laiyi/bzImage_157d3d6efd5a58466d90be3a134f9667486fe6f9 didn't contain jbd2_journal_commit_transaction: in dmesg, pass|
+|0312_223012|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_223023|git bisect good 157d3d6efd5a58466d90be3a134f9667486fe6f9|
+|0312_223024||/root/laiyi/bzImage_3304b3fedddfb1357c7f9e25526b5a7899ee1f13| does not exist, will make it|
+|0312_223024|nohup /root/vm_bisect/make_bz.sh -k /root/laiyi/linux-next -m 3304b3fedddfb1357c7f9e25526b5a7899ee1f13 -d /root/laiyi -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_223600|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_223614|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_3304b3fedddfb1357c7f9e25526b5a7899ee1f13, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/3304b3fedddfb1357c7f9e25526b5a7899ee1f13_dmesg.log, port:10024, 1 time|
+|0312_223632|It takes 18 seconds to find login:test login: |
+|0312_223632|Boot 1 time: takes 18 seconds to boot up.|
+|0312_223632|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_223634|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_223634|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_223635|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_223635|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_223635|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_231135|/root/laiyi/bzImage_3304b3fedddfb1357c7f9e25526b5a7899ee1f13 didn't contain jbd2_journal_commit_transaction: in dmesg, pass|
+|0312_231135|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_231149|git bisect good 3304b3fedddfb1357c7f9e25526b5a7899ee1f13|
+|0312_231150||/root/laiyi/bzImage_88ec797c468097a8ce97694ed11ea9c982598ec0| does not exist, will make it|
+|0312_231150|nohup /root/vm_bisect/make_bz.sh -k /root/laiyi/linux-next -m 88ec797c468097a8ce97694ed11ea9c982598ec0 -d /root/laiyi -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_231723|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_231739|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_88ec797c468097a8ce97694ed11ea9c982598ec0, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/88ec797c468097a8ce97694ed11ea9c982598ec0_dmesg.log, port:10024, 1 time|
+|0312_231755|It takes 16 seconds to find login:test login: |
+|0312_231755|Boot 1 time: takes 16 seconds to boot up.|
+|0312_231755|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_231757|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_231757|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_231757|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_231758|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_231758|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_235258|/root/laiyi/bzImage_88ec797c468097a8ce97694ed11ea9c982598ec0 contained jbd2_journal_commit_transaction:[  300.448825]  jbd2_journal_commit_transaction+0x7aa/0x6290
+[  300.449542]  ? __pfx_jbd2_journal_commit_transaction+0x10/0x10, FAIL|
+|0312_235258|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_235313|git bisect bad 88ec797c468097a8ce97694ed11ea9c982598ec0|
+|0312_235314||/root/laiyi/bzImage_aaf76839616a3cff7bfff6a888e1762bc1d0c235| does not exist, will make it|
+|0312_235314|nohup /root/vm_bisect/make_bz.sh -k /root/laiyi/linux-next -m aaf76839616a3cff7bfff6a888e1762bc1d0c235 -d /root/laiyi -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_235850|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0312_235906|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_aaf76839616a3cff7bfff6a888e1762bc1d0c235, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/aaf76839616a3cff7bfff6a888e1762bc1d0c235_dmesg.log, port:10024, 1 time|
+|0312_235922|It takes 16 seconds to find login:test login: |
+|0312_235922|Boot 1 time: takes 16 seconds to boot up.|
+|0312_235922|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_235923|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_235923|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0312_235924|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_235925|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_235925|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0313_003425|/root/laiyi/bzImage_aaf76839616a3cff7bfff6a888e1762bc1d0c235 didn't contain jbd2_journal_commit_transaction: in dmesg, pass|
+|0313_003425|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0313_003438|git bisect good aaf76839616a3cff7bfff6a888e1762bc1d0c235|
+|0313_003438|Bisect PASS: find bad commit: 88ec797c468097a8ce97694ed11ea9c982598ec0 is the first bad commit
+commit 88ec797c468097a8ce97694ed11ea9c982598ec0
+Author: Mateusz Guzik <mjguzik@gmail.com>
+Date:   Wed Jan 14 10:47:16 2026 +0100
+
+    fs: make insert_inode_locked() wait for inode destruction
+    
+    This is the only routine which instead skipped instead of waiting.
+    
+    The current behavior is arguably a bug as it results in a corner case
+    where the inode hash can have *two* matching inodes, one of which is on
+    its way out.
+    
+    Ironing out this difference is an incremental step towards sanitizing
+    the API.
+    
+    Signed-off-by: Mateusz Guzik <mjguzik@gmail.com>
+    Link: https://patch.msgid.link/20260114094717.236202-1-mjguzik@gmail.com
+    Signed-off-by: Christian Brauner <brauner@kernel.org>
+
+ fs/inode.c | 41 ++++++++++++++++++++++++-----------------
+ 1 file changed, 24 insertions(+), 17 deletions(-)|
+|0313_003438|cmd=git bisect log >> /root/laiyi/bi.log|
+|0313_003438|cmd=git bisect log >> /root/laiyi/0312_123000_jbd2_journal_commit_transaction/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [1f318b96cc84d7c2ab792fcc0bfd42a7ca890681] Linux 7.0-rc3
+git bisect bad 1f318b96cc84d7c2ab792fcc0bfd42a7ca890681
+# status: waiting for good commit(s), bad commit known
+# good: [f40ddce88593482919761f74910f42f4b84c004b] Linux 5.11
+git bisect good f40ddce88593482919761f74910f42f4b84c004b
+# good: [bd6c11bc43c496cddfc6cf603b5d45365606dbd5] Merge tag 'net-next-6.6' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+git bisect good bd6c11bc43c496cddfc6cf603b5d45365606dbd5
+# good: [2edc8f933df7dfc7f9f7e0af8aa68c3b9e8cbade] Merge tag 'xfs-6.13-merge-1' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux
+git bisect good 2edc8f933df7dfc7f9f7e0af8aa68c3b9e8cbade
+# good: [69f2970aad93758bea863432e49b564e0ba649ca] Merge tag 'devicetree-for-6.17' of git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux
+git bisect good 69f2970aad93758bea863432e49b564e0ba649ca
+# good: [578d6aab14899ef782e1605b31707219ee710048] Merge tag 'drm-xe-next-fixes-2025-11-21' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next
+git bisect good 578d6aab14899ef782e1605b31707219ee710048
+# good: [5dbeeb268b63ea2d9795b3e5e8ffb48c236f5bb0] Merge tag 'driver-core-6.19-rc7' of git://git.kernel.org/pub/scm/linux/kernel/git/driver-core/driver-core
+git bisect good 5dbeeb268b63ea2d9795b3e5e8ffb48c236f5bb0
+# bad: [148f95f75c513936d466bcc7e6bf73298da2212b] Merge tag 'slab-for-7.0' of git://git.kernel.org/pub/scm/linux/kernel/git/vbabka/slab
+git bisect bad 148f95f75c513936d466bcc7e6bf73298da2212b
+# bad: [60dc45dde44e0b5c433d8db574daf86b59eb6dc3] Merge tag 'soc-arm-7.0' of git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
+git bisect bad 60dc45dde44e0b5c433d8db574daf86b59eb6dc3
+# bad: [9b1b3dcd28c271fc8c4a87e81860f3a34b6d29b7] Merge tag 'pm-6.20-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+git bisect bad 9b1b3dcd28c271fc8c4a87e81860f3a34b6d29b7
+# bad: [b29a7a8eee6a1ca974aaf053c0ffed1173d279c2] fs: fuse: fix max() of incompatible types
+git bisect bad b29a7a8eee6a1ca974aaf053c0ffed1173d279c2
+# good: [8fdb05de0e2db89d8f56144c60ab784812e8c3b7] Merge tag 'net-6.19-rc9' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good 8fdb05de0e2db89d8f56144c60ab784812e8c3b7
+# good: [ef852baaf6a73551cfaa0d082477b50d842b79b8] Merge tag 'rcu.release.v7.0' of git://git.kernel.org/pub/scm/linux/kernel/git/rcu/linux
+git bisect good ef852baaf6a73551cfaa0d082477b50d842b79b8
+# good: [74554251dfc9374ebf1a9dfc54d6745d56bb9265] Merge tag 'vfs-7.0-rc1.nonblocking_timestamps' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good 74554251dfc9374ebf1a9dfc54d6745d56bb9265
+# good: [c84bb79f70c634a95929f21c14340ab2078d7977] Merge tag 'vfs-7.0-rc1.nullfs' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good c84bb79f70c634a95929f21c14340ab2078d7977
+# good: [58ecde96e8b8d85754c664c3d9814e6ffd38a788] Merge patch series "exportfs: Some kernel-doc fixes"
+git bisect good 58ecde96e8b8d85754c664c3d9814e6ffd38a788
+# good: [157d3d6efd5a58466d90be3a134f9667486fe6f9] Merge tag 'vfs-7.0-rc1.namespace' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good 157d3d6efd5a58466d90be3a134f9667486fe6f9
+# good: [3304b3fedddfb1357c7f9e25526b5a7899ee1f13] Merge tag 'vfs-7.0-rc1.iomap' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good 3304b3fedddfb1357c7f9e25526b5a7899ee1f13
+# bad: [88ec797c468097a8ce97694ed11ea9c982598ec0] fs: make insert_inode_locked() wait for inode destruction
+git bisect bad 88ec797c468097a8ce97694ed11ea9c982598ec0
+# good: [aaf76839616a3cff7bfff6a888e1762bc1d0c235] initramfs_test: kunit test for cpio.filesize > PATH_MAX
+git bisect good aaf76839616a3cff7bfff6a888e1762bc1d0c235
+# first bad commit: [88ec797c468097a8ce97694ed11ea9c982598ec0] fs: make insert_inode_locked() wait for inode destruction
+|0313_003438|nohup /root/vm_bisect/make_bz.sh -k /root/laiyi/linux-next -m v7.0-rc3 -b 88ec797c468097a8ce97694ed11ea9c982598ec0 -d /root/laiyi -o /tmp/kernel -f /root/laiyi/bzImage_v7.0-rc3_88ec797c468097a8ce97694ed11ea9c982598ec0_revert -c /root/vm_bisect/config-5.18rc4i_kvm  > /root/vm_bisect/nohup.log|
+|0313_004013|2nd base commit:f40ddce88593482919761f74910f42f4b84c004b!|
+|0313_004013|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|
+|0313_004028|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/laiyi/bzImage_v7.0-rc3_88ec797c468097a8ce97694ed11ea9c982598ec0_revert, /root/laiyi/0312_123000_jbd2_journal_commit_transaction/v7.0-rc3_88ec797c468097a8ce97694ed11ea9c982598ec0_revert_dmesg.log, port:10024, 1 time|
+|0313_004043|It takes 15 seconds to find login:test login: |
+|0313_004043|Boot 1 time: takes 15 seconds to boot up.|
+|0313_004043|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_004044|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0313_004044|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/laiyi/0312_123000_jbd2_journal_commit_transaction/repro root@localhost:/root/repro|
+|0313_004045|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0313_004046|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0313_004046|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0313_011546|/root/laiyi/bzImage_v7.0-rc3_88ec797c468097a8ce97694ed11ea9c982598ec0_revert didn't contain jbd2_journal_commit_transaction: in dmesg, pass|
+|0313_011546|Bisect successfully! v7.0-rc3_88ec797c468097a8ce97694ed11ea9c982598ec0_revert bzimage passed!|
+|0313_011546|cmd=cd /root/laiyi/linux-next|
+|0313_011546|ISSUE:laiyi  EMAIL status after check:Email_not_sent|
+|0313_011546|/root/vm_image_bak.img_bak -> /root/vm_image_bak.img|

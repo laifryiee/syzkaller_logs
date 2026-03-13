@@ -1,0 +1,340 @@
+INFO: task jbd2/sda-8:100 blocked for more than 147 seconds.
+      Not tainted 7.0.0-rc3-2026-03-09-intel-next-6d58b6776c9e+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:jbd2/sda-8      state:D stack:0     pid:100   tgid:100   ppid:2      task_flags:0x240040 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5295 [inline]
+ __schedule+0xf9f/0x4200 kernel/sched/core.c:6908
+ __schedule_loop kernel/sched/core.c:6990 [inline]
+ schedule+0xf6/0x3d0 kernel/sched/core.c:7005
+ jbd2_journal_wait_updates+0x146/0x270 fs/jbd2/transaction.c:843
+ jbd2_journal_commit_transaction+0x7aa/0x6350 fs/jbd2/commit.c:454
+ kjournald2+0x203/0x790 fs/jbd2/journal.c:201
+ kthread+0x41a/0x570 kernel/kthread.c:436
+ ret_from_fork+0x781/0xbe0 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+INFO: task syz-executor153:761 blocked for more than 147 seconds.
+      Not tainted 7.0.0-rc3-2026-03-09-intel-next-6d58b6776c9e+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor153 state:D stack:0     pid:761   tgid:761   ppid:741    task_flags:0x400140 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5295 [inline]
+ __schedule+0xf9f/0x4200 kernel/sched/core.c:6908
+ __schedule_loop kernel/sched/core.c:6990 [inline]
+ schedule+0xf6/0x3d0 kernel/sched/core.c:7005
+ jbd2_log_wait_commit+0x2e4/0x4a0 fs/jbd2/journal.c:683
+ jbd2_journal_stop+0xb2f/0xec0 fs/jbd2/transaction.c:1965
+ __ext4_journal_stop+0xea/0x200 fs/ext4/ext4_jbd2.c:136
+ ext4_evict_inode+0x8ce/0x17c0 fs/ext4/inode.c:308
+ evict+0x371/0xae0 fs/inode.c:846
+ iput_final fs/inode.c:1966 [inline]
+ iput fs/inode.c:2015 [inline]
+ iput+0x7b1/0xd70 fs/inode.c:1978
+ filename_unlinkat+0x444/0x6a0 fs/namei.c:5544
+ __do_sys_unlink fs/namei.c:5575 [inline]
+ __se_sys_unlink fs/namei.c:5572 [inline]
+ __x64_sys_unlink+0x50/0x70 fs/namei.c:5572
+ x64_sys_call+0x2101/0x21c0 arch/x86/include/generated/asm/syscalls_64.h:88
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc1/0x1180 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x41f4db
+RSP: 002b:00007ffe15480548 EFLAGS: 00000206 ORIG_RAX: 0000000000000057
+RAX: ffffffffffffffda RBX: 00000000000af13a RCX: 000000000041f4db
+RDX: 00007ffe15480560 RSI: 00007ffe154805f0 RDI: 00007ffe154805f0
+RBP: 0000000000000000 R08: 0000000000000000 R09: 00007ffe154803e0
+R10: 0000000000000100 R11: 0000000000000206 R12: 00007ffe15481650
+R13: 000000002c3648a0 R14: 0000000000000000 R15: 0000000000000001
+ </TASK>
+INFO: task syz-executor153:762 blocked for more than 147 seconds.
+      Not tainted 7.0.0-rc3-2026-03-09-intel-next-6d58b6776c9e+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor153 state:D stack:0     pid:762   tgid:762   ppid:741    task_flags:0x400140 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5295 [inline]
+ __schedule+0xf9f/0x4200 kernel/sched/core.c:6908
+ __schedule_loop kernel/sched/core.c:6990 [inline]
+ schedule+0xf6/0x3d0 kernel/sched/core.c:7005
+ jbd2_log_wait_commit+0x2e4/0x4a0 fs/jbd2/journal.c:683
+ jbd2_journal_stop+0xb2f/0xec0 fs/jbd2/transaction.c:1965
+ __ext4_journal_stop+0xea/0x200 fs/ext4/ext4_jbd2.c:136
+ ext4_evict_inode+0x8ce/0x17c0 fs/ext4/inode.c:308
+ evict+0x371/0xae0 fs/inode.c:846
+ iput_final fs/inode.c:1966 [inline]
+ iput fs/inode.c:2015 [inline]
+ iput+0x7b1/0xd70 fs/inode.c:1978
+ filename_unlinkat+0x444/0x6a0 fs/namei.c:5544
+ __do_sys_unlink fs/namei.c:5575 [inline]
+ __se_sys_unlink fs/namei.c:5572 [inline]
+ __x64_sys_unlink+0x50/0x70 fs/namei.c:5572
+ x64_sys_call+0x2101/0x21c0 arch/x86/include/generated/asm/syscalls_64.h:88
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc1/0x1180 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x41f4db
+RSP: 002b:00007ffe15480548 EFLAGS: 00000206 ORIG_RAX: 0000000000000057
+RAX: ffffffffffffffda RBX: 00000000000af13d RCX: 000000000041f4db
+RDX: 00007ffe15480560 RSI: 00007ffe154805f0 RDI: 00007ffe154805f0
+RBP: 0000000000000000 R08: 0000000000000000 R09: 00007ffe154803e0
+R10: 0000000000000100 R11: 0000000000000206 R12: 00007ffe15481650
+R13: 000000002c3648a0 R14: 0000000000000000 R15: 0000000000000001
+ </TASK>
+INFO: task syz-executor153:763 blocked for more than 147 seconds.
+      Not tainted 7.0.0-rc3-2026-03-09-intel-next-6d58b6776c9e+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor153 state:D stack:0     pid:763   tgid:763   ppid:741    task_flags:0x400140 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5295 [inline]
+ __schedule+0xf9f/0x4200 kernel/sched/core.c:6908
+ __schedule_loop kernel/sched/core.c:6990 [inline]
+ schedule+0xf6/0x3d0 kernel/sched/core.c:7005
+ jbd2_log_wait_commit+0x2e4/0x4a0 fs/jbd2/journal.c:683
+ jbd2_journal_stop+0xb2f/0xec0 fs/jbd2/transaction.c:1965
+ __ext4_journal_stop+0xea/0x200 fs/ext4/ext4_jbd2.c:136
+ ext4_evict_inode+0x8ce/0x17c0 fs/ext4/inode.c:308
+ evict+0x371/0xae0 fs/inode.c:846
+ iput_final fs/inode.c:1966 [inline]
+ iput fs/inode.c:2015 [inline]
+ iput+0x7b1/0xd70 fs/inode.c:1978
+ filename_unlinkat+0x444/0x6a0 fs/namei.c:5544
+ __do_sys_unlink fs/namei.c:5575 [inline]
+ __se_sys_unlink fs/namei.c:5572 [inline]
+ __x64_sys_unlink+0x50/0x70 fs/namei.c:5572
+ x64_sys_call+0x2101/0x21c0 arch/x86/include/generated/asm/syscalls_64.h:88
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc1/0x1180 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x41f4db
+RSP: 002b:00007ffe15480548 EFLAGS: 00000206 ORIG_RAX: 0000000000000057
+RAX: ffffffffffffffda RBX: 00000000000af13d RCX: 000000000041f4db
+RDX: 00007ffe15480560 RSI: 00007ffe154805f0 RDI: 00007ffe154805f0
+RBP: 0000000000000000 R08: 0000000000000000 R09: 00007ffe154803e0
+R10: 0000000000000100 R11: 0000000000000206 R12: 00007ffe15481650
+R13: 000000002c3648a0 R14: 0000000000000000 R15: 0000000000000001
+ </TASK>
+INFO: task syz-executor153:766 blocked for more than 147 seconds.
+      Not tainted 7.0.0-rc3-2026-03-09-intel-next-6d58b6776c9e+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor153 state:D stack:0     pid:766   tgid:766   ppid:741    task_flags:0x440140 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5295 [inline]
+ __schedule+0xf9f/0x4200 kernel/sched/core.c:6908
+ __schedule_loop kernel/sched/core.c:6990 [inline]
+ schedule+0xf6/0x3d0 kernel/sched/core.c:7005
+ __wait_on_freeing_inode+0x2e7/0x410 fs/inode.c:2560
+ insert_inode_locked+0x26e/0x860 fs/inode.c:1863
+ __ext4_new_inode+0x1c4a/0x5310 fs/ext4/ialloc.c:1272
+ ext4_mkdir+0x360/0xb70 fs/ext4/namei.c:3005
+ vfs_mkdir+0x35b/0x820 fs/namei.c:5233
+ filename_mkdirat+0x482/0x600 fs/namei.c:5266
+ __do_sys_mkdir fs/namei.c:5293 [inline]
+ __se_sys_mkdir fs/namei.c:5290 [inline]
+ __x64_sys_mkdir+0x75/0xa0 fs/namei.c:5290
+ x64_sys_call+0x595/0x21c0 arch/x86/include/generated/asm/syscalls_64.h:84
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc1/0x1180 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x41f1eb
+RSP: 002b:00007ffe15481628 EFLAGS: 00000206 ORIG_RAX: 0000000000000053
+RAX: ffffffffffffffda RBX: 00000000000af141 RCX: 000000000041f1eb
+RDX: 0000000000000000 RSI: 00000000000001ff RDI: 00007ffe15481650
+RBP: 0000000000000308 R08: 0000000000000000 R09: 00007ffe154813c7
+R10: 0000000000000001 R11: 0000000000000206 R12: 0000000000000001
+R13: 431bde82d7b634db R14: 00000000004b6b28 R15: 0000000000000001
+ </TASK>
+INFO: task syz-executor153:768 blocked for more than 147 seconds.
+      Not tainted 7.0.0-rc3-2026-03-09-intel-next-6d58b6776c9e+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor153 state:D stack:0     pid:768   tgid:768   ppid:741    task_flags:0x400140 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5295 [inline]
+ __schedule+0xf9f/0x4200 kernel/sched/core.c:6908
+ __schedule_loop kernel/sched/core.c:6990 [inline]
+ schedule+0xf6/0x3d0 kernel/sched/core.c:7005
+ jbd2_log_wait_commit+0x2e4/0x4a0 fs/jbd2/journal.c:683
+ jbd2_journal_stop+0xb2f/0xec0 fs/jbd2/transaction.c:1965
+ __ext4_journal_stop+0xea/0x200 fs/ext4/ext4_jbd2.c:136
+ ext4_evict_inode+0x8ce/0x17c0 fs/ext4/inode.c:308
+ evict+0x371/0xae0 fs/inode.c:846
+ iput_final fs/inode.c:1966 [inline]
+ iput fs/inode.c:2015 [inline]
+ iput+0x7b1/0xd70 fs/inode.c:1978
+ filename_unlinkat+0x444/0x6a0 fs/namei.c:5544
+ __do_sys_unlink fs/namei.c:5575 [inline]
+ __se_sys_unlink fs/namei.c:5572 [inline]
+ __x64_sys_unlink+0x50/0x70 fs/namei.c:5572
+ x64_sys_call+0x2101/0x21c0 arch/x86/include/generated/asm/syscalls_64.h:88
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc1/0x1180 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x41f4db
+RSP: 002b:00007ffe15480548 EFLAGS: 00000206 ORIG_RAX: 0000000000000057
+RAX: ffffffffffffffda RBX: 00000000000af13d RCX: 000000000041f4db
+RDX: 00007ffe15480560 RSI: 00007ffe154805f0 RDI: 00007ffe154805f0
+RBP: 0000000000000000 R08: 0000000000000000 R09: 00007ffe154803e0
+R10: 0000000000000100 R11: 0000000000000206 R12: 00007ffe15481650
+R13: 000000002c3648a0 R14: 0000000000000000 R15: 0000000000000001
+ </TASK>
+INFO: task syz-executor153:769 blocked for more than 147 seconds.
+      Not tainted 7.0.0-rc3-2026-03-09-intel-next-6d58b6776c9e+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor153 state:D stack:0     pid:769   tgid:769   ppid:741    task_flags:0x400140 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5295 [inline]
+ __schedule+0xf9f/0x4200 kernel/sched/core.c:6908
+ __schedule_loop kernel/sched/core.c:6990 [inline]
+ schedule+0xf6/0x3d0 kernel/sched/core.c:7005
+ jbd2_log_wait_commit+0x2e4/0x4a0 fs/jbd2/journal.c:683
+ jbd2_journal_stop+0xb2f/0xec0 fs/jbd2/transaction.c:1965
+ __ext4_journal_stop+0xea/0x200 fs/ext4/ext4_jbd2.c:136
+ ext4_evict_inode+0x8ce/0x17c0 fs/ext4/inode.c:308
+ evict+0x371/0xae0 fs/inode.c:846
+ iput_final fs/inode.c:1966 [inline]
+ iput fs/inode.c:2015 [inline]
+ iput+0x7b1/0xd70 fs/inode.c:1978
+ filename_unlinkat+0x444/0x6a0 fs/namei.c:5544
+ __do_sys_unlink fs/namei.c:5575 [inline]
+ __se_sys_unlink fs/namei.c:5572 [inline]
+ __x64_sys_unlink+0x50/0x70 fs/namei.c:5572
+ x64_sys_call+0x2101/0x21c0 arch/x86/include/generated/asm/syscalls_64.h:88
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc1/0x1180 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x41f4db
+RSP: 002b:00007ffe15480548 EFLAGS: 00000206 ORIG_RAX: 0000000000000057
+RAX: ffffffffffffffda RBX: 00000000000af13e RCX: 000000000041f4db
+RDX: 00007ffe15480560 RSI: 00007ffe154805f0 RDI: 00007ffe154805f0
+RBP: 0000000000000000 R08: 0000000000000000 R09: 00007ffe154803e0
+R10: 0000000000000100 R11: 0000000000000206 R12: 00007ffe15481650
+R13: 000000002c3648a0 R14: 0000000000000000 R15: 0000000000000001
+ </TASK>
+INFO: task syz-executor153:770 blocked for more than 147 seconds.
+      Not tainted 7.0.0-rc3-2026-03-09-intel-next-6d58b6776c9e+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor153 state:D stack:0     pid:770   tgid:770   ppid:741    task_flags:0x400140 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5295 [inline]
+ __schedule+0xf9f/0x4200 kernel/sched/core.c:6908
+ __schedule_loop kernel/sched/core.c:6990 [inline]
+ schedule+0xf6/0x3d0 kernel/sched/core.c:7005
+ jbd2_log_wait_commit+0x2e4/0x4a0 fs/jbd2/journal.c:683
+ jbd2_journal_stop+0xb2f/0xec0 fs/jbd2/transaction.c:1965
+ __ext4_journal_stop+0xea/0x200 fs/ext4/ext4_jbd2.c:136
+ ext4_evict_inode+0x8ce/0x17c0 fs/ext4/inode.c:308
+ evict+0x371/0xae0 fs/inode.c:846
+ iput_final fs/inode.c:1966 [inline]
+ iput fs/inode.c:2015 [inline]
+ iput+0x7b1/0xd70 fs/inode.c:1978
+ filename_unlinkat+0x444/0x6a0 fs/namei.c:5544
+ __do_sys_unlink fs/namei.c:5575 [inline]
+ __se_sys_unlink fs/namei.c:5572 [inline]
+ __x64_sys_unlink+0x50/0x70 fs/namei.c:5572
+ x64_sys_call+0x2101/0x21c0 arch/x86/include/generated/asm/syscalls_64.h:88
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc1/0x1180 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x41f4db
+RSP: 002b:00007ffe15480548 EFLAGS: 00000206 ORIG_RAX: 0000000000000057
+RAX: ffffffffffffffda RBX: 00000000000af13f RCX: 000000000041f4db
+RDX: 00007ffe15480560 RSI: 00007ffe154805f0 RDI: 00007ffe154805f0
+RBP: 0000000000000000 R08: 0000000000000000 R09: 00007ffe154803e0
+R10: 0000000000000100 R11: 0000000000000206 R12: 00007ffe15481650
+R13: 000000002c3648a0 R14: 0000000000000000 R15: 0000000000000001
+ </TASK>
+INFO: task syz-executor153:777 blocked for more than 147 seconds.
+      Not tainted 7.0.0-rc3-2026-03-09-intel-next-6d58b6776c9e+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz-executor153 state:D stack:0     pid:777   tgid:777   ppid:767    task_flags:0x440040 flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5295 [inline]
+ __schedule+0xf9f/0x4200 kernel/sched/core.c:6908
+ __schedule_loop kernel/sched/core.c:6990 [inline]
+ schedule+0xf6/0x3d0 kernel/sched/core.c:7005
+ __wait_on_freeing_inode+0x2e7/0x410 fs/inode.c:2560
+ insert_inode_locked+0x26e/0x860 fs/inode.c:1863
+ __ext4_new_inode+0x1c4a/0x5310 fs/ext4/ialloc.c:1272
+ ext4_symlink+0x6c9/0xc70 fs/ext4/namei.c:3386
+ vfs_symlink fs/namei.c:5615 [inline]
+ vfs_symlink+0x191/0x4f0 fs/namei.c:5594
+ filename_symlinkat+0x398/0x4f0 fs/namei.c:5640
+ __do_sys_symlink fs/namei.c:5667 [inline]
+ __se_sys_symlink fs/namei.c:5663 [inline]
+ __x64_sys_symlink+0x83/0xc0 fs/namei.c:5663
+ x64_sys_call+0x20b4/0x21c0 arch/x86/include/generated/asm/syscalls_64.h:89
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc1/0x1180 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x41f4ab
+RSP: 002b:00007ffe15481628 EFLAGS: 00000202 ORIG_RAX: 0000000000000058
+RAX: ffffffffffffffda RBX: 0031656c69662f2e RCX: 000000000041f4ab
+RDX: 0000000000000004 RSI: 000000000048d039 RDI: 000000000048d044
+RBP: 0000000000000000 R08: 0000000000000000 R09: 00007ffe154810a0
+R10: 0000000000000000 R11: 0000000000000202 R12: 0000000000000001
+R13: 431bde82d7b634db R14: 00000000004b6b28 R15: 0000000000000001
+ </TASK>
+
+Showing all locks held in the system:
+4 locks held by kworker/u8:0/12:
+ #0: ff1100000edfe948 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x131f/0x1bb0 kernel/workqueue.c:3250
+ #1: ff1100000e5afce8 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x89f/0x1bb0 kernel/workqueue.c:3251
+ #2: ff1100001433a0e0 (&type->s_umount_key#39){++++}-{4:4}, at: super_trylock_shared+0x2b/0x110 fs/super.c:565
+ #3: ff1100001433eb98 (&sbi->s_writepages_rwsem){++++}-{0:0}, at: do_writepages+0x255/0x5b0 mm/page-writeback.c:2554
+1 lock held by khungtaskd/33:
+ #0: ffffffff87697de0 (rcu_read_lock){....}-{1:3}, at: rcu_lock_acquire include/linux/rcupdate.h:312 [inline]
+ #0: ffffffff87697de0 (rcu_read_lock){....}-{1:3}, at: rcu_read_lock include/linux/rcupdate.h:850 [inline]
+ #0: ffffffff87697de0 (rcu_read_lock){....}-{1:3}, at: debug_show_all_locks+0x3b/0x1f0 kernel/locking/lockdep.c:6775
+4 locks held by kworker/u8:3/54:
+ #0: ff1100000edfe948 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x131f/0x1bb0 kernel/workqueue.c:3250
+ #1: ff1100001012fce8 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x89f/0x1bb0 kernel/workqueue.c:3251
+ #2: ff1100001433a0e0 (&type->s_umount_key#39){++++}-{4:4}, at: super_trylock_shared+0x2b/0x110 fs/super.c:565
+ #3: ff1100001433eb98 (&sbi->s_writepages_rwsem){++++}-{0:0}, at: do_writepages+0x255/0x5b0 mm/page-writeback.c:2554
+2 locks held by syz-executor153/761:
+ #0: ff1100001433a408 (sb_writers#3){.+.+}-{0:0}, at: filename_unlinkat+0x195/0x6a0 fs/namei.c:5517
+ #1: ff1100001433a5f8 (sb_internal){.+.+}-{0:0}, at: evict+0x371/0xae0 fs/inode.c:846
+2 locks held by syz-executor153/762:
+ #0: ff1100001433a408 (sb_writers#3){.+.+}-{0:0}, at: filename_unlinkat+0x195/0x6a0 fs/namei.c:5517
+ #1: ff1100001433a5f8 (sb_internal){.+.+}-{0:0}, at: evict+0x371/0xae0 fs/inode.c:846
+2 locks held by syz-executor153/763:
+ #0: ff1100001433a408 (sb_writers#3){.+.+}-{0:0}, at: filename_unlinkat+0x195/0x6a0 fs/namei.c:5517
+ #1: ff1100001433a5f8 (sb_internal){.+.+}-{0:0}, at: evict+0x371/0xae0 fs/inode.c:846
+3 locks held by syz-executor153/766:
+ #0: ff1100001433a408 (sb_writers#3){.+.+}-{0:0}, at: filename_create+0x122/0x460 fs/namei.c:4915
+ #1: ff1100002f65d9f0 (&type->i_mutex_dir_key#3/1){+.+.}-{4:4}, at: inode_lock_nested include/linux/fs.h:1073 [inline]
+ #1: ff1100002f65d9f0 (&type->i_mutex_dir_key#3/1){+.+.}-{4:4}, at: __start_dirop fs/namei.c:2923 [inline]
+ #1: ff1100002f65d9f0 (&type->i_mutex_dir_key#3/1){+.+.}-{4:4}, at: start_dirop fs/namei.c:2934 [inline]
+ #1: ff1100002f65d9f0 (&type->i_mutex_dir_key#3/1){+.+.}-{4:4}, at: filename_create+0x1e6/0x460 fs/namei.c:4922
+ #2: ff110000143c2950 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x1042/0x1550 fs/jbd2/transaction.c:444
+2 locks held by syz-executor153/768:
+ #0: ff1100001433a408 (sb_writers#3){.+.+}-{0:0}, at: filename_unlinkat+0x195/0x6a0 fs/namei.c:5517
+ #1: ff1100001433a5f8 (sb_internal){.+.+}-{0:0}, at: evict+0x371/0xae0 fs/inode.c:846
+2 locks held by syz-executor153/769:
+ #0: ff1100001433a408 (sb_writers#3){.+.+}-{0:0}, at: filename_unlinkat+0x195/0x6a0 fs/namei.c:5517
+ #1: ff1100001433a5f8 (sb_internal){.+.+}-{0:0}, at: evict+0x371/0xae0 fs/inode.c:846
+2 locks held by syz-executor153/770:
+ #0: ff1100001433a408 (sb_writers#3){.+.+}-{0:0}, at: filename_unlinkat+0x195/0x6a0 fs/namei.c:5517
+ #1: ff1100001433a5f8 (sb_internal){.+.+}-{0:0}, at: evict+0x371/0xae0 fs/inode.c:846
+3 locks held by syz-executor153/777:
+ #0: ff1100001433a408 (sb_writers#3){.+.+}-{0:0}, at: filename_create+0x122/0x460 fs/namei.c:4915
+ #1: ff1100002f6633b0 (&type->i_mutex_dir_key#3/1){+.+.}-{4:4}, at: inode_lock_nested include/linux/fs.h:1073 [inline]
+ #1: ff1100002f6633b0 (&type->i_mutex_dir_key#3/1){+.+.}-{4:4}, at: __start_dirop fs/namei.c:2923 [inline]
+ #1: ff1100002f6633b0 (&type->i_mutex_dir_key#3/1){+.+.}-{4:4}, at: start_dirop fs/namei.c:2934 [inline]
+ #1: ff1100002f6633b0 (&type->i_mutex_dir_key#3/1){+.+.}-{4:4}, at: filename_create+0x1e6/0x460 fs/namei.c:4922
+ #2: ff110000143c2950 (jbd2_handle){++++}-{0:0}, at: start_this_handle+0x1042/0x1550 fs/jbd2/transaction.c:444
+4 locks held by kworker/u8:4/779:
+ #0: ff1100000edfe948 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x131f/0x1bb0 kernel/workqueue.c:3250
+ #1: ff1100000f9cfce8 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x89f/0x1bb0 kernel/workqueue.c:3251
+ #2: ff1100001433a0e0 (&type->s_umount_key#39){++++}-{4:4}, at: super_trylock_shared+0x2b/0x110 fs/super.c:565
+ #3: ff1100001433eb98 (&sbi->s_writepages_rwsem){++++}-{0:0}, at: do_writepages+0x255/0x5b0 mm/page-writeback.c:2554
+
+=============================================
+
