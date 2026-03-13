@@ -1,0 +1,494 @@
+|0312_161703|cmd=cd /root/linux-next|
+|0312_161703|git log next-20260311 check_result:commit f90aadf1c67c8b4969d1e5e6d4fd7227adb6e4d7|
+|0312_161703|git log v5.12 check_result:commit 9f4ad9e425a1d3b6a34617b8ea226d56a119a717|
+|0312_161703|cmd=git checkout -f next-20260311|
+|0312_161703|sshpass is already installed|
+|0312_161703|cmd=cd /root/linux-next|
+|0312_161703|cmd=rm -rf /var/www/html//syzkaller/2026_03_12/ly_bisection|
+|0312_161703|cmd=mkdir -p /var/www/html//syzkaller/2026_03_12/ly_bisection|
+|0312_161703|cmd=cp -rf /root/vm_bisect/config-5.18rc4i_kvm /root/ly_bisection/0312_161703_add_transaction_credits/kconfig_origin|
+|0312_161703|cmd=cp -rf /root/vm_bisect/repro.sh /root/ly_bisection/0312_161703_add_transaction_credits|
+|0312_161703|/root/ly_bisection/repro is not .c or .cprog file|
+|0312_161703||/root/ly_bisection/bzImage_next-20260311| does not exist, will make it|
+|0312_161703|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m next-20260311 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_162429|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_next-20260311, /root/ly_bisection/0312_161703_add_transaction_credits/next-20260311_dmesg.log, port:10024, 1 time|
+|0312_162443|It takes 14 seconds to find login:test login: |
+|0312_162443|Boot 1 time: takes 14 seconds to boot up.|
+|0312_162443|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_162445|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_162445|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0312_162446|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_162446|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_162446|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_162931|/root/ly_bisection/bzImage_next-20260311 contained add_transaction_credits:[  300.340437]  add_transaction_credits+0x121/0x1000
+[  300.341133]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.360019]  add_transaction_credits+0x121/0x1000
+[  300.360347]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.379269]  add_transaction_credits+0x121/0x1000
+[  300.379859]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.406779]  add_transaction_credits+0x121/0x1000
+[  300.407368]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.434034]  add_transaction_credits+0x121/0x1000
+[  300.434632]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.460511]  add_transaction_credits+0x121/0x1000
+[  300.460843]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.487479]  add_transaction_credits+0x121/0x1000
+[  300.488064]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.528015]  add_transaction_credits+0x121/0x1000
+[  300.528632]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.548273]  add_transaction_credits+0x121/0x1000
+[  300.548897]  ? __pfx_add_transaction_credits+0x10/0x10, FAIL|
+|0312_162931|Found time:300 in /root/ly_bisection/0312_161703_add_transaction_credits/next-20260311_dmesg.log|
+|0312_162931|Logic: |<=50: +50|50-100 +180|>100 +1800| Set TIME:2100|
+|0312_162931|-END- commit next-20260311 FAIL bad|
+|0312_162931|cmd=cd /root/linux-next|
+|0312_162931||/root/ly_bisection/bzImage_v5.12| exist, no need make|
+|0312_162931|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_v5.12, /root/ly_bisection/0312_161703_add_transaction_credits/v5.12_dmesg.log, port:10024, 1 time|
+|0312_162945|It takes 14 seconds to find login:test login: |
+|0312_162945|Boot 1 time: takes 14 seconds to boot up.|
+|0312_162945|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_162947|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_162947|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0312_162948|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_162948|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_162948|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_170448|/root/ly_bisection/bzImage_v5.12 didn't contain add_transaction_credits: in dmesg, pass|
+|0312_170448|Start commit v5.12 PASS good|
+|0312_170448|cmd=git checkout -f next-20260311|
+|0312_170448|cmd=git bisect start|
+|0312_170448|cmd=git bisect bad next-20260311|
+|0312_170448|Bisect first start commit:v5.12|
+|0312_170448|git bisect good v5.12|
+|0312_170626||/root/ly_bisection/bzImage_e9cbc89067cce78211c8629c78e931c0fe64e29d| does not exist, will make it|
+|0312_170626|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m e9cbc89067cce78211c8629c78e931c0fe64e29d -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_171258|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_e9cbc89067cce78211c8629c78e931c0fe64e29d, /root/ly_bisection/0312_161703_add_transaction_credits/e9cbc89067cce78211c8629c78e931c0fe64e29d_dmesg.log, port:10024, 1 time|
+|0312_171316|It takes 18 seconds to find login:test login: |
+|0312_171316|Boot 1 time: takes 18 seconds to boot up.|
+|0312_171316|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_171318|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_171318|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0312_171319|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_171319|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_171319|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_174819|/root/ly_bisection/bzImage_e9cbc89067cce78211c8629c78e931c0fe64e29d didn't contain add_transaction_credits: in dmesg, pass|
+|0312_174819|git bisect good e9cbc89067cce78211c8629c78e931c0fe64e29d|
+|0312_174858||/root/ly_bisection/bzImage_07e5c4eb94e6aba96fa11b424b39c5e5576a7713| does not exist, will make it|
+|0312_174858|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 07e5c4eb94e6aba96fa11b424b39c5e5576a7713 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_175601|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_07e5c4eb94e6aba96fa11b424b39c5e5576a7713, /root/ly_bisection/0312_161703_add_transaction_credits/07e5c4eb94e6aba96fa11b424b39c5e5576a7713_dmesg.log, port:10024, 1 time|
+|0312_175616|It takes 15 seconds to find login:test login: |
+|0312_175616|Boot 1 time: takes 15 seconds to boot up.|
+|0312_175616|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_175617|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_175617|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0312_175618|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_175619|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_175619|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_183119|/root/ly_bisection/bzImage_07e5c4eb94e6aba96fa11b424b39c5e5576a7713 didn't contain add_transaction_credits: in dmesg, pass|
+|0312_183119|git bisect good 07e5c4eb94e6aba96fa11b424b39c5e5576a7713|
+|0312_183153||/root/ly_bisection/bzImage_be413ec746afc951c79d5907cf62ab6757330bdb| does not exist, will make it|
+|0312_183153|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m be413ec746afc951c79d5907cf62ab6757330bdb -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_183843|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_be413ec746afc951c79d5907cf62ab6757330bdb, /root/ly_bisection/0312_161703_add_transaction_credits/be413ec746afc951c79d5907cf62ab6757330bdb_dmesg.log, port:10024, 1 time|
+|0312_183858|It takes 15 seconds to find login:test login: |
+|0312_183858|Boot 1 time: takes 15 seconds to boot up.|
+|0312_183858|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_183859|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_183859|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0312_183900|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_183900|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_183900|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_191400|/root/ly_bisection/bzImage_be413ec746afc951c79d5907cf62ab6757330bdb didn't contain add_transaction_credits: in dmesg, pass|
+|0312_191401|git bisect good be413ec746afc951c79d5907cf62ab6757330bdb|
+|0312_191407||/root/ly_bisection/bzImage_edd2b9832d604a234b60a4910c7496f351cd1e12| does not exist, will make it|
+|0312_191407|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m edd2b9832d604a234b60a4910c7496f351cd1e12 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_192106|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_edd2b9832d604a234b60a4910c7496f351cd1e12, /root/ly_bisection/0312_161703_add_transaction_credits/edd2b9832d604a234b60a4910c7496f351cd1e12_dmesg.log, port:10024, 1 time|
+|0312_192122|It takes 16 seconds to find login:test login: |
+|0312_192122|Boot 1 time: takes 16 seconds to boot up.|
+|0312_192122|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_192124|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_192124|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0312_192125|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_192125|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_192125|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_195625|/root/ly_bisection/bzImage_edd2b9832d604a234b60a4910c7496f351cd1e12 didn't contain add_transaction_credits: in dmesg, pass|
+|0312_195625|git bisect good edd2b9832d604a234b60a4910c7496f351cd1e12|
+|0312_195630||/root/ly_bisection/bzImage_939faf71cf7ca9ab3d1bd2912ac0e203d4d7156a| does not exist, will make it|
+|0312_195630|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 939faf71cf7ca9ab3d1bd2912ac0e203d4d7156a -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_200339|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_939faf71cf7ca9ab3d1bd2912ac0e203d4d7156a, /root/ly_bisection/0312_161703_add_transaction_credits/939faf71cf7ca9ab3d1bd2912ac0e203d4d7156a_dmesg.log, port:10024, 1 time|
+|0312_200354|It takes 15 seconds to find login:test login: |
+|0312_200354|Boot 1 time: takes 15 seconds to boot up.|
+|0312_200354|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_200356|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_200356|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0312_200357|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_200357|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_200357|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_203857|/root/ly_bisection/bzImage_939faf71cf7ca9ab3d1bd2912ac0e203d4d7156a contained add_transaction_credits:[  300.335685]  add_transaction_credits+0x121/0x1000
+[  300.336061]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.354741]  add_transaction_credits+0x121/0x1000
+[  300.355076]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.374269]  add_transaction_credits+0x121/0x1000
+[  300.374618]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.399548]  add_transaction_credits+0x121/0x1000
+[  300.399894]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.425933]  add_transaction_credits+0x121/0x1000
+[  300.426577]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.452192]  add_transaction_credits+0x121/0x1000
+[  300.452822]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.495318]  add_transaction_credits+0x121/0x1000
+[  300.495664]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.515535]  add_transaction_credits+0x121/0x1000
+[  300.516208]  ? __pfx_add_transaction_credits+0x10/0x10, FAIL|
+|0312_203857|git bisect bad 939faf71cf7ca9ab3d1bd2912ac0e203d4d7156a|
+|0312_203859||/root/ly_bisection/bzImage_e63b9229c3d2bf6684b1c154e8365e2d1822f039| does not exist, will make it|
+|0312_203859|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m e63b9229c3d2bf6684b1c154e8365e2d1822f039 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_204606|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_e63b9229c3d2bf6684b1c154e8365e2d1822f039, /root/ly_bisection/0312_161703_add_transaction_credits/e63b9229c3d2bf6684b1c154e8365e2d1822f039_dmesg.log, port:10024, 1 time|
+|0312_204622|It takes 16 seconds to find login:test login: |
+|0312_204622|Boot 1 time: takes 16 seconds to boot up.|
+|0312_204622|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_204624|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_204624|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0312_204624|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_204625|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_204625|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_212125|/root/ly_bisection/bzImage_e63b9229c3d2bf6684b1c154e8365e2d1822f039 didn't contain add_transaction_credits: in dmesg, pass|
+|0312_212125|git bisect good e63b9229c3d2bf6684b1c154e8365e2d1822f039|
+|0312_212126||/root/ly_bisection/bzImage_bdbddf72a2ab1cfea699959795d70df3931eefe7| does not exist, will make it|
+|0312_212126|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m bdbddf72a2ab1cfea699959795d70df3931eefe7 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_212835|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_bdbddf72a2ab1cfea699959795d70df3931eefe7, /root/ly_bisection/0312_161703_add_transaction_credits/bdbddf72a2ab1cfea699959795d70df3931eefe7_dmesg.log, port:10024, 1 time|
+|0312_212850|It takes 15 seconds to find login:test login: |
+|0312_212850|Boot 1 time: takes 15 seconds to boot up.|
+|0312_212850|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_212851|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_212851|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0312_212852|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_212852|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_212852|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_220352|/root/ly_bisection/bzImage_bdbddf72a2ab1cfea699959795d70df3931eefe7 contained add_transaction_credits:[  300.332729]  add_transaction_credits+0x121/0x1000
+[  300.333064]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.350973]  add_transaction_credits+0x121/0x1000
+[  300.351323]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.372239]  add_transaction_credits+0x121/0x1000
+[  300.372613]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.397869]  add_transaction_credits+0x121/0x1000
+[  300.398499]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.426914]  add_transaction_credits+0x121/0x1000
+[  300.427718]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.472138]  add_transaction_credits+0x121/0x1000
+[  300.472782]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.498123]  add_transaction_credits+0x121/0x1000
+[  300.498466]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.518267]  add_transaction_credits+0x121/0x1000
+[  300.518944]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.539045]  add_transaction_credits+0x121/0x1000
+[  300.539391]  ? __pfx_add_transaction_credits+0x10/0x10, FAIL|
+|0312_220352|git bisect bad bdbddf72a2ab1cfea699959795d70df3931eefe7|
+|0312_220353||/root/ly_bisection/bzImage_4adc13ed7c281c16152a700e47b65d17de07321a| does not exist, will make it|
+|0312_220353|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 4adc13ed7c281c16152a700e47b65d17de07321a -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_221102|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_4adc13ed7c281c16152a700e47b65d17de07321a, /root/ly_bisection/0312_161703_add_transaction_credits/4adc13ed7c281c16152a700e47b65d17de07321a_dmesg.log, port:10024, 1 time|
+|0312_221117|It takes 15 seconds to find login:test login: |
+|0312_221117|Boot 1 time: takes 15 seconds to boot up.|
+|0312_221117|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_221119|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_221119|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0312_221119|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_221120|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_221120|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_224620|/root/ly_bisection/bzImage_4adc13ed7c281c16152a700e47b65d17de07321a contained add_transaction_credits:[  300.351489]  add_transaction_credits+0x121/0x1000
+[  300.351822]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.369319]  add_transaction_credits+0x121/0x1000
+[  300.369668]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.387984]  add_transaction_credits+0x121/0x1000
+[  300.388616]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.415575]  add_transaction_credits+0x121/0x1000
+[  300.416202]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.442639]  add_transaction_credits+0x121/0x1000
+[  300.442972]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.468291]  add_transaction_credits+0x121/0x1000
+[  300.468914]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.512256]  add_transaction_credits+0x121/0x1000
+[  300.512596]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.531974]  add_transaction_credits+0x121/0x1000
+[  300.532319]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.555557]  add_transaction_credits+0x121/0x1000
+[  300.555893]  ? __pfx_add_transaction_credits+0x10/0x10, FAIL|
+|0312_224620|git bisect bad 4adc13ed7c281c16152a700e47b65d17de07321a|
+|0312_224620||/root/ly_bisection/bzImage_696ca7d95658224ba807813101d0d5714d1d8aa4| does not exist, will make it|
+|0312_224620|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 696ca7d95658224ba807813101d0d5714d1d8aa4 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_225327|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_696ca7d95658224ba807813101d0d5714d1d8aa4, /root/ly_bisection/0312_161703_add_transaction_credits/696ca7d95658224ba807813101d0d5714d1d8aa4_dmesg.log, port:10024, 1 time|
+|0312_225342|It takes 15 seconds to find login:test login: |
+|0312_225342|Boot 1 time: takes 15 seconds to boot up.|
+|0312_225342|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_225344|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_225344|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0312_225344|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_225345|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_225345|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0312_232845|/root/ly_bisection/bzImage_696ca7d95658224ba807813101d0d5714d1d8aa4 didn't contain add_transaction_credits: in dmesg, pass|
+|0312_232845|git bisect good 696ca7d95658224ba807813101d0d5714d1d8aa4|
+|0312_232845||/root/ly_bisection/bzImage_3893854000a81897a1a332ec50931f74761fbf71| does not exist, will make it|
+|0312_232845|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 3893854000a81897a1a332ec50931f74761fbf71 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0312_233550|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_3893854000a81897a1a332ec50931f74761fbf71, /root/ly_bisection/0312_161703_add_transaction_credits/3893854000a81897a1a332ec50931f74761fbf71_dmesg.log, port:10024, 1 time|
+|0312_233605|It takes 15 seconds to find login:test login: |
+|0312_233605|Boot 1 time: takes 15 seconds to boot up.|
+|0312_233605|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0312_233607|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0312_233607|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0312_233608|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0312_233608|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0312_233608|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0313_001108|/root/ly_bisection/bzImage_3893854000a81897a1a332ec50931f74761fbf71 contained add_transaction_credits:[  300.335946]  add_transaction_credits+0x121/0x1000
+[  300.336285]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.353213]  add_transaction_credits+0x121/0x1000
+[  300.353552]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.371764]  add_transaction_credits+0x121/0x1000
+[  300.372106]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.397820]  add_transaction_credits+0x121/0x1000
+[  300.398431]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.424163]  add_transaction_credits+0x121/0x1000
+[  300.424766]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.465663]  add_transaction_credits+0x121/0x1000
+[  300.465991]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.484621]  add_transaction_credits+0x121/0x1000
+[  300.484939]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.506583]  add_transaction_credits+0x121/0x1000
+[  300.506909]  ? __pfx_add_transaction_credits+0x10/0x10, FAIL|
+|0313_001108|git bisect bad 3893854000a81897a1a332ec50931f74761fbf71|
+|0313_001108||/root/ly_bisection/bzImage_157d3d6efd5a58466d90be3a134f9667486fe6f9| does not exist, will make it|
+|0313_001108|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 157d3d6efd5a58466d90be3a134f9667486fe6f9 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0313_001812|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_157d3d6efd5a58466d90be3a134f9667486fe6f9, /root/ly_bisection/0312_161703_add_transaction_credits/157d3d6efd5a58466d90be3a134f9667486fe6f9_dmesg.log, port:10024, 1 time|
+|0313_001828|It takes 16 seconds to find login:test login: |
+|0313_001828|Boot 1 time: takes 16 seconds to boot up.|
+|0313_001828|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_001830|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0313_001830|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0313_001831|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0313_001831|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0313_001831|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0313_005331|/root/ly_bisection/bzImage_157d3d6efd5a58466d90be3a134f9667486fe6f9 didn't contain add_transaction_credits: in dmesg, pass|
+|0313_005331|git bisect good 157d3d6efd5a58466d90be3a134f9667486fe6f9|
+|0313_005332||/root/ly_bisection/bzImage_52ee9965d09b2c56a027613db30d1fb20d623861| does not exist, will make it|
+|0313_005332|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 52ee9965d09b2c56a027613db30d1fb20d623861 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0313_010036|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_52ee9965d09b2c56a027613db30d1fb20d623861, /root/ly_bisection/0312_161703_add_transaction_credits/52ee9965d09b2c56a027613db30d1fb20d623861_dmesg.log, port:10024, 1 time|
+|0313_010051|It takes 15 seconds to find login:test login: |
+|0313_010051|Boot 1 time: takes 15 seconds to boot up.|
+|0313_010051|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_010052|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0313_010052|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0313_010053|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0313_010054|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0313_010054|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0313_013554|/root/ly_bisection/bzImage_52ee9965d09b2c56a027613db30d1fb20d623861 didn't contain add_transaction_credits: in dmesg, pass|
+|0313_013554|git bisect good 52ee9965d09b2c56a027613db30d1fb20d623861|
+|0313_013554||/root/ly_bisection/bzImage_8912c2fd5830e976c0deaeb0b2a458ce6b4718c7| does not exist, will make it|
+|0313_013554|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 8912c2fd5830e976c0deaeb0b2a458ce6b4718c7 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0313_014258|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_8912c2fd5830e976c0deaeb0b2a458ce6b4718c7, /root/ly_bisection/0312_161703_add_transaction_credits/8912c2fd5830e976c0deaeb0b2a458ce6b4718c7_dmesg.log, port:10024, 1 time|
+|0313_014313|It takes 15 seconds to find login:test login: |
+|0313_014313|Boot 1 time: takes 15 seconds to boot up.|
+|0313_014313|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_014315|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0313_014315|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0313_014316|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0313_014316|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0313_014316|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0313_021816|/root/ly_bisection/bzImage_8912c2fd5830e976c0deaeb0b2a458ce6b4718c7 contained add_transaction_credits:[  300.339159]  add_transaction_credits+0x121/0x1000
+[  300.339494]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.356446]  add_transaction_credits+0x121/0x1000
+[  300.356783]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.374439]  add_transaction_credits+0x121/0x1000
+[  300.375069]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.400863]  add_transaction_credits+0x121/0x1000
+[  300.401517]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.428591]  add_transaction_credits+0x121/0x1000
+[  300.428929]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.472281]  add_transaction_credits+0x121/0x1000
+[  300.472622]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.492275]  add_transaction_credits+0x121/0x1000
+[  300.492626]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.515434]  add_transaction_credits+0x121/0x1000
+[  300.516090]  ? __pfx_add_transaction_credits+0x10/0x10, FAIL|
+|0313_021816|git bisect bad 8912c2fd5830e976c0deaeb0b2a458ce6b4718c7|
+|0313_021817||/root/ly_bisection/bzImage_6cbfdf89470ef3c2110f376a507d135e7a7a7378| does not exist, will make it|
+|0313_021817|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 6cbfdf89470ef3c2110f376a507d135e7a7a7378 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0313_022524|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_6cbfdf89470ef3c2110f376a507d135e7a7a7378, /root/ly_bisection/0312_161703_add_transaction_credits/6cbfdf89470ef3c2110f376a507d135e7a7a7378_dmesg.log, port:10024, 1 time|
+|0313_022540|It takes 15 seconds to find login:test login: |
+|0313_022540|Boot 1 time: takes 15 seconds to boot up.|
+|0313_022540|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_022541|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0313_022541|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0313_022542|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0313_022542|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0313_022542|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0313_030042|/root/ly_bisection/bzImage_6cbfdf89470ef3c2110f376a507d135e7a7a7378 contained add_transaction_credits:[  300.344590]  add_transaction_credits+0x121/0x1000
+[  300.344943]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.362784]  add_transaction_credits+0x121/0x1000
+[  300.363128]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.380729]  add_transaction_credits+0x121/0x1000
+[  300.381356]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.407269]  add_transaction_credits+0x121/0x1000
+[  300.407888]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.433445]  add_transaction_credits+0x121/0x1000
+[  300.434078]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.462135]  add_transaction_credits+0x121/0x1000
+[  300.462486]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.488792]  add_transaction_credits+0x121/0x1000
+[  300.489417]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.531651]  add_transaction_credits+0x121/0x1000
+[  300.531984]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.551619]  add_transaction_credits+0x121/0x1000
+[  300.551954]  ? __pfx_add_transaction_credits+0x10/0x10, FAIL|
+|0313_030042|git bisect bad 6cbfdf89470ef3c2110f376a507d135e7a7a7378|
+|0313_030043||/root/ly_bisection/bzImage_a6b9f5b2f04bd7809cd72c5d33af944758c00ab1| does not exist, will make it|
+|0313_030043|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m a6b9f5b2f04bd7809cd72c5d33af944758c00ab1 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0313_030747|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_a6b9f5b2f04bd7809cd72c5d33af944758c00ab1, /root/ly_bisection/0312_161703_add_transaction_credits/a6b9f5b2f04bd7809cd72c5d33af944758c00ab1_dmesg.log, port:10024, 1 time|
+|0313_030802|It takes 15 seconds to find login:test login: |
+|0313_030802|Boot 1 time: takes 15 seconds to boot up.|
+|0313_030802|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_030804|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0313_030804|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0313_030805|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0313_030805|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0313_030805|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0313_034305|/root/ly_bisection/bzImage_a6b9f5b2f04bd7809cd72c5d33af944758c00ab1 didn't contain add_transaction_credits: in dmesg, pass|
+|0313_034305|git bisect good a6b9f5b2f04bd7809cd72c5d33af944758c00ab1|
+|0313_034305||/root/ly_bisection/bzImage_5e7fa6bfa9b5ced6868fc652d5c40fe0eac154d9| does not exist, will make it|
+|0313_034305|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 5e7fa6bfa9b5ced6868fc652d5c40fe0eac154d9 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0313_035010|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_5e7fa6bfa9b5ced6868fc652d5c40fe0eac154d9, /root/ly_bisection/0312_161703_add_transaction_credits/5e7fa6bfa9b5ced6868fc652d5c40fe0eac154d9_dmesg.log, port:10024, 1 time|
+|0313_035025|It takes 15 seconds to find login:test login: |
+|0313_035025|Boot 1 time: takes 15 seconds to boot up.|
+|0313_035025|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_035026|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0313_035026|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0313_035027|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0313_035027|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0313_035027|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0313_042527|/root/ly_bisection/bzImage_5e7fa6bfa9b5ced6868fc652d5c40fe0eac154d9 didn't contain add_transaction_credits: in dmesg, pass|
+|0313_042527|git bisect good 5e7fa6bfa9b5ced6868fc652d5c40fe0eac154d9|
+|0313_042528||/root/ly_bisection/bzImage_58ecde96e8b8d85754c664c3d9814e6ffd38a788| does not exist, will make it|
+|0313_042528|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 58ecde96e8b8d85754c664c3d9814e6ffd38a788 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0313_043231|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_58ecde96e8b8d85754c664c3d9814e6ffd38a788, /root/ly_bisection/0312_161703_add_transaction_credits/58ecde96e8b8d85754c664c3d9814e6ffd38a788_dmesg.log, port:10024, 1 time|
+|0313_043247|It takes 15 seconds to find login:test login: |
+|0313_043247|Boot 1 time: takes 15 seconds to boot up.|
+|0313_043247|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_043248|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0313_043248|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0313_043249|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0313_043249|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0313_043249|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0313_050749|/root/ly_bisection/bzImage_58ecde96e8b8d85754c664c3d9814e6ffd38a788 didn't contain add_transaction_credits: in dmesg, pass|
+|0313_050749|git bisect good 58ecde96e8b8d85754c664c3d9814e6ffd38a788|
+|0313_050749||/root/ly_bisection/bzImage_aaf76839616a3cff7bfff6a888e1762bc1d0c235| does not exist, will make it|
+|0313_050749|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m aaf76839616a3cff7bfff6a888e1762bc1d0c235 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0313_051458|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_aaf76839616a3cff7bfff6a888e1762bc1d0c235, /root/ly_bisection/0312_161703_add_transaction_credits/aaf76839616a3cff7bfff6a888e1762bc1d0c235_dmesg.log, port:10024, 1 time|
+|0313_051513|It takes 15 seconds to find login:test login: |
+|0313_051513|Boot 1 time: takes 15 seconds to boot up.|
+|0313_051513|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_051514|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0313_051514|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0313_051515|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0313_051516|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0313_051516|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0313_055016|/root/ly_bisection/bzImage_aaf76839616a3cff7bfff6a888e1762bc1d0c235 didn't contain add_transaction_credits: in dmesg, pass|
+|0313_055016|git bisect good aaf76839616a3cff7bfff6a888e1762bc1d0c235|
+|0313_055016||/root/ly_bisection/bzImage_88ec797c468097a8ce97694ed11ea9c982598ec0| does not exist, will make it|
+|0313_055016|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m 88ec797c468097a8ce97694ed11ea9c982598ec0 -d /root/ly_bisection -o /tmp/kernel -c /root/vm_bisect/config-5.18rc4i_kvm > /root/vm_bisect/nohup.log|
+|0313_055725|BOOT_VM:/root/vm_bisect/boot_vm.sh | /root/ly_bisection/bzImage_88ec797c468097a8ce97694ed11ea9c982598ec0, /root/ly_bisection/0312_161703_add_transaction_credits/88ec797c468097a8ce97694ed11ea9c982598ec0_dmesg.log, port:10024, 1 time|
+|0313_055740|It takes 15 seconds to find login:test login: |
+|0313_055740|Boot 1 time: takes 15 seconds to boot up.|
+|0313_055740|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/vm_bisect/repro.sh root@localhost:/root/repro.sh|
+|0313_055742|Not C file, sshpass -e ssh -o ConnectTimeout=1 -o 'StrictHostKeyChecking no' -p 10024 localhost 'rm -rf /root/repro.c' ret:0|
+|0313_055742|cmd=sshpass -e scp -o 'StrictHostKeyChecking no' -P 10024 /root/ly_bisection/0312_161703_add_transaction_credits/repro root@localhost:/root/repro|
+|0313_055743|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost 'chmod 755 /root/repro.sh'|
+|0313_055743|sshpass -e ssh -o ConnectTimeout=5 -o 'StrictHostKeyChecking no' -p 10024 localhost '/root/repro.sh'|
+|0313_055743|Repro in vm 1 times ok, VM_ERR_NUM:0 is 0|
+|0313_063243|/root/ly_bisection/bzImage_88ec797c468097a8ce97694ed11ea9c982598ec0 contained add_transaction_credits:[  300.340734]  add_transaction_credits+0x121/0x1000
+[  300.341200]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.363682]  add_transaction_credits+0x121/0x1000
+[  300.364132]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.387312]  add_transaction_credits+0x121/0x1000
+[  300.388153]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.422782]  add_transaction_credits+0x121/0x1000
+[  300.423625]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.458809]  add_transaction_credits+0x121/0x1000
+[  300.459254]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.493793]  add_transaction_credits+0x121/0x1000
+[  300.494636]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.547645]  add_transaction_credits+0x121/0x1000
+[  300.547983]  ? __pfx_add_transaction_credits+0x10/0x10
+[  300.567797]  add_transaction_credits+0x121/0x1000
+[  300.568135]  ? __pfx_add_transaction_credits+0x10/0x10, FAIL|
+|0313_063243|git bisect bad 88ec797c468097a8ce97694ed11ea9c982598ec0|
+|0313_063243|Bisect PASS: find bad commit: 88ec797c468097a8ce97694ed11ea9c982598ec0 is the first bad commit
+commit 88ec797c468097a8ce97694ed11ea9c982598ec0
+Author: Mateusz Guzik <mjguzik@gmail.com>
+Date:   Wed Jan 14 10:47:16 2026 +0100
+
+    fs: make insert_inode_locked() wait for inode destruction
+    
+    This is the only routine which instead skipped instead of waiting.
+    
+    The current behavior is arguably a bug as it results in a corner case
+    where the inode hash can have *two* matching inodes, one of which is on
+    its way out.
+    
+    Ironing out this difference is an incremental step towards sanitizing
+    the API.
+    
+    Signed-off-by: Mateusz Guzik <mjguzik@gmail.com>
+    Link: https://patch.msgid.link/20260114094717.236202-1-mjguzik@gmail.com
+    Signed-off-by: Christian Brauner <brauner@kernel.org>
+
+ fs/inode.c | 41 ++++++++++++++++++++++++-----------------
+ 1 file changed, 24 insertions(+), 17 deletions(-)|
+|0313_063243|cmd=git bisect log >> /root/ly_bisection/bi.log|
+|0313_063243|cmd=git bisect log >> /root/ly_bisection/0312_161703_add_transaction_credits/bisect.log|
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [f90aadf1c67c8b4969d1e5e6d4fd7227adb6e4d7] Add linux-next specific files for 20260311
+git bisect bad f90aadf1c67c8b4969d1e5e6d4fd7227adb6e4d7
+# status: waiting for good commit(s), bad commit known
+# good: [9f4ad9e425a1d3b6a34617b8ea226d56a119a717] Linux 5.12
+git bisect good 9f4ad9e425a1d3b6a34617b8ea226d56a119a717
+# good: [e9cbc89067cce78211c8629c78e931c0fe64e29d] Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good e9cbc89067cce78211c8629c78e931c0fe64e29d
+# good: [07e5c4eb94e6aba96fa11b424b39c5e5576a7713] Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good 07e5c4eb94e6aba96fa11b424b39c5e5576a7713
+# good: [be413ec746afc951c79d5907cf62ab6757330bdb] Merge tag 'hwmon-for-v6.17' of git://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging
+git bisect good be413ec746afc951c79d5907cf62ab6757330bdb
+# good: [edd2b9832d604a234b60a4910c7496f351cd1e12] Merge tag 'mtd/for-6.19' of git://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux
+git bisect good edd2b9832d604a234b60a4910c7496f351cd1e12
+# bad: [939faf71cf7ca9ab3d1bd2912ac0e203d4d7156a] Merge tag 'drm-next-2026-02-11' of https://gitlab.freedesktop.org/drm/kernel
+git bisect bad 939faf71cf7ca9ab3d1bd2912ac0e203d4d7156a
+# good: [e63b9229c3d2bf6684b1c154e8365e2d1822f039] Merge tag 'drm-xe-fixes-2026-01-22' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-fixes
+git bisect good e63b9229c3d2bf6684b1c154e8365e2d1822f039
+# bad: [bdbddf72a2ab1cfea699959795d70df3931eefe7] Merge tag 'soc-drivers-7.0' of git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
+git bisect bad bdbddf72a2ab1cfea699959795d70df3931eefe7
+# bad: [4adc13ed7c281c16152a700e47b65d17de07321a] Merge tag 'for-7.0/block-stable-pages-20260206' of git://git.kernel.org/pub/scm/linux/kernel/git/axboe/linux
+git bisect bad 4adc13ed7c281c16152a700e47b65d17de07321a
+# good: [696ca7d95658224ba807813101d0d5714d1d8aa4] cifs: Scripted clean up fs/smb/client/cifs_unicode.h
+git bisect good 696ca7d95658224ba807813101d0d5714d1d8aa4
+# bad: [3893854000a81897a1a332ec50931f74761fbf71] Merge tag 'erofs-for-7.0-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs
+git bisect bad 3893854000a81897a1a332ec50931f74761fbf71
+# good: [157d3d6efd5a58466d90be3a134f9667486fe6f9] Merge tag 'vfs-7.0-rc1.namespace' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good 157d3d6efd5a58466d90be3a134f9667486fe6f9
+# good: [52ee9965d09b2c56a027613db30d1fb20d623861] btrfs: zoned: fixup last alloc pointer after extent removal for RAID0/10
+git bisect good 52ee9965d09b2c56a027613db30d1fb20d623861
+# bad: [8912c2fd5830e976c0deaeb0b2a458ce6b4718c7] Merge tag 'for-6.20-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux
+git bisect bad 8912c2fd5830e976c0deaeb0b2a458ce6b4718c7
+# bad: [6cbfdf89470ef3c2110f376a507d135e7a7a7378] posix_acl: make posix_acl_to_xattr() alloc the buffer
+git bisect bad 6cbfdf89470ef3c2110f376a507d135e7a7a7378
+# good: [a6b9f5b2f04bd7809cd72c5d33af944758c00ab1] fs/namei: Remove redundant DCACHE_MANAGED_DENTRY check in __follow_mount_rcu
+git bisect good a6b9f5b2f04bd7809cd72c5d33af944758c00ab1
+# good: [5e7fa6bfa9b5ced6868fc652d5c40fe0eac154d9] exportfs: Fix kernel-doc output for get_name()
+git bisect good 5e7fa6bfa9b5ced6868fc652d5c40fe0eac154d9
+# good: [58ecde96e8b8d85754c664c3d9814e6ffd38a788] Merge patch series "exportfs: Some kernel-doc fixes"
+git bisect good 58ecde96e8b8d85754c664c3d9814e6ffd38a788
+# good: [aaf76839616a3cff7bfff6a888e1762bc1d0c235] initramfs_test: kunit test for cpio.filesize > PATH_MAX
+git bisect good aaf76839616a3cff7bfff6a888e1762bc1d0c235
+# bad: [88ec797c468097a8ce97694ed11ea9c982598ec0] fs: make insert_inode_locked() wait for inode destruction
+git bisect bad 88ec797c468097a8ce97694ed11ea9c982598ec0
+# first bad commit: [88ec797c468097a8ce97694ed11ea9c982598ec0] fs: make insert_inode_locked() wait for inode destruction
+|0313_063243|nohup /root/vm_bisect/make_bz.sh -k /root/linux-next -m next-20260311 -b 88ec797c468097a8ce97694ed11ea9c982598ec0 -d /root/ly_bisection -o /tmp/kernel -f /root/ly_bisection/bzImage_next-20260311_88ec797c468097a8ce97694ed11ea9c982598ec0_revert -c /root/vm_bisect/config-5.18rc4i_kvm  > /root/vm_bisect/nohup.log|
+|0313_063335|1st base commit:v5.12!|
+|0313_063335|FAIL|bzImage:/root/ly_bisection/bzImage_next-20260311_88ec797c468097a8ce97694ed11ea9c982598ec0_revert does not exist:|
+|0313_063335|1st base commit:v5.12!|
+|0313_063335|ISSUE:ly_bisection  EMAIL status after check:Email_not_sent|

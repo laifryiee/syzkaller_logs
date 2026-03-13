@@ -1,0 +1,46 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [f90aadf1c67c8b4969d1e5e6d4fd7227adb6e4d7] Add linux-next specific files for 20260311
+git bisect bad f90aadf1c67c8b4969d1e5e6d4fd7227adb6e4d7
+# status: waiting for good commit(s), bad commit known
+# good: [9f4ad9e425a1d3b6a34617b8ea226d56a119a717] Linux 5.12
+git bisect good 9f4ad9e425a1d3b6a34617b8ea226d56a119a717
+# good: [e9cbc89067cce78211c8629c78e931c0fe64e29d] Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good e9cbc89067cce78211c8629c78e931c0fe64e29d
+# good: [07e5c4eb94e6aba96fa11b424b39c5e5576a7713] Merge git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+git bisect good 07e5c4eb94e6aba96fa11b424b39c5e5576a7713
+# good: [be413ec746afc951c79d5907cf62ab6757330bdb] Merge tag 'hwmon-for-v6.17' of git://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging
+git bisect good be413ec746afc951c79d5907cf62ab6757330bdb
+# good: [edd2b9832d604a234b60a4910c7496f351cd1e12] Merge tag 'mtd/for-6.19' of git://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux
+git bisect good edd2b9832d604a234b60a4910c7496f351cd1e12
+# bad: [939faf71cf7ca9ab3d1bd2912ac0e203d4d7156a] Merge tag 'drm-next-2026-02-11' of https://gitlab.freedesktop.org/drm/kernel
+git bisect bad 939faf71cf7ca9ab3d1bd2912ac0e203d4d7156a
+# good: [e63b9229c3d2bf6684b1c154e8365e2d1822f039] Merge tag 'drm-xe-fixes-2026-01-22' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-fixes
+git bisect good e63b9229c3d2bf6684b1c154e8365e2d1822f039
+# bad: [bdbddf72a2ab1cfea699959795d70df3931eefe7] Merge tag 'soc-drivers-7.0' of git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
+git bisect bad bdbddf72a2ab1cfea699959795d70df3931eefe7
+# bad: [4adc13ed7c281c16152a700e47b65d17de07321a] Merge tag 'for-7.0/block-stable-pages-20260206' of git://git.kernel.org/pub/scm/linux/kernel/git/axboe/linux
+git bisect bad 4adc13ed7c281c16152a700e47b65d17de07321a
+# good: [696ca7d95658224ba807813101d0d5714d1d8aa4] cifs: Scripted clean up fs/smb/client/cifs_unicode.h
+git bisect good 696ca7d95658224ba807813101d0d5714d1d8aa4
+# bad: [3893854000a81897a1a332ec50931f74761fbf71] Merge tag 'erofs-for-7.0-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs
+git bisect bad 3893854000a81897a1a332ec50931f74761fbf71
+# good: [157d3d6efd5a58466d90be3a134f9667486fe6f9] Merge tag 'vfs-7.0-rc1.namespace' of git://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs
+git bisect good 157d3d6efd5a58466d90be3a134f9667486fe6f9
+# good: [52ee9965d09b2c56a027613db30d1fb20d623861] btrfs: zoned: fixup last alloc pointer after extent removal for RAID0/10
+git bisect good 52ee9965d09b2c56a027613db30d1fb20d623861
+# bad: [8912c2fd5830e976c0deaeb0b2a458ce6b4718c7] Merge tag 'for-6.20-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux
+git bisect bad 8912c2fd5830e976c0deaeb0b2a458ce6b4718c7
+# bad: [6cbfdf89470ef3c2110f376a507d135e7a7a7378] posix_acl: make posix_acl_to_xattr() alloc the buffer
+git bisect bad 6cbfdf89470ef3c2110f376a507d135e7a7a7378
+# good: [a6b9f5b2f04bd7809cd72c5d33af944758c00ab1] fs/namei: Remove redundant DCACHE_MANAGED_DENTRY check in __follow_mount_rcu
+git bisect good a6b9f5b2f04bd7809cd72c5d33af944758c00ab1
+# good: [5e7fa6bfa9b5ced6868fc652d5c40fe0eac154d9] exportfs: Fix kernel-doc output for get_name()
+git bisect good 5e7fa6bfa9b5ced6868fc652d5c40fe0eac154d9
+# good: [58ecde96e8b8d85754c664c3d9814e6ffd38a788] Merge patch series "exportfs: Some kernel-doc fixes"
+git bisect good 58ecde96e8b8d85754c664c3d9814e6ffd38a788
+# good: [aaf76839616a3cff7bfff6a888e1762bc1d0c235] initramfs_test: kunit test for cpio.filesize > PATH_MAX
+git bisect good aaf76839616a3cff7bfff6a888e1762bc1d0c235
+# bad: [88ec797c468097a8ce97694ed11ea9c982598ec0] fs: make insert_inode_locked() wait for inode destruction
+git bisect bad 88ec797c468097a8ce97694ed11ea9c982598ec0
+# first bad commit: [88ec797c468097a8ce97694ed11ea9c982598ec0] fs: make insert_inode_locked() wait for inode destruction
