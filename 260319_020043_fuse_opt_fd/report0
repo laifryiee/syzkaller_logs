@@ -1,0 +1,91 @@
+XFS: attr2 mount option is deprecated.
+xfs: Unknown parameter 'mtpt'
+XFS (loop2): Ending clean mount
+tpm tpm0: Operation Canceled
+blktrace: Concurrent blktraces are not allowed on sg0
+Oops: general protection fault, probably for non-canonical address 0xdffffc0000000009: 0000 [#1] SMP KASAN NOPTI
+KASAN: null-ptr-deref in range [0x0000000000000048-0x000000000000004f]
+CPU: 1 UID: 0 PID: 4685 Comm: syz.2.58 Not tainted 7.0.0-rc4-next-20260317-8e5a478b6d6a #1 PREEMPT(lazy) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+RIP: 0010:fuse_opt_fd+0x5e/0x340 fs/fuse/inode.c:807
+Code: c1 ea 03 80 3c 02 00 0f 85 91 02 00 00 49 8d 7c 24 48 49 8b 9e 98 00 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 <80> 3c 02 00 0f 85 60 02 00 00 49 81 7c 24 48 20 cf 2e 86 0f 85 d8
+RSP: 0018:ffff88801c3579f8 EFLAGS: 00010206
+RAX: dffffc0000000000 RBX: ffff888025cb7a00 RCX: ffffc90003850000
+RDX: 0000000000000009 RSI: ffffffff82986cbf RDI: 0000000000000048
+RBP: ffff88801c357a20 R08: 0000000000000000 R09: 0000000000000001
+R10: 0000000000000000 R11: ffff888054e43478 R12: 0000000000000000
+R13: 0000000000000000 R14: ffff88803defb000 R15: ffff88801c357aa8
+FS:  00007f2704e8a640(0000) GS:ffff8880e30aa000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f5fe1ef1000 CR3: 00000000496e4006 CR4: 0000000000770ef0
+PKRU: 80000000
+Call Trace:
+ <TASK>
+ fuse_parse_param+0x810/0xcc0 fs/fuse/inode.c:865
+ vfs_parse_fs_param fs/fs_context.c:132 [inline]
+ vfs_parse_fs_param+0x21e/0x3e0 fs/fs_context.c:113
+ vfs_parse_fs_qstr+0x15d/0x1e0 fs/fs_context.c:173
+ vfs_parse_fs_string include/linux/fs_context.h:142 [inline]
+ vfs_parse_monolithic_sep+0x1ab/0x230 fs/fs_context.c:213
+ generic_parse_monolithic+0x2e/0x40 fs/fs_context.c:241
+ parse_monolithic_mount_data+0x75/0xa0 fs/fs_context.c:519
+ do_new_mount fs/namespace.c:3836 [inline]
+ path_mount+0x707/0x2060 fs/namespace.c:4160
+ do_mount fs/namespace.c:4173 [inline]
+ __do_sys_mount fs/namespace.c:4372 [inline]
+ __se_sys_mount fs/namespace.c:4349 [inline]
+ __x64_sys_mount+0x2c3/0x340 fs/namespace.c:4349
+ x64_sys_call+0x2b8/0x21c0 arch/x86/include/generated/asm/syscalls_64.h:166
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc1/0x1130 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f270483ee5d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 93 af 1b 00 f7 d8 64 89 01 48
+RSP: 002b:00007f2704e89c78 EFLAGS: 00000246 ORIG_RAX: 00000000000000a5
+RAX: ffffffffffffffda RBX: 00000000005c6090 RCX: 00007f270483ee5d
+RDX: 0000200000002100 RSI: 00002000000020c0 RDI: 0000000000000000
+RBP: 00000000005c6090 R08: 0000200000002140 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00000000005c6128 R14: 00007f270489f560 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:fuse_opt_fd+0x5e/0x340 fs/fuse/inode.c:807
+Code: c1 ea 03 80 3c 02 00 0f 85 91 02 00 00 49 8d 7c 24 48 49 8b 9e 98 00 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 <80> 3c 02 00 0f 85 60 02 00 00 49 81 7c 24 48 20 cf 2e 86 0f 85 d8
+RSP: 0018:ffff88801c3579f8 EFLAGS: 00010206
+RAX: dffffc0000000000 RBX: ffff888025cb7a00 RCX: ffffc90003850000
+RDX: 0000000000000009 RSI: ffffffff82986cbf RDI: 0000000000000048
+RBP: ffff88801c357a20 R08: 0000000000000000 R09: 0000000000000001
+R10: 0000000000000000 R11: ffff888054e43478 R12: 0000000000000000
+R13: 0000000000000000 R14: ffff88803defb000 R15: ffff88801c357aa8
+FS:  00007f2704e8a640(0000) GS:ffff8880e30aa000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b2f5e1ff8 CR3: 00000000496e4004 CR4: 0000000000770ef0
+PKRU: 80000000
+loop5: detected capacity change from 0 to 32768
+XFS (loop5): Mounting V5 Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop5): Ending clean mount
+XFS (loop5): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+XFS (loop1): Unmounting Filesystem bfdc47fc-10d8-4eed-a562-11a831b3f791
+EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+EXT4-fs (loop4): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+----------------
+Code disassembly (best guess):
+   0:	c1 ea 03             	shr    $0x3,%edx
+   3:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1)
+   7:	0f 85 91 02 00 00    	jne    0x29e
+   d:	49 8d 7c 24 48       	lea    0x48(%r12),%rdi
+  12:	49 8b 9e 98 00 00 00 	mov    0x98(%r14),%rbx
+  19:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  20:	fc ff df
+  23:	48 89 fa             	mov    %rdi,%rdx
+  26:	48 c1 ea 03          	shr    $0x3,%rdx
+* 2a:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1) <-- trapping instruction
+  2e:	0f 85 60 02 00 00    	jne    0x294
+  34:	49 81 7c 24 48 20 cf 	cmpq   $0xffffffff862ecf20,0x48(%r12)
+  3b:	2e 86
+  3d:	0f                   	.byte 0xf
+  3e:	85 d8                	test   %ebx,%eax
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

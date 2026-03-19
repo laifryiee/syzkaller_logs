@@ -1,0 +1,33 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [8e5a478b6d6a5bb0a3d52147862b15e4d826af19] Add linux-next specific files for 20260317
+git bisect bad 8e5a478b6d6a5bb0a3d52147862b15e4d826af19
+# status: waiting for good commit(s), bad commit known
+# good: [f338e77383789c0cae23ca3d48adcc5e9e137e3c] Linux 7.0-rc4
+git bisect good f338e77383789c0cae23ca3d48adcc5e9e137e3c
+# bad: [38d3c657a1099acd7ffabf1bca379c9684f2c209] Merge branch 'main' of https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
+git bisect bad 38d3c657a1099acd7ffabf1bca379c9684f2c209
+# good: [bdee5ba343849cb5affe1ca9b2e48c2b90fd5aa6] Merge branch 'xtensa-for-next' of https://github.com/jcmvbkbc/linux-xtensa.git
+git bisect good bdee5ba343849cb5affe1ca9b2e48c2b90fd5aa6
+# bad: [2fc682e39246f1f5f847c07fa043988a9ce74bb1] Merge branch 'docs-next' of git://git.lwn.net/linux.git
+git bisect bad 2fc682e39246f1f5f847c07fa043988a9ce74bb1
+# bad: [810639057e58f1e86b1d6a47423c1e6f8165b117] Merge branch 'next' of https://git.kernel.org/pub/scm/linux/kernel/git/rw/ubifs.git
+git bisect bad 810639057e58f1e86b1d6a47423c1e6f8165b117
+# bad: [9e6dc1637c935e9a63fb83e855c5542fc16e54a9] Merge branch 'jfs-next' of https://github.com/kleikamp/linux-shaggy.git
+git bisect bad 9e6dc1637c935e9a63fb83e855c5542fc16e54a9
+# good: [41019679bc4f7ed6b072a83ba264908bc88752dd] Merge branch 'for-next-next-v7.0-20260316' into for-next-20260316
+git bisect good 41019679bc4f7ed6b072a83ba264908bc88752dd
+# good: [ec72802f357c4f6c027134b89b04efe5173de156] Merge branch 'for_next' of https://git.kernel.org/pub/scm/linux/kernel/git/jack/linux-fs.git
+git bisect good ec72802f357c4f6c027134b89b04efe5173de156
+# bad: [6dcceeb728567a61fbad781c13828b638b32bc16] fuse: support FSCONFIG_SET_FD for "fd" option
+git bisect bad 6dcceeb728567a61fbad781c13828b638b32bc16
+# good: [25307ca50b815c14a21f82fc5b10e8a621af32ad] fuse: simplify logic in fuse_notify_store() and fuse_retrieve()
+git bisect good 25307ca50b815c14a21f82fc5b10e8a621af32ad
+# good: [3379620923d3e59b6767605a0f11d13b37d72a0c] fuse: create fuse_dev on /dev/fuse open instead of mount
+git bisect good 3379620923d3e59b6767605a0f11d13b37d72a0c
+# good: [3f2496deff35b25fd842e9c4e69783c1469c090f] fuse: don't require /dev/fuse fd to be kept open during mount
+git bisect good 3f2496deff35b25fd842e9c4e69783c1469c090f
+# good: [cc71aa695f6503da9e9b8bcb2656f7a31402fd50] fuse: alloc pqueue before installing fc
+git bisect good cc71aa695f6503da9e9b8bcb2656f7a31402fd50
+# first bad commit: [6dcceeb728567a61fbad781c13828b638b32bc16] fuse: support FSCONFIG_SET_FD for "fd" option
+|0319_064514|Bisect successfully! 8e5a478b6d6a5bb0a3d52147862b15e4d826af19_6dcceeb728567a61fbad781c13828b638b32bc16_revert bzimage passed!|
