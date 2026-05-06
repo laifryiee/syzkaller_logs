@@ -1,0 +1,47 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [4cd074ae20bbcc293bbbce9163abe99d68ae6ae0] Add linux-next specific files for 20260505
+git bisect bad 4cd074ae20bbcc293bbbce9163abe99d68ae6ae0
+# status: waiting for good commit(s), bad commit known
+# good: [9f4ad9e425a1d3b6a34617b8ea226d56a119a717] Linux 5.12
+git bisect good 9f4ad9e425a1d3b6a34617b8ea226d56a119a717
+# good: [89ed67ef126c4160349c1b96fdb775ea6170ac90] Merge tag 'net-next-6.7' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+git bisect good 89ed67ef126c4160349c1b96fdb775ea6170ac90
+# good: [69e858e0b8b2ea07759e995aa383e8780d9d140c] Merge tag 'uml-for-linus-6.14-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/uml/linux
+git bisect good 69e858e0b8b2ea07759e995aa383e8780d9d140c
+# good: [f79e772258df311c2cb21594ca0996318e720d28] Merge tag 'media/v6.18-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+git bisect good f79e772258df311c2cb21594ca0996318e720d28
+# good: [b7ef56a07672e0d7ebe71c9d9b45f959f0c2f8e8] Merge tag 'media/v7.0-2' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+git bisect good b7ef56a07672e0d7ebe71c9d9b45f959f0c2f8e8
+# skip: [f5ad4101009e7f5f5984ffea6923d4fcd470932a] Merge tag 'bpf-next-7.1' of git://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next
+git bisect skip f5ad4101009e7f5f5984ffea6923d4fcd470932a
+# good: [5fe03dd0c52094a2673b829af0f432bab038edcc] smb: smbdirect: define SMBDIRECT_MIN_{RECEIVE,FRAGMENTED}_SIZE
+git bisect good 5fe03dd0c52094a2673b829af0f432bab038edcc
+# good: [e8df5a0c0d041588e7f02781822d637d226cdbe8] Merge tag 'i2c-for-7.1-rc1-part2' of git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux
+git bisect good e8df5a0c0d041588e7f02781822d637d226cdbe8
+# bad: [7ca672302aa542d9662e6aea7186706d6337d265] Merge branch 'next' of https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git
+git bisect bad 7ca672302aa542d9662e6aea7186706d6337d265
+# good: [37e6f01e7f6e688235e8b02fe5170aff94f30584] seq_buf: export seq_buf_putmem_hex() and add KUnit tests
+git bisect good 37e6f01e7f6e688235e8b02fe5170aff94f30584
+# bad: [705d645ba803d6379ffefd1afe297f8c417ab968] Merge branch 'master' of https://git.kernel.org/pub/scm/linux/kernel/git/klassert/ipsec.git
+git bisect bad 705d645ba803d6379ffefd1afe297f8c417ab968
+# bad: [33d0c9c5f0945fc93a08d7ab20c4fb6d6976ed3b] Merge tag 'spi-fix-v7.1-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi
+git bisect bad 33d0c9c5f0945fc93a08d7ab20c4fb6d6976ed3b
+# good: [2aa0a3691711257b888d6024a492eb9fd1e8f52a] Merge tag 'sound-7.1-rc2' of git://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound
+git bisect good 2aa0a3691711257b888d6024a492eb9fd1e8f52a
+# bad: [0c7a5ba011d336df4fcd1f667fcc16ea5549be12] Merge branch 'mptcp-misc-fixes-for-v7-1-rc2'
+git bisect bad 0c7a5ba011d336df4fcd1f667fcc16ea5549be12
+# bad: [4ca07b9239bd0478ae586632a2ed72be37ed8407] net: mctp i2c: check length before marking flow active
+git bisect bad 4ca07b9239bd0478ae586632a2ed72be37ed8407
+# good: [2674d603a9e6970463b2b9ebcf8e31e90beae169] vrf: Fix a potential NPD when removing a port from a VRF
+git bisect good 2674d603a9e6970463b2b9ebcf8e31e90beae169
+# good: [5b0c911bcdbd982f7748d11c0b39ec5808eae2de] net: phonet: do not BUG_ON() in pn_socket_autobind() on failed bind
+git bisect good 5b0c911bcdbd982f7748d11c0b39ec5808eae2de
+# bad: [2b9f6f7065d4cfb65ba19126e0b35ac4544c3f3a] tcp: make probe0 timer handle expired user timeout
+git bisect bad 2b9f6f7065d4cfb65ba19126e0b35ac4544c3f3a
+# bad: [4438113be604ee67a7bf4f81da6e1cca41332ce4] neigh: let neigh_xmit take skb ownership
+git bisect bad 4438113be604ee67a7bf4f81da6e1cca41332ce4
+# bad: [b3b6babf47517fde6b6de2493dea28e8831b9347] ipmr: Free mr_table after RCU grace period.
+git bisect bad b3b6babf47517fde6b6de2493dea28e8831b9347
+# first bad commit: [b3b6babf47517fde6b6de2493dea28e8831b9347] ipmr: Free mr_table after RCU grace period.
+|0506_114604|Bisect successfully! next-20260505_b3b6babf47517fde6b6de2493dea28e8831b9347_revert bzimage passed!|

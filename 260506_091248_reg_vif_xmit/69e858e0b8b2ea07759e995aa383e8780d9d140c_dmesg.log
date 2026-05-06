@@ -1,0 +1,3016 @@
+c[?7l[2J[0mSeaBIOS (version rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org)
+
+
+iPXE (http://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+7EFD0D60+7EF30D60 CA00
+Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
+
+
+Booting from ROM...
+c[?7l[2J[    0.000000] Linux version 6.13.0-69e858e0b8b2+ (root@gnr-800442) (gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-14), GNU ld version 2.35.2-66.el9) #1 SMP PREEMPT_DYNAMIC Wed May  6 09:39:13 CST 2026
+[    0.000000] Command line: console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0 thunderbolt.dyndbg
+[    0.000000] KERNEL supported cpus:
+[    0.000000]   Intel GenuineIntel
+[    0.000000]   AMD AuthenticAMD
+[    0.000000]   Hygon HygonGenuine
+[    0.000000]   Centaur CentaurHauls
+[    0.000000]   zhaoxin   Shanghai  
+[    0.000000] x86/split lock detection: #DB: warning on user-space bus_locks
+[    0.000000] BIOS-provided physical RAM map:
+[    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
+[    0.000000] BIOS-e820: [mem 0x000000000009fc00-0x000000000009ffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000000f0000-0x00000000000fffff] reserved
+[    0.000000] BIOS-e820: [mem 0x0000000000100000-0x000000007ffdffff] usable
+[    0.000000] BIOS-e820: [mem 0x000000007ffe0000-0x000000007fffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000feffc000-0x00000000feffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000fffc0000-0x00000000ffffffff] reserved
+[    0.000000] printk: legacy bootconsole [earlyser0] enabled
+[    0.000000] NX (Execute Disable) protection: active
+[    0.000000] APIC: Static calls initialized
+[    0.000000] SMBIOS 3.0.0 present.
+[    0.000000] DMI: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[    0.000000] DMI: Memory slots populated: 1/1
+[    0.000000] Hypervisor detected: KVM
+[    0.000000] kvm-clock: Using msrs 4b564d01 and 4b564d00
+[    0.000003] kvm-clock: using sched offset of 711629042 cycles
+[    0.000526] clocksource: kvm-clock: mask: 0xffffffffffffffff max_cycles: 0x1cd42e4dffb, max_idle_ns: 881590591483 ns
+[    0.002169] tsc: Detected 2500.000 MHz processor
+[    0.010899] last_pfn = 0x7ffe0 max_arch_pfn = 0x10000000000
+[    0.011482] MTRR map: 4 entries (3 fixed + 1 variable; max 19), built from 8 variable MTRRs
+[    0.012321] x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT  
+[    0.018433] found SMP MP-table at [mem 0x000f5480-0x000f548f]
+[    0.019059] Using GB pages for direct mapping
+[    0.022563] ACPI: Early table checksum verification disabled
+[    0.023161] ACPI: RSDP 0x00000000000F52A0 000014 (v00 BOCHS )
+[    0.023761] ACPI: RSDT 0x000000007FFE1C9B 000034 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.024628] ACPI: FACP 0x000000007FFE1B47 000074 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.025508] ACPI: DSDT 0x000000007FFE0040 001B07 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.026382] ACPI: FACS 0x000000007FFE0000 000040
+[    0.026887] ACPI: APIC 0x000000007FFE1BBB 000080 (v03 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.027761] ACPI: HPET 0x000000007FFE1C3B 000038 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.028619] ACPI: WAET 0x000000007FFE1C73 000028 (v01 BOCHS  BXPC     00000001 BXPC 00000001)
+[    0.029488] ACPI: Reserving FACP table memory at [mem 0x7ffe1b47-0x7ffe1bba]
+[    0.030202] ACPI: Reserving DSDT table memory at [mem 0x7ffe0040-0x7ffe1b46]
+[    0.030932] ACPI: Reserving FACS table memory at [mem 0x7ffe0000-0x7ffe003f]
+[    0.031637] ACPI: Reserving APIC table memory at [mem 0x7ffe1bbb-0x7ffe1c3a]
+[    0.032343] ACPI: Reserving HPET table memory at [mem 0x7ffe1c3b-0x7ffe1c72]
+[    0.033057] ACPI: Reserving WAET table memory at [mem 0x7ffe1c73-0x7ffe1c9a]
+[    0.034423] No NUMA configuration found
+[    0.034842] Faking a node at [mem 0x0000000000000000-0x000000007ffdffff]
+[    0.035552] NODE_DATA(0) allocated [mem 0x7ffb5000-0x7ffdfc7f]
+[    0.037224] Zone ranges:
+[    0.037499]   DMA      [mem 0x0000000000001000-0x0000000000ffffff]
+[    0.038142]   DMA32    [mem 0x0000000001000000-0x000000007ffdffff]
+[    0.038784]   Normal   empty
+[    0.039080]   Device   empty
+[    0.039375] Movable zone start for each node
+[    0.039815] Early memory node ranges
+[    0.040171]   node   0: [mem 0x0000000000001000-0x000000000009efff]
+[    0.040809]   node   0: [mem 0x0000000000100000-0x000000007ffdffff]
+[    0.041434] Initmem setup node 0 [mem 0x0000000000001000-0x000000007ffdffff]
+[    0.042398] On node 0, zone DMA: 1 pages in unavailable ranges
+[    0.043257] On node 0, zone DMA: 97 pages in unavailable ranges
+[    0.073749] On node 0, zone DMA32: 32 pages in unavailable ranges
+[    0.123494] kasan: KernelAddressSanitizer initialized
+[    0.124355] ACPI: PM-Timer IO Port: 0x608
+[    0.124810] ACPI: LAPIC_NMI (acpi_id[0xff] dfl dfl lint[0x1])
+[    0.125454] IOAPIC[0]: apic_id 0, version 17, address 0xfec00000, GSI 0-23
+[    0.126184] ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+[    0.126861] ACPI: INT_SRC_OVR (bus 0 bus_irq 5 global_irq 5 high level)
+[    0.127528] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+[    0.128209] ACPI: INT_SRC_OVR (bus 0 bus_irq 10 global_irq 10 high level)
+[    0.128918] ACPI: INT_SRC_OVR (bus 0 bus_irq 11 global_irq 11 high level)
+[    0.129615] ACPI: Using ACPI (MADT) for SMP configuration information
+[    0.130275] ACPI: HPET id: 0x8086a201 base: 0xfed00000
+[    0.130835] TSC deadline timer available
+[    0.131260] CPU topo: Max. logical packages:   1
+[    0.131738] CPU topo: Max. logical dies:       1
+[    0.132206] CPU topo: Max. dies per package:   1
+[    0.132687] CPU topo: Max. threads per core:   1
+[    0.133167] CPU topo: Num. cores per package:     2
+[    0.133661] CPU topo: Num. threads per package:   2
+[    0.134171] CPU topo: Allowing 2 present CPUs plus 0 hotplug CPUs
+[    0.134879] kvm-guest: APIC: eoi() replaced with kvm_guest_apic_eoi_write()
+[    0.135609] kvm-guest: KVM setup pv remote TLB flush
+[    0.136126] kvm-guest: setup PV sched yield
+[    0.136593] PM: hibernation: Registered nosave memory: [mem 0x00000000-0x00000fff]
+[    0.137379] PM: hibernation: Registered nosave memory: [mem 0x0009f000-0x0009ffff]
+[    0.138153] PM: hibernation: Registered nosave memory: [mem 0x000a0000-0x000effff]
+[    0.138943] PM: hibernation: Registered nosave memory: [mem 0x000f0000-0x000fffff]
+[    0.139724] [mem 0x80000000-0xfeffbfff] available for PCI devices
+[    0.140336] Booting paravirtualized kernel on KVM
+[    0.140826] clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645519600211568 ns
+[    0.141903] setup_percpu: NR_CPUS:8192 nr_cpumask_bits:2 nr_cpu_ids:2 nr_node_ids:1
+[    0.143119] percpu: Embedded 85 pages/cpu s311296 r8192 d28672 u1048576
+[    0.143991] kvm-guest: PV spinlocks enabled
+[    0.144427] PV qspinlock hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    0.145187] Kernel command line: net.ifnames=0 console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0 thunderbolt.dyndbg
+[    0.146634] random: crng init done
+[    0.147005] printk: log buffer data + meta data: 262144 + 917504 = 1179648 bytes
+[    0.148117] Dentry cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.149072] Inode-cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    0.150097] Fallback order for Node 0: 0 
+[    0.150109] Built 1 zonelists, mobility grouping on.  Total pages: 524158
+[    0.151194] Policy zone: DMA32
+[    0.151498] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.152118] stackdepot: allocating hash table via alloc_large_system_hash
+[    0.152793] stackdepot hash table entries: 1048576 (order: 12, 16777216 bytes, linear)
+[    0.221872] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+[    0.222507] kmemleak: Kernel memory leak detector disabled
+[    0.223216] ftrace: allocating 73525 entries in 288 pages
+[    0.381392] ftrace: allocated 288 pages with 2 groups
+[    0.385765] Dynamic Preempt: voluntary
+[    0.386562] Running RCU self tests
+[    0.386923] Running RCU synchronous self tests
+[    0.387356] rcu: Preemptible hierarchical RCU implementation.
+[    0.387929] rcu: 	RCU lockdep checking is enabled.
+[    0.388399] rcu: 	RCU restricting CPUs from NR_CPUS=8192 to nr_cpu_ids=2.
+[    0.389083] 	Trampoline variant of Tasks RCU enabled.
+[    0.389572] 	Rude variant of Tasks RCU enabled.
+[    0.390039] 	Tracing variant of Tasks RCU enabled.
+[    0.390504] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.391280] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+[    0.391972] Running RCU synchronous self tests
+[    0.392376] RCU Tasks: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.
+[    0.393163] RCU Tasks Rude: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.
+[    0.393988] RCU Tasks Trace: Setting shift to 1 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=2.
+[    0.466813] NR_IRQS: 524544, nr_irqs: 440, preallocated irqs: 16
+[    0.467937] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.477713] Console: colour VGA+ 80x25
+[    0.478150] printk: legacy console [ttyS0] enabled
+[    0.478150] printk: legacy console [ttyS0] enabled
+[    0.479107] printk: legacy bootconsole [earlyser0] disabled
+[    0.479107] printk: legacy bootconsole [earlyser0] disabled
+[    0.480215] Lock dependency validator: Copyright (c) 2006 Red Hat, Inc., Ingo Molnar
+[    0.480986] ... MAX_LOCKDEP_SUBCLASSES:  8
+[    0.481397] ... MAX_LOCK_DEPTH:          48
+[    0.481823] ... MAX_LOCKDEP_KEYS:        8192
+[    0.482257] ... CLASSHASH_SIZE:          4096
+[    0.482696] ... MAX_LOCKDEP_ENTRIES:     32768
+[    0.483152] ... MAX_LOCKDEP_CHAINS:      65536
+[    0.483594] ... CHAINHASH_SIZE:          32768
+[    0.484043]  memory used by lock dependency info: 6429 kB
+[    0.484577]  memory used for stack traces: 4224 kB
+[    0.485065]  per task-struct memory footprint: 1920 bytes
+[    0.485706] ACPI: Core revision 20240827
+[    0.486552] clocksource: hpet: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604467 ns
+[    0.487653] APIC: Switch to symmetric I/O mode setup
+[    0.488450] x2apic enabled
+[    0.489180] APIC: Switched APIC routing to: physical x2apic
+[    0.489759] kvm-guest: APIC: send_IPI_mask() replaced with kvm_send_ipi_mask()
+[    0.490486] kvm-guest: APIC: send_IPI_mask_allbutself() replaced with kvm_send_ipi_mask_allbutself()
+[    0.491406] kvm-guest: setup PV IPIs
+[    0.493094] ..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+[    0.493741] clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x240939f1bb2, max_idle_ns: 440795263295 ns
+[    0.494804] Calibrating delay loop (skipped) preset value.. 5000.00 BogoMIPS (lpj=10000000)
+[    0.498886] x86/cpu: User Mode Instruction Prevention (UMIP) activated
+[    0.499622] Last level iTLB entries: 4KB 0, 2MB 0, 4MB 0
+[    0.500164] Last level dTLB entries: 4KB 0, 2MB 0, 4MB 0, 1GB 0
+[    0.500768] Spectre V1 : Mitigation: usercopy/swapgs barriers and __user pointer sanitization
+[    0.501614] Spectre V2 : WARNING: Unprivileged eBPF is enabled with eIBRS on, data leaks possible via Spectre v2 BHB attacks!
+[    0.502802] Spectre V2 : Spectre BHI mitigation: SW BHB clearing on syscall and VM exit
+[    0.503563] Spectre V2 : Mitigation: Enhanced / Automatic IBRS
+[    0.504149] Spectre V2 : Spectre v2 / SpectreRSB mitigation: Filling RSB on context switch
+[    0.504938] Spectre V2 : Spectre v2 / PBRSB-eIBRS: Retire a single CALL on VMEXIT
+[    0.505673] Spectre V2 : mitigation: Enabling conditional Indirect Branch Prediction Barrier
+[    0.506506] Speculative Store Bypass: Mitigation: Speculative Store Bypass disabled via prctl
+[    0.506799] MMIO Stale Data: Unknown: No mitigations
+[    0.507347] x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'
+[    0.508099] x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'
+[    0.508718] x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'
+[    0.509358] x86/fpu: Supporting XSAVE feature 0x020: 'AVX-512 opmask'
+[    0.509983] x86/fpu: Supporting XSAVE feature 0x040: 'AVX-512 Hi256'
+[    0.510798] x86/fpu: Supporting XSAVE feature 0x080: 'AVX-512 ZMM_Hi256'
+[    0.511470] x86/fpu: Supporting XSAVE feature 0x200: 'Protection Keys User registers'
+[    0.512241] x86/fpu: Supporting XSAVE feature 0x20000: 'AMX Tile config'
+[    0.512886] x86/fpu: Supporting XSAVE feature 0x40000: 'AMX Tile data'
+[    0.513534] x86/fpu: xstate_offset[2]:  576, xstate_sizes[2]:  256
+[    0.514129] x86/fpu: xstate_offset[5]:  832, xstate_sizes[5]:   64
+[    0.514798] x86/fpu: xstate_offset[6]:  896, xstate_sizes[6]:  512
+[    0.515416] x86/fpu: xstate_offset[7]: 1408, xstate_sizes[7]: 1024
+[    0.516022] x86/fpu: xstate_offset[9]: 2432, xstate_sizes[9]:    8
+[    0.516637] x86/fpu: xstate_offset[17]: 2496, xstate_sizes[17]:   64
+[    0.517277] x86/fpu: xstate_offset[18]: 2560, xstate_sizes[18]: 8192
+[    0.517905] x86/fpu: Enabled xstate features 0x602e7, context size is 10752 bytes, using 'compacted' format.
+[    0.684315] Freeing SMP alternatives memory: 56K
+[    0.684787] pid_max: default: 32768 minimum: 301
+[    0.685465] LSM: initializing lsm=capability,yama,ima,evm
+[    0.686136] Yama: becoming mindful.
+[    0.687086] Mount-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.687808] Mountpoint-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.689981] Running RCU synchronous self tests
+[    0.690423] Running RCU synchronous self tests
+[    0.691095] smpboot: CPU0: Intel GENUINE INTEL(R) XEON(R) (family: 0x6, model: 0xad, stepping: 0x0)
+[    0.692899] Running RCU Tasks wait API self tests
+[    0.794884] Running RCU Tasks Rude wait API self tests
+[    0.795413] Running RCU Tasks Trace wait API self tests
+[    0.796022] Performance Events: PEBS fmt0-, Granite Rapids events, full-width counters, Intel PMU driver.
+[    0.797093] ... version:                2
+[    0.797500] ... bit width:              48
+[    0.797913] ... generic registers:      8
+[    0.798316] ... value mask:             0000ffffffffffff
+[    0.798798] ... max period:             00007fffffffffff
+[    0.799322] ... fixed-purpose events:   3
+[    0.799753] ... event mask:             00000007000000ff
+[    0.800702] signal: max sigframe size: 11952
+[    0.801303] rcu: Hierarchical SRCU implementation.
+[    0.801797] rcu: 	Max phase no-delay instances is 1000.
+[    0.802542] Timer migration: 1 hierarchy levels; 8 children per group; 1 crossnode level
+[    0.802855] Callback from call_rcu_tasks_trace() invoked.
+[    0.808404] smp: Bringing up secondary CPUs ...
+[    0.809485] smpboot: x86: Booting SMP configuration:
+[    0.810014] .... node  #0, CPUs:      #1
+[    0.810887] smp: Brought up 1 node, 2 CPUs
+[    0.811739] smpboot: Total of 2 processors activated (10000.00 BogoMIPS)
+[    0.813265] Memory: 1602944K/2096632K available (77594K kernel code, 15175K rwdata, 18084K rodata, 15776K init, 22000K bss, 486252K reserved, 0K cma-reserved)
+[    0.815530] devtmpfs: initialized
+[    0.815589] x86/mm: Memory block size: 128MB
+[    0.825446] Running RCU synchronous self tests
+[    0.825446] Running RCU synchronous self tests
+[    0.826837] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.827817] futex hash table entries: 512 (order: 4, 65536 bytes, linear)
+[    0.828988] pinctrl core: initialized pinctrl subsystem
+[    0.830850] 
+[    0.830853] *************************************************************
+[    0.830853] **     NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE    **
+[    0.830853] **                                                         **
+[    0.830853] **  IOMMU DebugFS SUPPORT HAS BEEN ENABLED IN THIS KERNEL  **
+[    0.830853] **                                                         **
+[    0.834802] ** This means that this kernel is built to expose internal **
+[    0.835462] ** IOMMU data structures, which may compromise security on **
+[    0.836125] ** your system.                                            **
+[    0.836791] **                                                         **
+[    0.837453] ** If you see this message and you are not debugging the   **
+[    0.838117] ** kernel, report this immediately to your vendor!         **
+[    0.838780] **                                                         **
+[    0.838795] **     NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE NOTICE    **
+[    0.839456] *************************************************************
+[    0.840183] PM: RTC time: 01:40:29, date: 2026-05-06
+[    0.843678] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.845487] DMA: preallocated 256 KiB GFP_KERNEL pool for atomic allocations
+[    0.846219] DMA: preallocated 256 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    0.846814] DMA: preallocated 256 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.847723] audit: initializing netlink subsys (disabled)
+[    0.848301] audit: type=2000 audit(1778031629.605:1): state=initialized audit_enabled=0 res=1
+[    0.850927] thermal_sys: Registered thermal governor 'fair_share'
+[    0.850939] thermal_sys: Registered thermal governor 'bang_bang'
+[    0.851578] thermal_sys: Registered thermal governor 'step_wise'
+[    0.852164] thermal_sys: Registered thermal governor 'user_space'
+[    0.852828] cpuidle: using governor ladder
+[    0.852828] cpuidle: using governor menu
+[    0.855265] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+[    0.856636] PCI: Using configuration type 1 for base access
+[    0.857512] kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.
+[    0.994247] HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.994796] HugeTLB: 16380 KiB vmemmap can be freed for a 1.00 GiB page
+[    0.995456] HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.996125] HugeTLB: 28 KiB vmemmap can be freed for a 2.00 MiB page
+[    1.008847] ACPI: Added _OSI(Module Device)
+[    1.009282] ACPI: Added _OSI(Processor Device)
+[    1.009757] ACPI: Added _OSI(3.0 _SCP Extensions)
+[    1.010231] ACPI: Added _OSI(Processor Aggregator Device)
+[    1.024884] ACPI: 1 ACPI AML tables successfully acquired and loaded
+[    1.031801] ACPI: Interpreter enabled
+[    1.032298] ACPI: PM: (supports S0 S3 S4 S5)
+[    1.032740] ACPI: Using IOAPIC for interrupt routing
+[    1.033315] PCI: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
+[    1.034238] PCI: Using E820 reservations for host bridge windows
+[    1.035965] ACPI: Enabled 2 GPEs in block 00 to 0F
+[    1.072113] ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-ff])
+[    1.072768] acpi PNP0A03:00: _OSC: OS supports [ASPM ClockPM Segments MSI EDR HPX-Type3]
+[    1.073579] acpi PNP0A03:00: _OSC: not requesting OS control; OS requires [ExtendedConfig ASPM ClockPM MSI]
+[    1.074657] acpi PNP0A03:00: fail to add MMCONFIG information, can't access extended configuration space under this bridge
+[    1.079549] acpiphp: Slot [3] registered
+[    1.080064] acpiphp: Slot [4] registered
+[    1.080595] acpiphp: Slot [5] registered
+[    1.081123] acpiphp: Slot [6] registered
+[    1.081644] acpiphp: Slot [7] registered
+[    1.082157] acpiphp: Slot [8] registered
+[    1.082683] acpiphp: Slot [9] registered
+[    1.082923] acpiphp: Slot [10] registered
+[    1.083450] acpiphp: Slot [11] registered
+[    1.083970] acpiphp: Slot [12] registered
+[    1.084520] acpiphp: Slot [13] registered
+[    1.085041] acpiphp: Slot [14] registered
+[    1.085566] acpiphp: Slot [15] registered
+[    1.086083] acpiphp: Slot [16] registered
+[    1.086611] acpiphp: Slot [17] registered
+[    1.086919] acpiphp: Slot [18] registered
+[    1.087454] acpiphp: Slot [19] registered
+[    1.087970] acpiphp: Slot [20] registered
+[    1.088561] acpiphp: Slot [21] registered
+[    1.089099] acpiphp: Slot [22] registered
+[    1.089622] acpiphp: Slot [23] registered
+[    1.090161] acpiphp: Slot [24] registered
+[    1.090684] acpiphp: Slot [25] registered
+[    1.090908] acpiphp: Slot [26] registered
+[    1.091393] acpiphp: Slot [27] registered
+[    1.091941] acpiphp: Slot [28] registered
+[    1.092460] acpiphp: Slot [29] registered
+[    1.092985] acpiphp: Slot [30] registered
+[    1.093466] acpiphp: Slot [31] registered
+[    1.093899] PCI host bridge to bus 0000:00
+[    1.094360] pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7 window]
+[    1.094799] pci_bus 0000:00: root bus resource [io  0x0d00-0xffff window]
+[    1.095482] pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff window]
+[    1.096238] pci_bus 0000:00: root bus resource [mem 0x80000000-0xfebfffff window]
+[    1.096986] pci_bus 0000:00: root bus resource [mem 0x100000000-0x17fffffff window]
+[    1.097751] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    1.098418] pci 0000:00:00.0: [8086:1237] type 00 class 0x060000 conventional PCI endpoint
+[    1.100200] pci 0000:00:01.0: [8086:7000] type 00 class 0x060100 conventional PCI endpoint
+[    1.102180] pci 0000:00:01.1: [8086:7010] type 00 class 0x010180 conventional PCI endpoint
+[    1.103367] pci 0000:00:01.1: BAR 4 [io  0xc040-0xc04f]
+[    1.103919] pci 0000:00:01.1: BAR 0 [io  0x01f0-0x01f7]: legacy IDE quirk
+[    1.104572] pci 0000:00:01.1: BAR 1 [io  0x03f6]: legacy IDE quirk
+[    1.105174] pci 0000:00:01.1: BAR 2 [io  0x0170-0x0177]: legacy IDE quirk
+[    1.105824] pci 0000:00:01.1: BAR 3 [io  0x0376]: legacy IDE quirk
+[    1.107355] pci 0000:00:01.3: [8086:7113] type 00 class 0x068000 conventional PCI endpoint
+[    1.108475] pci 0000:00:01.3: quirk: [io  0x0600-0x063f] claimed by PIIX4 ACPI
+[    1.109186] pci 0000:00:01.3: quirk: [io  0x0700-0x070f] claimed by PIIX4 SMB
+[    1.110775] pci 0000:00:02.0: [1234:1111] type 00 class 0x030000 conventional PCI endpoint
+[    1.113236] pci 0000:00:02.0: BAR 0 [mem 0xfd000000-0xfdffffff pref]
+[    1.113880] pci 0000:00:02.0: BAR 2 [mem 0xfebf0000-0xfebf0fff]
+[    1.114491] pci 0000:00:02.0: ROM [mem 0xfebe0000-0xfebeffff pref]
+[    1.114917] pci 0000:00:02.0: Video device with shadowed ROM at [mem 0x000c0000-0x000dffff]
+[    1.116658] pci 0000:00:03.0: [8086:100e] type 00 class 0x020000 conventional PCI endpoint
+[    1.119253] pci 0000:00:03.0: BAR 0 [mem 0xfebc0000-0xfebdffff]
+[    1.119850] pci 0000:00:03.0: BAR 1 [io  0xc000-0xc03f]
+[    1.120404] pci 0000:00:03.0: ROM [mem 0xfeb80000-0xfebbffff pref]
+[    1.143167] ACPI: PCI: Interrupt link LNKA configured for IRQ 10
+[    1.144642] ACPI: PCI: Interrupt link LNKB configured for IRQ 10
+[    1.146046] ACPI: PCI: Interrupt link LNKC configured for IRQ 11
+[    1.147456] ACPI: PCI: Interrupt link LNKD configured for IRQ 11
+[    1.148386] ACPI: PCI: Interrupt link LNKS configured for IRQ 9
+[    1.151865] iommu: Default domain type: Translated
+[    1.152354] iommu: DMA domain TLB invalidation policy: lazy mode
+[    1.154914] SCSI subsystem initialized
+[    1.163144] ACPI: bus type USB registered
+[    1.163680] usbcore: registered new interface driver usbfs
+[    1.164284] usbcore: registered new interface driver hub
+[    1.164860] usbcore: registered new device driver usb
+[    1.165630] pps_core: LinuxPPS API ver. 1 registered
+[    1.166125] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    1.166834] PTP clock support registered
+[    1.167552] EDAC MC: Ver: 3.0.0
+[    1.170430] NetLabel: Initializing
+[    1.170788] NetLabel:  domain hash size = 128
+[    1.171227] NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+[    1.171905] NetLabel:  unlabeled traffic allowed by default
+[    1.172903] PCI: Using ACPI for IRQ routing
+[    1.173661] pci 0000:00:02.0: vgaarb: setting as boot VGA device
+[    1.174268] pci 0000:00:02.0: vgaarb: bridge control possible
+[    1.174790] pci 0000:00:02.0: vgaarb: VGA device added: decodes=io+mem,owns=io+mem,locks=none
+[    1.174801] vgaarb: loaded
+[    1.175466] hpet0: at MMIO 0xfed00000, IRQs 2, 8, 0
+[    1.175971] hpet0: 3 comparators, 64-bit 100.000000 MHz counter
+[    1.179794] clocksource: Switched to clocksource kvm-clock
+[    1.181452] VFS: Disk quotas dquot_6.6.0
+[    1.181889] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    1.184151] pnp: PnP ACPI init
+[    1.188095] pnp: PnP ACPI: found 6 devices
+[    1.205311] clocksource: acpi_pm: mask: 0xffffff max_cycles: 0xffffff, max_idle_ns: 2085701024 ns
+[    1.206595] NET: Registered PF_INET protocol family
+[    1.207213] IP idents hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    1.209283] tcp_listen_portaddr_hash hash table entries: 1024 (order: 4, 73728 bytes, linear)
+[    1.210150] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    1.211044] TCP established hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    1.212135] TCP bind hash table entries: 16384 (order: 9, 2359296 bytes, linear)
+[    1.213887] TCP: Hash tables configured (established 16384 bind 16384)
+[    1.214654] UDP hash table entries: 1024 (order: 6, 262144 bytes, linear)
+[    1.215404] UDP-Lite hash table entries: 1024 (order: 6, 262144 bytes, linear)
+[    1.216432] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    1.217715] RPC: Registered named UNIX socket transport module.
+[    1.218330] RPC: Registered udp transport module.
+[    1.218796] RPC: Registered tcp transport module.
+[    1.219254] RPC: Registered tcp-with-tls transport module.
+[    1.219788] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    1.220425] pci_bus 0000:00: resource 4 [io  0x0000-0x0cf7 window]
+[    1.221037] pci_bus 0000:00: resource 5 [io  0x0d00-0xffff window]
+[    1.221645] pci_bus 0000:00: resource 6 [mem 0x000a0000-0x000bffff window]
+[    1.222321] pci_bus 0000:00: resource 7 [mem 0x80000000-0xfebfffff window]
+[    1.222987] pci_bus 0000:00: resource 8 [mem 0x100000000-0x17fffffff window]
+[    1.224016] pci 0000:00:01.0: PIIX3: Enabling Passive Release
+[    1.224586] pci 0000:00:00.0: Limiting direct PCI/PCI transfers
+[    1.225259] PCI: CLS 0 bytes, default 64
+[    1.225740] ACPI: bus type thunderbolt registered
+[    1.226475] clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x240939f1bb2, max_idle_ns: 440795263295 ns
+[    3.637721] Initialise system trusted keyrings
+[    3.638257] Key type blacklist registered
+[    3.639219] workingset: timestamp_bits=36 max_order=19 bucket_order=0
+[    3.639923] zbud: loaded
+[    3.641982] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    3.644586] NFS: Registering the id_resolver key type
+[    3.645127] Key type id_resolver registered
+[    3.645525] Key type id_legacy registered
+[    3.645938] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    3.646603] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    3.647472] fuse: init (API version 7.42)
+[    3.648592] SGI XFS with ACLs, security attributes, realtime, quota, no debug enabled
+[    3.651116] 9p: Installing v9fs 9p2000 file system support
+[    3.666012] Key type asymmetric registered
+[    3.666439] Asymmetric key parser 'x509' registered
+[    3.667046] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 242)
+[    3.668309] io scheduler mq-deadline registered
+[    3.668864] io scheduler bfq registered
+[    3.670253] ledtrig-cpu: registered to indicate activity on CPUs
+[    3.671299] shpchp: Standard Hot Plug PCI Controller Driver version: 0.4
+[    3.672635] IPMI message handler: version 39.2
+[    3.673136] ipmi device interface
+[    3.675836] input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0
+[    3.676963] ACPI: button: Power Button [PWRF]
+[    3.679364] ERST DBG: ERST support is disabled.
+[    3.680823] Serial: 8250/16550 driver, 32 ports, IRQ sharing enabled
+[    3.682548] 00:04: ttyS0 at I/O 0x3f8 (irq = 4, base_baud = 115200) is a 16550A
+[    3.705064] Linux agpgart interface v0.103
+[    3.707269] ACPI: bus type drm_connector registered
+[    3.727620] brd: module loaded
+[    3.741601] loop: module loaded
+[    3.750776] scsi host0: ata_piix
+[    3.752561] scsi host1: ata_piix
+[    3.753297] ata1: PATA max MWDMA2 cmd 0x1f0 ctl 0x3f6 bmdma 0xc040 irq 14 lpm-pol 0
+[    3.754066] ata2: PATA max MWDMA2 cmd 0x170 ctl 0x376 bmdma 0xc048 irq 15 lpm-pol 0
+[    3.756865] tun: Universal TUN/TAP device driver, 1.6
+[    3.757845] e100: Intel(R) PRO/100 Network Driver
+[    3.758341] e100: Copyright(c) 1999-2006 Intel Corporation
+[    3.758952] e1000: Intel(R) PRO/1000 Network Driver
+[    3.759442] e1000: Copyright (c) 1999-2006 Intel Corporation.
+[    3.786442] Callback from call_rcu_tasks() invoked.
+[    3.910569] ata2: found unknown device (class 0)
+[    3.911647] ata2.00: ATAPI: QEMU DVD-ROM, 2.5+, max UDMA/100
+[    3.912967] ata1: found unknown device (class 0)
+[    3.913939] ata1.00: ATA-7: QEMU HARDDISK, 2.5+, max UDMA/100
+[    3.914588] ata1.00: 17196647 sectors, multi 16: LBA48 
+[    3.916231] scsi 0:0:0:0: Direct-Access     ATA      QEMU HARDDISK    2.5+ PQ: 0 ANSI: 5
+[    3.918664] sd 0:0:0:0: Attached scsi generic sg0 type 0
+[    3.920122] sd 0:0:0:0: [sda] 17196647 512-byte logical blocks: (8.80 GB/8.20 GiB)
+[    3.920206] scsi 1:0:0:0: CD-ROM            QEMU     QEMU DVD-ROM     2.5+ PQ: 0 ANSI: 5
+[    3.921950] sd 0:0:0:0: [sda] Write Protect is off
+[    3.922705] sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[    3.923861] sd 0:0:0:0: [sda] Preferred minimum I/O size 512 bytes
+[    3.942112] sd 0:0:0:0: [sda] Attached SCSI disk
+[    3.947897] scsi 1:0:0:0: Attached scsi generic sg1 type 5
+[    4.437400] ACPI: \_SB_.LNKC: Enabled at IRQ 11
+[    4.754446] e1000 0000:00:03.0 eth0: (PCI:33MHz:32-bit) 52:54:00:12:34:56
+[    4.755135] e1000 0000:00:03.0 eth0: Intel(R) PRO/1000 Network Connection
+[    4.755902] e1000e: Intel(R) PRO/1000 Network Driver
+[    4.756402] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    4.757073] igb: Intel(R) Gigabit Ethernet Network Driver
+[    4.757612] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    4.758348] PPP generic driver version 2.4.2
+[    4.760118] VFIO - User Level meta-driver version: 0.3
+[    4.761532] usbcore: registered new interface driver uas
+[    4.762142] usbcore: registered new interface driver usb-storage
+[    4.762997] i8042: PNP: PS/2 Controller [PNP0303:KBD,PNP0f13:MOU] at 0x60,0x64 irq 1,12
+[    4.765118] serio: i8042 KBD port at 0x60,0x64 irq 1
+[    4.765690] serio: i8042 AUX port at 0x60,0x64 irq 12
+[    4.768071] mousedev: PS/2 mouse device common for all mice
+[    4.770159] input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input1
+[    4.771817] rtc_cmos 00:05: RTC can wake from S4
+[    4.773840] input: VirtualPS/2 VMware VMMouse as /devices/platform/i8042/serio1/input/input4
+[    4.774680] rtc_cmos 00:05: registered as rtc0
+[    4.774779] rtc_cmos 00:05: setting system clock to 2026-05-06T01:40:33 UTC (1778031633)
+[    4.776365] rtc_cmos 00:05: alarms up to one day, y3k, 242 bytes nvram, hpet irqs
+[    4.776483] input: VirtualPS/2 VMware VMMouse as /devices/platform/i8042/serio1/input/input3
+[    4.777161] i2c_dev: i2c /dev entries driver
+[    4.778479] device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
+[    4.779687] device-mapper: uevent: version 1.0.3
+[    4.780906] device-mapper: ioctl: 4.49.0-ioctl (2025-01-17) initialised: dm-devel@lists.linux.dev
+[    4.781902] intel_pstate: CPU model not supported
+[    4.782728] sdhci: Secure Digital Host Controller Interface driver
+[    4.783349] sdhci: Copyright(c) Pierre Ossman
+[    4.783911] sdhci-pltfm: SDHCI platform and OF driver helper
+[    4.784959] drop_monitor: Initializing network drop monitor service
+[    4.786041] NET: Registered PF_INET6 protocol family
+[    4.789776] Segment Routing with IPv6
+[    4.790232] In-situ OAM (IOAM) with IPv6
+[    4.790705] NET: Registered PF_PACKET protocol family
+[    4.791397] 9pnet: Installing 9P2000 support
+[    4.791942] Key type dns_resolver registered
+[    4.793880] IPI shorthand broadcast: enabled
+[    4.829021] sched_clock: Marking stable (4808004899, 18180762)->(4841227368, -15041707)
+[    4.831046] registered taskstats version 1
+[    4.832103] Loading compiled-in X.509 certificates
+[    4.881559] Demotion targets for Node 0: null
+[    4.883278] Key type .fscrypt registered
+[    4.883668] Key type fscrypt-provisioning registered
+[    4.886824] Key type encrypted registered
+[    4.887379] ima: No TPM chip found, activating TPM-bypass!
+[    4.887968] ima: Allocated hash algorithm: sha1
+[    4.888486] ima: No architecture policies found
+[    4.889177] evm: Initialising EVM extended attributes:
+[    4.889739] evm: security.selinux
+[    4.890108] evm: security.SMACK64
+[    4.890511] evm: security.SMACK64EXEC
+[    4.890899] evm: security.SMACK64TRANSMUTE
+[    4.891354] evm: security.SMACK64MMAP
+[    4.891759] evm: security.apparmor
+[    4.892129] evm: security.ima
+[    4.892438] evm: security.capability
+[    4.892821] evm: HMAC attrs: 0x1
+[    4.895485] PM:   Magic number: 10:678:659
+[    4.895920] block ram12: hash matches
+[    4.897126] RAS: Correctable Errors collector initialized.
+[    4.898231] clk: Disabling unused clocks
+[    4.898669] PM: genpd: Disabling unused power domains
+[    4.899839] md: Waiting for all devices to be available before autodetect
+[    4.900308] md: If you don't use raid, use raid=noautodetect
+[    4.900702] md: Autodetecting RAID arrays.
+[    4.900988] md: autorun ...
+[    4.901186] md: ... autorun DONE.
+[    4.911939] EXT4-fs (sda): INFO: recovery required on readonly filesystem
+[    4.912405] EXT4-fs (sda): write access will be enabled during recovery
+[    4.975526] EXT4-fs (sda): recovery complete
+[    4.978402] EXT4-fs (sda): mounted filesystem 088740a9-c8b4-422c-999d-a804eb68a4da ro with ordered data mode. Quota mode: none.
+[    4.979260] VFS: Mounted root (ext4 filesystem) readonly on device 8:0.
+[    4.982879] devtmpfs: mounted
+[    5.010790] Freeing unused decrypted memory: 2028K
+[    5.016390] Freeing unused kernel image (initmem) memory: 15776K
+[    5.016889] Write protecting the kernel read-only data: 96256k
+[    5.018819] Freeing unused kernel image (text/rodata gap) memory: 228K
+[    5.019598] Freeing unused kernel image (rodata/data gap) memory: 348K
+[    6.040654] x86/mm: Checked W+X mappings: passed, no W+X pages found.
+[    6.041147] Run /sbin/init as init process
+[    6.261005] systemd[1]: systemd 252-15.el9 running in system mode (+PAM +AUDIT +SELINUX -APPARMOR +IMA +SMACK +SECCOMP +GCRYPT +GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS -FIDO2 +IDN2 -IDN -IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY +P11KIT -QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK +XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+[    6.263367] systemd[1]: Detected virtualization kvm.
+[    6.263735] systemd[1]: Detected architecture x86-64.
+
+Welcome to [0;31mCentOS Stream 9[0m!
+
+[    6.272151] systemd[1]: Hostname set to <test>.
+[    6.488710] systemd-rc-local-generator[125]: /etc/rc.d/rc.local is not marked executable, skipping.
+[    6.913140] systemd[1]: Queued start job for default target Multi-User System.
+[    6.957073] systemd[1]: Created slice Virtual Machine and Container Slice.
+[[0;32m  OK  [0m] Created slice [0;1;39mVirtual Machine and Container Slice[0m.
+[    6.962567] systemd[1]: Created slice Slice /system/getty.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/getty[0m.
+[    6.965700] systemd[1]: Created slice Slice /system/modprobe.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/modprobe[0m.
+[    6.968838] systemd[1]: Created slice Slice /system/serial-getty.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/serial-getty[0m.
+[    6.972101] systemd[1]: Created slice Slice /system/sshd-keygen.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/sshd-keygen[0m.
+[    6.975177] systemd[1]: Created slice User and Session Slice.
+[[0;32m  OK  [0m] Created slice [0;1;39mUser and Session Slice[0m.
+[    6.977237] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[[0;32m  OK  [0m] Started [0;1;39mForward Password R…uests to Wall Directory Watch[0m.
+[    6.979974] systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+[[0;32m  OK  [0m] Set up automount [0;1;39mArbitrary…s File System Automount Point[0m.
+[    6.981768] systemd[1]: Reached target Local Integrity Protected Volumes.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal Integrity Protected Volumes[0m.
+[    6.983257] systemd[1]: Reached target Slice Units.
+[[0;32m  OK  [0m] Reached target [0;1;39mSlice Units[0m.
+[    6.984495] systemd[1]: Reached target Swaps.
+[[0;32m  OK  [0m] Reached target [0;1;39mSwaps[0m.
+[    6.985585] systemd[1]: Reached target Local Verity Protected Volumes.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal Verity Protected Volumes[0m.
+[    6.987539] systemd[1]: Listening on Device-mapper event daemon FIFOs.
+[[0;32m  OK  [0m] Listening on [0;1;39mDevice-mapper event daemon FIFOs[0m.
+[    6.989672] systemd[1]: Listening on LVM2 poll daemon socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mLVM2 poll daemon socket[0m.
+[    6.991025] systemd[1]: multipathd control socket was skipped because of an unmet condition check (ConditionPathExists=/etc/multipath.conf).
+[    7.041667] systemd[1]: Listening on RPCbind Server Activation Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mRPCbind Server Activation Socket[0m.
+[    7.043360] systemd[1]: Reached target RPC Port Mapper.
+[[0;32m  OK  [0m] Reached target [0;1;39mRPC Port Mapper[0m.
+[    7.047215] systemd[1]: Listening on Process Core Dump Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mProcess Core Dump Socket[0m.
+[    7.049008] systemd[1]: Listening on initctl Compatibility Named Pipe.
+[[0;32m  OK  [0m] Listening on [0;1;39minitctl Compatibility Named Pipe[0m.
+[    7.050903] systemd[1]: Listening on Journal Socket (/dev/log).
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Socket (/dev/log)[0m.
+[    7.052944] systemd[1]: Listening on Journal Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Socket[0m.
+[    7.054968] systemd[1]: Listening on udev Control Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mudev Control Socket[0m.
+[    7.056597] systemd[1]: Listening on udev Kernel Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mudev Kernel Socket[0m.
+[    7.087019] systemd[1]: Mounting Huge Pages File System...
+         Mounting [0;1;39mHuge Pages File System[0m...
+[    7.095493] systemd[1]: Mounting POSIX Message Queue File System...
+         Mounting [0;1;39mPOSIX Message Queue File System[0m...
+[    7.107853] systemd[1]: Mounting Kernel Debug File System...
+         Mounting [0;1;39mKernel Debug File System[0m...
+[    7.117680] systemd[1]: Mounting Kernel Trace File System...
+         Mounting [0;1;39mKernel Trace File System[0m...
+[    7.120437] systemd[1]: Kernel Module supporting RPCSEC_GSS was skipped because of an unmet condition check (ConditionPathExists=/etc/krb5.keytab).
+[    7.121481] systemd[1]: Create List of Static Device Nodes was skipped because of an unmet condition check (ConditionFileNotEmpty=/lib/modules/6.13.0-69e858e0b8b2+/modules.devname).
+[    7.129692] systemd[1]: Starting Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+         Starting [0;1;39mMonitoring of LVM…meventd or progress polling[0m...
+[    7.139081] systemd[1]: Starting Load Kernel Module configfs...
+         Starting [0;1;39mLoad Kernel Module configfs[0m...
+[    7.149868] systemd[1]: Starting Load Kernel Module drm...
+         Starting [0;1;39mLoad Kernel Module drm[0m...
+[    7.182998] systemd[1]: Starting Load Kernel Module fuse...
+         Starting [0;1;39mLoad Kernel Module fuse[0m...
+[    7.197595] systemd[1]: Starting Read and set NIS domainname from /etc/sysconfig/network...
+         Starting [0;1;39mRead and set NIS …from /etc/sysconfig/network[0m...
+[    7.213834] systemd[1]: Starting Journal Service...
+         Starting [0;1;39mJournal Service[0m...
+[    7.258229] systemd[1]: Starting Load Kernel Modules...
+         Starting [0;1;39mLoad Kernel Modules[0m...
+[    7.274923] systemd[1]: Starting Generate network units from Kernel command line...
+         Starting [0;1;39mGenerate network …ts from Kernel command line[0m...
+[    7.296291] systemd[1]: Starting Remount Root and Kernel File Systems...
+         Starting [0;1;39mRemount Root and Kernel File Systems[0m...
+[    7.297923] systemd[1]: Repartition Root Disk was skipped because no trigger condition checks were met.
+[    7.343725] systemd[1]: Starting Coldplug All udev Devices...
+         Starting [0;1;39mColdplug All udev Devices[0m...
+[    7.360616] systemd[1]: Mounted Huge Pages File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mHuge Pages File System[0m.
+[    7.366702] systemd[1]: Mounted POSIX Message Queue File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mPOSIX Message Queue File System[0m.
+[    7.368632] systemd[1]: Mounted Kernel Debug File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Debug File System[0m.
+[    7.370120] systemd[1]: Started Journal Service.
+[[0;32m  OK  [0m] Started [0;1;39mJournal Service[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Trace File System[0m.
+[    7.374320] EXT4-fs (sda): re-mounted 088740a9-c8b4-422c-999d-a804eb68a4da r/w. Quota mode: none.
+[[0;32m  OK  [0m] Finished [0;1;39mMonitoring of LVM… dmeventd or progress polling[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module configfs[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module drm[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module fuse[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mRead and set NIS …e from /etc/sysconfig/network[0m.
+[[0;1;31mFAILED[0m] Failed to start [0;1;39mLoad Kernel Modules[0m.
+See 'systemctl status systemd-modules-load.service' for details.
+[[0;32m  OK  [0m] Finished [0;1;39mGenerate network units from Kernel command line[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mRemount Root and Kernel File Systems[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Network[0m.
+         Mounting [0;1;39mFUSE Control File System[0m...
+         Mounting [0;1;39mKernel Configuration File System[0m...
+         Starting [0;1;39mFlush Journal to Persistent Storage[0m...
+         Starting [0;1;39mLoad/Save Random Seed[0m...
+[    7.514896] systemd-journald[147]: Received client request to flush runtime journal.
+         Starting [0;1;39mApply Kernel Variables[0m...
+         Starting [0;1;39mCreate Static Device Nodes in /dev[0m...
+         Starting [0;1;39mSetup Virtual Console[0m...
+[[0;32m  OK  [0m] Mounted [0;1;39mFUSE Control File System[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Configuration File System[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mFlush Journal to Persistent Storage[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad/Save Random Seed[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mApply Kernel Variables[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate Static Device Nodes in /dev[0m.
+         Starting [0;1;39mRule-based Manage…for Device Events and Files[0m...
+[[0;32m  OK  [0m] Started [0;1;39mRule-based Manager for Device Events and Files[0m.
+         Starting [0;1;39mAuto-connect to s…E devices found during boot[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mAuto-connect to s…VME devices found during boot[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mSetup Virtual Console[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mColdplug All udev Devices[0m.
+         Starting [0;1;39mShow Plymouth Boot Screen[0m...
+         Starting [0;1;39mWait for udev To …plete Device Initialization[0m...
+[2J[3J[-1;-1f[[0;32m  OK  [0m] Started [0;1;39mShow Plymouth Boot Screen[0m.
+[[0;32m  OK  [0m] Started [0;1;39mForward Password R…s to Plymouth Directory Watch[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal Encrypted Volumes[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPath Units[0m.
+[[0;32m  OK  [0m] Found device [0;1;39m/dev/ttyS0[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLoad/Save RF …itch Status /dev/rfkill Watch[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mWait for udev To Complete Device Initialization[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Local File Systems[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal File Systems[0m.
+         Starting [0;1;39mTell Plymouth To Write Out Runtime Data[0m...
+         Starting [0;1;39mAutomatic Boot Loader Update[0m...
+         Starting [0;1;39mCreate Volatile Files and Directories[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mTell Plymouth To Write Out Runtime Data[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mAutomatic Boot Loader Update[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate Volatile Files and Directories[0m.
+         Mounting [0;1;39mRPC Pipe File System[0m...
+         Starting [0;1;39mSecurity Auditing Service[0m...
+         Starting [0;1;39mRPC Bind[0m...
+[[0;32m  OK  [0m] Mounted [0;1;39mRPC Pipe File System[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mrpc_pipefs.target[0m.
+[[0;32m  OK  [0m] Started [0;1;39mRPC Bind[0m.
+[[0;32m  OK  [0m] Started [0;1;39mSecurity Auditing Service[0m.
+         Starting [0;1;39mRecord System Boot/Shutdown in UTMP[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mRecord System Boot/Shutdown in UTMP[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSystem Initialization[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDaily rotation of log files[0m.
+[[0;32m  OK  [0m] Started [0;1;39mUpdates mlocate database every day[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDaily Cleanup of Temporary Directories[0m.
+[[0;32m  OK  [0m] Started [0;1;39mdaily update of the root trust anchor for DNSSEC[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mTimer Units[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mD-Bus System Message Bus Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mOpen-iSCSI iscsid Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mOpen-iSCSI iscsiuio Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mSSSD Kerberos…ache Manager responder socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt interface local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mVirtual machine lock manager socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mVirtual machine log manager socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt network local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt nodedev local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt nwfilter local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt proxy local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt qemu local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt qemu admin socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt qemu local read-only socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt secret local socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mLibvirt storage local socket[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSocket Units[0m.
+         Starting [0;1;39mD-Bus System Message Bus[0m...
+[[0;32m  OK  [0m] Started [0;1;39mD-Bus System Message Bus[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mBasic System[0m.
+         Starting [0;1;39mNetwork Manager[0m...
+         Starting [0;1;39mNTP client/server[0m...
+         Starting [0;1;39mRestore /run/initramfs on shutdown[0m...
+[[0;32m  OK  [0m] Started [0;1;39mirqbalance daemon[0m.
+[[0;32m  OK  [0m] Started [0;1;39mlibstoragemgmt plug-in server daemon[0m.
+[[0;32m  OK  [0m] Started [0;1;39mMachine Check Exception Logging Daemon[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39msshd-keygen.target[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mUser and Group Name Lookups[0m.
+         Starting [0;1;39mUser Login Management[0m...
+         Starting [0;1;39mVirtual Machine a…tainer Registration Service[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mRestore /run/initramfs on shutdown[0m.
+[[0;32m  OK  [0m] Started [0;1;39mVirtual Machine an…ontainer Registration Service[0m.
+[[0;32m  OK  [0m] Started [0;1;39mNTP client/server[0m.
+         Starting [0;1;39mHostname Service[0m...
+[[0;32m  OK  [0m] Started [0;1;39mUser Login Management[0m.
+[[0;32m  OK  [0m] Started [0;1;39mHostname Service[0m.
+         Starting [0;1;39mNetwork Manager Script Dispatcher Service[0m...
+[[0;32m  OK  [0m] Started [0;1;39mNetwork Manager Script Dispatcher Service[0m.
+[   11.202516] e1000: eth0 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[[0;32m  OK  [0m] Started [0;1;39mNetwork Manager[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNetwork[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNetwork is Online[0m.
+         Starting [0;1;39mGSSAPI Proxy Daemon[0m...
+         Starting [0;1;39mNotify NFS peers of a restart[0m...
+         Starting [0;1;39mSystem Logging Service[0m...
+         Starting [0;1;39mOpenSSH server daemon[0m...
+         Starting [0;1;39mDynamic System Tuning Daemon[0m...
+[[0;32m  OK  [0m] Started [0;1;39mNotify NFS peers of a restart[0m.
+[[0;32m  OK  [0m] Started [0;1;39mGSSAPI Proxy Daemon[0m.
+[[0;32m  OK  [0m] Started [0;1;39mOpenSSH server daemon[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mNFS client services[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Remote File Systems[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mRemote File Systems[0m.
+         Starting [0;1;39mPermit User Sessions[0m...
+         Starting [0;1;39mVirtualization qemu daemon[0m...
+[[0;32m  OK  [0m] Started [0;1;39mSystem Logging Service[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mPermit User Sessions[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDeferred execution scheduler[0m.
+[[0;32m  OK  [0m] Started [0;1;39mCommand Scheduler[0m.
+         Starting [0;1;39mHold until boot process finishes up[0m...
+         Starting [0;1;39mTerminate Plymouth Boot Screen[0m...
+
+CentOS Stream 9
+Kernel 6.13.0-69e858e0b8b2+ on an x86_64
+
+Activate the web console with: systemctl enable --now cockpit.socket
+
+test login: [   19.877947] pimreg: entered allmulticast mode
+[   19.907105] pimreg: entered allmulticast mode
+[   19.930386] pimreg (unregistering): left allmulticast mode
+[   19.934619] pimreg: entered allmulticast mode
+[   19.962876] pimreg: entered allmulticast mode
+[   19.990450] pimreg (unregistering): left allmulticast mode
+[   19.994701] pimreg: entered allmulticast mode
+[   20.023235] pimreg: entered allmulticast mode
+[   20.046546] pimreg (unregistering): left allmulticast mode
+[   20.087056] pimreg (unregistering): left allmulticast mode
+[   20.090893] pimreg: entered allmulticast mode
+[   20.118818] pimreg: entered allmulticast mode
+[   20.130505] pimreg (unregistering): left allmulticast mode
+[   20.151122] pimreg (unregistering): left allmulticast mode
+[   20.155087] pimreg: entered allmulticast mode
+[   20.181887] pimreg: entered allmulticast mode
+[   20.210674] pimreg (unregistering): left allmulticast mode
+[   20.230613] pimreg (unregistering): left allmulticast mode
+[   20.266600] pimreg (unregistering): left allmulticast mode
+[   20.270950] pimreg: entered allmulticast mode
+[   20.306702] pimreg (unregistering): left allmulticast mode
+[   20.310652] pimreg: entered allmulticast mode
+[   20.366454] pimreg (unregistering): left allmulticast mode
+[   20.370716] pimreg: entered allmulticast mode
+[   20.398552] pimreg: entered allmulticast mode
+[   20.415056] pimreg (unregistering): left allmulticast mode
+[   20.418925] pimreg: entered allmulticast mode
+[   20.450119] pimreg: entered allmulticast mode
+[   20.470724] pimreg (unregistering): left allmulticast mode
+[   20.511013] pimreg (unregistering): left allmulticast mode
+[   20.515042] pimreg: entered allmulticast mode
+[   20.551315] pimreg: entered allmulticast mode
+[   20.566534] pimreg (unregistering): left allmulticast mode
+[   20.599104] pimreg (unregistering): left allmulticast mode
+[   20.603316] pimreg: entered allmulticast mode
+[   20.630909] pimreg: entered allmulticast mode
+[   20.646496] pimreg (unregistering): left allmulticast mode
+[   20.666644] pimreg (unregistering): left allmulticast mode
+[   20.670956] pimreg: entered allmulticast mode
+[   20.710483] pimreg (unregistering): left allmulticast mode
+[   20.738696] pimreg (unregistering): left allmulticast mode
+[   20.742920] pimreg: entered allmulticast mode
+[   20.770378] pimreg: entered allmulticast mode
+[   20.782531] pimreg (unregistering): left allmulticast mode
+[   20.786561] pimreg: entered allmulticast mode
+[   20.814758] pimreg: entered allmulticast mode
+[   20.834825] pimreg (unregistering): left allmulticast mode
+[   20.850665] pimreg (unregistering): left allmulticast mode
+[   20.854869] pimreg: entered allmulticast mode
+[   20.882655] pimreg: entered allmulticast mode
+[   20.898545] pimreg (unregistering): left allmulticast mode
+[   20.922647] pimreg (unregistering): left allmulticast mode
+[   20.926852] pimreg: entered allmulticast mode
+[   20.954130] pimreg: entered allmulticast mode
+[   20.986542] pimreg (unregistering): left allmulticast mode
+[   21.019075] pimreg (unregistering): left allmulticast mode
+[   21.023202] pimreg: entered allmulticast mode
+[   21.062833] pimreg (unregistering): left allmulticast mode
+[   21.078650] pimreg (unregistering): left allmulticast mode
+[   21.082756] pimreg: entered allmulticast mode
+[   21.111248] pimreg: entered allmulticast mode
+[   21.126465] pimreg (unregistering): left allmulticast mode
+[   21.130533] pimreg: entered allmulticast mode
+[   21.166333] pimreg: entered allmulticast mode
+[   21.178451] pimreg (unregistering): left allmulticast mode
+[   21.194762] pimreg (unregistering): left allmulticast mode
+[   21.198557] pimreg: entered allmulticast mode
+[   21.226372] pimreg: entered allmulticast mode
+[   21.250591] pimreg (unregistering): left allmulticast mode
+[   21.274634] pimreg (unregistering): left allmulticast mode
+[   21.278854] pimreg: entered allmulticast mode
+[   21.307051] pimreg: entered allmulticast mode
+[   21.322514] pimreg (unregistering): left allmulticast mode
+[   21.338622] pimreg (unregistering): left allmulticast mode
+[   21.342721] pimreg: entered allmulticast mode
+[   21.370158] pimreg: entered allmulticast mode
+[   21.382510] pimreg (unregistering): left allmulticast mode
+[   21.418630] pimreg (unregistering): left allmulticast mode
+[   21.422936] pimreg: entered allmulticast mode
+[   21.450896] pimreg: entered allmulticast mode
+[   21.478416] pimreg (unregistering): left allmulticast mode
+[   21.491015] pimreg (unregistering): left allmulticast mode
+[   21.495152] pimreg: entered allmulticast mode
+[   21.522377] pimreg: entered allmulticast mode
+[   21.538578] pimreg (unregistering): left allmulticast mode
+[   21.559029] pimreg (unregistering): left allmulticast mode
+[   21.564002] pimreg: entered allmulticast mode
+[   21.590774] pimreg: entered allmulticast mode
+[   21.618449] pimreg (unregistering): left allmulticast mode
+[   21.647452] pimreg (unregistering): left allmulticast mode
+[   21.651500] pimreg: entered allmulticast mode
+[   21.682386] pimreg: entered allmulticast mode
+[   21.698615] pimreg (unregistering): left allmulticast mode
+[   21.723101] pimreg (unregistering): left allmulticast mode
+[   21.727235] pimreg: entered allmulticast mode
+[   21.754163] pimreg: entered allmulticast mode
+[   21.770635] pimreg (unregistering): left allmulticast mode
+[   21.803077] pimreg (unregistering): left allmulticast mode
+[   21.807151] pimreg: entered allmulticast mode
+[   21.835772] pimreg: entered allmulticast mode
+[   21.854485] pimreg (unregistering): left allmulticast mode
+[   21.874621] pimreg (unregistering): left allmulticast mode
+[   21.878788] pimreg: entered allmulticast mode
+[   21.906952] pimreg: entered allmulticast mode
+[   21.922595] pimreg (unregistering): left allmulticast mode
+[   21.942640] pimreg (unregistering): left allmulticast mode
+[   21.946846] pimreg: entered allmulticast mode
+[   21.974446] pimreg: entered allmulticast mode
+[   21.986456] pimreg (unregistering): left allmulticast mode
+[   22.006606] pimreg (unregistering): left allmulticast mode
+[   22.010454] pimreg: entered allmulticast mode
+[   22.038700] pimreg: entered allmulticast mode
+[   22.054567] pimreg (unregistering): left allmulticast mode
+[   22.087335] pimreg (unregistering): left allmulticast mode
+[   22.091396] pimreg: entered allmulticast mode
+[   22.119300] pimreg: entered allmulticast mode
+[   22.134489] pimreg (unregistering): left allmulticast mode
+[   22.167098] pimreg (unregistering): left allmulticast mode
+[   22.171299] pimreg: entered allmulticast mode
+[   22.207349] pimreg: entered allmulticast mode
+[   22.234483] pimreg (unregistering): left allmulticast mode
+[   22.259129] pimreg (unregistering): left allmulticast mode
+[   22.263312] pimreg: entered allmulticast mode
+[   22.291278] pimreg: entered allmulticast mode
+[   22.318459] pimreg (unregistering): left allmulticast mode
+[   22.335029] pimreg (unregistering): left allmulticast mode
+[   22.339191] pimreg: entered allmulticast mode
+[   22.362963] pimreg: entered allmulticast mode
+[   22.391594] pimreg: entered allmulticast mode
+[   22.406704] pimreg (unregistering): left allmulticast mode
+[   22.422921] pimreg (unregistering): left allmulticast mode
+[   22.446645] pimreg (unregistering): left allmulticast mode
+[   22.450916] pimreg: entered allmulticast mode
+[   22.494532] pimreg (unregistering): left allmulticast mode
+[   22.518647] pimreg (unregistering): left allmulticast mode
+[   22.521753] pimreg: entered allmulticast mode
+[   22.548125] pimreg: entered allmulticast mode
+[   22.574406] pimreg (unregistering): left allmulticast mode
+[   22.590638] pimreg (unregistering): left allmulticast mode
+[   22.594719] pimreg: entered allmulticast mode
+[   22.642721] pimreg (unregistering): left allmulticast mode
+[   22.645861] pimreg: entered allmulticast mode
+[   22.675242] pimreg: entered allmulticast mode
+[   22.690472] pimreg (unregistering): left allmulticast mode
+[   22.694776] pimreg: entered allmulticast mode
+[   22.723180] pimreg: entered allmulticast mode
+[   22.734608] pimreg (unregistering): left allmulticast mode
+[   22.758665] pimreg (unregistering): left allmulticast mode
+[   22.762766] pimreg: entered allmulticast mode
+[   22.791231] pimreg: entered allmulticast mode
+[   22.806458] pimreg (unregistering): left allmulticast mode
+[   22.823145] pimreg (unregistering): left allmulticast mode
+[   22.827329] pimreg: entered allmulticast mode
+[   22.855343] pimreg: entered allmulticast mode
+[   22.866398] pimreg (unregistering): left allmulticast mode
+[   22.887080] pimreg (unregistering): left allmulticast mode
+[   22.891228] pimreg: entered allmulticast mode
+[   22.919223] pimreg: entered allmulticast mode
+[   22.930345] pimreg (unregistering): left allmulticast mode
+[   22.958617] pimreg (unregistering): left allmulticast mode
+[   22.963052] pimreg: entered allmulticast mode
+[   22.995267] pimreg: entered allmulticast mode
+[   23.006480] pimreg (unregistering): left allmulticast mode
+[   23.026608] pimreg (unregistering): left allmulticast mode
+[   23.030887] pimreg: entered allmulticast mode
+[   23.082663] pimreg (unregistering): left allmulticast mode
+[   23.095016] pimreg (unregistering): left allmulticast mode
+[   23.098216] pimreg: entered allmulticast mode
+[   23.127057] pimreg: entered allmulticast mode
+[   23.146487] pimreg (unregistering): left allmulticast mode
+[   23.179035] pimreg (unregistering): left allmulticast mode
+[   23.182848] pimreg: entered allmulticast mode
+[   23.210543] pimreg: entered allmulticast mode
+[   23.234305] pimreg (unregistering): left allmulticast mode
+[   23.238585] pimreg: entered allmulticast mode
+[   23.282538] pimreg (unregistering): left allmulticast mode
+[   23.319038] pimreg (unregistering): left allmulticast mode
+[   23.323185] pimreg: entered allmulticast mode
+[   23.351143] pimreg: entered allmulticast mode
+[   23.366552] pimreg (unregistering): left allmulticast mode
+[   23.374291] pimreg: entered allmulticast mode
+[   23.399288] pimreg: entered allmulticast mode
+[   23.414444] pimreg (unregistering): left allmulticast mode
+[   23.447119] pimreg (unregistering): left allmulticast mode
+[   23.451505] pimreg: entered allmulticast mode
+[   23.479163] pimreg: entered allmulticast mode
+[   23.494479] pimreg (unregistering): left allmulticast mode
+[   23.507045] pimreg (unregistering): left allmulticast mode
+[   23.511180] pimreg: entered allmulticast mode
+[   23.538462] pimreg: entered allmulticast mode
+[   23.558596] pimreg (unregistering): left allmulticast mode
+[   23.571138] pimreg (unregistering): left allmulticast mode
+[   23.575307] pimreg: entered allmulticast mode
+[   23.603224] pimreg: entered allmulticast mode
+[   23.630488] pimreg (unregistering): left allmulticast mode
+[   23.659053] pimreg (unregistering): left allmulticast mode
+[   23.663066] pimreg: entered allmulticast mode
+[   23.690555] pimreg: entered allmulticast mode
+[   23.714993] pimreg (unregistering): left allmulticast mode
+[   23.743177] pimreg (unregistering): left allmulticast mode
+[   23.747567] pimreg: entered allmulticast mode
+[   23.778825] pimreg: entered allmulticast mode
+[   23.794470] pimreg (unregistering): left allmulticast mode
+[   23.827151] pimreg (unregistering): left allmulticast mode
+[   23.831316] pimreg: entered allmulticast mode
+[   23.867289] pimreg: entered allmulticast mode
+[   23.894482] pimreg (unregistering): left allmulticast mode
+[   23.919023] pimreg (unregistering): left allmulticast mode
+[   23.923122] pimreg: entered allmulticast mode
+[   23.950378] pimreg: entered allmulticast mode
+[   23.962600] pimreg (unregistering): left allmulticast mode
+[   23.999018] pimreg (unregistering): left allmulticast mode
+[   24.003298] pimreg: entered allmulticast mode
+[   24.030355] pimreg: entered allmulticast mode
+[   24.042512] pimreg (unregistering): left allmulticast mode
+[   24.062500] pimreg (unregistering): left allmulticast mode
+[   24.066756] pimreg: entered allmulticast mode
+[   24.122437] pimreg (unregistering): left allmulticast mode
+[   24.146691] pimreg (unregistering): left allmulticast mode
+[   24.150656] pimreg: entered allmulticast mode
+[   24.178551] pimreg: entered allmulticast mode
+[   24.194499] pimreg (unregistering): left allmulticast mode
+[   24.198613] pimreg: entered allmulticast mode
+[   24.219297] pimreg: entered allmulticast mode
+[   24.234778] pimreg: entered allmulticast mode
+[   24.258315] pimreg (unregistering): left allmulticast mode
+[   24.282630] pimreg (unregistering): left allmulticast mode
+[   24.306834] pimreg (unregistering): left allmulticast mode
+[   24.311430] pimreg: entered allmulticast mode
+[   24.335703] pimreg: entered allmulticast mode
+[   24.354550] pimreg (unregistering): left allmulticast mode
+[   24.367021] pimreg (unregistering): left allmulticast mode
+[   24.395042] pimreg (unregistering): left allmulticast mode
+[   24.399025] pimreg: entered allmulticast mode
+[   24.426465] pimreg: entered allmulticast mode
+[   24.442605] pimreg (unregistering): left allmulticast mode
+[   24.446588] pimreg: entered allmulticast mode
+[   24.474724] pimreg: entered allmulticast mode
+[   24.486473] pimreg (unregistering): left allmulticast mode
+[   24.507014] pimreg (unregistering): left allmulticast mode
+[   24.511133] pimreg: entered allmulticast mode
+[   24.539459] pimreg: entered allmulticast mode
+[   24.550571] pimreg (unregistering): left allmulticast mode
+[   24.570689] pimreg (unregistering): left allmulticast mode
+[   24.574723] pimreg: entered allmulticast mode
+[   24.606996] pimreg: entered allmulticast mode
+[   24.626479] pimreg (unregistering): left allmulticast mode
+[   24.663150] pimreg (unregistering): left allmulticast mode
+[   24.667142] pimreg: entered allmulticast mode
+[   24.695458] pimreg: entered allmulticast mode
+[   24.718564] pimreg (unregistering): left allmulticast mode
+[   24.735008] pimreg (unregistering): left allmulticast mode
+[   24.739257] pimreg: entered allmulticast mode
+[   24.767295] pimreg: entered allmulticast mode
+[   24.782506] pimreg (unregistering): left allmulticast mode
+[   24.790934] pimreg (unregistering): left allmulticast mode
+[   24.794623] pimreg: entered allmulticast mode
+[   24.824095] pimreg: entered allmulticast mode
+[   24.854643] pimreg (unregistering): left allmulticast mode
+[   24.866674] pimreg (unregistering): left allmulticast mode
+[   24.886652] pimreg (unregistering): left allmulticast mode
+[   24.891003] pimreg: entered allmulticast mode
+[   24.923434] pimreg: entered allmulticast mode
+[   24.934443] pimreg (unregistering): left allmulticast mode
+[   24.938604] pimreg: entered allmulticast mode
+[   24.962412] pimreg: entered allmulticast mode
+[   24.990447] pimreg (unregistering): left allmulticast mode
+[   25.014850] pimreg (unregistering): left allmulticast mode
+[   25.030623] pimreg (unregistering): left allmulticast mode
+[   25.034646] pimreg: entered allmulticast mode
+[   25.062095] pimreg: entered allmulticast mode
+[   25.074702] pimreg (unregistering): left allmulticast mode
+[   25.078595] pimreg: entered allmulticast mode
+[   25.110442] pimreg: entered allmulticast mode
+[   25.134306] pimreg (unregistering): left allmulticast mode
+[   25.162662] pimreg (unregistering): left allmulticast mode
+[   25.190687] pimreg (unregistering): left allmulticast mode
+[   25.194795] pimreg: entered allmulticast mode
+[   25.222028] pimreg: entered allmulticast mode
+[   25.234558] pimreg (unregistering): left allmulticast mode
+[   25.238594] pimreg: entered allmulticast mode
+[   25.258702] pimreg: entered allmulticast mode
+[   25.298614] pimreg (unregistering): left allmulticast mode
+[   25.310823] pimreg (unregistering): left allmulticast mode
+[   25.330661] pimreg (unregistering): left allmulticast mode
+[   25.335066] pimreg: entered allmulticast mode
+[   25.362905] pimreg: entered allmulticast mode
+[   25.390409] pimreg (unregistering): left allmulticast mode
+[   25.410615] pimreg (unregistering): left allmulticast mode
+[   25.414721] pimreg: entered allmulticast mode
+[   25.441848] pimreg: entered allmulticast mode
+[   25.454640] pimreg (unregistering): left allmulticast mode
+[   25.458851] pimreg: entered allmulticast mode
+[   25.482073] pimreg: entered allmulticast mode
+[   25.510888] pimreg (unregistering): left allmulticast mode
+[   25.527130] pimreg (unregistering): left allmulticast mode
+[   25.547044] pimreg (unregistering): left allmulticast mode
+[   25.551267] pimreg: entered allmulticast mode
+[   25.579503] pimreg: entered allmulticast mode
+[   25.590542] pimreg (unregistering): left allmulticast mode
+[   25.594612] pimreg: entered allmulticast mode
+[   25.622757] pimreg: entered allmulticast mode
+[   25.638444] pimreg (unregistering): left allmulticast mode
+[   25.670686] pimreg (unregistering): left allmulticast mode
+[   25.675056] pimreg: entered allmulticast mode
+[   25.702774] pimreg: entered allmulticast mode
+[   25.714480] pimreg (unregistering): left allmulticast mode
+[   25.742901] pimreg (unregistering): left allmulticast mode
+[   25.746974] pimreg: entered allmulticast mode
+[   25.779202] pimreg: entered allmulticast mode
+[   25.806424] pimreg (unregistering): left allmulticast mode
+[   25.822819] pimreg (unregistering): left allmulticast mode
+[   25.826918] pimreg: entered allmulticast mode
+[   25.854950] pimreg: entered allmulticast mode
+[   25.870502] pimreg (unregistering): left allmulticast mode
+[   25.894655] pimreg (unregistering): left allmulticast mode
+[   25.898739] pimreg: entered allmulticast mode
+[   25.942749] pimreg (unregistering): left allmulticast mode
+[   25.958611] pimreg (unregistering): left allmulticast mode
+[   25.961728] pimreg: entered allmulticast mode
+[   25.990761] pimreg: entered allmulticast mode
+[   26.006523] pimreg (unregistering): left allmulticast mode
+[   26.010473] pimreg: entered allmulticast mode
+[   26.035185] pimreg: entered allmulticast mode
+[   26.058313] pimreg (unregistering): left allmulticast mode
+[   26.086719] pimreg (unregistering): left allmulticast mode
+[   26.090945] pimreg: entered allmulticast mode
+[   26.118355] pimreg: entered allmulticast mode
+[   26.134645] pimreg (unregistering): left allmulticast mode
+[   26.155044] pimreg (unregistering): left allmulticast mode
+[   26.159268] pimreg: entered allmulticast mode
+[   26.186639] pimreg: entered allmulticast mode
+[   26.202574] pimreg (unregistering): left allmulticast mode
+[   26.219054] pimreg (unregistering): left allmulticast mode
+[   26.223389] pimreg: entered allmulticast mode
+[   26.250435] pimreg: entered allmulticast mode
+[   26.282484] pimreg (unregistering): left allmulticast mode
+[   26.302636] pimreg (unregistering): left allmulticast mode
+[   26.306747] pimreg: entered allmulticast mode
+[   26.334600] pimreg: entered allmulticast mode
+[   26.362615] pimreg (unregistering): left allmulticast mode
+[   26.378659] pimreg (unregistering): left allmulticast mode
+[   26.382730] pimreg: entered allmulticast mode
+[   26.410375] pimreg: entered allmulticast mode
+[   26.426537] pimreg (unregistering): left allmulticast mode
+[   26.450651] pimreg (unregistering): left allmulticast mode
+[   26.454773] pimreg: entered allmulticast mode
+[   26.482582] pimreg: entered allmulticast mode
+[   26.494491] pimreg (unregistering): left allmulticast mode
+[   26.514627] pimreg (unregistering): left allmulticast mode
+[   26.518787] pimreg: entered allmulticast mode
+[   26.566551] pimreg (unregistering): left allmulticast mode
+[   26.587037] pimreg (unregistering): left allmulticast mode
+[   26.591124] pimreg: entered allmulticast mode
+[   26.618688] pimreg: entered allmulticast mode
+[   26.634496] pimreg (unregistering): left allmulticast mode
+[   26.659046] pimreg (unregistering): left allmulticast mode
+[   26.663125] pimreg: entered allmulticast mode
+[   26.698137] pimreg: entered allmulticast mode
+[   26.726656] pimreg (unregistering): left allmulticast mode
+[   26.730652] pimreg: entered allmulticast mode
+[   26.758335] pimreg: entered allmulticast mode
+[   26.766590] pimreg (unregistering): left allmulticast mode
+[   26.782642] pimreg (unregistering): left allmulticast mode
+[   26.786907] pimreg: entered allmulticast mode
+[   26.830442] pimreg: entered allmulticast mode
+[   26.850763] pimreg (unregistering): left allmulticast mode
+[   26.870648] pimreg (unregistering): left allmulticast mode
+[   26.874732] pimreg: entered allmulticast mode
+[   26.902731] pimreg: entered allmulticast mode
+[   26.918504] pimreg (unregistering): left allmulticast mode
+[   26.950542] pimreg (unregistering): left allmulticast mode
+[   26.954686] pimreg: entered allmulticast mode
+[   26.982160] pimreg: entered allmulticast mode
+[   26.998692] pimreg (unregistering): left allmulticast mode
+[   27.030977] pimreg (unregistering): left allmulticast mode
+[   27.035202] pimreg: entered allmulticast mode
+[   27.062664] pimreg: entered allmulticast mode
+[   27.078634] pimreg (unregistering): left allmulticast mode
+[   27.103052] pimreg (unregistering): left allmulticast mode
+[   27.107238] pimreg: entered allmulticast mode
+[   27.134405] pimreg: entered allmulticast mode
+[   27.166661] pimreg (unregistering): left allmulticast mode
+[   27.179097] pimreg (unregistering): left allmulticast mode
+[   27.183409] pimreg: entered allmulticast mode
+[   27.210404] pimreg: entered allmulticast mode
+[   27.226625] pimreg (unregistering): left allmulticast mode
+[   27.255061] pimreg (unregistering): left allmulticast mode
+[   27.258873] pimreg: entered allmulticast mode
+[   27.286479] pimreg: entered allmulticast mode
+[   27.298500] pimreg (unregistering): left allmulticast mode
+[   27.310735] pimreg (unregistering): left allmulticast mode
+[   27.314900] pimreg: entered allmulticast mode
+[   27.343192] pimreg: entered allmulticast mode
+[   27.362878] pimreg (unregistering): left allmulticast mode
+[   27.378616] pimreg (unregistering): left allmulticast mode
+[   27.390758] pimreg (unregistering): left allmulticast mode
+[   27.394856] pimreg: entered allmulticast mode
+[   27.422344] pimreg: entered allmulticast mode
+[   27.450417] pimreg (unregistering): left allmulticast mode
+[   27.454721] pimreg: entered allmulticast mode
+[   27.483086] pimreg: entered allmulticast mode
+[   27.510626] pimreg (unregistering): left allmulticast mode
+[   27.527140] pimreg (unregistering): left allmulticast mode
+[   27.551012] pimreg (unregistering): left allmulticast mode
+[   27.555102] pimreg: entered allmulticast mode
+[   27.583256] pimreg: entered allmulticast mode
+[   27.614572] pimreg (unregistering): left allmulticast mode
+[   27.618676] pimreg: entered allmulticast mode
+[   27.650820] pimreg: entered allmulticast mode
+[   27.682676] pimreg (unregistering): left allmulticast mode
+[   27.711007] pimreg (unregistering): left allmulticast mode
+[   27.715256] pimreg: entered allmulticast mode
+[   27.742944] pimreg: entered allmulticast mode
+[   27.758504] pimreg (unregistering): left allmulticast mode
+[   27.778557] pimreg (unregistering): left allmulticast mode
+[   27.782389] pimreg: entered allmulticast mode
+[   27.811276] pimreg: entered allmulticast mode
+[   27.822520] pimreg (unregistering): left allmulticast mode
+[   27.835388] pimreg (unregistering): left allmulticast mode
+[   27.839211] pimreg: entered allmulticast mode
+[   27.871279] pimreg: entered allmulticast mode
+[   27.886638] pimreg (unregistering): left allmulticast mode
+[   27.907051] pimreg (unregistering): left allmulticast mode
+[   27.911184] pimreg: entered allmulticast mode
+[   27.939028] pimreg: entered allmulticast mode
+[   27.954453] pimreg (unregistering): left allmulticast mode
+[   27.987047] pimreg (unregistering): left allmulticast mode
+[   27.991279] pimreg: entered allmulticast mode
+[   28.018307] pimreg: entered allmulticast mode
+[   28.038407] pimreg (unregistering): left allmulticast mode
+[   28.063103] pimreg (unregistering): left allmulticast mode
+[   28.067160] pimreg: entered allmulticast mode
+[   28.094169] pimreg: entered allmulticast mode
+[   28.134671] pimreg (unregistering): left allmulticast mode
+[   28.151092] pimreg (unregistering): left allmulticast mode
+[   28.155197] pimreg: entered allmulticast mode
+[   28.182387] pimreg: entered allmulticast mode
+[   28.194469] pimreg (unregistering): left allmulticast mode
+[   28.227049] pimreg (unregistering): left allmulticast mode
+[   28.230831] pimreg: entered allmulticast mode
+[   28.259289] pimreg: entered allmulticast mode
+[   28.270459] pimreg (unregistering): left allmulticast mode
+[   28.303056] pimreg (unregistering): left allmulticast mode
+[   28.306865] pimreg: entered allmulticast mode
+[   28.334308] pimreg: entered allmulticast mode
+[   28.350558] pimreg (unregistering): left allmulticast mode
+[   28.383067] pimreg (unregistering): left allmulticast mode
+[   28.387166] pimreg: entered allmulticast mode
+[   28.414459] pimreg: entered allmulticast mode
+[   28.438525] pimreg (unregistering): left allmulticast mode
+[   28.463027] pimreg (unregistering): left allmulticast mode
+[   28.467170] pimreg: entered allmulticast mode
+[   28.494359] pimreg: entered allmulticast mode
+[   28.510473] pimreg (unregistering): left allmulticast mode
+[   28.535052] pimreg (unregistering): left allmulticast mode
+[   28.539136] pimreg: entered allmulticast mode
+[   28.574249] pimreg: entered allmulticast mode
+[   28.598627] pimreg (unregistering): left allmulticast mode
+[   28.631066] pimreg (unregistering): left allmulticast mode
+[   28.635228] pimreg: entered allmulticast mode
+[   28.663208] pimreg: entered allmulticast mode
+[   28.678464] pimreg (unregistering): left allmulticast mode
+[   28.711023] pimreg (unregistering): left allmulticast mode
+[   28.715143] pimreg: entered allmulticast mode
+[   28.751270] pimreg: entered allmulticast mode
+[   28.766479] pimreg (unregistering): left allmulticast mode
+[   28.783017] pimreg (unregistering): left allmulticast mode
+[   28.787216] pimreg: entered allmulticast mode
+[   28.822637] pimreg: entered allmulticast mode
+[   28.838544] pimreg (unregistering): left allmulticast mode
+[   28.867011] pimreg (unregistering): left allmulticast mode
+[   28.883228] pimreg (unregistering): left allmulticast mode
+[   28.887210] pimreg: entered allmulticast mode
+[   28.914381] pimreg: entered allmulticast mode
+[   28.930672] pimreg (unregistering): left allmulticast mode
+[   28.939518] pimreg: entered allmulticast mode
+[   28.967299] pimreg: entered allmulticast mode
+[   28.986483] pimreg (unregistering): left allmulticast mode
+[   28.999037] pimreg (unregistering): left allmulticast mode
+[   29.003142] pimreg: entered allmulticast mode
+[   29.030655] pimreg: entered allmulticast mode
+[   29.042506] pimreg (unregistering): left allmulticast mode
+[   29.083020] pimreg (unregistering): left allmulticast mode
+[   29.087173] pimreg: entered allmulticast mode
+[   29.114445] pimreg: entered allmulticast mode
+[   29.126511] pimreg (unregistering): left allmulticast mode
+[   29.139160] pimreg (unregistering): left allmulticast mode
+[   29.143263] pimreg: entered allmulticast mode
+[   29.179359] pimreg: entered allmulticast mode
+[   29.206319] pimreg (unregistering): left allmulticast mode
+[   29.239012] pimreg (unregistering): left allmulticast mode
+[   29.243250] pimreg: entered allmulticast mode
+[   29.270127] pimreg: entered allmulticast mode
+[   29.282619] pimreg (unregistering): left allmulticast mode
+[   29.315112] pimreg (unregistering): left allmulticast mode
+[   29.319179] pimreg: entered allmulticast mode
+[   29.362624] pimreg (unregistering): left allmulticast mode
+[   29.379064] pimreg (unregistering): left allmulticast mode
+[   29.383280] pimreg: entered allmulticast mode
+[   29.410759] pimreg: entered allmulticast mode
+[   29.426513] pimreg (unregistering): left allmulticast mode
+[   29.430601] pimreg: entered allmulticast mode
+[   29.461956] pimreg: entered allmulticast mode
+[   29.490608] pimreg (unregistering): left allmulticast mode
+[   29.514615] pimreg (unregistering): left allmulticast mode
+[   29.518651] pimreg: entered allmulticast mode
+[   29.551503] pimreg: entered allmulticast mode
+[   29.574316] pimreg (unregistering): left allmulticast mode
+[   29.594698] pimreg (unregistering): left allmulticast mode
+[   29.598780] pimreg: entered allmulticast mode
+[   29.627287] pimreg: entered allmulticast mode
+[   29.646748] pimreg (unregistering): left allmulticast mode
+[   29.654968] pimreg (unregistering): left allmulticast mode
+[   29.659078] pimreg: entered allmulticast mode
+[   29.683466] pimreg: entered allmulticast mode
+[   29.699295] pimreg (unregistering): left allmulticast mode
+[   29.727103] pimreg (unregistering): left allmulticast mode
+[   29.743028] pimreg (unregistering): left allmulticast mode
+[   29.747189] pimreg: entered allmulticast mode
+[   29.775248] pimreg: entered allmulticast mode
+[   29.790521] pimreg (unregistering): left allmulticast mode
+[   29.794476] pimreg: entered allmulticast mode
+[   29.823335] pimreg: entered allmulticast mode
+[   29.846515] pimreg (unregistering): left allmulticast mode
+[   29.867011] pimreg (unregistering): left allmulticast mode
+[   29.871095] pimreg: entered allmulticast mode
+[   29.906562] pimreg: entered allmulticast mode
+[   29.918661] pimreg (unregistering): left allmulticast mode
+[   29.947055] pimreg (unregistering): left allmulticast mode
+[   29.950991] pimreg: entered allmulticast mode
+[   29.978512] pimreg: entered allmulticast mode
+[   30.002837] pimreg (unregistering): left allmulticast mode
+[   30.031031] pimreg (unregistering): left allmulticast mode
+[   30.035151] pimreg: entered allmulticast mode
+[   30.062371] pimreg: entered allmulticast mode
+[   30.078461] pimreg (unregistering): left allmulticast mode
+[   30.111026] pimreg (unregistering): left allmulticast mode
+[   30.115162] pimreg: entered allmulticast mode
+[   30.142358] pimreg: entered allmulticast mode
+[   30.162681] pimreg (unregistering): left allmulticast mode
+[   30.179123] pimreg (unregistering): left allmulticast mode
+[   30.183378] pimreg: entered allmulticast mode
+[   30.202016] pimreg: entered allmulticast mode
+[   30.226335] pimreg (unregistering): left allmulticast mode
+[   30.238837] pimreg (unregistering): left allmulticast mode
+[   30.250640] pimreg (unregistering): left allmulticast mode
+[   30.255049] pimreg: entered allmulticast mode
+[   30.282086] pimreg: entered allmulticast mode
+[   30.298546] pimreg (unregistering): left allmulticast mode
+[   30.303121] pimreg: entered allmulticast mode
+[   30.326505] pimreg: entered allmulticast mode
+[   30.350337] pimreg (unregistering): left allmulticast mode
+[   30.363385] pimreg (unregistering): left allmulticast mode
+[   30.383224] pimreg (unregistering): left allmulticast mode
+[   30.387353] pimreg: entered allmulticast mode
+[   30.414600] pimreg: entered allmulticast mode
+[   30.430600] pimreg (unregistering): left allmulticast mode
+[   30.434748] pimreg: entered allmulticast mode
+[   30.486520] pimreg (unregistering): left allmulticast mode
+[   30.515048] pimreg (unregistering): left allmulticast mode
+[   30.519292] pimreg: entered allmulticast mode
+[   30.554622] pimreg: entered allmulticast mode
+[   30.586484] pimreg (unregistering): left allmulticast mode
+[   30.606989] pimreg (unregistering): left allmulticast mode
+[   30.611111] pimreg: entered allmulticast mode
+[   30.647509] pimreg: entered allmulticast mode
+[   30.658625] pimreg (unregistering): left allmulticast mode
+[   30.662493] pimreg: entered allmulticast mode
+[   30.687244] pimreg: entered allmulticast mode
+[   30.706416] pimreg (unregistering): left allmulticast mode
+[   30.718653] pimreg (unregistering): left allmulticast mode
+[   30.722976] pimreg: entered allmulticast mode
+[   30.754951] pimreg: entered allmulticast mode
+[   30.762612] pimreg (unregistering): left allmulticast mode
+[   30.778875] pimreg (unregistering): left allmulticast mode
+[   30.783039] pimreg: entered allmulticast mode
+[   30.815314] pimreg: entered allmulticast mode
+[   30.830408] pimreg (unregistering): left allmulticast mode
+[   30.842856] pimreg (unregistering): left allmulticast mode
+[   30.847093] pimreg: entered allmulticast mode
+[   30.872144] pimreg: entered allmulticast mode
+[   30.898474] pimreg (unregistering): left allmulticast mode
+[   30.919043] pimreg (unregistering): left allmulticast mode
+[   30.947012] pimreg (unregistering): left allmulticast mode
+[   30.951152] pimreg: entered allmulticast mode
+[   30.978960] pimreg: entered allmulticast mode
+[   30.998424] pimreg (unregistering): left allmulticast mode
+[   31.002355] pimreg: entered allmulticast mode
+[   31.034980] pimreg: entered allmulticast mode
+[   31.054541] pimreg (unregistering): left allmulticast mode
+[   31.087027] pimreg (unregistering): left allmulticast mode
+[   31.091200] pimreg: entered allmulticast mode
+[   31.118308] pimreg: entered allmulticast mode
+[   31.134644] pimreg (unregistering): left allmulticast mode
+[   31.154726] pimreg (unregistering): left allmulticast mode
+[   31.158967] pimreg: entered allmulticast mode
+[   31.191257] pimreg: entered allmulticast mode
+[   31.202366] pimreg (unregistering): left allmulticast mode
+[   31.226748] pimreg (unregistering): left allmulticast mode
+[   31.230957] pimreg: entered allmulticast mode
+[   31.266797] pimreg: entered allmulticast mode
+[   31.290297] pimreg (unregistering): left allmulticast mode
+[   31.318742] pimreg (unregistering): left allmulticast mode
+[   31.323009] pimreg: entered allmulticast mode
+[   31.351227] pimreg: entered allmulticast mode
+[   31.366472] pimreg (unregistering): left allmulticast mode
+[   31.386751] pimreg (unregistering): left allmulticast mode
+[   31.391095] pimreg: entered allmulticast mode
+[   31.419294] pimreg: entered allmulticast mode
+[   31.446438] pimreg (unregistering): left allmulticast mode
+[   31.466913] pimreg (unregistering): left allmulticast mode
+[   31.471156] pimreg: entered allmulticast mode
+[   31.498030] pimreg: entered allmulticast mode
+[   31.514572] pimreg (unregistering): left allmulticast mode
+[   31.538710] pimreg (unregistering): left allmulticast mode
+[   31.543019] pimreg: entered allmulticast mode
+[   31.570682] pimreg: entered allmulticast mode
+[   31.586501] pimreg (unregistering): left allmulticast mode
+[   31.610767] pimreg (unregistering): left allmulticast mode
+[   31.615051] pimreg: entered allmulticast mode
+[   31.642415] pimreg: entered allmulticast mode
+[   31.654871] pimreg (unregistering): left allmulticast mode
+[   31.679107] pimreg (unregistering): left allmulticast mode
+[   31.683218] pimreg: entered allmulticast mode
+[   31.715612] pimreg: entered allmulticast mode
+[   31.738530] pimreg (unregistering): left allmulticast mode
+[   31.767108] pimreg (unregistering): left allmulticast mode
+[   31.771311] pimreg: entered allmulticast mode
+[   31.798165] pimreg: entered allmulticast mode
+[   31.822696] pimreg (unregistering): left allmulticast mode
+[   31.846643] pimreg (unregistering): left allmulticast mode
+[   31.850454] pimreg: entered allmulticast mode
+[   31.879213] pimreg: entered allmulticast mode
+[   31.902536] pimreg (unregistering): left allmulticast mode
+[   31.927102] pimreg (unregistering): left allmulticast mode
+[   31.931092] pimreg: entered allmulticast mode
+[   31.957854] pimreg: entered allmulticast mode
+[   31.970715] pimreg (unregistering): left allmulticast mode
+[   31.990726] pimreg (unregistering): left allmulticast mode
+[   31.994840] pimreg: entered allmulticast mode
+[   32.026025] pimreg: entered allmulticast mode
+[   32.050669] pimreg (unregistering): left allmulticast mode
+[   32.066689] pimreg (unregistering): left allmulticast mode
+[   32.070531] pimreg: entered allmulticast mode
+[   32.098574] pimreg: entered allmulticast mode
+[   32.110536] pimreg (unregistering): left allmulticast mode
+[   32.134653] pimreg (unregistering): left allmulticast mode
+[   32.138831] pimreg: entered allmulticast mode
+[   32.166122] pimreg: entered allmulticast mode
+[   32.178569] pimreg (unregistering): left allmulticast mode
+[   32.210680] pimreg (unregistering): left allmulticast mode
+[   32.214853] pimreg: entered allmulticast mode
+[   32.243131] pimreg: entered allmulticast mode
+[   32.258607] pimreg (unregistering): left allmulticast mode
+[   32.279049] pimreg (unregistering): left allmulticast mode
+[   32.283208] pimreg: entered allmulticast mode
+[   32.310383] pimreg: entered allmulticast mode
+[   32.330561] pimreg (unregistering): left allmulticast mode
+[   32.354744] pimreg (unregistering): left allmulticast mode
+[   32.359101] pimreg: entered allmulticast mode
+[   32.386649] pimreg: entered allmulticast mode
+[   32.406715] pimreg (unregistering): left allmulticast mode
+[   32.422694] pimreg (unregistering): left allmulticast mode
+[   32.426817] pimreg: entered allmulticast mode
+[   32.466888] pimreg: entered allmulticast mode
+[   32.482489] pimreg (unregistering): left allmulticast mode
+[   32.515115] pimreg (unregistering): left allmulticast mode
+[   32.519648] pimreg: entered allmulticast mode
+[   32.546105] pimreg: entered allmulticast mode
+[   32.562570] pimreg (unregistering): left allmulticast mode
+[   32.594780] pimreg (unregistering): left allmulticast mode
+[   32.598908] pimreg: entered allmulticast mode
+[   32.630403] pimreg: entered allmulticast mode
+[   32.650638] pimreg (unregistering): left allmulticast mode
+[   32.679044] pimreg (unregistering): left allmulticast mode
+[   32.683126] pimreg: entered allmulticast mode
+[   32.710434] pimreg: entered allmulticast mode
+[   32.726583] pimreg (unregistering): left allmulticast mode
+[   32.759096] pimreg (unregistering): left allmulticast mode
+[   32.763237] pimreg: entered allmulticast mode
+[   32.798866] pimreg: entered allmulticast mode
+[   32.818493] pimreg (unregistering): left allmulticast mode
+[   32.851055] pimreg (unregistering): left allmulticast mode
+[   32.855051] pimreg: entered allmulticast mode
+[   32.883036] pimreg: entered allmulticast mode
+[   32.902477] pimreg (unregistering): left allmulticast mode
+[   32.939026] pimreg (unregistering): left allmulticast mode
+[   32.943587] pimreg: entered allmulticast mode
+[   32.978367] pimreg: entered allmulticast mode
+[   33.010609] pimreg (unregistering): left allmulticast mode
+[   33.022777] pimreg (unregistering): left allmulticast mode
+[   33.026623] pimreg: entered allmulticast mode
+[   33.054643] pimreg: entered allmulticast mode
+[   33.074694] pimreg (unregistering): left allmulticast mode
+[   33.087002] pimreg (unregistering): left allmulticast mode
+[   33.090928] pimreg: entered allmulticast mode
+[   33.127239] pimreg: entered allmulticast mode
+[   33.138840] pimreg (unregistering): left allmulticast mode
+[   33.158634] pimreg (unregistering): left allmulticast mode
+[   33.162751] pimreg: entered allmulticast mode
+[   33.194754] pimreg: entered allmulticast mode
+[   33.218308] pimreg (unregistering): left allmulticast mode
+[   33.242684] pimreg (unregistering): left allmulticast mode
+[   33.246799] pimreg: entered allmulticast mode
+[   33.274627] pimreg: entered allmulticast mode
+[   33.294548] pimreg (unregistering): left allmulticast mode
+[   33.314657] pimreg (unregistering): left allmulticast mode
+[   33.318729] pimreg: entered allmulticast mode
+[   33.350645] pimreg: entered allmulticast mode
+[   33.367013] pimreg (unregistering): left allmulticast mode
+[   33.386799] pimreg (unregistering): left allmulticast mode
+[   33.391020] pimreg: entered allmulticast mode
+[   33.426400] pimreg: entered allmulticast mode
+[   33.446758] pimreg (unregistering): left allmulticast mode
+[   33.483099] pimreg (unregistering): left allmulticast mode
+[   33.487196] pimreg: entered allmulticast mode
+[   33.514352] pimreg: entered allmulticast mode
+[   33.522611] pimreg (unregistering): left allmulticast mode
+[   33.538715] pimreg (unregistering): left allmulticast mode
+[   33.542753] pimreg: entered allmulticast mode
+[   33.574442] pimreg: entered allmulticast mode
+[   33.606777] pimreg (unregistering): left allmulticast mode
+[   33.631036] pimreg (unregistering): left allmulticast mode
+[   33.635291] pimreg: entered allmulticast mode
+[   33.670057] pimreg: entered allmulticast mode
+[   33.694650] pimreg (unregistering): left allmulticast mode
+[   33.707052] pimreg (unregistering): left allmulticast mode
+[   33.711002] pimreg: entered allmulticast mode
+[   33.739306] pimreg: entered allmulticast mode
+[   33.754480] pimreg (unregistering): left allmulticast mode
+[   33.779043] pimreg (unregistering): left allmulticast mode
+[   33.783196] pimreg: entered allmulticast mode
+[   33.810543] pimreg: entered allmulticast mode
+[   33.834939] pimreg (unregistering): left allmulticast mode
+[   33.846656] pimreg (unregistering): left allmulticast mode
+[   33.850710] pimreg: entered allmulticast mode
+[   33.882953] pimreg: entered allmulticast mode
+[   33.898491] pimreg (unregistering): left allmulticast mode
+[   33.922668] pimreg (unregistering): left allmulticast mode
+[   33.927064] pimreg: entered allmulticast mode
+[   33.958442] pimreg: entered allmulticast mode
+[   33.970415] pimreg (unregistering): left allmulticast mode
+[   33.994680] pimreg (unregistering): left allmulticast mode
+[   33.998858] pimreg: entered allmulticast mode
+[   34.030424] pimreg: entered allmulticast mode
+[   34.054608] pimreg (unregistering): left allmulticast mode
+[   34.079015] pimreg (unregistering): left allmulticast mode
+[   34.082977] pimreg: entered allmulticast mode
+[   34.110446] pimreg: entered allmulticast mode
+[   34.138452] pimreg (unregistering): left allmulticast mode
+[   34.150618] pimreg (unregistering): left allmulticast mode
+[   34.154729] pimreg: entered allmulticast mode
+[   34.182349] pimreg: entered allmulticast mode
+[   34.194619] pimreg (unregistering): left allmulticast mode
+[   34.219291] pimreg (unregistering): left allmulticast mode
+[   34.223343] pimreg: entered allmulticast mode
+[   34.251008] pimreg: entered allmulticast mode
+[   34.274600] pimreg (unregistering): left allmulticast mode
+[   34.298897] pimreg (unregistering): left allmulticast mode
+[   34.302984] pimreg: entered allmulticast mode
+[   34.329909] pimreg: entered allmulticast mode
+[   34.354517] pimreg (unregistering): left allmulticast mode
+[   34.374657] pimreg (unregistering): left allmulticast mode
+[   34.378789] pimreg: entered allmulticast mode
+[   34.406410] pimreg: entered allmulticast mode
+[   34.422688] pimreg (unregistering): left allmulticast mode
+[   34.443018] pimreg (unregistering): left allmulticast mode
+[   34.447084] pimreg: entered allmulticast mode
+[   34.474687] pimreg: entered allmulticast mode
+[   34.490592] pimreg (unregistering): left allmulticast mode
+[   34.511035] pimreg (unregistering): left allmulticast mode
+[   34.515034] pimreg: entered allmulticast mode
+[   34.542521] pimreg: entered allmulticast mode
+[   34.558996] pimreg (unregistering): left allmulticast mode
+[   34.587221] pimreg (unregistering): left allmulticast mode
+[   34.591175] pimreg: entered allmulticast mode
+[   34.634486] pimreg (unregistering): left allmulticast mode
+[   34.670971] pimreg (unregistering): left allmulticast mode
+[   34.675419] pimreg: entered allmulticast mode
+[   34.702093] pimreg: entered allmulticast mode
+[   34.718578] pimreg (unregistering): left allmulticast mode
+[   34.722715] pimreg: entered allmulticast mode
+[   34.751586] pimreg: entered allmulticast mode
+[   34.778536] pimreg (unregistering): left allmulticast mode
+[   34.803033] pimreg (unregistering): left allmulticast mode
+[   34.807170] pimreg: entered allmulticast mode
+[   34.834822] pimreg: entered allmulticast mode
+[   34.850488] pimreg (unregistering): left allmulticast mode
+[   34.874644] pimreg (unregistering): left allmulticast mode
+[   34.878742] pimreg: entered allmulticast mode
+[   34.902449] pimreg: entered allmulticast mode
+[   34.926764] pimreg: entered allmulticast mode
+[   34.962501] pimreg (unregistering): left allmulticast mode
+[   34.986639] pimreg (unregistering): left allmulticast mode
+[   35.010670] pimreg (unregistering): left allmulticast mode
+[   35.030654] pimreg (unregistering): left allmulticast mode
+[   35.035187] pimreg: entered allmulticast mode
+[   35.062445] pimreg: entered allmulticast mode
+[   35.078518] pimreg (unregistering): left allmulticast mode
+[   35.082586] pimreg: entered allmulticast mode
+[   35.110505] pimreg: entered allmulticast mode
+[   35.130496] pimreg (unregistering): left allmulticast mode
+[   35.150757] pimreg (unregistering): left allmulticast mode
+[   35.154880] pimreg: entered allmulticast mode
+[   35.181716] pimreg: entered allmulticast mode
+[   35.206511] pimreg (unregistering): left allmulticast mode
+[   35.223277] pimreg (unregistering): left allmulticast mode
+[   35.227454] pimreg: entered allmulticast mode
+[   35.254260] pimreg: entered allmulticast mode
+[   35.270603] pimreg (unregistering): left allmulticast mode
+[   35.303091] pimreg (unregistering): left allmulticast mode
+[   35.307148] pimreg: entered allmulticast mode
+[   35.334062] pimreg: entered allmulticast mode
+[   35.346626] pimreg (unregistering): left allmulticast mode
+[   35.371031] pimreg (unregistering): left allmulticast mode
+[   35.375065] pimreg: entered allmulticast mode
+[   35.402961] pimreg: entered allmulticast mode
+[   35.422502] pimreg (unregistering): left allmulticast mode
+[   35.450611] pimreg (unregistering): left allmulticast mode
+[   35.454803] pimreg: entered allmulticast mode
+[   35.486622] pimreg: entered allmulticast mode
+[   35.506551] pimreg (unregistering): left allmulticast mode
+[   35.526656] pimreg (unregistering): left allmulticast mode
+[   35.530748] pimreg: entered allmulticast mode
+[   35.561013] pimreg: entered allmulticast mode
+[   35.574345] pimreg (unregistering): left allmulticast mode
+[   35.591220] pimreg (unregistering): left allmulticast mode
+[   35.595060] pimreg: entered allmulticast mode
+[   35.622150] pimreg: entered allmulticast mode
+[   35.646497] pimreg (unregistering): left allmulticast mode
+[   35.670625] pimreg (unregistering): left allmulticast mode
+[   35.674665] pimreg: entered allmulticast mode
+[   35.714703] pimreg (unregistering): left allmulticast mode
+[   35.750657] pimreg (unregistering): left allmulticast mode
+[   35.754693] pimreg: entered allmulticast mode
+[   35.782371] pimreg: entered allmulticast mode
+[   35.794508] pimreg (unregistering): left allmulticast mode
+[   35.798941] pimreg: entered allmulticast mode
+[   35.834597] pimreg: entered allmulticast mode
+[   35.850538] pimreg (unregistering): left allmulticast mode
+[   35.882648] pimreg (unregistering): left allmulticast mode
+[   35.886792] pimreg: entered allmulticast mode
+[   35.914138] pimreg: entered allmulticast mode
+[   35.930553] pimreg (unregistering): left allmulticast mode
+[   35.954624] pimreg (unregistering): left allmulticast mode
+[   35.958894] pimreg: entered allmulticast mode
+[   35.986107] pimreg: entered allmulticast mode
+[   36.006669] pimreg (unregistering): left allmulticast mode
+[   36.027035] pimreg (unregistering): left allmulticast mode
+[   36.031152] pimreg: entered allmulticast mode
+[   36.058151] pimreg: entered allmulticast mode
+[   36.078607] pimreg (unregistering): left allmulticast mode
+[   36.098644] pimreg (unregistering): left allmulticast mode
+[   36.102720] pimreg: entered allmulticast mode
+[   36.146579] pimreg (unregistering): left allmulticast mode
+[   36.167064] pimreg (unregistering): left allmulticast mode
+[   36.170161] pimreg: entered allmulticast mode
+[   36.198644] pimreg: entered allmulticast mode
+[   36.214666] pimreg (unregistering): left allmulticast mode
+[   36.218901] pimreg: entered allmulticast mode
+[   36.245958] pimreg: entered allmulticast mode
+[   36.262605] pimreg (unregistering): left allmulticast mode
+[   36.291255] pimreg (unregistering): left allmulticast mode
+[   36.295097] pimreg: entered allmulticast mode
+[   36.322156] pimreg: entered allmulticast mode
+[   36.338586] pimreg (unregistering): left allmulticast mode
+[   36.367048] pimreg (unregistering): left allmulticast mode
+[   36.370910] pimreg: entered allmulticast mode
+[   36.407413] pimreg: entered allmulticast mode
+[   36.418613] pimreg (unregistering): left allmulticast mode
+[   36.446669] pimreg (unregistering): left allmulticast mode
+[   36.450781] pimreg: entered allmulticast mode
+[   36.482479] pimreg: entered allmulticast mode
+[   36.506541] pimreg (unregistering): left allmulticast mode
+[   36.527000] pimreg (unregistering): left allmulticast mode
+[   36.530934] pimreg: entered allmulticast mode
+[   36.558475] pimreg: entered allmulticast mode
+[   36.586674] pimreg (unregistering): left allmulticast mode
+[   36.615064] pimreg (unregistering): left allmulticast mode
+[   36.619451] pimreg: entered allmulticast mode
+[   36.646551] pimreg: entered allmulticast mode
+[   36.666443] pimreg (unregistering): left allmulticast mode
+[   36.691039] pimreg (unregistering): left allmulticast mode
+[   36.695130] pimreg: entered allmulticast mode
+[   36.722409] pimreg: entered allmulticast mode
+[   36.730560] pimreg (unregistering): left allmulticast mode
+[   36.746643] pimreg (unregistering): left allmulticast mode
+[   36.750734] pimreg: entered allmulticast mode
+[   36.783148] pimreg: entered allmulticast mode
+[   36.814318] pimreg (unregistering): left allmulticast mode
+[   36.830691] pimreg (unregistering): left allmulticast mode
+[   36.834827] pimreg: entered allmulticast mode
+[   36.866381] pimreg: entered allmulticast mode
+[   36.890536] pimreg (unregistering): left allmulticast mode
+[   36.915034] pimreg (unregistering): left allmulticast mode
+[   36.918986] pimreg: entered allmulticast mode
+[   36.946500] pimreg: entered allmulticast mode
+[   36.970418] pimreg (unregistering): left allmulticast mode
+[   36.986826] pimreg (unregistering): left allmulticast mode
+[   36.991010] pimreg: entered allmulticast mode
+[   37.026922] pimreg: entered allmulticast mode
+[   37.054614] pimreg (unregistering): left allmulticast mode
+[   37.074640] pimreg (unregistering): left allmulticast mode
+[   37.098636] pimreg (unregistering): left allmulticast mode
+[   37.102717] pimreg: entered allmulticast mode
+[   37.130438] pimreg: entered allmulticast mode
+[   37.146680] pimreg (unregistering): left allmulticast mode
+[   37.150924] pimreg: entered allmulticast mode
+[   37.174307] pimreg: entered allmulticast mode
+[   37.198336] pimreg (unregistering): left allmulticast mode
+[   37.230620] pimreg (unregistering): left allmulticast mode
+[   37.234727] pimreg: entered allmulticast mode
+[   37.261979] pimreg: entered allmulticast mode
+[   37.278589] pimreg (unregistering): left allmulticast mode
+[   37.299084] pimreg (unregistering): left allmulticast mode
+[   37.303180] pimreg: entered allmulticast mode
+[   37.334138] pimreg: entered allmulticast mode
+[   37.362687] pimreg (unregistering): left allmulticast mode
+[   37.387037] pimreg (unregistering): left allmulticast mode
+[   37.391114] pimreg: entered allmulticast mode
+[   37.418766] pimreg: entered allmulticast mode
+[   37.430489] pimreg (unregistering): left allmulticast mode
+[   37.471042] pimreg (unregistering): left allmulticast mode
+[   37.475257] pimreg: entered allmulticast mode
+[   37.510362] pimreg: entered allmulticast mode
+[   37.530648] pimreg (unregistering): left allmulticast mode
+[   37.547069] pimreg (unregistering): left allmulticast mode
+[   37.551071] pimreg: entered allmulticast mode
+[   37.578964] pimreg: entered allmulticast mode
+[   37.602707] pimreg (unregistering): left allmulticast mode
+[   37.634654] pimreg (unregistering): left allmulticast mode
+[   37.638734] pimreg: entered allmulticast mode
+[   37.686502] pimreg (unregistering): left allmulticast mode
+[   37.703012] pimreg (unregistering): left allmulticast mode
+[   37.707014] pimreg: entered allmulticast mode
+[   37.734574] pimreg: entered allmulticast mode
+[   37.770487] pimreg (unregistering): left allmulticast mode
+[   37.774595] pimreg: entered allmulticast mode
+[   37.802320] pimreg: entered allmulticast mode
+[   37.814567] pimreg (unregistering): left allmulticast mode
+[   37.834993] pimreg (unregistering): left allmulticast mode
+[   37.838966] pimreg: entered allmulticast mode
+[   37.870155] pimreg: entered allmulticast mode
+[   37.894598] pimreg (unregistering): left allmulticast mode
+[   37.906989] pimreg (unregistering): left allmulticast mode
+[   37.910999] pimreg: entered allmulticast mode
+[   37.938489] pimreg: entered allmulticast mode
+[   37.966415] pimreg (unregistering): left allmulticast mode
+[   37.983010] pimreg (unregistering): left allmulticast mode
+[   38.003009] pimreg (unregistering): left allmulticast mode
+[   38.007153] pimreg: entered allmulticast mode
+[   38.026418] pimreg: entered allmulticast mode
+[   38.062726] pimreg (unregistering): left allmulticast mode
+[   38.083019] pimreg (unregistering): left allmulticast mode
+[   38.087152] pimreg: entered allmulticast mode
+[   38.114393] pimreg: entered allmulticast mode
+[   38.138446] pimreg (unregistering): left allmulticast mode
+[   38.142542] pimreg: entered allmulticast mode
+[   38.190702] pimreg (unregistering): left allmulticast mode
+[   38.206609] pimreg (unregistering): left allmulticast mode
+[   38.210704] pimreg: entered allmulticast mode
+[   38.238597] pimreg: entered allmulticast mode
+[   38.262657] pimreg (unregistering): left allmulticast mode
+[   38.266891] pimreg: entered allmulticast mode
+[   38.294374] pimreg: entered allmulticast mode
+[   38.310538] pimreg (unregistering): left allmulticast mode
+[   38.330669] pimreg (unregistering): left allmulticast mode
+[   38.334701] pimreg: entered allmulticast mode
+[   38.362557] pimreg: entered allmulticast mode
+[   38.386421] pimreg (unregistering): left allmulticast mode
+[   38.418663] pimreg (unregistering): left allmulticast mode
+[   38.422903] pimreg: entered allmulticast mode
+[   38.450750] pimreg: entered allmulticast mode
+[   38.458546] pimreg (unregistering): left allmulticast mode
+[   38.470915] pimreg (unregistering): left allmulticast mode
+[   38.474730] pimreg: entered allmulticast mode
+[   38.506644] pimreg: entered allmulticast mode
+[   38.526475] pimreg (unregistering): left allmulticast mode
+[   38.542650] pimreg (unregistering): left allmulticast mode
+[   38.546842] pimreg: entered allmulticast mode
+[   38.578590] pimreg: entered allmulticast mode
+[   38.590775] pimreg (unregistering): left allmulticast mode
+[   38.622646] pimreg (unregistering): left allmulticast mode
+[   38.626844] pimreg: entered allmulticast mode
+[   38.658396] pimreg: entered allmulticast mode
+[   38.682503] pimreg (unregistering): left allmulticast mode
+[   38.714720] pimreg (unregistering): left allmulticast mode
+[   38.718832] pimreg: entered allmulticast mode
+[   38.746638] pimreg: entered allmulticast mode
+[   38.754407] pimreg (unregistering): left allmulticast mode
+[   38.771012] pimreg (unregistering): left allmulticast mode
+[   38.775072] pimreg: entered allmulticast mode
+[   38.802429] pimreg: entered allmulticast mode
+[   38.818558] pimreg (unregistering): left allmulticast mode
+[   38.842668] pimreg (unregistering): left allmulticast mode
+[   38.846844] pimreg: entered allmulticast mode
+[   38.874944] pimreg: entered allmulticast mode
+[   38.890572] pimreg (unregistering): left allmulticast mode
+[   38.911030] pimreg (unregistering): left allmulticast mode
+[   38.915121] pimreg: entered allmulticast mode
+[   38.943646] pimreg: entered allmulticast mode
+[   38.954649] pimreg (unregistering): left allmulticast mode
+[   38.974668] pimreg (unregistering): left allmulticast mode
+[   38.978886] pimreg: entered allmulticast mode
+[   39.034472] pimreg (unregistering): left allmulticast mode
+[   39.051017] pimreg (unregistering): left allmulticast mode
+[   39.054107] pimreg: entered allmulticast mode
+[   39.082632] pimreg: entered allmulticast mode
+[   39.098568] pimreg (unregistering): left allmulticast mode
+[   39.102870] pimreg: entered allmulticast mode
+[   39.138767] pimreg: entered allmulticast mode
+[   39.174496] pimreg (unregistering): left allmulticast mode
+[   39.194700] pimreg (unregistering): left allmulticast mode
+[   39.218682] pimreg (unregistering): left allmulticast mode
+[   39.222875] pimreg: entered allmulticast mode
+[   39.250929] pimreg: entered allmulticast mode
+[   39.270452] pimreg (unregistering): left allmulticast mode
+[   39.274542] pimreg: entered allmulticast mode
+[   39.303499] pimreg: entered allmulticast mode
+[   39.330455] pimreg (unregistering): left allmulticast mode
+[   39.363120] pimreg (unregistering): left allmulticast mode
+[   39.367501] pimreg: entered allmulticast mode
+[   39.394568] pimreg: entered allmulticast mode
+[   39.418605] pimreg (unregistering): left allmulticast mode
+[   39.447020] pimreg (unregistering): left allmulticast mode
+[   39.451256] pimreg: entered allmulticast mode
+[   39.478403] pimreg: entered allmulticast mode
+[   39.502625] pimreg (unregistering): left allmulticast mode
+[   39.535070] pimreg (unregistering): left allmulticast mode
+[   39.539848] pimreg: entered allmulticast mode
+[   39.566403] pimreg: entered allmulticast mode
+[   39.574555] pimreg (unregistering): left allmulticast mode
+[   39.594646] pimreg (unregistering): left allmulticast mode
+[   39.598767] pimreg: entered allmulticast mode
+[   39.630547] pimreg: entered allmulticast mode
+[   39.646574] pimreg (unregistering): left allmulticast mode
+[   39.666842] pimreg (unregistering): left allmulticast mode
+[   39.670926] pimreg: entered allmulticast mode
+[   39.698154] pimreg: entered allmulticast mode
+[   39.714532] pimreg (unregistering): left allmulticast mode
+[   39.746661] pimreg (unregistering): left allmulticast mode
+[   39.750779] pimreg: entered allmulticast mode
+[   39.778599] pimreg: entered allmulticast mode
+[   39.798436] pimreg (unregistering): left allmulticast mode
+[   39.822637] pimreg (unregistering): left allmulticast mode
+[   39.827148] pimreg: entered allmulticast mode
+[   39.854164] pimreg: entered allmulticast mode
+[   39.878658] pimreg (unregistering): left allmulticast mode
+[   39.894596] pimreg (unregistering): left allmulticast mode
+[   39.898760] pimreg: entered allmulticast mode
+[   39.942477] pimreg (unregistering): left allmulticast mode
+[   39.963041] pimreg (unregistering): left allmulticast mode
+[   39.966980] pimreg: entered allmulticast mode
+[   39.998753] pimreg: entered allmulticast mode
+[   40.026312] pimreg (unregistering): left allmulticast mode
+[   40.030465] pimreg: entered allmulticast mode
+[   40.070909] pimreg: entered allmulticast mode
+[   40.086556] pimreg (unregistering): left allmulticast mode
+[   40.119068] pimreg (unregistering): left allmulticast mode
+[   40.123157] pimreg: entered allmulticast mode
+[   40.151282] pimreg: entered allmulticast mode
+[   40.162506] pimreg (unregistering): left allmulticast mode
+[   40.186995] pimreg (unregistering): left allmulticast mode
+[   40.191312] pimreg: entered allmulticast mode
+[   40.219229] pimreg: entered allmulticast mode
+[   40.238375] pimreg (unregistering): left allmulticast mode
+[   40.251142] pimreg (unregistering): left allmulticast mode
+[   40.254985] pimreg: entered allmulticast mode
+[   40.282412] pimreg: entered allmulticast mode
+[   40.298615] pimreg (unregistering): left allmulticast mode
+[   40.314593] pimreg (unregistering): left allmulticast mode
+[   40.318733] pimreg: entered allmulticast mode
+[   40.354877] pimreg: entered allmulticast mode
+[   40.378300] pimreg (unregistering): left allmulticast mode
+[   40.402693] pimreg (unregistering): left allmulticast mode
+[   40.406783] pimreg: entered allmulticast mode
+[   40.438668] pimreg: entered allmulticast mode
+[   40.458525] pimreg (unregistering): left allmulticast mode
+[   40.490634] pimreg (unregistering): left allmulticast mode
+[   40.494742] pimreg: entered allmulticast mode
+[   40.522366] pimreg: entered allmulticast mode
+[   40.546799] pimreg (unregistering): left allmulticast mode
+[   40.571001] pimreg (unregistering): left allmulticast mode
+[   40.575047] pimreg: entered allmulticast mode
+[   40.610559] pimreg: entered allmulticast mode
+[   40.642413] pimreg (unregistering): left allmulticast mode
+[   40.663081] pimreg (unregistering): left allmulticast mode
+[   40.687027] pimreg (unregistering): left allmulticast mode
+[   40.691106] pimreg: entered allmulticast mode
+[   40.722173] pimreg: entered allmulticast mode
+[   40.746519] pimreg (unregistering): left allmulticast mode
+[   40.750659] pimreg: entered allmulticast mode
+[   40.794478] pimreg (unregistering): left allmulticast mode
+[   40.827071] pimreg (unregistering): left allmulticast mode
+[   40.831142] pimreg: entered allmulticast mode
+[   40.858691] pimreg: entered allmulticast mode
+[   40.874660] pimreg (unregistering): left allmulticast mode
+[   40.878749] pimreg: entered allmulticast mode
+[   40.906596] pimreg: entered allmulticast mode
+[   40.922517] pimreg (unregistering): left allmulticast mode
+[   40.950691] pimreg (unregistering): left allmulticast mode
+[   40.954826] pimreg: entered allmulticast mode
+[   40.982893] pimreg: entered allmulticast mode
+[   41.002424] pimreg (unregistering): left allmulticast mode
+[   41.030646] pimreg (unregistering): left allmulticast mode
+[   41.034743] pimreg: entered allmulticast mode
+[   41.062390] pimreg: entered allmulticast mode
+[   41.094311] pimreg (unregistering): left allmulticast mode
+[   41.110928] pimreg (unregistering): left allmulticast mode
+[   41.127037] pimreg (unregistering): left allmulticast mode
+[   41.130870] pimreg: entered allmulticast mode
+[   41.158174] pimreg: entered allmulticast mode
+[   41.186394] pimreg (unregistering): left allmulticast mode
+[   41.190742] pimreg: entered allmulticast mode
+[   41.218460] pimreg: entered allmulticast mode
+[   41.230485] pimreg (unregistering): left allmulticast mode
+[   41.250650] pimreg (unregistering): left allmulticast mode
+[   41.254722] pimreg: entered allmulticast mode
+[   41.290457] pimreg: entered allmulticast mode
+[   41.306479] pimreg (unregistering): left allmulticast mode
+[   41.330633] pimreg (unregistering): left allmulticast mode
+[   41.334764] pimreg: entered allmulticast mode
+[   41.362682] pimreg: entered allmulticast mode
+[   41.378550] pimreg (unregistering): left allmulticast mode
+[   41.410813] pimreg (unregistering): left allmulticast mode
+[   41.415051] pimreg: entered allmulticast mode
+[   41.442706] pimreg: entered allmulticast mode
+[   41.458473] pimreg (unregistering): left allmulticast mode
+[   41.474676] pimreg (unregistering): left allmulticast mode
+[   41.478854] pimreg: entered allmulticast mode
+[   41.506431] pimreg: entered allmulticast mode
+[   41.522448] pimreg (unregistering): left allmulticast mode
+[   41.554638] pimreg (unregistering): left allmulticast mode
+[   41.558732] pimreg: entered allmulticast mode
+[   41.602475] pimreg (unregistering): left allmulticast mode
+[   41.638652] pimreg (unregistering): left allmulticast mode
+[   41.642846] pimreg: entered allmulticast mode
+[   41.669961] pimreg: entered allmulticast mode
+[   41.682899] pimreg (unregistering): left allmulticast mode
+[   41.686722] pimreg: entered allmulticast mode
+[   41.714594] pimreg: entered allmulticast mode
+[   41.730541] pimreg (unregistering): left allmulticast mode
+[   41.762639] pimreg (unregistering): left allmulticast mode
+[   41.766741] pimreg: entered allmulticast mode
+[   41.794422] pimreg: entered allmulticast mode
+[   41.822434] pimreg (unregistering): left allmulticast mode
+[   41.854637] pimreg (unregistering): left allmulticast mode
+[   41.858835] pimreg: entered allmulticast mode
+[   41.886360] pimreg: entered allmulticast mode
+[   41.902696] pimreg (unregistering): left allmulticast mode
+[   41.923055] pimreg (unregistering): left allmulticast mode
+[   41.926935] pimreg: entered allmulticast mode
+[   41.955038] pimreg: entered allmulticast mode
+[   41.974670] pimreg (unregistering): left allmulticast mode
+[   41.995006] pimreg (unregistering): left allmulticast mode
+[   41.999227] pimreg: entered allmulticast mode
+[   42.026589] pimreg: entered allmulticast mode
+[   42.042625] pimreg (unregistering): left allmulticast mode
+[   42.062780] pimreg (unregistering): left allmulticast mode
+[   42.066879] pimreg: entered allmulticast mode
+[   42.099144] pimreg: entered allmulticast mode
+[   42.114465] pimreg (unregistering): left allmulticast mode
+[   42.147034] pimreg (unregistering): left allmulticast mode
+[   42.150857] pimreg: entered allmulticast mode
+[   42.174832] pimreg: entered allmulticast mode
+[   42.210561] pimreg (unregistering): left allmulticast mode
+[   42.243275] pimreg (unregistering): left allmulticast mode
+[   42.267167] pimreg (unregistering): left allmulticast mode
+[   42.271335] pimreg: entered allmulticast mode
+[   42.298432] pimreg: entered allmulticast mode
+[   42.314513] pimreg (unregistering): left allmulticast mode
+[   42.318890] pimreg: entered allmulticast mode
+[   42.350297] pimreg: entered allmulticast mode
+[   42.366513] pimreg (unregistering): left allmulticast mode
+[   42.386623] pimreg (unregistering): left allmulticast mode
+[   42.390954] pimreg: entered allmulticast mode
+[   42.418704] pimreg: entered allmulticast mode
+[   42.434572] pimreg (unregistering): left allmulticast mode
+[   42.450824] pimreg (unregistering): left allmulticast mode
+[   42.454922] pimreg: entered allmulticast mode
+[   42.482462] pimreg: entered allmulticast mode
+[   42.494478] pimreg (unregistering): left allmulticast mode
+[   42.522654] pimreg (unregistering): left allmulticast mode
+[   42.526690] pimreg: entered allmulticast mode
+[   42.554143] pimreg: entered allmulticast mode
+[   42.570496] pimreg (unregistering): left allmulticast mode
+[   42.602648] pimreg (unregistering): left allmulticast mode
+[   42.606773] pimreg: entered allmulticast mode
+[   42.634711] pimreg: entered allmulticast mode
+[   42.650550] pimreg (unregistering): left allmulticast mode
+[   42.671125] pimreg (unregistering): left allmulticast mode
+[   42.675199] pimreg: entered allmulticast mode
+[   42.702650] pimreg: entered allmulticast mode
+[   42.722464] pimreg (unregistering): left allmulticast mode
+[   42.738994] pimreg (unregistering): left allmulticast mode
+[   42.743072] pimreg: entered allmulticast mode
+[   42.770400] pimreg: entered allmulticast mode
+[   42.790993] pimreg (unregistering): left allmulticast mode
+[   42.806651] pimreg (unregistering): left allmulticast mode
+[   42.810744] pimreg: entered allmulticast mode
+[   42.838813] pimreg: entered allmulticast mode
+[   42.854482] pimreg (unregistering): left allmulticast mode
+[   42.874548] pimreg (unregistering): left allmulticast mode
+[   42.878651] pimreg: entered allmulticast mode
+[   42.906954] pimreg: entered allmulticast mode
+[   42.922650] pimreg (unregistering): left allmulticast mode
+[   42.943044] pimreg (unregistering): left allmulticast mode
+[   42.947309] pimreg: entered allmulticast mode
+[   42.974766] pimreg: entered allmulticast mode
+[   42.990544] pimreg (unregistering): left allmulticast mode
+[   43.014664] pimreg (unregistering): left allmulticast mode
+[   43.018937] pimreg: entered allmulticast mode
+[   43.046255] pimreg: entered allmulticast mode
+[   43.058632] pimreg (unregistering): left allmulticast mode
+[   43.079031] pimreg (unregistering): left allmulticast mode
+[   43.083044] pimreg: entered allmulticast mode
+[   43.110388] pimreg: entered allmulticast mode
+[   43.134600] pimreg (unregistering): left allmulticast mode
+[   43.147011] pimreg (unregistering): left allmulticast mode
+[   43.151453] pimreg: entered allmulticast mode
+[   43.178130] pimreg: entered allmulticast mode
+[   43.194594] pimreg (unregistering): left allmulticast mode
+[   43.223011] pimreg (unregistering): left allmulticast mode
+[   43.226841] pimreg: entered allmulticast mode
+[   43.254894] pimreg: entered allmulticast mode
+[   43.270559] pimreg (unregistering): left allmulticast mode
+[   43.290676] pimreg (unregistering): left allmulticast mode
+[   43.295230] pimreg: entered allmulticast mode
+[   43.322697] pimreg: entered allmulticast mode
+[   43.346498] pimreg (unregistering): left allmulticast mode
+[   43.378636] pimreg (unregistering): left allmulticast mode
+[   43.382898] pimreg: entered allmulticast mode
+[   43.410746] pimreg: entered allmulticast mode
+[   43.422468] pimreg (unregistering): left allmulticast mode
+[   43.450665] pimreg (unregistering): left allmulticast mode
+[   43.455154] pimreg: entered allmulticast mode
+[   43.486584] pimreg: entered allmulticast mode
+[   43.514608] pimreg (unregistering): left allmulticast mode
+[   43.542612] pimreg (unregistering): left allmulticast mode
+[   43.546730] pimreg: entered allmulticast mode
+[   43.574715] pimreg: entered allmulticast mode
+[   43.586427] pimreg (unregistering): left allmulticast mode
+[   43.618619] pimreg (unregistering): left allmulticast mode
+[   43.622747] pimreg: entered allmulticast mode
+[   43.650398] pimreg: entered allmulticast mode
+[   43.658621] pimreg (unregistering): left allmulticast mode
+[   43.675253] pimreg (unregistering): left allmulticast mode
+[   43.679422] pimreg: entered allmulticast mode
+[   43.706570] pimreg: entered allmulticast mode
+[   43.722530] pimreg (unregistering): left allmulticast mode
+[   43.746561] pimreg (unregistering): left allmulticast mode
+[   43.750654] pimreg: entered allmulticast mode
+[   43.778514] pimreg: entered allmulticast mode
+[   43.802562] pimreg (unregistering): left allmulticast mode
+[   43.818650] pimreg (unregistering): left allmulticast mode
+[   43.822976] pimreg: entered allmulticast mode
+[   43.850378] pimreg: entered allmulticast mode
+[   43.858585] pimreg (unregistering): left allmulticast mode
+[   43.875028] pimreg (unregistering): left allmulticast mode
+[   43.879020] pimreg: entered allmulticast mode
+[   43.906444] pimreg: entered allmulticast mode
+[   43.922565] pimreg (unregistering): left allmulticast mode
+[   43.951128] pimreg (unregistering): left allmulticast mode
+[   43.954984] pimreg: entered allmulticast mode
+[   43.983127] pimreg: entered allmulticast mode
+[   43.994453] pimreg (unregistering): left allmulticast mode
+[   44.027242] pimreg (unregistering): left allmulticast mode
+[   44.031392] pimreg: entered allmulticast mode
+[   44.058341] pimreg: entered allmulticast mode
+[   44.078488] pimreg (unregistering): left allmulticast mode
+[   44.099006] pimreg (unregistering): left allmulticast mode
+[   44.103210] pimreg: entered allmulticast mode
+[   44.139275] pimreg: entered allmulticast mode
+[   44.150895] pimreg (unregistering): left allmulticast mode
+[   44.178606] pimreg (unregistering): left allmulticast mode
+[   44.182886] pimreg: entered allmulticast mode
+[   44.215273] pimreg: entered allmulticast mode
+[   44.230701] pimreg (unregistering): left allmulticast mode
+[   44.243033] pimreg (unregistering): left allmulticast mode
+[   44.246837] pimreg: entered allmulticast mode
+[   44.274854] pimreg: entered allmulticast mode
+[   44.290497] pimreg (unregistering): left allmulticast mode
+[   44.302826] pimreg (unregistering): left allmulticast mode
+[   44.306795] pimreg: entered allmulticast mode
+[   44.334967] pimreg: entered allmulticast mode
+[   44.354645] pimreg (unregistering): left allmulticast mode
+[   44.375083] pimreg (unregistering): left allmulticast mode
+[   44.399001] pimreg (unregistering): left allmulticast mode
+[   44.403164] pimreg: entered allmulticast mode
+[   44.438153] pimreg: entered allmulticast mode
+[   44.458661] pimreg (unregistering): left allmulticast mode
+[   44.462840] pimreg: entered allmulticast mode
+[   44.491184] pimreg: entered allmulticast mode
+[   44.502396] pimreg (unregistering): left allmulticast mode
+[   44.523026] pimreg (unregistering): left allmulticast mode
+[   44.526992] pimreg: entered allmulticast mode
+[   44.554860] pimreg: entered allmulticast mode
+[   44.570476] pimreg (unregistering): left allmulticast mode
+[   44.595352] pimreg (unregistering): left allmulticast mode
+[   44.599777] pimreg: entered allmulticast mode
+[   44.627305] pimreg: entered allmulticast mode
+[   44.654480] pimreg (unregistering): left allmulticast mode
+[   44.675058] pimreg (unregistering): left allmulticast mode
+[   44.679276] pimreg: entered allmulticast mode
+[   44.707553] pimreg: entered allmulticast mode
+[   44.726294] pimreg (unregistering): left allmulticast mode
+[   44.738750] pimreg (unregistering): left allmulticast mode
+[   44.742843] pimreg: entered allmulticast mode
+[   44.775083] pimreg: entered allmulticast mode
+[   44.794726] pimreg (unregistering): left allmulticast mode
+[   44.810568] pimreg (unregistering): left allmulticast mode
+[   44.814731] pimreg: entered allmulticast mode
+[   44.842071] pimreg: entered allmulticast mode
+[   44.866363] pimreg (unregistering): left allmulticast mode
+[   44.883310] pimreg (unregistering): left allmulticast mode
+[   44.887757] pimreg: entered allmulticast mode
+[   44.914856] pimreg: entered allmulticast mode
+[   44.946491] pimreg (unregistering): left allmulticast mode
+[   44.975032] pimreg (unregistering): left allmulticast mode
+[   44.979019] pimreg: entered allmulticast mode
+[   45.022481] pimreg (unregistering): left allmulticast mode
+[   45.034553] pimreg (unregistering): left allmulticast mode
+[   45.037749] pimreg: entered allmulticast mode
+[   45.070853] pimreg: entered allmulticast mode
+[   45.094299] pimreg (unregistering): left allmulticast mode
+[   45.098417] pimreg: entered allmulticast mode
+[   45.126978] pimreg: entered allmulticast mode
+[   45.150302] pimreg (unregistering): left allmulticast mode
+[   45.170749] pimreg (unregistering): left allmulticast mode
+[   45.187036] pimreg (unregistering): left allmulticast mode
+[   45.190970] pimreg: entered allmulticast mode
+[   45.219697] pimreg: entered allmulticast mode
+[   45.234667] pimreg (unregistering): left allmulticast mode
+[   45.238548] pimreg: entered allmulticast mode
+[   45.267285] pimreg: entered allmulticast mode
+[   45.278582] pimreg (unregistering): left allmulticast mode
+[   45.298630] pimreg (unregistering): left allmulticast mode
+[   45.302753] pimreg: entered allmulticast mode
+[   45.331045] pimreg: entered allmulticast mode
+[   45.346579] pimreg (unregistering): left allmulticast mode
+[   45.363064] pimreg (unregistering): left allmulticast mode
+[   45.367214] pimreg: entered allmulticast mode
+[   45.394131] pimreg: entered allmulticast mode
+[   45.410610] pimreg (unregistering): left allmulticast mode
+[   45.431055] pimreg (unregistering): left allmulticast mode
+[   45.435182] pimreg: entered allmulticast mode
+[   45.462474] pimreg: entered allmulticast mode
+[   45.478599] pimreg (unregistering): left allmulticast mode
+[   45.503114] pimreg (unregistering): left allmulticast mode
+[   45.507213] pimreg: entered allmulticast mode
+[   45.533964] pimreg: entered allmulticast mode
+[   45.546785] pimreg (unregistering): left allmulticast mode
+[   45.554778] pimreg (unregistering): left allmulticast mode
+[   45.558675] pimreg: entered allmulticast mode
+[   45.583392] pimreg: entered allmulticast mode
+[   45.614326] pimreg (unregistering): left allmulticast mode
+[   45.622865] pimreg (unregistering): left allmulticast mode
+[   45.647014] pimreg (unregistering): left allmulticast mode
+[   45.650995] pimreg: entered allmulticast mode
+[   45.678310] pimreg: entered allmulticast mode
+[   45.702614] pimreg (unregistering): left allmulticast mode
+[   45.719073] pimreg (unregistering): left allmulticast mode
+[   45.723031] pimreg: entered allmulticast mode
+[   45.750572] pimreg: entered allmulticast mode
+[   45.766586] pimreg (unregistering): left allmulticast mode
+[   45.770655] pimreg: entered allmulticast mode
+[   45.790154] pimreg: entered allmulticast mode
+[   45.810601] pimreg (unregistering): left allmulticast mode
+[   45.831073] pimreg (unregistering): left allmulticast mode
+[   45.835805] pimreg: entered allmulticast mode
+[   45.858170] pimreg: entered allmulticast mode
+[   45.870621] pimreg (unregistering): left allmulticast mode
+[   45.891232] pimreg (unregistering): left allmulticast mode
+[   45.895263] pimreg: entered allmulticast mode
+[   45.922465] pimreg: entered allmulticast mode
+[   45.934470] pimreg (unregistering): left allmulticast mode
+[   45.954548] pimreg (unregistering): left allmulticast mode
+[   45.958648] pimreg: entered allmulticast mode
+[   45.983543] pimreg: entered allmulticast mode
+[   46.018552] pimreg (unregistering): left allmulticast mode
+[   46.034543] pimreg (unregistering): left allmulticast mode
+[   46.054542] pimreg (unregistering): left allmulticast mode
+[   46.058896] pimreg: entered allmulticast mode
+[   46.087359] pimreg: entered allmulticast mode
+[   46.102368] pimreg (unregistering): left allmulticast mode
+[   46.106394] pimreg: entered allmulticast mode
+[   46.134632] pimreg: entered allmulticast mode
+[   46.150593] pimreg (unregistering): left allmulticast mode
+[   46.171068] pimreg (unregistering): left allmulticast mode
+[   46.175293] pimreg: entered allmulticast mode
+[   46.202079] pimreg: entered allmulticast mode
+[   46.218592] pimreg (unregistering): left allmulticast mode
+[   46.239030] pimreg (unregistering): left allmulticast mode
+[   46.243322] pimreg: entered allmulticast mode
+[   46.269913] pimreg: entered allmulticast mode
+[   46.286858] pimreg (unregistering): left allmulticast mode
+[   46.299020] pimreg (unregistering): left allmulticast mode
+[   46.303098] pimreg: entered allmulticast mode
+[   46.329940] pimreg: entered allmulticast mode
+[   46.354317] pimreg (unregistering): left allmulticast mode
+[   46.371520] pimreg (unregistering): left allmulticast mode
+[   46.375570] pimreg: entered allmulticast mode
+[   46.402434] pimreg: entered allmulticast mode
+[   46.422698] pimreg (unregistering): left allmulticast mode
+[   46.443036] pimreg (unregistering): left allmulticast mode
+[   46.447152] pimreg: entered allmulticast mode
+[   46.474165] pimreg: entered allmulticast mode
+[   46.486562] pimreg (unregistering): left allmulticast mode
+[   46.507175] pimreg (unregistering): left allmulticast mode
+[   46.511166] pimreg: entered allmulticast mode
+[   46.538380] pimreg: entered allmulticast mode
+[   46.558460] pimreg (unregistering): left allmulticast mode
+[   46.579070] pimreg (unregistering): left allmulticast mode
+[   46.583470] pimreg: entered allmulticast mode
+[   46.602542] pimreg: entered allmulticast mode
+[   46.630383] pimreg: entered allmulticast mode
+[   46.646683] pimreg (unregistering): left allmulticast mode
+[   46.675025] pimreg (unregistering): left allmulticast mode
+[   46.691092] pimreg (unregistering): left allmulticast mode
+[   46.695465] pimreg: entered allmulticast mode
+[   46.721703] pimreg: entered allmulticast mode
+[   46.742370] pimreg (unregistering): left allmulticast mode
+[   46.762782] pimreg (unregistering): left allmulticast mode
+[   46.766852] pimreg: entered allmulticast mode
+[   46.794452] pimreg: entered allmulticast mode
+[   46.814436] pimreg (unregistering): left allmulticast mode
+[   46.831064] pimreg (unregistering): left allmulticast mode
+[   46.835233] pimreg: entered allmulticast mode
+[   46.862533] pimreg: entered allmulticast mode
+[   46.878747] pimreg (unregistering): left allmulticast mode
+[   46.899047] pimreg (unregistering): left allmulticast mode
+[   46.903358] pimreg: entered allmulticast mode
+[   46.929982] pimreg: entered allmulticast mode
+[   46.946607] pimreg (unregistering): left allmulticast mode
+[   46.967105] pimreg (unregistering): left allmulticast mode
+[   46.971373] pimreg: entered allmulticast mode
+[   46.998094] pimreg: entered allmulticast mode
+[   47.022476] pimreg (unregistering): left allmulticast mode
+[   47.034543] pimreg (unregistering): left allmulticast mode
+[   47.038725] pimreg: entered allmulticast mode
+[   47.063610] pimreg: entered allmulticast mode
+[   47.086324] pimreg (unregistering): left allmulticast mode
+[   47.103172] pimreg (unregistering): left allmulticast mode
+[   47.119122] pimreg (unregistering): left allmulticast mode
+[   47.123346] pimreg: entered allmulticast mode
+[   47.151038] pimreg: entered allmulticast mode
+[   47.170334] pimreg (unregistering): left allmulticast mode
+[   47.174357] pimreg: entered allmulticast mode
+[   47.203376] pimreg: entered allmulticast mode
+[   47.226297] pimreg (unregistering): left allmulticast mode
+[   47.246726] pimreg (unregistering): left allmulticast mode
+[   47.263045] pimreg (unregistering): left allmulticast mode
+[   47.267192] pimreg: entered allmulticast mode
+[   47.295148] pimreg: entered allmulticast mode
+[   47.314462] pimreg (unregistering): left allmulticast mode
+[   47.318729] pimreg: entered allmulticast mode
+[   47.358538] pimreg (unregistering): left allmulticast mode
+[   47.374567] pimreg (unregistering): left allmulticast mode
+[   47.377527] pimreg: entered allmulticast mode
+[   47.410566] pimreg: entered allmulticast mode
+[   47.434302] pimreg (unregistering): left allmulticast mode
+[   47.438386] pimreg: entered allmulticast mode
+[   47.466261] pimreg: entered allmulticast mode
+[   47.490335] pimreg (unregistering): left allmulticast mode
+[   47.506614] pimreg (unregistering): left allmulticast mode
+[   47.542555] pimreg (unregistering): left allmulticast mode
+[   47.546679] pimreg: entered allmulticast mode
+[   47.574670] pimreg: entered allmulticast mode
+[   47.594561] pimreg (unregistering): left allmulticast mode
+[   47.602609] pimreg: entered allmulticast mode
+[   47.631352] pimreg: entered allmulticast mode
+[   47.646354] pimreg (unregistering): left allmulticast mode
+[   47.654720] pimreg (unregistering): left allmulticast mode
+[   47.659075] pimreg: entered allmulticast mode
+[   47.686801] pimreg: entered allmulticast mode
+[   47.710317] pimreg (unregistering): left allmulticast mode
+[   47.735238] pimreg (unregistering): left allmulticast mode
+[   47.739347] pimreg: entered allmulticast mode
+[   47.766436] pimreg: entered allmulticast mode
+[   47.786293] pimreg (unregistering): left allmulticast mode
+[   47.798734] pimreg (unregistering): left allmulticast mode
+[   47.802606] pimreg: entered allmulticast mode
+[   47.827647] pimreg: entered allmulticast mode
+[   47.850307] pimreg (unregistering): left allmulticast mode
+[   47.870715] pimreg (unregistering): left allmulticast mode
+[   47.887037] pimreg (unregistering): left allmulticast mode
+[   47.891156] pimreg: entered allmulticast mode
+[   47.919122] pimreg: entered allmulticast mode
+[   47.938310] pimreg (unregistering): left allmulticast mode
+[   47.942417] pimreg: entered allmulticast mode
+[   47.971196] pimreg: entered allmulticast mode
+[   47.982567] pimreg (unregistering): left allmulticast mode
+[   47.999037] pimreg (unregistering): left allmulticast mode
+[   48.002961] pimreg: entered allmulticast mode
+[   48.031162] pimreg: entered allmulticast mode
+[   48.042563] pimreg (unregistering): left allmulticast mode
+[   48.062553] pimreg (unregistering): left allmulticast mode
+[   48.066471] pimreg: entered allmulticast mode
+[   48.090055] pimreg: entered allmulticast mode
+[   48.110311] pimreg (unregistering): left allmulticast mode
+[   48.127113] pimreg (unregistering): left allmulticast mode
+[   48.131207] pimreg: entered allmulticast mode
+[   48.158901] pimreg: entered allmulticast mode
+[   48.174529] pimreg (unregistering): left allmulticast mode
+[   48.195087] pimreg (unregistering): left allmulticast mode
+[   48.199495] pimreg: entered allmulticast mode
+[   48.226067] pimreg: entered allmulticast mode
+[   48.246290] pimreg (unregistering): left allmulticast mode
+[   48.258730] pimreg (unregistering): left allmulticast mode
+[   48.262862] pimreg: entered allmulticast mode
+[   48.294396] pimreg: entered allmulticast mode
+[   48.318337] pimreg (unregistering): left allmulticast mode
+[   48.339072] pimreg (unregistering): left allmulticast mode
+[   48.343125] pimreg: entered allmulticast mode
+[   48.370721] pimreg: entered allmulticast mode
+[   48.398487] pimreg (unregistering): left allmulticast mode
+[   48.423090] pimreg (unregistering): left allmulticast mode
+[   48.447203] pimreg (unregistering): left allmulticast mode
+[   48.451158] pimreg: entered allmulticast mode
+[   48.478227] pimreg: entered allmulticast mode
+[   48.490595] pimreg (unregistering): left allmulticast mode
+[   48.495483] pimreg: entered allmulticast mode
+[   48.522375] pimreg: entered allmulticast mode
+[   48.546294] pimreg (unregistering): left allmulticast mode
+[   48.558559] pimreg (unregistering): left allmulticast mode
+[   48.562500] pimreg: entered allmulticast mode
+[   48.590823] pimreg: entered allmulticast mode
+[   48.606586] pimreg (unregistering): left allmulticast mode
+[   48.623330] pimreg (unregistering): left allmulticast mode
+[   48.627334] pimreg: entered allmulticast mode
+[   48.655103] pimreg: entered allmulticast mode
+[   48.670458] pimreg (unregistering): left allmulticast mode
+[   48.691328] pimreg (unregistering): left allmulticast mode
+[   48.695451] pimreg: entered allmulticast mode
+[   48.730874] pimreg: entered allmulticast mode
+[   48.746596] pimreg (unregistering): left allmulticast mode
+[   48.767030] pimreg (unregistering): left allmulticast mode
+[   48.771049] pimreg: entered allmulticast mode
+[   48.799042] pimreg: entered allmulticast mode
+[   48.814528] pimreg (unregistering): left allmulticast mode
+[   48.835025] pimreg (unregistering): left allmulticast mode
+[   48.839111] pimreg: entered allmulticast mode
+[   48.867334] pimreg: entered allmulticast mode
+[   48.878603] pimreg (unregistering): left allmulticast mode
+[   48.898552] pimreg (unregistering): left allmulticast mode
+[   48.902427] pimreg: entered allmulticast mode
+[   48.934772] pimreg: entered allmulticast mode
+[   48.954654] pimreg (unregistering): left allmulticast mode
+[   48.975058] pimreg (unregistering): left allmulticast mode
+[   48.991069] pimreg (unregistering): left allmulticast mode
+[   48.995018] pimreg: entered allmulticast mode
+[   49.022176] pimreg: entered allmulticast mode
+[   49.042321] pimreg (unregistering): left allmulticast mode
+[   49.046340] pimreg: entered allmulticast mode
+[   49.074858] pimreg: entered allmulticast mode
+[   49.090492] pimreg (unregistering): left allmulticast mode
+[   49.111024] pimreg (unregistering): left allmulticast mode
+[   49.115162] pimreg: entered allmulticast mode
+[   49.142266] pimreg: entered allmulticast mode
+[   49.166435] pimreg (unregistering): left allmulticast mode
+[   49.183050] pimreg (unregistering): left allmulticast mode
+[   49.203091] pimreg (unregistering): left allmulticast mode
+[   49.207314] pimreg: entered allmulticast mode
+[   49.235351] pimreg: entered allmulticast mode
+[   49.250329] pimreg (unregistering): left allmulticast mode
+[   49.254829] pimreg: entered allmulticast mode
+[   49.282703] pimreg: entered allmulticast mode
+[   49.306315] pimreg (unregistering): left allmulticast mode
+[   49.322994] pimreg (unregistering): left allmulticast mode
+[   49.346526] pimreg (unregistering): left allmulticast mode
+[   49.350429] pimreg: entered allmulticast mode
+[   49.379543] pimreg: entered allmulticast mode
+[   49.406600] pimreg (unregistering): left allmulticast mode
+[   49.410443] pimreg: entered allmulticast mode
+[   49.435005] pimreg: entered allmulticast mode
+[   49.458313] pimreg (unregistering): left allmulticast mode
+[   49.474536] pimreg (unregistering): left allmulticast mode
+[   49.487020] pimreg (unregistering): left allmulticast mode
+[   49.491214] pimreg: entered allmulticast mode
+[   49.511253] pimreg: entered allmulticast mode
+[   49.546499] pimreg (unregistering): left allmulticast mode
+[   49.558790] pimreg (unregistering): left allmulticast mode
+[   49.562660] pimreg: entered allmulticast mode
+[   49.595236] pimreg: entered allmulticast mode
+[   49.610369] pimreg (unregistering): left allmulticast mode
+[   49.614227] pimreg: entered allmulticast mode
+[   49.642469] pimreg: entered allmulticast mode
+[   49.666314] pimreg (unregistering): left allmulticast mode
+[   49.686715] pimreg (unregistering): left allmulticast mode
+[   49.702987] pimreg (unregistering): left allmulticast mode
+[   49.707144] pimreg: entered allmulticast mode
+[   49.734498] pimreg: entered allmulticast mode
+[   49.758585] pimreg (unregistering): left allmulticast mode
+[   49.762303] pimreg: entered allmulticast mode
+[   49.793929] pimreg: entered allmulticast mode
+[   49.814478] pimreg (unregistering): left allmulticast mode
+[   49.838640] pimreg (unregistering): left allmulticast mode
+[   49.842501] pimreg: entered allmulticast mode
+[   49.874171] pimreg: entered allmulticast mode
+[   49.898420] pimreg (unregistering): left allmulticast mode
+[   49.915046] pimreg (unregistering): left allmulticast mode
+[   49.918988] pimreg: entered allmulticast mode
+[   49.946469] pimreg: entered allmulticast mode
+[   49.962483] pimreg (unregistering): left allmulticast mode
+[   49.982540] pimreg (unregistering): left allmulticast mode
+[   49.986399] pimreg: entered allmulticast mode
+[   50.015829] pimreg: entered allmulticast mode
+[   50.046461] pimreg (unregistering): left allmulticast mode
+[   50.062542] pimreg (unregistering): left allmulticast mode
+[   50.094548] pimreg (unregistering): left allmulticast mode
+[   50.098824] pimreg: entered allmulticast mode
+[   50.123023] pimreg: entered allmulticast mode
+[   50.146302] pimreg (unregistering): left allmulticast mode
+[   50.162962] pimreg (unregistering): left allmulticast mode
+[   50.166794] pimreg: entered allmulticast mode
+[   50.218403] pimreg (unregistering): left allmulticast mode
+[   50.222642] pimreg: entered allmulticast mode
+[   50.251660] pimreg: entered allmulticast mode
+[   50.278635] pimreg (unregistering): left allmulticast mode
+[   50.303144] pimreg (unregistering): left allmulticast mode
+[   50.307257] pimreg: entered allmulticast mode
+[   50.335538] pimreg: entered allmulticast mode
+[   50.362493] pimreg (unregistering): left allmulticast mode
+[   50.366704] pimreg: entered allmulticast mode
+[   50.394747] pimreg: entered allmulticast mode
+[   50.418332] pimreg (unregistering): left allmulticast mode
+[   50.438531] pimreg (unregistering): left allmulticast mode
+[   50.454539] pimreg (unregistering): left allmulticast mode
+[   50.458404] pimreg: entered allmulticast mode
+[   50.486418] pimreg: entered allmulticast mode
+[   50.514434] pimreg (unregistering): left allmulticast mode
+[   50.518758] pimreg: entered allmulticast mode
+[   50.570604] pimreg (unregistering): left allmulticast mode
+[   50.586631] pimreg (unregistering): left allmulticast mode
+[   50.590525] pimreg: entered allmulticast mode
+[   50.618559] pimreg: entered allmulticast mode
+[   50.634810] pimreg (unregistering): left allmulticast mode
+[   50.638708] pimreg: entered allmulticast mode
+[   50.666162] pimreg: entered allmulticast mode
+[   50.686635] pimreg (unregistering): left allmulticast mode
+[   50.699018] pimreg (unregistering): left allmulticast mode
+[   50.703138] pimreg: entered allmulticast mode
+[   50.722605] pimreg: entered allmulticast mode
+[   50.750467] pimreg: entered allmulticast mode
+[   50.766600] pimreg (unregistering): left allmulticast mode
+[   50.795054] pimreg (unregistering): left allmulticast mode
+[   50.818998] pimreg (unregistering): left allmulticast mode
+[   50.822698] pimreg: entered allmulticast mode
+[   50.850172] pimreg: entered allmulticast mode
+[   50.874318] pimreg (unregistering): left allmulticast mode
+[   50.887171] pimreg (unregistering): left allmulticast mode
+[   50.891321] pimreg: entered allmulticast mode
+[   50.918586] pimreg: entered allmulticast mode
+[   50.938439] pimreg (unregistering): left allmulticast mode
+[   50.959043] pimreg (unregistering): left allmulticast mode
+[   50.963250] pimreg: entered allmulticast mode
+[   50.990009] pimreg: entered allmulticast mode
+[   51.006420] pimreg (unregistering): left allmulticast mode
+[   51.030696] pimreg (unregistering): left allmulticast mode
+[   51.035023] pimreg: entered allmulticast mode
+[   51.059303] pimreg: entered allmulticast mode
+[   51.086320] pimreg (unregistering): left allmulticast mode
+[   51.106582] pimreg (unregistering): left allmulticast mode
+[   51.118533] pimreg (unregistering): left allmulticast mode
+[   51.122635] pimreg: entered allmulticast mode
+[   51.156239] pimreg: entered allmulticast mode
+[   51.178320] pimreg (unregistering): left allmulticast mode
+[   51.194691] pimreg (unregistering): left allmulticast mode
+[   51.199131] pimreg: entered allmulticast mode
+[   51.230485] pimreg: entered allmulticast mode
+[   51.246453] pimreg (unregistering): left allmulticast mode
+[   51.250496] pimreg: entered allmulticast mode
+[   51.278500] pimreg: entered allmulticast mode
+[   51.294615] pimreg (unregistering): left allmulticast mode
+[   51.315297] pimreg (unregistering): left allmulticast mode
+[   51.319550] pimreg: entered allmulticast mode
+[   51.345997] pimreg: entered allmulticast mode
+[   51.358643] pimreg (unregistering): left allmulticast mode
+[   51.378603] pimreg (unregistering): left allmulticast mode
+[   51.382836] pimreg: entered allmulticast mode
+[   51.422387] pimreg: entered allmulticast mode
+[   51.446776] pimreg (unregistering): left allmulticast mode
+[   51.471045] pimreg (unregistering): left allmulticast mode
+[   51.475253] pimreg: entered allmulticast mode
+[   51.502553] pimreg: entered allmulticast mode
+[   51.530453] pimreg (unregistering): left allmulticast mode
+[   51.542535] pimreg (unregistering): left allmulticast mode
+[   51.546434] pimreg: entered allmulticast mode
+[   51.575448] pimreg: entered allmulticast mode
+[   51.598302] pimreg (unregistering): left allmulticast mode
+[   51.614663] pimreg (unregistering): left allmulticast mode
+[   51.630626] pimreg (unregistering): left allmulticast mode
+[   51.634977] pimreg: entered allmulticast mode
+[   51.671046] pimreg: entered allmulticast mode
+[   51.690477] pimreg (unregistering): left allmulticast mode
+[   51.694594] pimreg: entered allmulticast mode
+[   51.722345] pimreg: entered allmulticast mode
+[   51.738626] pimreg (unregistering): left allmulticast mode
+[   51.762933] pimreg (unregistering): left allmulticast mode
+[   51.767068] pimreg: entered allmulticast mode
+[   51.795152] pimreg: entered allmulticast mode
+[   51.810566] pimreg (unregistering): left allmulticast mode
+[   51.831036] pimreg (unregistering): left allmulticast mode
+[   51.835185] pimreg: entered allmulticast mode
+[   51.862427] pimreg: entered allmulticast mode
+[   51.878668] pimreg (unregistering): left allmulticast mode
+[   51.911087] pimreg (unregistering): left allmulticast mode
+[   51.915168] pimreg: entered allmulticast mode
+[   51.942538] pimreg: entered allmulticast mode
+[   51.954420] pimreg (unregistering): left allmulticast mode
+[   51.975035] pimreg (unregistering): left allmulticast mode
+[   51.979204] pimreg: entered allmulticast mode
+[   52.007470] pimreg: entered allmulticast mode
+[   52.034492] pimreg (unregistering): left allmulticast mode
+[   52.067022] pimreg (unregistering): left allmulticast mode
+[   52.083074] pimreg (unregistering): left allmulticast mode
+[   52.087440] pimreg: entered allmulticast mode
+[   52.114494] pimreg: entered allmulticast mode
+[   52.134650] pimreg (unregistering): left allmulticast mode
+[   52.146863] pimreg: entered allmulticast mode
+[   52.182576] pimreg (unregistering): left allmulticast mode
+[   52.199033] pimreg (unregistering): left allmulticast mode
+[   52.203199] pimreg: entered allmulticast mode
+[   52.231001] pimreg: entered allmulticast mode
+[   52.250649] pimreg (unregistering): left allmulticast mode
+[   52.260426] pimreg: entered allmulticast mode
+[   52.278532] pimreg: entered allmulticast mode
+[   52.298485] pimreg (unregistering): left allmulticast mode
+[   52.314613] pimreg (unregistering): left allmulticast mode
+[   52.326545] pimreg (unregistering): left allmulticast mode
+[   52.330417] pimreg: entered allmulticast mode
+[   52.358380] pimreg: entered allmulticast mode
+[   52.370406] pimreg (unregistering): left allmulticast mode
+[   52.374539] pimreg: entered allmulticast mode
+[   52.402436] pimreg: entered allmulticast mode
+[   52.418517] pimreg (unregistering): left allmulticast mode
+[   52.438563] pimreg (unregistering): left allmulticast mode
+[   52.442692] pimreg: entered allmulticast mode
+[   52.469988] pimreg: entered allmulticast mode
+[   52.482501] pimreg (unregistering): left allmulticast mode
+[   52.518671] pimreg (unregistering): left allmulticast mode
+[   52.523224] pimreg: entered allmulticast mode
+[   52.550788] pimreg: entered allmulticast mode
+[   52.566709] pimreg (unregistering): left allmulticast mode
+[   52.598692] pimreg (unregistering): left allmulticast mode
+[   52.602791] pimreg: entered allmulticast mode
+[   52.631074] pimreg: entered allmulticast mode
+[   52.646602] pimreg (unregistering): left allmulticast mode
+[   52.667049] pimreg (unregistering): left allmulticast mode
+[   52.671288] pimreg: entered allmulticast mode
+[   52.718657] pimreg (unregistering): left allmulticast mode
+[   52.743015] pimreg (unregistering): left allmulticast mode
+[   52.747123] pimreg: entered allmulticast mode
+[   52.774661] pimreg: entered allmulticast mode
+[   52.798424] pimreg (unregistering): left allmulticast mode
+[   52.802513] pimreg: entered allmulticast mode
+[   52.830391] pimreg: entered allmulticast mode
+[   52.842503] pimreg (unregistering): left allmulticast mode
+[   52.858637] pimreg (unregistering): left allmulticast mode
+[   52.862951] pimreg: entered allmulticast mode
+[   52.894866] pimreg: entered allmulticast mode
+[   52.914690] pimreg (unregistering): left allmulticast mode
+[   52.930787] pimreg (unregistering): left allmulticast mode
+[   52.934947] pimreg: entered allmulticast mode
+[   52.954743] pimreg: entered allmulticast mode
+[   52.990494] pimreg (unregistering): left allmulticast mode
+[   53.015028] pimreg (unregistering): left allmulticast mode
+[   53.027076] pimreg (unregistering): left allmulticast mode
+[   53.031186] pimreg: entered allmulticast mode
+[   53.058596] pimreg: entered allmulticast mode
+[   53.074569] pimreg (unregistering): left allmulticast mode
+[   53.078555] pimreg: entered allmulticast mode
+[   53.130670] pimreg (unregistering): left allmulticast mode
+[   53.143258] pimreg (unregistering): left allmulticast mode
+[   53.146323] pimreg: entered allmulticast mode
+[   53.174845] pimreg: entered allmulticast mode
+[   53.194709] pimreg (unregistering): left allmulticast mode
+[   53.204439] pimreg: entered allmulticast mode
+[   53.222331] pimreg: entered allmulticast mode
+[   53.266443] pimreg (unregistering): left allmulticast mode
+[   53.295100] pimreg (unregistering): left allmulticast mode
+[   53.299187] pimreg: entered allmulticast mode
+[   53.326630] pimreg: entered allmulticast mode
+[   53.346477] pimreg (unregistering): left allmulticast mode
+[   53.363341] pimreg (unregistering): left allmulticast mode
+[   53.367439] pimreg: entered allmulticast mode
+[   53.394168] pimreg: entered allmulticast mode
+[   53.422513] pimreg (unregistering): left allmulticast mode
+[   53.447013] pimreg (unregistering): left allmulticast mode
+[   53.451117] pimreg: entered allmulticast mode
+[   53.486433] pimreg: entered allmulticast mode
+[   53.498502] pimreg (unregistering): left allmulticast mode
+[   53.530647] pimreg (unregistering): left allmulticast mode
+[   53.534540] pimreg: entered allmulticast mode
+[   53.563614] pimreg: entered allmulticast mode
+[   53.578424] pimreg (unregistering): left allmulticast mode
+[   53.590811] pimreg (unregistering): left allmulticast mode
+[   53.594661] pimreg: entered allmulticast mode
+[   53.618857] pimreg: entered allmulticast mode
+[   53.650558] pimreg (unregistering): left allmulticast mode
+[   53.674966] pimreg (unregistering): left allmulticast mode
+[   53.707015] pimreg (unregistering): left allmulticast mode
+[   53.711199] pimreg: entered allmulticast mode
+[   53.746451] pimreg: entered allmulticast mode
+[   53.758829] pimreg (unregistering): left allmulticast mode
+[   53.762690] pimreg: entered allmulticast mode
+[   53.782332] pimreg: entered allmulticast mode
+[   53.798421] pimreg (unregistering): left allmulticast mode
+[   53.819314] pimreg (unregistering): left allmulticast mode
+[   53.835055] pimreg (unregistering): left allmulticast mode
+[   53.839144] pimreg: entered allmulticast mode
+[   53.874267] pimreg: entered allmulticast mode
+[   53.890597] pimreg (unregistering): left allmulticast mode
+[   53.894584] pimreg: entered allmulticast mode
+[   53.930334] pimreg: entered allmulticast mode
+[   53.946603] pimreg (unregistering): left allmulticast mode
+[   53.978611] pimreg (unregistering): left allmulticast mode
+[   53.982945] pimreg: entered allmulticast mode
+[   54.011800] pimreg: entered allmulticast mode
+[   54.042335] pimreg (unregistering): left allmulticast mode
+[   54.058813] pimreg (unregistering): left allmulticast mode
+[   54.074682] pimreg (unregistering): left allmulticast mode
+[   54.078793] pimreg: entered allmulticast mode
+[   54.106066] pimreg: entered allmulticast mode
+[   54.122507] pimreg (unregistering): left allmulticast mode
+[   54.126398] pimreg: entered allmulticast mode
+[   54.154156] pimreg: entered allmulticast mode
+[   54.170501] pimreg (unregistering): left allmulticast mode
+[   54.194565] pimreg (unregistering): left allmulticast mode
+[   54.198377] pimreg: entered allmulticast mode
+[   54.226806] pimreg: entered allmulticast mode
+[   54.250518] pimreg (unregistering): left allmulticast mode
+[   54.274635] pimreg (unregistering): left allmulticast mode
+[   54.278832] pimreg: entered allmulticast mode
+[   54.306881] pimreg: entered allmulticast mode
+[   54.326470] pimreg (unregistering): left allmulticast mode
+[   54.342625] pimreg (unregistering): left allmulticast mode
+[   54.346738] pimreg: entered allmulticast mode
+[   54.390601] pimreg (unregistering): left allmulticast mode
+[   54.403041] pimreg (unregistering): left allmulticast mode
+[   54.406047] pimreg: entered allmulticast mode
+[   54.434638] pimreg: entered allmulticast mode
+[   54.450555] pimreg (unregistering): left allmulticast mode
+[   54.454537] pimreg: entered allmulticast mode
+[   54.482137] pimreg: entered allmulticast mode
+[   54.498454] pimreg (unregistering): left allmulticast mode
+[   54.530665] pimreg (unregistering): left allmulticast mode
+[   54.534958] pimreg: entered allmulticast mode
+[   54.563299] pimreg: entered allmulticast mode
+[   54.578443] pimreg (unregistering): left allmulticast mode
+[   54.590817] pimreg (unregistering): left allmulticast mode
+[   54.594972] pimreg: entered allmulticast mode
+[   54.619663] pimreg: entered allmulticast mode
+[   54.646455] pimreg (unregistering): left allmulticast mode
+[   54.667094] pimreg (unregistering): left allmulticast mode
+[   54.703046] pimreg (unregistering): left allmulticast mode
+[   54.707283] pimreg: entered allmulticast mode
+[   54.742792] pimreg: entered allmulticast mode
+[   54.770432] pimreg (unregistering): left allmulticast mode
+[   54.778540] pimreg: entered allmulticast mode
+[   54.802401] pimreg: entered allmulticast mode
+[   54.818700] pimreg (unregistering): left allmulticast mode
+[   54.839170] pimreg (unregistering): left allmulticast mode
+[   54.843419] pimreg: entered allmulticast mode
+[   54.870682] pimreg: entered allmulticast mode
+[   54.886611] pimreg (unregistering): left allmulticast mode
+[   54.919093] pimreg (unregistering): left allmulticast mode
+[   54.923414] pimreg: entered allmulticast mode
+[   54.946864] pimreg: entered allmulticast mode
+[   54.970325] pimreg (unregistering): left allmulticast mode
+[   54.982836] pimreg (unregistering): left allmulticast mode
+[   55.002643] pimreg (unregistering): left allmulticast mode
+[   55.007050] pimreg: entered allmulticast mode
+[   55.042400] pimreg: entered allmulticast mode
+[   55.066305] pimreg (unregistering): left allmulticast mode
+[   55.086705] pimreg (unregistering): left allmulticast mode
+[   55.090896] pimreg: entered allmulticast mode
+[   55.122809] pimreg: entered allmulticast mode
+[   55.142468] pimreg (unregistering): left allmulticast mode
+[   55.146608] pimreg: entered allmulticast mode
+[   55.178318] pimreg: entered allmulticast mode
+[   55.202780] pimreg (unregistering): left allmulticast mode
+[   55.227043] pimreg (unregistering): left allmulticast mode
+[   55.231292] pimreg: entered allmulticast mode
+[   55.258164] pimreg: entered allmulticast mode
+[   55.270510] pimreg (unregistering): left allmulticast mode
+[   55.283050] pimreg (unregistering): left allmulticast mode
+[   55.287182] pimreg: entered allmulticast mode
+[   55.314842] pimreg: entered allmulticast mode
+[   55.330524] pimreg (unregistering): left allmulticast mode
+[   55.354665] pimreg (unregistering): left allmulticast mode
+[   55.358950] pimreg: entered allmulticast mode
+[   55.386420] pimreg: entered allmulticast mode
+[   55.402541] pimreg (unregistering): left allmulticast mode
+[   55.434751] pimreg (unregistering): left allmulticast mode
+[   55.439141] pimreg: entered allmulticast mode
+[   55.466549] pimreg: entered allmulticast mode
+[   55.506543] pimreg (unregistering): left allmulticast mode
+[   55.538630] pimreg (unregistering): left allmulticast mode
+[   55.542886] pimreg: entered allmulticast mode
+[   55.571262] pimreg: entered allmulticast mode
+[   55.586467] pimreg (unregistering): left allmulticast mode
+[   55.598879] pimreg (unregistering): left allmulticast mode
+[   55.603020] pimreg: entered allmulticast mode
+[   55.627892] pimreg: entered allmulticast mode
+[   55.654452] pimreg (unregistering): left allmulticast mode
+[   55.675035] pimreg (unregistering): left allmulticast mode
+[   55.699026] pimreg (unregistering): left allmulticast mode
+[   55.703192] pimreg: entered allmulticast mode
+[   55.731279] pimreg: entered allmulticast mode
+[   55.742706] pimreg (unregistering): left allmulticast mode
+[   55.746666] pimreg: entered allmulticast mode
+[   55.778650] pimreg: entered allmulticast mode
+[   55.790469] pimreg (unregistering): left allmulticast mode
+[   55.814626] pimreg (unregistering): left allmulticast mode
+[   55.818794] pimreg: entered allmulticast mode
+[   55.846141] pimreg: entered allmulticast mode
+[   55.882513] pimreg (unregistering): left allmulticast mode
+[   55.906987] pimreg (unregistering): left allmulticast mode
+[   55.910846] pimreg: entered allmulticast mode
+[   55.938426] pimreg: entered allmulticast mode
+[   55.950618] pimreg (unregistering): left allmulticast mode
+[   55.987120] pimreg (unregistering): left allmulticast mode
+[   55.991370] pimreg: entered allmulticast mode
+[   56.018736] pimreg: entered allmulticast mode
+[   56.030485] pimreg (unregistering): left allmulticast mode
+[   56.063154] pimreg (unregistering): left allmulticast mode
+[   56.067166] pimreg: entered allmulticast mode
+[   56.106522] pimreg (unregistering): left allmulticast mode
+[   56.135043] pimreg (unregistering): left allmulticast mode
+[   56.139369] pimreg: entered allmulticast mode
+[   56.166359] pimreg: entered allmulticast mode
+[   56.182436] pimreg (unregistering): left allmulticast mode
+[   56.186642] pimreg: entered allmulticast mode
+[   56.222350] pimreg: entered allmulticast mode
+[   56.246576] pimreg (unregistering): left allmulticast mode
+[   56.279075] pimreg (unregistering): left allmulticast mode
+[   56.283186] pimreg: entered allmulticast mode
+[   56.310531] pimreg: entered allmulticast mode
+[   56.326595] pimreg (unregistering): left allmulticast mode
+[   56.346687] pimreg (unregistering): left allmulticast mode
+[   56.350864] pimreg: entered allmulticast mode
+[   56.379507] pimreg: entered allmulticast mode
+[   56.402310] pimreg (unregistering): left allmulticast mode
+[   56.430680] pimreg (unregistering): left allmulticast mode
+[   56.434920] pimreg: entered allmulticast mode
+[   56.463300] pimreg: entered allmulticast mode
+[   56.478515] pimreg (unregistering): left allmulticast mode
+[   56.510552] pimreg (unregistering): left allmulticast mode
+[   56.514725] pimreg: entered allmulticast mode
+[   56.543079] pimreg: entered allmulticast mode
+[   56.566304] pimreg (unregistering): left allmulticast mode
+[   56.606682] pimreg (unregistering): left allmulticast mode
+[   56.630693] pimreg (unregistering): left allmulticast mode
+[   56.634808] pimreg: entered allmulticast mode
+[   56.662810] pimreg: entered allmulticast mode
+[   56.678515] pimreg (unregistering): left allmulticast mode
+[   56.686608] pimreg: entered allmulticast mode
+[   56.726983] pimreg (unregistering): left allmulticast mode
+[   56.739024] pimreg (unregistering): left allmulticast mode
+[   56.742408] pimreg: entered allmulticast mode
+[   56.770171] pimreg: entered allmulticast mode
+[   56.798631] pimreg (unregistering): left allmulticast mode
+[   56.802749] pimreg: entered allmulticast mode
+[   56.830651] pimreg: entered allmulticast mode
+[   56.846498] pimreg (unregistering): left allmulticast mode
+[   56.874909] pimreg (unregistering): left allmulticast mode
+[   56.879049] pimreg: entered allmulticast mode
+[   56.906675] pimreg: entered allmulticast mode
+[   56.922531] pimreg (unregistering): left allmulticast mode
+[   56.938664] pimreg (unregistering): left allmulticast mode
+[   56.942520] pimreg: entered allmulticast mode
+[   56.966064] pimreg: entered allmulticast mode
+[   56.982521] pimreg (unregistering): left allmulticast mode
+[   57.006738] pimreg (unregistering): left allmulticast mode
+[   57.010586] pimreg: entered allmulticast mode
+[   57.038336] pimreg: entered allmulticast mode
+[   57.062570] pimreg (unregistering): left allmulticast mode
+[   57.087030] pimreg (unregistering): left allmulticast mode
+[   57.091216] pimreg: entered allmulticast mode
+[   57.122166] pimreg: entered allmulticast mode
+[   57.158589] pimreg (unregistering): left allmulticast mode
+[   57.178677] pimreg (unregistering): left allmulticast mode
+[   57.194677] pimreg (unregistering): left allmulticast mode
+[   57.199275] pimreg: entered allmulticast mode
+[   57.226584] pimreg: entered allmulticast mode
+[   57.238707] pimreg (unregistering): left allmulticast mode
+[   57.242516] pimreg: entered allmulticast mode
+[   57.269886] pimreg: entered allmulticast mode
+[   57.286491] pimreg (unregistering): left allmulticast mode
+[   57.318970] pimreg (unregistering): left allmulticast mode
+[   57.323179] pimreg: entered allmulticast mode
+[   57.350421] pimreg: entered allmulticast mode
+[   57.370730] pimreg (unregistering): left allmulticast mode
+[   57.386669] pimreg (unregistering): left allmulticast mode
+[   57.390809] pimreg: entered allmulticast mode
+[   57.418599] pimreg: entered allmulticast mode
+[   57.442448] pimreg (unregistering): left allmulticast mode
+[   57.466659] pimreg (unregistering): left allmulticast mode
+[   57.470752] pimreg: entered allmulticast mode
+[   57.498410] pimreg: entered allmulticast mode
+[   57.510502] pimreg (unregistering): left allmulticast mode
+[   57.546821] pimreg (unregistering): left allmulticast mode
+[   57.551138] pimreg: entered allmulticast mode
+[   57.578497] pimreg: entered allmulticast mode
+[   57.594586] pimreg (unregistering): left allmulticast mode
+[   57.615067] pimreg (unregistering): left allmulticast mode
+[   57.619290] pimreg: entered allmulticast mode
+[   57.646373] pimreg: entered allmulticast mode
+[   57.662618] pimreg (unregistering): left allmulticast mode
+[   57.683065] pimreg (unregistering): left allmulticast mode
+[   57.687239] pimreg: entered allmulticast mode
+[   57.714873] pimreg: entered allmulticast mode
+[   57.730424] pimreg (unregistering): left allmulticast mode
+[   57.751029] pimreg (unregistering): left allmulticast mode
+[   57.755178] pimreg: entered allmulticast mode
+[   57.790252] pimreg: entered allmulticast mode
+[   57.814826] pimreg (unregistering): left allmulticast mode
+[   57.843134] pimreg (unregistering): left allmulticast mode
+[   57.847473] pimreg: entered allmulticast mode
+[   57.874368] pimreg: entered allmulticast mode
+[   57.890599] pimreg (unregistering): left allmulticast mode
+[   57.923050] pimreg (unregistering): left allmulticast mode
+[   57.927380] pimreg: entered allmulticast mode
+[   57.954054] pimreg: entered allmulticast mode
+[   57.970602] pimreg (unregistering): left allmulticast mode
+[   58.003037] pimreg (unregistering): left allmulticast mode
+[   58.007157] pimreg: entered allmulticast mode
+[   58.035543] pimreg: entered allmulticast mode
+[   58.062499] pimreg (unregistering): left allmulticast mode
+[   58.095048] pimreg (unregistering): left allmulticast mode
+[   58.099092] pimreg: entered allmulticast mode
+[   58.126389] pimreg: entered allmulticast mode
+[   58.142765] pimreg (unregistering): left allmulticast mode
+[   58.154670] pimreg (unregistering): left allmulticast mode
+[   58.158939] pimreg: entered allmulticast mode
+[   58.202653] pimreg: entered allmulticast mode
+[   58.214483] pimreg (unregistering): left allmulticast mode
+[   58.226741] pimreg (unregistering): left allmulticast mode
+[   58.230996] pimreg: entered allmulticast mode
+[   58.258523] pimreg: entered allmulticast mode
+[   58.274557] pimreg (unregistering): left allmulticast mode
+[   58.298669] pimreg (unregistering): left allmulticast mode
+[   58.302711] pimreg: entered allmulticast mode
+[   58.338871] pimreg: entered allmulticast mode
+[   58.354791] pimreg (unregistering): left allmulticast mode
+[   58.383067] pimreg (unregistering): left allmulticast mode
+[   58.386965] pimreg: entered allmulticast mode
+[   58.414389] pimreg: entered allmulticast mode
+[   58.434598] pimreg (unregistering): left allmulticast mode
+[   58.463065] pimreg (unregistering): left allmulticast mode
+[   58.467279] pimreg: entered allmulticast mode
+[   58.503440] pimreg: entered allmulticast mode
+[   58.542515] pimreg (unregistering): left allmulticast mode
+[   58.567064] pimreg (unregistering): left allmulticast mode
+[   58.571098] pimreg: entered allmulticast mode
+[   58.598733] pimreg: entered allmulticast mode
+[   58.614574] pimreg (unregistering): left allmulticast mode
+[   58.647099] pimreg (unregistering): left allmulticast mode
+[   58.651296] pimreg: entered allmulticast mode
+[   58.678273] pimreg: entered allmulticast mode
+[   58.694657] pimreg (unregistering): left allmulticast mode
+[   58.727047] pimreg (unregistering): left allmulticast mode
+[   58.731171] pimreg: entered allmulticast mode
+[   58.759439] pimreg: entered allmulticast mode
+[   58.770399] pimreg (unregistering): left allmulticast mode
+[   58.807091] pimreg (unregistering): left allmulticast mode
+[   58.811403] pimreg: entered allmulticast mode
+[   58.838121] pimreg: entered allmulticast mode
+[   58.862633] pimreg (unregistering): left allmulticast mode
+[   58.887298] pimreg (unregistering): left allmulticast mode
+[   58.891340] pimreg: entered allmulticast mode
+[   58.918174] pimreg: entered allmulticast mode
+[   58.942624] pimreg (unregistering): left allmulticast mode
+[   58.955055] pimreg (unregistering): left allmulticast mode
+[   58.959239] pimreg: entered allmulticast mode
+[   58.986751] pimreg: entered allmulticast mode
+[   59.002590] pimreg (unregistering): left allmulticast mode
+[   59.031150] pimreg (unregistering): left allmulticast mode
+[   59.035266] pimreg: entered allmulticast mode
+[   59.062379] pimreg: entered allmulticast mode
+[   59.070609] pimreg (unregistering): left allmulticast mode
+[   59.102678] pimreg (unregistering): left allmulticast mode
+[   59.106967] pimreg: entered allmulticast mode
+[   59.134102] pimreg: entered allmulticast mode
+[   59.146549] pimreg (unregistering): left allmulticast mode
+[   59.158731] pimreg (unregistering): left allmulticast mode
+[   59.162983] pimreg: entered allmulticast mode
+[   59.190344] pimreg: entered allmulticast mode
+[   59.206563] pimreg (unregistering): left allmulticast mode
+[   59.226972] pimreg (unregistering): left allmulticast mode
+[   59.230933] pimreg: entered allmulticast mode
+[   59.258413] pimreg: entered allmulticast mode
+[   59.286543] pimreg (unregistering): left allmulticast mode
+[   59.303012] pimreg (unregistering): left allmulticast mode
+[   59.307019] pimreg: entered allmulticast mode
+[   59.334418] pimreg: entered allmulticast mode
+[   59.346623] pimreg (unregistering): left allmulticast mode
+[   59.374866] pimreg (unregistering): left allmulticast mode
+[   59.378947] pimreg: entered allmulticast mode
+[   59.406153] pimreg: entered allmulticast mode
+[   59.422607] pimreg (unregistering): left allmulticast mode
+[   59.443033] pimreg (unregistering): left allmulticast mode
+[   59.447203] pimreg: entered allmulticast mode
+[   59.475409] pimreg: entered allmulticast mode
+[   59.498503] pimreg (unregistering): left allmulticast mode
+[   59.523113] pimreg (unregistering): left allmulticast mode
+[   59.527490] pimreg: entered allmulticast mode
+[   59.554787] pimreg: entered allmulticast mode
+[   59.566491] pimreg (unregistering): left allmulticast mode
+[   59.603052] pimreg (unregistering): left allmulticast mode
+[   59.607544] pimreg: entered allmulticast mode
+[   59.650555] pimreg (unregistering): left allmulticast mode
+[   59.662656] pimreg (unregistering): left allmulticast mode
+[   59.665775] pimreg: entered allmulticast mode
+[   59.695044] pimreg: entered allmulticast mode
+[   59.710592] pimreg (unregistering): left allmulticast mode
+[   59.714736] pimreg: entered allmulticast mode
+[   59.755172] pimreg: entered allmulticast mode
+[   59.770692] pimreg (unregistering): left allmulticast mode
+[   59.782777] pimreg (unregistering): left allmulticast mode
+[   59.787008] pimreg: entered allmulticast mode
+[   59.815604] pimreg: entered allmulticast mode
+[   59.834503] pimreg (unregistering): left allmulticast mode
+[   59.854729] pimreg (unregistering): left allmulticast mode
+[   59.870697] pimreg (unregistering): left allmulticast mode
+[   59.874853] pimreg: entered allmulticast mode
+[   59.902565] pimreg: entered allmulticast mode
+[   59.930386] pimreg (unregistering): left allmulticast mode
+[   59.938947] pimreg (unregistering): left allmulticast mode
+[   59.943082] pimreg: entered allmulticast mode
+[   59.967766] pimreg: entered allmulticast mode
+[   59.986327] pimreg (unregistering): left allmulticast mode
+[   60.007061] pimreg (unregistering): left allmulticast mode
+[   60.011097] pimreg: entered allmulticast mode
+[   60.038789] pimreg: entered allmulticast mode
+[   60.066596] pimreg (unregistering): left allmulticast mode
+[   60.070882] pimreg: entered allmulticast mode
+[   60.098490] pimreg: entered allmulticast mode
+[   60.114631] pimreg (unregistering): left allmulticast mode
+[   60.134701] pimreg (unregistering): left allmulticast mode
+[   60.139152] pimreg: entered allmulticast mode
+[   60.166166] pimreg: entered allmulticast mode
+[   60.206538] pimreg (unregistering): left allmulticast mode
+[   60.231044] pimreg (unregistering): left allmulticast mode
+[   60.235049] pimreg: entered allmulticast mode
+[   60.262411] pimreg: entered allmulticast mode
+[   60.282399] pimreg (unregistering): left allmulticast mode
+[   60.315063] pimreg (unregistering): left allmulticast mode
+[   60.319333] pimreg: entered allmulticast mode
+[   60.346475] pimreg: entered allmulticast mode
+[   60.378517] pimreg (unregistering): left allmulticast mode
+[   60.415138] pimreg (unregistering): left allmulticast mode
+[   60.435059] pimreg (unregistering): left allmulticast mode
+[   60.439130] pimreg: entered allmulticast mode
+[   60.475236] pimreg: entered allmulticast mode
+[   60.498452] pimreg (unregistering): left allmulticast mode
+[   60.502591] pimreg: entered allmulticast mode
+[   60.539406] pimreg: entered allmulticast mode
+[   60.550665] pimreg (unregistering): left allmulticast mode
+[   60.578703] pimreg (unregistering): left allmulticast mode
+[   60.583004] pimreg: entered allmulticast mode
+[   60.615094] pimreg: entered allmulticast mode
+[   60.638455] pimreg (unregistering): left allmulticast mode
+[   60.658896] pimreg (unregistering): left allmulticast mode
+[   60.663258] pimreg: entered allmulticast mode
+[   60.690791] pimreg: entered allmulticast mode
+[   60.706608] pimreg (unregistering): left allmulticast mode
+[   60.727081] pimreg (unregistering): left allmulticast mode
+[   60.731248] pimreg: entered allmulticast mode
+[   60.757943] pimreg: entered allmulticast mode
+[   60.774761] pimreg (unregistering): left allmulticast mode
+[   60.794747] pimreg (unregistering): left allmulticast mode
+[   60.798886] pimreg: entered allmulticast mode
+[   60.826556] pimreg: entered allmulticast mode
+[   60.842490] pimreg (unregistering): left allmulticast mode
+[   60.874737] pimreg (unregistering): left allmulticast mode
+[   60.878899] pimreg: entered allmulticast mode
+[   60.906131] pimreg: entered allmulticast mode
+[   60.938597] pimreg (unregistering): left allmulticast mode
+[   60.959037] pimreg (unregistering): left allmulticast mode
+[   60.963350] pimreg: entered allmulticast mode
+[   60.990061] pimreg: entered allmulticast mode
+[   61.006710] pimreg (unregistering): left allmulticast mode
+[   61.022681] pimreg (unregistering): left allmulticast mode
+[   61.026914] pimreg: entered allmulticast mode
+[   61.066088] pimreg: entered allmulticast mode
+[   61.098630] pimreg (unregistering): left allmulticast mode
+[   61.118690] pimreg (unregistering): left allmulticast mode
+[   61.122519] pimreg: entered allmulticast mode
+[   61.150164] pimreg: entered allmulticast mode
+[   61.178420] pimreg (unregistering): left allmulticast mode
+[   61.190977] pimreg (unregistering): left allmulticast mode
+[   61.195414] pimreg: entered allmulticast mode
+[   61.230105] pimreg: entered allmulticast mode
+[   61.246582] pimreg (unregistering): left allmulticast mode
+[   61.279107] pimreg (unregistering): left allmulticast mode
+[   61.283270] pimreg: entered allmulticast mode
+[   61.318580] pimreg: entered allmulticast mode
+[   61.342497] pimreg (unregistering): left allmulticast mode
+[   61.363005] pimreg (unregistering): left allmulticast mode
+[   61.366845] pimreg: entered allmulticast mode
+[   61.403104] pimreg: entered allmulticast mode
+[   61.426464] pimreg (unregistering): left allmulticast mode
+[   61.438716] pimreg (unregistering): left allmulticast mode
+[   61.459040] pimreg (unregistering): left allmulticast mode
+[   61.462982] pimreg: entered allmulticast mode
+[   61.491847] pimreg: entered allmulticast mode
+[   61.514436] pimreg (unregistering): left allmulticast mode
+[   61.526939] pimreg (unregistering): left allmulticast mode
+[   61.531403] pimreg: entered allmulticast mode
+[   61.575299] pimreg: entered allmulticast mode
+[   61.586490] pimreg (unregistering): left allmulticast mode
+[   61.590493] pimreg: entered allmulticast mode
+[   61.622410] pimreg: entered allmulticast mode
+[   61.654513] pimreg (unregistering): left allmulticast mode
+[   61.674773] pimreg (unregistering): left allmulticast mode
+[   61.678972] pimreg: entered allmulticast mode
+[   61.706081] pimreg: entered allmulticast mode
+[   61.722545] pimreg (unregistering): left allmulticast mode
+[   61.754797] pimreg (unregistering): left allmulticast mode
+[   61.758848] pimreg: entered allmulticast mode
+[   61.786832] pimreg: entered allmulticast mode
+[   61.806421] pimreg (unregistering): left allmulticast mode
+[   61.822650] pimreg (unregistering): left allmulticast mode
+[   61.826869] pimreg: entered allmulticast mode
+[   61.854472] pimreg: entered allmulticast mode
+[   61.866777] pimreg (unregistering): left allmulticast mode
+[   61.894673] pimreg (unregistering): left allmulticast mode
+[   61.898888] pimreg: entered allmulticast mode
+[   61.926677] pimreg: entered allmulticast mode
+[   61.946434] pimreg (unregistering): left allmulticast mode
+[   61.962688] pimreg (unregistering): left allmulticast mode
+[   61.966874] pimreg: entered allmulticast mode
+[   61.994055] pimreg: entered allmulticast mode
+[   62.022559] pimreg (unregistering): left allmulticast mode
+[   62.047049] pimreg (unregistering): left allmulticast mode
+[   62.051269] pimreg: entered allmulticast mode
+[   62.078530] pimreg: entered allmulticast mode
+[   62.098472] pimreg (unregistering): left allmulticast mode
+[   62.119185] pimreg (unregistering): left allmulticast mode
+[   62.123137] pimreg: entered allmulticast mode
+[   62.159329] pimreg: entered allmulticast mode
+[   62.174502] pimreg (unregistering): left allmulticast mode
+[   62.195048] pimreg (unregistering): left allmulticast mode
+[   62.199194] pimreg: entered allmulticast mode
+[   62.227523] pimreg: entered allmulticast mode
+[   62.250680] pimreg (unregistering): left allmulticast mode
+[   62.275068] pimreg (unregistering): left allmulticast mode
+[   62.279274] pimreg: entered allmulticast mode
+[   62.306681] pimreg: entered allmulticast mode
+[   62.318589] pimreg (unregistering): left allmulticast mode
+[   62.343038] pimreg (unregistering): left allmulticast mode
+[   62.347218] pimreg: entered allmulticast mode
+[   62.382515] pimreg: entered allmulticast mode
+[   62.410841] pimreg (unregistering): left allmulticast mode
+[   62.434846] pimreg (unregistering): left allmulticast mode
+[   62.439012] pimreg: entered allmulticast mode
+[   62.466544] pimreg: entered allmulticast mode
+[   62.486503] pimreg (unregistering): left allmulticast mode
